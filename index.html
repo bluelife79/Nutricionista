@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones del Nutricionista - RevolucionaT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2d3748;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #718096;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .phase {
+            margin-bottom: 50px;
+        }
+        
+        .phase-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .phase-header.onboarding {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .phase-header.primeros-dias {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        .phase-header.mantenimiento {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        
+        .activities {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            padding-left: 20px;
+        }
+        
+        .activity-card {
+            background: white;
+            border-left: 5px solid #667eea;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .activity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .activity-card.onboarding {
+            border-left-color: #f5576c;
+        }
+        
+        .activity-card.primeros-dias {
+            border-left-color: #00f2fe;
+        }
+        
+        .activity-card.mantenimiento {
+            border-left-color: #43e97b;
+        }
+        
+        .activity-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .activity-icon {
+            font-size: 1.5rem;
+        }
+        
+        .activity-description {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .activity-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .detail-badge {
+            background: #edf2f7;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #2d3748;
+            font-weight: 500;
+        }
+        
+        .detail-badge.frequency {
+            background: #e6fffa;
+            color: #047857;
+        }
+        
+        .detail-badge.time {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .detail-badge.tool {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .flow-arrow {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 2rem;
+            color: #cbd5e0;
+        }
+        
+        .legend {
+            margin-top: 40px;
+            padding: 25px;
+            background: #f7fafc;
+            border-radius: 10px;
+            border: 2px dashed #cbd5e0;
+        }
+        
+        .legend-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+        
+        .legend-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .legend-color {
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+        }
+        
+        .faq-box {
+            margin-top: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            color: white;
+        }
+        
+        .faq-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .faq-item {
+            background: rgba(255,255,255,0.15);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .faq-question {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .faq-answer {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🥗 Funciones del Nutricionista</h1>
+        <p class="subtitle">Programa RevolucionaT - Sistema de Acompañamiento Nutricional</p>
+        
+        <div class="timeline">
+            <!-- FASE 1: SEMANA 0 - ONBOARDING -->
+            <div class="phase">
+                <div class="phase-header onboarding">
+                    📋 SEMANA 0: ONBOARDING
+                </div>
+                
+                <div class="activities">
+                    <div class="activity-card onboarding">
+                        <div class="activity-title">
+                            <span class="activity-icon">📝</span>
+                            Formulario Inicial
+                        </div>
+                        <div class="activity-description">
+                            La alumna rellena el formulario de necesidades alimentarias antes de la Semana 0 o el lunes de la Semana 0. El nutricionista lo revisa para preparar la primera llamada.
+                        </div>
+                        <div class="activity-details">
+                            <span class="detail-badge frequency">1 vez por clienta</span>
+                            <span class="detail-badge tool">Notion/Forms</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-card onboarding">
+                        <div class="activity-title">
+                            <span class="activity-icon">🎯</span>
+                            Llamada de Estrategia Nutricional
+                        </div>
+                        <div class="activity-description">
+                            Llamada para detectar patrones alimentarios, horarios de hambre real, bloqueos, errores habituales y establecer las bases de su plan personalizado. Se identifica dónde está fallando y qué necesita para arrancar bien.
+                        </div>
+                        <div class="activity-details">
+                            <span class="detail-badge frequency">Antes del jueves - Semana 0</span>
+                            <span class="detail-badge time">20 min</span>
+                            <span class="detail-badge tool">Zoom/Meet</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-card onboarding">
+                        <div class="activity-title">
+                            <span class="activity-icon">📦</span>
+                            Entrega Pack Completo
+                        </div>
+                        <div class="activity-description">
+                            Entrega de menús personalizados + mapa de acciones (situación actual, errores detectados, plan de ataque) + acceso a plataforma de cocina RevolucionaT + herramienta de intercambio de alimentos.
+                        </div>
+                        <div class="activity-details">
+                            <span class="detail-badge frequency">Jueves/Viernes Semana 0</span>
+                            <span class="detail-badge tool">PDF + Plataforma</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flow-arrow">⬇️</div>
+            
+            <!-- FASE 2: PRIMEROS 15 DÍAS -->
+            <div class="phase">
+                <div class="phase-header primeros-dias">
+                    📸 PRIMEROS 15 DÍAS: REVISIÓN INTENSIVA (solo clientas nuevas)
+                </div>
+                
+                <div class="activities">
+                    <div class="activity-card primeros-dias">
+                        <div class="activity-title">
+                            <span class="activity-icon">📷</span>
+                            Revisión de Fotos de Comidas
+                        </div>
+                        <div class="activity-description">
+                            La alumna sube fotos de comida del mediodía y cena a HARBIZ. El nutricionista accede al perfil de cada alumna nueva y revisa las fotos durante estos 15 días para validar adherencia y detectar errores en tiempo real. Si detecta algo que no está bien, avisa ANTES del feedback semanal.
+                        </div>
+                        <div class="activity-details">
+                            <span class="detail-badge frequency">Durante 15 días</span>
+                            <span class="detail-badge tool">HARBIZ</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-card primeros-dias">
+                        <div class="activity-title">
+                            <span class="activity-icon">✅</span>
+                            Feedback Semanal
+                        </div>
+                        <div class="activity-description">
+                            Al final de cada semana, el nutricionista da feedback en el grupo de WhatsApp individual sobre las fotos revisadas: qué está haciendo bien, qué errores detectó y qué tiene que corregir la siguiente semana.
+                        </div>
+                        <div class="activity-details">
+                            <span class="detail-badge frequency">Final de Semana 1 y 2</span>
+                            <span class="detail-badge tool">WhatsApp</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-card primeros-dias">
+                        <div class="activity-title">
+                            <span class="activity-icon">📊</span>
+                            Plan de Acciones (Día 15)
+                        </div>
+                        <div class="activity-description">
+                            Al finalizar los 15 días, el nutricionista entrega un plan de acciones basado en todo lo observado en las fotos: resumen de errores detectados, aciertos principales y acciones concretas para seguir mejorando.
+                        </div>
+                        <div class="activity-details">
+                            <span class="detail-badge frequency">1 vez (Día 15)</span>
+                            <span class="detail-badge tool">WhatsApp</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flow-arrow">⬇️</div>
+            
+            <!-- FASE 3: MANTENIMIENTO -->
+            <div class="phase">
+                <div class="phase-header mantenimiento">
+                    🔄 SEMANAS 3-24: MANTENIMIENTO Y AJUSTES
+                </div>
+                
+                <div class="activities">
+                    <div class="activity-card mantenimiento">
+                        <div class="activity-title">
+                            <span class="activity-icon">🔄</span>
+                            Cambios de Menú/Raciones
+                        </div>
+                        <div class="activity-description">
+                            Cada 4-5 semanas, Notion avisa al nutricionista de las clientas que toca revisar. Basándose en la evolución (datos de la coach), envía nuevo menú ajustado o modificación de raciones SOLO si es necesario. Si la clienta va bien, no se cambia nada.
+                        </div>
+                        <div class="activity-details">
+                            <span class="detail-badge frequency">Cada 4-5 semanas (solo si necesario)</span>
+                            <span class="detail-badge tool">Notion + Plantillas</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-card mantenimiento">
+                        <div class="activity-title">
+                            <span class="activity-icon">💬</span>
+                            Soporte WhatsApp (Avisos Nutri)
+                        </div>
+                        <div class="activity-description">
+                            Sistema de avisos: la coach detecta duda nutricional en el grupo individual de la alumna → avisa al nutricionista vía grupo "Avisos Nutri" → el nutricionista entra al grupo individual y resuelve la duda. No requiere estar conectado 24/7, solo responde cuando se le avisa.
+                        </div>
+                        <div class="activity-details">
+                            <span class="detail-badge frequency">Cuando se le avisa</span>
+                            <span class="detail-badge tool">WhatsApp</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- LEYENDA -->
+        <div class="legend">
+            <div class="legend-title">📌 Leyenda de Fases</div>
+            <div class="legend-items">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                    <span><strong>Semana 0:</strong> Onboarding inicial (1 vez por clienta)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                    <span><strong>Primeros 15 días:</strong> Revisión intensiva (solo clientas nuevas)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
+                    <span><strong>Semanas 3-24:</strong> Mantenimiento y ajustes (todas las clientas)</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FAQ -->
+        <div class="faq-box">
+            <div class="faq-title">❓ Preguntas Frecuentes del Nutricionista</div>
+            
+            <div class="faq-item">
+                <div class="faq-question">¿Tengo que estar conectado 24/7 en WhatsApp?</div>
+                <div class="faq-answer">
+                    No. El sistema de "Avisos Nutri" funciona así: la coach filtra las dudas nutricionales y te avisa cuando hay algo que resolver. Solo entras cuando se te avisa. Las clientas reciben el podcast semanal de Jonathan para contenido educativo, no necesitan estar preguntándote constantemente.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">¿Tengo que hacer menús completamente nuevos cada 4-5 semanas?</div>
+                <div class="faq-answer">
+                    No. Solo ajustas o cambias menú si la clienta lo necesita (estancamiento, pérdida de energía, etc.). Si va bien, no tocas nada. Notion te avisa cuándo toca revisar a cada clienta, tú miras su evolución (la coach te pasa los datos) y decides si hace falta cambio o no.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">¿Cómo sé si una clienta necesita cambio de menú o no?</div>
+                <div class="faq-answer">
+                    La coach te pasa los datos de evolución (peso, adherencia, energía) en un Google Sheet cada 2 semanas. Tú lo revisas y decides. Si la clienta va bien (peso baja, energía alta, adherencia correcta), no cambias nada. Si está estancada 2 semanas seguidas, ajustas raciones. Si va mal (peso sube, cansancio), cambias menú.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">¿Qué hago si una clienta sube fotos perfectas durante los 15 días?</div>
+                <div class="faq-answer">
+                    Das feedback igual. Aunque esté todo bien, tienes que darle feedback semanal diciéndole "Todo perfecto, sigue así" y destacar lo que más te gustó. Al final del día 15, le entregas el plan de acciones igual, resaltando que va excelente y qué tiene que mantener para seguir así. Nunca dejes pasar una semana sin feedback, aunque sea positivo.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">¿Cuántas clientas nuevas voy a tener que atender cada semana?</div>
+                <div class="faq-answer">
+                    Con el flujo actual, entran aproximadamente 6-8 clientas nuevas al mes, es decir, unas 2 clientas nuevas por semana de promedio. Esto significa que cada semana harás 2 videollamadas de estrategia nutricional y prepararás 2 packs completos.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">¿Dónde accedo a las fotos de las comidas?</div>
+                <div class="faq-answer">
+                    Las alumnas suben sus fotos a HARBIZ. Tú entras a HARBIZ, vas al perfil de cada alumna que está en sus primeros 15 días y revisas sus fotos de comida y cena. No tienes que revisar fotos de todas las clientas, solo de las que están en período de revisión intensiva (primeros 15 días).
+                </div>
+            </div>
+        </div>
+        
+        <!-- NOTA IMPORTANTE -->
+        <div style="margin-top: 30px; padding: 20px; background: #fef3c7; border-left: 5px solid #f59e0b; border-radius: 10px;">
+            <strong style="color: #92400e;">📝 Nota Importante:</strong>
+            <p style="color: #78350f; margin-top: 10px; line-height: 1.6;">
+                El nutricionista NO necesita estar conectado 24/7. El sistema de "Avisos Nutri" permite que la coach filtre las dudas nutricionales y avise al nutricionista solo cuando sea necesario. Las clientas reciben el podcast semanal de Jonathan para contenido educativo adicional.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
