@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Test Database Load</title>
+  </head>
+  <body>
+    <h1>Test de Carga de Database</h1>
+    <div id="result"></div>
+    <div id="error" style="color: red"></div>
+
+    <script>
+      async function testLoad() {
+        const result = document.getElementById("result");
+        const errorDiv = document.getElementById("error");
+
+        try {
+          console.log("🔍 Intentando fetch...");
+          result.innerHTML = "Cargando...";
+
+          const response = await fetch("database.json");
+          console.log("📡 Response status:", response.status);
+          console.log("📡 Response OK:", response.ok);
+
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+          }
+
+          console.log("🔄 Parseando JSON...");
+          const data = await response.json();
+
+          const foods = data.foods || [];
+
+          result.innerHTML = `
+                <h2>✅ ÉXITO</h2>
+                <p>Total alimentos: ${foods.length}</p>
+                <p>Primer alimento: ${foods[0]?.name}</p>
+            `;
+        } catch (error) {
+          console.error("❌ ERROR:", error);
+          errorDiv.innerHTML = `<h2>ERROR:</h2><pre>${error}</pre>`;
+        }
+      }
+      testLoad();
+    </script>
+  </body>
+</html>

@@ -1,478 +1,1876 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Funciones del Nutricionista - RevolucionaT</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="theme-color" content="#e8ecf3" />
+    <meta
+      name="description"
+      content="Intercambiador de alimentos RevolucionaT - Encuentra equivalencias nutricionales"
+    />
+
+    <title>RevolucionaT - Intercambiador de Alimentos</title>
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="RevolucionaT" />
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        background: #e8ecf3;
+        min-height: 100vh;
+        padding: 20px;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      /* HEADER */
+      .header {
+        text-align: center;
+        margin-bottom: 32px;
+        padding-top: 20px;
+      }
+
+      .logo {
+        font-size: 22px;
+        font-weight: 900;
+        color: #1a1a2e;
+        margin-bottom: 4px;
+        letter-spacing: -0.5px;
+      }
+
+      .subtitle {
+        font-size: 13px;
+        color: #8b92a8;
+        font-weight: 600;
+      }
+
+      /* CARDS NEUMORPHISM */
+      .card-neo {
+        background: #e8ecf3;
+        border-radius: 24px;
+        padding: 24px;
+        margin-bottom: 20px;
+        box-shadow:
+          12px 12px 24px #c5c9d1,
+          -12px -12px 24px #ffffff;
+      }
+
+      .label {
+        font-size: 12px;
+        font-weight: 700;
+        color: #534b90;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 12px;
+        display: block;
+      }
+
+      /* INPUTS */
+      .input-wrapper {
+        position: relative;
+        margin-bottom: 20px;
+      }
+
+      .input-neo {
+        width: 100%;
+        padding: 18px 20px;
+        border: none;
+        border-radius: 16px;
+        font-size: 16px;
+        font-weight: 600;
+        background: #e8ecf3;
+        color: #1a1a2e;
+        box-shadow:
+          inset 6px 6px 12px #c5c9d1,
+          inset -6px -6px 12px #ffffff;
+        transition: all 0.3s;
+        font-family: "Inter", sans-serif;
+      }
+
+      .input-neo:focus {
+        outline: none;
+        box-shadow:
+          inset 8px 8px 16px #c5c9d1,
+          inset -8px -8px 16px #ffffff;
+      }
+
+      .input-neo::placeholder {
+        color: #a0a8b8;
+      }
+
+      .input-neo:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      /* AUTOCOMPLETE DROPDOWN */
+      .autocomplete-dropdown {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        right: 0;
+        background: #e8ecf3;
+        border-radius: 16px;
+        box-shadow:
+          8px 8px 16px #c5c9d1,
+          -8px -8px 16px #ffffff;
+        max-height: 300px;
+        overflow-y: auto;
+        z-index: 100;
+        display: none;
+      }
+
+      .autocomplete-dropdown.active {
+        display: block;
+      }
+
+      .autocomplete-item {
+        padding: 14px 20px;
+        cursor: pointer;
+        transition: all 0.2s;
+        border-bottom: 1px solid rgba(197, 201, 209, 0.3);
+      }
+
+      .autocomplete-item:last-child {
+        border-bottom: none;
+      }
+
+      .autocomplete-item:hover,
+      .autocomplete-item.selected {
+        background: rgba(83, 75, 144, 0.05);
+      }
+
+      .item-name {
+        font-size: 15px;
+        font-weight: 600;
+        color: #1a1a2e;
+        margin-bottom: 2px;
+      }
+
+      .item-brand {
+        font-size: 12px;
+        color: #8b92a8;
+        font-weight: 500;
+      }
+
+      .item-macros {
+        font-size: 11px;
+        color: #a0a8b8;
+        margin-top: 4px;
+      }
+
+      /* SELECTED FOOD */
+      .selected-food {
+        background: #e8ecf3;
+        border-radius: 16px;
+        padding: 16px 20px;
+        margin-bottom: 20px;
+        box-shadow:
+          inset 4px 4px 8px #c5c9d1,
+          inset -4px -4px 8px #ffffff;
+        display: none;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .selected-food.active {
+        display: flex;
+      }
+
+      .selected-food-info {
+        flex: 1;
+      }
+
+      .selected-food-name {
+        font-size: 15px;
+        font-weight: 700;
+        color: #1a1a2e;
+        margin-bottom: 2px;
+      }
+
+      .selected-food-brand {
+        font-size: 12px;
+        color: #8b92a8;
+      }
+
+      .clear-btn {
+        background: none;
+        border: none;
+        color: #ae4c7a;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 4px;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        transition: all 0.2s;
+      }
+
+      .clear-btn:hover {
+        background: rgba(174, 76, 122, 0.1);
+      }
+
+      /* BUTTON */
+      .btn-neo {
+        width: 100%;
+        padding: 20px;
+        border: none;
+        border-radius: 18px;
+        font-size: 17px;
+        font-weight: 800;
+        background: linear-gradient(135deg, #534b90 0%, #ae4c7a 100%);
+        color: white;
+        box-shadow:
+          8px 8px 16px #c5c9d1,
+          -8px -8px 16px #ffffff;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-family: "Inter", sans-serif;
+      }
+
+      .btn-neo:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow:
+          12px 12px 24px #c5c9d1,
+          -12px -12px 24px #ffffff;
+      }
+
+      .btn-neo:active:not(:disabled) {
+        transform: translateY(0);
+        box-shadow:
+          inset 6px 6px 12px #c5c9d1,
+          inset -6px -8px 16px #ffffff;
+      }
+
+      .btn-neo:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      /* RESULTS */
+      .results-section {
+        display: none;
+      }
+
+      .results-section.active {
+        display: block;
+      }
+
+      .results-header {
+        text-align: center;
+        margin-bottom: 24px;
+      }
+
+      .results-title {
+        font-size: 20px;
+        font-weight: 800;
+        color: #1a1a2e;
+        margin-bottom: 8px;
+      }
+
+      .results-subtitle {
+        font-size: 14px;
+        color: #8b92a8;
+      }
+
+      /* ORIGINAL FOOD CARD */
+      .original-food-card {
+        background: linear-gradient(135deg, #534b90 0%, #ae4c7a 100%);
+        border-radius: 20px;
+        padding: 20px;
+        margin-bottom: 24px;
+        color: white;
+        box-shadow:
+          8px 8px 16px #c5c9d1,
+          -8px -8px 16px #ffffff;
+      }
+
+      .original-food-header {
+        font-size: 12px;
+        font-weight: 600;
+        opacity: 0.9;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .original-food-name {
+        font-size: 22px;
+        font-weight: 900;
+        margin-bottom: 16px;
+      }
+
+      .original-macros {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+
+      .original-macro-item {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.15);
+        padding: 10px 6px;
+        border-radius: 10px;
+      }
+
+      .original-macro-item.calories {
+        background: rgba(255, 255, 255, 0.25);
+      }
+
+      .original-macro-label {
+        font-size: 10px;
+        opacity: 0.85;
+        margin-bottom: 4px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .original-macro-value {
+        font-size: 17px;
+        font-weight: 900;
+      }
+
+      /* SECTION HEADERS */
+      .section-header {
+        margin: 30px 0 16px 0;
+        padding-bottom: 10px;
+        border-bottom: 3px solid;
+      }
+
+      .section-header.perfect {
+        border-bottom-color: #4caf50;
+      }
+
+      .section-header.good {
+        border-bottom-color: #ff9800;
+      }
+
+      .section-header.advanced {
+        border-bottom-color: #f44336;
+      }
+
+      .section-title {
+        font-size: 18px;
+        font-weight: 800;
+        color: #1a1a2e;
+        margin-bottom: 4px;
+      }
+
+      .section-subtitle {
+        font-size: 13px;
+        color: #8b92a8;
+        font-weight: 600;
+      }
+
+      /* RESULT CARDS */
+      .result-card {
+        background: #e8ecf3;
+        border-radius: 20px;
+        padding: 20px;
+        margin-bottom: 16px;
+        box-shadow:
+          8px 8px 16px #c5c9d1,
+          -8px -8px 16px #ffffff;
+        transition: all 0.3s;
+        border: 2px solid transparent;
+      }
+
+      .result-card:hover {
+        transform: translateY(-2px);
+        box-shadow:
+          12px 12px 24px #c5c9d1,
+          -12px -12px 24px #ffffff;
+      }
+
+      .result-card.perfect {
+        border-color: #4caf50;
+        background: #f1f8f4;
+      }
+
+      .result-card.good {
+        border-color: #ff9800;
+        background: #fff8f0;
+      }
+
+      .result-card.advanced {
+        border-color: #f44336;
+        background: #fff5f5;
+      }
+
+      /* LEVEL BADGE */
+      .level-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 11px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .level-badge.perfect {
+        background: #e8f5e9;
+        color: #2e7d32;
+      }
+
+      .level-badge.good {
+        background: #fff3e0;
+        color: #e65100;
+      }
+
+      .level-badge.advanced {
+        background: #ffebee;
+        color: #c62828;
+      }
+
+      .result-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 16px;
+      }
+
+      .result-info {
+        flex: 1;
+      }
+
+      .result-name {
+        font-size: 17px;
+        font-weight: 700;
+        color: #1a1a2e;
+        margin-bottom: 4px;
+      }
+
+      .result-brand {
+        font-size: 13px;
+        color: #8b92a8;
+        font-weight: 500;
+      }
+
+      .match-score {
+        text-align: right;
+      }
+
+      .match-value {
+        font-size: 28px;
+        font-weight: 900;
+        line-height: 1;
+      }
+
+      .match-value.perfect {
+        color: #4caf50;
+      }
+      .match-value.good {
+        color: #ff9800;
+      }
+      .match-value.advanced {
+        color: #f44336;
+      }
+
+      .match-label {
+        font-size: 10px;
+        color: #8b92a8;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      .result-amount {
+        font-size: 28px;
+        font-weight: 900;
+        background: linear-gradient(135deg, #534b90 0%, #ae4c7a 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 16px;
+      }
+
+      .result-macros {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+
+      .result-macro-item {
+        text-align: center;
+        padding: 10px 6px;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 12px;
+      }
+
+      .result-macro-item.cal-down {
+        background: #e3f2fd;
+      }
+
+      .result-macro-item.cal-up-low {
+        background: #fff3e0;
+      }
+
+      .result-macro-item.cal-up-high {
+        background: #ffebee;
+      }
+
+      .result-macro-label {
+        font-size: 10px;
+        color: #8b92a8;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+        font-weight: 700;
+      }
+
+      .result-macro-value {
+        font-size: 15px;
+        font-weight: 800;
+        color: #1a1a2e;
+      }
+
+      .result-macro-diff {
+        font-size: 12px;
+        font-weight: 700;
+        margin-top: 4px;
+      }
+
+      .diff-perfect {
+        color: #9e9e9e;
+      }
+      .diff-down {
+        color: #2196f3;
+      }
+      .diff-up {
+        color: #ff9800;
+      }
+
+      /* LOADING */
+      .loading {
+        text-align: center;
+        padding: 40px 20px;
+        display: none;
+      }
+
+      .loading.active {
+        display: block;
+      }
+
+      .spinner {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        border: 4px solid rgba(83, 75, 144, 0.2);
+        border-top-color: #534b90;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
         }
-        
+      }
+
+      .loading-text {
+        margin-top: 16px;
+        font-size: 14px;
+        color: #8b92a8;
+        font-weight: 600;
+      }
+
+      /* BACK BUTTON */
+      .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: none;
+        border: none;
+        color: #534b90;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        padding: 12px 0;
+        margin-bottom: 20px;
+        transition: all 0.2s;
+      }
+
+      .back-btn:hover {
+        opacity: 0.7;
+      }
+
+      /* COLLAPSIBLE ADVANCED */
+      .advanced-section {
+        margin-top: 30px;
+      }
+
+      details {
+        background: #e8ecf3;
+        border-radius: 16px;
+        padding: 16px;
+        box-shadow:
+          6px 6px 12px #c5c9d1,
+          -6px -6px 12px #ffffff;
+      }
+
+      summary {
+        font-size: 16px;
+        font-weight: 700;
+        color: #534b90;
+        cursor: pointer;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 0;
+      }
+
+      summary::-webkit-details-marker {
+        display: none;
+      }
+
+      summary::before {
+        content: "▼";
+        font-size: 12px;
+        transition: transform 0.3s;
+      }
+
+      details[open] summary::before {
+        transform: rotate(180deg);
+      }
+
+      .warning-box {
+        background: #ffebee;
+        border: 2px solid #f44336;
+        border-radius: 12px;
+        padding: 16px;
+        margin: 16px 0;
+      }
+
+      .warning-title {
+        font-size: 13px;
+        font-weight: 800;
+        color: #c62828;
+        margin-bottom: 6px;
+      }
+
+      .warning-text {
+        font-size: 12px;
+        color: #c62828;
+        line-height: 1.5;
+      }
+
+      /* EMPTY STATE */
+      .empty-state {
+        text-align: center;
+        padding: 40px 20px;
+        color: #8b92a8;
+      }
+
+      .empty-state-icon {
+        font-size: 48px;
+        margin-bottom: 16px;
+      }
+
+      .empty-state-text {
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      /* SCROLLBAR */
+      .autocomplete-dropdown::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      .autocomplete-dropdown::-webkit-scrollbar-track {
+        background: rgba(197, 201, 209, 0.2);
+        border-radius: 10px;
+      }
+
+      .autocomplete-dropdown::-webkit-scrollbar-thumb {
+        background: #ae4c7a;
+        border-radius: 10px;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 480px) {
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 40px 20px;
-            min-height: 100vh;
+          padding: 16px;
         }
-        
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+
+        .card-neo {
+          padding: 20px;
         }
-        
-        h1 {
-            text-align: center;
-            color: #2d3748;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            font-weight: 700;
+
+        .logo {
+          font-size: 20px;
         }
-        
-        .subtitle {
-            text-align: center;
-            color: #718096;
-            font-size: 1.1rem;
-            margin-bottom: 40px;
-            font-weight: 400;
+
+        .original-macros {
+          grid-template-columns: repeat(2, 1fr);
         }
-        
-        .timeline {
-            position: relative;
-            padding: 20px 0;
+
+        .result-macros {
+          grid-template-columns: repeat(2, 1fr);
         }
-        
-        .phase {
-            margin-bottom: 50px;
-        }
-        
-        .phase-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 20px 30px;
-            border-radius: 15px;
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        }
-        
-        .phase-header.onboarding {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
-        
-        .phase-header.primeros-dias {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        }
-        
-        .phase-header.mantenimiento {
-            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-        }
-        
-        .activities {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 20px;
-            padding-left: 20px;
-        }
-        
-        .activity-card {
-            background: white;
-            border-left: 5px solid #667eea;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .activity-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-        }
-        
-        .activity-card.onboarding {
-            border-left-color: #f5576c;
-        }
-        
-        .activity-card.primeros-dias {
-            border-left-color: #00f2fe;
-        }
-        
-        .activity-card.mantenimiento {
-            border-left-color: #43e97b;
-        }
-        
-        .activity-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #2d3748;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .activity-icon {
-            font-size: 1.5rem;
-        }
-        
-        .activity-description {
-            color: #4a5568;
-            line-height: 1.6;
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-        }
-        
-        .activity-details {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 15px;
-        }
-        
-        .detail-badge {
-            background: #edf2f7;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: #2d3748;
-            font-weight: 500;
-        }
-        
-        .detail-badge.frequency {
-            background: #e6fffa;
-            color: #047857;
-        }
-        
-        .detail-badge.time {
-            background: #fef3c7;
-            color: #92400e;
-        }
-        
-        .detail-badge.tool {
-            background: #dbeafe;
-            color: #1e40af;
-        }
-        
-        .flow-arrow {
-            text-align: center;
-            margin: 20px 0;
-            font-size: 2rem;
-            color: #cbd5e0;
-        }
-        
-        .legend {
-            margin-top: 40px;
-            padding: 25px;
-            background: #f7fafc;
-            border-radius: 10px;
-            border: 2px dashed #cbd5e0;
-        }
-        
-        .legend-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #2d3748;
-            margin-bottom: 15px;
-        }
-        
-        .legend-items {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .legend-color {
-            width: 30px;
-            height: 30px;
-            border-radius: 5px;
-        }
-        
-        .faq-box {
-            margin-top: 40px;
-            padding: 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 15px;
-            color: white;
-        }
-        
-        .faq-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-        
-        .faq-item {
-            background: rgba(255,255,255,0.15);
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .faq-item:last-child {
-            margin-bottom: 0;
-        }
-        
-        .faq-question {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        
-        .faq-answer {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            opacity: 0.95;
-        }
-        
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-            .container {
-                box-shadow: none;
-            }
-        }
+      }
+
+      /* ============================================ */
+      /* LOGIN SCREEN */
+      /* ============================================ */
+      #loginScreen {
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(135deg, #f5f0ff 0%, #ffe8f5 100%);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        z-index: 9999;
+      }
+
+      #loginScreen.active {
+        display: flex;
+      }
+
+      .login-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: 24px;
+        padding: 40px;
+        max-width: 440px;
+        width: 100%;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      }
+
+      .login-title {
+        font-size: 28px;
+        font-weight: 900;
+        background: linear-gradient(135deg, #534b90 0%, #ae4c7a 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 8px;
+        text-align: center;
+      }
+
+      .login-subtitle {
+        text-align: center;
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 32px;
+      }
+
+      .login-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .login-input {
+        width: 100%;
+        padding: 16px;
+        border: 2px solid #e0e0e0;
+        border-radius: 12px;
+        font-size: 15px;
+        font-weight: 600;
+        font-family: "Inter", sans-serif;
+        transition: all 0.3s;
+      }
+
+      .login-input:focus {
+        outline: none;
+        border-color: #534b90;
+        box-shadow: 0 0 0 3px rgba(83, 75, 144, 0.1);
+      }
+
+      .login-input.error {
+        border-color: #f44336;
+      }
+
+      .login-error {
+        display: none;
+        font-size: 12px;
+        color: #f44336;
+        margin-top: -12px;
+      }
+
+      .login-error.active {
+        display: block;
+      }
+
+      .login-button {
+        padding: 16px;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 800;
+        font-family: "Inter", sans-serif;
+        background: linear-gradient(135deg, #534b90 0%, #ae4c7a 100%);
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-top: 8px;
+      }
+
+      .login-button:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(83, 75, 144, 0.3);
+      }
+
+      .login-button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      /* ============================================ */
+      /* BADGES PREMIUM VS COMPLEMENTARIO */
+      /* ============================================ */
+      .result-badge {
+        display: inline-block;
+        font-size: 9px;
+        font-weight: 800;
+        padding: 3px 8px;
+        border-radius: 4px;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .result-badge.premium {
+        background: linear-gradient(135deg, #534b90 0%, #ae4c7a 100%);
+        color: white;
+      }
+
+      .result-badge.complementary {
+        background: #e0e0e0;
+        color: #666;
+      }
+
+      .api-divider {
+        margin: 16px 0;
+        padding: 12px;
+        text-align: center;
+        border-top: 2px dashed #ddd;
+        border-bottom: 2px dashed #ddd;
+      }
+
+      .api-divider span {
+        font-size: 11px;
+        font-weight: 700;
+        color: #999;
+        text-transform: uppercase;
+      }
     </style>
-</head>
-<body>
-    <div class="container">
-        <h1>🥗 Funciones del Nutricionista</h1>
-        <p class="subtitle">Programa RevolucionaT - Sistema de Acompañamiento Nutricional</p>
-        
-        <div class="timeline">
-            <!-- FASE 1: SEMANA 0 - ONBOARDING -->
-            <div class="phase">
-                <div class="phase-header onboarding">
-                    📋 SEMANA 0: ONBOARDING
-                </div>
-                
-                <div class="activities">
-                    <div class="activity-card onboarding">
-                        <div class="activity-title">
-                            <span class="activity-icon">📝</span>
-                            Formulario Inicial
-                        </div>
-                        <div class="activity-description">
-                            La alumna rellena el formulario de necesidades alimentarias antes de la Semana 0 o el lunes de la Semana 0. El nutricionista lo revisa para preparar la primera llamada.
-                        </div>
-                        <div class="activity-details">
-                            <span class="detail-badge frequency">1 vez por clienta</span>
-                            <span class="detail-badge tool">Notion/Forms</span>
-                        </div>
-                    </div>
-                    
-                    <div class="activity-card onboarding">
-                        <div class="activity-title">
-                            <span class="activity-icon">🎯</span>
-                            Llamada de Estrategia Nutricional
-                        </div>
-                        <div class="activity-description">
-                            Llamada para detectar patrones alimentarios, horarios de hambre real, bloqueos, errores habituales y establecer las bases de su plan personalizado. Se identifica dónde está fallando y qué necesita para arrancar bien.
-                        </div>
-                        <div class="activity-details">
-                            <span class="detail-badge frequency">Antes del jueves - Semana 0</span>
-                            <span class="detail-badge time">20 min</span>
-                            <span class="detail-badge tool">Zoom/Meet</span>
-                        </div>
-                    </div>
-                    
-                    <div class="activity-card onboarding">
-                        <div class="activity-title">
-                            <span class="activity-icon">📦</span>
-                            Entrega Pack Completo
-                        </div>
-                        <div class="activity-description">
-                            Entrega de menús personalizados + mapa de acciones (situación actual, errores detectados, plan de ataque) + acceso a plataforma de cocina RevolucionaT + herramienta de intercambio de alimentos.
-                        </div>
-                        <div class="activity-details">
-                            <span class="detail-badge frequency">Jueves/Viernes Semana 0</span>
-                            <span class="detail-badge tool">PDF + Plataforma</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="flow-arrow">⬇️</div>
-            
-            <!-- FASE 2: PRIMEROS 15 DÍAS -->
-            <div class="phase">
-                <div class="phase-header primeros-dias">
-                    📸 PRIMEROS 15 DÍAS: REVISIÓN INTENSIVA (solo clientas nuevas)
-                </div>
-                
-                <div class="activities">
-                    <div class="activity-card primeros-dias">
-                        <div class="activity-title">
-                            <span class="activity-icon">📷</span>
-                            Revisión de Fotos de Comidas
-                        </div>
-                        <div class="activity-description">
-                            La alumna sube fotos de comida del mediodía y cena a HARBIZ. El nutricionista accede al perfil de cada alumna nueva y revisa las fotos durante estos 15 días para validar adherencia y detectar errores en tiempo real. Si detecta algo que no está bien, avisa ANTES del feedback semanal.
-                        </div>
-                        <div class="activity-details">
-                            <span class="detail-badge frequency">Durante 15 días</span>
-                            <span class="detail-badge tool">HARBIZ</span>
-                        </div>
-                    </div>
-                    
-                    <div class="activity-card primeros-dias">
-                        <div class="activity-title">
-                            <span class="activity-icon">✅</span>
-                            Feedback Semanal
-                        </div>
-                        <div class="activity-description">
-                            Al final de cada semana, el nutricionista da feedback en el grupo de WhatsApp individual sobre las fotos revisadas: qué está haciendo bien, qué errores detectó y qué tiene que corregir la siguiente semana.
-                        </div>
-                        <div class="activity-details">
-                            <span class="detail-badge frequency">Final de Semana 1 y 2</span>
-                            <span class="detail-badge tool">WhatsApp</span>
-                        </div>
-                    </div>
-                    
-                    <div class="activity-card primeros-dias">
-                        <div class="activity-title">
-                            <span class="activity-icon">📊</span>
-                            Plan de Acciones (Día 15)
-                        </div>
-                        <div class="activity-description">
-                            Al finalizar los 15 días, el nutricionista entrega un plan de acciones basado en todo lo observado en las fotos: resumen de errores detectados, aciertos principales y acciones concretas para seguir mejorando.
-                        </div>
-                        <div class="activity-details">
-                            <span class="detail-badge frequency">1 vez (Día 15)</span>
-                            <span class="detail-badge tool">WhatsApp</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="flow-arrow">⬇️</div>
-            
-            <!-- FASE 3: MANTENIMIENTO -->
-            <div class="phase">
-                <div class="phase-header mantenimiento">
-                    🔄 SEMANAS 3-24: MANTENIMIENTO Y AJUSTES
-                </div>
-                
-                <div class="activities">
-                    <div class="activity-card mantenimiento">
-                        <div class="activity-title">
-                            <span class="activity-icon">🔄</span>
-                            Cambios de Menú/Raciones
-                        </div>
-                        <div class="activity-description">
-                            Cada 4-5 semanas, Notion avisa al nutricionista de las clientas que toca revisar. Basándose en la evolución (datos de la coach), envía nuevo menú ajustado o modificación de raciones SOLO si es necesario. Si la clienta va bien, no se cambia nada.
-                        </div>
-                        <div class="activity-details">
-                            <span class="detail-badge frequency">Cada 4-5 semanas (solo si necesario)</span>
-                            <span class="detail-badge tool">Notion + Plantillas</span>
-                        </div>
-                    </div>
-                    
-                    <div class="activity-card mantenimiento">
-                        <div class="activity-title">
-                            <span class="activity-icon">💬</span>
-                            Soporte WhatsApp (Avisos Nutri)
-                        </div>
-                        <div class="activity-description">
-                            Sistema de avisos: la coach detecta duda nutricional en el grupo individual de la alumna → avisa al nutricionista vía grupo "Avisos Nutri" → el nutricionista entra al grupo individual y resuelve la duda. No requiere estar conectado 24/7, solo responde cuando se le avisa.
-                        </div>
-                        <div class="activity-details">
-                            <span class="detail-badge frequency">Cuando se le avisa</span>
-                            <span class="detail-badge tool">WhatsApp</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- LEYENDA -->
-        <div class="legend">
-            <div class="legend-title">📌 Leyenda de Fases</div>
-            <div class="legend-items">
-                <div class="legend-item">
-                    <div class="legend-color" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
-                    <span><strong>Semana 0:</strong> Onboarding inicial (1 vez por clienta)</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-color" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
-                    <span><strong>Primeros 15 días:</strong> Revisión intensiva (solo clientas nuevas)</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-color" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
-                    <span><strong>Semanas 3-24:</strong> Mantenimiento y ajustes (todas las clientas)</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- FAQ -->
-        <div class="faq-box">
-            <div class="faq-title">❓ Preguntas Frecuentes del Nutricionista</div>
-            
-            <div class="faq-item">
-                <div class="faq-question">¿Tengo que estar conectado 24/7 en WhatsApp?</div>
-                <div class="faq-answer">
-                    No. El sistema de "Avisos Nutri" funciona así: la coach filtra las dudas nutricionales y te avisa cuando hay algo que resolver. Solo entras cuando se te avisa. Las clientas reciben el podcast semanal de Jonathan para contenido educativo, no necesitan estar preguntándote constantemente.
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">¿Tengo que hacer menús completamente nuevos cada 4-5 semanas?</div>
-                <div class="faq-answer">
-                    No. Solo ajustas o cambias menú si la clienta lo necesita (estancamiento, pérdida de energía, etc.). Si va bien, no tocas nada. Notion te avisa cuándo toca revisar a cada clienta, tú miras su evolución (la coach te pasa los datos) y decides si hace falta cambio o no.
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">¿Cómo sé si una clienta necesita cambio de menú o no?</div>
-                <div class="faq-answer">
-                    La coach te pasa los datos de evolución (peso, adherencia, energía) en un Google Sheet cada 2 semanas. Tú lo revisas y decides. Si la clienta va bien (peso baja, energía alta, adherencia correcta), no cambias nada. Si está estancada 2 semanas seguidas, ajustas raciones. Si va mal (peso sube, cansancio), cambias menú.
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">¿Qué hago si una clienta sube fotos perfectas durante los 15 días?</div>
-                <div class="faq-answer">
-                    Das feedback igual. Aunque esté todo bien, tienes que darle feedback semanal diciéndole "Todo perfecto, sigue así" y destacar lo que más te gustó. Al final del día 15, le entregas el plan de acciones igual, resaltando que va excelente y qué tiene que mantener para seguir así. Nunca dejes pasar una semana sin feedback, aunque sea positivo.
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">¿Cuántas clientas nuevas voy a tener que atender cada semana?</div>
-                <div class="faq-answer">
-                    Con el flujo actual, entran aproximadamente 6-8 clientas nuevas al mes, es decir, unas 2 clientas nuevas por semana de promedio. Esto significa que cada semana harás 2 videollamadas de estrategia nutricional y prepararás 2 packs completos.
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">¿Dónde accedo a las fotos de las comidas?</div>
-                <div class="faq-answer">
-                    Las alumnas suben sus fotos a HARBIZ. Tú entras a HARBIZ, vas al perfil de cada alumna que está en sus primeros 15 días y revisas sus fotos de comida y cena. No tienes que revisar fotos de todas las clientas, solo de las que están en período de revisión intensiva (primeros 15 días).
-                </div>
-            </div>
-        </div>
-        
-        <!-- NOTA IMPORTANTE -->
-        <div style="margin-top: 30px; padding: 20px; background: #fef3c7; border-left: 5px solid #f59e0b; border-radius: 10px;">
-            <strong style="color: #92400e;">📝 Nota Importante:</strong>
-            <p style="color: #78350f; margin-top: 10px; line-height: 1.6;">
-                El nutricionista NO necesita estar conectado 24/7. El sistema de "Avisos Nutri" permite que la coach filtre las dudas nutricionales y avise al nutricionista solo cuando sea necesario. Las clientas reciben el podcast semanal de Jonathan para contenido educativo adicional.
-            </p>
-        </div>
+  </head>
+  <body>
+    <!-- LOGIN SCREEN -->
+    <div id="loginScreen" class="active">
+      <div class="login-card">
+        <h1 class="login-title">RevolucionaT</h1>
+        <p class="login-subtitle">
+          Herramienta Premium de Intercambio Nutricional
+        </p>
+
+        <form id="loginForm" class="login-form">
+          <input
+            type="text"
+            id="nameInput"
+            class="login-input"
+            placeholder="Tu nombre"
+            required
+          />
+          <div id="nameError" class="login-error">Campo obligatorio</div>
+
+          <input
+            type="email"
+            id="emailInput"
+            class="login-input"
+            placeholder="tu@email.com"
+            required
+          />
+          <div id="emailError" class="login-error">Email inválido</div>
+
+          <input
+            type="text"
+            id="codeInput"
+            class="login-input"
+            placeholder="Código de acceso"
+            required
+            style="
+              font-family: monospace;
+              letter-spacing: 2px;
+              text-transform: uppercase;
+            "
+          />
+          <div id="codeError" class="login-error">Código incorrecto</div>
+
+          <button type="submit" id="loginButton" class="login-button">
+            Acceder a mi herramienta →
+          </button>
+        </form>
+      </div>
     </div>
-</body>
+
+    <div class="container" id="appContainer" style="display: none">
+      <!-- HEADER -->
+      <div class="header">
+        <div class="logo">Programa RevolucionaT</div>
+        <div class="subtitle">Intercambiador de alimentos</div>
+      </div>
+
+      <!-- SEARCH SECTION -->
+      <div id="searchSection" class="search-section">
+        <div class="card-neo">
+          <label class="label">1. Buscar alimento</label>
+          <div class="input-wrapper">
+            <input
+              type="text"
+              id="searchInput"
+              class="input-neo"
+              placeholder="Escribe para buscar (ej: pollo...)"
+              autocomplete="off"
+            />
+            <div id="autocompleteDropdown" class="autocomplete-dropdown"></div>
+          </div>
+
+          <div id="selectedFood" class="selected-food">
+            <div class="selected-food-info">
+              <div class="selected-food-name" id="selectedName"></div>
+              <div class="selected-food-brand" id="selectedBrand"></div>
+            </div>
+            <button class="clear-btn" id="clearBtn">✕</button>
+          </div>
+        </div>
+
+        <div
+          class="card-neo"
+          id="amountSection"
+          style="opacity: 0.5; pointer-events: none"
+        >
+          <label class="label">2. Cantidad (gramos)</label>
+          <input
+            type="number"
+            id="amountInput"
+            class="input-neo"
+            placeholder="Cantidad en gramos (ej: 200)"
+            min="1"
+            disabled
+          />
+        </div>
+
+        <button id="calculateBtn" class="btn-neo" disabled>
+          Buscar alternativas
+        </button>
+      </div>
+
+      <!-- LOADING -->
+      <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <div class="loading-text">Calculando equivalencias...</div>
+      </div>
+
+      <!-- RESULTS SECTION -->
+      <div id="resultsSection" class="results-section">
+        <button class="back-btn" id="backBtn">← Nueva búsqueda</button>
+
+        <div class="results-header">
+          <div class="results-title">Alternativas equivalentes</div>
+          <div class="results-subtitle" id="resultsCount"></div>
+        </div>
+
+        <div id="originalFoodCard" class="original-food-card"></div>
+
+        <!-- PERFECTAS -->
+        <div id="perfectSection" style="display: none">
+          <div class="section-header perfect">
+            <div class="section-title">
+              ✓ EQUIVALENCIAS PERFECTAS (<span id="perfectCount">0</span>)
+            </div>
+            <div class="section-subtitle">
+              Intercambia sin cambiar tu menú - Mismo perfil calórico
+            </div>
+          </div>
+          <div id="perfectContainer"></div>
+        </div>
+
+        <!-- VÁLIDAS -->
+        <div id="goodSection" style="display: none">
+          <div class="section-header good">
+            <div class="section-title">
+              ⚠️ ALTERNATIVAS VÁLIDAS (<span id="goodCount">0</span>)
+            </div>
+            <div class="section-subtitle">
+              Pequeñas diferencias - Revisa los avisos
+            </div>
+          </div>
+          <div id="goodContainer"></div>
+        </div>
+
+        <!-- AVANZADAS -->
+        <div
+          id="advancedSection"
+          class="advanced-section"
+          style="display: none"
+        >
+          <details>
+            <summary>
+              Ver más opciones (<span id="advancedCount">0</span>) ⓘ
+            </summary>
+
+            <div class="warning-box">
+              <div class="warning-title">⚠️ OPCIONES AVANZADAS</div>
+              <div class="warning-text">
+                Estas opciones cambian significativamente las calorías o macros
+                de tu menú. Úsalas solo si entiendes el impacto en tu día
+                completo.
+              </div>
+            </div>
+
+            <div id="advancedContainer"></div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // ============================================
+      // LOGIN SYSTEM
+      // ============================================
+      const ACCESS_CODE = "REVOLUCIONAT2026";
+      const loginScreen = document.getElementById("loginScreen");
+      const appContainer = document.getElementById("appContainer");
+      const loginForm = document.getElementById("loginForm");
+      const nameInput = document.getElementById("nameInput");
+      const emailInput = document.getElementById("emailInput");
+      const codeInput = document.getElementById("codeInput");
+      const nameError = document.getElementById("nameError");
+      const emailError = document.getElementById("emailError");
+      const codeError = document.getElementById("codeError");
+
+      // Auto-uppercase code
+      codeInput.addEventListener("input", (e) => {
+        e.target.value = e.target.value.toUpperCase();
+      });
+
+      // Check if already logged in
+      function checkAuth() {
+        const user = localStorage.getItem("revolucionat_user");
+        if (user) {
+          try {
+            const profile = JSON.parse(user);
+            if (profile.access_verified) {
+              showApp();
+              return true;
+            }
+          } catch (e) {}
+        }
+        return false;
+      }
+
+      // Login form submit
+      loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        // Clear errors
+        nameInput.classList.remove("error");
+        emailInput.classList.remove("error");
+        codeInput.classList.remove("error");
+        nameError.classList.remove("active");
+        emailError.classList.remove("active");
+        codeError.classList.remove("active");
+
+        let hasError = false;
+
+        // Validate
+        if (!nameInput.value.trim() || nameInput.value.trim().length < 2) {
+          nameInput.classList.add("error");
+          nameError.classList.add("active");
+          hasError = true;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailInput.value.trim() || !emailRegex.test(emailInput.value)) {
+          emailInput.classList.add("error");
+          emailError.classList.add("active");
+          hasError = true;
+        }
+
+        if (codeInput.value.trim().toUpperCase() !== ACCESS_CODE) {
+          codeInput.classList.add("error");
+          codeError.classList.add("active");
+          hasError = true;
+        }
+
+        if (hasError) return;
+
+        // Save to localStorage
+        const userProfile = {
+          name: nameInput.value.trim(),
+          email: emailInput.value.trim(),
+          registered_at: new Date().toISOString(),
+          access_verified: true,
+        };
+
+        localStorage.setItem("revolucionat_user", JSON.stringify(userProfile));
+        showApp();
+      });
+
+      function showApp() {
+        loginScreen.classList.remove("active");
+        appContainer.style.display = "block";
+        loadDatabase();
+        searchInput.focus();
+      }
+
+      // ============================================
+      // DATABASE & STATE
+      // ============================================
+      let foodsDatabase = [];
+      let selectedFood = null;
+      let searchTimeout = null;
+
+      // ✅ NUEVO: Control de resultados visibles en el autocomplete
+      const AUTOCOMPLETE_INITIAL = 25; // los primeros que enseñas
+      const AUTOCOMPLETE_STEP = 60; // cuánto “carga más” cada click
+      let visibleResults = AUTOCOMPLETE_INITIAL;
+      let lastSearchResults = [];
+      let lastQuery = "";
+
+      // ELEMENTS
+      const searchInput = document.getElementById("searchInput");
+      const dropdown = document.getElementById("autocompleteDropdown");
+      const selectedFoodDiv = document.getElementById("selectedFood");
+      const amountSection = document.getElementById("amountSection");
+      const amountInput = document.getElementById("amountInput");
+      const calculateBtn = document.getElementById("calculateBtn");
+      const clearBtn = document.getElementById("clearBtn");
+      const searchSection = document.getElementById("searchSection");
+      const loading = document.getElementById("loading");
+      const resultsSection = document.getElementById("resultsSection");
+      const backBtn = document.getElementById("backBtn");
+      const originalFoodCard = document.getElementById("originalFoodCard");
+      const resultsCount = document.getElementById("resultsCount");
+
+      // Containers
+      const perfectSection = document.getElementById("perfectSection");
+      const perfectContainer = document.getElementById("perfectContainer");
+      const perfectCount = document.getElementById("perfectCount");
+
+      const goodSection = document.getElementById("goodSection");
+      const goodContainer = document.getElementById("goodContainer");
+      const goodCount = document.getElementById("goodCount");
+
+      const advancedSection = document.getElementById("advancedSection");
+      const advancedContainer = document.getElementById("advancedContainer");
+      const advancedCount = document.getElementById("advancedCount");
+
+      // ============================================
+      // LOAD DATABASE
+      // ============================================
+      async function loadDatabase() {
+        try {
+          const response = await fetch("database.json");
+          const data = await response.json();
+          foodsDatabase = data.foods || [];
+          console.log(
+            "✅ Base de datos cargada:",
+            foodsDatabase.length,
+            "alimentos",
+          );
+        } catch (error) {
+          console.error("❌ Error cargando base de datos:", error);
+          alert(
+            "Error al cargar la base de datos. Revisa que database.json esté en la misma carpeta que este HTML.",
+          );
+        }
+      }
+
+      // ============================================
+      // SEARCH HELPERS (busca bien aunque haya tildes)
+      // ============================================
+      function norm(str) {
+        return (str || "")
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/[^a-z0-9]+/g, " ")
+          .trim();
+      }
+
+      function matchesFood(food, query) {
+        const q = norm(query);
+        if (!q) return true;
+
+        const terms = q.split(/\s+/).filter(Boolean);
+        const hay = norm(
+          (food.name || "") +
+            " " +
+            (food.brand || "") +
+            " " +
+            (food.source || "") +
+            " " +
+            (food.category || ""),
+        );
+
+        return terms.every((t) => hay.includes(t));
+      }
+
+      // ============================================
+      // AUTOCOMPLETE SEARCH
+      // ============================================
+      searchInput.addEventListener("input", (e) => {
+        const query = (e.target.value || "").trim();
+
+        clearTimeout(searchTimeout);
+
+        if (query.length === 0) {
+          dropdown.classList.remove("active");
+          visibleResults = AUTOCOMPLETE_INITIAL; // reset
+          return;
+        }
+
+        // ✅ cada búsqueda nueva vuelve al primer “paquete”
+        visibleResults = AUTOCOMPLETE_INITIAL;
+
+        searchTimeout = setTimeout(() => {
+          searchFoods(query);
+        }, 300);
+      });
+
+      async function searchFoods(query) {
+        const qn = norm(query);
+
+        // PASO 1: Buscar en database local
+        const localResults = foodsDatabase
+          .filter((food) => matchesFood(food, query))
+          .sort((a, b) => {
+            const aname = norm(a.name || "");
+            const bname = norm(b.name || "");
+            const an = norm(
+              (a.name || "") + " " + (a.brand || "") + " " + (a.source || ""),
+            );
+            const bn = norm(
+              (b.name || "") + " " + (b.brand || "") + " " + (b.source || ""),
+            );
+
+            const terms = norm(query).split(/\s+/).filter(Boolean);
+            const q = terms.join(" ");
+
+            // 1) Si es 1 palabra: "pollo" exacto primero
+            if (terms.length === 1) {
+              const aExact = aname === q ? 1 : 0;
+              const bExact = bname === q ? 1 : 0;
+              if (aExact !== bExact) return bExact - aExact;
+
+              // 2) Luego los que empiezan por "pollo " (con espacio)
+              const aStartsWord = aname.startsWith(q + " ") ? 1 : 0;
+              const bStartsWord = bname.startsWith(q + " ") ? 1 : 0;
+              if (aStartsWord !== bStartsWord) return bStartsWord - aStartsWord;
+            }
+
+            // 3) Luego los que empiezan por la query en el texto completo
+            const aStarts = an.startsWith(q) ? 1 : 0;
+            const bStarts = bn.startsWith(q) ? 1 : 0;
+            if (aStarts !== bStarts) return bStarts - aStarts;
+
+            // 4) Desempate: nombre más corto arriba
+            return aname.length - bname.length;
+          });
+
+        // PASO 2: Si tenemos ≥10 resultados locales, mostrar solo esos
+        if (localResults.length >= 10) {
+          lastSearchResults = localResults;
+          lastQuery = query;
+          renderAutocomplete(lastSearchResults, lastQuery, false);
+          return;
+        }
+
+        // PASO 3: Si <10 resultados, buscar en FatSecret API
+        console.log(
+          `⚠️ Solo ${localResults.length} resultados locales. Consultando FatSecret...`,
+        );
+
+        try {
+          const apiResults = await searchFatSecretAPI(query);
+
+          // Combinar resultados: local primero, luego API
+          lastSearchResults = localResults;
+          lastQuery = query;
+          renderAutocomplete(localResults, query, true, apiResults);
+        } catch (error) {
+          console.error("Error buscando en FatSecret:", error);
+          // Si falla API, mostrar solo resultados locales
+          lastSearchResults = localResults;
+          lastQuery = query;
+          renderAutocomplete(localResults, query, false);
+        }
+      }
+
+      // ============================================
+      // BUSCAR EN FATSECRET API
+      // ============================================
+      async function searchFatSecretAPI(query) {
+        try {
+          const response = await fetch(
+            `/api/fatsecret?query=${encodeURIComponent(query)}`,
+          );
+
+          if (!response.ok) {
+            throw new Error("API request failed");
+          }
+
+          const data = await response.json();
+
+          if (!data.success || !data.foods) {
+            return [];
+          }
+
+          return data.foods;
+        } catch (error) {
+          console.error("FatSecret API Error:", error);
+          return [];
+        }
+      }
+
+      function renderAutocomplete(
+        results,
+        query,
+        hasAPIResults = false,
+        apiResults = [],
+      ) {
+        if (results.length === 0 && apiResults.length === 0) {
+          dropdown.innerHTML =
+            '<div class="empty-state"><div class="empty-state-text">No se encontraron alimentos</div></div>';
+          dropdown.classList.add("active");
+          return;
+        }
+
+        const shown = results.slice(0, visibleResults);
+
+        // Resultados locales con badge PREMIUM
+        let html = shown
+          .map(
+            (food) => `
+        <div class="autocomplete-item local-result" data-food-id="${food.id}" data-is-local="true">
+          <div class="result-badge premium">PREMIUM</div>
+          <div class="item-name">${highlightMatch(food.name || "", query)}</div>
+          <div class="item-brand">${food.brand || "Sin marca"} · ${food.source || "Base"}</div>
+          <div class="item-macros">P: ${food.protein || 0}g · C: ${food.carbs || 0}g · G: ${food.fat || 0}g</div>
+        </div>
+      `,
+          )
+          .join("");
+
+        // Botón "Ver más" si hay más resultados locales
+        if (results.length > visibleResults) {
+          html += `<div class="autocomplete-item" id="showMoreResults" style="font-weight:800; color:#534b90;">
+                 Ver más resultados (${results.length}) · mostrando ${shown.length}
+               </div>`;
+        }
+
+        // Divider + resultados API si los hay
+        if (hasAPIResults && apiResults.length > 0) {
+          html += `
+        <div class="api-divider">
+          <span>Resultados complementarios (verificados)</span>
+        </div>
+      `;
+
+          html += apiResults
+            .slice(0, 10)
+            .map(
+              (food) => `
+        <div class="autocomplete-item api-result" data-food-json='${JSON.stringify(food)}' data-is-api="true">
+          <div class="result-badge complementary">COMPLEMENTARIO</div>
+          <div class="item-name">${highlightMatch(food.name || "", query)}</div>
+          <div class="item-brand">${food.brand || "Genérico"} · FatSecret</div>
+          <div class="item-macros">P: ${food.protein || 0}g · C: ${food.carbs || 0}g · G: ${food.fat || 0}g</div>
+        </div>
+      `,
+            )
+            .join("");
+        }
+
+        dropdown.innerHTML = html;
+        dropdown.classList.add("active");
+
+        // ✅ Listener único y seguro
+        dropdown.querySelectorAll(".autocomplete-item").forEach((item) => {
+          item.addEventListener("click", () => {
+            // Si es el botón "Ver más", no selecciona comida:
+            if (item.id === "showMoreResults") {
+              visibleResults = Math.min(
+                visibleResults + AUTOCOMPLETE_STEP,
+                lastSearchResults.length,
+              );
+              dropdown.classList.add("active");
+              renderAutocomplete(
+                lastSearchResults,
+                lastQuery,
+                hasAPIResults,
+                apiResults,
+              );
+              return;
+            }
+
+            // Si es una comida local:
+            if (item.dataset.isLocal === "true") {
+              const foodId = item.dataset.foodId;
+              selectFood(foodId);
+            }
+
+            // Si es una comida de API:
+            if (item.dataset.isApi === "true") {
+              const foodData = JSON.parse(item.dataset.foodJson);
+              selectAPIFood(foodData);
+            }
+          });
+        });
+      }
+
+      function highlightMatch(text, query) {
+        const safe = (query || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        const regex = new RegExp("(" + safe + ")", "i");
+        return (text || "").replace(regex, "<strong>$1</strong>");
+      }
+
+      function selectFood(foodId) {
+        selectedFood = foodsDatabase.find(
+          (f) => String(f.id) === String(foodId),
+        );
+
+        if (!selectedFood) return;
+
+        document.getElementById("selectedName").textContent =
+          selectedFood.name || "";
+        document.getElementById("selectedBrand").textContent =
+          (selectedFood.brand || "Sin marca") +
+          " · " +
+          (selectedFood.source || "Base");
+
+        selectedFoodDiv.classList.add("active");
+        dropdown.classList.remove("active");
+        searchInput.value = "";
+
+        amountSection.style.opacity = "1";
+        amountSection.style.pointerEvents = "auto";
+        amountInput.disabled = false;
+        amountInput.focus();
+
+        checkFormComplete();
+      }
+
+      function selectAPIFood(foodData) {
+        // Crear objeto compatible con la estructura local
+        selectedFood = {
+          id: foodData.id,
+          name: foodData.name,
+          brand: foodData.brand || "Genérico",
+          source: "FatSecret",
+          protein: foodData.protein || 0,
+          carbs: foodData.carbs || 0,
+          fat: foodData.fat || 0,
+          calories: foodData.calories || 0,
+          category: foodData.category || "other",
+          is_api_result: true,
+        };
+
+        document.getElementById("selectedName").textContent = selectedFood.name;
+        document.getElementById("selectedBrand").textContent =
+          selectedFood.brand + " · FatSecret";
+
+        selectedFoodDiv.classList.add("active");
+        dropdown.classList.remove("active");
+        searchInput.value = "";
+
+        amountSection.style.opacity = "1";
+        amountSection.style.pointerEvents = "auto";
+        amountInput.disabled = false;
+        amountInput.focus();
+
+        checkFormComplete();
+      }
+
+      clearBtn.addEventListener("click", () => {
+        selectedFood = null;
+        selectedFoodDiv.classList.remove("active");
+        amountSection.style.opacity = "0.5";
+        amountSection.style.pointerEvents = "none";
+        amountInput.disabled = true;
+        amountInput.value = "";
+        calculateBtn.disabled = true;
+        searchInput.value = "";
+        visibleResults = AUTOCOMPLETE_INITIAL; // reset
+        dropdown.classList.remove("active");
+        searchInput.focus();
+      });
+
+      amountInput.addEventListener("input", checkFormComplete);
+
+      function checkFormComplete() {
+        const hasFood = selectedFood !== null;
+        const hasAmount =
+          amountInput.value && parseFloat(amountInput.value) > 0;
+        calculateBtn.disabled = !(hasFood && hasAmount);
+      }
+
+      // ============================================
+      // CALCULATE EQUIVALENCES
+      // ============================================
+      calculateBtn.addEventListener("click", calculateEquivalences);
+
+      function calculateEquivalences() {
+        const amount = parseFloat(amountInput.value);
+
+        searchSection.style.display = "none";
+        loading.classList.add("active");
+
+        setTimeout(() => {
+          const results = calculateAlternatives(selectedFood, amount);
+          displayResults(selectedFood, amount, results);
+
+          loading.classList.remove("active");
+          resultsSection.classList.add("active");
+        }, 300);
+      }
+
+      function calculateAlternatives(originalFood, amount) {
+        const originalMacros = {
+          protein: (originalFood.protein * amount) / 100,
+          carbs: (originalFood.carbs * amount) / 100,
+          fat: (originalFood.fat * amount) / 100,
+          calories: (originalFood.calories * amount) / 100,
+        };
+
+        const candidates = foodsDatabase.filter(
+          (f) =>
+            f.id !== originalFood.id &&
+            f.category === originalFood.category &&
+            !(f.flags || []).includes("condiment") &&
+            !(f.flags || []).includes("prepared"),
+        );
+
+        const alternatives = candidates
+          .map((alt) =>
+            calculateEquivalence(alt, originalFood, amount, originalMacros),
+          )
+          .filter((alt) => alt !== null);
+
+        const perfect = alternatives.filter((alt) => alt.level === "perfect");
+        const good = alternatives.filter((alt) => alt.level === "good");
+        const advanced = alternatives.filter((alt) => alt.level === "advanced");
+
+        return {
+          perfect: perfect.sort((a, b) => b.matchScore - a.matchScore),
+          good: good.sort((a, b) => b.matchScore - a.matchScore),
+          advanced: advanced.sort((a, b) => b.matchScore - a.matchScore),
+        };
+      }
+      function getAnchorMacro(food) {
+        const cat = (food.category || "").toLowerCase();
+        if (cat === "protein") return "protein";
+        if (cat === "carbs") return "carbs";
+        if (cat === "fat") return "fat";
+        if (cat === "dairy") return "protein"; // puedes cambiarlo a 'carbs' si lo prefieres
+        return "calories"; // other
+      }
+      function calculateEquivalence(
+        alt,
+        original,
+        originalAmount,
+        originalMacros,
+      ) {
+        const anchor = getAnchorMacro(original);
+
+        // Si el alimento “original” no tiene el macro ancla, no se puede calcular bien
+        if (!original[anchor] || original[anchor] <= 0) return null;
+        if (!alt[anchor] || alt[anchor] <= 0) return null;
+
+        const ratio = original[anchor] / alt[anchor];
+        const equivalentAmount = Math.round(originalAmount * ratio);
+
+        if (equivalentAmount < 5) return null; // evita 0g / 1g raros
+        if (equivalentAmount > 600) return null; // evita monstruos
+
+        const altMacros = {
+          protein: (alt.protein * equivalentAmount) / 100,
+          carbs: (alt.carbs * equivalentAmount) / 100,
+          fat: (alt.fat * equivalentAmount) / 100,
+          calories: (alt.calories * equivalentAmount) / 100,
+        };
+
+        const proteinDiff = altMacros.protein - originalMacros.protein;
+        const carbsDiff = altMacros.carbs - originalMacros.carbs;
+        const fatDiff = altMacros.fat - originalMacros.fat;
+        const caloriesDiff = altMacros.calories - originalMacros.calories;
+
+        // Penalización: prioriza el macro “ancla”
+        let penalty = 0;
+
+        if (anchor === "protein") {
+          penalty += Math.abs(proteinDiff) * 3;
+          penalty += Math.abs(carbsDiff) * 1.5;
+          penalty += fatDiff > 0 ? fatDiff * 2.5 : Math.abs(fatDiff) * 0.8;
+        } else if (anchor === "carbs") {
+          penalty += Math.abs(carbsDiff) * 3;
+          penalty += Math.abs(proteinDiff) * 1.5;
+          penalty += Math.abs(fatDiff) * 1.2;
+        } else if (anchor === "fat") {
+          penalty += Math.abs(fatDiff) * 3;
+          penalty += Math.abs(carbsDiff) * 1.2;
+          penalty += Math.abs(proteinDiff) * 1.2;
+        } else {
+          // calories
+          penalty += Math.abs(caloriesDiff) * 0.6;
+          penalty += Math.abs(proteinDiff) * 1.2;
+          penalty += Math.abs(carbsDiff) * 1.2;
+          penalty += Math.abs(fatDiff) * 1.2;
+        }
+
+        const totalMacros =
+          originalMacros.protein + originalMacros.carbs + originalMacros.fat;
+        const matchScore = Math.max(
+          0,
+          Math.round(100 - (penalty / Math.max(totalMacros, 10)) * 100),
+        );
+
+        let level = null;
+        if (matchScore >= 95 && equivalentAmount <= 300) level = "perfect";
+        else if (matchScore >= 75 && equivalentAmount <= 400) level = "good";
+        else if (matchScore >= 60) level = "advanced";
+        else return null;
+
+        return {
+          ...alt,
+          equivalentAmount,
+          macros: altMacros,
+          matchScore,
+          level,
+          diffs: {
+            protein: proteinDiff,
+            carbs: carbsDiff,
+            fat: fatDiff,
+            calories: caloriesDiff,
+          },
+        };
+      }
+
+      // ============================================
+      // DISPLAY RESULTS
+      // ============================================
+      function displayResults(originalFood, amount, alternatives) {
+        const originalMacros = {
+          protein: (originalFood.protein * amount) / 100,
+          carbs: (originalFood.carbs * amount) / 100,
+          fat: (originalFood.fat * amount) / 100,
+          calories: (originalFood.calories * amount) / 100,
+        };
+
+        originalFoodCard.innerHTML = `
+      <div class="original-food-header">TIENES EN TU MENÚ</div>
+      <div class="original-food-name">${amount}g ${originalFood.name}</div>
+      <div class="original-macros">
+        <div class="original-macro-item">
+          <div class="original-macro-label">Proteína</div>
+          <div class="original-macro-value">${originalMacros.protein.toFixed(1)}g</div>
+        </div>
+        <div class="original-macro-item">
+          <div class="original-macro-label">Carbos</div>
+          <div class="original-macro-value">${originalMacros.carbs.toFixed(1)}g</div>
+        </div>
+        <div class="original-macro-item">
+          <div class="original-macro-label">Grasas</div>
+          <div class="original-macro-value">${originalMacros.fat.toFixed(1)}g</div>
+        </div>
+        <div class="original-macro-item calories">
+          <div class="original-macro-label">Calorías</div>
+          <div class="original-macro-value">${Math.round(originalMacros.calories)}</div>
+        </div>
+      </div>
+    `;
+
+        const totalCount =
+          alternatives.perfect.length +
+          alternatives.good.length +
+          alternatives.advanced.length;
+        resultsCount.textContent = totalCount + " alternativas encontradas";
+
+        if (alternatives.perfect.length > 0) {
+          perfectSection.style.display = "block";
+          perfectCount.textContent = alternatives.perfect.length;
+          perfectContainer.innerHTML = alternatives.perfect
+            .map((alt) => renderResultCard(alt, "perfect"))
+            .join("");
+        } else {
+          perfectSection.style.display = "none";
+        }
+
+        if (alternatives.good.length > 0) {
+          goodSection.style.display = "block";
+          goodCount.textContent = alternatives.good.length;
+          goodContainer.innerHTML = alternatives.good
+            .map((alt) => renderResultCard(alt, "good"))
+            .join("");
+        } else {
+          goodSection.style.display = "none";
+        }
+
+        if (alternatives.advanced.length > 0) {
+          advancedSection.style.display = "block";
+          advancedCount.textContent = alternatives.advanced.length;
+          advancedContainer.innerHTML = alternatives.advanced
+            .map((alt) => renderResultCard(alt, "advanced"))
+            .join("");
+        } else {
+          advancedSection.style.display = "none";
+        }
+      }
+
+      function renderResultCard(alt, level) {
+        const badges = {
+          perfect:
+            '<div class="level-badge perfect"><span>✓</span> Equivalencia perfecta</div>',
+          good: '<div class="level-badge good"><span>⚠️</span> Alternativa válida</div>',
+          advanced:
+            '<div class="level-badge advanced"><span>🔴</span> Opción avanzada</div>',
+        };
+
+        let calClass = "";
+        if (alt.diffs.calories < -20) calClass = "cal-down";
+        else if (alt.diffs.calories > 20 && alt.diffs.calories <= 80)
+          calClass = "cal-up-low";
+        else if (alt.diffs.calories > 80) calClass = "cal-up-high";
+
+        return `
+      <div class="result-card ${level}">
+        ${badges[level]}
+
+        <div class="result-header">
+          <div class="result-info">
+            <div class="result-name">${alt.name}</div>
+            <div class="result-brand">${alt.brand || "Sin marca"} · ${alt.source || "Base"}</div>
+          </div>
+          <div class="match-score">
+            <div class="match-value ${level}">${alt.matchScore}%</div>
+            <div class="match-label">Match</div>
+          </div>
+        </div>
+
+        <div class="result-amount">${alt.equivalentAmount}g</div>
+
+        <div class="result-macros">
+          <div class="result-macro-item">
+            <div class="result-macro-label">Proteína</div>
+            <div class="result-macro-value">${alt.macros.protein.toFixed(1)}g</div>
+            <div class="result-macro-diff ${getDiffClass(alt.diffs.protein)}">${formatDiff(alt.diffs.protein)}</div>
+          </div>
+          <div class="result-macro-item">
+            <div class="result-macro-label">Carbos</div>
+            <div class="result-macro-value">${alt.macros.carbs.toFixed(1)}g</div>
+            <div class="result-macro-diff ${getDiffClass(alt.diffs.carbs)}">${formatDiff(alt.diffs.carbs)}</div>
+          </div>
+          <div class="result-macro-item">
+            <div class="result-macro-label">Grasas</div>
+            <div class="result-macro-value">${alt.macros.fat.toFixed(1)}g</div>
+            <div class="result-macro-diff ${getDiffClass(alt.diffs.fat)}">${formatDiff(alt.diffs.fat)}</div>
+          </div>
+          <div class="result-macro-item ${calClass}">
+            <div class="result-macro-label">Calorías</div>
+            <div class="result-macro-value">${Math.round(alt.macros.calories)}</div>
+            <div class="result-macro-diff ${getDiffClass(alt.diffs.calories)}">${formatDiff(alt.diffs.calories, true)}</div>
+          </div>
+        </div>
+      </div>
+    `;
+      }
+
+      function getDiffClass(diff) {
+        const abs = Math.abs(diff);
+        if (abs < 0.5) return "diff-perfect";
+        if (diff < 0) return "diff-down";
+        return "diff-up";
+      }
+
+      function formatDiff(diff, isCalories = false) {
+        const abs = Math.abs(diff);
+        if (abs < 0.5) return "≈";
+        if (diff < 0)
+          return (
+            "↓ " + abs.toFixed(isCalories ? 0 : 1) + (isCalories ? "" : "g")
+          );
+        return "↑ " + abs.toFixed(isCalories ? 0 : 1) + (isCalories ? "" : "g");
+      }
+
+      // ============================================
+      // BACK BUTTON
+      // ============================================
+      backBtn.addEventListener("click", () => {
+        resultsSection.classList.remove("active");
+        searchSection.style.display = "block";
+
+        selectedFood = null;
+        selectedFoodDiv.classList.remove("active");
+        amountSection.style.opacity = "0.5";
+        amountSection.style.pointerEvents = "none";
+        amountInput.disabled = true;
+        amountInput.value = "";
+        calculateBtn.disabled = true;
+        searchInput.value = "";
+        visibleResults = AUTOCOMPLETE_INITIAL; // reset
+        dropdown.classList.remove("active");
+        searchInput.focus();
+      });
+
+      // ============================================
+      // CLICK OUTSIDE
+      // ============================================
+      document.addEventListener("click", (e) => {
+        if (!searchInput.contains(e.target) && !dropdown.contains(e.target)) {
+          dropdown.classList.remove("active");
+        }
+      });
+
+      // ============================================
+      // PWA (opcional)
+      // ============================================
+      let deferredPrompt;
+      window.addEventListener("beforeinstallprompt", (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        console.log("✅ PWA instalable");
+      });
+
+      // ============================================
+      // INIT
+      // ============================================
+      // Verificar si ya está logueado
+      if (!checkAuth()) {
+        // Si no está logueado, mostrar pantalla login
+        loginScreen.classList.add("active");
+      }
+    </script>
+  </body>
 </html>
