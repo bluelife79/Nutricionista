@@ -1582,7 +1582,9 @@
       // ============================================
       async function loadDatabase() {
         try {
-          const response = await fetch("database.min.json");
+          // Single source of truth: database.json (Vercel sirve con gzip
+          // automático ~250KB transferidos para 2MB raw).
+          const response = await fetch("database.json");
           const data = await response.json();
           foodsDatabase = data.foods || [];
           console.log(

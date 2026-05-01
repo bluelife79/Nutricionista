@@ -25,3 +25,7 @@ scripts/subgroups_review.json
 scripts/flags_changelog.json
 scripts/edge_cases_review.json
 scripts/__pycache__/
+
+# Compressed database snapshots (generated locally, not source of truth)
+database.json.zip
+database.json.gz
