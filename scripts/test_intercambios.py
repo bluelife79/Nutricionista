@@ -131,12 +131,33 @@ def find_food(foods: list, name: str) -> dict:
     return None
 
 
+PROTEIC_DAIRY_SUBGROUPS = {"high_protein_dairy", "basic_dairy", "fruit"}
+
+
+def is_proteic_dairy(food: dict) -> bool:
+    return (
+        food.get("category") == "dairy"
+        and food.get("macro_profile") == "protein"
+        and food.get("subgroup") in PROTEIC_DAIRY_SUBGROUPS
+    )
+
+
+def is_compatible_category(candidate: dict, original: dict) -> bool:
+    if candidate.get("category") == original.get("category"):
+        return True
+    if original.get("category") == "postres_proteicos" and is_proteic_dairy(candidate):
+        return True
+    if is_proteic_dairy(original) and candidate.get("category") == "postres_proteicos":
+        return True
+    return False
+
+
 def calculate_alternatives(original: dict, foods: list) -> dict:
     """Replica js/algorithm.js calculateAlternatives — devuelve {t1, t2, t3}."""
     candidates = [
         f for f in foods
         if f.get("id") != original.get("id")
-        and f.get("category") == original.get("category")
+        and is_compatible_category(f, original)
         and "condiment" not in (f.get("flags") or [])
         and "sweet" not in (f.get("flags") or [])
         and "hidden" not in (f.get("flags") or [])
@@ -258,6 +279,21 @@ TEST_CASES = [
         "query": "Pechuga de pollo",  # busca el primero que matchee
         "t1_should_include_any": ["pollo asado", "pollo crudo", "muslo", "pollo plancha"],
         "t1_min": 5,
+    },
+    {
+        # Bug histórico: postres_proteicos aislados de dairy/protein
+        # Una clienta con Skyr no veía Yopro/yogur proteico como intercambio
+        "label": "Skyr → debe ver yogures proteicos de dairy (cross-category)",
+        "query": "Skyrella",  # postres_proteicos
+        "t2_should_include_any": [
+            "skyr to go", "yopro", "yogur proteinas",
+            "yogur natural proteinas", "yogur siggi",
+        ],
+        "t2_should_NOT_include_any": [
+            "queso curado", "queso manchego", "mantequilla",
+            "salmon, crudo", "salmon ahumado", "merluza fresca", "pollo, crudo",
+        ],
+        "t2_min": 30,
     },
 ]
 

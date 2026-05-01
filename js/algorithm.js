@@ -277,6 +277,45 @@ async function rerankCandidates(query, taggedCandidates) {
 }
 
 // ============================================
+// CROSS-CATEGORY COMPATIBILITY
+// ============================================
+// Algunos alimentos en categorías distintas son clínicamente intercambiables.
+// Ejemplo: Skyr (postres_proteicos) y Yopro (dairy/high_protein_dairy) son
+// nutricionalmente equivalentes — la clienta debería poder cambiar uno por otro.
+//
+// Esta función decide si un candidato es compatible con el original incluso
+// si están en categorías diferentes. Solo permite cross-category bajo
+// condiciones estrictas para evitar mezclar quesos curados o pescados.
+const PROTEIC_DAIRY_SUBGROUPS = new Set([
+  "high_protein_dairy",  // Skyr, Yopro, yogur proteico
+  "basic_dairy",         // yogur natural, leche enriquecida
+  "fruit",               // yogur proteico con fruta (subgroup raro pero real)
+]);
+
+function isProteicDairy(food) {
+  return (
+    food.category === "dairy" &&
+    food.macro_profile === "protein" &&
+    PROTEIC_DAIRY_SUBGROUPS.has(food.subgroup)
+  );
+}
+
+function isCompatibleCategory(candidate, original) {
+  // Caso normal: misma categoría
+  if (candidate.category === original.category) return true;
+
+  // Cross-category: postres_proteicos ↔ dairy proteico (yogures, skyr)
+  if (original.category === "postres_proteicos" && isProteicDairy(candidate)) {
+    return true;
+  }
+  if (isProteicDairy(original) && candidate.category === "postres_proteicos") {
+    return true;
+  }
+
+  return false;
+}
+
+// ============================================
 // ALTERNATIVES CALCULATION (with tier system)
 // ============================================
 async function calculateAlternatives(originalFood, amount) {
@@ -290,7 +329,7 @@ async function calculateAlternatives(originalFood, amount) {
   const candidates = foodsDatabase.filter(
     (f) =>
       f.id !== originalFood.id &&
-      f.category === originalFood.category &&
+      isCompatibleCategory(f, originalFood) &&
       !(f.flags || []).includes("condiment") &&
       !(f.flags || []).includes("sweet") &&
       !(f.flags || []).includes("hidden"),
