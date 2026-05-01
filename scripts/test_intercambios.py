@@ -175,6 +175,27 @@ TEST_CASES = [
         "expected_in_t3": True,  # El propio plato debe estar en categoría protein con flag prepared
         "t3_min": 30,  # Otros platos preparados disponibles
     },
+    {
+        "label": "Manzana → debe sugerir otras frutas, NO arroz/pasta/legumbres",
+        "query": "Manzana",
+        "t2_should_include_any": ["naranja", "pera", "platano", "kiwi", "uva", "fresa"],
+        "t2_should_NOT_include_any": ["arroz", "pasta", "lentejas", "garbanzos", "pan"],
+        "t2_min": 30,
+    },
+    {
+        "label": "Naranja → debe sugerir otras frutas, NO cereales",
+        "query": "Naranja",
+        "t2_should_include_any": ["manzana", "mandarina", "pera", "kiwi", "platano"],
+        "t2_should_NOT_include_any": ["arroz", "pasta", "avena", "harina"],
+        "t2_min": 20,
+    },
+    {
+        "label": "Plátano → debe ser fruta tropical y sugerir otras frutas",
+        "query": "Platano",
+        "t2_should_include_any": ["mango", "kiwi", "piña", "manzana", "pera"],
+        "t2_should_NOT_include_any": ["pollo", "arroz", "patata"],
+        "t2_min": 20,
+    },
 ]
 
 

@@ -95,11 +95,12 @@ grep '"id"' database.json | grep manual | tail -1
 | Valor | Cuándo usarlo |
 |-------|---------------|
 | `protein` | Carnes, aves, pescados, mariscos, huevos, legumbres como fuente proteica |
-| `carbs` | Pan, cereales, pasta, arroz, frutas, patata, legumbres como fuente de CH |
+| `carbs` | Pan, cereales, pasta, arroz, patata, legumbres como fuente de CH |
 | `fat` | Aceites, mantequilla, frutos secos, aguacate, quesos curados |
 | `dairy` | Leche, yogur, quesos frescos, bebidas lácteas |
 | `postres_proteicos` | Skyr, quark, cottage, batidos proteicos, flanes proteicos |
 | `vegetables` | Verduras, hortalizas, setas **con menos de 65 kcal por 100g** |
+| `fruits` | Frutas frescas (manzana, naranja, plátano) y desecadas (dátil, pasas) |
 | `other` | Lo que no encaja en ninguna categoría anterior |
 
 ### ¿Cuándo usar `vegetables`?
@@ -148,6 +149,21 @@ Un alimento va en `vegetables` si cumple **todas** estas condiciones:
 | `basic_dairy` | Leche entera, semidesnatada, desnatada |
 | `high_protein_dairy` | Yogures proteicos, skyr, kéfir proteico |
 | `other_dairy` | Yogures normales, bebidas lácteas, quesos blandos |
+
+### Para `category: "fruits"`
+| Valor | Qué incluye |
+|-------|-------------|
+| `pepita` | Manzana, pera, membrillo |
+| `citricos` | Naranja, mandarina, limón, pomelo, lima, clementina |
+| `frutos_bosque` | Fresa, frambuesa, arándano, mora, grosella |
+| `tropical` | Mango, kiwi, piña, plátano, papaya, maracuyá |
+| `hueso` | Melocotón, ciruela, cereza, albaricoque, nectarina |
+| `melon_sandia` | Melón y sandía |
+| `uva` | Uvas frescas |
+| `fruta_seca` | Dátil, pasas, higo seco, orejones, frutas deshidratadas |
+| `otra_fruta` | Granada, caqui, chirimoya, lichi, higo fresco, níspero |
+
+> **Nota:** No hace falta asignar `fruits` a mano. El script `fix_fruits.py` lo hace automáticamente cuando ejecutás `bash scripts/actualizar.sh`. Las frutas en almíbar, los zumos y los yogures con fruta NO son `fruits` — esos van a `carbs` u `other`.
 
 ### Para `category: "vegetables"`
 | Valor | Qué incluye |

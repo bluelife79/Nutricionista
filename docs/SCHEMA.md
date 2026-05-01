@@ -67,9 +67,12 @@ Clasifica el alimento por su función nutricional principal. Valores válidos:
 | `dairy` | Lácteos: yogur, leche, quesos, derivados |
 | `postres_proteicos` | Postres con perfil proteico alto: skyr, cottage, quark |
 | `vegetables` | Verduras, hortalizas, setas con menos de 65 kcal/100g (ver condiciones abajo) |
+| `fruits` | Frutas frescas o desecadas (ver condiciones abajo) |
 | `other` | No encaja en ninguna categoría anterior |
 
 **Condiciones para usar `vegetables`:** calorías < 65, proteína < 10g, grasa < 8g, sin carne/lácteo/cereal/fruta. El script `fix_categories.py` asigna esta categoría automáticamente — no es necesario asignarla a mano.
+
+**Condiciones para usar `fruits`:** keyword de fruta (manzana, naranja, plátano, etc.) + macros razonables (frescas: cal<100, fat<3, prot<2.5, carbs≥4; desecadas: cal hasta 380). Sin keywords de productos compuestos (yogur, smoothie, mermelada, etc.). El script `fix_fruits.py` asigna esta categoría automáticamente.
 
 ---
 
@@ -96,6 +99,15 @@ Subclasificación dentro de la categoría. Si no encaja, usar `other`, `other_ca
 | `nuts_seeds` | Frutos secos y semillas |
 | `other_fat` | Otros aceites, mantequilla, aguacate, aceitunas |
 | `other` | Todo lo que no encaja en ningún subgrupo anterior |
+| `pepita` | Frutas con pepitas: manzana, pera, membrillo _(solo para fruits)_ |
+| `citricos` | Cítricos: naranja, mandarina, limón, pomelo, lima _(solo para fruits)_ |
+| `frutos_bosque` | Bayas: fresa, frambuesa, arándano, mora, grosella _(solo para fruits)_ |
+| `tropical` | Tropicales: mango, kiwi, piña, plátano, papaya _(solo para fruits)_ |
+| `hueso` | Frutas con hueso: melocotón, ciruela, cereza, albaricoque _(solo para fruits)_ |
+| `melon_sandia` | Melón y sandía _(solo para fruits)_ |
+| `uva` | Uva fresca _(solo para fruits)_ |
+| `fruta_seca` | Frutas desecadas: dátil, pasas, higo seco, orejones _(solo para fruits)_ |
+| `otra_fruta` | Granada, caqui, chirimoya, lichi, higo fresco _(solo para fruits)_ |
 | `leafy` | Hojas verdes: lechuga, espinaca, rúcula, acelga, berro _(solo para vegetables)_ |
 | `cruciferous` | Crucíferas: brócoli, coliflor, repollo, lombarda, col de Bruselas _(solo para vegetables)_ |
 | `allium` | Aliáceas: cebolla, ajo, puerro, cebolleta _(solo para vegetables)_ |
