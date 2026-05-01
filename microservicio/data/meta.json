@@ -1,0 +1,7 @@
+{
+  "model": "paraphrase-multilingual-MiniLM-L12-v2",
+  "db_hash": "2eecc12a455875ff68fb6af9d901f517322435ff16a49439af34956a6fcf999a",
+  "generated_at": "2026-05-01T16:14:38.783484+00:00",
+  "dim": 384,
+  "n_foods": 5307
+}

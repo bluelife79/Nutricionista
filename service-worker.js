@@ -1,4 +1,4 @@
-const CACHE_NAME = "revolucionat-v1";
+const CACHE_NAME = "revolucionat-v3";
 const urlsToCache = ["/", "/index.html", "/database.json", "/manifest.json"];
 
 // Install

@@ -1,47 +1,880 @@
 <!doctype html>
-<html>
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>Test Database Load</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Suite — App Nutricion</title>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: #f5f5f5;
+        color: #222;
+        padding: 24px;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      header {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 20px 24px;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      header h1 {
+        font-size: 18px;
+        font-weight: 700;
+        color: #111;
+      }
+
+      header .meta {
+        font-size: 12px;
+        color: #888;
+      }
+
+      #summary-bar {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 14px 24px;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      #summary-count {
+        font-size: 22px;
+        font-weight: 700;
+      }
+
+      #summary-count.all-pass { color: #16a34a; }
+      #summary-count.has-fail { color: #dc2626; }
+
+      .stat-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: #f5f5f5;
+        border-radius: 20px;
+        padding: 4px 12px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .stat-pill.pass { background: #dcfce7; color: #15803d; }
+      .stat-pill.fail { background: #fee2e2; color: #b91c1c; }
+      .stat-pill.skip { background: #fef9c3; color: #92400e; }
+
+      button#run-btn {
+        background: #1d4ed8;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 8px 18px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        margin-left: auto;
+      }
+      button#run-btn:hover { background: #1e40af; }
+      button#run-btn:disabled { background: #9ca3af; cursor: default; }
+
+      #progress-msg {
+        font-size: 12px;
+        color: #888;
+        margin-left: 8px;
+      }
+
+      #tests-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .test-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .test-card.result-pass { border-left: 4px solid #16a34a; }
+      .test-card.result-fail { border-left: 4px solid #dc2626; }
+      .test-card.result-skip { border-left: 4px solid #f59e0b; }
+
+      .test-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 16px;
+        cursor: pointer;
+        user-select: none;
+      }
+      .test-header:hover { background: #fafafa; }
+
+      .badge {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 4px;
+        min-width: 44px;
+        text-align: center;
+        letter-spacing: 0.5px;
+      }
+      .badge-pass { background: #dcfce7; color: #15803d; }
+      .badge-fail { background: #fee2e2; color: #b91c1c; }
+      .badge-skip { background: #fef9c3; color: #92400e; }
+      .badge-pending { background: #f0f0f0; color: #888; }
+
+      .test-id {
+        font-size: 11px;
+        color: #999;
+        font-weight: 600;
+        min-width: 36px;
+      }
+
+      .test-label {
+        font-weight: 600;
+        flex: 1;
+        color: #111;
+      }
+
+      .test-note {
+        font-size: 11px;
+        color: #888;
+        font-style: italic;
+        max-width: 340px;
+        text-align: right;
+      }
+
+      .chevron {
+        font-size: 10px;
+        color: #bbb;
+        margin-left: 4px;
+        transition: transform 0.15s;
+      }
+      .test-card.open .chevron { transform: rotate(90deg); }
+
+      .test-body {
+        display: none;
+        border-top: 1px solid #e0e0e0;
+        padding: 12px 16px 16px;
+      }
+      .test-card.open .test-body { display: block; }
+
+      .fail-reason {
+        background: #fff5f5;
+        border: 1px solid #fecaca;
+        border-radius: 6px;
+        padding: 10px 14px;
+        margin-bottom: 12px;
+        font-size: 12px;
+        color: #b91c1c;
+      }
+      .fail-reason ul { margin-top: 6px; padding-left: 18px; }
+      .fail-reason li { margin-top: 3px; }
+
+      .results-table-wrap {
+        overflow-x: auto;
+      }
+
+      table.results-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12px;
+      }
+      table.results-table th {
+        background: #f5f5f5;
+        text-align: left;
+        padding: 6px 10px;
+        font-weight: 600;
+        color: #555;
+        border-bottom: 1px solid #e0e0e0;
+      }
+      table.results-table td {
+        padding: 6px 10px;
+        border-bottom: 1px solid #f0f0f0;
+        vertical-align: top;
+      }
+      table.results-table tr:last-child td { border-bottom: none; }
+      table.results-table tr:hover td { background: #fafafa; }
+
+      .tier-badge {
+        display: inline-block;
+        font-size: 10px;
+        font-weight: 700;
+        padding: 1px 6px;
+        border-radius: 3px;
+      }
+      .tier1 { background: #dbeafe; color: #1d4ed8; }
+      .tier2 { background: #ede9fe; color: #6d28d9; }
+      .tier3 { background: #f3f4f6; color: #6b7280; }
+
+      .level-badge {
+        display: inline-block;
+        font-size: 10px;
+        font-weight: 600;
+        padding: 1px 6px;
+        border-radius: 3px;
+      }
+      .level-perfect { background: #dcfce7; color: #15803d; }
+      .level-good { background: #fef9c3; color: #92400e; }
+      .level-advanced { background: #f3f4f6; color: #6b7280; }
+
+      .section-label {
+        font-size: 11px;
+        font-weight: 700;
+        color: #999;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 6px;
+        margin-top: 12px;
+      }
+      .section-label:first-child { margin-top: 0; }
+
+      #loading-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(255,255,255,0.75);
+        z-index: 100;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+      }
+      #loading-overlay.visible { display: flex; }
+    </style>
   </head>
   <body>
-    <h1>Test de Carga de Database</h1>
-    <div id="result"></div>
-    <div id="error" style="color: red"></div>
+
+    <div id="loading-overlay">Cargando base de datos...</div>
+
+    <header>
+      <div>
+        <h1>Test Suite — App Nutricion</h1>
+        <div class="meta">Mujer 40+ / Espana / 20 casos de prueba reales</div>
+      </div>
+      <div class="meta" id="header-date"></div>
+    </header>
+
+    <div id="summary-bar">
+      <div id="summary-count" class="has-fail">—</div>
+      <span class="stat-pill pass" id="pill-pass">PASS: 0</span>
+      <span class="stat-pill fail" id="pill-fail">FAIL: 0</span>
+      <span class="stat-pill skip" id="pill-skip">SKIP: 0</span>
+      <span id="progress-msg">Pendiente de ejecucion</span>
+      <button id="run-btn" disabled>Ejecutar tests</button>
+    </div>
+
+    <div id="tests-container"></div>
+
+    <!-- algorithm.js debe cargarse ANTES de que lo usemos -->
+    <script src="js/algorithm.js"></script>
 
     <script>
-      async function testLoad() {
-        const result = document.getElementById("result");
-        const errorDiv = document.getElementById("error");
+      // ============================================
+      // PATCH: searchFoods es async en algorithm.js y llama renderAutocomplete
+      // Para tests usamos una version sincrona local
+      // ============================================
+      function searchFoodsSync(query) {
+        if (!window.foodsDatabase || !window.foodsDatabase.length) return [];
+        var tokens = tokenize(query);
+        var results = window.foodsDatabase.filter(function(food) {
+          var hay = norm(
+            (food.name || '') + ' ' +
+            (food.brand || '') + ' ' +
+            (food.source || '') + ' ' +
+            (food.category || '')
+          );
+          return tokens.every(function(t) { return hay.includes(t); });
+        });
+        results.sort(function(a, b) {
+          var sa = tokenSortScore(norm(a.name || ''), tokens);
+          var sb = tokenSortScore(norm(b.name || ''), tokens);
+          if (sa !== sb) return sb - sa;
+          return (a.name || '').length - (b.name || '').length;
+        });
+        return results;
+      }
 
-        try {
-          console.log("🔍 Intentando fetch...");
-          result.innerHTML = "Cargando...";
+      // ============================================
+      // TEST CASES
+      // ============================================
+      var TEST_CASES = [
+        {
+          id: "T01",
+          label: "Pechuga de pollo — proteina base",
+          searchQuery: "pechuga de pollo",
+          amount: 150,
+          expectInTop10: ["pavo", "pechuga", "merluza", "ternera", "huevo"],
+          expectNotInResults: ["azafran", "tomillo", "gelatina", "oregano", "canela"],
+          expectTier1Category: "meat",
+          note: "La sustitucion mas pedida. Nunca debe aparecer una especia."
+        },
+        {
+          id: "T02",
+          label: "Salmon — pescado graso omega-3",
+          searchQuery: "salmon",
+          amount: 120,
+          expectInTop10: ["merluza", "atun", "dorada", "lubina", "trucha"],
+          expectNotInResults: ["azafran", "tomillo", "macarrones", "gelatina"],
+          expectTier1Category: "fish",
+          note: "Debe sustituirse solo con otros pescados en T1."
+        },
+        {
+          id: "T03",
+          label: "Huevo entero — desayuno / proteina",
+          searchQuery: "huevo",
+          amount: 60,
+          expectInTop10: ["clara", "pechuga", "pavo"],
+          expectNotInResults: ["aceite", "sal", "laurel", "pimienta"],
+          note: "Clara de huevo debe aparecer como T1."
+        },
+        {
+          id: "T04",
+          label: "Atun en conserva — rapido y economico",
+          searchQuery: "atun",
+          amount: 80,
+          expectInTop10: ["salmon", "merluza", "pechuga", "bacalao"],
+          expectNotInResults: ["azafran", "gelatina", "tomillo", "chicle"],
+          expectTier1Category: "fish",
+          note: "Muy usado. Debe sustituirse con otros pescados."
+        },
+        {
+          id: "T05",
+          label: "Pavo — alternativa magra al pollo",
+          searchQuery: "pavo",
+          amount: 120,
+          expectInTop10: ["pollo", "pechuga", "merluza", "ternera"],
+          expectNotInResults: ["azafran", "oregano", "gelatina"],
+          expectTier1Category: "meat",
+          note: "Muy pedido en dietas de control de peso."
+        },
+        {
+          id: "T06",
+          label: "Yogur griego — snack proteico",
+          searchQuery: "yogur griego",
+          amount: 150,
+          expectInTop10: ["skyr", "cottage", "quark", "requejon"],
+          expectNotInResults: ["aceite", "pasta", "azafran", "pollo"],
+          note: "Fundamental para calcio. Solo debe sustituir con lacteos ricos en proteina."
+        },
+        {
+          id: "T07",
+          label: "Skyr — lacteo proteico trending",
+          searchQuery: "skyr",
+          amount: 200,
+          expectInTop10: ["yogur", "cottage", "quark", "requejon"],
+          expectNotInResults: ["azafran", "tomillo", "aceite"],
+          expectTier1Category: "high_protein_dairy",
+          note: "Alta proteina, baja grasa. T1 deben ser otros high_protein_dairy."
+        },
+        {
+          id: "T08",
+          label: "Queso fresco — versatil en ensaladas",
+          searchQuery: "queso fresco",
+          amount: 100,
+          expectInTop10: ["mozzarella", "skyr", "requejon", "cottage"],
+          expectNotInResults: ["aceite", "pimienta", "tomillo"],
+          expectTier1Category: "cheese",
+          note: "Quesos deben aparecer primero como T1."
+        },
+        {
+          id: "T09",
+          label: "Avena — desayuno saludable",
+          searchQuery: "avena",
+          amount: 50,
+          expectInTop10: ["arroz", "quinoa", "bulgur", "cuscus"],
+          expectNotInResults: ["pollo", "yogur", "aceite", "azafran"],
+          note: "Cereal por cereal. Nunca una proteina o grasa como alternativa."
+        },
+        {
+          id: "T10",
+          label: "Arroz blanco — guarnicion base",
+          searchQuery: "arroz",
+          amount: 80,
+          expectInTop10: ["pasta", "avena", "quinoa", "bulgur"],
+          expectNotInResults: ["pollo", "aceite de oliva", "azafran", "gelatina"],
+          expectTier1Category: "grains",
+          note: "Granos por granos. Muy frecuente en menus de clientas."
+        },
+        {
+          id: "T11",
+          label: "Quinoa — cereal proteico moderno",
+          searchQuery: "quinoa",
+          amount: 60,
+          expectInTop10: ["arroz", "avena", "bulgur", "cuscus"],
+          expectNotInResults: ["yogur", "aceite", "azafran", "tomillo"],
+          expectTier1Category: "grains",
+          note: "El bug original era yogur como sustituto de quinoa. Verificar que no ocurra."
+        },
+        {
+          id: "T12",
+          label: "Lentejas — legumbre rica en hierro",
+          searchQuery: "lentejas",
+          amount: 150,
+          expectInTop10: ["garbanzo", "alubia", "guisante", "judias"],
+          expectNotInResults: ["tomillo", "azafran", "laurel", "canela"],
+          expectTier1Category: "legumes",
+          note: "Hierro para mujer adulta. Solo legumbres en T1."
+        },
+        {
+          id: "T13",
+          label: "Patata — guarnicion economica",
+          searchQuery: "patata",
+          amount: 200,
+          expectInTop10: ["boniato", "yuca"],
+          expectNotInResults: ["pollo", "aceite", "tomillo"],
+          expectTier1Category: "tubers",
+          note: "Tuberculo por tuberculo. Lista corta pero correcta."
+        },
+        {
+          id: "T14",
+          label: "Aceite de oliva — grasa mediterranea",
+          searchQuery: "aceite de oliva",
+          amount: 15,
+          expectInTop10: ["aceite", "mantequilla", "aguacate"],
+          expectNotInResults: ["pollo", "arroz", "yogur", "azafran"],
+          note: "Grasas por grasas. Una cucharada de aceite no se sustituye con pollo."
+        },
+        {
+          id: "T15",
+          label: "Almendras — snack saludable",
+          searchQuery: "almendras",
+          amount: 30,
+          expectInTop10: ["nuez", "anacardo", "pistacho", "avellana"],
+          expectNotInResults: ["arroz", "pollo", "yogur", "comino"],
+          note: "Frutos secos muy pedidos como snack."
+        },
+        {
+          id: "T16",
+          label: "Busqueda invertida: 'pollo pechuga'",
+          searchQuery: "pollo pechuga",
+          amount: 150,
+          sameResultsAs: "T01",
+          note: "Mismo ranking que T01 — el orden de palabras no puede cambiar los resultados."
+        },
+        {
+          id: "T17",
+          label: "Busqueda invertida: 'griego yogur'",
+          searchQuery: "griego yogur",
+          amount: 150,
+          sameResultsAs: "T06",
+          note: "Mismo ranking que T06."
+        },
+        {
+          id: "T18",
+          label: "Garbanzos cocidos — hierro y fibra",
+          searchQuery: "garbanzos",
+          amount: 150,
+          expectInTop10: ["lenteja", "alubia", "guisante"],
+          expectNotInResults: ["tomillo", "laurel", "azafran", "sal"],
+          expectTier1Category: "legumes",
+          note: "Legumbre tipica. Los condimentos de cocido nunca deben aparecer."
+        },
+        {
+          id: "T19",
+          label: "Boniato — carbohidrato nutritivo",
+          searchQuery: "boniato",
+          amount: 150,
+          expectInTop10: ["patata", "yuca"],
+          expectNotInResults: ["pollo", "aceite", "azafran"],
+          expectTier1Category: "tubers",
+          note: "Muy de moda en dietas. Tuberculos T1."
+        },
+        {
+          id: "T20",
+          label: "Nueces — omega-3 vegetal",
+          searchQuery: "nueces",
+          amount: 30,
+          expectInTop10: ["almendra", "anacardo", "pistacho", "avellana"],
+          expectNotInResults: ["arroz", "pollo", "comino", "pimenton"],
+          note: "Importante para mujer adulta (omega-3). Solo frutos secos en T1."
+        }
+      ];
 
-          const response = await fetch("database.json");
-          console.log("📡 Response status:", response.status);
-          console.log("📡 Response OK:", response.ok);
+      // ============================================
+      // DATE
+      // ============================================
+      document.getElementById('header-date').textContent = new Date().toLocaleDateString('es-ES', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+      });
 
-          if (!response.ok) {
-            throw new Error(`HTTP ${response.status}`);
+      // ============================================
+      // RENDER SKELETON
+      // ============================================
+      function renderSkeleton() {
+        var container = document.getElementById('tests-container');
+        container.innerHTML = '';
+        TEST_CASES.forEach(function(tc) {
+          var card = document.createElement('div');
+          card.className = 'test-card';
+          card.id = 'card-' + tc.id;
+
+          card.innerHTML = '<div class="test-header">' +
+            '<span class="badge badge-pending">...</span>' +
+            '<span class="test-id">' + tc.id + '</span>' +
+            '<span class="test-label">' + tc.label + '</span>' +
+            '<span class="test-note">' + (tc.note || '') + '</span>' +
+            '<span class="chevron">&#9654;</span>' +
+            '</div>' +
+            '<div class="test-body"></div>';
+
+          card.querySelector('.test-header').addEventListener('click', function() {
+            card.classList.toggle('open');
+          });
+
+          container.appendChild(card);
+        });
+      }
+
+      // ============================================
+      // UPDATE CARD
+      // ============================================
+      function updateCard(tc, result) {
+        var card = document.getElementById('card-' + tc.id);
+        if (!card) return;
+
+        card.classList.remove('result-pass', 'result-fail', 'result-skip');
+        card.classList.add('result-' + result.status);
+
+        var header = card.querySelector('.test-header');
+        var badge = header.querySelector('.badge');
+        badge.className = 'badge';
+        if (result.status === 'pass') {
+          badge.classList.add('badge-pass');
+          badge.textContent = 'PASS';
+        } else if (result.status === 'fail') {
+          badge.classList.add('badge-fail');
+          badge.textContent = 'FAIL';
+        } else {
+          badge.classList.add('badge-skip');
+          badge.textContent = 'SKIP';
+        }
+
+        var body = card.querySelector('.test-body');
+        var html = '';
+
+        // Fail reasons
+        if (result.status === 'fail' && result.failures && result.failures.length) {
+          html += '<div class="fail-reason"><strong>Fallos detectados:</strong><ul>';
+          result.failures.forEach(function(f) {
+            html += '<li>' + escHtml(f) + '</li>';
+          });
+          html += '</ul></div>';
+        }
+
+        if (result.status === 'skip') {
+          html += '<div class="fail-reason" style="background:#fffbeb;border-color:#fde68a;color:#92400e;">' +
+            escHtml(result.skipReason || 'Alimento no encontrado en DB') + '</div>';
+        }
+
+        // Search results
+        if (result.searchResults && result.searchResults.length) {
+          html += '<div class="section-label">Busqueda: "' + escHtml(tc.searchQuery) + '" — top 3</div>';
+          html += '<div class="results-table-wrap"><table class="results-table">' +
+            '<thead><tr><th>#</th><th>Nombre</th><th>Subgrupo</th><th>Categoria</th></tr></thead><tbody>';
+          result.searchResults.slice(0, 3).forEach(function(f, i) {
+            html += '<tr><td>' + (i + 1) + '</td><td>' + escHtml(f.name) + '</td>' +
+              '<td>' + escHtml(f.subgroup || '—') + '</td>' +
+              '<td>' + escHtml(f.category || '—') + '</td></tr>';
+          });
+          html += '</tbody></table></div>';
+        }
+
+        // Alternatives
+        if (result.alternatives && result.alternatives.length) {
+          html += '<div class="section-label">Alternativas — top ' +
+            Math.min(10, result.alternatives.length) + ' de ' + result.alternatives.length + '</div>';
+          html += '<div class="results-table-wrap"><table class="results-table">' +
+            '<thead><tr><th>#</th><th>Nombre</th><th>Tier</th><th>Nivel</th><th>Score</th><th>Cantidad equiv.</th><th>Subgrupo</th></tr></thead><tbody>';
+          result.alternatives.slice(0, 10).forEach(function(a, i) {
+            html += '<tr>' +
+              '<td>' + (i + 1) + '</td>' +
+              '<td>' + escHtml(a.name) + '</td>' +
+              '<td><span class="tier-badge tier' + a.tier + '">T' + a.tier + '</span></td>' +
+              '<td><span class="level-badge level-' + a.level + '">' + a.level + '</span></td>' +
+              '<td>' + a.matchScore + '</td>' +
+              '<td>' + a.equivalentAmount + 'g</td>' +
+              '<td>' + escHtml(a.subgroup || '—') + '</td>' +
+              '</tr>';
+          });
+          html += '</tbody></table></div>';
+        }
+
+        // Same-results comparison
+        if (result.comparisonInfo) {
+          html += '<div class="section-label">Comparacion con ' + escHtml(result.comparisonInfo.refId) + '</div>';
+          html += '<table class="results-table"><thead><tr>' +
+            '<th>#</th><th>Este test</th><th>Referencia (' + escHtml(result.comparisonInfo.refId) + ')</th><th>Match</th>' +
+            '</tr></thead><tbody>';
+          var maxLen = Math.max(result.comparisonInfo.thisTop5.length, result.comparisonInfo.refTop5.length);
+          for (var i = 0; i < maxLen; i++) {
+            var t = result.comparisonInfo.thisTop5[i] || '(vacio)';
+            var r = result.comparisonInfo.refTop5[i] || '(vacio)';
+            var match = norm(t) === norm(r);
+            html += '<tr>' +
+              '<td>' + (i + 1) + '</td>' +
+              '<td>' + escHtml(t) + '</td>' +
+              '<td>' + escHtml(r) + '</td>' +
+              '<td style="color:' + (match ? '#16a34a' : '#dc2626') + '">' + (match ? 'OK' : 'DIFF') + '</td>' +
+              '</tr>';
           }
+          html += '</tbody></table>';
+        }
 
-          console.log("🔄 Parseando JSON...");
-          const data = await response.json();
+        body.innerHTML = html;
 
-          const foods = data.foods || [];
-
-          result.innerHTML = `
-                <h2>✅ ÉXITO</h2>
-                <p>Total alimentos: ${foods.length}</p>
-                <p>Primer alimento: ${foods[0]?.name}</p>
-            `;
-        } catch (error) {
-          console.error("❌ ERROR:", error);
-          errorDiv.innerHTML = `<h2>ERROR:</h2><pre>${error}</pre>`;
+        // Auto-open on fail
+        if (result.status === 'fail') {
+          card.classList.add('open');
         }
       }
-      testLoad();
+
+      // ============================================
+      // SUMMARY BAR
+      // ============================================
+      function updateSummary(pass, fail, skip) {
+        var total = TEST_CASES.length;
+        var count = document.getElementById('summary-count');
+        count.textContent = pass + '/' + total + ' PASS';
+        count.className = fail > 0 ? 'has-fail' : 'all-pass';
+        document.getElementById('pill-pass').textContent = 'PASS: ' + pass;
+        document.getElementById('pill-fail').textContent = 'FAIL: ' + fail;
+        document.getElementById('pill-skip').textContent = 'SKIP: ' + skip;
+        document.getElementById('progress-msg').textContent = '';
+      }
+
+      // ============================================
+      // NORM HELPER (mirrors algorithm.js)
+      // ============================================
+      function norm(str) {
+        return (str || '')
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[̀-ͯ]/g, '')
+          .replace(/[^a-z0-9]+/g, ' ')
+          .trim();
+      }
+
+      // ============================================
+      // ESCAPE HTML
+      // ============================================
+      function escHtml(str) {
+        return (str || '').toString()
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      // ============================================
+      // RUN A SINGLE TEST
+      // ============================================
+      async function runTest(tc, refResults) {
+        // refResults: map of T0X -> searchResults top-5 names (for sameResultsAs)
+        var result = {
+          status: 'fail',
+          failures: [],
+          searchResults: [],
+          alternatives: [],
+          comparisonInfo: null,
+          skipReason: null
+        };
+
+        // 1. Search
+        var searchResults = searchFoodsSync(tc.searchQuery);
+        result.searchResults = searchResults;
+
+        if (!searchResults.length) {
+          result.status = 'skip';
+          result.skipReason = 'Alimento no encontrado en DB: "' + tc.searchQuery + '"';
+          return result;
+        }
+
+        var food = searchResults[0];
+
+        // 2. sameResultsAs check
+        if (tc.sameResultsAs) {
+          var refTop5 = refResults[tc.sameResultsAs] || [];
+          var thisTop5 = searchResults.slice(0, 5).map(function(f) { return f.name; });
+          result.comparisonInfo = {
+            refId: tc.sameResultsAs,
+            thisTop5: thisTop5,
+            refTop5: refTop5
+          };
+
+          var allMatch = thisTop5.length === refTop5.length &&
+            thisTop5.every(function(name, i) {
+              return norm(name) === norm(refTop5[i] || '');
+            });
+
+          if (!allMatch) {
+            result.failures.push(
+              'Orden de palabras cambia los resultados. Top-5 difiere del caso ' + tc.sameResultsAs + ': ' +
+              '[' + thisTop5.join(', ') + '] vs [' + refTop5.join(', ') + ']'
+            );
+          }
+
+          result.status = result.failures.length ? 'fail' : 'pass';
+          return result;
+        }
+
+        // 3. calculateAlternatives
+        var alts;
+        try {
+          alts = await calculateAlternatives(food, tc.amount);
+        } catch (e) {
+          result.status = 'fail';
+          result.failures.push('Error en calculateAlternatives: ' + e.message);
+          return result;
+        }
+
+        var allAlts = [].concat(alts.intercambios || [], alts.familia || [], alts.preparados || []);
+        result.alternatives = allAlts;
+
+        // 4. expectInTop10: al menos 2 de los keywords en los primeros 10 nombres
+        if (tc.expectInTop10 && tc.expectInTop10.length) {
+          var top10Names = allAlts.slice(0, 10).map(function(a) { return norm(a.name); });
+          var matched = tc.expectInTop10.filter(function(kw) {
+            var kwn = norm(kw);
+            return top10Names.some(function(n) { return n.includes(kwn); });
+          });
+          if (matched.length < 2) {
+            var missing = tc.expectInTop10.filter(function(kw) {
+              var kwn = norm(kw);
+              return !top10Names.some(function(n) { return n.includes(kwn); });
+            });
+            result.failures.push(
+              'expectInTop10: solo ' + matched.length + '/2 keywords encontrados. ' +
+              'Faltan: [' + missing.join(', ') + ']. ' +
+              'Top-10: [' + allAlts.slice(0, 10).map(function(a) { return a.name; }).join(' | ') + ']'
+            );
+          }
+        }
+
+        // 5. expectNotInResults: ninguno debe aparecer en ninguna alternativa
+        if (tc.expectNotInResults && tc.expectNotInResults.length) {
+          var allNames = allAlts.map(function(a) { return norm(a.name); });
+          tc.expectNotInResults.forEach(function(kw) {
+            var kwn = norm(kw);
+            var found = allAlts.filter(function(a) { return norm(a.name).includes(kwn); });
+            if (found.length) {
+              result.failures.push(
+                'expectNotInResults: "' + kw + '" aparece en resultados (' +
+                found.map(function(f) { return f.name; }).join(', ') + ')'
+              );
+            }
+          });
+        }
+
+        // 6. expectTier1Category: al menos 1 alternativa con tier=1
+        if (tc.expectTier1Category) {
+          var t1results = allAlts.filter(function(a) { return a.tier === 1; });
+          if (!t1results.length) {
+            result.failures.push(
+              'expectTier1Category: no hay resultados de Tier 1. ' +
+              'Alimento base: subgroup=' + (food.subgroup || 'null') + '. ' +
+              'Total alternativas: ' + allAlts.length
+            );
+          }
+        }
+
+        result.status = result.failures.length ? 'fail' : 'pass';
+        return result;
+      }
+
+      // ============================================
+      // RUN ALL TESTS
+      // ============================================
+      async function runAllTests() {
+        var btn = document.getElementById('run-btn');
+        var progressMsg = document.getElementById('progress-msg');
+        btn.disabled = true;
+        btn.textContent = 'Ejecutando...';
+
+        var pass = 0, fail = 0, skip = 0;
+
+        // First pass: collect top-5 names for sameResultsAs references
+        var refResults = {};
+        TEST_CASES.forEach(function(tc) {
+          if (!tc.sameResultsAs) {
+            var sr = searchFoodsSync(tc.searchQuery);
+            refResults[tc.id] = sr.slice(0, 5).map(function(f) { return f.name; });
+          }
+        });
+
+        // Run each test with a small yield so UI stays responsive
+        for (var i = 0; i < TEST_CASES.length; i++) {
+          var tc = TEST_CASES[i];
+          progressMsg.textContent = 'Ejecutando ' + tc.id + '...';
+
+          // Yield to render
+          await new Promise(function(resolve) { setTimeout(resolve, 0); });
+
+          var result = await runTest(tc, refResults);
+
+          if (result.status === 'pass') pass++;
+          else if (result.status === 'fail') fail++;
+          else skip++;
+
+          updateCard(tc, result);
+          updateSummary(pass, fail, skip);
+        }
+
+        btn.disabled = false;
+        btn.textContent = 'Ejecutar tests';
+        progressMsg.textContent = 'Completado — ' + new Date().toLocaleTimeString('es-ES');
+      }
+
+      // ============================================
+      // INIT
+      // ============================================
+      async function init() {
+        var overlay = document.getElementById('loading-overlay');
+        overlay.classList.add('visible');
+
+        renderSkeleton();
+
+        try {
+          var response = await fetch('database.min.json');
+          if (!response.ok) throw new Error('HTTP ' + response.status);
+          var data = await response.json();
+          window.foodsDatabase = data.foods || data;
+
+          overlay.classList.remove('visible');
+
+          var btn = document.getElementById('run-btn');
+          btn.disabled = false;
+          document.getElementById('progress-msg').textContent =
+            window.foodsDatabase.length + ' alimentos cargados';
+
+          btn.addEventListener('click', runAllTests);
+
+          // Auto-run on load
+          runAllTests();
+
+        } catch (err) {
+          overlay.classList.remove('visible');
+          document.getElementById('summary-count').textContent = 'ERROR';
+          document.getElementById('progress-msg').textContent =
+            'Error cargando DB: ' + err.message + '. Abre desde un servidor local (npx serve .).';
+        }
+      }
+
+      init();
     </script>
   </body>
 </html>

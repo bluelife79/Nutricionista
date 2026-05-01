@@ -14,6 +14,17 @@
 
     <title>RevolucionaT - Intercambiador de Alimentos</title>
 
+    <!-- Pre-paint auth check: evita el flash del login si ya hay sesión guardada -->
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem("revolucionat_user")) {
+            document.documentElement.classList.add("checking-auth");
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- PWA -->
     <link rel="manifest" href="manifest.json" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -364,16 +375,16 @@
         border-bottom: 3px solid;
       }
 
-      .section-header.perfect {
+      .section-header.intercambios {
         border-bottom-color: #4caf50;
       }
 
-      .section-header.good {
-        border-bottom-color: #ff9800;
+      .section-header.familia {
+        border-bottom-color: #7c6fcf;
       }
 
-      .section-header.advanced {
-        border-bottom-color: #f44336;
+      .section-header.preparados {
+        border-bottom-color: #9e9e9e;
       }
 
       .section-title {
@@ -409,19 +420,19 @@
           -12px -12px 24px #ffffff;
       }
 
-      .result-card.perfect {
+      .result-card.intercambios {
         border-color: #4caf50;
         background: #f1f8f4;
       }
 
-      .result-card.good {
-        border-color: #ff9800;
-        background: #fff8f0;
+      .result-card.familia {
+        border-color: #7c6fcf;
+        background: #f4f2fc;
       }
 
-      .result-card.advanced {
-        border-color: #f44336;
-        background: #fff5f5;
+      .result-card.preparados {
+        border-color: #9e9e9e;
+        background: #f5f5f5;
       }
 
       /* LEVEL BADGE */
@@ -438,19 +449,19 @@
         letter-spacing: 0.5px;
       }
 
-      .level-badge.perfect {
+      .level-badge.intercambios {
         background: #e8f5e9;
         color: #2e7d32;
       }
 
-      .level-badge.good {
-        background: #fff3e0;
-        color: #e65100;
+      .level-badge.familia {
+        background: #ede7f6;
+        color: #4527a0;
       }
 
-      .level-badge.advanced {
-        background: #ffebee;
-        color: #c62828;
+      .level-badge.preparados {
+        background: #f5f5f5;
+        color: #616161;
       }
 
       .result-header {
@@ -487,14 +498,14 @@
         line-height: 1;
       }
 
-      .match-value.perfect {
+      .match-value.intercambios {
         color: #4caf50;
       }
-      .match-value.good {
-        color: #ff9800;
+      .match-value.familia {
+        color: #7c6fcf;
       }
-      .match-value.advanced {
-        color: #f44336;
+      .match-value.preparados {
+        color: #9e9e9e;
       }
 
       .match-label {
@@ -571,22 +582,54 @@
       /* LOADING */
       .loading {
         text-align: center;
-        padding: 40px 20px;
+        padding: 60px 20px;
         display: none;
+        position: relative;
+        z-index: 10;
       }
 
       .loading.active {
         display: block;
       }
 
+      /* SPLASH inicial: visible solo cuando hay sesión guardada y estamos validándola */
+      #initialSplash {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: #e8ecf3;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+      }
+
+      #initialSplash .splash-text {
+        font-family: "Inter", sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        color: #534b90;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      html.checking-auth #loginScreen {
+        display: none !important;
+      }
+
+      html.checking-auth #initialSplash {
+        display: flex;
+      }
+
       .spinner {
         display: inline-block;
-        width: 40px;
-        height: 40px;
-        border: 4px solid rgba(83, 75, 144, 0.2);
+        width: 50px;
+        height: 50px;
+        border: 5px solid rgba(83, 75, 144, 0.15);
         border-top-color: #534b90;
         border-radius: 50%;
-        animation: spin 0.8s linear infinite;
+        animation: spin 0.9s linear infinite;
       }
 
       @keyframes spin {
@@ -596,8 +639,8 @@
       }
 
       .loading-text {
-        margin-top: 16px;
-        font-size: 14px;
+        margin-top: 24px;
+        font-size: 15px;
         color: #8b92a8;
         font-weight: 600;
       }
@@ -883,9 +926,248 @@
         color: #999;
         text-transform: uppercase;
       }
+
+      /* ============================================
+         SCORE GROUPS — intercambios accordion
+         ============================================ */
+      .score-group {
+        background: #e8ecf3;
+        border-radius: 20px;
+        margin-bottom: 14px;
+        box-shadow:
+          8px 8px 16px #c5c9d1,
+          -8px -8px 16px #ffffff;
+        overflow: hidden;
+        transition: box-shadow 0.24s ease;
+      }
+      .score-group[open] {
+        box-shadow:
+          4px 4px 8px #c5c9d1,
+          -4px -4px 8px #ffffff;
+      }
+      .score-group__summary {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 18px 20px;
+        cursor: pointer;
+        min-height: 64px;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        user-select: none;
+        outline: none;
+      }
+      .score-group__summary::-webkit-details-marker {
+        display: none;
+      }
+      .score-group__summary::before {
+        display: none;
+      }
+      .score-group__indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        box-shadow:
+          2px 2px 4px #c5c9d1,
+          -2px -2px 4px #ffffff;
+      }
+      .score-group--excellent .score-group__indicator {
+        background: #4caf50;
+      }
+      .score-group--good .score-group__indicator {
+        background: #f9a825;
+      }
+      .score-group--acceptable .score-group__indicator {
+        background: #ff7043;
+      }
+      .score-group__label {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 0;
+      }
+      .score-group__title {
+        font-family: "Inter", sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+        color: #1a1a2e;
+        letter-spacing: -0.01em;
+      }
+      .score-group__range {
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 12px;
+        color: #8b92a8;
+      }
+      .score-group__count {
+        font-family: "Inter", sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+        color: #1a1a2e;
+        padding: 6px 12px;
+        border-radius: 12px;
+        min-width: 36px;
+        text-align: center;
+        box-shadow:
+          inset 4px 4px 8px #c5c9d1,
+          inset -4px -4px 8px #ffffff;
+        flex-shrink: 0;
+      }
+      .score-group__chevron {
+        width: 20px;
+        height: 20px;
+        color: #8b92a8;
+        flex-shrink: 0;
+        transition:
+          transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+          color 0.2s;
+      }
+      .score-group[open] .score-group__chevron {
+        transform: rotate(180deg);
+        color: #534b90;
+      }
+      .score-group__content {
+        padding: 4px 14px 18px;
+        animation: sgExpand 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      @keyframes sgExpand {
+        from {
+          opacity: 0;
+          transform: translateY(-6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .score-cards-list {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      /* Load more actions */
+      .sgp-actions {
+        margin-top: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .btn-load-more {
+        width: 100%;
+        min-height: 52px;
+        padding: 14px 20px;
+        border: none;
+        border-radius: 16px;
+        background: #e8ecf3;
+        box-shadow:
+          6px 6px 12px #c5c9d1,
+          -6px -6px 12px #ffffff;
+        font-family: "Inter", sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+        color: #534b90;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: all 0.18s ease;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        user-select: none;
+      }
+      .btn-load-more:active {
+        box-shadow:
+          inset 5px 5px 10px #c5c9d1,
+          inset -5px -5px 10px #ffffff;
+        transform: scale(0.98);
+      }
+      .btn-load-more__count {
+        font-weight: 500;
+        font-size: 12px;
+        color: #8b92a8;
+        padding: 3px 8px;
+        border-radius: 8px;
+        background: linear-gradient(
+          135deg,
+          rgba(83, 75, 144, 0.08),
+          rgba(174, 76, 122, 0.08)
+        );
+      }
+      .btn-load-more__icon {
+        width: 16px;
+        height: 16px;
+        transition: transform 0.2s;
+      }
+      .btn-load-more:hover .btn-load-more__icon {
+        transform: translateY(2px);
+      }
+      .btn-show-all {
+        background: none;
+        border: none;
+        width: 100%;
+        min-height: 44px;
+        padding: 10px;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        font-size: 13px;
+        color: #8b92a8;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        transition: color 0.18s;
+      }
+      .btn-show-all:active {
+        color: #534b90;
+      }
+      .sgp-complete {
+        text-align: center;
+        padding: 14px;
+        font-family: "Inter", sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        color: #8b92a8;
+        border-radius: 14px;
+        box-shadow:
+          inset 4px 4px 8px #c5c9d1,
+          inset -4px -4px 8px #ffffff;
+      }
+      @keyframes neuCardIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .score-cards-list .result-card {
+        animation: neuCardIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .score-group__content,
+        .score-group__chevron,
+        .btn-load-more,
+        .btn-load-more__icon,
+        .score-cards-list .result-card {
+          animation: none;
+          transition: none;
+        }
+      }
     </style>
   </head>
   <body>
+    <!-- SPLASH inicial mientras validamos sesión guardada -->
+    <div id="initialSplash">
+      <div class="spinner"></div>
+      <div class="splash-text">Verificando acceso...</div>
+    </div>
+
     <!-- LOGIN SCREEN -->
     <div id="loginScreen" class="active">
       <div class="login-card">
@@ -896,20 +1178,12 @@
 
         <form id="loginForm" class="login-form">
           <input
-            type="text"
-            id="nameInput"
-            class="login-input"
-            placeholder="Tu nombre"
-            required
-          />
-          <div id="nameError" class="login-error">Campo obligatorio</div>
-
-          <input
             type="email"
             id="emailInput"
             class="login-input"
             placeholder="tu@email.com"
             required
+            autocomplete="email"
           />
           <div id="emailError" class="login-error">Email inválido</div>
 
@@ -919,6 +1193,7 @@
             class="login-input"
             placeholder="Código de acceso"
             required
+            autocomplete="off"
             style="
               font-family: monospace;
               letter-spacing: 2px;
@@ -937,7 +1212,36 @@
     <div class="container" id="appContainer" style="display: none">
       <!-- HEADER -->
       <div class="header">
-        <div class="logo">Programa RevolucionaT</div>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 8px;
+          "
+        >
+          <div
+            id="userGreeting"
+            style="font-size: 13px; color: #534b90; font-weight: 700"
+          ></div>
+          <button
+            id="logoutBtn"
+            style="
+              background: none;
+              border: none;
+              font-size: 12px;
+              color: #a0a8b8;
+              font-weight: 600;
+              cursor: pointer;
+              font-family: Inter, sans-serif;
+              text-decoration: underline;
+            "
+          >
+            Cerrar sesión
+          </button>
+        </div>
+        <div class="logo" style="margin-top: 12px">Programa RevolucionaT</div>
         <div class="subtitle">Intercambiador de alimentos</div>
       </div>
 
@@ -989,7 +1293,7 @@
       <!-- LOADING -->
       <div id="loading" class="loading">
         <div class="spinner"></div>
-        <div class="loading-text">Calculando equivalencias...</div>
+        <div class="loading-text">Cargando...</div>
       </div>
 
       <!-- RESULTS SECTION -->
@@ -1003,147 +1307,229 @@
 
         <div id="originalFoodCard" class="original-food-card"></div>
 
-        <!-- PERFECTAS -->
-        <div id="perfectSection" style="display: none">
-          <div class="section-header perfect">
+        <!-- INTERCAMBIOS REALES -->
+        <div id="intercambiosSection" style="display: none">
+          <div class="section-header intercambios">
             <div class="section-title">
-              ✓ EQUIVALENCIAS PERFECTAS (<span id="perfectCount">0</span>)
+              🔄 INTERCAMBIOS REALES (<span id="intercambiosCount">0</span>)
             </div>
             <div class="section-subtitle">
-              Intercambia sin cambiar tu menú - Mismo perfil calórico
+              Diferente ingrediente · perfil calórico equivalente
             </div>
           </div>
-          <div id="perfectContainer"></div>
+          <div id="intercambiosGroups"></div>
         </div>
 
-        <!-- VÁLIDAS -->
-        <div id="goodSection" style="display: none">
-          <div class="section-header good">
-            <div class="section-title">
-              ⚠️ ALTERNATIVAS VÁLIDAS (<span id="goodCount">0</span>)
+        <!-- MISMA FAMILIA -->
+        <div id="familiaSection" class="advanced-section" style="display: none">
+          <details>
+            <summary>
+              📦 MISMA FAMILIA (<span id="familiaCount">0</span>)
+            </summary>
+            <div
+              class="warning-box"
+              style="
+                margin-top: 16px;
+                border-color: #7c6fcf;
+                background: #f4f2fc;
+              "
+            >
+              <div class="warning-title" style="color: #4527a0">
+                ℹ️ MISMO INGREDIENTE BASE
+              </div>
+              <div class="warning-text">
+                Son presentaciones distintas del mismo ingrediente. Útiles para
+                variedad en la preparación, no como intercambio nutricional.
+              </div>
             </div>
-            <div class="section-subtitle">
-              Pequeñas diferencias - Revisa los avisos
-            </div>
-          </div>
-          <div id="goodContainer"></div>
+            <div id="familiaContainer" style="margin-top: 8px"></div>
+          </details>
         </div>
 
-        <!-- AVANZADAS -->
+        <!-- PLATOS PREPARADOS -->
         <div
-          id="advancedSection"
+          id="preparadosSection"
           class="advanced-section"
           style="display: none"
         >
           <details>
             <summary>
-              Ver más opciones (<span id="advancedCount">0</span>) ⓘ
+              🍽️ PLATOS PREPARADOS (<span id="preparadosCount">0</span>)
             </summary>
-
-            <div class="warning-box">
-              <div class="warning-title">⚠️ OPCIONES AVANZADAS</div>
+            <div class="warning-box" style="margin-top: 16px">
+              <div class="warning-title">
+                ⚠️ ULTRAPROCESADOS Y PLATOS COMPUESTOS
+              </div>
               <div class="warning-text">
-                Estas opciones cambian significativamente las calorías o macros
-                de tu menú. Úsalas solo si entiendes el impacto en tu día
-                completo.
+                Contienen el ingrediente pero con aditivos, grasas o salsas
+                añadidas. Revisá el impacto en el día completo antes de usarlos.
               </div>
             </div>
-
-            <div id="advancedContainer"></div>
+            <div id="preparadosContainer"></div>
           </details>
         </div>
       </div>
     </div>
 
+    <script src="js/algorithm.js"></script>
     <script>
       // ============================================
       // LOGIN SYSTEM
       // ============================================
-      const ACCESS_CODE = "REVOLUCIONAT2026";
       const loginScreen = document.getElementById("loginScreen");
       const appContainer = document.getElementById("appContainer");
       const loginForm = document.getElementById("loginForm");
-      const nameInput = document.getElementById("nameInput");
       const emailInput = document.getElementById("emailInput");
       const codeInput = document.getElementById("codeInput");
-      const nameError = document.getElementById("nameError");
       const emailError = document.getElementById("emailError");
       const codeError = document.getElementById("codeError");
+      const loginButton = document.getElementById("loginButton");
 
-      // Auto-uppercase code
       codeInput.addEventListener("input", (e) => {
         e.target.value = e.target.value.toUpperCase();
       });
 
-      // Check if already logged in
-      function checkAuth() {
-        const user = localStorage.getItem("revolucionat_user");
-        if (user) {
-          try {
-            const profile = JSON.parse(user);
-            if (profile.access_verified) {
-              showApp();
-              return true;
-            }
-          } catch (e) {}
-        }
-        return false;
+      // Quita el splash y deja ver login (o app si ya se mostró)
+      function dismissAuthSplash() {
+        document.documentElement.classList.remove("checking-auth");
       }
 
-      // Login form submit
-      loginForm.addEventListener("submit", (e) => {
+      // Re-valida contra el servidor en cada carga
+      async function checkAuth() {
+        const saved = localStorage.getItem("revolucionat_user");
+        if (!saved) {
+          dismissAuthSplash();
+          return false;
+        }
+        let profile;
+        try {
+          profile = JSON.parse(saved);
+        } catch {
+          dismissAuthSplash();
+          return false;
+        }
+        if (!profile.email || !profile.code) {
+          dismissAuthSplash();
+          return false;
+        }
+
+        try {
+          const res = await fetch("/api/auth", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: profile.email, code: profile.code }),
+          });
+          const data = await res.json();
+
+          if (data.success) {
+            profile.name = data.name;
+            localStorage.setItem("revolucionat_user", JSON.stringify(profile));
+            showApp(data.name);
+            dismissAuthSplash();
+            return true;
+          } else {
+            localStorage.removeItem("revolucionat_user");
+            if (res.status === 403) {
+              codeError.textContent = data.error;
+              codeError.classList.add("active");
+            }
+            dismissAuthSplash();
+            return false;
+          }
+        } catch {
+          // Sin conexión — dejamos pasar si tiene sesión guardada
+          showApp(profile.name || "");
+          dismissAuthSplash();
+          return true;
+        }
+      }
+
+      loginForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        // Clear errors
-        nameInput.classList.remove("error");
         emailInput.classList.remove("error");
         codeInput.classList.remove("error");
-        nameError.classList.remove("active");
         emailError.classList.remove("active");
         codeError.classList.remove("active");
 
-        let hasError = false;
-
-        // Validate
-        if (!nameInput.value.trim() || nameInput.value.trim().length < 2) {
-          nameInput.classList.add("error");
-          nameError.classList.add("active");
-          hasError = true;
-        }
+        const email = emailInput.value.trim();
+        const code = codeInput.value.trim();
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailInput.value.trim() || !emailRegex.test(emailInput.value)) {
+        if (!email || !emailRegex.test(email)) {
           emailInput.classList.add("error");
           emailError.classList.add("active");
-          hasError = true;
+          return;
         }
-
-        if (codeInput.value.trim().toUpperCase() !== ACCESS_CODE) {
+        if (!code) {
           codeInput.classList.add("error");
           codeError.classList.add("active");
-          hasError = true;
+          return;
         }
 
-        if (hasError) return;
+        loginButton.disabled = true;
 
-        // Save to localStorage
-        const userProfile = {
-          name: nameInput.value.trim(),
-          email: emailInput.value.trim(),
-          registered_at: new Date().toISOString(),
-          access_verified: true,
-        };
+        // 🔄 Mostrar spinner de carga
+        const loading = document.getElementById("loading");
+        const loadingText = document.querySelector(".loading-text");
+        loadingText.textContent = "Verificando acceso...";
+        loading.classList.add("active");
 
-        localStorage.setItem("revolucionat_user", JSON.stringify(userProfile));
-        showApp();
+        try {
+          const res = await fetch("/api/auth", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, code }),
+          });
+          const data = await res.json();
+
+          loading.classList.remove("active");
+          loginButton.disabled = false;
+
+          if (data.success) {
+            localStorage.setItem(
+              "revolucionat_user",
+              JSON.stringify({
+                name: data.name,
+                email,
+                code,
+              }),
+            );
+            showApp(data.name);
+          } else {
+            codeError.textContent = data.error || "Datos incorrectos.";
+            codeError.classList.add("active");
+            codeInput.classList.add("error");
+          }
+        } catch {
+          loading.classList.remove("active");
+          loginButton.disabled = false;
+          codeError.textContent = "Error de conexión. Intentá de nuevo.";
+          codeError.classList.add("active");
+          codeInput.classList.add("error");
+        }
       });
 
-      function showApp() {
+      function showApp(name) {
         loginScreen.classList.remove("active");
         appContainer.style.display = "block";
+
+        if (name) {
+          document.getElementById("userGreeting").textContent =
+            "Hola, " + name + " 👋";
+        }
+
         loadDatabase();
         searchInput.focus();
       }
+
+      document.getElementById("logoutBtn").addEventListener("click", () => {
+        localStorage.removeItem("revolucionat_user");
+        appContainer.style.display = "none";
+        loginScreen.classList.add("active");
+        emailInput.value = "";
+        codeInput.value = "";
+      });
 
       // ============================================
       // DATABASE & STATE
@@ -1175,24 +1561,28 @@
       const resultsCount = document.getElementById("resultsCount");
 
       // Containers
-      const perfectSection = document.getElementById("perfectSection");
-      const perfectContainer = document.getElementById("perfectContainer");
-      const perfectCount = document.getElementById("perfectCount");
+      const intercambiosSection = document.getElementById(
+        "intercambiosSection",
+      );
+      const intercambiosGroups = document.getElementById("intercambiosGroups");
+      const intercambiosCount = document.getElementById("intercambiosCount");
 
-      const goodSection = document.getElementById("goodSection");
-      const goodContainer = document.getElementById("goodContainer");
-      const goodCount = document.getElementById("goodCount");
+      const familiaSection = document.getElementById("familiaSection");
+      const familiaContainer = document.getElementById("familiaContainer");
+      const familiaCount = document.getElementById("familiaCount");
 
-      const advancedSection = document.getElementById("advancedSection");
-      const advancedContainer = document.getElementById("advancedContainer");
-      const advancedCount = document.getElementById("advancedCount");
+      const preparadosSection = document.getElementById("preparadosSection");
+      const preparadosContainer = document.getElementById(
+        "preparadosContainer",
+      );
+      const preparadosCount = document.getElementById("preparadosCount");
 
       // ============================================
       // LOAD DATABASE
       // ============================================
       async function loadDatabase() {
         try {
-          const response = await fetch("database.json");
+          const response = await fetch("database.min.json");
           const data = await response.json();
           foodsDatabase = data.foods || [];
           console.log(
@@ -1208,35 +1598,9 @@
         }
       }
 
-      // ============================================
-      // SEARCH HELPERS (busca bien aunque haya tildes)
-      // ============================================
-      function norm(str) {
-        return (str || "")
-          .toLowerCase()
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "")
-          .replace(/[^a-z0-9]+/g, " ")
-          .trim();
-      }
-
-      function matchesFood(food, query) {
-        const q = norm(query);
-        if (!q) return true;
-
-        const terms = q.split(/\s+/).filter(Boolean);
-        const hay = norm(
-          (food.name || "") +
-            " " +
-            (food.brand || "") +
-            " " +
-            (food.source || "") +
-            " " +
-            (food.category || ""),
-        );
-
-        return terms.every((t) => hay.includes(t));
-      }
+      // norm, matchesFood, searchFoods, getAnchorMacro, calculateEquivalence,
+      // calculateAlternatives, getFoodTier, tokenSortScore
+      // \u2192 moved to js/algorithm.js (loaded before this script)
 
       // ============================================
       // AUTOCOMPLETE SEARCH
@@ -1260,74 +1624,7 @@
         }, 300);
       });
 
-      async function searchFoods(query) {
-        const qn = norm(query);
-
-        // PASO 1: Buscar en database local
-        const localResults = foodsDatabase
-          .filter((food) => matchesFood(food, query))
-          .sort((a, b) => {
-            const aname = norm(a.name || "");
-            const bname = norm(b.name || "");
-            const an = norm(
-              (a.name || "") + " " + (a.brand || "") + " " + (a.source || ""),
-            );
-            const bn = norm(
-              (b.name || "") + " " + (b.brand || "") + " " + (b.source || ""),
-            );
-
-            const terms = norm(query).split(/\s+/).filter(Boolean);
-            const q = terms.join(" ");
-
-            // 1) Si es 1 palabra: "pollo" exacto primero
-            if (terms.length === 1) {
-              const aExact = aname === q ? 1 : 0;
-              const bExact = bname === q ? 1 : 0;
-              if (aExact !== bExact) return bExact - aExact;
-
-              // 2) Luego los que empiezan por "pollo " (con espacio)
-              const aStartsWord = aname.startsWith(q + " ") ? 1 : 0;
-              const bStartsWord = bname.startsWith(q + " ") ? 1 : 0;
-              if (aStartsWord !== bStartsWord) return bStartsWord - aStartsWord;
-            }
-
-            // 3) Luego los que empiezan por la query en el texto completo
-            const aStarts = an.startsWith(q) ? 1 : 0;
-            const bStarts = bn.startsWith(q) ? 1 : 0;
-            if (aStarts !== bStarts) return bStarts - aStarts;
-
-            // 4) Desempate: nombre más corto arriba
-            return aname.length - bname.length;
-          });
-
-        // PASO 2: Si tenemos ≥10 resultados locales, mostrar solo esos
-        if (localResults.length >= 10) {
-          lastSearchResults = localResults;
-          lastQuery = query;
-          renderAutocomplete(lastSearchResults, lastQuery, false);
-          return;
-        }
-
-        // PASO 3: Si <10 resultados, buscar en FatSecret API
-        console.log(
-          `⚠️ Solo ${localResults.length} resultados locales. Consultando FatSecret...`,
-        );
-
-        try {
-          const apiResults = await searchFatSecretAPI(query);
-
-          // Combinar resultados: local primero, luego API
-          lastSearchResults = localResults;
-          lastQuery = query;
-          renderAutocomplete(localResults, query, true, apiResults);
-        } catch (error) {
-          console.error("Error buscando en FatSecret:", error);
-          // Si falla API, mostrar solo resultados locales
-          lastSearchResults = localResults;
-          lastQuery = query;
-          renderAutocomplete(localResults, query, false);
-        }
-      }
+      // searchFoods → moved to js/algorithm.js
 
       // ============================================
       // BUSCAR EN FATSECRET API
@@ -1542,141 +1839,22 @@
       // ============================================
       calculateBtn.addEventListener("click", calculateEquivalences);
 
-      function calculateEquivalences() {
+      async function calculateEquivalences() {
         const amount = parseFloat(amountInput.value);
 
         searchSection.style.display = "none";
         loading.classList.add("active");
 
-        setTimeout(() => {
-          const results = calculateAlternatives(selectedFood, amount);
-          displayResults(selectedFood, amount, results);
+        await new Promise((resolve) => setTimeout(resolve, 300));
+        const results = await calculateAlternatives(selectedFood, amount);
+        displayResults(selectedFood, amount, results);
 
-          loading.classList.remove("active");
-          resultsSection.classList.add("active");
-        }, 300);
+        loading.classList.remove("active");
+        resultsSection.classList.add("active");
       }
 
-      function calculateAlternatives(originalFood, amount) {
-        const originalMacros = {
-          protein: (originalFood.protein * amount) / 100,
-          carbs: (originalFood.carbs * amount) / 100,
-          fat: (originalFood.fat * amount) / 100,
-          calories: (originalFood.calories * amount) / 100,
-        };
-
-        const candidates = foodsDatabase.filter(
-          (f) =>
-            f.id !== originalFood.id &&
-            f.category === originalFood.category &&
-            !(f.flags || []).includes("condiment") &&
-            !(f.flags || []).includes("prepared"),
-        );
-
-        const alternatives = candidates
-          .map((alt) =>
-            calculateEquivalence(alt, originalFood, amount, originalMacros),
-          )
-          .filter((alt) => alt !== null);
-
-        const perfect = alternatives.filter((alt) => alt.level === "perfect");
-        const good = alternatives.filter((alt) => alt.level === "good");
-        const advanced = alternatives.filter((alt) => alt.level === "advanced");
-
-        return {
-          perfect: perfect.sort((a, b) => b.matchScore - a.matchScore),
-          good: good.sort((a, b) => b.matchScore - a.matchScore),
-          advanced: advanced.sort((a, b) => b.matchScore - a.matchScore),
-        };
-      }
-      function getAnchorMacro(food) {
-        const cat = (food.category || "").toLowerCase();
-        if (cat === "protein") return "protein";
-        if (cat === "carbs") return "carbs";
-        if (cat === "fat") return "fat";
-        if (cat === "dairy") return "protein"; // puedes cambiarlo a 'carbs' si lo prefieres
-        return "calories"; // other
-      }
-      function calculateEquivalence(
-        alt,
-        original,
-        originalAmount,
-        originalMacros,
-      ) {
-        const anchor = getAnchorMacro(original);
-
-        // Si el alimento “original” no tiene el macro ancla, no se puede calcular bien
-        if (!original[anchor] || original[anchor] <= 0) return null;
-        if (!alt[anchor] || alt[anchor] <= 0) return null;
-
-        const ratio = original[anchor] / alt[anchor];
-        const equivalentAmount = Math.round(originalAmount * ratio);
-
-        if (equivalentAmount < 5) return null; // evita 0g / 1g raros
-        if (equivalentAmount > 600) return null; // evita monstruos
-
-        const altMacros = {
-          protein: (alt.protein * equivalentAmount) / 100,
-          carbs: (alt.carbs * equivalentAmount) / 100,
-          fat: (alt.fat * equivalentAmount) / 100,
-          calories: (alt.calories * equivalentAmount) / 100,
-        };
-
-        const proteinDiff = altMacros.protein - originalMacros.protein;
-        const carbsDiff = altMacros.carbs - originalMacros.carbs;
-        const fatDiff = altMacros.fat - originalMacros.fat;
-        const caloriesDiff = altMacros.calories - originalMacros.calories;
-
-        // Penalización: prioriza el macro “ancla”
-        let penalty = 0;
-
-        if (anchor === "protein") {
-          penalty += Math.abs(proteinDiff) * 3;
-          penalty += Math.abs(carbsDiff) * 1.5;
-          penalty += fatDiff > 0 ? fatDiff * 2.5 : Math.abs(fatDiff) * 0.8;
-        } else if (anchor === "carbs") {
-          penalty += Math.abs(carbsDiff) * 3;
-          penalty += Math.abs(proteinDiff) * 1.5;
-          penalty += Math.abs(fatDiff) * 1.2;
-        } else if (anchor === "fat") {
-          penalty += Math.abs(fatDiff) * 3;
-          penalty += Math.abs(carbsDiff) * 1.2;
-          penalty += Math.abs(proteinDiff) * 1.2;
-        } else {
-          // calories
-          penalty += Math.abs(caloriesDiff) * 0.6;
-          penalty += Math.abs(proteinDiff) * 1.2;
-          penalty += Math.abs(carbsDiff) * 1.2;
-          penalty += Math.abs(fatDiff) * 1.2;
-        }
-
-        const totalMacros =
-          originalMacros.protein + originalMacros.carbs + originalMacros.fat;
-        const matchScore = Math.max(
-          0,
-          Math.round(100 - (penalty / Math.max(totalMacros, 10)) * 100),
-        );
-
-        let level = null;
-        if (matchScore >= 95 && equivalentAmount <= 300) level = "perfect";
-        else if (matchScore >= 75 && equivalentAmount <= 400) level = "good";
-        else if (matchScore >= 60) level = "advanced";
-        else return null;
-
-        return {
-          ...alt,
-          equivalentAmount,
-          macros: altMacros,
-          matchScore,
-          level,
-          diffs: {
-            protein: proteinDiff,
-            carbs: carbsDiff,
-            fat: fatDiff,
-            calories: caloriesDiff,
-          },
-        };
-      }
+      // calculateAlternatives, getAnchorMacro, calculateEquivalence
+      // → moved to js/algorithm.js
 
       // ============================================
       // DISPLAY RESULTS
@@ -1713,49 +1891,42 @@
     `;
 
         const totalCount =
-          alternatives.perfect.length +
-          alternatives.good.length +
-          alternatives.advanced.length;
+          alternatives.intercambios.length +
+          alternatives.familia.length +
+          alternatives.preparados.length;
         resultsCount.textContent = totalCount + " alternativas encontradas";
 
-        if (alternatives.perfect.length > 0) {
-          perfectSection.style.display = "block";
-          perfectCount.textContent = alternatives.perfect.length;
-          perfectContainer.innerHTML = alternatives.perfect
-            .map((alt) => renderResultCard(alt, "perfect"))
+        renderIntercambiosGroups(alternatives.intercambios);
+
+        if (alternatives.familia.length > 0) {
+          familiaSection.style.display = "block";
+          familiaCount.textContent = alternatives.familia.length;
+          familiaContainer.innerHTML = alternatives.familia
+            .map((alt) => renderResultCard(alt, "familia"))
             .join("");
         } else {
-          perfectSection.style.display = "none";
+          familiaSection.style.display = "none";
         }
 
-        if (alternatives.good.length > 0) {
-          goodSection.style.display = "block";
-          goodCount.textContent = alternatives.good.length;
-          goodContainer.innerHTML = alternatives.good
-            .map((alt) => renderResultCard(alt, "good"))
+        if (alternatives.preparados.length > 0) {
+          preparadosSection.style.display = "block";
+          preparadosCount.textContent = alternatives.preparados.length;
+          preparadosContainer.innerHTML = alternatives.preparados
+            .map((alt) => renderResultCard(alt, "preparados"))
             .join("");
         } else {
-          goodSection.style.display = "none";
-        }
-
-        if (alternatives.advanced.length > 0) {
-          advancedSection.style.display = "block";
-          advancedCount.textContent = alternatives.advanced.length;
-          advancedContainer.innerHTML = alternatives.advanced
-            .map((alt) => renderResultCard(alt, "advanced"))
-            .join("");
-        } else {
-          advancedSection.style.display = "none";
+          preparadosSection.style.display = "none";
         }
       }
 
-      function renderResultCard(alt, level) {
+      function renderResultCard(alt, tier) {
         const badges = {
-          perfect:
-            '<div class="level-badge perfect"><span>✓</span> Equivalencia perfecta</div>',
-          good: '<div class="level-badge good"><span>⚠️</span> Alternativa válida</div>',
-          advanced:
-            '<div class="level-badge advanced"><span>🔴</span> Opción avanzada</div>',
+          intercambios:
+            '<div class="level-badge intercambios"><span>🔄</span> Intercambio real</div>',
+          familia:
+            '<div class="level-badge familia"><span>📦</span> Misma familia</div>',
+          preparados:
+            '<div class="level-badge preparados"><span>🍽️</span> Plato preparado</div>',
         };
 
         let calClass = "";
@@ -1765,8 +1936,8 @@
         else if (alt.diffs.calories > 80) calClass = "cal-up-high";
 
         return `
-      <div class="result-card ${level}">
-        ${badges[level]}
+      <div class="result-card ${tier}">
+        ${badges[tier]}
 
         <div class="result-header">
           <div class="result-info">
@@ -1774,7 +1945,7 @@
             <div class="result-brand">${alt.brand || "Sin marca"} · ${alt.source || "Base"}</div>
           </div>
           <div class="match-score">
-            <div class="match-value ${level}">${alt.matchScore}%</div>
+            <div class="match-value ${tier}">${alt.matchScore}%</div>
             <div class="match-label">Match</div>
           </div>
         </div>
@@ -1805,6 +1976,164 @@
         </div>
       </div>
     `;
+      }
+
+      function renderIntercambiosGroups(items) {
+        if (items.length === 0) {
+          intercambiosSection.style.display = "none";
+          return;
+        }
+        intercambiosSection.style.display = "block";
+        intercambiosCount.textContent = items.length;
+
+        const BATCH = 8;
+        const visible = items.slice(0, BATCH);
+        const hidden = items.slice(BATCH);
+
+        const cardsHTML = [
+          ...visible.map((alt) => renderResultCard(alt, "intercambios")),
+          ...hidden.map(
+            (alt) =>
+              `<div data-hidden-wrapper data-group="intercambios" style="display:none">${renderResultCard(alt, "intercambios")}</div>`,
+          ),
+        ].join("");
+
+        const actionsHTML =
+          hidden.length > 0
+            ? `<div class="sgp-actions" id="actions-intercambios">
+                <button class="btn-load-more" data-action="load-more" data-group="intercambios">
+                  Ver más
+                  <span class="btn-load-more__count" id="more-count-intercambios">+${Math.min(BATCH, hidden.length)} de ${hidden.length}</span>
+                  <svg class="btn-load-more__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <button class="btn-show-all" data-action="show-all" data-group="intercambios">
+                  Mostrar todos los ${items.length}
+                </button>
+                <div class="sgp-complete" id="complete-intercambios" style="display:none">
+                  ✓ Mostrando todos los resultados
+                </div>
+              </div>`
+            : "";
+
+        intercambiosGroups.innerHTML = `
+          <div class="score-cards-list" id="list-intercambios">
+            ${cardsHTML}
+          </div>
+          ${actionsHTML}
+        `;
+      }
+
+      function renderScoreGroup(
+        groupId,
+        title,
+        range,
+        colorClass,
+        items,
+        isOpen,
+      ) {
+        if (items.length === 0) return "";
+
+        const BATCH = 6;
+        const visibleItems = items.slice(0, BATCH);
+        const hiddenItems = items.slice(BATCH);
+
+        const cardsHTML = [
+          ...visibleItems.map((alt) => renderResultCard(alt, "intercambios")),
+          ...hiddenItems.map((alt) => {
+            return `<div data-hidden-wrapper data-group="${groupId}" style="display:none">${renderResultCard(alt, "intercambios")}</div>`;
+          }),
+        ].join("");
+
+        const actionsHTML =
+          hiddenItems.length > 0
+            ? `
+          <div class="sgp-actions" id="actions-${groupId}">
+            <button class="btn-load-more" data-action="load-more" data-group="${groupId}">
+              Ver más
+              <span class="btn-load-more__count" id="more-count-${groupId}">+${Math.min(BATCH, hiddenItems.length)} de ${hiddenItems.length}</span>
+              <svg class="btn-load-more__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <button class="btn-show-all" data-action="show-all" data-group="${groupId}">
+              Mostrar todos los ${items.length}
+            </button>
+            <div class="sgp-complete" id="complete-${groupId}" style="display:none">
+              ✓ Mostrando todos los resultados
+            </div>
+          </div>
+        `
+            : "";
+
+        const chevronSVG = `<svg class="score-group__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
+
+        return `
+          <details class="score-group score-group--${colorClass}" ${isOpen ? "open" : ""} id="sg-${groupId}">
+            <summary class="score-group__summary">
+              <span class="score-group__indicator"></span>
+              <span class="score-group__label">
+                <span class="score-group__title">${title}</span>
+                <span class="score-group__range">Match ${range}</span>
+              </span>
+              <span class="score-group__count">${items.length}</span>
+              ${chevronSVG}
+            </summary>
+            <div class="score-group__content">
+              <div class="score-cards-list" id="list-${groupId}">
+                ${cardsHTML}
+              </div>
+              ${actionsHTML}
+            </div>
+          </details>
+        `;
+      }
+
+      function initLoadMore() {
+        const BATCH = 6;
+        intercambiosSection.addEventListener("click", function (e) {
+          const btnMore = e.target.closest('[data-action="load-more"]');
+          const btnAll = e.target.closest('[data-action="show-all"]');
+          if (!btnMore && !btnAll) return;
+
+          const groupId = (btnMore || btnAll).dataset.group;
+          const list = document.getElementById("list-" + groupId);
+          const hidden = Array.from(
+            list.querySelectorAll("[data-hidden-wrapper]"),
+          );
+
+          const toReveal = btnMore ? hidden.slice(0, BATCH) : hidden;
+          toReveal.forEach((wrapper) => {
+            wrapper.style.display = "";
+            wrapper.removeAttribute("data-hidden-wrapper");
+            const card = wrapper.firstElementChild;
+            if (card) {
+              card.style.animation = "none";
+              card.offsetHeight;
+              card.style.animation = "";
+            }
+          });
+
+          const remaining = list.querySelectorAll(
+            "[data-hidden-wrapper]",
+          ).length;
+          const actionsEl = document.getElementById("actions-" + groupId);
+          const countEl = document.getElementById("more-count-" + groupId);
+          const completeEl = document.getElementById("complete-" + groupId);
+
+          if (remaining === 0) {
+            if (actionsEl) {
+              actionsEl
+                .querySelectorAll(".btn-load-more, .btn-show-all")
+                .forEach((b) => (b.style.display = "none"));
+              if (completeEl) completeEl.style.display = "block";
+            }
+          } else if (countEl) {
+            countEl.textContent =
+              "+" + Math.min(BATCH, remaining) + " de " + remaining;
+          }
+        });
       }
 
       function getDiffClass(diff) {
@@ -1866,11 +2195,11 @@
       // ============================================
       // INIT
       // ============================================
-      // Verificar si ya está logueado
-      if (!checkAuth()) {
-        // Si no está logueado, mostrar pantalla login
-        loginScreen.classList.add("active");
-      }
+      // Arrancamos la validación primero — el splash ya está pintado
+      checkAuth();
+      // Salvaguardia: si algo falla, después de 5s ocultamos el splash igual
+      setTimeout(dismissAuthSplash, 5000);
+      initLoadMore();
     </script>
   </body>
 </html>

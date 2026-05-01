@@ -1,0 +1,27 @@
+node_modules/
+dist/
+build/
+.DS_Store
+.env
+
+# Claude Code session data — local only
+.claude/
+
+# Microservicio Python venv & cache
+microservicio/__pycache__/
+microservicio/.venv/
+microservicio/*.pyc
+microservicio/*.pyo
+
+# Data pipeline intermediates — no commitear
+database_v2.json
+database_v3.json
+database_v4.json
+database.min.json
+scripts/audit_report.json
+scripts/categories_changelog.json
+scripts/subgroups_changelog.json
+scripts/subgroups_review.json
+scripts/flags_changelog.json
+scripts/edge_cases_review.json
+scripts/__pycache__/

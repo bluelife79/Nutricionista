@@ -1,0 +1,13 @@
+[project]
+name = "microservicio"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.136.1",
+    "numpy>=2.4.4",
+    "pydantic>=2.13.3",
+    "sentence-transformers>=5.4.1",
+    "uvicorn[standard]>=0.46.0",
+]

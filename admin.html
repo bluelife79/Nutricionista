@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>RevolucionaT — Panel Admin</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #e8ecf3;
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      /* ── LOGIN ── */
+      #loginScreen {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      #loginScreen.hidden { display: none; }
+
+      .login-card {
+        background: #e8ecf3;
+        border-radius: 28px;
+        padding: 36px 28px;
+        width: 100%;
+        max-width: 380px;
+        box-shadow: 12px 12px 24px #c5c9d1, -12px -12px 24px #ffffff;
+        text-align: center;
+      }
+
+      .login-logo {
+        font-size: 24px;
+        font-weight: 900;
+        color: #1a1a2e;
+        letter-spacing: -0.5px;
+        margin-bottom: 4px;
+      }
+
+      .login-sub {
+        font-size: 12px;
+        font-weight: 700;
+        color: #534b90;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 28px;
+      }
+
+      .field {
+        margin-bottom: 16px;
+        text-align: left;
+      }
+
+      .field label {
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        color: #534b90;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+      }
+
+      .input-neo {
+        width: 100%;
+        padding: 16px 18px;
+        border: none;
+        border-radius: 14px;
+        font-size: 15px;
+        font-weight: 600;
+        background: #e8ecf3;
+        color: #1a1a2e;
+        box-shadow: inset 6px 6px 12px #c5c9d1, inset -6px -6px 12px #ffffff;
+        font-family: "Inter", sans-serif;
+        transition: box-shadow 0.2s;
+      }
+
+      .input-neo:focus {
+        outline: none;
+        box-shadow: inset 8px 8px 16px #c5c9d1, inset -8px -8px 16px #ffffff;
+      }
+
+      .input-neo::placeholder { color: #a0a8b8; }
+
+      .error-msg {
+        font-size: 12px;
+        color: #ae4c7a;
+        margin-top: 6px;
+        display: none;
+      }
+
+      .error-msg.visible { display: block; }
+
+      .btn-primary {
+        width: 100%;
+        padding: 18px;
+        border: none;
+        border-radius: 16px;
+        font-size: 16px;
+        font-weight: 800;
+        font-family: "Inter", sans-serif;
+        background: linear-gradient(135deg, #534b90 0%, #ae4c7a 100%);
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-top: 8px;
+      }
+
+      .btn-primary:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(83, 75, 144, 0.3);
+      }
+
+      .btn-primary:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      /* ── PANEL ── */
+      #adminPanel {
+        display: none;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      #adminPanel.visible { display: block; }
+
+      .panel-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 28px;
+        padding-top: 12px;
+      }
+
+      .panel-title {
+        font-size: 20px;
+        font-weight: 900;
+        color: #1a1a2e;
+        letter-spacing: -0.5px;
+      }
+
+      .panel-subtitle {
+        font-size: 12px;
+        color: #8b92a8;
+        font-weight: 600;
+        margin-top: 2px;
+      }
+
+      .btn-logout {
+        padding: 10px 18px;
+        border: none;
+        border-radius: 12px;
+        font-size: 13px;
+        font-weight: 700;
+        font-family: "Inter", sans-serif;
+        background: #e8ecf3;
+        color: #8b92a8;
+        cursor: pointer;
+        box-shadow: 4px 4px 8px #c5c9d1, -4px -4px 8px #ffffff;
+        transition: all 0.2s;
+      }
+
+      .btn-logout:hover { color: #ae4c7a; }
+
+      .card-neo {
+        background: #e8ecf3;
+        border-radius: 24px;
+        padding: 24px;
+        margin-bottom: 20px;
+        box-shadow: 12px 12px 24px #c5c9d1, -12px -12px 24px #ffffff;
+      }
+
+      .section-label {
+        font-size: 12px;
+        font-weight: 700;
+        color: #534b90;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 18px;
+        display: block;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .form-row.full { grid-template-columns: 1fr; }
+
+      .btn-create {
+        width: 100%;
+        padding: 16px;
+        border: none;
+        border-radius: 14px;
+        font-size: 15px;
+        font-weight: 800;
+        font-family: "Inter", sans-serif;
+        background: linear-gradient(135deg, #534b90 0%, #ae4c7a 100%);
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-top: 4px;
+      }
+
+      .btn-create:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(83, 75, 144, 0.3);
+      }
+
+      .btn-create:disabled { opacity: 0.6; cursor: not-allowed; }
+
+      /* ── LISTA DE CLIENTAS ── */
+      .search-wrapper {
+        position: relative;
+        margin-bottom: 16px;
+      }
+
+      .search-wrapper .search-icon {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: #8b92a8;
+        pointer-events: none;
+      }
+
+      .input-search {
+        width: 100%;
+        padding: 14px 40px 14px 38px;
+        border: none;
+        border-radius: 12px;
+        font-size: 14px;
+        font-weight: 600;
+        background: #e8ecf3;
+        color: #1a1a2e;
+        box-shadow: inset 4px 4px 8px #c5c9d1, inset -4px -4px 8px #ffffff;
+        font-family: "Inter", sans-serif;
+        transition: box-shadow 0.2s;
+      }
+
+      .input-search:focus {
+        outline: none;
+        box-shadow: inset 6px 6px 12px #c5c9d1, inset -6px -6px 12px #ffffff;
+      }
+
+      .input-search::placeholder { color: #a0a8b8; }
+
+      .search-clear {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 24px;
+        height: 24px;
+        border: none;
+        border-radius: 50%;
+        background: transparent;
+        color: #8b92a8;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-family: "Inter", sans-serif;
+      }
+
+      .search-clear.visible { display: flex; }
+      .search-clear:hover { color: #ae4c7a; }
+
+      .empty-list {
+        text-align: center;
+        color: #a0a8b8;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 20px 0;
+      }
+
+      .user-card {
+        background: #e8ecf3;
+        border-radius: 16px;
+        padding: 16px 18px;
+        margin-bottom: 12px;
+        box-shadow: 6px 6px 12px #c5c9d1, -6px -6px 12px #ffffff;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .user-card:last-child { margin-bottom: 0; }
+
+      .user-info { flex: 1; min-width: 0; }
+
+      .user-name {
+        font-size: 15px;
+        font-weight: 700;
+        color: #1a1a2e;
+        margin-bottom: 2px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .user-email {
+        font-size: 12px;
+        color: #8b92a8;
+        font-weight: 500;
+        margin-bottom: 2px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .user-code {
+        font-size: 11px;
+        font-weight: 700;
+        color: #534b90;
+        font-family: monospace;
+        letter-spacing: 1px;
+      }
+
+      .badge {
+        font-size: 10px;
+        font-weight: 800;
+        padding: 4px 10px;
+        border-radius: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .badge.active {
+        background: rgba(83, 175, 144, 0.12);
+        color: #2d8a5e;
+      }
+
+      .badge.inactive {
+        background: rgba(174, 76, 122, 0.1);
+        color: #ae4c7a;
+      }
+
+      .btn-toggle {
+        padding: 8px 14px;
+        border: none;
+        border-radius: 10px;
+        font-size: 12px;
+        font-weight: 700;
+        font-family: "Inter", sans-serif;
+        cursor: pointer;
+        transition: all 0.2s;
+        flex-shrink: 0;
+        background: #e8ecf3;
+        box-shadow: 3px 3px 6px #c5c9d1, -3px -3px 6px #ffffff;
+      }
+
+      .btn-toggle.deactivate { color: #ae4c7a; }
+      .btn-toggle.activate { color: #2d8a5e; }
+
+      .btn-toggle:hover { transform: scale(1.05); }
+
+      /* ── TOAST ── */
+      #toast {
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%) translateY(80px);
+        background: #1a1a2e;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-size: 14px;
+        font-weight: 600;
+        transition: transform 0.3s ease;
+        z-index: 999;
+        white-space: nowrap;
+      }
+
+      #toast.show { transform: translateX(-50%) translateY(0); }
+
+      .loading-spinner {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border: 2px solid rgba(255,255,255,0.4);
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+        vertical-align: middle;
+        margin-right: 6px;
+      }
+
+      @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+  </head>
+  <body>
+
+    <!-- LOGIN -->
+    <div id="loginScreen">
+      <div class="login-card">
+        <div class="login-logo">RevolucionaT</div>
+        <div class="login-sub">Panel de Administración</div>
+
+        <div class="field">
+          <label>Contraseña</label>
+          <input
+            type="password"
+            id="adminPassword"
+            class="input-neo"
+            placeholder="••••••••"
+            autocomplete="current-password"
+          />
+        </div>
+        <div id="loginError" class="error-msg">Contraseña incorrecta.</div>
+
+        <button id="loginBtn" class="btn-primary">Entrar</button>
+      </div>
+    </div>
+
+    <!-- PANEL -->
+    <div id="adminPanel">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title">Hola, Admin 👋</div>
+          <div class="panel-subtitle">Panel de RevolucionaT</div>
+        </div>
+        <button id="logoutBtn" class="btn-logout">Cerrar sesión</button>
+      </div>
+
+      <!-- NUEVA CLIENTA -->
+      <div class="card-neo">
+        <span class="section-label">Nueva clienta</span>
+
+        <div class="form-row">
+          <div class="field" style="margin-bottom:0">
+            <label>Nombre</label>
+            <input type="text" id="newName" class="input-neo" placeholder="Ana García" autocomplete="off" />
+          </div>
+          <div class="field" style="margin-bottom:0">
+            <label>Código de acceso</label>
+            <input type="text" id="newCode" class="input-neo" placeholder="ANA01" autocomplete="off"
+              style="font-family:monospace;letter-spacing:2px;text-transform:uppercase" />
+          </div>
+        </div>
+
+        <div class="form-row full" style="margin-top:12px">
+          <div class="field" style="margin-bottom:0">
+            <label>Email</label>
+            <input type="email" id="newEmail" class="input-neo" placeholder="ana@email.com" autocomplete="off" />
+          </div>
+        </div>
+
+        <div id="createError" class="error-msg" style="margin-top:8px"></div>
+
+        <button id="createBtn" class="btn-create" style="margin-top:16px">Crear clienta</button>
+      </div>
+
+      <!-- LISTA -->
+      <div class="card-neo">
+        <span class="section-label">Clientas registradas</span>
+
+        <div class="search-wrapper">
+          <span class="search-icon">🔍</span>
+          <input
+            type="text"
+            id="searchUsers"
+            class="input-search"
+            placeholder="Buscar por nombre, email o código..."
+            autocomplete="off"
+          />
+          <button id="searchClear" class="search-clear" type="button" aria-label="Limpiar búsqueda">✕</button>
+        </div>
+
+        <div id="userList"><div class="empty-list">Cargando...</div></div>
+      </div>
+    </div>
+
+    <div id="toast"></div>
+
+    <script>
+      const ADMIN_KEY = 'rt_admin_session';
+      let adminPassword = '';
+
+      // ── HELPERS ──
+      function showToast(msg, duration = 3000) {
+        const t = document.getElementById('toast');
+        t.textContent = msg;
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), duration);
+      }
+
+      async function api(method, body, pwd) {
+        const opts = {
+          method,
+          headers: {
+            'Content-Type': 'application/json',
+            'x-admin-password': pwd || adminPassword,
+          },
+        };
+        if (body) opts.body = JSON.stringify(body);
+        const res = await fetch('/api/admin', opts);
+        return res.json();
+      }
+
+      // ── SESSION ──
+      function checkSession() {
+        const saved = sessionStorage.getItem(ADMIN_KEY);
+        if (saved) {
+          adminPassword = saved;
+          showPanel();
+        }
+      }
+
+      function showPanel() {
+        document.getElementById('loginScreen').classList.add('hidden');
+        document.getElementById('adminPanel').classList.add('visible');
+        loadUsers();
+      }
+
+      // ── LOGIN ──
+      document.getElementById('loginBtn').addEventListener('click', async () => {
+        const pwd = document.getElementById('adminPassword').value.trim();
+        const btn = document.getElementById('loginBtn');
+        const err = document.getElementById('loginError');
+
+        if (!pwd) return;
+
+        btn.disabled = true;
+        btn.innerHTML = '<span class="loading-spinner"></span>Verificando...';
+        err.classList.remove('visible');
+
+        try {
+          const data = await api('GET', null, pwd);
+          if (data.success !== false) {
+            adminPassword = pwd;
+            sessionStorage.setItem(ADMIN_KEY, pwd);
+            showPanel();
+          } else {
+            err.classList.add('visible');
+          }
+        } catch {
+          err.textContent = 'Error de conexión. Intentá de nuevo.';
+          err.classList.add('visible');
+        } finally {
+          btn.disabled = false;
+          btn.textContent = 'Entrar';
+        }
+      });
+
+      document.getElementById('adminPassword').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') document.getElementById('loginBtn').click();
+      });
+
+      // ── LOGOUT ──
+      document.getElementById('logoutBtn').addEventListener('click', () => {
+        sessionStorage.removeItem(ADMIN_KEY);
+        adminPassword = '';
+        document.getElementById('adminPanel').classList.remove('visible');
+        document.getElementById('loginScreen').classList.remove('hidden');
+        document.getElementById('adminPassword').value = '';
+      });
+
+      // ── USUARIOS ──
+      let allUsers = [];
+
+      function normalize(str) {
+        return (str || '')
+          .toString()
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[̀-ͯ]/g, '');
+      }
+
+      function renderUserList() {
+        const list = document.getElementById('userList');
+        const query = normalize(document.getElementById('searchUsers').value.trim());
+
+        const filtered = query
+          ? allUsers.filter(u =>
+              normalize(u.name).includes(query) ||
+              normalize(u.email).includes(query) ||
+              normalize(u.code).includes(query)
+            )
+          : allUsers;
+
+        if (allUsers.length === 0) {
+          list.innerHTML = '<div class="empty-list">Aún no hay clientas registradas.</div>';
+          return;
+        }
+
+        if (filtered.length === 0) {
+          list.innerHTML = '<div class="empty-list">Sin resultados para esa búsqueda.</div>';
+          return;
+        }
+
+        list.innerHTML = filtered.map(u => renderUser(u)).join('');
+
+        list.querySelectorAll('.btn-toggle').forEach(btn => {
+          btn.addEventListener('click', () => toggleUser(btn.dataset.email, btn));
+        });
+      }
+
+      async function loadUsers() {
+        const list = document.getElementById('userList');
+        list.innerHTML = '<div class="empty-list">Cargando...</div>';
+
+        const data = await api('GET').catch(() => ({ success: false }));
+
+        if (!data.success) {
+          allUsers = [];
+          list.innerHTML = '<div class="empty-list">Error al cargar clientas.</div>';
+          return;
+        }
+
+        allUsers = data.users || [];
+        renderUserList();
+      }
+
+      // ── BÚSQUEDA ──
+      document.getElementById('searchUsers').addEventListener('input', (e) => {
+        const clearBtn = document.getElementById('searchClear');
+        clearBtn.classList.toggle('visible', e.target.value.length > 0);
+        renderUserList();
+      });
+
+      document.getElementById('searchClear').addEventListener('click', () => {
+        const input = document.getElementById('searchUsers');
+        input.value = '';
+        document.getElementById('searchClear').classList.remove('visible');
+        renderUserList();
+        input.focus();
+      });
+
+      function renderUser(u) {
+        const badgeClass = u.active ? 'active' : 'inactive';
+        const badgeText = u.active ? 'Activa' : 'Inactiva';
+        const btnClass = u.active ? 'deactivate' : 'activate';
+        const btnText = u.active ? 'Desactivar' : 'Activar';
+
+        return `
+          <div class="user-card" id="card-${u.email.replace(/[@.]/g, '_')}">
+            <div class="user-info">
+              <div class="user-name">${u.name}</div>
+              <div class="user-email">${u.email}</div>
+              <div class="user-code">${u.code}</div>
+            </div>
+            <span class="badge ${badgeClass}">${badgeText}</span>
+            <button class="btn-toggle ${btnClass}" data-email="${u.email}">${btnText}</button>
+          </div>
+        `;
+      }
+
+      async function toggleUser(email, btn) {
+        btn.disabled = true;
+        const original = btn.textContent;
+        btn.textContent = '...';
+
+        const data = await api('POST', { action: 'toggle', email }).catch(() => ({ success: false }));
+
+        if (data.success) {
+          const idx = allUsers.findIndex(u => u.email === data.user.email);
+          if (idx !== -1) allUsers[idx] = data.user;
+
+          renderUserList();
+
+          showToast(data.user.active ? `✅ ${data.user.name} activada` : `🔴 ${data.user.name} desactivada`);
+        } else {
+          btn.disabled = false;
+          btn.textContent = original;
+          showToast('Error al cambiar estado.');
+        }
+      }
+
+      // ── CREAR CLIENTA ──
+      document.getElementById('newCode').addEventListener('input', (e) => {
+        e.target.value = e.target.value.toUpperCase();
+      });
+
+      document.getElementById('createBtn').addEventListener('click', async () => {
+        const name = document.getElementById('newName').value.trim();
+        const email = document.getElementById('newEmail').value.trim();
+        const code = document.getElementById('newCode').value.trim();
+        const btn = document.getElementById('createBtn');
+        const err = document.getElementById('createError');
+
+        err.classList.remove('visible');
+
+        if (!name || !email || !code) {
+          err.textContent = 'Completá todos los campos.';
+          err.classList.add('visible');
+          return;
+        }
+
+        btn.disabled = true;
+        btn.innerHTML = '<span class="loading-spinner"></span>Creando...';
+
+        const data = await api('POST', { action: 'create', name, email, code }).catch(() => ({ success: false }));
+
+        btn.disabled = false;
+        btn.textContent = 'Crear clienta';
+
+        if (data.success) {
+          document.getElementById('newName').value = '';
+          document.getElementById('newEmail').value = '';
+          document.getElementById('newCode').value = '';
+          showToast(`✅ ${data.user.name} creada correctamente`);
+          loadUsers();
+        } else {
+          err.textContent = data.error || 'Error al crear clienta.';
+          err.classList.add('visible');
+        }
+      });
+
+      // ── INIT ──
+      checkSession();
+    </script>
+  </body>
+</html>
