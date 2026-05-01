@@ -52,10 +52,65 @@ def tokenize(name: str) -> list:
     return [t for t in norm(name).split() if t and t not in STOP_WORDS]
 
 
+# Tokens descriptores que NO identifican el ingrediente — debe coincidir
+# con NON_INGREDIENT_TOKENS en js/algorithm.js
+NON_INGREDIENT_TOKENS = {
+    # Cocción
+    "crudo", "cruda", "cocido", "cocida", "fresco", "fresca", "frescos", "frescas",
+    "asado", "asada", "asados", "asadas", "plancha", "hervido", "hervida",
+    "frito", "frita", "fritos", "fritas", "horneado", "horneada",
+    "tostado", "tostada",
+    # Piezas anatómicas
+    "pechuga", "pechugas", "muslo", "muslos", "ala", "alas", "cuello",
+    "lomo", "solomillo", "costilla", "costillas", "contramuslo", "jamoncillo",
+    "falda", "cadera", "jarrete", "espalda", "paleta", "codillo",
+    "chuleta", "chuletas", "chuleton", "entrecot", "escalope", "escalopines",
+    "rabo", "morro", "oreja", "pata", "patas",
+    "corazon", "higado", "rinon", "lengua", "ventresca",
+    "cabeza", "filete", "filetes",
+    # Estado físico
+    "lonchas", "loncheado", "fileteado", "rallado", "troceado", "picado",
+    "entero", "entera", "enteros", "enteras", "trozos", "trozo",
+    "rodajas", "dado", "dados", "tiras",
+    # Calidad/composición
+    "magro", "magra", "semigrasa", "grasa", "graso", "integral",
+    "blanco", "blanca", "blancos", "blancas", "rojo", "roja",
+    "verde", "verdes", "negro", "negra",
+    "natural", "naturales", "tradicional", "clasico", "original",
+    "casero", "artesanal", "premium", "extra", "selecto", "gourmet", "especial",
+    "ecologico", "ecologica", "bio", "organico",
+    # Marcas
+    "mercadona", "carrefour", "lidl", "dia", "eroski", "alcampo", "aldi",
+    "consum", "hipercor", "hacendado", "origen", "espana",
+    # Nutricionales
+    "bajo", "alto", "libre", "reducido", "sal", "azucar",
+    "desnatado", "desnatada", "semidesnatado", "semidesnatada", "light",
+    "sodio", "calorias", "gluten", "lactosa", "vitamina",
+    # Conservación
+    "congelado", "congelada", "enlatado", "envasado", "pasteurizado",
+    # BEDCA genéricos
+    "parte", "especificar", "tipo", "estilo", "sabor",
+    "piel", "hueso", "espina", "semilla", "pepita",
+}
+
+
+def ingredient_tokens(name: str) -> set:
+    return {t for t in tokenize(name) if t not in NON_INGREDIENT_TOKENS}
+
+
 def get_tier(candidate: dict, original: dict) -> int:
     """Replica js/algorithm.js getFoodTier."""
     if "prepared" in (candidate.get("flags") or []):
         return 3
+
+    orig_ing = ingredient_tokens(original.get("name", ""))
+    cand_ing = ingredient_tokens(candidate.get("name", ""))
+
+    # Caso normal: ambos tienen ingredientes claros
+    if orig_ing and cand_ing:
+        return 1 if orig_ing & cand_ing else 2
+
+    # Fallback: nombre ambiguo, usar primer token
     base_tokens = tokenize(original.get("name", ""))
     base_word = base_tokens[0] if base_tokens else ""
     if base_word and base_word in norm(candidate.get("name", "")):
@@ -196,6 +251,14 @@ TEST_CASES = [
         "t2_should_NOT_include_any": ["pollo", "arroz", "patata"],
         "t2_min": 20,
     },
+    {
+        # Bug histórico: productos de marca (Pechuga de pollo Mercadona)
+        # caían en T2 cuando deberían ser T1 (familia)
+        "label": "Pechuga de pollo Mercadona → otros pollos en T1, no T2",
+        "query": "Pechuga de pollo",  # busca el primero que matchee
+        "t1_should_include_any": ["pollo asado", "pollo crudo", "muslo", "pollo plancha"],
+        "t1_min": 5,
+    },
 ]
 
 
@@ -252,6 +315,21 @@ def run_case(foods: list, case: dict) -> dict:
                 f"Esperaba al menos uno de {kws} en T2, pero NO apareció ninguno"
             )
         summary["t2_includes_match"] = matches[0][1] if matches else None
+
+    # Verificación: debe aparecer al menos uno de los esperados en T1 (familia)
+    if "t1_should_include_any" in case:
+        kws = case["t1_should_include_any"]
+        matches = keyword_matches_any(t1, kws)
+        if not matches:
+            errors.append(
+                f"Esperaba al menos uno de {kws} en T1 (familia), pero NO apareció ninguno"
+            )
+        summary["t1_includes_match"] = matches[0][1] if matches else None
+
+    if "t1_min" in case and len(t1) < case["t1_min"]:
+        warnings.append(
+            f"T1 tiene {len(t1)} candidatos, esperaba mínimo {case['t1_min']}"
+        )
 
     # Verificación: NO debe aparecer ninguno de los excluidos en T2
     if "t2_should_NOT_include_any" in case:

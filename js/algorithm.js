@@ -69,21 +69,95 @@ function getAnchorMacro(food) {
 // ============================================
 // TIER CLASSIFICATION
 // ============================================
+
+// Palabras que NO identifican un ingrediente (solo describen estado, corte,
+// marca, conservación, etc.). Las usamos para extraer el ingrediente real
+// del nombre y comparar entre alimentos.
+//
+// Ejemplo: "Pechuga de pollo Mercadona"
+//   - Quitar stop words: ["pechuga", "pollo", "mercadona"]
+//   - Quitar non-ingredient: ["pollo"]   ← este es el ingrediente real
+//
+// Esto permite que "Pechuga de pollo Mercadona" + "Pollo asado" matcheen
+// como T1 (familia, mismo ingrediente) en vez de quedar mal en T2.
+const NON_INGREDIENT_TOKENS = new Set([
+  // Estados de cocción
+  "crudo", "cruda", "cocido", "cocida", "fresco", "fresca", "frescos", "frescas",
+  "asado", "asada", "asados", "asadas", "plancha", "hervido", "hervida",
+  "frito", "frita", "fritos", "fritas", "horneado", "horneada",
+  "tostado", "tostada",
+  // Piezas anatómicas (cortes — pollo, pavo, cerdo, ternera comparten muchos)
+  "pechuga", "pechugas", "muslo", "muslos", "ala", "alas", "cuello",
+  "lomo", "solomillo", "costilla", "costillas", "contramuslo", "jamoncillo",
+  "falda", "cadera", "jarrete", "espalda", "paleta", "codillo",
+  "chuleta", "chuletas", "chuleton", "entrecot", "escalope", "escalopines",
+  "rabo", "morro", "oreja", "pata", "patas",
+  "corazon", "higado", "rinon", "lengua", "ventresca",
+  "cabeza", "filete", "filetes",
+  // Estado físico/corte
+  "lonchas", "loncheado", "fileteado", "rallado", "troceado", "picado",
+  "entero", "entera", "enteros", "enteras", "trozos", "trozo",
+  "rodajas", "dado", "dados", "tiras",
+  // Calidad/composición
+  "magro", "magra", "semigrasa", "grasa", "graso", "integral",
+  "blanco", "blanca", "blancos", "blancas", "rojo", "roja",
+  "verde", "verdes", "negro", "negra",
+  "natural", "naturales", "tradicional", "clasico", "original",
+  "casero", "artesanal", "premium", "extra", "selecto", "gourmet", "especial",
+  "ecologico", "ecologica", "bio", "organico",
+  // Origen/marca de supermercados españoles
+  "mercadona", "carrefour", "lidl", "dia", "eroski", "alcampo", "aldi",
+  "consum", "hipercor", "hacendado", "origen", "espana",
+  // Descriptores nutricionales
+  "bajo", "alto", "libre", "reducido", "sal", "azucar",
+  "desnatado", "desnatada", "semidesnatado", "semidesnatada", "light",
+  "sodio", "calorias", "gluten", "lactosa", "vitamina",
+  // Conservación
+  "congelado", "congelada", "enlatado", "envasado", "pasteurizado",
+  // Genéricos BEDCA
+  "parte", "especificar", "tipo", "estilo", "sabor",
+  "piel", "hueso", "espina", "semilla", "pepita",
+]);
+
+// Extrae los tokens-ingrediente: filtra stop words Y descriptores.
+function ingredientTokens(name) {
+  return tokenize(name).filter((t) => !NON_INGREDIENT_TOKENS.has(t));
+}
+
 function getFoodTier(candidate, originalFood) {
   // T3: platos preparados (flag-based — fiable)
   if ((candidate.flags || []).includes("prepared")) return 3;
 
-  // T1: mismo ingrediente base — detección por nombre.
-  // El subgroup en la DB es demasiado genérico ("meat" para toda la carne),
-  // así que usamos el primer token significativo del alimento original.
-  // Ejemplo: "Pollo asado" → base = "pollo"
-  //          "Pavo crudo"  → no contiene "pollo" → T2
-  //          "Pechuga de pollo" → contiene "pollo" → T1
+  // T1: comparten al menos un ingrediente real.
+  //
+  // Estrategia: filtramos descriptores (crudo, fresco, plancha, marcas,
+  // piezas como "pechuga"/"lomo") y comparamos los tokens-ingrediente.
+  //
+  // Ejemplos:
+  //   "Pechuga de pollo Mercadona" → {pollo}
+  //   "Pollo, muslo, crudo"        → {pollo}
+  //   → Intersección = {pollo} → T1 ✓
+  //
+  //   "Pollo, pechuga"  → {pollo}
+  //   "Pavo, pechuga"   → {pavo}
+  //   → Intersección = {} → T2 ✓ (mismo corte pero distinto animal)
+  const origIng = new Set(ingredientTokens(originalFood.name));
+  const candIng = new Set(ingredientTokens(candidate.name));
+
+  if (origIng.size > 0 && candIng.size > 0) {
+    for (const t of origIng) {
+      if (candIng.has(t)) return 1;
+    }
+    return 2;
+  }
+
+  // Fallback: si alguno de los nombres no tiene ingrediente claro
+  // (ej: "Lomo Mercadona" sin mencionar el animal), volvemos al
+  // método del primer token — más permisivo para nombres ambiguos.
   const baseTokens = tokenize(originalFood.name);
   const baseWord = baseTokens[0] || "";
   if (baseWord && norm(candidate.name).includes(baseWord)) return 1;
 
-  // T2: ingrediente diferente → intercambio real
   return 2;
 }
 
