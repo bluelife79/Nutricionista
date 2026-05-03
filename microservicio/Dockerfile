@@ -1,15 +1,16 @@
 # =============================================================================
 # Microservicio de re-ranking semántico — RevolucionaT
 # =============================================================================
-# Plataforma destino: Coolify, Railway, Render, Fly.io, o cualquier host
-# que soporte Docker.
+# Plataforma destino: Railway (con railway.json incluido en este directorio).
+# Este Dockerfile también funciona en Render, Fly.io y cualquier host Docker.
 #
 # Build context: este directorio (microservicio/), NO el root del repo.
-# La plataforma debe configurarse con:
+# Railway lo configura automáticamente vía railway.json.
+# Para otras plataformas:
 #   - Repository: github.com/tu-usuario/Nutricionista
-#   - Base directory / Build context: /microservicio
-#   - Dockerfile: ./Dockerfile (relativo al base directory)
-#   - Port: 8000
+#   - Root Directory / Base Directory: /microservicio
+#   - Dockerfile Path: ./Dockerfile (relativo al root directory)
+#   - Port: 8000 (Railway inyecta $PORT automáticamente)
 #   - Health check path: /health
 # =============================================================================
 
