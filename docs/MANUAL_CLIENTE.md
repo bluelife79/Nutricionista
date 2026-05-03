@@ -242,6 +242,49 @@ Si necesitás agregar una nueva categoría a esta lista (ej: aparece "kefir prot
 
 ---
 
+## Cómo afecta la fuente al orden de los intercambios
+
+La app prioriza intercambios de la **misma familia de fuente** que el alimento original. Hay dos familias:
+
+```
+GENÉRICOS    →  BEDCA (base oficial española, alimentos sin marca / "marca blanca")
+COMERCIALES  →  OpenFoodFacts + supermercados (Mercadona, Carrefour, Lidl, Dia,
+                Eroski, Alcampo, Aldi, Consum, Hipercor, Hacendado, etc.)
+```
+
+**Cómo se ordenan los intercambios:**
+
+| El alimento original es de... | Los intercambios aparecen primero de... |
+|---|---|
+| BEDCA | Otros BEDCA → después marcas comerciales |
+| Mercadona | Otros Mercadona → otros supermercados → BEDCA |
+| Carrefour | Otros Carrefour → otros supermercados → BEDCA |
+| OpenFoodFacts | OpenFoodFacts → supermercados → BEDCA |
+
+**Es flexible:** si un BEDCA tiene muy mal match (ej: 50%) y hay un Mercadona con 99% match, el Mercadona sube de posición. La preferencia de fuente da un bonus de +30% a misma fuente, +15% a misma familia. Una diferencia de match grande (>30 puntos) puede ganarle al bonus.
+
+**Cómo extender las listas de fuentes (cuando aparezcan nuevas):**
+
+Editar `js/algorithm.js` y agregar la nueva fuente a la lista correspondiente:
+
+```javascript
+const GENERIC_SOURCES = new Set([
+  "bedca",
+  // Agregar acá nuevas bases oficiales tipo CESNID
+]);
+
+const BRANDED_SOURCES = new Set([
+  "openfoodfacts", "mercadona", "carrefour", "lidl", "dia",
+  "eroski", "alcampo", "aldi", "consum", "hipercor", "hacendado",
+  "fatsecret",
+  // Agregar acá nuevos supermercados o bases de productos con marca
+]);
+```
+
+> **Default conservador:** cualquier fuente que no esté en `GENERIC_SOURCES` se considera automáticamente BRANDED. Si agregás un alimento con `source: "Eroski"` y no actualizás la lista, igual funciona — solo no agrupa con otros supermercados de la familia.
+
+---
+
 ## Fuentes recomendadas para datos nutricionales
 
 | Fuente                                           | Para qué sirve                     | Valor en `source`       |

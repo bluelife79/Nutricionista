@@ -131,6 +131,33 @@ def find_food(foods: list, name: str) -> dict:
     return None
 
 
+# --- Source affinity (debe coincidir con js/algorithm.js) ---
+GENERIC_SOURCES = {"bedca"}
+BRANDED_SOURCES = {
+    "openfoodfacts",
+    "mercadona", "carrefour", "lidl", "dia", "eroski",
+    "alcampo", "aldi", "consum", "hipercor", "hacendado",
+    "fatsecret",
+}
+
+
+def source_family(source: str) -> str:
+    s = (source or "").lower()
+    if s in GENERIC_SOURCES:
+        return "generic"
+    return "branded"
+
+
+def source_affinity_bonus(candidate: dict, original: dict) -> float:
+    cs = (candidate.get("source") or "").lower()
+    os_ = (original.get("source") or "").lower()
+    if cs and os_ and cs == os_:
+        return 0.30
+    if source_family(cs) == source_family(os_):
+        return 0.15
+    return 0.00
+
+
 PROTEIC_DAIRY_SUBGROUPS = {"high_protein_dairy", "basic_dairy", "fruit"}
 
 
@@ -163,17 +190,33 @@ def calculate_alternatives(original: dict, foods: list) -> dict:
         and "hidden" not in (f.get("flags") or [])
     ]
 
-    t1, t2, t3 = [], [], []
+    # Anotar tier + sort_score (sin semántica porque acá no hay microservicio,
+    # el _sortScore se calcula con matchScore puro + affinity bonus).
+    annotated = []
     for c in candidates:
         tier = get_tier(c, original)
-        if tier == 1:
-            t1.append(c)
-        elif tier == 2:
-            t2.append(c)
-        else:
-            t3.append(c)
+        # Aproximamos hybrid sin semántica: hybrid ≈ matchScore/100
+        # (en producción la semántica refina pero el orden de affinity
+        # se mantiene salvo en empates muy ajustados)
+        match_score = c.get("matchScore", c.get("calories", 0))  # fallback simple
+        # Para el test no calculamos matchScore real — usamos un proxy
+        # basado en la categoría/subgroup match. Lo importante es ordenar
+        # por affinity primero.
+        affinity = source_affinity_bonus(c, original)
+        c_annotated = {**c, "_tier": tier, "_affinity": affinity}
+        annotated.append(c_annotated)
 
-    return {"t1": t1, "t2": t2, "t3": t3, "all": candidates}
+    t1 = [c for c in annotated if c["_tier"] == 1]
+    t2 = [c for c in annotated if c["_tier"] == 2]
+    t3 = [c for c in annotated if c["_tier"] == 3]
+
+    # Sort dentro de cada tier por affinity DESC (sin matchScore real
+    # disponible en este script, solo usamos affinity como proxy)
+    t1.sort(key=lambda x: -x["_affinity"])
+    t2.sort(key=lambda x: -x["_affinity"])
+    t3.sort(key=lambda x: -x["_affinity"])
+
+    return {"t1": t1, "t2": t2, "t3": t3, "all": annotated}
 
 
 # ---------------------------------------------------------------------------
@@ -295,6 +338,22 @@ TEST_CASES = [
         ],
         "t2_min": 30,
     },
+    {
+        # Source affinity: alimento BEDCA debe priorizar otros BEDCA
+        # en los primeros resultados antes de mostrar marcas comerciales.
+        "label": "Atún BEDCA → otros BEDCA arriba antes que marcas",
+        "query": "Atún, crudo",  # source = BEDCA
+        "t2_top5_should_have_source": "BEDCA",  # al menos 1 BEDCA en top 5
+        "t2_min": 50,
+    },
+    {
+        # Symmetric: alimento Mercadona debe priorizar otros productos
+        # de marca (Mercadona, Carrefour, etc.) antes que BEDCA.
+        "label": "Producto Mercadona → marcas arriba, BEDCA abajo",
+        "query": "Pechuga de pollo bajo en grasa",  # source = Mercadona
+        "t2_top5_should_have_branded": True,
+        "t2_min": 30,
+    },
 ]
 
 
@@ -366,6 +425,30 @@ def run_case(foods: list, case: dict) -> dict:
         warnings.append(
             f"T1 tiene {len(t1)} candidatos, esperaba mínimo {case['t1_min']}"
         )
+
+    # Verificación: top 5 de T2 debe contener al menos 1 alimento de la fuente esperada
+    if "t2_top5_should_have_source" in case:
+        expected_source = case["t2_top5_should_have_source"].lower()
+        top5 = t2[:5]
+        sources = [(f.get("source") or "").lower() for f in top5]
+        if expected_source not in sources:
+            errors.append(
+                f"Top 5 de T2 no tiene ningún {expected_source!r}. "
+                f"Sources encontrados: {sources}"
+            )
+
+    # Verificación: top 5 de T2 debe ser predominantemente de fuentes BRANDED
+    if case.get("t2_top5_should_have_branded"):
+        top5 = t2[:5]
+        branded_count = sum(
+            1 for f in top5
+            if source_family(f.get("source", "")) == "branded"
+        )
+        if branded_count < 3:
+            errors.append(
+                f"Top 5 de T2 solo tiene {branded_count} marcas comerciales, "
+                f"esperaba al menos 3. Sources: {[f.get('source') for f in top5]}"
+            )
 
     # Verificación: NO debe aparecer ninguno de los excluidos en T2
     if "t2_should_NOT_include_any" in case:

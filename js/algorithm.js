@@ -299,6 +299,67 @@ async function rerankCandidates(query, taggedCandidates) {
 }
 
 // ============================================
+// SOURCE AFFINITY — preferir misma fuente en intercambios
+// ============================================
+//
+// Las fuentes de la base de datos pertenecen a 2 familias:
+//
+//   GENÉRICOS  → BEDCA (base oficial española de composición de alimentos,
+//                 alimentos sin marca, "marca blanca", naturales)
+//
+//   COMERCIALES → OpenFoodFacts + supermercados (Mercadona, Carrefour, Lidl,
+//                 Dia, Eroski, Alcampo, Aldi, Consum, Hipercor, Hacendado,
+//                 etc.) — productos con marca específica
+//
+// Cuando la clienta selecciona un alimento de una familia, los intercambios
+// se ordenan PRIMERO con candidatos de la misma familia, y dentro de eso
+// se prioriza la fuente exacta. La lógica es flexible: un cross-family con
+// matchScore mucho mejor (>~30 puntos) puede ganarle a un same-family mediocre.
+//
+// Listas extensibles: agregar nuevas fuentes acá cuando aparezcan en el
+// futuro. Cualquier fuente que no esté listada cae automáticamente en
+// COMERCIALES por defecto (comportamiento conservador).
+
+const GENERIC_SOURCES = new Set([
+  "bedca",
+  // Si en el futuro se agrega CESNID, USDA-equivalente español, etc., va acá
+]);
+
+const BRANDED_SOURCES = new Set([
+  "openfoodfacts",
+  "mercadona", "carrefour", "lidl", "dia", "eroski",
+  "alcampo", "aldi", "consum", "hipercor", "hacendado",
+  "fatsecret",
+  // Otros, otros marca → caen acá por default
+]);
+
+function sourceFamily(source) {
+  const s = (source || "").toLowerCase();
+  if (GENERIC_SOURCES.has(s)) return "generic";
+  return "branded"; // default para todo lo no-genérico
+}
+
+// Bonus al sortScore según afinidad de fuente con el alimento original.
+// Valores calibrados: misma fuente +0.30, misma familia +0.15, distinta +0.
+//
+// Esto hace que misma-familia gane cuando hay diferencia de matchScore
+// menor a ~30 puntos, pero permite que un cross-family excelente le gane
+// a un same-family mediocre.
+function sourceAffinityBonus(candidate, original) {
+  const cs = (candidate.source || "").toLowerCase();
+  const os = (original.source || "").toLowerCase();
+
+  // Misma fuente exacta — máxima afinidad
+  if (cs && os && cs === os) return 0.30;
+
+  // Misma familia (ej: Mercadona ↔ Carrefour, OFF ↔ Lidl)
+  if (sourceFamily(cs) === sourceFamily(os)) return 0.15;
+
+  // Cruza familias (BEDCA ↔ Mercadona, BEDCA ↔ OFF) — sin bonus
+  return 0.00;
+}
+
+// ============================================
 // CROSS-CATEGORY COMPATIBILITY
 // ============================================
 // Algunos alimentos en categorías distintas son clínicamente intercambiables.
@@ -419,23 +480,38 @@ async function calculateAlternatives(originalFood, amount) {
     sorted = [...all].sort((a, b) => a.tier !== b.tier ? a.tier - b.tier : b.matchScore - a.matchScore);
   }
 
-  // Attach _hybridScore to ALL items (leftovers have no semantic score → pure math)
-  // Used for ordering within each group, not for grouping itself.
-  const withHybrid = sorted.map(a => ({
-    ...a,
-    _hybridScore: 0.65 * (a.matchScore / 100) + 0.35 * (a._semanticScore || 0),
-  }));
+  // Attach _hybridScore y _sortScore a TODOS los items.
+  //
+  //   _hybridScore = 0.65 × matemática + 0.35 × semántica (rango 0-1)
+  //                  Usado en la UI para mostrar el % de match al usuario.
+  //
+  //   _sortScore   = _hybridScore + sourceAffinityBonus (rango 0-1.30)
+  //                  Usado para ORDENAR dentro de cada tier. Hace que la
+  //                  misma fuente/familia gane cuando el match es razonable,
+  //                  pero permite cross-family si la diferencia de match es
+  //                  grande (>~30 puntos).
+  const withHybrid = sorted.map(a => {
+    const hybrid = 0.65 * (a.matchScore / 100) + 0.35 * (a._semanticScore || 0);
+    const affinityBonus = sourceAffinityBonus(a, originalFood);
+    return {
+      ...a,
+      _hybridScore: hybrid,
+      _sortScore: hybrid + affinityBonus,
+    };
+  });
 
   // Group by semantic type using the existing tier field:
   //   T2 (different subgroup, same category) → real exchanges — show first, expanded
   //   T1 (same subgroup)                     → same ingredient family — collapsed
   //   T3 (prepared flag)                     → processed/prepared dishes — collapsed last
   //
-  // Within each group, sort by hybrid score DESC so the best match is always first.
+  // Within each group, sort by _sortScore DESC. Esto prioriza candidatos de
+  // la misma fuente del original (BEDCA→BEDCA, Mercadona→Mercadona) cuando
+  // la calidad del match es razonable, y deja cross-family al final.
   const byTier = (t) =>
     withHybrid
       .filter(a => a.tier === t)
-      .sort((a, b) => b._hybridScore - a._hybridScore);
+      .sort((a, b) => b._sortScore - a._sortScore);
 
   return {
     intercambios: byTier(2),
