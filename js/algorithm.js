@@ -11,7 +11,29 @@ const STOP_WORDS = new Set([
   "con","sin","por","para","se","su","sus","le","les","lo","que","es","al",
 ]);
 
-const API_URL = "http://localhost:8000";
+// URL del microservicio de re-ranking semántico.
+// El microservicio se despliega aparte (Coolify/Railway/Render) — no en Vercel.
+//
+// Cómo configurarlo:
+//   1. Por defecto usa localhost:8000 (desarrollo local con uvicorn).
+//   2. En producción: setear `window.RERANK_API_URL` antes de cargar este script,
+//      o agregarlo como meta tag en index.html:
+//         <meta name="rerank-api-url" content="https://tu-microservicio.coolify.app">
+//   3. Si el microservicio falla o tarda > 500ms → fallback automático
+//      al matchScore matemático (sin rerank semántico).
+const API_URL = (() => {
+  // 1. Prioridad: variable global window
+  if (typeof window !== "undefined" && window.RERANK_API_URL) {
+    return window.RERANK_API_URL;
+  }
+  // 2. Meta tag en HTML
+  if (typeof document !== "undefined") {
+    const meta = document.querySelector('meta[name="rerank-api-url"]');
+    if (meta && meta.content) return meta.content;
+  }
+  // 3. Fallback dev local
+  return "http://localhost:8000";
+})();
 const RERANK_TIMEOUT_MS = 500;
 const MAX_CANDIDATES = 50;
 

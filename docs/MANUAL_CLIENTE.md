@@ -18,6 +18,7 @@ git push  →  Vercel redeploya automáticamente
 ```
 
 **Tres archivos clave que no hay que tocar a mano:**
+
 - `scripts/fix_categories.py` — clasifica verduras automáticamente
 - `scripts/embed_foods.py` — actualiza la búsqueda semántica
 - `microservicio/data/` — archivos de la IA (se generan solos)
@@ -51,22 +52,22 @@ Cada alimento es un objeto JSON dentro del array `foods[]` en `database.json`.
 
 ### Todos los campos explicados
 
-| Campo | Tipo | Obligatorio | Descripción |
-|-------|------|-------------|-------------|
-| `id` | string | ✅ | Identificador único. Ver regla abajo. |
-| `name` | string | ✅ | Nombre del alimento. Incluir estado si aplica (cruda, cocida, hervida). |
-| `protein` | number | ✅ | Gramos de proteína por 100g. Usar punto, no coma. |
-| `carbs` | number | ✅ | Gramos de carbohidratos por 100g. |
-| `fat` | number | ✅ | Gramos de grasa por 100g. |
-| `calories` | number | ✅ | Kcal por 100g. Fórmula: `(protein×4) + (carbs×4) + (fat×9)` |
-| `category` | string | ✅ | Categoría principal. Ver tabla de valores válidos. |
-| `subgroup` | string | ✅ | Subcategoría. **Nunca dejar `null`** — usar `other` si no encaja. |
-| `macro_profile` | string | ✅ | Macro dominante. Ver tabla de valores válidos. |
-| `flags` | array | ✅ | Etiquetas especiales. Dejar `[]` si no aplica ninguna. |
-| `source` | string | ✅ | Fuente del dato nutricional. |
-| `brand` | string o null | — | Marca del producto. `null` si es genérico. |
-| `code` | string o null | — | Código de barras del producto. `null` si no tiene. |
-| `quantity` | number o null | — | Porción estándar en gramos. `null` si no aplica. |
+| Campo           | Tipo          | Obligatorio | Descripción                                                             |
+| --------------- | ------------- | ----------- | ----------------------------------------------------------------------- |
+| `id`            | string        | ✅          | Identificador único. Ver regla abajo.                                   |
+| `name`          | string        | ✅          | Nombre del alimento. Incluir estado si aplica (cruda, cocida, hervida). |
+| `protein`       | number        | ✅          | Gramos de proteína por 100g. Usar punto, no coma.                       |
+| `carbs`         | number        | ✅          | Gramos de carbohidratos por 100g.                                       |
+| `fat`           | number        | ✅          | Gramos de grasa por 100g.                                               |
+| `calories`      | number        | ✅          | Kcal por 100g. Fórmula: `(protein×4) + (carbs×4) + (fat×9)`             |
+| `category`      | string        | ✅          | Categoría principal. Ver tabla de valores válidos.                      |
+| `subgroup`      | string        | ✅          | Subcategoría. **Nunca dejar `null`** — usar `other` si no encaja.       |
+| `macro_profile` | string        | ✅          | Macro dominante. Ver tabla de valores válidos.                          |
+| `flags`         | array         | ✅          | Etiquetas especiales. Dejar `[]` si no aplica ninguna.                  |
+| `source`        | string        | ✅          | Fuente del dato nutricional.                                            |
+| `brand`         | string o null | —           | Marca del producto. `null` si es genérico.                              |
+| `code`          | string o null | —           | Código de barras del producto. `null` si no tiene.                      |
+| `quantity`      | number o null | —           | Porción estándar en gramos. `null` si no aplica.                        |
 
 ---
 
@@ -92,20 +93,21 @@ grep '"id"' database.json | grep manual | tail -1
 
 ## Valores válidos de `category`
 
-| Valor | Cuándo usarlo |
-|-------|---------------|
-| `protein` | Carnes, aves, pescados, mariscos, huevos, legumbres como fuente proteica |
-| `carbs` | Pan, cereales, pasta, arroz, patata, legumbres como fuente de CH |
-| `fat` | Aceites, mantequilla, frutos secos, aguacate, quesos curados |
-| `dairy` | Leche, yogur, quesos frescos, bebidas lácteas |
-| `postres_proteicos` | Skyr, quark, cottage, batidos proteicos, flanes proteicos |
-| `vegetables` | Verduras, hortalizas, setas **con menos de 65 kcal por 100g** |
-| `fruits` | Frutas frescas (manzana, naranja, plátano) y desecadas (dátil, pasas) |
-| `other` | Lo que no encaja en ninguna categoría anterior |
+| Valor               | Cuándo usarlo                                                            |
+| ------------------- | ------------------------------------------------------------------------ |
+| `protein`           | Carnes, aves, pescados, mariscos, huevos, legumbres como fuente proteica |
+| `carbs`             | Pan, cereales, pasta, arroz, patata, legumbres como fuente de CH         |
+| `fat`               | Aceites, mantequilla, frutos secos, aguacate, quesos curados             |
+| `dairy`             | Leche, yogur, quesos frescos, bebidas lácteas                            |
+| `postres_proteicos` | Skyr, quark, cottage, batidos proteicos, flanes proteicos                |
+| `vegetables`        | Verduras, hortalizas, setas **con menos de 65 kcal por 100g**            |
+| `fruits`            | Frutas frescas (manzana, naranja, plátano) y desecadas (dátil, pasas)    |
+| `other`             | Lo que no encaja en ninguna categoría anterior                           |
 
 ### ¿Cuándo usar `vegetables`?
 
 Un alimento va en `vegetables` si cumple **todas** estas condiciones:
+
 - Calorías < 65 kcal por 100g
 - Proteína < 10g por 100g
 - Grasa < 8g por 100g
@@ -119,73 +121,79 @@ Un alimento va en `vegetables` si cumple **todas** estas condiciones:
 ## Valores válidos de `subgroup`
 
 ### Para `category: "protein"`
-| Valor | Qué incluye |
-|-------|-------------|
-| `meat` | Todas las carnes y embutidos |
-| `fish` | Pescados y mariscos |
-| `eggs` | Huevos y derivados |
+
+| Valor           | Qué incluye                                  |
+| --------------- | -------------------------------------------- |
+| `meat`          | Todas las carnes y embutidos                 |
+| `fish`          | Pescados y mariscos                          |
+| `eggs`          | Huevos y derivados                           |
 | `plant_protein` | Legumbres como fuente proteica, tofu, tempeh |
-| `other_protein` | Lo que no encaja |
+| `other_protein` | Lo que no encaja                             |
 
 ### Para `category: "carbs"`
-| Valor | Qué incluye |
-|-------|-------------|
-| `grains` | Pan, arroz, pasta, cereales, harina |
-| `tubers` | Patata, boniato, yuca |
-| `fruit` | Frutas frescas y en conserva |
-| `legumes` | Legumbres como fuente de carbohidratos |
-| `other_carbs` | Lo que no encaja |
+
+| Valor         | Qué incluye                            |
+| ------------- | -------------------------------------- |
+| `grains`      | Pan, arroz, pasta, cereales, harina    |
+| `tubers`      | Patata, boniato, yuca                  |
+| `fruit`       | Frutas frescas y en conserva           |
+| `legumes`     | Legumbres como fuente de carbohidratos |
+| `other_carbs` | Lo que no encaja                       |
 
 ### Para `category: "fat"`
-| Valor | Qué incluye |
-|-------|-------------|
-| `oils` | Aceites vegetales |
-| `nuts` | Frutos secos y semillas |
-| `other_fat` | Lo que no encaja |
+
+| Valor       | Qué incluye             |
+| ----------- | ----------------------- |
+| `oils`      | Aceites vegetales       |
+| `nuts`      | Frutos secos y semillas |
+| `other_fat` | Lo que no encaja        |
 
 ### Para `category: "dairy"`
-| Valor | Qué incluye |
-|-------|-------------|
-| `basic_dairy` | Leche entera, semidesnatada, desnatada |
-| `high_protein_dairy` | Yogures proteicos, skyr, kéfir proteico |
-| `other_dairy` | Yogures normales, bebidas lácteas, quesos blandos |
+
+| Valor                | Qué incluye                                       |
+| -------------------- | ------------------------------------------------- |
+| `basic_dairy`        | Leche entera, semidesnatada, desnatada            |
+| `high_protein_dairy` | Yogures proteicos, skyr, kéfir proteico           |
+| `other_dairy`        | Yogures normales, bebidas lácteas, quesos blandos |
 
 ### Para `category: "fruits"`
-| Valor | Qué incluye |
-|-------|-------------|
-| `pepita` | Manzana, pera, membrillo |
-| `citricos` | Naranja, mandarina, limón, pomelo, lima, clementina |
-| `frutos_bosque` | Fresa, frambuesa, arándano, mora, grosella |
-| `tropical` | Mango, kiwi, piña, plátano, papaya, maracuyá |
-| `hueso` | Melocotón, ciruela, cereza, albaricoque, nectarina |
-| `melon_sandia` | Melón y sandía |
-| `uva` | Uvas frescas |
-| `fruta_seca` | Dátil, pasas, higo seco, orejones, frutas deshidratadas |
-| `otra_fruta` | Granada, caqui, chirimoya, lichi, higo fresco, níspero |
+
+| Valor           | Qué incluye                                             |
+| --------------- | ------------------------------------------------------- |
+| `pepita`        | Manzana, pera, membrillo                                |
+| `citricos`      | Naranja, mandarina, limón, pomelo, lima, clementina     |
+| `frutos_bosque` | Fresa, frambuesa, arándano, mora, grosella              |
+| `tropical`      | Mango, kiwi, piña, plátano, papaya, maracuyá            |
+| `hueso`         | Melocotón, ciruela, cereza, albaricoque, nectarina      |
+| `melon_sandia`  | Melón y sandía                                          |
+| `uva`           | Uvas frescas                                            |
+| `fruta_seca`    | Dátil, pasas, higo seco, orejones, frutas deshidratadas |
+| `otra_fruta`    | Granada, caqui, chirimoya, lichi, higo fresco, níspero  |
 
 > **Nota:** No hace falta asignar `fruits` a mano. El script `fix_fruits.py` lo hace automáticamente cuando ejecutás `bash scripts/actualizar.sh`. Las frutas en almíbar, los zumos y los yogures con fruta NO son `fruits` — esos van a `carbs` u `other`.
 
 ### Para `category: "vegetables"`
-| Valor | Qué incluye |
-|-------|-------------|
-| `leafy` | Lechuga, espinaca, rúcula, canónigos, acelga, berro, escarola |
-| `cruciferous` | Brócoli, coliflor, repollo, lombarda, col de Bruselas |
-| `allium` | Cebolla, ajo, puerro, cebolleta, ajetes |
-| `mushroom` | Champiñón, seta, boletus, níscalo, shiitake, portobello |
-| `root_veg` | Zanahoria, remolacha, nabo, rábano |
-| `fruiting_veg` | Tomate, pimiento, berenjena, calabacín, calabaza, pepino |
-| `stalk_veg` | Espárrago, apio, alcachofa, hinojo, cardo |
-| `other_veg` | Guisantes, menestra, brotes, mezclas de verduras |
+
+| Valor          | Qué incluye                                                   |
+| -------------- | ------------------------------------------------------------- |
+| `leafy`        | Lechuga, espinaca, rúcula, canónigos, acelga, berro, escarola |
+| `cruciferous`  | Brócoli, coliflor, repollo, lombarda, col de Bruselas         |
+| `allium`       | Cebolla, ajo, puerro, cebolleta, ajetes                       |
+| `mushroom`     | Champiñón, seta, boletus, níscalo, shiitake, portobello       |
+| `root_veg`     | Zanahoria, remolacha, nabo, rábano                            |
+| `fruiting_veg` | Tomate, pimiento, berenjena, calabacín, calabaza, pepino      |
+| `stalk_veg`    | Espárrago, apio, alcachofa, hinojo, cardo                     |
+| `other_veg`    | Guisantes, menestra, brotes, mezclas de verduras              |
 
 ---
 
 ## Valores válidos de `macro_profile`
 
-| Valor | Cuándo usarlo |
-|-------|---------------|
-| `protein` | La proteína aporta más calorías que grasa y CH |
-| `carbs` | Los carbohidratos aportan más calorías |
-| `fat` | La grasa aporta más calorías |
+| Valor      | Cuándo usarlo                                                                                            |
+| ---------- | -------------------------------------------------------------------------------------------------------- |
+| `protein`  | La proteína aporta más calorías que grasa y CH                                                           |
+| `carbs`    | Los carbohidratos aportan más calorías                                                                   |
+| `fat`      | La grasa aporta más calorías                                                                             |
 | `calories` | **Usar para todas las verduras y alimentos con muy pocas calorías** donde ningún macro domina claramente |
 
 > El `macro_profile` es la fuente de verdad para el algoritmo de intercambios. Si `category` y `macro_profile` difieren, el algoritmo usa `macro_profile`.
@@ -194,12 +202,12 @@ Un alimento va en `vegetables` si cumple **todas** estas condiciones:
 
 ## Valores válidos de `flags`
 
-| Valor | Cuándo se agrega | Quién lo agrega |
-|-------|-----------------|-----------------|
-| `"condiment"` | Sal, pimienta, especias, vinagre, ketchup, mayonesa | Manualmente al cargar el alimento |
-| `"prepared"` | Plato preparado: lasaña, paella, croquetas, "arroz con pollo", "pollo tikka", etc. | **Automático** — `fix_prepared.py` (también se puede agregar manualmente) |
-| `"sweet"` | Golosinas, gominolas, chocolates, dulces concentrados | **Automático** — `fix_sweets.py` |
-| `"hidden"` | Duplicado nutricional de un alimento básico (ej: 5 atunes idénticos) | **Automático** — `dedupe_basicos.py` |
+| Valor         | Cuándo se agrega                                                                   | Quién lo agrega                                                           |
+| ------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `"condiment"` | Sal, pimienta, especias, vinagre, ketchup, mayonesa                                | Manualmente al cargar el alimento                                         |
+| `"prepared"`  | Plato preparado: lasaña, paella, croquetas, "arroz con pollo", "pollo tikka", etc. | **Automático** — `fix_prepared.py` (también se puede agregar manualmente) |
+| `"sweet"`     | Golosinas, gominolas, chocolates, dulces concentrados                              | **Automático** — `fix_sweets.py`                                          |
+| `"hidden"`    | Duplicado nutricional de un alimento básico (ej: 5 atunes idénticos)               | **Automático** — `dedupe_basicos.py`                                      |
 
 ```json
 // Condimento:
@@ -217,30 +225,6 @@ Un alimento va en `vegetables` si cumple **todas** estas condiciones:
 ```
 
 > Los flags `"sweet"` y `"hidden"` los gestionan los scripts automáticamente al ejecutar `bash scripts/actualizar.sh`. **No los toques a mano** salvo que quieras forzar a esconder un alimento específico.
-
-### El flag `"hidden"` y la deduplicación de básicos
-
-Cuando hay 12 atunes al natural con macros casi idénticos, el script `dedupe_basicos.py` elige uno como **canónico** (preferentemente BEDCA) y marca los demás con `"hidden"`. Estos no aparecen en intercambios ni en búsquedas, pero **siguen estando en `database.json`**.
-
-**Prioridad para elegir el canónico:**
-1. Fuente `BEDCA` (mejor)
-2. Fuente `OpenFoodFacts` con todos los macros completos
-3. Cualquier supermercado (Mercadona, Carrefour, etc.)
-4. Dentro del mismo nivel: el de nombre más corto y sin marca
-
-**Qué pasa si querés que un alimento "hidden" vuelva a aparecer:**
-
-Editá `database.json`, busca el alimento, y quitale el flag `"hidden"`:
-
-```json
-// Antes
-"flags": ["hidden"]
-
-// Después
-"flags": []
-```
-
-Pero ojo — el próximo `bash scripts/actualizar.sh` lo va a volver a marcar como duplicado si nada cambió. Si querés conservarlo visible permanentemente, necesitás cambiar sus macros lo suficiente (>15% de diferencia con los otros) o eliminar el alimento canónico.
 
 ### Productos donde la marca SÍ importa (nunca se deduplican)
 
@@ -260,12 +244,12 @@ Si necesitás agregar una nueva categoría a esta lista (ej: aparece "kefir prot
 
 ## Fuentes recomendadas para datos nutricionales
 
-| Fuente | Para qué sirve | Valor en `source` |
-|--------|----------------|-------------------|
-| [BEDCA](https://www.bedca.net) | Alimentos genéricos españoles | `"BEDCA"` |
-| [OpenFoodFacts](https://world.openfoodfacts.org) | Productos con código de barras | `"OpenFoodFacts"` |
-| Etiqueta del producto | Cualquier producto de supermercado | Nombre del supermercado |
-| [FatSecret España](https://www.fatsecret.es) | Alternativa a BEDCA | `"FatSecret"` |
+| Fuente                                           | Para qué sirve                     | Valor en `source`       |
+| ------------------------------------------------ | ---------------------------------- | ----------------------- |
+| [BEDCA](https://www.bedca.net)                   | Alimentos genéricos españoles      | `"BEDCA"`               |
+| [OpenFoodFacts](https://world.openfoodfacts.org) | Productos con código de barras     | `"OpenFoodFacts"`       |
+| Etiqueta del producto                            | Cualquier producto de supermercado | Nombre del supermercado |
+| [FatSecret España](https://www.fatsecret.es)     | Alternativa a BEDCA                | `"FatSecret"`           |
 
 Todos los valores deben estar **por 100g** de producto tal como se consume.
 
@@ -278,8 +262,9 @@ Todos los valores deben estar **por 100g** de producto tal como se consume.
 Decirle exactamente esto a Claude:
 
 > Quiero agregar un alimento nuevo a la base de datos de RevolucionaT. El archivo a editar es `database.json`, array `foods[]`. El alimento es: **[nombre del alimento]**.
-> 
+>
 > Por favor:
+>
 > 1. Buscá los valores nutricionales por 100g en BEDCA o OpenFoodFacts
 > 2. Determiná el `id` correcto (revisá el último `manual_XXXX` en el archivo)
 > 3. Completá todos los campos según el SCHEMA definido en `docs/SCHEMA.md`
@@ -307,6 +292,7 @@ bash scripts/actualizar.sh
 ```
 
 Esto hace, en orden:
+
 1. `fix_categories.py` — corrige categorías de verduras
 2. `embed_foods.py` — regenera los embeddings de búsqueda semántica
 
@@ -385,6 +371,7 @@ Solución: ejecutar `bash scripts/actualizar.sh` y reiniciar el microservicio.
 ## Referencia rápida — Ejemplo completo por tipo de alimento
 
 ### Verdura
+
 ```json
 {
   "id": "manual_0001",
@@ -405,6 +392,7 @@ Solución: ejecutar `bash scripts/actualizar.sh` y reiniciar el microservicio.
 ```
 
 ### Proteína animal
+
 ```json
 {
   "id": "manual_0002",
@@ -425,6 +413,7 @@ Solución: ejecutar `bash scripts/actualizar.sh` y reiniciar el microservicio.
 ```
 
 ### Cereal / Carbohidrato
+
 ```json
 {
   "id": "manual_0003",
@@ -445,6 +434,7 @@ Solución: ejecutar `bash scripts/actualizar.sh` y reiniciar el microservicio.
 ```
 
 ### Condimento
+
 ```json
 {
   "id": "manual_0004",
@@ -465,6 +455,7 @@ Solución: ejecutar `bash scripts/actualizar.sh` y reiniciar el microservicio.
 ```
 
 ### Plato preparado
+
 ```json
 {
   "id": "manual_0005",
@@ -486,4 +477,4 @@ Solución: ejecutar `bash scripts/actualizar.sh` y reiniciar el microservicio.
 
 ---
 
-*Mantener este documento actualizado si cambia el algoritmo o se agregan nuevas categorías.*
+_Mantener este documento actualizado si cambia el algoritmo o se agregan nuevas categorías._

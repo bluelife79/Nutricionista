@@ -1,0 +1,8 @@
+# Vercel solo despliega el frontend (root). El microservicio Python tiene
+# su propio deploy en otra plataforma (Coolify/Railway/Render).
+microservicio/
+scripts/
+docs/
+*.md
+.github/
+test_database.html

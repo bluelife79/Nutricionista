@@ -12,6 +12,12 @@
       content="Intercambiador de alimentos RevolucionaT - Encuentra equivalencias nutricionales"
     />
 
+    <!-- URL del microservicio de re-ranking semántico.
+         Cambiar por la URL pública del deploy en Coolify/Railway/Render.
+         Si está vacío o el servicio falla, la app funciona igual con
+         matchScore matemático puro (sin rerank semántico). -->
+    <meta name="rerank-api-url" content="http://localhost:8000" />
+
     <title>RevolucionaT - Intercambiador de Alimentos</title>
 
     <!-- Pre-paint auth check: evita el flash del login si ya hay sesión guardada -->
