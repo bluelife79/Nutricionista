@@ -35,7 +35,7 @@ RUN pip install uv && \
     uv pip install --system --no-cache .
 
 # Copiamos el resto del código y los embeddings pre-computados
-COPY main.py ./
+COPY main.py judge.py judge_cache.py _judge_prompt.py ./
 COPY data/ ./data/
 
 # Pre-descargamos el modelo en el momento del build, no en el primer request.
