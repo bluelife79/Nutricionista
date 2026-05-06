@@ -280,6 +280,13 @@ function calculateEquivalence(
 // SEMANTIC RERANK (calls microservice, falls back on error)
 // ============================================
 async function rerankCandidates(query, taggedCandidates) {
+  // Kill-switch: window.RERANK_ENABLED = false bypasses the network call.
+  // Default false in this build — semantic /rerank was retired from the
+  // microservicio to slim Docker for Railway. Set true if a /rerank-capable
+  // microservice is deployed elsewhere and pointed via window.RERANK_API_URL.
+  if (typeof window !== "undefined" && window.RERANK_ENABLED !== true) {
+    return null; // graceful — caller falls back to deterministic ordering
+  }
   // taggedCandidates: array of objects with {id, tier, ...other fields}
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), RERANK_TIMEOUT_MS);

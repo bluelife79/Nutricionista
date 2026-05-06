@@ -19,9 +19,16 @@ from cachetools import TTLCache
 def compute_db_version(db_path: Path) -> str:
     """MD5 of database.json bytes (16-char hex). Used as cache namespace prefix.
 
-    Returns "no-db" if the file does not exist (safe default — cache still
-    works, just with a fixed namespace).
+    Resolution order:
+      1. DB_VERSION_OVERRIDE env var — manual invalidation knob for deploys
+         where the file isn't accessible (Railway, container builds).
+      2. MD5 of database.json if the file exists.
+      3. "no-db" fallback — cache works but never auto-invalidates.
     """
+    import os
+    override = os.getenv("DB_VERSION_OVERRIDE", "").strip()
+    if override:
+        return override[:16]
     if not db_path.exists():
         return "no-db"
     return hashlib.md5(db_path.read_bytes()).hexdigest()[:16]
