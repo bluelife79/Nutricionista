@@ -280,6 +280,8 @@
 
     <div id="tests-container"></div>
 
+    <!-- exchange_groups.js MUST load before algorithm.js -->
+    <script src="js/exchange_groups.js"></script>
     <!-- algorithm.js debe cargarse ANTES de que lo usemos -->
     <script src="js/algorithm.js"></script>
 
@@ -849,7 +851,7 @@
         renderSkeleton();
 
         try {
-          var response = await fetch('database.min.json');
+          var response = await fetch('database.json');
           if (!response.ok) throw new Error('HTTP ' + response.status);
           var data = await response.json();
           window.foodsDatabase = data.foods || data;
@@ -875,6 +877,859 @@
       }
 
       init();
+    </script>
+
+    <!-- ============================================================ -->
+    <!-- SECTION: Grupos de intercambio clinicos                      -->
+    <!-- Clinical exchange group acceptance tests (Phase 5 — T5.1/2) -->
+    <!-- ============================================================ -->
+    <script>
+      // ============================================
+      // CLINICAL SECTION STYLES (injected inline)
+      // ============================================
+      (function () {
+        var style = document.createElement('style');
+        style.textContent = [
+          '.clinical-section { margin-top: 32px; }',
+          '.clinical-section-header {',
+          '  background: #1e3a5f; color: #fff; border-radius: 8px 8px 0 0;',
+          '  padding: 14px 20px; font-size: 15px; font-weight: 700;',
+          '  letter-spacing: 0.3px;',
+          '}',
+          '.clinical-section-header .clinical-sub {',
+          '  font-size: 11px; font-weight: 400; opacity: 0.7; margin-top: 2px;',
+          '}',
+          '.clinical-summary-bar {',
+          '  background: #fff; border: 1px solid #e0e0e0; border-top: none;',
+          '  border-radius: 0; padding: 10px 20px; display: flex; gap: 14px;',
+          '  flex-wrap: wrap; align-items: center; font-size: 12px;',
+          '}',
+          '.clinical-cards { display: flex; flex-direction: column; gap: 6px; margin-top: 6px; }',
+          '.clinical-card {',
+          '  background: #fff; border: 1px solid #e0e0e0; border-radius: 8px;',
+          '  overflow: hidden; border-left: 4px solid #cbd5e1;',
+          '}',
+          '.clinical-card.cpass { border-left-color: #16a34a; }',
+          '.clinical-card.cfail { border-left-color: #dc2626; }',
+          '.clinical-card.cskip { border-left-color: #f59e0b; }',
+          '.clinical-header {',
+          '  display: flex; align-items: center; gap: 10px;',
+          '  padding: 10px 14px; cursor: pointer; user-select: none;',
+          '}',
+          '.clinical-header:hover { background: #fafafa; }',
+          '.clinical-body {',
+          '  display: none; border-top: 1px solid #e0e0e0;',
+          '  padding: 12px 16px 16px;',
+          '}',
+          '.clinical-card.copen .clinical-body { display: block; }',
+          '.clinical-card.copen .chevron { transform: rotate(90deg); }',
+          '.clabel { font-weight: 600; flex: 1; font-size: 13px; }',
+          '.cid { font-size: 11px; color: #999; font-weight: 700; min-width: 44px; }',
+          '.cbadge {',
+          '  display: inline-block; font-size: 11px; font-weight: 700;',
+          '  padding: 2px 8px; border-radius: 4px; min-width: 44px; text-align: center;',
+          '}',
+          '.cbadge-pass { background: #dcfce7; color: #15803d; }',
+          '.cbadge-fail { background: #fee2e2; color: #b91c1c; }',
+          '.cbadge-skip { background: #fef9c3; color: #92400e; }',
+          '.cbadge-pending { background: #f0f0f0; color: #888; }',
+          '.clist { font-size: 12px; margin: 4px 0 8px; }',
+          '.clist li { margin: 2px 0; list-style: disc; margin-left: 18px; }',
+          '.cfail-box {',
+          '  background: #fff5f5; border: 1px solid #fecaca; border-radius: 6px;',
+          '  padding: 8px 12px; font-size: 12px; color: #b91c1c; margin-bottom: 10px;',
+          '}',
+          '.cfail-box ul { margin-top: 4px; padding-left: 16px; }',
+          '.cskip-box {',
+          '  background: #fffbeb; border: 1px solid #fde68a; border-radius: 6px;',
+          '  padding: 8px 12px; font-size: 12px; color: #92400e; margin-bottom: 10px;',
+          '}',
+          '.cresults-wrap { overflow-x: auto; margin-top: 8px; }',
+          'table.cresults {',
+          '  width: 100%; border-collapse: collapse; font-size: 12px;',
+          '}',
+          'table.cresults th {',
+          '  background: #f5f5f5; text-align: left; padding: 5px 8px;',
+          '  font-weight: 600; color: #555; border-bottom: 1px solid #e0e0e0;',
+          '}',
+          'table.cresults td {',
+          '  padding: 5px 8px; border-bottom: 1px solid #f0f0f0; vertical-align: top;',
+          '}',
+          'table.cresults tr:last-child td { border-bottom: none; }',
+          '.chit { color: #16a34a; font-weight: 700; }',
+          '.cmiss { color: #dc2626; font-weight: 700; }',
+          '.cneutral { color: #888; }',
+          '.ccheck { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0; }',
+          '.cchip {',
+          '  display: inline-flex; align-items: center; gap: 4px; font-size: 11px;',
+          '  padding: 2px 8px; border-radius: 12px; font-weight: 600;',
+          '}',
+          '.cchip-ok { background: #dcfce7; color: #15803d; }',
+          '.cchip-fail { background: #fee2e2; color: #b91c1c; }',
+          '.cchip-warn { background: #fef9c3; color: #92400e; }',
+        ].join('\n');
+        document.head.appendChild(style);
+      })();
+
+      // ============================================
+      // CLINICAL TEST CASES
+      // ============================================
+      // Smoke test run: 2026-05-05 — pending manual browser verification
+      // Each case defines: originQuery (search string), forbidden keywords
+      // (none of these may appear in ANY result name), required keywords
+      // (at least one result must contain at least one of these).
+      //
+      // AC-6 (lentejas estofadas preparado routing) is documented as a manual
+      // note — it requires T3 tier-routing logic which is category-level, not
+      // subgroup-level. The test verifies the food can be found and results
+      // exist, but does NOT gate on subgroup filtering.
+      var CLINICAL_CASES = [
+        {
+          id: 'AC-1',
+          label: 'Pechuga de pollo — excluye viscera y procesados',
+          originQuery: 'pechuga pollo',
+          amount: 100,
+          forbidden: ['callos', 'higado', 'hígado', 'salchichon', 'chorizo', 'mortadela', 'fuet', 'salmon salado'],
+          required: ['pavo', 'atun', 'lubina', 'huevo', 'lentejas', 'garbanzos'],
+          requiredMode: 'any-of',
+          note: 'meat_lean debe excluir viscera y processed_meat. Requiere al menos 1 de los expected.'
+        },
+        {
+          id: 'AC-2',
+          label: 'Arroz blanco — intercambio T1 cereales, excluye dulces',
+          originQuery: 'arroz blanco',
+          amount: 60,
+          forbidden: ['gominola', 'caramelo', 'chicle', 'bolleria', 'chuche'],
+          required: ['pasta', 'pan', 'cuscus', 'quinoa', 'avena', 'bulgur'],
+          requiredMode: 'any-of',
+          note: 'grains -> grains (T1 STRICT). Nunca dulces como intercambio de arroz.'
+        },
+        {
+          id: 'AC-3',
+          label: 'Skyr — bridge cross-category con Yopro/high_protein_dairy',
+          originQuery: 'skyr',
+          amount: 200,
+          forbidden: [],
+          required: ['yopro', 'yogur proteico', 'high protein', 'quark', 'requejon', 'yogur'],
+          requiredMode: 'any-of',
+          note: 'postres_proteicos <-> dairy. Cross-category bridge MUST survive subgroup filter.'
+        },
+        {
+          id: 'AC-4',
+          label: 'Aceite de oliva — solo aceites, excluye dulces',
+          originQuery: 'aceite oliva',
+          amount: 10,
+          forbidden: ['caramelo', 'gominola', 'azucar', 'azúcar', 'chocolate'],
+          required: ['aceite', 'girasol', 'coco', 'aguacate'],
+          requiredMode: 'any-of',
+          note: 'olive_oil -> other_oils (T1) + avocado (T2). Nunca dulces.'
+        },
+        {
+          id: 'AC-5',
+          label: 'Nueces — solo frutos secos/semillas',
+          originQuery: 'nueces',
+          amount: 30,
+          forbidden: ['caramelo', 'gominola', 'chocolate', 'aceite'],
+          required: ['almendra', 'avellana', 'pistacho', 'anacardo', 'semilla', 'pipa'],
+          requiredMode: 'any-of',
+          note: 'nuts_seeds -> nuts_seeds solo (STRICT). Aceites excluidos por taxonomia.'
+        },
+        {
+          id: 'AC-6',
+          label: 'Lentejas estofadas — plato preparado (routing manual)',
+          originQuery: 'lentejas estofadas',
+          amount: 200,
+          forbidden: [],
+          required: [],
+          requiredMode: 'manual-note',
+          note: 'AC-6 es verificacion manual: el alimento preparado debe producir resultados (T3). ' +
+                'El filtro de subgrupos no aplica a preparados — se verifica que la busqueda da resultados ' +
+                'y no lanza errores. Verde = food encontrado + resultados > 0.'
+        },
+        {
+          id: 'AC-7',
+          label: 'Pechuga Mercadona — excluye viscera, no baja en null-safe',
+          originQuery: 'pechuga pollo mercadona',
+          amount: 120,
+          forbidden: ['callos', 'higado', 'hígado', 'pate', 'salchichon'],
+          required: ['pavo', 'lubina', 'atun', 'merluza', 'huevo'],
+          requiredMode: 'any-of',
+          note: 'Branded food. Si tiene subgroup=meat_lean: mismas reglas que AC-1. ' +
+                'Si subgroup=null: null-safe fallback (solo categoria).'
+        },
+        {
+          id: 'AC-8',
+          label: 'Atun en aceite — pescado azul, excluye dulces',
+          originQuery: 'atun aceite',
+          amount: 80,
+          forbidden: ['gominola', 'caramelo', 'chicle', 'chucheria'],
+          required: ['sardina', 'salmon', 'caballa', 'bonito', 'anchoa', 'boqueron'],
+          requiredMode: 'any-of',
+          note: 'fish_fatty -> fish_fatty + fish_white + meat_lean. Nunca dulces ni bolleria.'
+        },
+      ];
+
+      // ============================================
+      // CLINICAL SECTION RENDER + RUNNER
+      // ============================================
+      (function () {
+
+        // Find the container in the page — appended after the existing #tests-container
+        var sectionEl = null;
+        var cardEls = {};
+        var clinicalSummary = { pass: 0, fail: 0, skip: 0 };
+
+        function buildSection() {
+          sectionEl = document.createElement('div');
+          sectionEl.className = 'clinical-section';
+          sectionEl.innerHTML =
+            '<div class="clinical-section-header">' +
+              'Grupos de intercambio clinicos' +
+              '<div class="clinical-sub">Acceptance criteria Phase 5 — T5.1/T5.2 — 8 casos</div>' +
+            '</div>' +
+            '<div class="clinical-summary-bar" id="clinical-summary-bar">' +
+              '<span id="cpill-pass" class="stat-pill pass">PASS: 0</span>' +
+              '<span id="cpill-fail" class="stat-pill fail">FAIL: 0</span>' +
+              '<span id="cpill-skip" class="stat-pill skip">SKIP: 0</span>' +
+              '<span id="cprogress" style="font-size:12px;color:#888;margin-left:4px;">Pendiente</span>' +
+            '</div>' +
+            '<div class="clinical-cards" id="clinical-cards"></div>';
+
+          document.body.appendChild(sectionEl);
+
+          var cardsContainer = document.getElementById('clinical-cards');
+          CLINICAL_CASES.forEach(function (tc) {
+            var card = document.createElement('div');
+            card.className = 'clinical-card';
+            card.id = 'ccard-' + tc.id;
+            card.innerHTML =
+              '<div class="clinical-header">' +
+                '<span class="cbadge cbadge-pending">...</span>' +
+                '<span class="cid">' + escHtml(tc.id) + '</span>' +
+                '<span class="clabel">' + escHtml(tc.label) + '</span>' +
+                '<span class="test-note" style="font-size:11px;color:#888;font-style:italic;max-width:340px;text-align:right;">' +
+                  escHtml(tc.note) + '</span>' +
+                '<span class="chevron" style="font-size:10px;color:#bbb;margin-left:4px;">&#9654;</span>' +
+              '</div>' +
+              '<div class="clinical-body"></div>';
+
+            card.querySelector('.clinical-header').addEventListener('click', function () {
+              card.classList.toggle('copen');
+            });
+
+            cardEls[tc.id] = card;
+            cardsContainer.appendChild(card);
+          });
+        }
+
+        function updateClinicalCard(tc, result) {
+          var card = cardEls[tc.id];
+          if (!card) return;
+
+          card.classList.remove('cpass', 'cfail', 'cskip');
+          card.classList.add(result.status === 'pass' ? 'cpass' : result.status === 'fail' ? 'cfail' : 'cskip');
+
+          var badge = card.querySelector('.cbadge');
+          badge.className = 'cbadge';
+          if (result.status === 'pass') {
+            badge.classList.add('cbadge-pass'); badge.textContent = 'PASS';
+          } else if (result.status === 'fail') {
+            badge.classList.add('cbadge-fail'); badge.textContent = 'FAIL';
+          } else {
+            badge.classList.add('cbadge-skip'); badge.textContent = 'SKIP';
+          }
+
+          var body = card.querySelector('.clinical-body');
+          var html = '';
+
+          if (result.status === 'skip') {
+            html += '<div class="cskip-box">' + escHtml(result.skipReason || 'Alimento no encontrado en DB') + '</div>';
+          }
+
+          if (result.failures && result.failures.length) {
+            html += '<div class="cfail-box"><strong>Fallos:</strong><ul>';
+            result.failures.forEach(function (f) { html += '<li>' + escHtml(f) + '</li>'; });
+            html += '</ul></div>';
+          }
+
+          // Required keywords check
+          if (result.requiredChecks && result.requiredChecks.length) {
+            html += '<div style="margin-bottom:8px;"><strong style="font-size:11px;color:#555;text-transform:uppercase;">Requeridos (any-of)</strong>';
+            html += '<div class="ccheck">';
+            result.requiredChecks.forEach(function (c) {
+              html += '<span class="cchip ' + (c.found ? 'cchip-ok' : 'cchip-fail') + '">' +
+                (c.found ? '+ ' : '- ') + escHtml(c.kw) + '</span>';
+            });
+            html += '</div></div>';
+          }
+
+          // Forbidden keywords check
+          if (result.forbiddenChecks && result.forbiddenChecks.length) {
+            var anyForbidden = result.forbiddenChecks.some(function (c) { return c.found; });
+            if (anyForbidden || result.status === 'fail') {
+              html += '<div style="margin-bottom:8px;"><strong style="font-size:11px;color:#555;text-transform:uppercase;">Prohibidos</strong>';
+              html += '<div class="ccheck">';
+              result.forbiddenChecks.forEach(function (c) {
+                if (c.found) {
+                  html += '<span class="cchip cchip-fail">! ' + escHtml(c.kw) + ' (' + escHtml(c.example) + ')</span>';
+                }
+              });
+              if (!anyForbidden) {
+                html += '<span class="cchip cchip-ok">Ninguno encontrado</span>';
+              }
+              html += '</div></div>';
+            } else {
+              html += '<div class="ccheck"><span class="cchip cchip-ok">Prohibidos: ninguno encontrado</span></div>';
+            }
+          }
+
+          // Top alternatives table
+          if (result.alternatives && result.alternatives.length) {
+            var top = result.alternatives.slice(0, 12);
+            html += '<div style="font-size:11px;font-weight:700;color:#999;text-transform:uppercase;margin-top:8px;margin-bottom:4px;">' +
+              'Top ' + top.length + ' de ' + result.alternatives.length + ' alternativas</div>';
+            html += '<div class="cresults-wrap"><table class="cresults">' +
+              '<thead><tr><th>#</th><th>Nombre</th><th>Subgrupo</th><th>Tier</th><th>Score</th></tr></thead><tbody>';
+            top.forEach(function (a, i) {
+              html += '<tr><td>' + (i + 1) + '</td>' +
+                '<td>' + escHtml(a.name) + '</td>' +
+                '<td>' + escHtml(a.subgroup || '—') + '</td>' +
+                '<td><span class="tier-badge tier' + a.tier + '">T' + a.tier + '</span></td>' +
+                '<td>' + (a.matchScore || '—') + '</td></tr>';
+            });
+            html += '</tbody></table></div>';
+          }
+
+          // Origin food info
+          if (result.originFood) {
+            html += '<div style="margin-top:8px;font-size:11px;color:#888;">' +
+              'Origen: <strong>' + escHtml(result.originFood.name) + '</strong> | ' +
+              'category: ' + escHtml(result.originFood.category || '?') + ' | ' +
+              'subgroup: ' + escHtml(result.originFood.subgroup || 'null') +
+              '</div>';
+          }
+
+          body.innerHTML = html;
+
+          if (result.status === 'fail') card.classList.add('copen');
+        }
+
+        function updateClinicalSummary() {
+          var s = clinicalSummary;
+          document.getElementById('cpill-pass').textContent = 'PASS: ' + s.pass;
+          document.getElementById('cpill-fail').textContent = 'FAIL: ' + s.fail;
+          document.getElementById('cpill-skip').textContent = 'SKIP: ' + s.skip;
+        }
+
+        async function runClinicalCase(tc) {
+          var result = {
+            status: 'fail',
+            failures: [],
+            alternatives: [],
+            originFood: null,
+            requiredChecks: [],
+            forbiddenChecks: [],
+            skipReason: null,
+          };
+
+          // 1. Find origin food
+          var matches = searchFoodsSync(tc.originQuery);
+          if (!matches || !matches.length) {
+            result.status = 'skip';
+            result.skipReason = 'Alimento no encontrado en DB: "' + tc.originQuery + '"';
+            return result;
+          }
+          var originFood = matches[0];
+          result.originFood = originFood;
+
+          // 2. AC-6 special case: manual-note, just check food found + results > 0
+          if (tc.requiredMode === 'manual-note') {
+            var alts6;
+            try {
+              alts6 = await calculateAlternatives(originFood, tc.amount);
+            } catch (e) {
+              result.status = 'fail';
+              result.failures.push('Error en calculateAlternatives: ' + e.message);
+              return result;
+            }
+            var allAlts6 = [].concat(alts6.intercambios || [], alts6.familia || [], alts6.preparados || []);
+            result.alternatives = allAlts6;
+            if (allAlts6.length > 0) {
+              result.status = 'pass';
+            } else {
+              result.status = 'fail';
+              result.failures.push('No se generaron alternativas para "' + originFood.name + '"');
+            }
+            return result;
+          }
+
+          // 3. calculateAlternatives
+          var alts;
+          try {
+            alts = await calculateAlternatives(originFood, tc.amount);
+          } catch (e) {
+            result.status = 'fail';
+            result.failures.push('Error en calculateAlternatives: ' + e.message);
+            return result;
+          }
+          var allAlts = [].concat(alts.intercambios || [], alts.familia || [], alts.preparados || []);
+          result.alternatives = allAlts;
+
+          // 4. Forbidden check: NONE of these keywords may appear in any result
+          if (tc.forbidden && tc.forbidden.length) {
+            tc.forbidden.forEach(function (kw) {
+              var kwn = norm(kw);
+              var found = allAlts.filter(function (a) { return norm(a.name).includes(kwn); });
+              if (found.length) {
+                var example = found[0].name;
+                result.failures.push('FORBIDDEN "' + kw + '" encontrado: ' + example);
+                result.forbiddenChecks.push({ kw: kw, found: true, example: example });
+              } else {
+                result.forbiddenChecks.push({ kw: kw, found: false, example: '' });
+              }
+            });
+          }
+
+          // 5. Required check (any-of): at least 1 result must match at least 1 required keyword
+          var requiredMet = false;
+          if (tc.required && tc.required.length) {
+            tc.required.forEach(function (kw) {
+              var kwn = norm(kw);
+              var found = allAlts.some(function (a) { return norm(a.name).includes(kwn); });
+              result.requiredChecks.push({ kw: kw, found: found });
+              if (found) requiredMet = true;
+            });
+            if (!requiredMet) {
+              result.failures.push(
+                'REQUIRED (any-of): ninguno de [' + tc.required.join(', ') + '] encontrado en ' +
+                allAlts.length + ' alternativas'
+              );
+            }
+          } else {
+            requiredMet = true; // no required keywords = pass on this axis
+          }
+
+          result.status = result.failures.length ? 'fail' : 'pass';
+          return result;
+        }
+
+        async function runAllClinicalCases() {
+          clinicalSummary = { pass: 0, fail: 0, skip: 0 };
+          document.getElementById('cprogress').textContent = 'Ejecutando...';
+
+          for (var i = 0; i < CLINICAL_CASES.length; i++) {
+            var tc = CLINICAL_CASES[i];
+            document.getElementById('cprogress').textContent = 'Ejecutando ' + tc.id + '...';
+            await new Promise(function (r) { setTimeout(r, 0); });
+
+            var result = await runClinicalCase(tc);
+            if (result.status === 'pass') clinicalSummary.pass++;
+            else if (result.status === 'fail') clinicalSummary.fail++;
+            else clinicalSummary.skip++;
+
+            updateClinicalCard(tc, result);
+            updateClinicalSummary();
+          }
+
+          document.getElementById('cprogress').textContent =
+            'Completado — ' + new Date().toLocaleTimeString('es-ES');
+        }
+
+        // Wait for the DB to be loaded (the main init() does the fetch),
+        // then auto-run clinical tests after main tests finish.
+        function waitForDbThenRun() {
+          if (window.foodsDatabase && window.foodsDatabase.length) {
+            buildSection();
+            runAllClinicalCases();
+          } else {
+            setTimeout(waitForDbThenRun, 200);
+          }
+        }
+
+        // Small delay so main test suite runs first and DB is available.
+        setTimeout(waitForDbThenRun, 500);
+
+      })();
+
+      // ============================================
+      // CULINARY ACCEPTANCE CASES — CAC-0..CAC-4
+      // ============================================
+      // These cases verify the bulk-label-foods runtime layer (algorithm.js
+      // hard filters + soft demotions). They depend on foods in database.json
+      // having been labeled by scripts/bulk_label_foods.py.
+      //
+      // Graceful degradation: if the origin food has no ready_to_eat flag
+      // (undefined), filter-dependent cases SKIP rather than fail — this is
+      // correct behavior before the labeling run completes.
+      //
+      // CAC-0: kill-switch smoke (always runnable — no flags needed).
+      // CAC-1: hard filter — raw_ingredient===true must be excluded.
+      // CAC-2: soft demotion — breakfast cereals demoted for comida origin.
+      // CAC-3: soft demotion — exotic seafood stays in list but ranked last.
+      // CAC-4: soft demotion — meal_slot mismatch pushes candidates down.
+
+      var CULINARY_AC_CASES = [
+        {
+          id: 'CAC-1',
+          title: 'Arroz: ingredientes crudos de cocina excluidos (hard filter)',
+          originName: 'Arroz blanco cocido',
+          mustNotInclude: ['harina de trigo', 'centeno crudo', 'centeno grano', 'almidon', 'almidón', 'maicena', 'harina de fuerza', 'harina de centeno'],
+          mustInclude: ['pasta', 'pan', 'patata', 'cuscus', 'cuscús'],
+          severity: 'forbid',
+          note: 'ready_to_eat===true + raw_ingredient===true → hard filter. Requiere que el origen tenga flag ready_to_eat.'
+        },
+        {
+          id: 'CAC-2',
+          title: 'Arroz: cereales endulzados de desayuno no en top-10 T2',
+          originName: 'Arroz blanco cocido',
+          demoted: ['choco krispies', 'frosties', 'smacks', 'cereales con miel', 'muesli azucarado'],
+          topN: 10,
+          severity: 'demote',
+          note: 'meal_slot=desayuno vs comida → demotion 0.6×. Cereales azucarados no deben aparecer en top-10 de intercambios.'
+        },
+        {
+          id: 'CAC-3',
+          title: 'Pollo: mariscos exóticos en lista pero en último 30%',
+          originName: 'Pechuga de pollo a la plancha',
+          demoted: ['cangrejo', 'langosta', 'centollo'],
+          topN: null,
+          severity: 'demote',
+          note: 'exotic===true → 0.7×, frequency===raro → 0.5× (acumulado 0.35×). Permitidos en lista pero al fondo.'
+        },
+        {
+          id: 'CAC-4',
+          title: 'Tortilla francesa (cena): candidatos de desayuno demotados',
+          originName: 'Tortilla francesa',
+          demoted: ['choco krispies', 'frosties', 'cereales'],
+          topN: 5,
+          severity: 'demote',
+          note: 'meal_slot mismatch cena vs desayuno → demotion 0.6×. No en top-5.'
+        },
+      ];
+
+      // ============================================
+      // CULINARY SECTION RENDER + RUNNER
+      // ============================================
+      (function () {
+
+        var cacSectionEl = null;
+        var cacCardEls = {};
+        var cacSummary = { pass: 0, fail: 0, skip: 0 };
+
+        function buildCacSection() {
+          cacSectionEl = document.createElement('div');
+          cacSectionEl.className = 'clinical-section';
+          cacSectionEl.style.marginTop = '40px';
+          cacSectionEl.innerHTML =
+            '<div class="clinical-section-header">' +
+              'Culinary Acceptance Cases (bulk-label-foods)' +
+              '<div class="clinical-sub">CAC-0..CAC-4 — Kill-switch + Hard filters + Soft demotions</div>' +
+            '</div>' +
+            '<div class="clinical-summary-bar" id="cac-summary-bar">' +
+              '<span id="cacpill-pass" class="stat-pill pass">PASS: 0</span>' +
+              '<span id="cacpill-fail" class="stat-pill fail">FAIL: 0</span>' +
+              '<span id="cacpill-skip" class="stat-pill skip">SKIP: 0</span>' +
+              '<span id="cacprogress" style="font-size:12px;color:#888;margin-left:4px;">Pendiente</span>' +
+            '</div>' +
+            '<div class="clinical-cards" id="cac-cards"></div>';
+
+          document.body.appendChild(cacSectionEl);
+
+          // CAC-0 card (kill-switch smoke)
+          var cac0 = document.createElement('div');
+          cac0.className = 'clinical-card';
+          cac0.id = 'ccard-CAC-0';
+          cac0.innerHTML =
+            '<div class="clinical-header">' +
+              '<span class="cbadge cbadge-pending">...</span>' +
+              '<span class="cid">CAC-0</span>' +
+              '<span class="clabel">Kill-switch smoke: BULK_LABEL_FILTERS_ENABLED=false desactiva todos los filtros</span>' +
+              '<span class="test-note" style="font-size:11px;color:#888;font-style:italic;max-width:340px;text-align:right;">' +
+                'Con flag=false: Harina de trigo debe aparecer. Con flag=true: Harina de trigo excluida.' +
+              '</span>' +
+              '<span class="chevron" style="font-size:10px;color:#bbb;margin-left:4px;">&#9654;</span>' +
+            '</div>' +
+            '<div class="clinical-body"></div>';
+          cac0.querySelector('.clinical-header').addEventListener('click', function () {
+            cac0.classList.toggle('copen');
+          });
+          cacCardEls['CAC-0'] = cac0;
+          document.getElementById('cac-cards').appendChild(cac0);
+
+          // CAC-1..CAC-4 cards
+          CULINARY_AC_CASES.forEach(function (tc) {
+            var card = document.createElement('div');
+            card.className = 'clinical-card';
+            card.id = 'ccard-' + tc.id;
+            card.innerHTML =
+              '<div class="clinical-header">' +
+                '<span class="cbadge cbadge-pending">...</span>' +
+                '<span class="cid">' + escHtml(tc.id) + '</span>' +
+                '<span class="clabel">' + escHtml(tc.title) + '</span>' +
+                '<span class="test-note" style="font-size:11px;color:#888;font-style:italic;max-width:340px;text-align:right;">' +
+                  escHtml(tc.note) + '</span>' +
+                '<span class="chevron" style="font-size:10px;color:#bbb;margin-left:4px;">&#9654;</span>' +
+              '</div>' +
+              '<div class="clinical-body"></div>';
+            card.querySelector('.clinical-header').addEventListener('click', function () {
+              card.classList.toggle('copen');
+            });
+            cacCardEls[tc.id] = card;
+            document.getElementById('cac-cards').appendChild(card);
+          });
+        }
+
+        function updateCacCard(id, result) {
+          var card = cacCardEls[id];
+          if (!card) return;
+          card.classList.remove('cpass', 'cfail', 'cskip');
+          card.classList.add(result.status === 'pass' ? 'cpass' : result.status === 'fail' ? 'cfail' : 'cskip');
+          var badge = card.querySelector('.cbadge');
+          badge.className = 'cbadge';
+          if (result.status === 'pass') {
+            badge.classList.add('cbadge-pass'); badge.textContent = 'PASS';
+          } else if (result.status === 'fail') {
+            badge.classList.add('cbadge-fail'); badge.textContent = 'FAIL';
+          } else {
+            badge.classList.add('cbadge-skip'); badge.textContent = 'SKIP';
+          }
+          var body = card.querySelector('.clinical-body');
+          body.innerHTML = result.html || '';
+          if (result.status === 'fail') card.classList.add('copen');
+        }
+
+        function updateCacSummary() {
+          var s = cacSummary;
+          document.getElementById('cacpill-pass').textContent = 'PASS: ' + s.pass;
+          document.getElementById('cacpill-fail').textContent = 'FAIL: ' + s.fail;
+          document.getElementById('cacpill-skip').textContent = 'SKIP: ' + s.skip;
+        }
+
+        // ── CAC-0: kill-switch smoke ───────────────────────────────────────
+        async function runCAC0() {
+          var result = { status: 'fail', html: '' };
+          var originQuery = 'Arroz blanco cocido';
+          var matches = searchFoodsSync(originQuery);
+          if (!matches || !matches.length) {
+            result.status = 'skip';
+            result.html = '<div class="cskip-box">Alimento no encontrado: "' + escHtml(originQuery) + '"</div>';
+            return result;
+          }
+          var originFood = matches[0];
+
+          // Check the origin has the ready_to_eat flag — otherwise the hard
+          // filter can't be verified and we skip rather than false-fail.
+          if (typeof originFood.ready_to_eat === 'undefined') {
+            result.status = 'skip';
+            result.html = '<div class="cskip-box">Origen sin flag ready_to_eat — DB no etiquetada todavía. Ejecutar scripts/bulk_label_foods.py primero.</div>';
+            return result;
+          }
+
+          var harinaNorm = 'harina de trigo';
+          var lines = [];
+          var passed = true;
+
+          // Step 1: filters DISABLED — Harina should appear (no hard filter)
+          window.BULK_LABEL_FILTERS_ENABLED = false;
+          var altsOff;
+          try {
+            altsOff = await calculateAlternatives(originFood, 100);
+          } finally {
+            window.BULK_LABEL_FILTERS_ENABLED = true; // always restore
+          }
+          var allOff = [].concat(altsOff.intercambios || [], altsOff.familia || [], altsOff.preparados || []);
+          var harinaPresentOff = allOff.some(function (a) { return norm(a.name).includes(harinaNorm); });
+
+          // Step 2: filters ENABLED — Harina should be absent (hard filtered)
+          var altsOn = await calculateAlternatives(originFood, 100);
+          var allOn = [].concat(altsOn.intercambios || [], altsOn.familia || [], altsOn.preparados || []);
+          var harinaPresentOn = allOn.some(function (a) { return norm(a.name).includes(harinaNorm); });
+
+          // Evaluate
+          var step1ok = harinaPresentOff; // filter OFF → harina should appear
+          var step2ok = !harinaPresentOn; // filter ON  → harina should be absent
+
+          if (!step1ok) {
+            lines.push('<span class="cchip cchip-fail">FAIL: flag=false — "harina de trigo" no encontrada (esperada en lista sin filtros)</span>');
+            passed = false;
+          } else {
+            lines.push('<span class="cchip cchip-ok">OK: flag=false — "harina de trigo" presente en lista (correcto)</span>');
+          }
+
+          if (!step2ok) {
+            lines.push('<span class="cchip cchip-fail">FAIL: flag=true — "harina de trigo" sigue en lista (debería ser filtrada)</span>');
+            passed = false;
+          } else {
+            lines.push('<span class="cchip cchip-ok">OK: flag=true — "harina de trigo" excluida por hard filter</span>');
+          }
+
+          result.status = passed ? 'pass' : 'fail';
+          result.html = '<div class="ccheck">' + lines.join('') + '</div>' +
+            '<div style="font-size:11px;color:#888;margin-top:6px;">' +
+              'Origen: <strong>' + escHtml(originFood.name) + '</strong> | ' +
+              'ready_to_eat: ' + escHtml(String(originFood.ready_to_eat)) + ' | ' +
+              'resultados con flag=false: ' + allOff.length + ' | con flag=true: ' + allOn.length +
+            '</div>';
+          return result;
+        }
+
+        // ── CAC-1..CAC-4 runner ───────────────────────────────────────────
+        async function runCACCase(tc) {
+          var result = { status: 'fail', html: '' };
+
+          // Find origin food
+          var matches = searchFoodsSync(tc.originName);
+          if (!matches || !matches.length) {
+            result.status = 'skip';
+            result.html = '<div class="cskip-box">Alimento no encontrado: "' + escHtml(tc.originName) + '"</div>';
+            return result;
+          }
+          var originFood = matches[0];
+
+          // Graceful degradation check for flag-dependent cases
+          if (tc.severity === 'forbid' && typeof originFood.ready_to_eat === 'undefined') {
+            result.status = 'skip';
+            result.html = '<div class="cskip-box">DB sin etiquetar — ' + escHtml(tc.id) + ' requiere ready_to_eat en el origen. Ejecutar bulk_label_foods.py primero.</div>';
+            return result;
+          }
+
+          var alts;
+          try {
+            alts = await calculateAlternatives(originFood, 100);
+          } catch (e) {
+            result.status = 'fail';
+            result.html = '<div class="cfail-box">Error en calculateAlternatives: ' + escHtml(e.message) + '</div>';
+            return result;
+          }
+
+          var intercambios = alts.intercambios || [];
+          var allAlts = [].concat(intercambios, alts.familia || [], alts.preparados || []);
+          var failures = [];
+          var lines = [];
+
+          if (tc.severity === 'forbid') {
+            // mustNotInclude: none of these may appear anywhere
+            (tc.mustNotInclude || []).forEach(function (kw) {
+              var kwn = norm(kw);
+              var found = allAlts.filter(function (a) { return norm(a.name).includes(kwn); });
+              if (found.length) {
+                failures.push('FORBIDDEN "' + kw + '" encontrado: ' + found[0].name);
+                lines.push('<span class="cchip cchip-fail">! ' + escHtml(kw) + ': ' + escHtml(found[0].name) + '</span>');
+              } else {
+                lines.push('<span class="cchip cchip-ok">+ excluido: ' + escHtml(kw) + '</span>');
+              }
+            });
+
+            // mustInclude: at least one of these must appear
+            var anyRequired = false;
+            var reqLines = [];
+            (tc.mustInclude || []).forEach(function (kw) {
+              var kwn = norm(kw);
+              var found = allAlts.some(function (a) { return norm(a.name).includes(kwn); });
+              if (found) anyRequired = true;
+              reqLines.push('<span class="cchip ' + (found ? 'cchip-ok' : 'cchip-warn') + '">' + (found ? '+ ' : '? ') + escHtml(kw) + '</span>');
+            });
+            if ((tc.mustInclude || []).length && !anyRequired) {
+              failures.push('REQUIRED (any-of): ninguno de [' + tc.mustInclude.join(', ') + '] encontrado');
+            }
+            lines = lines.concat(reqLines);
+
+          } else if (tc.severity === 'demote') {
+            // demoted: these items must NOT appear in the topN positions
+            // If topN is null, they must appear only in the last 30% of intercambios
+            var checkList = intercambios.length ? intercambios : allAlts;
+            var topCut = tc.topN !== null ? tc.topN : Math.floor(checkList.length * 0.7);
+
+            (tc.demoted || []).forEach(function (kw) {
+              var kwn = norm(kw);
+              var idx = -1;
+              for (var i = 0; i < checkList.length; i++) {
+                if (norm(checkList[i].name).includes(kwn)) { idx = i; break; }
+              }
+              if (idx === -1) {
+                // Not found at all → effectively demoted / not in DB → PASS
+                lines.push('<span class="cchip cchip-ok">? no encontrado: ' + escHtml(kw) + ' (ok — ausente o sin etiqueta)</span>');
+              } else if (idx < topCut) {
+                failures.push('DEMOTED item "' + kw + '" aparece en posición ' + (idx + 1) + ' (topCut=' + topCut + ')');
+                lines.push('<span class="cchip cchip-fail">! pos ' + (idx + 1) + ': ' + escHtml(kw) + '</span>');
+              } else {
+                lines.push('<span class="cchip cchip-ok">+ demotado: ' + escHtml(kw) + ' (pos ' + (idx + 1) + '/' + checkList.length + ')</span>');
+              }
+            });
+
+            // If no flags on DB, skip with warning rather than false-fail
+            var anyFlagFound = allAlts.some(function (a) {
+              return typeof a.meal_slot !== 'undefined' || typeof a.exotic !== 'undefined';
+            });
+            if (!anyFlagFound && tc.severity === 'demote') {
+              result.status = 'skip';
+              result.html = '<div class="cskip-box">DB sin etiquetas bulk-label — demotions no activas todavía.</div>';
+              return result;
+            }
+          }
+
+          result.status = failures.length ? 'fail' : 'pass';
+          var html = '<div class="ccheck">' + lines.join('') + '</div>';
+          if (failures.length) {
+            html += '<div class="cfail-box"><strong>Fallos:</strong><ul>' +
+              failures.map(function (f) { return '<li>' + escHtml(f) + '</li>'; }).join('') +
+              '</ul></div>';
+          }
+          html += '<div style="font-size:11px;color:#888;margin-top:6px;">' +
+            'Origen: <strong>' + escHtml(originFood.name) + '</strong> | ' +
+            'ready_to_eat: ' + escHtml(String(originFood.ready_to_eat)) + ' | ' +
+            'meal_slot: ' + escHtml(String(originFood.meal_slot)) + ' | ' +
+            'intercambios: ' + intercambios.length + ' total: ' + allAlts.length +
+          '</div>';
+          result.html = html;
+          return result;
+        }
+
+        // ── Main runner ───────────────────────────────────────────────────
+        async function runAllCACCases() {
+          cacSummary = { pass: 0, fail: 0, skip: 0 };
+          document.getElementById('cacprogress').textContent = 'Ejecutando...';
+
+          // CAC-0: kill-switch smoke
+          document.getElementById('cacprogress').textContent = 'Ejecutando CAC-0...';
+          await new Promise(function (r) { setTimeout(r, 0); });
+          var r0 = await runCAC0();
+          if (r0.status === 'pass') cacSummary.pass++;
+          else if (r0.status === 'fail') cacSummary.fail++;
+          else cacSummary.skip++;
+          updateCacCard('CAC-0', r0);
+          updateCacSummary();
+
+          // CAC-1..CAC-4
+          for (var i = 0; i < CULINARY_AC_CASES.length; i++) {
+            var tc = CULINARY_AC_CASES[i];
+            document.getElementById('cacprogress').textContent = 'Ejecutando ' + tc.id + '...';
+            await new Promise(function (r) { setTimeout(r, 0); });
+            var res = await runCACCase(tc);
+            if (res.status === 'pass') cacSummary.pass++;
+            else if (res.status === 'fail') cacSummary.fail++;
+            else cacSummary.skip++;
+            updateCacCard(tc.id, res);
+            updateCacSummary();
+          }
+
+          document.getElementById('cacprogress').textContent =
+            'Completado — ' + new Date().toLocaleTimeString('es-ES');
+        }
+
+        function waitForDbThenRunCAC() {
+          if (window.foodsDatabase && window.foodsDatabase.length) {
+            buildCacSection();
+            runAllCACCases();
+          } else {
+            setTimeout(waitForDbThenRunCAC, 200);
+          }
+        }
+
+        // Run after the clinical section (which has a 500ms head start).
+        setTimeout(waitForDbThenRunCAC, 1500);
+
+      })();
     </script>
   </body>
 </html>

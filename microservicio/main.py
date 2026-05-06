@@ -8,7 +8,17 @@ import os
 import hashlib
 import logging
 from pathlib import Path
+
+# Load microservicio/.env BEFORE any module that reads env vars at import time
+# (judge.py reads LLM_API_KEY at module load — without this, AsyncOpenAI is
+# constructed with empty key and fails with "Missing credentials").
+from dotenv import load_dotenv
+load_dotenv(Path(__file__).parent / ".env")
+
 from sentence_transformers import SentenceTransformer
+
+from judge import router as judge_router, init_cache
+from judge_cache import compute_db_version
 
 logger = logging.getLogger(__name__)
 
@@ -48,6 +58,13 @@ async def lifespan(app: FastAPI):
                 "embeddings may be stale: db hash mismatch. Re-run scripts/embed_foods.py"
             )
 
+    # Initialize judge cache with a db_version fingerprint (MD5 of database.json).
+    # Restarting the microservice after a database.json update invalidates all
+    # cached verdicts automatically — different prefix → cache miss on all keys.
+    db_version = compute_db_version(db_path)
+    state["db_version"] = db_version
+    init_cache(db_version)
+
     logger.info(
         "Model loaded. n_foods=%d, matrix shape=%s",
         len(state["index"]),
@@ -85,6 +102,9 @@ app.add_middleware(
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
+
+# Register LLM judge router (POST /judge, GET /judge/stats)
+app.include_router(judge_router)
 
 
 # ---------------------------------------------------------------------------

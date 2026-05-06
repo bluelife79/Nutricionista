@@ -37,6 +37,15 @@ const API_URL = (() => {
 const RERANK_TIMEOUT_MS = 500;
 const MAX_CANDIDATES = 50;
 
+// ── LLM Judge constants ───────────────────────────────────────────────────────
+// JUDGE_TIMEOUT_MS must exceed server-side LLM_TIMEOUT_MS so the server gets
+// to respond + cache before we abort. Server default 15000 → frontend 16000.
+// JUDGE_TOP_N must be ≤ server-side LLM_MAX_CANDIDATES (default 30) — fewer
+// candidates = lower input tokens = lower latency.
+const JUDGE_TIMEOUT_MS    = 16000;
+const JUDGE_TOP_N         = 30;
+const JUDGE_DEMOTE_FACTOR = 0.05;  // removed_ids → ×0.05 on _sortScore (soft demote, never delete)
+
 function norm(str) {
   return (str || "")
     .toLowerCase()
@@ -299,6 +308,136 @@ async function rerankCandidates(query, taggedCandidates) {
 }
 
 // ============================================
+// LLM JUDGE — selective fallback (6 triggers in JS, microservice is dumb)
+// ============================================
+//
+// Trigger evaluation, fetch wrapper, and verdict application.
+// The judge runs on top-50 T2 candidates AFTER /rerank and BEFORE byTier().
+// On any error (timeout, 5xx, network, parse) the judge is a no-op.
+// Kill-switch: window.LLM_JUDGE_ENABLED = false → skips everything.
+//
+// Debug logging is gated on ?debug=1. ZERO lines appear in production.
+
+// Returns array of trigger codes that fired (e.g. ["S2","S4"]). Empty → skip.
+// Pure function — no side effects, no logging (caller handles debug output).
+function evaluateJudgeTriggers(originalFood, topCandidates) {
+  const fired = new Set();
+  const s1Max  = Number(window.LLM_JUDGE_TRIGGER_S1_CONFIDENCE_MAX) || 70;
+  const s5Rat  = Number(window.LLM_JUDGE_TRIGGER_S5_CALORIE_RATIO)  || 1.0;
+  const s6Rat  = Number(window.LLM_JUDGE_TRIGGER_S6_SCORE_RATIO)    || 0.3;
+
+  for (const c of topCandidates) {
+    // S1: bulk-label confidence below threshold
+    if (c.label_confidence != null && c.label_confidence < s1Max) fired.add('S1');
+    // S2: raw_ingredient asymmetry (origin not raw, candidate raw)
+    if (c.raw_ingredient === true && originalFood.raw_ingredient !== true) fired.add('S2');
+    // S3: candidate has no bulk-label flags (food added post-bulk-label run)
+    if (c.ready_to_eat === undefined) fired.add('S3');
+    // S4: subgroup missing on either side
+    if (c.subgroup == null || originalFood.subgroup == null) fired.add('S4');
+    // S5: macro outlier (>N× calorie distance relative to origin)
+    if (originalFood.calories > 0 && c.calories != null) {
+      const delta = Math.abs(c.calories - originalFood.calories) / originalFood.calories;
+      if (delta > s5Rat) fired.add('S5');
+    }
+    // S6: aggressive combined demotion (final score < ratio of base)
+    if (c._sortScoreBase > 0 && (c._sortScore / c._sortScoreBase) < s6Rat) fired.add('S6');
+  }
+  return [...fired];
+}
+
+// Strip a food object down to only the fields the judge endpoint needs.
+// Avoids shipping _sortScore, equivalentAmount, macros, diffs, etc.
+function pickJudgeFields(f) {
+  return {
+    id:               f.id,
+    name:             f.name,
+    category:         f.category         ?? null,
+    subgroup:         f.subgroup          ?? null,
+    ready_to_eat:     f.ready_to_eat      ?? null,
+    raw_ingredient:   f.raw_ingredient    ?? null,
+    meal_slot:        f.meal_slot         ?? null,
+    frequency:        f.frequency         ?? null,
+    exotic:           f.exotic            ?? null,
+    label_confidence: f.label_confidence  ?? null,
+    calories:         f.calories          ?? null,
+  };
+}
+
+// Single fetch to POST /judge with AbortController.
+// Returns verdict object ({ranked_ids, removed_ids, ...}) on success, null on any failure.
+// NEVER throws — all errors are caught and return null (graceful no-op).
+async function callJudge(originalFood, topCandidates, triggered) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), JUDGE_TIMEOUT_MS);
+  const _isDebug = window.location.search.includes('?debug=1');
+  try {
+    const payload = {
+      origin:         pickJudgeFields(originalFood),
+      candidates:     topCandidates.map(pickJudgeFields),
+      debug_triggers: triggered,
+    };
+    if (_isDebug) {
+      console.debug('[llm-judge] CALL origin=\'' + originalFood.name + '\' candidates=' + topCandidates.length + ' triggers=[' + triggered.join(',') + ']');
+    }
+    const resp = await fetch(`${API_URL}/judge`, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload),
+      signal:  controller.signal,
+    });
+    if (!resp.ok) {
+      if (_isDebug) console.debug('[llm-judge] ERROR HTTP ' + resp.status + ' — fallback=original-order');
+      return null;
+    }
+    const verdict = await resp.json();
+
+    // localStorage counter (REQ-H frontend self-monitoring)
+    // Increments on every actual network call (not on skip, not on cache hits
+    // that never reach this code path). Key format: llm_judge_calls_<YYYY-MM-DD>.
+    try {
+      const _today = new Date().toISOString().slice(0, 10);
+      const _key   = 'llm_judge_calls_' + _today;
+      const _prev  = parseInt(localStorage.getItem(_key) || '0', 10);
+      localStorage.setItem(_key, String(_prev + 1));
+    } catch (_e) { /* localStorage may be disabled — ignore silently */ }
+
+    // Debug: log cache hit/miss from verdict
+    if (_isDebug) {
+      const _cache = verdict.cache || 'unknown';
+      const _lat   = verdict.latency_ms != null ? verdict.latency_ms : '?';
+      if (_cache === 'hit') {
+        console.debug('[llm-judge] HIT latency_ms=' + _lat);
+      } else {
+        console.debug('[llm-judge] MISS latency_ms=' + _lat);
+      }
+    }
+    return verdict;
+  } catch (_err) {
+    if (_isDebug) console.debug('[llm-judge] ERROR ' + _err.name + ' — fallback=original-order');
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+// Mutates withHybrid array in-place: applies ranked_ids order and demotes removed_ids.
+// ranked_ids → set _judgeRank field (used as primary sort key in byTier).
+// removed_ids → _sortScore ×= JUDGE_DEMOTE_FACTOR (soft demote, never delete).
+// Items not mentioned in ranked_ids get _judgeRank = 9999 (sort to tail).
+function applyJudgeVerdict(withHybrid, verdict) {
+  const removed = new Set(verdict.removed_ids || []);
+  const order   = new Map((verdict.ranked_ids || []).map((id, i) => [id, i]));
+
+  for (const item of withHybrid) {
+    if (removed.has(item.id)) {
+      item._sortScore *= JUDGE_DEMOTE_FACTOR;
+    }
+    item._judgeRank = order.has(item.id) ? order.get(item.id) : 9999;
+  }
+}
+
+// ============================================
 // SOURCE AFFINITY — preferir misma fuente en intercambios
 // ============================================
 //
@@ -329,7 +468,6 @@ const BRANDED_SOURCES = new Set([
   "openfoodfacts",
   "mercadona", "carrefour", "lidl", "dia", "eroski",
   "alcampo", "aldi", "consum", "hipercor", "hacendado",
-  "fatsecret",
   // Otros, otros marca → caen acá por default
 ]);
 
@@ -402,6 +540,28 @@ function isCompatibleCategory(candidate, original) {
 // ALTERNATIVES CALCULATION (with tier system)
 // ============================================
 async function calculateAlternatives(originalFood, amount) {
+  // T4.6: Run the consistency check once per page load (lazy, idempotent).
+  // This fires assertSubgroupConsistency the first time calculateAlternatives
+  // is called so DB drift warnings appear in the console without blocking startup.
+  if (typeof window.initExchangeGroupsOnce === "function") {
+    window.initExchangeGroupsOnce(window.foodsDatabase);
+  }
+
+  // Bulk-label runtime config (read at call time so DevTools overrides apply
+  // without page reload). Defaults match production.
+  const _bulkLabelEnabled =
+    window.BULK_LABEL_FILTERS_ENABLED !== false;          // default true
+  const _demoteMealSlot =
+    Number(window.BULK_LABEL_DEMOTION_MEAL_SLOT) || 0.6;
+  const _demoteExotic =
+    Number(window.BULK_LABEL_DEMOTION_EXOTIC)    || 0.7;
+  const _demoteRare =
+    Number(window.BULK_LABEL_DEMOTION_RARE)      || 0.5;
+  // POST-PILOT: ready_to_eat mismatch downgraded from hard filter to soft
+  // demotion. Pescado crudo es nutricionalmente equivalente a cocinado.
+  const _demoteUncooked =
+    Number(window.BULK_LABEL_DEMOTION_UNCOOKED)  || 0.85;
+
   const originalMacros = {
     protein: (originalFood.protein * amount) / 100,
     carbs: (originalFood.carbs * amount) / 100,
@@ -409,13 +569,78 @@ async function calculateAlternatives(originalFood, amount) {
     calories: (originalFood.calories * amount) / 100,
   };
 
+  // T4.5: AND-compose isCompatibleSubgroup with the existing candidate filter.
+  //
+  // Subgroup gate rules:
+  //   1. Only runs when both foods are in the SAME category. Cross-category
+  //      exceptions (e.g. Skyr <-> Yopro via postres_proteicos <-> dairy) are
+  //      handled exclusively by isCompatibleCategory above — their subgroup
+  //      taxonomies don't share an axis and double-filtering would cause regressions.
+  //   2. Kill-switch: window.DISABLE_SUBGROUP_FILTER = true bypasses the filter
+  //      completely (checked per-call inside isCompatibleSubgroup — NOT at init time).
+  //   3. typeof guard: if exchange_groups.js fails to load, the app degrades
+  //      gracefully to category-only filtering (no ReferenceError).
+  const _subgroupFilterAvailable = typeof window.isCompatibleSubgroup === "function";
+
   const candidates = foodsDatabase.filter(
-    (f) =>
-      f.id !== originalFood.id &&
-      isCompatibleCategory(f, originalFood) &&
-      !(f.flags || []).includes("condiment") &&
-      !(f.flags || []).includes("sweet") &&
-      !(f.flags || []).includes("hidden"),
+    (f) => {
+      if (f.id === originalFood.id) return false;
+      if (!isCompatibleCategory(f, originalFood)) return false;
+      if ((f.flags || []).includes("condiment")) return false;
+      if ((f.flags || []).includes("sweet")) return false;
+      if ((f.flags || []).includes("hidden")) return false;
+
+      // Subgroup filter: only on same-category pairs.
+      // Cross-category path (e.g. postres_proteicos <-> dairy/high_protein_dairy)
+      // has already been approved by isCompatibleCategory — skip subgroup here.
+      if (
+        _subgroupFilterAvailable &&
+        f.category === originalFood.category &&
+        !window.isCompatibleSubgroup(f, originalFood)
+      ) {
+        return false;
+      }
+
+      // ── BULK-LABEL HARD FILTERS ─────────────────────────────────────────
+      // Active only when both foods have been labeled (ready_to_eat is bool).
+      // Foods without flags are no-ops: backward-compatible with un-labeled DB.
+      // Kill-switch: window.BULK_LABEL_FILTERS_ENABLED === false bypasses both
+      // hard filters and soft demotions (read once at function entry, §7.3).
+      //
+      // POST-PILOT REVISION (per design §13 D14 + decision #367 follow-up):
+      // The original spec REQ-G defined a SECOND hard filter
+      //   `original.ready_to_eat===true && candidate.ready_to_eat===false → exclude`
+      // intended to block "Arroz cocido → Centeno crudo". In practice, this
+      // over-filters legitimate substitutions where the candidate just needs
+      // cooking (Salmón plancha → Merluza fresca is clinically valid). The
+      // filter was downgraded to a SOFT demotion (see _demoteUncooked below).
+      // Only `raw_ingredient===true` remains as a hard filter — that one is
+      // unambiguous (harina/almidón/levadura are NEVER directly consumable).
+      //
+      // LLM-JUDGE-FALLBACK F0.1 (asymmetric raw_ingredient rule):
+      // Upgraded from `origin.ready_to_eat===true && candidate.raw_ingredient===true`
+      // to the asymmetric condition: candidate.raw_ingredient===true AND origin is
+      // NOT also a raw_ingredient. This is stricter and handles the Papa cruda case:
+      //   Patata cruda (raw_ingredient=false) → Harina de trigo (raw_ingredient=true) BLOCKED
+      //   Harina de trigo (raw_ingredient=true) → Harina de centeno (raw_ingredient=true) ALLOWED
+      // This rule is independent of ready_to_eat on the origin — solving the Papa→Harina
+      // case deterministically, without needing the LLM judge (which would also block it
+      // via trigger S2). This filter is a redundant safety net: even if /judge fails or
+      // is disabled, raw cooking ingredients never surface as exchanges.
+      if (_bulkLabelEnabled) {
+        // Hard filter: raw_ingredient asymmetry.
+        // Blocks candidate only when origin is NOT also a raw ingredient.
+        // Uses strict equality (=== true) to avoid false positives on undefined/null.
+        if (f.raw_ingredient === true && originalFood.raw_ingredient !== true) {
+          if (window.location.search.includes('?debug=1')) {
+            console.debug('[bulk-label] HARD_FILTER candidate=\'' + f.name + '\' (raw_ingredient asymmetric)');
+          }
+          return false;
+        }
+      }
+
+      return true;
+    },
   );
 
   const withEquivalence = candidates
@@ -493,25 +718,129 @@ async function calculateAlternatives(originalFood, amount) {
   const withHybrid = sorted.map(a => {
     const hybrid = 0.65 * (a.matchScore / 100) + 0.35 * (a._semanticScore || 0);
     const affinityBonus = sourceAffinityBonus(a, originalFood);
+
+    // Soft demotions from bulk-label flags. Multiplicative, applied on top of
+    // the additive sourceAffinityBonus. No-op when flags absent (strict equality
+    // means undefined !== true / undefined !== "raro" — graceful degradation).
+    let demotion = 1;
+    if (_bulkLabelEnabled) {
+      // Meal slot mismatch (origin breakfast → candidate dinner) — demote.
+      // "any" on either side is a wildcard that never demotes.
+      if (
+        originalFood.meal_slot && a.meal_slot &&
+        originalFood.meal_slot !== "any" && a.meal_slot !== "any" &&
+        originalFood.meal_slot !== a.meal_slot
+      ) {
+        demotion *= _demoteMealSlot;   // default 0.6
+        if (window.location.search.includes('?debug=1')) {
+          console.debug('[bulk-label] DEMOTED candidate=\'' + a.name + '\' factor=' + _demoteMealSlot + ' reason=meal_slot_mismatch');
+        }
+      }
+      // Candidate exotic but origin is not (Pollo → Cangrejo).
+      if (a.exotic === true && originalFood.exotic !== true) {
+        demotion *= _demoteExotic;     // default 0.7
+        if (window.location.search.includes('?debug=1')) {
+          console.debug('[bulk-label] DEMOTED candidate=\'' + a.name + '\' factor=' + _demoteExotic + ' reason=exotic');
+        }
+      }
+      // Candidate rarely consumed in standard Spanish diet.
+      if (a.frequency === "raro") {
+        demotion *= _demoteRare;       // default 0.5
+        if (window.location.search.includes('?debug=1')) {
+          console.debug('[bulk-label] DEMOTED candidate=\'' + a.name + '\' factor=' + _demoteRare + ' reason=frequency_raro');
+        }
+      }
+      // POST-PILOT: origin ready_to_eat but candidate needs cooking. Light
+      // demotion — does NOT exclude (was a hard filter pre-pilot review).
+      // Eg: Salmón plancha (origin) vs Merluza fresca (candidate, needs cooking).
+      if (originalFood.ready_to_eat === true && a.ready_to_eat === false && a.raw_ingredient !== true) {
+        demotion *= _demoteUncooked;   // default 0.85
+        if (window.location.search.includes('?debug=1')) {
+          console.debug('[bulk-label] DEMOTED candidate=\'' + a.name + '\' factor=' + _demoteUncooked + ' reason=needs_cooking');
+        }
+      }
+    }
+
     return {
       ...a,
       _hybridScore: hybrid,
-      _sortScore: hybrid + affinityBonus,
+      _sortScoreBase: hybrid + affinityBonus,
+      _sortScore: (hybrid + affinityBonus) * demotion,
     };
   });
+
+  // ── LLM JUDGE GATE ───────────────────────────────────────────────────────────
+  // Selective LLM fallback — evaluates 6 triggers (S1-S6) on top-50 T2 candidates
+  // AFTER /rerank and BEFORE byTier. If at least one trigger fires, issues ONE call
+  // to POST /judge. Kill-switch: window.LLM_JUDGE_ENABLED = false → skip entirely.
+  // On any error (timeout, 5xx, abort, parse) → no-op, original order preserved.
+  //
+  // Per REQ-A spec: only T2 candidates are judged (T1 = same ingredient family,
+  // T3 = prepared dishes — both are high-confidence enough to skip LLM cost).
+  {
+    const _llmJudgeEnabled = window.LLM_JUDGE_ENABLED !== false;
+    const _isDebug         = window.location.search.includes('?debug=1');
+
+    if (!_llmJudgeEnabled) {
+      if (_isDebug) console.debug('[llm-judge] SKIP enabled=false');
+    } else {
+      // Top-N T2 candidates sorted by descending _sortScore
+      const _topT2 = withHybrid
+        .filter(a => a.tier === 2)
+        .sort((a, b) => b._sortScore - a._sortScore)
+        .slice(0, JUDGE_TOP_N);
+
+      if (_topT2.length === 0) {
+        if (_isDebug) console.debug('[llm-judge] SKIP no T2 candidates');
+      } else {
+        const _triggered = evaluateJudgeTriggers(originalFood, _topT2);
+
+        if (_triggered.length === 0) {
+          if (_isDebug) console.debug('[llm-judge] SKIP triggers_fired=0 top_t2=' + _topT2.length);
+        } else {
+          if (_isDebug) {
+            for (const _code of _triggered) {
+              console.debug('[llm-judge] TRIGGERED reason=' + _code);
+            }
+          }
+          const _verdict = await callJudge(originalFood, _topT2, _triggered);
+          if (_verdict) {
+            applyJudgeVerdict(withHybrid, _verdict);
+            if (_isDebug) {
+              console.debug(
+                '[llm-judge] APPLIED cache=' + _verdict.cache +
+                ' latency_ms=' + _verdict.latency_ms +
+                ' ranked=' + (_verdict.ranked_ids || []).length +
+                ' removed=' + (_verdict.removed_ids || []).length
+              );
+            }
+          } else {
+            if (_isDebug) console.debug('[llm-judge] ERROR fallback=original-order');
+          }
+        }
+      }
+    }
+  }
+  // ─────────────────────────────────────────────────────────────────────────────
 
   // Group by semantic type using the existing tier field:
   //   T2 (different subgroup, same category) → real exchanges — show first, expanded
   //   T1 (same subgroup)                     → same ingredient family — collapsed
   //   T3 (prepared flag)                     → processed/prepared dishes — collapsed last
   //
-  // Within each group, sort by _sortScore DESC. Esto prioriza candidatos de
-  // la misma fuente del original (BEDCA→BEDCA, Mercadona→Mercadona) cuando
-  // la calidad del match es razonable, y deja cross-family al final.
+  // Within each group, sort by _judgeRank (primary, when judge ran) then by
+  // _sortScore DESC (secondary / fallback for items outside judge top-50 or
+  // when the judge gate was skipped — _judgeRank ?? 9999 guarantees correct
+  // behavior on the SKIP path without any special-casing).
   const byTier = (t) =>
     withHybrid
       .filter(a => a.tier === t)
-      .sort((a, b) => b._sortScore - a._sortScore);
+      .sort((a, b) => {
+        const ra = a._judgeRank ?? 9999;
+        const rb = b._judgeRank ?? 9999;
+        if (ra !== rb) return ra - rb;
+        return b._sortScore - a._sortScore;
+      });
 
   return {
     intercambios: byTier(2),
@@ -582,31 +911,8 @@ async function searchFoods(query) {
       return (a.name || "").length - (b.name || "").length;
     });
 
-  // PASO 2: Si tenemos ≥10 resultados locales, mostrar solo esos
-  if (localResults.length >= 10) {
-    lastSearchResults = localResults;
-    lastQuery = query;
-    renderAutocomplete(lastSearchResults, lastQuery, false);
-    return;
-  }
-
-  // PASO 3: Si <10 resultados, buscar en FatSecret API
-  console.log(
-    `⚠️ Solo ${localResults.length} resultados locales. Consultando FatSecret...`,
-  );
-
-  try {
-    const apiResults = await searchFatSecretAPI(query);
-
-    // Combinar resultados: local primero, luego API
-    lastSearchResults = localResults;
-    lastQuery = query;
-    renderAutocomplete(localResults, query, true, apiResults);
-  } catch (error) {
-    console.error("Error buscando en FatSecret:", error);
-    // Si falla API, mostrar solo resultados locales
-    lastSearchResults = localResults;
-    lastQuery = query;
-    renderAutocomplete(localResults, query, false);
-  }
+  // Mostrar resultados locales (única fuente — FatSecret eliminado).
+  lastSearchResults = localResults;
+  lastQuery = query;
+  renderAutocomplete(lastSearchResults, lastQuery);
 }

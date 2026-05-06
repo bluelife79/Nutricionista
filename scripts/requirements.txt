@@ -1,0 +1,10 @@
+# Requirements for standalone scripts in scripts/
+# Install with: pip install -r scripts/requirements.txt
+#
+# Kept separate from microservicio/pyproject.toml (FastAPI server) because
+# bulk_label_foods.py is a one-shot offline tool, not a service dependency.
+# Using the same major versions that microservicio pins for Pydantic.
+
+httpx>=0.28.0
+python-dotenv>=1.0.0
+pydantic>=2.13.0

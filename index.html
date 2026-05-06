@@ -31,6 +31,11 @@
       })();
     </script>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico" sizes="32x32" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" sizes="16x16" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
     <!-- PWA -->
     <link rel="manifest" href="manifest.json" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1377,6 +1382,7 @@
       </div>
     </div>
 
+    <script src="js/exchange_groups.js"></script>
     <script src="js/algorithm.js"></script>
     <script>
       // ============================================
@@ -1540,7 +1546,10 @@
       // ============================================
       // DATABASE & STATE
       // ============================================
-      let foodsDatabase = [];
+      // Exposed on window so js/algorithm.js (loaded before this inline block)
+      // can read it via window.foodsDatabase. `let` would NOT expose it.
+      window.foodsDatabase = window.foodsDatabase || [];
+      var foodsDatabase = window.foodsDatabase;
       let selectedFood = null;
       let searchTimeout = null;
 
@@ -1592,7 +1601,10 @@
           // automático ~250KB transferidos para 2MB raw).
           const response = await fetch("database.json");
           const data = await response.json();
-          foodsDatabase = data.foods || [];
+          // database.json is a flat array; `data.foods` fallback kept for
+          // legacy {foods:[...]} structure, final `[]` for safety.
+          window.foodsDatabase = Array.isArray(data) ? data : (data.foods || []);
+          foodsDatabase = window.foodsDatabase;
           console.log(
             "✅ Base de datos cargada:",
             foodsDatabase.length,
@@ -1634,39 +1646,10 @@
 
       // searchFoods → moved to js/algorithm.js
 
-      // ============================================
-      // BUSCAR EN FATSECRET API
-      // ============================================
-      async function searchFatSecretAPI(query) {
-        try {
-          const response = await fetch(
-            `/api/fatsecret?query=${encodeURIComponent(query)}`,
-          );
+      // FatSecret integration removed — single source of truth is database.json.
 
-          if (!response.ok) {
-            throw new Error("API request failed");
-          }
-
-          const data = await response.json();
-
-          if (!data.success || !data.foods) {
-            return [];
-          }
-
-          return data.foods;
-        } catch (error) {
-          console.error("FatSecret API Error:", error);
-          return [];
-        }
-      }
-
-      function renderAutocomplete(
-        results,
-        query,
-        hasAPIResults = false,
-        apiResults = [],
-      ) {
-        if (results.length === 0 && apiResults.length === 0) {
+      function renderAutocomplete(results, query) {
+        if (results.length === 0) {
           dropdown.innerHTML =
             '<div class="empty-state"><div class="empty-state-text">No se encontraron alimentos</div></div>';
           dropdown.classList.add("active");
@@ -1696,29 +1679,6 @@
                </div>`;
         }
 
-        // Divider + resultados API si los hay
-        if (hasAPIResults && apiResults.length > 0) {
-          html += `
-        <div class="api-divider">
-          <span>Resultados complementarios (verificados)</span>
-        </div>
-      `;
-
-          html += apiResults
-            .slice(0, 10)
-            .map(
-              (food) => `
-        <div class="autocomplete-item api-result" data-food-json='${JSON.stringify(food)}' data-is-api="true">
-          <div class="result-badge complementary">COMPLEMENTARIO</div>
-          <div class="item-name">${highlightMatch(food.name || "", query)}</div>
-          <div class="item-brand">${food.brand || "Genérico"} · FatSecret</div>
-          <div class="item-macros">P: ${food.protein || 0}g · C: ${food.carbs || 0}g · G: ${food.fat || 0}g</div>
-        </div>
-      `,
-            )
-            .join("");
-        }
-
         dropdown.innerHTML = html;
         dropdown.classList.add("active");
 
@@ -1732,25 +1692,14 @@
                 lastSearchResults.length,
               );
               dropdown.classList.add("active");
-              renderAutocomplete(
-                lastSearchResults,
-                lastQuery,
-                hasAPIResults,
-                apiResults,
-              );
+              renderAutocomplete(lastSearchResults, lastQuery);
               return;
             }
 
-            // Si es una comida local:
+            // Selección de comida local (única fuente).
             if (item.dataset.isLocal === "true") {
               const foodId = item.dataset.foodId;
               selectFood(foodId);
-            }
-
-            // Si es una comida de API:
-            if (item.dataset.isApi === "true") {
-              const foodData = JSON.parse(item.dataset.foodJson);
-              selectAPIFood(foodData);
             }
           });
         });
@@ -1788,36 +1737,7 @@
         checkFormComplete();
       }
 
-      function selectAPIFood(foodData) {
-        // Crear objeto compatible con la estructura local
-        selectedFood = {
-          id: foodData.id,
-          name: foodData.name,
-          brand: foodData.brand || "Genérico",
-          source: "FatSecret",
-          protein: foodData.protein || 0,
-          carbs: foodData.carbs || 0,
-          fat: foodData.fat || 0,
-          calories: foodData.calories || 0,
-          category: foodData.category || "other",
-          is_api_result: true,
-        };
-
-        document.getElementById("selectedName").textContent = selectedFood.name;
-        document.getElementById("selectedBrand").textContent =
-          selectedFood.brand + " · FatSecret";
-
-        selectedFoodDiv.classList.add("active");
-        dropdown.classList.remove("active");
-        searchInput.value = "";
-
-        amountSection.style.opacity = "1";
-        amountSection.style.pointerEvents = "auto";
-        amountInput.disabled = false;
-        amountInput.focus();
-
-        checkFormComplete();
-      }
+      // selectAPIFood removed — only local foods supported.
 
       clearBtn.addEventListener("click", () => {
         selectedFood = null;
