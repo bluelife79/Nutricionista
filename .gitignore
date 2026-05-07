@@ -29,3 +29,19 @@ scripts/__pycache__/
 # Compressed database snapshots (generated locally, not source of truth)
 database.json.zip
 database.json.gz
+
+# Local DB backups created by fix/audit scripts (regenerable, ~3MB each)
+database.json.bak.*
+
+# Audit and review CSVs (regenerable artifacts, not source of truth)
+scripts/audit_macros_report.csv
+scripts/audit_macros_summary.csv
+scripts/audit_condiments_report.csv
+scripts/bulk_label_report.csv
+scripts/bulk_label_report.pilot.csv
+scripts/bulk_label_failures.csv
+scripts/review_carbs.csv
+scripts/review_dairy.csv
+scripts/review_fat.csv
+scripts/review_protein.csv
+scripts/review_pending.csv
