@@ -63,8 +63,9 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_origin_regex=origin_regex,
-    allow_methods=["GET", "POST"],
+    allow_methods=["*"],   # was ["GET","POST"] — preflight OPTIONS was 400ing
     allow_headers=["*"],
+    allow_credentials=False,
 )
 
 app.include_router(judge_router)
