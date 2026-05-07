@@ -24,7 +24,10 @@
       window.RERANK_API_URL =
         location.hostname === "localhost" || location.hostname === "127.0.0.1"
           ? "http://localhost:8000"
-          : "/api/microservice";
+          : "/api";
+      // En prod = "/api" → algorithm.js hace fetch("/api/judge") y fetch("/api/rerank")
+      // resueltos por api/judge.js y api/rerank.js (proxies serverless que leen
+      // process.env.RERANK_API_URL en Vercel).
     </script>
 
     <title>RevolucionaT - Intercambiador de Alimentos</title>
