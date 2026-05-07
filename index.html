@@ -13,15 +13,18 @@
     />
 
     <!-- URL del microservicio (rerank semántico + LLM judge).
-         Detecta automáticamente: localhost en dev, Railway en prod.
+         Dev local → llamada directa al uvicorn de localhost.
+         Prod → mismo origen vía proxy serverless /api/microservice/* que
+         lee process.env.RERANK_API_URL en Vercel. La URL real del backend
+         NUNCA se expone en HTML/JS del cliente.
          DEBE ir antes de los <script src="js/..."> para que algorithm.js
          lea window.RERANK_API_URL en su closure de inicialización.
-         Si el servicio falla, la app funciona igual con matchScore puro. -->
+         Si el servicio falla, la app funciona con matchScore puro. -->
     <script>
       window.RERANK_API_URL =
         location.hostname === "localhost" || location.hostname === "127.0.0.1"
           ? "http://localhost:8000"
-          : "https://nutricionista-production.up.railway.app";
+          : "/api/microservice";
     </script>
 
     <title>RevolucionaT - Intercambiador de Alimentos</title>
