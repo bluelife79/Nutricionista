@@ -97,7 +97,7 @@ def main():
     raw_bytes = db_path.read_bytes()
     db_hash = hashlib.sha256(raw_bytes).hexdigest()
     db = json.loads(raw_bytes)
-    foods = db["foods"]
+    foods = db if isinstance(db, list) else db.get("foods", [])
     print(f"Loaded {len(foods)} foods. SHA-256: {db_hash[:12]}...")
 
     # --- Build embedding texts ---
