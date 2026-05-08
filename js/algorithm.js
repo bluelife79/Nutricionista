@@ -334,6 +334,44 @@ function isCookingInput(name) {
   return false;
 }
 
+// ============================================
+// NON-STAPLE GRAINS — granos crudos no-plato en España
+// ============================================
+//
+// Granos que existen en la BD pero NO son intercambio clínico válido para
+// arroz/pasta/quinoa porque, aunque los hiervas, no se consumen como plato
+// principal en España. Casos:
+//   - Cebada cruda → se usa para gachas, sopas, cerveza. No "plato cebada".
+//   - Centeno crudo → se usa para hacer pan. No se come hervido como arroz.
+//   - Trigo entero crudo → bulgur sí se consume, pero "trigo entero" no.
+//   - Espelta entera cruda → similar a trigo entero.
+//   - Alpiste, sorgo, amaranto, teff, kamut, kasha → raros en España.
+//
+// NO matchea: bulgur, cuscús, quinoa, pasta, cereales desayuno, copos
+// (avena, trigo), tortillas de trigo, harinas (otro filtro), pan de
+// centeno, hogaza, cebada perlada (que va en sopas).
+const _NON_STAPLE_GRAIN_PHRASES = [
+  "centeno crudo", "centeno, crudo", "centeno entero",
+  "cebada cruda", "cebada, cruda", "cebada en grano",
+  "trigo entero", "trigo, entero",
+  "espelta entera", "espelta, entera",
+];
+const _NON_STAPLE_GRAIN_TOKENS = new Set([
+  "alpiste", "sorgo", "amaranto", "kasha", "teff", "kamut",
+]);
+
+function isNonStapleGrain(name) {
+  const normalized = norm(name);
+  for (const phrase of _NON_STAPLE_GRAIN_PHRASES) {
+    if (normalized.includes(norm(phrase))) return true;
+  }
+  const tokens = tokenize(name);
+  for (const t of tokens) {
+    if (_NON_STAPLE_GRAIN_TOKENS.has(t)) return true;
+  }
+  return false;
+}
+
 function getFoodTier(candidate, originalFood) {
   // T3: platos preparados (flag-based — fiable)
   if ((candidate.flags || []).includes("prepared")) return 3;
@@ -862,6 +900,11 @@ async function calculateAlternatives(originalFood, amount) {
   // origen NO. Strong demote — clínicamente no son meal-equivalents.
   const _demoteCookingInput =
     Number(window.COOKING_INPUT_DEMOTION) || 0.25;
+  // Non-staple grain demotion: candidato es centeno crudo, cebada cruda,
+  // trigo entero, alpiste, sorgo, etc. y origen NO lo es. Aunque se hiervan
+  // no se consumen como plato en España. Demote casi-eliminatorio.
+  const _demoteNonStapleGrain =
+    Number(window.NON_STAPLE_GRAIN_DEMOTION) || 0.1;
 
   const originalMacros = {
     protein: (originalFood.protein * amount) / 100,
@@ -1125,6 +1168,21 @@ async function calculateAlternatives(originalFood, amount) {
         demotion *= _demoteCookingInput;
         if (window.location.search.includes('?debug=1')) {
           console.debug('[cooking-input] DEMOTED candidate=\'' + a.name + '\' factor=' + _demoteCookingInput + ' reason=harina_o_copos_deshidratados');
+        }
+      }
+    }
+
+    // CLINICAL: non-staple grain. Cebada cruda, centeno crudo, trigo entero,
+    // espelta entera, alpiste, sorgo, amaranto, teff, kamut, kasha. Aunque
+    // se hiervan, no son plato principal en España. Si origen no es
+    // tampoco non-staple → demote casi-eliminatorio.
+    {
+      const _oNonStaple = isNonStapleGrain(originalFood.name);
+      const _cNonStaple = isNonStapleGrain(a.name);
+      if (_cNonStaple && !_oNonStaple) {
+        demotion *= _demoteNonStapleGrain;
+        if (window.location.search.includes('?debug=1')) {
+          console.debug('[non-staple-grain] DEMOTED candidate=\'' + a.name + '\' factor=' + _demoteNonStapleGrain + ' reason=grano_crudo_no_plato_es');
         }
       }
     }
