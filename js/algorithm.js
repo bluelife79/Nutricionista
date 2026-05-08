@@ -1105,7 +1105,26 @@ async function calculateAlternatives(originalFood, amount) {
         primary.push(food);
       }
     }
-    return [...primary, ...secondary];
+    const deduped = [...primary, ...secondary];
+
+    // SOURCE FAMILY HARD PARTITION: dentro de un tier, candidatos de la misma
+    // familia que el origen (BEDCA/genérico ↔ otros genéricos ; Mercadona/
+    // branded ↔ otros branded) van TODOS primero. Solo después aparecen los
+    // de la otra familia. Esto respeta el contrato implícito: si la clienta
+    // selecciona un alimento BEDCA, prefiere ver alternativas BEDCA antes
+    // que productos comerciales (y viceversa). El sourceAffinityBonus aditivo
+    // sigue actuando DENTRO de cada partición para preferir misma fuente exacta.
+    const oFamily = sourceFamily(originalFood.source);
+    const sameFamily = [];
+    const otherFamily = [];
+    for (const food of deduped) {
+      if (sourceFamily(food.source) === oFamily) {
+        sameFamily.push(food);
+      } else {
+        otherFamily.push(food);
+      }
+    }
+    return [...sameFamily, ...otherFamily];
   };
 
   return {
