@@ -112,11 +112,24 @@ function getAnchorMacro(food) {
 // Esto permite que "Pechuga de pollo Mercadona" + "Pollo asado" matcheen
 // como T1 (familia, mismo ingrediente) en vez de quedar mal en T2.
 const NON_INGREDIENT_TOKENS = new Set([
-  // Estados de cocción
-  "crudo", "cruda", "cocido", "cocida", "fresco", "fresca", "frescos", "frescas",
-  "asado", "asada", "asados", "asadas", "plancha", "hervido", "hervida",
-  "frito", "frita", "fritos", "fritas", "horneado", "horneada",
-  "tostado", "tostada",
+  // Estados de cocción y preparación
+  "crudo", "cruda", "crudos", "crudas",
+  "cocido", "cocida", "cocidos", "cocidas",
+  "fresco", "fresca", "frescos", "frescas",
+  "seco", "seca", "secos", "secas",
+  "asado", "asada", "asados", "asadas",
+  "plancha", "vapor",
+  "hervido", "hervida", "hervidos", "hervidas",
+  "frito", "frita", "fritos", "fritas",
+  "horneado", "horneada", "horneados", "horneadas",
+  "tostado", "tostada", "tostados", "tostadas",
+  "guisado", "guisada", "guisados", "guisadas",
+  "salteado", "salteada", "salteados", "salteadas",
+  "braseado", "braseada", "estofado", "estofada",
+  "rehogado", "rehogada", "deshidratado", "deshidratada",
+  // Preservación / envasado (suma — congelado/envasado existen abajo)
+  "bote", "lata", "conserva", "envase",
+  "envasada", "remojo", "germinado", "germinada",
   // Piezas anatómicas (cortes — pollo, pavo, cerdo, ternera comparten muchos)
   "pechuga", "pechugas", "muslo", "muslos", "ala", "alas", "cuello",
   "lomo", "solomillo", "costilla", "costillas", "contramuslo", "jamoncillo",
@@ -148,11 +161,31 @@ const NON_INGREDIENT_TOKENS = new Set([
   // Genéricos BEDCA
   "parte", "especificar", "tipo", "estilo", "sabor",
   "piel", "hueso", "espina", "semilla", "pepita",
+  // Preparaciones que NO son ingrediente — colapsan con la base
+  // (Puré de patatas → patata; Crema de calabaza → calabaza)
+  "pure", "puree",  // 'puré' tras norm() pierde la tilde
+  "crema", "salsa", "sopa", "caldo",
 ]);
 
-// Extrae los tokens-ingrediente: filtra stop words Y descriptores.
+// Singularize naive ES: si la palabra tiene >=4 chars y termina en 's',
+// quita la 's'. Permite que "patata" y "patatas" colapsen como mismo
+// ingrediente. Falsos positivos aceptables (la lista de NON_INGREDIENT
+// ya cubre la mayoría de descriptores plurales explícitamente).
+function _singularize(token) {
+  if (token.length >= 4 && token.endsWith("s") && !token.endsWith("ss")) {
+    return token.slice(0, -1);
+  }
+  return token;
+}
+
+// Extrae los tokens-ingrediente: singulariza primero (para que plurales
+// como "cocidas"/"patatas" se normalicen), luego filtra stop words,
+// descriptores y numerales. El orden importa: singularizar después de
+// filtrar deja pasar plurales no listados en NON_INGREDIENT_TOKENS.
 function ingredientTokens(name) {
-  return tokenize(name).filter((t) => !NON_INGREDIENT_TOKENS.has(t));
+  return tokenize(name)
+    .map(_singularize)
+    .filter((t) => !NON_INGREDIENT_TOKENS.has(t) && !/^\d/.test(t));
 }
 
 // ============================================
@@ -620,6 +653,19 @@ async function calculateAlternatives(originalFood, amount) {
   // cocción — clínicamente erróneo mezclar estados.
   const _demoteCookingMismatch =
     Number(window.COOKING_STATE_DEMOTION) || 0.3;
+  // Calorie-density mismatch: surrogate signal del estado de cocción cuando
+  // el nombre no lo dice (ej. origen "Arroz" sin "crudo" pero kcal=360 → es
+  // crudo de facto, vs "Patata asada" kcal=93 = cocida). Si misma category
+  // pero diff relativa >20%, casi seguro están en estados distintos.
+  const _demoteKcalDensity =
+    Number(window.KCAL_DENSITY_DEMOTION) || 0.4;
+  const _kcalDensityThreshold =
+    Number(window.KCAL_DENSITY_THRESHOLD) || 0.2;
+  // Same-subgroup boost: dentro de la misma category, premiar candidatos
+  // que comparten subgroup con el origen. Arroz (grains) ↔ Quinoa (grains)
+  // gana sobre Arroz ↔ Patata (tubers) aunque ambos sean carbs.
+  const _subgroupBoost =
+    Number(window.SAME_SUBGROUP_BOOST) || 0.10;
 
   const originalMacros = {
     protein: (originalFood.protein * amount) / 100,
@@ -777,6 +823,12 @@ async function calculateAlternatives(originalFood, amount) {
   const withHybrid = sorted.map(a => {
     const hybrid = 0.65 * (a.matchScore / 100) + 0.35 * (a._semanticScore || 0);
     const affinityBonus = sourceAffinityBonus(a, originalFood);
+    // Same-subgroup boost: dentro de la misma category, mismo subgroup gana.
+    // Arroz (grains) ↔ Quinoa (grains) > Arroz ↔ Patata (tubers).
+    const subgroupBonus = (
+      a.subgroup && originalFood.subgroup &&
+      a.subgroup === originalFood.subgroup
+    ) ? _subgroupBoost : 0;
 
     // Soft demotions from bulk-label flags. Multiplicative, applied on top of
     // the additive sourceAffinityBonus. No-op when flags absent (strict equality
@@ -839,11 +891,33 @@ async function calculateAlternatives(originalFood, amount) {
       }
     }
 
+    // CLINICAL: calorie-density mismatch (cooking state surrogate). Cuando
+    // el nombre no marca estado pero las macros por 100g sí lo delatan.
+    // Solo aplica intra-category (no comparar fat con carbs).
+    {
+      const oKcal = originalFood.calories;
+      const cKcal = a.calories;
+      if (
+        oKcal != null && cKcal != null &&
+        originalFood.category && a.category &&
+        originalFood.category === a.category
+      ) {
+        const diff  = Math.abs(oKcal - cKcal);
+        const denom = Math.max(oKcal, cKcal, 100);
+        if (diff / denom > _kcalDensityThreshold) {
+          demotion *= _demoteKcalDensity;
+          if (window.location.search.includes('?debug=1')) {
+            console.debug('[kcal-density] DEMOTED candidate=\'' + a.name + '\' factor=' + _demoteKcalDensity + ' diff_ratio=' + (diff/denom).toFixed(2) + ' (' + oKcal + ' vs ' + cKcal + ')');
+          }
+        }
+      }
+    }
+
     return {
       ...a,
       _hybridScore: hybrid,
-      _sortScoreBase: hybrid + affinityBonus,
-      _sortScore: (hybrid + affinityBonus) * demotion,
+      _sortScoreBase: hybrid + affinityBonus + subgroupBonus,
+      _sortScore: (hybrid + affinityBonus + subgroupBonus) * demotion,
     };
   });
 
