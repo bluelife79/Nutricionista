@@ -59,7 +59,7 @@
     "id": "bedca_0003",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -106,7 +106,7 @@
     "id": "bedca_0005",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -130,7 +130,7 @@
     "id": "bedca_0006",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other",
     "macro_profile": "carbs",
     "flags": [
       "condiment"
@@ -155,7 +155,7 @@
     "id": "bedca_0007",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other",
     "macro_profile": "carbs",
     "flags": [
       "prepared"
@@ -226,7 +226,7 @@
     "id": "bedca_0010",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "legumes",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "protein",
@@ -250,7 +250,7 @@
     "id": "bedca_0011",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": false,
@@ -273,7 +273,7 @@
     "id": "bedca_0013",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -344,7 +344,7 @@
     "id": "bedca_0017",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other",
     "macro_profile": "fat",
     "flags": [
       "condiment"
@@ -420,7 +420,7 @@
     "id": "bedca_0020",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other",
     "macro_profile": "fat",
     "flags": [
       "condiment"
@@ -514,7 +514,7 @@
     "id": "bedca_0025",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_fat",
     "macro_profile": "fat",
     "flags": [],
     "category_prev": "dairy",
@@ -538,7 +538,7 @@
     "id": "bedca_0026",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_dairy",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -561,7 +561,7 @@
     "id": "bedca_0027",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "grains",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -608,7 +608,7 @@
     "id": "bedca_0029",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other",
     "macro_profile": "fat",
     "flags": [
       "condiment"
@@ -685,7 +685,7 @@
     "id": "bedca_0032",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "sweets_bakery",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -708,7 +708,7 @@
     "id": "bedca_0034",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -921,7 +921,7 @@
     "id": "bedca_0044",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fresh_cheese",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -1038,7 +1038,7 @@
     "id": "bedca_0050",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "legumes",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "protein",
@@ -1204,7 +1204,7 @@
     "id": "bedca_0057",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_protein",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -1250,7 +1250,7 @@
     "id": "bedca_0059",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": false,
@@ -1673,7 +1673,7 @@
     "id": "bedca_0078",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -1813,7 +1813,7 @@
     "id": "bedca_0084",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other",
     "macro_profile": "unknown",
     "flags": [],
     "ready_to_eat": true,
@@ -1836,7 +1836,7 @@
     "id": "bedca_0085",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -2000,7 +2000,7 @@
     "id": "bedca_0093",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -2048,7 +2048,7 @@
     "id": "bedca_0096",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other",
     "macro_profile": "unknown",
     "flags": [],
     "ready_to_eat": true,
@@ -2094,7 +2094,7 @@
     "id": "bedca_0099",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -2324,7 +2324,7 @@
     "id": "bedca_0110",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -2347,7 +2347,7 @@
     "id": "bedca_0111",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -2370,7 +2370,7 @@
     "id": "bedca_0112",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -2393,7 +2393,7 @@
     "id": "bedca_0113",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -2624,7 +2624,7 @@
     "id": "bedca_0123",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "legumes",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -2671,7 +2671,7 @@
     "id": "bedca_0125",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other",
     "macro_profile": "unknown",
     "flags": [],
     "ready_to_eat": false,
@@ -2694,7 +2694,7 @@
     "id": "bedca_0126",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -2904,7 +2904,7 @@
     "id": "bedca_0135",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "legumes",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -2975,7 +2975,7 @@
     "id": "bedca_0138",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "legumes",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -3325,7 +3325,7 @@
     "id": "bedca_0153",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": true,
@@ -3394,7 +3394,7 @@
     "id": "bedca_0156",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "sweets_bakery",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -3585,7 +3585,7 @@
     "id": "bedca_0164",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_fat",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": true,
@@ -3682,7 +3682,7 @@
     "id": "bedca_0168",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "processed_protein",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -3843,7 +3843,7 @@
     "id": "bedca_0175",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -3984,7 +3984,7 @@
     "id": "bedca_0181",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "sweets_bakery",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -4124,7 +4124,7 @@
     "id": "bedca_0187",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "vegetables",
     "macro_profile": "fat",
     "flags": [
       "prepared"
@@ -4289,7 +4289,7 @@
     "id": "bedca_0194",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [
       "prepared"
@@ -4337,7 +4337,7 @@
     "id": "bedca_0196",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -4360,7 +4360,7 @@
     "id": "bedca_0197",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "sweets_bakery",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -4432,7 +4432,7 @@
     "id": "bedca_0200",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -4480,7 +4480,7 @@
     "id": "bedca_0202",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [
       "condiment"
@@ -4551,7 +4551,7 @@
     "id": "bedca_0205",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "legumes",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -4574,7 +4574,7 @@
     "id": "bedca_0206",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "legumes",
     "macro_profile": "protein",
     "flags": [
       "condiment"
@@ -4647,7 +4647,7 @@
     "id": "bedca_0209",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -4856,7 +4856,7 @@
     "id": "bedca_0220",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -4949,7 +4949,7 @@
     "id": "bedca_0224",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -5115,7 +5115,7 @@
     "id": "bedca_0231",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "vegetables",
     "macro_profile": "fat",
     "flags": [],
     "category_prev": "other",
@@ -5162,7 +5162,7 @@
     "id": "bedca_0233",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -5233,7 +5233,7 @@
     "id": "bedca_0236",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other",
     "macro_profile": "fat",
     "flags": [
       "condiment"
@@ -5259,7 +5259,7 @@
     "id": "bedca_0237",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other",
     "macro_profile": "fat",
     "flags": [
       "condiment"
@@ -5285,7 +5285,7 @@
     "id": "bedca_0238",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "legumes",
     "macro_profile": "protein",
     "flags": [
       "condiment"
@@ -5311,7 +5311,7 @@
     "id": "bedca_0239",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "legumes",
     "macro_profile": "protein",
     "flags": [
       "condiment"
@@ -5337,7 +5337,7 @@
     "id": "bedca_0240",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_fat",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": false,
@@ -5476,7 +5476,7 @@
     "id": "bedca_0246",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -5499,7 +5499,7 @@
     "id": "bedca_0247",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -5522,7 +5522,7 @@
     "id": "bedca_0248",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "protein",
     "flags": [],
     "category_prev": "protein",
@@ -5641,7 +5641,7 @@
     "id": "bedca_0253",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other",
     "macro_profile": "carbs",
     "flags": [
       "condiment"
@@ -5692,7 +5692,7 @@
     "id": "bedca_0255",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other",
     "macro_profile": "fat",
     "flags": [
       "condiment"
@@ -5743,7 +5743,7 @@
     "id": "bedca_0257",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "sweets_bakery",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -5835,7 +5835,7 @@
     "id": "bedca_0261",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -6136,7 +6136,7 @@
     "id": "bedca_0274",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -6160,7 +6160,7 @@
     "id": "bedca_0275",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -6397,7 +6397,7 @@
     "id": "bedca_0285",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "sweets_bakery",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -6561,7 +6561,7 @@
     "id": "bedca_0292",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "fat",
     "flags": [
       "hidden"
@@ -6632,7 +6632,7 @@
     "id": "bedca_0295",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "legumes",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -6655,7 +6655,7 @@
     "id": "bedca_0296",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "legumes",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "dairy",
@@ -6679,7 +6679,7 @@
     "id": "bedca_0297",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "sweets_bakery",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -6702,7 +6702,7 @@
     "id": "bedca_0298",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "sweets_bakery",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -6725,7 +6725,7 @@
     "id": "bedca_0299",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "sweets_bakery",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -6748,7 +6748,7 @@
     "id": "bedca_0300",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "sweets_bakery",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -6794,7 +6794,7 @@
     "id": "bedca_0302",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -6983,7 +6983,7 @@
     "id": "bedca_0310",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -7029,7 +7029,7 @@
     "id": "bedca_0312",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "sweets_bakery",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -7052,7 +7052,7 @@
     "id": "bedca_0313",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "legumes",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -7075,7 +7075,7 @@
     "id": "bedca_0314",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "legumes",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -7122,7 +7122,7 @@
     "id": "bedca_0316",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -7145,7 +7145,7 @@
     "id": "bedca_0317",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "sweets_bakery",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -7168,7 +7168,7 @@
     "id": "bedca_0318",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "sweets_bakery",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -7191,7 +7191,7 @@
     "id": "bedca_0319",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -7284,7 +7284,7 @@
     "id": "bedca_0323",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -7307,7 +7307,7 @@
     "id": "bedca_0324",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -7424,7 +7424,7 @@
     "id": "bedca_0329",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -7470,7 +7470,7 @@
     "id": "bedca_0331",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -7539,7 +7539,7 @@
     "id": "bedca_0334",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -7585,7 +7585,7 @@
     "id": "bedca_0337",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -7746,7 +7746,7 @@
     "id": "bedca_0344",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "vegetables",
     "macro_profile": "protein",
     "flags": [
       "condiment"
@@ -7795,7 +7795,7 @@
     "id": "bedca_0346",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -7984,7 +7984,7 @@
     "id": "bedca_0354",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -8379,7 +8379,7 @@
     "id": "bedca_0372",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -8800,7 +8800,7 @@
     "id": "bedca_0390",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -8823,7 +8823,7 @@
     "id": "bedca_0391",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_carbs",
     "macro_profile": "carbs",
     "flags": [
       "condiment"
@@ -8849,7 +8849,7 @@
     "id": "bedca_0392",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_carbs",
     "macro_profile": "carbs",
     "flags": [
       "condiment"
@@ -8921,7 +8921,7 @@
     "id": "bedca_0395",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_carbs",
     "macro_profile": "carbs",
     "flags": [
       "prepared"
@@ -8993,7 +8993,7 @@
     "id": "bedca_0398",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -9039,7 +9039,7 @@
     "id": "bedca_0400",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "legumes",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -9086,7 +9086,7 @@
     "id": "bedca_0402",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -9249,7 +9249,7 @@
     "id": "bedca_0409",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "cheese",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": true,
@@ -9364,7 +9364,7 @@
     "id": "bedca_0415",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -9667,7 +9667,7 @@
     "id": "bedca_0428",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_fat",
     "macro_profile": "fat",
     "flags": [],
     "category_prev": "other",
@@ -10205,7 +10205,7 @@
     "id": "bedca_0453",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "basic_dairy",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -10320,7 +10320,7 @@
     "id": "bedca_0458",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "processed_protein",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": true,
@@ -10414,7 +10414,7 @@
     "id": "bedca_0462",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_dairy",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -10599,7 +10599,7 @@
     "id": "bedca_0471",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_carbs",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -10884,7 +10884,7 @@
     "id": "bedca_0485",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_carbs",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -10907,7 +10907,7 @@
     "id": "bedca_0486",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_protein",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -10954,7 +10954,7 @@
     "id": "bedca_0488",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_carbs",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -10977,7 +10977,7 @@
     "id": "bedca_0489",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -11024,7 +11024,7 @@
     "id": "bedca_0491",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_protein",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -11047,7 +11047,7 @@
     "id": "bedca_0492",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -11070,7 +11070,7 @@
     "id": "bedca_0493",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -11118,7 +11118,7 @@
     "id": "bedca_0495",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "legumes",
     "macro_profile": "carbs",
     "flags": [
       "condiment"
@@ -11193,7 +11193,7 @@
     "id": "bedca_0498",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_dairy",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -11240,7 +11240,7 @@
     "id": "bedca_0500",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_carbs",
     "macro_profile": "carbs",
     "flags": [
       "condiment"
@@ -11361,7 +11361,7 @@
     "id": "bedca_0506",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -11384,7 +11384,7 @@
     "id": "bedca_0507",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -11407,7 +11407,7 @@
     "id": "bedca_0508",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": false,
@@ -11430,7 +11430,7 @@
     "id": "bedca_0509",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -11591,7 +11591,7 @@
     "id": "bedca_0516",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -11637,7 +11637,7 @@
     "id": "bedca_0520",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -11660,7 +11660,7 @@
     "id": "bedca_0521",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -11683,7 +11683,7 @@
     "id": "bedca_0522",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -11752,7 +11752,7 @@
     "id": "bedca_0526",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -11775,7 +11775,7 @@
     "id": "bedca_0527",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -11798,7 +11798,7 @@
     "id": "bedca_0528",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -11890,7 +11890,7 @@
     "id": "bedca_0532",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "low_fat_dairy",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -12029,7 +12029,7 @@
     "id": "bedca_0538",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -12052,7 +12052,7 @@
     "id": "bedca_0539",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -12075,7 +12075,7 @@
     "id": "bedca_0540",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -12098,7 +12098,7 @@
     "id": "bedca_0541",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -12121,7 +12121,7 @@
     "id": "bedca_0542",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "vegetables",
     "macro_profile": "protein",
     "flags": [
       "condiment"
@@ -12311,7 +12311,7 @@
     "id": "bedca_0550",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_protein",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -12518,7 +12518,7 @@
     "id": "bedca_0560",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": false,
@@ -12611,7 +12611,7 @@
     "id": "bedca_0567",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_fat",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": true,
@@ -12843,7 +12843,7 @@
     "id": "bedca_0581",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "legumes",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -13033,7 +13033,7 @@
     "id": "bedca_0589",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "nuts_seeds",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -13196,7 +13196,7 @@
     "id": "bedca_0596",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other",
     "macro_profile": "unknown",
     "flags": [],
     "ready_to_eat": true,
@@ -13337,7 +13337,7 @@
     "id": "bedca_0605",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "fat",
     "flags": [
       "hidden"
@@ -13362,7 +13362,7 @@
     "id": "bedca_0606",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -13501,7 +13501,7 @@
     "id": "bedca_0613",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "sweets_bakery",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -13547,7 +13547,7 @@
     "id": "bedca_0615",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "legumes",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -13782,7 +13782,7 @@
     "id": "bedca_0625",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "legumes",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -13806,7 +13806,7 @@
     "id": "bedca_0626",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "legumes",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -13829,7 +13829,7 @@
     "id": "bedca_0627",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -13875,7 +13875,7 @@
     "id": "bedca_0629",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -13968,7 +13968,7 @@
     "id": "bedca_0633",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -13991,7 +13991,7 @@
     "id": "bedca_0634",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -14014,7 +14014,7 @@
     "id": "bedca_0635",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "legumes",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -14131,7 +14131,7 @@
     "id": "bedca_0641",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "nuts_seeds",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -14178,7 +14178,7 @@
     "id": "bedca_0643",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -14322,7 +14322,7 @@
     "id": "bedca_0650",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "legumes",
     "macro_profile": "protein",
     "flags": [
       "condiment"
@@ -14441,7 +14441,7 @@
     "id": "bedca_0657",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "grains",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -14464,7 +14464,7 @@
     "id": "bedca_0658",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -14603,7 +14603,7 @@
     "id": "bedca_0665",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_oils",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": false,
@@ -14672,7 +14672,7 @@
     "id": "bedca_0668",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -14764,7 +14764,7 @@
     "id": "bedca_0672",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -14788,7 +14788,7 @@
     "id": "bedca_0673",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "grains",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -14882,7 +14882,7 @@
     "id": "bedca_0678",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other",
     "macro_profile": "unknown",
     "flags": [],
     "ready_to_eat": false,
@@ -14905,7 +14905,7 @@
     "id": "bedca_0679",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_oils",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": false,
@@ -14999,7 +14999,7 @@
     "id": "bedca_0683",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -15022,7 +15022,7 @@
     "id": "bedca_0684",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -15137,7 +15137,7 @@
     "id": "bedca_0689",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "legumes",
     "macro_profile": "protein",
     "flags": [
       "condiment"
@@ -15442,7 +15442,7 @@
     "id": "bedca_0702",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "legumes",
     "macro_profile": "protein",
     "flags": [
       "condiment"
@@ -15683,7 +15683,7 @@
     "id": "bedca_0714",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "sweets_bakery",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -15706,7 +15706,7 @@
     "id": "bedca_0715",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "sweets_bakery",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -15729,7 +15729,7 @@
     "id": "bedca_0717",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "eggs",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -15776,7 +15776,7 @@
     "id": "bedca_0719",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_fat",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": true,
@@ -16060,7 +16060,7 @@
     "id": "bedca_0732",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -16130,7 +16130,7 @@
     "id": "bedca_0735",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "processed_protein",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -16344,7 +16344,7 @@
     "id": "bedca_0744",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "protein",
     "flags": [],
     "category_prev": "protein",
@@ -16391,7 +16391,7 @@
     "id": "bedca_0746",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -16414,7 +16414,7 @@
     "id": "bedca_0747",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -16437,7 +16437,7 @@
     "id": "bedca_0748",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -16460,7 +16460,7 @@
     "id": "bedca_0749",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -16529,7 +16529,7 @@
     "id": "bedca_0752",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -16670,7 +16670,7 @@
     "id": "bedca_0758",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_protein",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": true,
@@ -16764,7 +16764,7 @@
     "id": "bedca_0763",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "fat",
     "flags": [],
     "category_prev": "protein",
@@ -16834,7 +16834,7 @@
     "id": "bedca_0766",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -16857,7 +16857,7 @@
     "id": "bedca_0768",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -17298,7 +17298,7 @@
     "id": "bedca_0787",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": false,
@@ -17578,7 +17578,7 @@
     "id": "bedca_0801",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "grains",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -17648,7 +17648,7 @@
     "id": "bedca_0805",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -17717,7 +17717,7 @@
     "id": "bedca_0808",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "grains",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -17763,7 +17763,7 @@
     "id": "bedca_0810",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "grains",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -17809,7 +17809,7 @@
     "id": "bedca_0812",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "legumes",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -17855,7 +17855,7 @@
     "id": "bedca_0814",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -18017,7 +18017,7 @@
     "id": "bedca_0822",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "legumes",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "protein",
@@ -18064,7 +18064,7 @@
     "id": "bedca_0824",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "nuts_seeds",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": true,
@@ -18179,7 +18179,7 @@
     "id": "bedca_0831",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_oils",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": false,
@@ -18295,7 +18295,7 @@
     "id": "bedca_0836",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -18389,7 +18389,7 @@
     "id": "bedca_0841",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_oils",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": false,
@@ -18619,7 +18619,7 @@
     "id": "bedca_0852",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -18757,7 +18757,7 @@
     "id": "bedca_0859",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -18918,7 +18918,7 @@
     "id": "bedca_0866",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -18942,7 +18942,7 @@
     "id": "bedca_0867",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -18966,7 +18966,7 @@
     "id": "bedca_0868",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -18990,7 +18990,7 @@
     "id": "bedca_0869",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -19182,7 +19182,7 @@
     "id": "bedca_0877",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "basic_dairy",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -19325,7 +19325,7 @@
     "id": "bedca_0883",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -19348,7 +19348,7 @@
     "id": "bedca_0884",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -19371,7 +19371,7 @@
     "id": "bedca_0885",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -19394,7 +19394,7 @@
     "id": "bedca_0886",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -19440,7 +19440,7 @@
     "id": "bedca_0888",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "grains",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -19463,7 +19463,7 @@
     "id": "bedca_0889",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -19535,7 +19535,7 @@
     "id": "bedca_0892",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "sweets_bakery",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -19653,7 +19653,7 @@
     "id": "bedca_0897",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": false,
@@ -20003,7 +20003,7 @@
     "id": "bedca_0912",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -20051,7 +20051,7 @@
     "id": "bedca_0916",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -20074,7 +20074,7 @@
     "id": "bedca_0917",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -20120,7 +20120,7 @@
     "id": "bedca_0919",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -20214,7 +20214,7 @@
     "id": "bedca_0923",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -20237,7 +20237,7 @@
     "id": "bedca_0924",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -20260,7 +20260,7 @@
     "id": "bedca_0925",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -20402,7 +20402,7 @@
     "id": "bedca_0931",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -20425,7 +20425,7 @@
     "id": "bedca_0932",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -20473,7 +20473,7 @@
     "id": "bedca_0934",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -20520,7 +20520,7 @@
     "id": "bedca_0938",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_carbs",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -20616,7 +20616,7 @@
     "id": "bedca_0943",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_fat",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": true,
@@ -20662,7 +20662,7 @@
     "id": "bedca_0947",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "sweets_bakery",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -20685,7 +20685,7 @@
     "id": "bedca_0948",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "sweets_bakery",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -21020,7 +21020,7 @@
     "id": "bedca_0962",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "meat",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": false,
@@ -21043,7 +21043,7 @@
     "id": "bedca_0963",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -41628,7 +41628,7 @@
     "id": "off_0f844a0c32",
     "code": "20198091",
     "quantity": "400g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [
       "prepared"
@@ -41861,7 +41861,7 @@
     "id": "off_e9e8215274",
     "code": "8480017829559",
     "quantity": "990 ml (3 x 330 ml)",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [
       "prepared"
@@ -41932,7 +41932,7 @@
     "id": "off_5720e38db4",
     "code": "40881898",
     "quantity": "450 g",
-    "subgroup": "other",
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -42049,7 +42049,7 @@
     "id": "off_19fb058b60",
     "code": "8480000396259",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -42419,7 +42419,7 @@
     "id": "off_bebc10ea44",
     "code": "3560070788521",
     "quantity": "1,5 L",
-    "subgroup": "other",
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -42489,7 +42489,7 @@
     "id": "off_04af6d775f",
     "code": "8480017002815",
     "quantity": "1 L",
-    "subgroup": "other",
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -42512,7 +42512,7 @@
     "id": "off_10c1e76e19",
     "code": "8480000399113",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [
       "prepared"
@@ -52514,7 +52514,7 @@
     "id": "off_511f8362e8",
     "code": "3560070422098",
     "quantity": "350 g (neto), 150 g (escurrido)",
-    "subgroup": "other",
+    "subgroup": "other_fat",
     "macro_profile": "fat",
     "flags": [],
     "category_prev": "other",
@@ -53305,7 +53305,7 @@
     "id": "off_fc294edbb1",
     "code": "8480000612007",
     "quantity": "300 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -53328,7 +53328,7 @@
     "id": "off_0c129517f1",
     "code": "8480000260239",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -53984,7 +53984,7 @@
     "id": "off_5580107290",
     "code": "8480000167286",
     "quantity": "300 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": false,
@@ -54057,7 +54057,7 @@
     "id": "off_76641d4023",
     "code": "8480000800947",
     "quantity": "835 g",
-    "subgroup": "other",
+    "subgroup": "other_fat",
     "macro_profile": "fat",
     "flags": [],
     "category_prev": "other",
@@ -54129,7 +54129,7 @@
     "id": "off_cbc829106a",
     "code": "8480010158847",
     "quantity": "6 x 120 g",
-    "subgroup": "other",
+    "subgroup": "other_fat",
     "macro_profile": "fat",
     "flags": [],
     "category_prev": "other",
@@ -54153,7 +54153,7 @@
     "id": "off_1f1048ef8a",
     "code": "8410171004547",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [
       "prepared"
@@ -54270,7 +54270,7 @@
     "id": "off_df1620dd2b",
     "code": "8480000399014",
     "quantity": "1 l",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "fat",
     "flags": [
       "prepared"
@@ -54365,7 +54365,7 @@
     "id": "off_2c9c185117",
     "code": "20410063",
     "quantity": "750 ml",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [
       "prepared"
@@ -54436,7 +54436,7 @@
     "id": "off_31e8fef4c5",
     "code": "8435434307494",
     "quantity": "450 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -54576,7 +54576,7 @@
     "id": "off_190be70e10",
     "code": "8480000172839",
     "quantity": "300 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [
       "condiment"
@@ -54601,7 +54601,7 @@
     "id": "off_f1574c12b6",
     "code": "8480010005516",
     "quantity": "350 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "fat",
     "flags": [],
     "category_prev": "other",
@@ -54786,7 +54786,7 @@
     "id": "off_00bead7605",
     "code": "20187866",
     "quantity": "140g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -54924,7 +54924,7 @@
     "id": "off_78bafbc235",
     "code": "8425779042532",
     "quantity": "200 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -55041,7 +55041,7 @@
     "id": "off_61b09ba2b8",
     "code": "3560070446384",
     "quantity": "300 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": true,
@@ -55156,7 +55156,7 @@
     "id": "off_dfab79280a",
     "code": "8480000693839",
     "quantity": "125 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -55179,7 +55179,7 @@
     "id": "off_936546aeb6",
     "code": "8435434307395",
     "quantity": "400 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -55296,7 +55296,7 @@
     "id": "off_90df7c71f5",
     "code": "8480000399007",
     "quantity": "1 l",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "fat",
     "flags": [
       "prepared"
@@ -55370,7 +55370,7 @@
     "id": "off_d1e1bee2a0",
     "code": "3560071138301",
     "quantity": "100 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -55465,7 +55465,7 @@
     "id": "off_a6c8d5b054",
     "code": "8480000171122",
     "quantity": "380 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [
       "prepared"
@@ -55490,7 +55490,7 @@
     "id": "off_cbdd87be3c",
     "code": "3560070738335",
     "quantity": "200 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -55537,7 +55537,7 @@
     "id": "off_3c0a5eee05",
     "code": "3112940769569",
     "quantity": "200g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -55608,7 +55608,7 @@
     "id": "off_d7e98b4793",
     "code": "8480000171528",
     "quantity": "380 g (neto)",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [
       "prepared"
@@ -55633,7 +55633,7 @@
     "id": "off_ea099837a5",
     "code": "8431876004649",
     "quantity": "200 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -55748,7 +55748,7 @@
     "id": "off_9b9f9a4765",
     "code": "8480000612854",
     "quantity": "300 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -55797,7 +55797,7 @@
     "id": "off_8ffa04d298",
     "code": "8480017089182",
     "quantity": "400 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -55891,7 +55891,7 @@
     "id": "off_815e4acc14",
     "code": "8431876125535",
     "quantity": "240 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -55941,7 +55941,7 @@
     "id": "off_dfb1a0937f",
     "code": "8480000611239",
     "quantity": "450 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [
       "prepared"
@@ -55966,7 +55966,7 @@
     "id": "off_1cf02fecee",
     "code": "8480017751553",
     "quantity": "600 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -55989,7 +55989,7 @@
     "id": "off_424f6a31fc",
     "code": "3560070463510",
     "quantity": "750 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -56012,7 +56012,7 @@
     "id": "off_ea8b3db6b4",
     "code": "3560070242757",
     "quantity": "750 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -56035,7 +56035,7 @@
     "id": "off_67461bcb55",
     "code": "8480000167330",
     "quantity": "290 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": true,
@@ -57160,7 +57160,7 @@
     "id": "off_12888c5772",
     "code": "8480000162168",
     "quantity": "250 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": false,
@@ -57697,7 +57697,7 @@
     "id": "off_44e24c0e15",
     "code": "8480000800121",
     "quantity": "250 g (neto), 446 ml",
-    "subgroup": "other",
+    "subgroup": "other_fat",
     "macro_profile": "fat",
     "flags": [],
     "category_prev": "other",
@@ -57744,7 +57744,7 @@
     "id": "off_f51d168802",
     "code": "8410813220359",
     "quantity": "350 g (neto), 200 g (escurrido), 370 ml",
-    "subgroup": "other",
+    "subgroup": "other_fat",
     "macro_profile": "fat",
     "flags": [],
     "category_prev": "other",
@@ -58139,7 +58139,7 @@
     "id": "off_2e42af3329",
     "code": "8431876265682",
     "quantity": "400 g",
-    "subgroup": "other",
+    "subgroup": "other_fat",
     "macro_profile": "fat",
     "flags": [],
     "category_prev": "other",
@@ -63246,7 +63246,7 @@
     "id": "off_d482c3133a",
     "code": "8414807536686",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -63269,7 +63269,7 @@
     "id": "off_e136249b45",
     "code": "8480010303988",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [
       "prepared"
@@ -63411,7 +63411,7 @@
     "id": "off_d559197d94",
     "code": "8480000399090",
     "quantity": "2 l (2 x 1 l)",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [
       "prepared"
@@ -63461,7 +63461,7 @@
     "id": "off_53caa3ab9e",
     "code": "20396886",
     "quantity": "1 L",
-    "subgroup": "other",
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -63556,7 +63556,7 @@
     "id": "off_cafeefaec0",
     "code": "3560070275298",
     "quantity": "1 l",
-    "subgroup": "other",
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -64792,7 +64792,7 @@
     "id": "off_29ddf07474",
     "code": "8437004621900",
     "quantity": "230g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -64861,7 +64861,7 @@
     "id": "off_cdd2f77d40",
     "code": "20300623",
     "quantity": "400g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [
       "prepared"
@@ -64909,7 +64909,7 @@
     "id": "off_93898ded13",
     "code": "3560070351060",
     "quantity": "50 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "protein",
     "flags": [
       "condiment"
@@ -65003,7 +65003,7 @@
     "id": "off_0a7c76233e",
     "code": "20075354",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -65099,7 +65099,7 @@
     "id": "off_5b6335bf78",
     "code": "8480000399830",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -65147,7 +65147,7 @@
     "id": "off_507e06b4be",
     "code": "8480017431356",
     "quantity": "440 g (neto), 250 g (escurrido), 450 ml",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": true,
@@ -65239,7 +65239,7 @@
     "id": "off_6253f08dc4",
     "code": "8480010009361",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "fat",
     "flags": [],
     "ready_to_eat": true,
@@ -65541,7 +65541,7 @@
     "id": "off_35f1ff92ab",
     "code": "8480000399885",
     "quantity": "750 ml",
-    "subgroup": "other",
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -65587,7 +65587,7 @@
     "id": "off_9c07ab2fa4",
     "code": "8480000399250",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -65659,7 +65659,7 @@
     "id": "off_7bc61af5c8",
     "code": "4056489028659",
     "quantity": "750 ml",
-    "subgroup": "other",
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -65682,7 +65682,7 @@
     "id": "off_8d34f127be",
     "code": "3560071003951",
     "quantity": "500 g (4 x 125 g)",
-    "subgroup": "other",
+    "subgroup": "basic_dairy",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -65706,7 +65706,7 @@
     "id": "off_f3db5249a6",
     "code": "8431876090581",
     "quantity": "30 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "protein",
     "flags": [
       "condiment"
@@ -65829,7 +65829,7 @@
     "id": "off_fd7e9a335a",
     "code": "3560070918157",
     "quantity": "350 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [
       "condiment"
@@ -66251,7 +66251,7 @@
     "id": "off_2e523da54e",
     "code": "3560070918126",
     "quantity": "190 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [
       "condiment"
@@ -66484,7 +66484,7 @@
     "id": "off_4913a331e5",
     "code": "8480017179234",
     "quantity": "150 gr",
-    "subgroup": "other",
+    "subgroup": "other_fat",
     "macro_profile": "fat",
     "flags": [],
     "category_prev": "other",
@@ -66762,7 +66762,7 @@
     "id": "off_c16b20543b",
     "code": "3560070321599",
     "quantity": "1 kg",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -67929,7 +67929,7 @@
     "id": "off_b2a9899df7",
     "code": "3560070583348",
     "quantity": "1 l",
-    "subgroup": "other",
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -68375,7 +68375,7 @@
     "id": "off_cba215bd9e",
     "code": "8410707003518",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -68521,7 +68521,7 @@
     "id": "off_a86bba25ef",
     "code": "20163044",
     "quantity": "350 g, 330 ml",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [
       "prepared"
@@ -68546,7 +68546,7 @@
     "id": "off_c001b2477c",
     "code": "8437013139106",
     "quantity": "400 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -68616,7 +68616,7 @@
     "id": "off_21bb129acf",
     "code": "8480000399274",
     "quantity": "1 L",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [
       "prepared"
@@ -68687,7 +68687,7 @@
     "id": "off_13698b6f1d",
     "code": "8410813217212",
     "quantity": "350 g",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -68779,7 +68779,7 @@
     "id": "off_4588df5f1b",
     "code": "20659561",
     "quantity": "330ml",
-    "subgroup": "other",
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -68900,7 +68900,7 @@
     "id": "off_1e5491b809",
     "code": "5601002111128",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -69227,7 +69227,7 @@
     "id": "off_7fa77026e9",
     "code": "3560070422302",
     "quantity": "800 g",
-    "subgroup": "other",
+    "subgroup": "other_fat",
     "macro_profile": "fat",
     "flags": [],
     "category_prev": "other",
@@ -78904,7 +78904,7 @@
     "id": "off_426e957bf8",
     "code": "3245413451804",
     "quantity": "1 l",
-    "subgroup": "other",
+    "subgroup": "grains",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -84493,7 +84493,7 @@
     "id": "off_275f7b9f97",
     "code": "8426765489775",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -116873,7 +116873,7 @@
     "id": "off_945746acf2",
     "code": "8422410003013",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -117594,7 +117594,7 @@
     "id": "off_c13aa2407c",
     "code": "8433329092166",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "fat",
     "flags": [
       "prepared"
@@ -117642,7 +117642,7 @@
     "id": "off_7980041282",
     "code": "8430597631424",
     "quantity": "400 (neto), 250 g (escurrido), 425 ml",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
@@ -118256,7 +118256,7 @@
     "id": "off_b63b8e4715",
     "code": "8433329021616",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -118675,7 +118675,7 @@
     "id": "off_bd5e594aba",
     "code": "8422410181315",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -119555,7 +119555,7 @@
     "id": "off_ea37808ea2",
     "code": "8422410130658",
     "quantity": "1l",
-    "subgroup": "other",
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -120143,7 +120143,7 @@
     "id": "off_16a565b3ed",
     "code": "8480013236283",
     "quantity": "200 ml",
-    "subgroup": "other",
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -120213,7 +120213,7 @@
     "id": "off_bca68b0b51",
     "code": "8422410808809",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "vegetables",
     "macro_profile": "carbs",
     "flags": [
       "condiment"
@@ -120585,7 +120585,7 @@
     "id": "off_6fa511a7ee",
     "code": "8422410255986",
     "quantity": "1 l",
-    "subgroup": "other",
+    "subgroup": "fruit",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -121421,7 +121421,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Tortitas de trigo tipo wrap, uso versátil"
+    "label_reason": "Tortitas de trigo tipo wrap, uso versátil",
+    "subgroup": "grains"
   },
   {
     "id": "tortita_8410376036046",
@@ -121464,7 +121465,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Tortitas de maíz, uso versátil"
+    "label_reason": "Tortitas de maíz, uso versátil",
+    "subgroup": "grains"
   },
   {
     "id": "tortita_8422424100166",
@@ -121485,7 +121487,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Tortitas de trigo, uso versátil"
+    "label_reason": "Tortitas de trigo, uso versátil",
+    "subgroup": "grains"
   },
   {
     "id": "tortita_4068263002908",
@@ -121506,7 +121509,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Tortitas de maíz, uso versátil"
+    "label_reason": "Tortitas de maíz, uso versátil",
+    "subgroup": "grains"
   },
   {
     "id": "tortita_8431876280036",
@@ -121530,7 +121534,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Mini tortitas saborizadas, tipo snack"
+    "label_reason": "Mini tortitas saborizadas, tipo snack",
+    "subgroup": "grains"
   },
   {
     "id": "tortita_8431876280029",
@@ -121551,7 +121556,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Mini tortitas saborizadas, tipo snack"
+    "label_reason": "Mini tortitas saborizadas, tipo snack",
+    "subgroup": "grains"
   },
   {
     "id": "tortita_8431876352139",
@@ -121645,7 +121651,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Tortitas de maíz ecológicas"
+    "label_reason": "Tortitas de maíz ecológicas",
+    "subgroup": "grains"
   },
   {
     "id": "tortita_8431876276220",
@@ -121666,7 +121673,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Tortitas de arroz con amaranto"
+    "label_reason": "Tortitas de arroz con amaranto",
+    "subgroup": "grains"
   },
   {
     "id": "tortita_8431876276237",
@@ -121690,7 +121698,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Tortitas de arroz con quinoa"
+    "label_reason": "Tortitas de arroz con quinoa",
+    "subgroup": "grains"
   },
   {
     "id": "tortita_8431876332438",
@@ -121780,7 +121789,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Tortitas de maíz multicereales"
+    "label_reason": "Tortitas de maíz multicereales",
+    "subgroup": "grains"
   },
   {
     "id": "tortita_8431876186994",
@@ -121847,7 +121857,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Tortitas de maíz Consum"
+    "label_reason": "Tortitas de maíz Consum",
+    "subgroup": "grains"
   },
   {
     "id": "tortita_8480017102713",
@@ -121893,7 +121904,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Mini tortitas de maíz Dia"
+    "label_reason": "Mini tortitas de maíz Dia",
+    "subgroup": "grains"
   },
   {
     "id": "tortita_8480017102706",
@@ -121978,7 +121990,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Snack aperitivo de marca blanca habitual"
+    "label_reason": "Snack aperitivo de marca blanca habitual",
+    "subgroup": "grains"
   },
   {
     "id": "tortita_8480010193114",
@@ -121999,7 +122012,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Snack de maíz básico de marca blanca"
+    "label_reason": "Snack de maíz básico de marca blanca",
+    "subgroup": "grains"
   },
   {
     "id": "tortita_8480010193121",
@@ -122020,7 +122034,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Snack de maíz básico de marca blanca"
+    "label_reason": "Snack de maíz básico de marca blanca",
+    "subgroup": "grains"
   },
   {
     "id": "tortita_8480010182958",
@@ -122174,7 +122189,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 88,
-    "label_reason": "Tortitas de maíz versátiles sin gluten"
+    "label_reason": "Tortitas de maíz versátiles sin gluten",
+    "subgroup": "grains"
   },
   {
     "id": "tortita_8480000864833",
@@ -122195,7 +122211,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Tortitas de arroz y legumbres versátiles"
+    "label_reason": "Tortitas de arroz y legumbres versátiles",
+    "subgroup": "legumes"
   },
   {
     "id": "tortita_8480000140005",
@@ -122238,7 +122255,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 92,
-    "label_reason": "Snack sabor jamón serrano muy español"
+    "label_reason": "Snack sabor jamón serrano muy español",
+    "subgroup": "grains"
   },
   {
     "id": "tortita_8402001039263",
@@ -122259,7 +122277,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Snack campestre de maíz Hacendado"
+    "label_reason": "Snack campestre de maíz Hacendado",
+    "subgroup": "grains"
   },
   {
     "name": "Queso fresco cottage",
@@ -122297,7 +122316,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 92,
-    "label_reason": "Queso cottage versátil y habitual"
+    "label_reason": "Queso cottage versátil y habitual",
+    "subgroup": "fresh_cheese"
   },
   {
     "name": "Cottage Cheese",
@@ -122335,7 +122355,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 92,
-    "label_reason": "Cottage en inglés, mismo producto habitual"
+    "label_reason": "Cottage en inglés, mismo producto habitual",
+    "subgroup": "fresh_cheese"
   },
   {
     "name": "Queso Fresco Quark",
@@ -122373,7 +122394,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Quark versátil, ya integrado en España"
+    "label_reason": "Quark versátil, ya integrado en España",
+    "subgroup": "fresh_cheese"
   },
   {
     "name": "Mousse Salmón",
@@ -122449,7 +122471,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Postre proteico de chocolate ocasional"
+    "label_reason": "Postre proteico de chocolate ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Mousse vainilla",
@@ -122487,7 +122510,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Postre proteico de vainilla ocasional"
+    "label_reason": "Postre proteico de vainilla ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Natillas Proteínas  Sabor Vainilla",
@@ -122525,7 +122549,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Natillas proteicas, consumo ocasional"
+    "label_reason": "Natillas proteicas, consumo ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Pudding Sabor Caramelo Proteínas",
@@ -122563,7 +122588,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Pudding proteico caramelo, ocasional"
+    "label_reason": "Pudding proteico caramelo, ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Flan de huevo proteínas 0%",
@@ -122601,7 +122627,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Flan proteico, producto de nicho ocasional"
+    "label_reason": "Flan proteico, producto de nicho ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Mousse protéica con sabor a chocolate",
@@ -122639,7 +122666,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Mousse proteica chocolate, consumo ocasional"
+    "label_reason": "Mousse proteica chocolate, consumo ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "High Protein Chocolate Pudding",
@@ -122677,7 +122705,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Pudding proteico Milbona, nombre en inglés"
+    "label_reason": "Pudding proteico Milbona, nombre en inglés",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Yogur proteínas stracciatella 0%",
@@ -122715,7 +122744,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Yogur proteico listo para consumir"
+    "label_reason": "Yogur proteico listo para consumir",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Requesón",
@@ -122753,7 +122783,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Requesón versátil, consumo habitual"
+    "label_reason": "Requesón versátil, consumo habitual",
+    "subgroup": "fresh_cheese"
   },
   {
     "name": "Postre de chocolate proteínas",
@@ -122791,7 +122822,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Postre proteico de chocolate ocasional"
+    "label_reason": "Postre proteico de chocolate ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Proteinas Limón",
@@ -122829,7 +122861,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Postre proteico limón, consumo ocasional"
+    "label_reason": "Postre proteico limón, consumo ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Kéfir Coco",
@@ -122905,7 +122938,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Proteína tropical, consumo ocasional"
+    "label_reason": "Proteína tropical, consumo ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Skyrella",
@@ -122943,7 +122977,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Skyr lácteo habitual en desayunos"
+    "label_reason": "Skyr lácteo habitual en desayunos",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Queso fresco batido melocotón y maracuyá",
@@ -122981,7 +123016,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Queso batido con fruta, desayuno típico"
+    "label_reason": "Queso batido con fruta, desayuno típico",
+    "subgroup": "fresh_cheese"
   },
   {
     "name": "Chocolate & Topping with Protein",
@@ -123019,7 +123055,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Postre proteico chocolate, uso ocasional"
+    "label_reason": "Postre proteico chocolate, uso ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Greek style yoghurt low-fat",
@@ -123057,7 +123094,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Yogur griego light, desayuno habitual"
+    "label_reason": "Yogur griego light, desayuno habitual",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Yogur proteínas",
@@ -123095,7 +123133,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Yogur proteico Lidl, desayuno habitual"
+    "label_reason": "Yogur proteico Lidl, desayuno habitual",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Pudding proteínas vainilla",
@@ -123133,7 +123172,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Pudding proteico, snack ocasional"
+    "label_reason": "Pudding proteico, snack ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "High Protein Sour Cherry",
@@ -123171,7 +123211,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Postre proteico cereza, ocasional"
+    "label_reason": "Postre proteico cereza, ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Budino Proteico Cioccolato XXL",
@@ -123209,7 +123250,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Budín proteico chocolate, snack ocasional"
+    "label_reason": "Budín proteico chocolate, snack ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "High Protein Pudding Kokos",
@@ -123247,7 +123289,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Pudding coco proteico, ocasional"
+    "label_reason": "Pudding coco proteico, ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "High protein mousse vainilla",
@@ -123285,7 +123328,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Mousse proteica vainilla, ocasional"
+    "label_reason": "Mousse proteica vainilla, ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "High Protein Flan",
@@ -123323,7 +123367,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Flan proteico, postre ocasional"
+    "label_reason": "Flan proteico, postre ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Postre gelaficado con gelatina. Frutos rojos",
@@ -123399,7 +123444,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Pudding caramelo proteico, ocasional"
+    "label_reason": "Pudding caramelo proteico, ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "High Protein Mousse Chocolate",
@@ -123437,7 +123483,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Mousse chocolate proteica, ocasional"
+    "label_reason": "Mousse chocolate proteica, ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "High Protein Natillas Chocolate",
@@ -123513,7 +123560,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Yogur stracciatella proteico, habitual"
+    "label_reason": "Yogur stracciatella proteico, habitual",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Bio Skyr vanilla",
@@ -123551,7 +123599,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Skyr vainilla bio, desayuno habitual"
+    "label_reason": "Skyr vainilla bio, desayuno habitual",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Banana, Mango & Cereals Strained Yogurt Dessert",
@@ -123627,7 +123676,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Yogur griego light, desayuno habitual"
+    "label_reason": "Yogur griego light, desayuno habitual",
+    "subgroup": "low_fat_dairy"
   },
   {
     "name": "Skyr rutinario y frambuesa",
@@ -123665,7 +123715,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Lácteo proteico muy consumido en desayunos"
+    "label_reason": "Lácteo proteico muy consumido en desayunos",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Yogur Fresa",
@@ -123703,7 +123754,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Yogur azucarado típico del desayuno español"
+    "label_reason": "Yogur azucarado típico del desayuno español",
+    "subgroup": "basic_dairy"
   },
   {
     "name": "Falafel",
@@ -123855,7 +123907,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 70,
-    "label_reason": "Pudin de pescado muy minoritario en España"
+    "label_reason": "Pudin de pescado muy minoritario en España",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Quark con Frambues",
@@ -123893,7 +123946,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Quark con fruta, desayuno o snack habitual"
+    "label_reason": "Quark con fruta, desayuno o snack habitual",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Quark con Fresa",
@@ -123931,7 +123985,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Quark con fruta, desayuno o snack habitual"
+    "label_reason": "Quark con fruta, desayuno o snack habitual",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Queso Cottage proteico",
@@ -123969,7 +124024,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Queso cottage versátil, consumo frecuente"
+    "label_reason": "Queso cottage versátil, consumo frecuente",
+    "subgroup": "fresh_cheese"
   },
   {
     "name": "Requesón",
@@ -124007,7 +124063,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Requesón tradicional, muy versátil"
+    "label_reason": "Requesón tradicional, muy versátil",
+    "subgroup": "fresh_cheese"
   },
   {
     "name": "Requesón",
@@ -124045,7 +124102,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Requesón tradicional, muy versátil"
+    "label_reason": "Requesón tradicional, muy versátil",
+    "subgroup": "fresh_cheese"
   },
   {
     "name": "Profeel Protein Mousse Chocolate",
@@ -124083,7 +124141,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Mousse proteica, consumo como snack ocasional"
+    "label_reason": "Mousse proteica, consumo como snack ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Mousse de cabracho",
@@ -124159,7 +124218,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Requesón tradicional, muy versátil"
+    "label_reason": "Requesón tradicional, muy versátil",
+    "subgroup": "fresh_cheese"
   },
   {
     "name": "Bebida láctea 00% vainilla proteína plus",
@@ -124197,7 +124257,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Bebida proteica de marca, consumo ocasional"
+    "label_reason": "Bebida proteica de marca, consumo ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Natillas sabor vainilla high protein",
@@ -124235,7 +124296,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Natillas proteicas, postre o snack ocasional"
+    "label_reason": "Natillas proteicas, postre o snack ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Natillas Sabor A Vainilla PROteína Plus",
@@ -124273,7 +124335,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Natillas proteicas, postre o snack ocasional"
+    "label_reason": "Natillas proteicas, postre o snack ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Protein Pudding Caramel Flavour",
@@ -124311,7 +124374,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Pudding proteico YoPro, snack ocasional"
+    "label_reason": "Pudding proteico YoPro, snack ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Natillas Sabor Vainilla Protein +",
@@ -124349,7 +124413,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Natillas proteicas, postre o snack ocasional"
+    "label_reason": "Natillas proteicas, postre o snack ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Pudding sabor cacahuete PROteína",
@@ -124387,7 +124452,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Pudding proteico sabor cacahuete, ocasional"
+    "label_reason": "Pudding proteico sabor cacahuete, ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Pudding Sabor Caramelo Salado PROteína Plus",
@@ -124425,7 +124491,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Pudding proteico, consumo como snack ocasional"
+    "label_reason": "Pudding proteico, consumo como snack ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Postre 0% azucares añadidos chocolate proteina plus",
@@ -124463,7 +124530,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Postre proteico premium, snack ocasional"
+    "label_reason": "Postre proteico premium, snack ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Proteínas Plus Chocolate",
@@ -124501,7 +124569,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 75,
-    "label_reason": "Postre proteico, consumo como snack ocasional"
+    "label_reason": "Postre proteico, consumo como snack ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Natillas con caramelo altas en proteínas",
@@ -124539,7 +124608,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Natillas proteicas, postre o snack ocasional"
+    "label_reason": "Natillas proteicas, postre o snack ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Flan De Clara De Huevo",
@@ -124577,7 +124647,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 75,
-    "label_reason": "Flan proteico de clara, consumo ocasional"
+    "label_reason": "Flan proteico de clara, consumo ocasional",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Natillas Con chocolate",
@@ -124615,7 +124686,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Postre lácteo listo para consumir"
+    "label_reason": "Postre lácteo listo para consumir",
+    "subgroup": "sweets_bakery"
   },
   {
     "name": "Natillas, Chicolate, High Protein",
@@ -124653,7 +124725,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Natillas proteicas listas para consumir"
+    "label_reason": "Natillas proteicas listas para consumir",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Mousse de cacao alta en proteínas",
@@ -124691,7 +124764,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Mousse lácteo listo para consumir"
+    "label_reason": "Mousse lácteo listo para consumir",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Pudding sabor chocolate",
@@ -124729,7 +124803,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Pudding proteico listo para consumir"
+    "label_reason": "Pudding proteico listo para consumir",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "High Protein Mousse Chocolate",
@@ -124767,7 +124842,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Mousse proteico listo para consumir"
+    "label_reason": "Mousse proteico listo para consumir",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Queso fresco batido proteína plus",
@@ -124805,7 +124881,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Queso batido versátil listo para consumir"
+    "label_reason": "Queso batido versátil listo para consumir",
+    "subgroup": "fresh_cheese"
   },
   {
     "name": "ProFeel Protein Snack Mango & Vanilla",
@@ -124843,7 +124920,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Snack proteico lácteo listo para consumir"
+    "label_reason": "Snack proteico lácteo listo para consumir",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Yogur High Protein Stracciatella",
@@ -124881,7 +124959,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Yogur proteico típico de desayuno"
+    "label_reason": "Yogur proteico típico de desayuno",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "High protein natural",
@@ -124919,7 +124998,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Yogur natural proteico muy versátil"
+    "label_reason": "Yogur natural proteico muy versátil",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Mousse 4 Quesos",
@@ -124995,7 +125075,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Requesón tradicional listo para consumir"
+    "label_reason": "Requesón tradicional listo para consumir",
+    "subgroup": "fresh_cheese"
   },
   {
     "name": "Bocaditos en gelatina",
@@ -125071,7 +125152,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Yogur griego colado, desayuno habitual"
+    "label_reason": "Yogur griego colado, desayuno habitual",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Queso fresco batido",
@@ -125109,7 +125191,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Queso fresco batido versátil"
+    "label_reason": "Queso fresco batido versátil",
+    "subgroup": "fresh_cheese"
   },
   {
     "name": "Yogur Frutos del Bosque + Proteína",
@@ -125147,7 +125230,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Yogur de frutos del bosque con proteína"
+    "label_reason": "Yogur de frutos del bosque con proteína",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Postre proteína 0% fresa",
@@ -125185,7 +125269,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Postre proteico de fresa listo para consumir"
+    "label_reason": "Postre proteico de fresa listo para consumir",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Postre proteína 0% arándanos",
@@ -125223,7 +125308,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Postre proteico de arándanos listo"
+    "label_reason": "Postre proteico de arándanos listo",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Skyr + protein",
@@ -125261,7 +125347,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Skyr con proteína, desayuno habitual"
+    "label_reason": "Skyr con proteína, desayuno habitual",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Skyr Natural",
@@ -125299,7 +125386,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Skyr natural versátil y habitual"
+    "label_reason": "Skyr natural versátil y habitual",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Flan De Huevo Proteina",
@@ -125337,7 +125425,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Flan de huevo proteico listo"
+    "label_reason": "Flan de huevo proteico listo",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Flan proteina de clara de huevo 0%",
@@ -125375,7 +125464,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Flan proteico de clara listo"
+    "label_reason": "Flan proteico de clara listo",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Skyr Natural 00%",
@@ -125413,7 +125503,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Skyr natural 0% versátil"
+    "label_reason": "Skyr natural 0% versátil",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Mousse De Salmón Con Queso De Cabra",
@@ -125489,7 +125580,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Skyr natural versátil y habitual"
+    "label_reason": "Skyr natural versátil y habitual",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Yogur Protein Plátano",
@@ -125527,7 +125619,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Yogur proteico de plátano para desayuno"
+    "label_reason": "Yogur proteico de plátano para desayuno",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Yogur líquido sabor tropical",
@@ -125565,7 +125658,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Yogur líquido de marca blanca, desayuno típico"
+    "label_reason": "Yogur líquido de marca blanca, desayuno típico",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Yogur líquido sabor plátano proteína",
@@ -125603,7 +125697,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Yogur proteico líquido, consumo en desayuno"
+    "label_reason": "Yogur proteico líquido, consumo en desayuno",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Yogur líquido sabor fresa proteína",
@@ -125641,7 +125736,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Yogur líquido fresa, desayuno o merienda"
+    "label_reason": "Yogur líquido fresa, desayuno o merienda",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Yogur sabor tropical",
@@ -125679,7 +125775,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Yogur tropical Eroski, muy común en España"
+    "label_reason": "Yogur tropical Eroski, muy común en España",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Queso Fresco Batido",
@@ -125717,7 +125814,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Queso fresco batido versátil y habitual"
+    "label_reason": "Queso fresco batido versátil y habitual",
+    "subgroup": "fresh_cheese"
   },
   {
     "name": "Skyr Fresa 0%Mg",
@@ -125755,7 +125853,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Skyr muy popular en desayunos españoles"
+    "label_reason": "Skyr muy popular en desayunos españoles",
+    "subgroup": "high_protein_dairy"
   },
   {
     "name": "Fromages frais aux fruits",
@@ -125793,7 +125892,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Queso fresco con frutas Bio, desayuno habitual"
+    "label_reason": "Queso fresco con frutas Bio, desayuno habitual",
+    "subgroup": "fresh_cheese"
   },
   {
     "source": "BEDCA",
