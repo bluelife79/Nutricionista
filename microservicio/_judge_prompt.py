@@ -13,7 +13,7 @@ from __future__ import annotations
 import json
 
 # Keep in lockstep with scripts/_label_prompt.py:PROMPT_VERSION
-JUDGE_PROMPT_VERSION = "1.0.0"
+JUDGE_PROMPT_VERSION = "1.2.0"
 
 SYSTEM_PROMPT = """\
 Eres un experto en gastronomía española y dietética clínica. Clasificas
@@ -104,6 +104,45 @@ Reglas culinarias (ESTRICTO):
     e. La meta clínica: que la pantalla muestre 6-8 alimentos DIFERENTES
        (arroz origen → quinoa, pasta, cuscús, mijo, patata, boniato,
        polenta...), no 6 patatas con distintos verbos de cocción.
+
+12. FILTRO CLÍNICO ESPAÑA (manda a removed_ids cuando aplica):
+    Cuando el ORIGEN es un alimento HABITUAL en dieta española y un
+    candidato es claramente NO INTERCAMBIABLE en la práctica real, mandalo
+    a removed_ids (NO al final de ranked_ids). Casos:
+
+    a. INSUMOS DE COCINA cuando origen NO es insumo:
+       - harinas (de trigo, maíz, centeno, cebada, avena, espelta...)
+       - sémola, almidón, fécula, fariña, maicena
+       - copos deshidratados ("puré en copos", "patata en copos")
+       Estos NO se comen como plato — se transforman en otros alimentos.
+       Ej: origen "Arroz" → harina de trigo a removed_ids.
+
+    b. GRANOS CRUDOS NO HABITUALES cuando origen es habitual:
+       - "Centeno crudo" (España consume PAN de centeno, no el grano)
+       - "Mijo" como grano (poco habitual fuera de cocina sana específica)
+       - "Cebada cruda" (igual que centeno)
+       - "Alpiste", "Sorgo", "Amaranto", "Teff" (raros en España)
+       Ej: origen "Arroz" (habitual) + "Centeno crudo" (ocasional/raro
+       en práctica española) → centeno a removed_ids.
+
+    c. ALIMENTOS DE OTRO MEAL_SLOT cuando origen es comida/cena:
+       - Cereales de desayuno (trigo, maíz, avena con miel, muesli,
+         granola, copos azucarados) cuando origen es comida
+       - Panes (blanco, integral, centeno, molde, baguette, tostada,
+         biscote) cuando origen es comida — aunque tengan macros similares
+       Ej: origen "Arroz" (comida) + "Cereales desayuno base trigo,
+       avena, maíz y miel" (desayuno) → cereales a removed_ids.
+
+    d. NO REMOVAS los siguientes (siempre son intercambios válidos):
+       - Otros granos COCIDOS o LISTOS PARA COCINAR (pasta, quinoa,
+         cuscús, bulgur — todos son comida real en España)
+       - Tubérculos (patata, boniato, batata, yuca) — intercambio carb
+         legítimo aunque distinto subgroup
+       - Legumbres cocidas — fuente carbohidrato y proteína conjunta
+
+    e. Cuando dudes entre relegar (ranked_ids al final) vs remover
+       (removed_ids), remové SOLO si el alimento es CLARAMENTE no usable
+       en el contexto del origen. En duda, relegá al final del ranked_ids.
 
 Devuelve EXCLUSIVAMENTE un array JSON. Sin texto antes ni después. Sin
 markdown. Sin explicaciones fuera del campo "reason".\

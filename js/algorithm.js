@@ -1160,13 +1160,16 @@ async function calculateAlternatives(originalFood, amount) {
   });
 
   // ── LLM JUDGE GATE ───────────────────────────────────────────────────────────
-  // Selective LLM fallback — evaluates 6 triggers (S1-S6) on top-50 T2 candidates
-  // AFTER /rerank and BEFORE byTier. If at least one trigger fires, issues ONE call
-  // to POST /judge. Kill-switch: window.LLM_JUDGE_ENABLED = false → skip entirely.
-  // On any error (timeout, 5xx, abort, parse) → no-op, original order preserved.
+  // ALWAYS-ON judge en top-N T2 candidates. El cache server-side (TTL 24h
+  // db-namespaced en microservicio/judge_cache.py) absorbe el costo de
+  // queries repetidas. Primera ejecución por (origin, candidates) llama
+  // al LLM una vez; subsiguientes son cache hits gratis.
   //
-  // Per REQ-A spec: only T2 candidates are judged (T1 = same ingredient family,
-  // T3 = prepared dishes — both are high-confidence enough to skip LLM cost).
+  // S1-S6 triggers se siguen evaluando como contexto informativo (qué
+  // razones disparan) pero NO gatean la llamada — el judge corre siempre.
+  //
+  // Kill-switch: window.LLM_JUDGE_ENABLED = false → skip entirely.
+  // On any error (timeout, 5xx, abort, parse) → no-op, original order preserved.
   {
     const _llmJudgeEnabled = window.LLM_JUDGE_ENABLED !== false;
     const _isDebug         = window.location.search.includes('?debug=1');
@@ -1183,17 +1186,16 @@ async function calculateAlternatives(originalFood, amount) {
       if (_topT2.length === 0) {
         if (_isDebug) console.debug('[llm-judge] SKIP no T2 candidates');
       } else {
+        // Evaluamos triggers para informar al LLM por qué se le consulta,
+        // pero la llamada es ALWAYS-ON (cache absorbe el costo).
         const _triggered = evaluateJudgeTriggers(originalFood, _topT2);
+        const _reasonsForLog = _triggered.length > 0 ? _triggered : ['always_on'];
 
-        if (_triggered.length === 0) {
-          if (_isDebug) console.debug('[llm-judge] SKIP triggers_fired=0 top_t2=' + _topT2.length);
-        } else {
+        {
           if (_isDebug) {
-            for (const _code of _triggered) {
-              console.debug('[llm-judge] TRIGGERED reason=' + _code);
-            }
+            console.debug('[llm-judge] ALWAYS-ON top_t2=' + _topT2.length + ' triggers=[' + _reasonsForLog.join(',') + ']');
           }
-          const _verdict = await callJudge(originalFood, _topT2, _triggered);
+          const _verdict = await callJudge(originalFood, _topT2, _reasonsForLog);
           if (_verdict) {
             applyJudgeVerdict(withHybrid, _verdict);
             if (_isDebug) {
