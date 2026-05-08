@@ -217,16 +217,28 @@ const _PASTA_FAMILY = new Set([
   "cinta", "cintas",
 ]);
 
-// Devuelve la clave de cluster para un food. Si algún token cae en un
-// grupo de sinónimos, el cluster es la "raíz" de ese grupo. Si no, se
-// usa el join de tokens como antes.
+// Devuelve la clave de cluster para un food. Estrategia:
+//   1. Synonym groups (pasta family) → todos colapsan al canon del grupo.
+//   2. Default: PRIMER token-ingrediente como raíz del cluster.
+//      Los nombres en español típicamente empiezan por el sustantivo:
+//      "Patata, asada" → patata; "Pollo, pechuga" → pollo; "Aceite de
+//      oliva" → aceite; "Pasta alimenticia, cruda" → pasta.
+//      Esto colapsa todas las variantes "Patata X" / "Patatas Y" en
+//      un solo cluster, evitando que los descriptores ad-hoc del
+//      nombre (corte, bravas, tortilla, grueso) sean parte de la clave.
+//
+// Costo: dedup más agresivo. Ej. "Aceite de oliva" y "Aceite de
+// girasol" colapsan en aceite::generic — clínicamente intercambiables
+// (mismo grupo de grasas), aceptable para diversidad. Si Hugo pide
+// más granularidad en algún caso particular, agregamos un synonym
+// group específico que separe.
 function clusterIngredientKey(food) {
   const tokens = ingredientTokens(food.name);
   if (tokens.length === 0) return "__no_ingredient_" + food.id;
   for (const t of tokens) {
     if (_PASTA_FAMILY.has(t)) return "pasta::" + sourceFamily(food.source);
   }
-  return tokens.slice().sort().join("|") + "::" + sourceFamily(food.source);
+  return tokens[0] + "::" + sourceFamily(food.source);
 }
 
 // Extrae los tokens-ingrediente: singulariza primero (para que plurales
@@ -1222,7 +1234,7 @@ async function calculateAlternatives(originalFood, amount) {
 
     // Diversidad: primer representante de cada cluster al frente;
     // variantes secundarias al final del mismo tier.
-    // clusterIngredientKey() colapsa sinónimos de pasta family.
+    // clusterIngredientKey() colapsa por primer token + sinónimos.
     const seen = new Set();
     const primary = [];
     const secondary = [];
@@ -1235,7 +1247,24 @@ async function calculateAlternatives(originalFood, amount) {
         primary.push(food);
       }
     }
-    return [...primary, ...secondary];
+
+    // SOURCE FAMILY HARD PARTITION: dentro del primary (y secondary)
+    // ya deduped, candidatos de la MISMA familia que el origen van TODOS
+    // primero. Si origen es BEDCA → todos los BEDCA del tier antes que
+    // cualquier branded; si origen es Mercadona → todos los branded antes
+    // que BEDCA. Combinado con el dedup estricto (un representante por
+    // cluster), esto da el comportamiento esperado: BEDCA primero pero
+    // sin saturar con variantes del mismo alimento.
+    const oFamily = sourceFamily(originalFood.source);
+    const partition = (list) => {
+      const same = [], other = [];
+      for (const f of list) {
+        if (sourceFamily(f.source) === oFamily) same.push(f);
+        else other.push(f);
+      }
+      return [...same, ...other];
+    };
+    return [...partition(primary), ...partition(secondary)];
   };
 
   return {
