@@ -235,6 +235,42 @@ function getCookingState(name) {
   return "neutral";
 }
 
+// ============================================
+// COOKING INPUT — harinas, sémolas, almidones, copos deshidratados
+// ============================================
+//
+// Detecta foods que son INSUMOS de cocina (no meal-equivalents). Una persona
+// no come 120g de "harina de trigo" como reemplazo de 100g de arroz — la
+// harina se transforma en pan/pasta/salsas. Mismo caso: sémola, almidón,
+// fécula, fariña, "puré en copos" (deshidratado, se reconstituye).
+//
+// raw_ingredient=true del bulk-label captura esto en general PERO también
+// captura granos crudos meal-equivalent (arroz crudo, quinoa cruda, pasta
+// cruda) que SÍ son intercambios válidos. Por eso necesitamos detección
+// más fina por nombre: solo los cooking inputs verdaderos.
+const _COOKING_INPUT_TOKENS = new Set([
+  "harina", "harinas",
+  "semola", "semolas",
+  "almidon", "almidones",
+  "fecula", "feculas",
+  "farina", "farinas",   // gallego/portugués
+  "maicena",
+]);
+// Compound: "en copos" (ej. "Puré de patata, en copos", "Cereales en copos").
+// Detectado sobre el string normalizado completo (tokenize filtra "en"
+// como stop word, por eso vamos directo a norm()).
+function isCookingInput(name) {
+  const tokens = tokenize(name);
+  for (const t of tokens) {
+    if (_COOKING_INPUT_TOKENS.has(t)) return true;
+  }
+  // "en copos" — concentrado deshidratado (puré, patata, etc). No matchea
+  // "copos de avena/espelta/cereales" solos (esos son granos para porridge).
+  const normalized = norm(name);
+  if (normalized.includes(" en copos") || normalized.endsWith(" en copos")) return true;
+  return false;
+}
+
 function getFoodTier(candidate, originalFood) {
   // T3: platos preparados (flag-based — fiable)
   if ((candidate.flags || []).includes("prepared")) return 3;
@@ -666,6 +702,10 @@ async function calculateAlternatives(originalFood, amount) {
   // gana sobre Arroz ↔ Patata (tubers) aunque ambos sean carbs.
   const _subgroupBoost =
     Number(window.SAME_SUBGROUP_BOOST) || 0.10;
+  // Cooking-input demotion: candidato es harina/sémola/almidón/copos pero
+  // origen NO. Strong demote — clínicamente no son meal-equivalents.
+  const _demoteCookingInput =
+    Number(window.COOKING_INPUT_DEMOTION) || 0.25;
 
   const originalMacros = {
     protein: (originalFood.protein * amount) / 100,
@@ -887,6 +927,21 @@ async function calculateAlternatives(originalFood, amount) {
         demotion *= _demoteCookingMismatch;
         if (window.location.search.includes('?debug=1')) {
           console.debug('[cooking-state] DEMOTED candidate=\'' + a.name + '\' factor=' + _demoteCookingMismatch + ' reason=' + _originState + '_vs_' + _candidateState);
+        }
+      }
+    }
+
+    // CLINICAL: cooking-input asymmetry. Si el candidato es harina/sémola/
+    // almidón/copos deshidratados y el origen NO lo es, demote fuerte.
+    // Una persona no come 120g de "harina de trigo" como intercambio de
+    // 100g de arroz — la harina es insumo de cocina, no meal-equivalent.
+    {
+      const _oCookingInput = isCookingInput(originalFood.name);
+      const _cCookingInput = isCookingInput(a.name);
+      if (_cCookingInput && !_oCookingInput) {
+        demotion *= _demoteCookingInput;
+        if (window.location.search.includes('?debug=1')) {
+          console.debug('[cooking-input] DEMOTED candidate=\'' + a.name + '\' factor=' + _demoteCookingInput + ' reason=harina_o_copos_deshidratados');
         }
       }
     }
