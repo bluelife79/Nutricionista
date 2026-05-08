@@ -680,6 +680,17 @@ async function calculateAlternatives(originalFood, amount) {
     Number(window.BULK_LABEL_DEMOTION_EXOTIC)    || 0.7;
   const _demoteRare =
     Number(window.BULK_LABEL_DEMOTION_RARE)      || 0.5;
+  // Frequency gap: cuando origen es "habitual" (consumo semanal en España)
+  // y candidato es "ocasional" (mensual), el intercambio funciona pero NO
+  // es ideal — preferimos otros habituales primero. Ej. Arroz (habitual)
+  // → Quinoa cruda (ocasional) o Centeno crudo (ocasional).
+  const _demoteFreqGap =
+    Number(window.BULK_LABEL_DEMOTION_FREQ_GAP)  || 0.7;
+  // meal_slot=any del candidato cuando el origen tiene un slot específico.
+  // Light demote: "any" es comodín legítimo (queso, pan integral) pero NO
+  // es preferible sobre un candidato con el mismo slot exacto.
+  const _demoteMealSlotAny =
+    Number(window.BULK_LABEL_DEMOTION_MEAL_ANY)  || 0.85;
   // POST-PILOT: ready_to_eat mismatch downgraded from hard filter to soft
   // demotion. Pescado crudo es nutricionalmente equivalente a cocinado.
   const _demoteUncooked =
@@ -876,7 +887,7 @@ async function calculateAlternatives(originalFood, amount) {
     let demotion = 1;
     if (_bulkLabelEnabled) {
       // Meal slot mismatch (origin breakfast → candidate dinner) — demote.
-      // "any" on either side is a wildcard that never demotes.
+      // "any" del candidato cuando origen tiene slot específico = light demote.
       if (
         originalFood.meal_slot && a.meal_slot &&
         originalFood.meal_slot !== "any" && a.meal_slot !== "any" &&
@@ -886,6 +897,14 @@ async function calculateAlternatives(originalFood, amount) {
         if (window.location.search.includes('?debug=1')) {
           console.debug('[bulk-label] DEMOTED candidate=\'' + a.name + '\' factor=' + _demoteMealSlot + ' reason=meal_slot_mismatch');
         }
+      } else if (
+        originalFood.meal_slot && a.meal_slot &&
+        originalFood.meal_slot !== "any" && a.meal_slot === "any"
+      ) {
+        demotion *= _demoteMealSlotAny;  // default 0.85
+        if (window.location.search.includes('?debug=1')) {
+          console.debug('[bulk-label] DEMOTED candidate=\'' + a.name + '\' factor=' + _demoteMealSlotAny + ' reason=meal_slot_any_vs_specific');
+        }
       }
       // Candidate exotic but origin is not (Pollo → Cangrejo).
       if (a.exotic === true && originalFood.exotic !== true) {
@@ -894,11 +913,30 @@ async function calculateAlternatives(originalFood, amount) {
           console.debug('[bulk-label] DEMOTED candidate=\'' + a.name + '\' factor=' + _demoteExotic + ' reason=exotic');
         }
       }
-      // Candidate rarely consumed in standard Spanish diet.
-      if (a.frequency === "raro") {
-        demotion *= _demoteRare;       // default 0.5
-        if (window.location.search.includes('?debug=1')) {
-          console.debug('[bulk-label] DEMOTED candidate=\'' + a.name + '\' factor=' + _demoteRare + ' reason=frequency_raro');
+      // Frequency gap (origin-aware). En contexto España:
+      //   habitual → habitual: no demote (intercambio ideal)
+      //   habitual → ocasional: ×0.7 (no es ideal pero válido)
+      //   habitual → raro: ×0.5 (clínicamente forzado)
+      //   ocasional → raro: ×0.6
+      //   ocasional/raro → habitual: no demote (acepta substitutos comunes)
+      //   ocasional → ocasional: no demote
+      //   raro → cualquier: no demote (si origen es raro, abierto a todo)
+      {
+        const oFreq = originalFood.frequency;
+        const cFreq = a.frequency;
+        let freqDemote = 1;
+        let freqReason = null;
+        if (oFreq === "habitual") {
+          if (cFreq === "ocasional") { freqDemote = _demoteFreqGap; freqReason = "habitual_to_ocasional"; }
+          else if (cFreq === "raro") { freqDemote = _demoteRare; freqReason = "habitual_to_raro"; }
+        } else if (oFreq === "ocasional") {
+          if (cFreq === "raro") { freqDemote = (_demoteRare + _demoteFreqGap) / 2; freqReason = "ocasional_to_raro"; }
+        }
+        if (freqDemote < 1) {
+          demotion *= freqDemote;
+          if (window.location.search.includes('?debug=1')) {
+            console.debug('[bulk-label] DEMOTED candidate=\'' + a.name + '\' factor=' + freqDemote + ' reason=freq_' + freqReason);
+          }
         }
       }
       // POST-PILOT: origin ready_to_eat but candidate needs cooking. Light
