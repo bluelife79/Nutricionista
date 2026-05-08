@@ -155,6 +155,53 @@ function ingredientTokens(name) {
   return tokenize(name).filter((t) => !NON_INGREDIENT_TOKENS.has(t));
 }
 
+// ============================================
+// COOKING STATE — clinical raw/cooked symmetry
+// ============================================
+//
+// Detecta el estado de cocción del nombre normalizado. Los intercambios
+// nutricionales se calculan por 100g del alimento en el estado en que se
+// pesa: arroz crudo (358 kcal) NO es equivalente a arroz cocido (130 kcal).
+// Cuando el origen está en un estado y el candidato en el opuesto, se
+// aplica una demotion fuerte (no se elimina — el clínico puede verlo).
+//
+// Returns: 'raw' | 'cooked' | 'neutral'
+//   - 'neutral' cuando no hay marcador explícito en el nombre. NO penaliza
+//     ni a uno ni a otro lado (la mayoría de foods no especifican estado).
+const _RAW_TOKENS = new Set([
+  "crudo", "cruda", "crudos", "crudas",
+  "seco", "seca", "secos", "secas",
+  "deshidratado", "deshidratada", "deshidratados", "deshidratadas",
+]);
+const _COOKED_TOKENS = new Set([
+  "cocido", "cocida", "cocidos", "cocidas",
+  "asado", "asada", "asados", "asadas",
+  "hervido", "hervida", "hervidos", "hervidas",
+  "plancha",
+  "frito", "frita", "fritos", "fritas",
+  "tostado", "tostada", "tostados", "tostadas",
+  "horneado", "horneada", "horneados", "horneadas",
+  "guisado", "guisada", "guisados", "guisadas",
+  "salteado", "salteada", "salteados", "salteadas",
+  "braseado", "braseada", "estofado", "estofada",
+  "rehogado", "rehogada",
+  "vapor",
+]);
+
+function getCookingState(name) {
+  const tokens = tokenize(name);
+  let raw = false;
+  let cooked = false;
+  for (const t of tokens) {
+    if (_RAW_TOKENS.has(t)) raw = true;
+    if (_COOKED_TOKENS.has(t)) cooked = true;
+  }
+  // Si el nombre tiene ambos (raro: "lentejas crudas, peso cocido"), priorizar cooked.
+  if (cooked) return "cooked";
+  if (raw) return "raw";
+  return "neutral";
+}
+
 function getFoodTier(candidate, originalFood) {
   // T3: platos preparados (flag-based — fiable)
   if ((candidate.flags || []).includes("prepared")) return 3;
@@ -568,6 +615,11 @@ async function calculateAlternatives(originalFood, amount) {
   // demotion. Pescado crudo es nutricionalmente equivalente a cocinado.
   const _demoteUncooked =
     Number(window.BULK_LABEL_DEMOTION_UNCOOKED)  || 0.85;
+  // Cooking state asymmetry (origin raw vs candidate cooked, or viceversa):
+  // strong demotion. Las macros por 100g cambian dramáticamente con la
+  // cocción — clínicamente erróneo mezclar estados.
+  const _demoteCookingMismatch =
+    Number(window.COOKING_STATE_DEMOTION) || 0.3;
 
   const originalMacros = {
     protein: (originalFood.protein * amount) / 100,
@@ -768,6 +820,25 @@ async function calculateAlternatives(originalFood, amount) {
       }
     }
 
+    // CLINICAL: cooking state symmetry. Independiente de bulk-label flags
+    // (corre siempre, basado en regex sobre el nombre). Si origen=raw y
+    // candidato=cooked (o al revés), demotion fuerte. Si alguno es 'neutral',
+    // no penaliza (la mayoría de foods no marcan estado).
+    {
+      const _originState   = getCookingState(originalFood.name);
+      const _candidateState = getCookingState(a.name);
+      if (
+        _originState !== "neutral" &&
+        _candidateState !== "neutral" &&
+        _originState !== _candidateState
+      ) {
+        demotion *= _demoteCookingMismatch;
+        if (window.location.search.includes('?debug=1')) {
+          console.debug('[cooking-state] DEMOTED candidate=\'' + a.name + '\' factor=' + _demoteCookingMismatch + ' reason=' + _originState + '_vs_' + _candidateState);
+        }
+      }
+    }
+
     return {
       ...a,
       _hybridScore: hybrid,
@@ -839,8 +910,8 @@ async function calculateAlternatives(originalFood, amount) {
   // _sortScore DESC (secondary / fallback for items outside judge top-50 or
   // when the judge gate was skipped — _judgeRank ?? 9999 guarantees correct
   // behavior on the SKIP path without any special-casing).
-  const byTier = (t) =>
-    withHybrid
+  const byTier = (t) => {
+    const sorted = withHybrid
       .filter(a => a.tier === t)
       .sort((a, b) => {
         const ra = a._judgeRank ?? 9999;
@@ -848,6 +919,27 @@ async function calculateAlternatives(originalFood, amount) {
         if (ra !== rb) return ra - rb;
         return b._sortScore - a._sortScore;
       });
+
+    // Diversidad: primer representante de cada cluster (por ingrediente raíz +
+    // sourceFamily) al frente; variantes secundarias al final del mismo tier.
+    // Reutiliza ingredientTokens() — ya filtra estados, cortes y marcas.
+    const seen = new Set();
+    const primary = [];
+    const secondary = [];
+    for (const food of sorted) {
+      const tokens = ingredientTokens(food.name);
+      const key = tokens.length > 0
+        ? tokens.slice().sort().join('|') + '::' + sourceFamily(food.source)
+        : '__no_ingredient_' + food.id;
+      if (seen.has(key)) {
+        secondary.push(food);
+      } else {
+        seen.add(key);
+        primary.push(food);
+      }
+    }
+    return [...primary, ...secondary];
+  };
 
   return {
     intercambios: byTier(2),

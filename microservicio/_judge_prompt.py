@@ -77,6 +77,34 @@ Reglas culinarias (ESTRICTO):
 
 10. confidence < 60 si tienes dudas reales; el equipo revisará esos casos.
 
+11. DIVERSIDAD EN RANKING (REGLA DURA, no opcional):
+    a. Identificá el "alimento base" de cada candidato — la raíz ignorando
+       estado de cocción, corte, marca y conservación. Ejemplos:
+         "patata asada", "patata cruda", "patata hervida"  → base "patata"
+         "pollo plancha", "pollo asado", "pollo a la plancha" → base "pollo"
+         "garbanzo cocido", "garbanzo seco", "garbanzos en bote" → base "garbanzo"
+       Si dos candidatos comparten el mismo alimento base, son VARIANTES
+       del mismo alimento — aunque tengan ids distintos y macros distintas.
+
+    b. En el TOP del ranking podés incluir COMO MÁXIMO UNA variante por
+       alimento base. La mejor variante = la que mejor matchea con el
+       ORIGEN considerando estado, contexto culinario y macros.
+
+    c. Las variantes extras del mismo alimento base van al FINAL del
+       ranked_ids (no a removed_ids — siguen siendo válidas, solo
+       postergadas). El usuario quiere VARIEDAD entre alimentos
+       distintos, no 5 patatas seguidas con distinto método de cocción.
+
+    d. CASO DEL ORIGEN VAGO: si el ORIGEN no especifica estado (ej. solo
+       "Arroz" sin "crudo" ni "cocido", o "Pollo" sin método de cocción),
+       la regla SIGUE APLICANDO IGUAL: una sola "patata" en el top, una
+       sola "pasta", una sola "quinoa". No uses la ambigüedad del origen
+       como excusa para incluir múltiples variantes.
+
+    e. La meta clínica: que la pantalla muestre 6-8 alimentos DIFERENTES
+       (arroz origen → quinoa, pasta, cuscús, mijo, patata, boniato,
+       polenta...), no 6 patatas con distintos verbos de cocción.
+
 Devuelve EXCLUSIVAMENTE un array JSON. Sin texto antes ni después. Sin
 markdown. Sin explicaciones fuera del campo "reason".\
 """
@@ -163,6 +191,20 @@ def build_judge_user_message(origin, candidates, triggered_reasons=None) -> str:
         f"- ranked_ids debe contener TODOS los ids no incluidos en removed_ids.\n"
         f"- Si todo está bien, devuelve ranked_ids con el orden que consideres "
         f"correcto y removed_ids=[].\n"
+        f"- DIVERSIDAD (regla DURA — aplicar SIEMPRE):\n"
+        f"  * Identificá el alimento base de cada candidato (raíz sin "
+        f"estado/cocción/corte/marca). \"patata cruda/asada/hervida\" → base "
+        f"\"patata\"; \"pollo plancha/asado\" → base \"pollo\".\n"
+        f"  * En el TOP del ranked_ids, MÁXIMO UNA variante por alimento base. "
+        f"Elegí la mejor para matchear con el ORIGEN.\n"
+        f"  * Las variantes restantes van al FINAL del ranked_ids (NO a "
+        f"removed_ids — siguen siendo válidas, solo postergadas).\n"
+        f"  * Si el ORIGEN no especifica estado de cocción (ej. solo \"Arroz\" "
+        f"sin \"crudo\"/\"cocido\"), la regla aplica IGUAL: una sola patata, "
+        f"una sola pasta, una sola quinoa en el top. No usar la ambigüedad "
+        f"del origen como excusa para incluir múltiples variantes.\n"
+        f"  * Meta: el TOP del ranking debe mostrar alimentos DIFERENTES, no "
+        f"el mismo alimento con distintos verbos de cocción.\n"
         f"- Sin markdown. Sin texto antes ni después del JSON.\n"
     )
 
