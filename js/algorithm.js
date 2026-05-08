@@ -820,7 +820,7 @@ async function calculateAlternatives(originalFood, amount) {
   const _bulkLabelEnabled =
     window.BULK_LABEL_FILTERS_ENABLED !== false;          // default true
   const _demoteMealSlot =
-    Number(window.BULK_LABEL_DEMOTION_MEAL_SLOT) || 0.6;
+    Number(window.BULK_LABEL_DEMOTION_MEAL_SLOT) || 0.4;
   const _demoteExotic =
     Number(window.BULK_LABEL_DEMOTION_EXOTIC)    || 0.7;
   const _demoteRare =
@@ -835,7 +835,7 @@ async function calculateAlternatives(originalFood, amount) {
   // Light demote: "any" es comodín legítimo (queso, pan integral) pero NO
   // es preferible sobre un candidato con el mismo slot exacto.
   const _demoteMealSlotAny =
-    Number(window.BULK_LABEL_DEMOTION_MEAL_ANY)  || 0.85;
+    Number(window.BULK_LABEL_DEMOTION_MEAL_ANY)  || 0.7;
   // POST-PILOT: ready_to_eat mismatch downgraded from hard filter to soft
   // demotion. Pescado crudo es nutricionalmente equivalente a cocinado.
   const _demoteUncooked =
@@ -1131,14 +1131,18 @@ async function calculateAlternatives(originalFood, amount) {
 
     // CLINICAL: calorie-density mismatch (cooking state surrogate). Cuando
     // el nombre no marca estado pero las macros por 100g sí lo delatan.
-    // Solo aplica intra-category (no comparar fat con carbs).
+    // Solo aplica intra-SUBGROUP (no comparar grains vs tubers — la app
+    // ya calcula gramaje equivalente para cross-subgroup, ej. 374g boniato
+    // cocido = 100g arroz crudo en calorías, intercambio clínico válido).
+    // Sirve para detectar "Arroz crudo (360 kcal)" vs "Arroz hervido (130 kcal)"
+    // dentro de sub:grains — son la misma cosa en estados distintos.
     {
       const oKcal = originalFood.calories;
       const cKcal = a.calories;
       if (
         oKcal != null && cKcal != null &&
-        originalFood.category && a.category &&
-        originalFood.category === a.category
+        originalFood.subgroup && a.subgroup &&
+        originalFood.subgroup === a.subgroup
       ) {
         const diff  = Math.abs(oKcal - cKcal);
         const denom = Math.max(oKcal, cKcal, 100);
