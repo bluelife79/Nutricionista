@@ -107,6 +107,10 @@ class FoodFlags(BaseModel):
     exotic: bool | None = None
     label_confidence: int | None = None
     calories: float | None = None
+    # Descripción enriquecida del uso culinario español (opcional).
+    # Cuando está presente, el juez la usa para razonamiento clínico sin
+    # tener que inferir de flags. Generada offline por audit_usage_with_llm.py.
+    usage_es: str | None = None
 
 
 class JudgeRequest(BaseModel):

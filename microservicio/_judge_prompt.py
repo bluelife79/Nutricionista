@@ -13,7 +13,7 @@ from __future__ import annotations
 import json
 
 # Keep in lockstep with scripts/_label_prompt.py:PROMPT_VERSION
-JUDGE_PROMPT_VERSION = "1.2.0"
+JUDGE_PROMPT_VERSION = "1.3.0"
 
 SYSTEM_PROMPT = """\
 Eres un experto en gastronomía española y dietética clínica. Clasificas
@@ -106,6 +106,13 @@ Reglas culinarias (ESTRICTO):
        polenta...), no 6 patatas con distintos verbos de cocción.
 
 12. FILTRO CLÍNICO ESPAÑA (manda a removed_ids cuando aplica):
+    SEÑAL PRIMARIA: el campo `usage_es` (cuando está presente) describe en
+    25-40 palabras el uso culinario real en España de cada alimento. Úsalo
+    como tu fuente principal para decidir si un candidato es intercambio
+    válido. Ej: si usage_es dice "no se consume crudo, requiere cocción",
+    "exclusivo desayuno", o "ingrediente de bollería, no plato directo",
+    eso decide la categoría más que los flags.
+
     Cuando el ORIGEN es un alimento HABITUAL en dieta española y un
     candidato es claramente NO INTERCAMBIABLE en la práctica real, mandalo
     a removed_ids (NO al final de ranked_ids). Casos:
@@ -184,6 +191,11 @@ def build_judge_user_message(origin, candidates, triggered_reasons=None) -> str:
         "exotic": origin.exotic,
         "label_confidence": getattr(origin, "label_confidence", None),
         "calories": getattr(origin, "calories", None),
+        # Descripción enriquecida del uso culinario español (audit_usage_with_llm.py).
+        # Cuando está presente, ayuda al juicio clínico — explica el rol del
+        # alimento ("plato directo" vs "ingrediente de cocina") sin que el LLM
+        # tenga que inferirlo de los flags.
+        "usage_es": getattr(origin, "usage_es", None),
     }
 
     cand_payload = [
@@ -199,6 +211,7 @@ def build_judge_user_message(origin, candidates, triggered_reasons=None) -> str:
             "exotic": c.exotic,
             "label_confidence": getattr(c, "label_confidence", None),
             "calories": getattr(c, "calories", None),
+            "usage_es": getattr(c, "usage_es", None),
         }
         for c in candidates
     ]

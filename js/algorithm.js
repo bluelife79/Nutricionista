@@ -663,6 +663,7 @@ function pickJudgeFields(f) {
     exotic:           f.exotic            ?? null,
     label_confidence: f.label_confidence  ?? null,
     calories:         f.calories          ?? null,
+    usage_es:         f.usage_es          ?? null,
   };
 }
 

@@ -21,7 +21,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Tubérculo base, requiere cocción obligatoria"
+    "label_reason": "Tubérculo base, requiere cocción obligatoria",
+    "usage_es": "Tubérculo que no se consume crudo. Se cocina hervido, frito o asado en comida o cena. Intercambio con boniato cocido, Yuca o plátano verde asado."
   },
   {
     "source": "BEDCA",
@@ -69,7 +70,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Conserve dulce, consumo esporádico"
+    "label_reason": "Conserve dulce, consumo esporádico",
+    "usage_es": "Fruta en conserva. Se consume como postre ocasional o en macedonias. No es fruta fresca. Intercambio con melocotón fresco, pera o compota sin azúcar."
   },
   {
     "source": "BEDCA",
@@ -92,7 +94,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Pan versátil, listos para consumir"
+    "label_reason": "Pan versátil, listos para consumir",
+    "usage_es": "Pan de cereal. Uso exclusivo en desayuno, con tomate o aceite. Intercambio con pan integral de trigo o tostadas de masa madre."
   },
   {
     "source": "BEDCA",
@@ -116,7 +119,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Zumo envasado, consumo moderado"
+    "label_reason": "Zumo envasado, consumo moderado",
+    "usage_es": "Zumos de fruta exótica. Consumo ocasional como bebida. Intercambio con zumo de naranja natural o pieza de fruta entera, mejor opción."
   },
   {
     "source": "BEDCA",
@@ -236,7 +240,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Legumbre seca, precisa remojo y cocción"
+    "label_reason": "Legumbre seca, precisa remojo y cocción",
+    "usage_es": "Legumbre en grano. Ingrediente de cocidos y potajes en comida. Requiere remojo y cocción prolongada. Intercambio con garbanzos cocidos, lentejas o alubias blancas."
   },
   {
     "source": "BEDCA",
@@ -306,7 +311,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Dulce tradicional minoritario"
+    "label_reason": "Dulce tradicional minoritario",
+    "usage_es": "Dulce tradicional. Consumo raro en España como snack ocasional. Intercambio con otros dulces como gominolas o caramelo, por contenido en hidratos."
   },
   {
     "source": "BEDCA",
@@ -330,7 +336,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Cítrico típico en desayunos"
+    "label_reason": "Cítrico típico en desayunos",
+    "usage_es": "Fruta cítrica. Uso exclusivo en desayuno, en gajos o zumo. Intercambio con naranja, mandarina o media piña natural."
   },
   {
     "source": "BEDCA",
@@ -570,7 +577,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Harina tostada canaria, poco común"
+    "label_reason": "Harina tostada canaria, poco común",
+    "usage_es": "Harina de cereales tostados. Alimento raro en España, típico canario. Se toma en desayuno mezclado con leche. Intercambio con harina de avena o sémola."
   },
   {
     "source": "BEDCA",
@@ -694,7 +702,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Snack frito listo para consumo directo"
+    "label_reason": "Snack frito listo para consumo directo",
+    "usage_es": "Snack salado de aperitivo. Consumo ocasional como tapa o entre horas. Intercambio con patatas fritas de bolsa, palomitas o frutos secos tostados."
   },
   {
     "source": "BEDCA",
@@ -859,7 +868,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Tubérculo cocinado listo para consumir"
+    "label_reason": "Tubérculo cocinado listo para consumir",
+    "usage_es": "Tubérculo cocinado. Se consume como guarnición en comida o cena. Intercambio con patata hervida, boniato asado o puré de patata casero."
   },
   {
     "source": "BEDCA",
@@ -1048,7 +1058,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Legumbre seca que requiere cocción prolongada"
+    "label_reason": "Legumbre seca que requiere cocción prolongada",
+    "usage_es": "Legumbre en grano. Se consume hervida en potajes, cocidos o ensaladas en la comida. No se come cruda. Intercambio con garbanzos cocidos, lentejas cocidas, alubias rojas."
   },
   {
     "source": "BEDCA",
@@ -1119,7 +1130,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Ingrediente técnico para rebozar, no se come solo"
+    "label_reason": "Ingrediente técnico para rebozar, no se come solo",
+    "usage_es": "Cereal procesado. Es ingrediente de cocina para rebozar carnes y pescados o gratinar, no se come directamente. Intercambio con harina de trigo, copos de avena."
   },
   {
     "source": "BEDCA",
@@ -1282,7 +1294,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Fruta de hueso de temporada, consumo directo"
+    "label_reason": "Fruta de hueso de temporada, consumo directo",
+    "usage_es": "Fruta de hueso. Se consume fresca como snack entre horas. Intercambio con melocotón, albaricoque, ciruela, nectarina."
   },
   {
     "source": "BEDCA",
@@ -1398,7 +1411,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pan tostado de molde: desayuno típico español"
+    "label_reason": "Pan tostado de molde: desayuno típico español",
+    "usage_es": "Cereal tostado de molde. Uso exclusivo en el desayuno con tomate, aceite o embutido. Intercambio con pan de barra tostado, biscotes, galletas de tipo María."
   },
   {
     "source": "BEDCA",
@@ -1470,7 +1484,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 100,
-    "label_reason": "Pan de barra: básico versátil, consumo directo"
+    "label_reason": "Pan de barra: básico versátil, consumo directo",
+    "usage_es": "Cereal de panadería. Uso exclusivo en el desayuno acompañando salado o dulce. Intercambio con pan integral de barra, pan de molde, biscotes."
   },
   {
     "source": "BEDCA",
@@ -1588,7 +1603,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Cereal de desayuno, consumo directo con leche"
+    "label_reason": "Cereal de desayuno, consumo directo con leche",
+    "usage_es": "Mezcla de cereales con frutos secos. Uso exclusivo en el desayuno con leche o yogur. Intercambio con copos de avena, cereales de desayuno integrales, granola."
   },
   {
     "source": "BEDCA",
@@ -1635,7 +1651,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 100,
-    "label_reason": "Fruta cítrica básica, consumo directo habitual"
+    "label_reason": "Fruta cítrica básica, consumo directo habitual",
+    "usage_es": "Fruta cítrica. Se consume fresca como snack entre horas o postre. Intercambio con mandarina, pomelo, kiwi, manzana."
   },
   {
     "source": "BEDCA",
@@ -1776,7 +1793,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pan tostado de molde: desayuno típico"
+    "label_reason": "Pan tostado de molde: desayuno típico",
+    "usage_es": "Cereal tostado de molde. Uso exclusivo en el desayuno con tomate, aceite o embutido. Intercambio con pan de barra tostado, biscotes, galletas de tipo María."
   },
   {
     "source": "BEDCA",
@@ -1846,7 +1864,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Zumo típico del desayuno español"
+    "label_reason": "Zumo típico del desayuno español",
+    "usage_es": "Bebida de fruta exprimida. Uso exclusivo en el desayuno. Intercambio clínico con otra fruta entera como naranja o mandarina."
   },
   {
     "source": "BEDCA",
@@ -1892,7 +1911,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Fruta de temporada consumida como snack"
+    "label_reason": "Fruta de temporada consumida como snack",
+    "usage_es": "Fruta de baya. Se consume fresca como snack entre horas o postre. Intercambio con uva negra, melón, sandía, fresones."
   },
   {
     "source": "BEDCA",
@@ -2149,7 +2169,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Harina básica, ingrediente de cocina"
+    "label_reason": "Harina básica, ingrediente de cocina",
+    "usage_es": "Cereal molido, ingrediente de cocina no comestible directamente. Base de migas o polenta. Uso en cualquier comida. Intercambio con harina de trigo o sémola."
   },
   {
     "source": "BEDCA",
@@ -2264,7 +2285,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Fruta otoñal española de consumo directo"
+    "label_reason": "Fruta otoñal española de consumo directo",
+    "usage_es": "Fruta otoñal fresca de consumo directo como snack. Muy habitual en España. Intercambio con manzana, pera o níspero."
   },
   {
     "source": "BEDCA",
@@ -2310,7 +2332,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Fruta de temporada comida como snack"
+    "label_reason": "Fruta de temporada comida como snack",
+    "usage_es": "Fruta fresca de pepita, consumida directamente como snack. Típica en otoño. Intercambio con naranja, manzana o uva."
   },
   {
     "source": "BEDCA",
@@ -2425,7 +2448,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 100,
-    "label_reason": "Ingrediente base de cocina, no se come solo"
+    "label_reason": "Ingrediente base de cocina, no se come solo",
+    "usage_es": "Cereal molido, ingrediente de cocina no comestible directamente. Base de masas, panes y rebozados. Uso en cualquier comida. Intercambio con harina de maíz."
   },
   {
     "source": "BEDCA",
@@ -2633,7 +2657,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Legumbre cocida, plato principal de comida"
+    "label_reason": "Legumbre cocida, plato principal de comida",
+    "usage_es": "Legumbre hervida como plato único en comida, típicamente en potaje o cocido. Intercambio con lentejas hervidas, alubias o garrofón."
   },
   {
     "source": "BEDCA",
@@ -2913,7 +2938,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Legumbre cocida, base de potajes y guisos"
+    "label_reason": "Legumbre cocida, base de potajes y guisos",
+    "usage_es": "Legumbre hervida como plato único en comida, típicamente en potaje o cocido. Intercambio con lentejas hervidas, alubias o garrofón."
   },
   {
     "source": "BEDCA",
@@ -2984,7 +3010,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Legumbre consumida directamente como aperitivo"
+    "label_reason": "Legumbre consumida directamente como aperitivo",
+    "usage_es": "Legumbre encurtida consumida exclusivamente como snack entre horas. Ocasional en bares. Intercambio con aceitunas, frutos secos o habas de season."
   },
   {
     "source": "BEDCA",
@@ -3380,7 +3407,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Cereal de desayuno habitual en España"
+    "label_reason": "Cereal de desayuno habitual en España",
+    "usage_es": "Mezcla de cereales y frutos secos de consumo exclusivo en desayuno con leche o yogur. Intercambio con copos de avena o galletas integrales."
   },
   {
     "source": "BEDCA",
@@ -3404,7 +3432,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Bollería de desayuno andaluza ocasional"
+    "label_reason": "Bollería de desayuno andaluza ocasional",
+    "usage_es": "Bollería dulce de consumo exclusivo en desayuno o merienda. Ocasional. Intercambio con pan de huevo, magdalenas o bizcocho casero."
   },
   {
     "source": "BEDCA",
@@ -3901,7 +3930,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Pan versátil, básico diario en dieta española"
+    "label_reason": "Pan versátil, básico diario en dieta española",
+    "usage_es": "Pan de cereal integral. Se consume en tostadas o bocadillos, siendo un alimento exclusivo de desayuno o snack. Intercambio con pan blanco, tostadas de maíz o galletas integrales."
   },
   {
     "source": "BEDCA",
@@ -3947,7 +3977,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Guarnición cocida, básica en comidas"
+    "label_reason": "Guarnición cocida, básica en comidas",
+    "usage_es": "Cereal en grano cocido. Se consume como guarnición o ingrediente en paellas y ensaladas, típico de la comida. Intercambio con pasta cocida, cuscús, bulgur o patata hervida."
   },
   {
     "source": "BEDCA",
@@ -3970,7 +4001,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Mermelada tipo, tostada de desayuno habitual"
+    "label_reason": "Mermelada tipo, tostada de desayuno habitual",
+    "usage_es": "Dulce de fruta concentrada. Se consume untada sobre tostadas, siendo un alimento exclusivo de desayuno. Intercambio con mermelada, miel, mantequilla de cacahuete o crema de chocolate."
   },
   {
     "source": "BEDCA",
@@ -3993,7 +4025,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Postre tradicional listo, consumo ocasional"
+    "label_reason": "Postre tradicional listo, consumo ocasional",
+    "usage_es": "Postre lácteo azucarado. Se consume frío como postre ocasional tras las comidas o cenas. Intercambio con flan, arroz con leche, natillas o yogur azucarado."
   },
   {
     "source": "BEDCA",
@@ -4158,7 +4191,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Cereal menor, requiere cocción"
+    "label_reason": "Cereal menor, requiere cocción",
+    "usage_es": "Cereal en grano crudo, raro en España. No se come directamente, requiere cocción previa como ingrediente de ensaladas o purés. Intercambio con quinoa, cuscús o arroz cocido."
   },
   {
     "source": "BEDCA",
@@ -4369,7 +4403,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Masa base para repostería"
+    "label_reason": "Masa base para repostería",
+    "usage_es": "Masa de harina y grasa, ingrediente de repostería. No se come sola, se usa para hacer tartas y empanadas dulces. Intercambio con masa quebrada, masa brisa o bizcocho."
   },
   {
     "source": "BEDCA",
@@ -4442,7 +4477,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Fruta en conserva lista"
+    "label_reason": "Fruta en conserva lista",
+    "usage_es": "Fruta tropical en conserva. Se consume como snack entre horas o postre ocasional. Intercambio con fruta fresca, compota de manzana, melocotón en almíbar o macedonia."
   },
   {
     "source": "BEDCA",
@@ -4560,7 +4596,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 92,
-    "label_reason": "Legumbre cocida lista, plato principal"
+    "label_reason": "Legumbre cocida lista, plato principal",
+    "usage_es": "Legumbre cocida. Se consume en potajes, guisos o ensaladas, siendo un plato típico de comida. Intercambio con garbanzos cocidos, lentejas estofadas o alubias pintas."
   },
   {
     "source": "BEDCA",
@@ -4586,7 +4623,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 60,
-    "label_reason": "Preparación minoritaria en España"
+    "label_reason": "Preparación minoritaria en España",
+    "usage_es": "Legumbre grasa frita, consumo raro en España. Se toma ocasionalmente como snack o ingrediente en salteados. Intercambio con tofu, tempeh, heura o soja texturizada."
   },
   {
     "source": "BEDCA",
@@ -4912,7 +4950,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Guarnición versátil muy consumida"
+    "label_reason": "Guarnición versátil muy consumida",
+    "usage_es": "Tubérculo cocido. Se consume como guarnición o ingrediente en tortillas y ensaladas, típico de la comida. Intercambio con boniato hervido, pasta cocida, arroz o Yuca."
   },
   {
     "source": "BEDCA",
@@ -5297,7 +5336,8 @@
     "frequency": "raro",
     "exotic": true,
     "label_confidence": 90,
-    "label_reason": "Legumbre seca exótica, no integrada"
+    "label_reason": "Legumbre seca exótica, no integrada",
+    "usage_es": "Legumbre grano rara en España. No se consume directamente, requiere remojo y cocción prolongada. Ingrediente de cocina. Intercambio con alubias cocidas, garbanzos o lentejas."
   },
   {
     "source": "BEDCA",
@@ -5323,7 +5363,8 @@
     "frequency": "raro",
     "exotic": true,
     "label_confidence": 85,
-    "label_reason": "Harina de soja, ingrediente crudo poco habitual"
+    "label_reason": "Harina de soja, ingrediente crudo poco habitual",
+    "usage_es": "Harina de legumbre rara en España. No se come directamente, es ingrediente para elaborar productos como tofu o texturizados. Intercambio con harina de garbanzo cocida."
   },
   {
     "source": "BEDCA",
@@ -5627,7 +5668,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Copo que requiere hidratación y cocción"
+    "label_reason": "Copo que requiere hidratación y cocción",
+    "usage_es": "Tubérculo deshidratado en copos. No se come crudo, se hidrata con leche o agua caliente como guarnición o plato principal en comida y cena. Intercambio con patata cocida."
   },
   {
     "source": "BEDCA",
@@ -5752,7 +5794,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 55,
-    "label_reason": "Pudin inglés, raro en España, dudoso"
+    "label_reason": "Pudin inglés, raro en España, dudoso",
+    "usage_es": "Dulce de bollería muy raro en España. Se consume horneado de forma exclusiva en desayuno. Intercambio con magdalenas, bizcochos de soletilla o tostadas de pan."
   },
   {
     "source": "BEDCA",
@@ -5844,7 +5887,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Postre en conserva, consumo mensual"
+    "label_reason": "Postre en conserva, consumo mensual",
+    "usage_es": "Mezcla de frutas en conserva. Se consume directamente como postre o cena ligera. Intercambio con macedonia de frutas frescas variadas o compota de frutas sin azúcar."
   },
   {
     "source": "BEDCA",
@@ -5960,7 +6004,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Fruta de temporada consumida cruda"
+    "label_reason": "Fruta de temporada consumida cruda",
+    "usage_es": "Fruta de hueso de consumo habitual. Se toma fresca como snack entre horas o postre. Intercambio con melocotón, ciruela, nectarina o dátil fresco."
   },
   {
     "source": "BEDCA",
@@ -6076,7 +6121,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Fruta cruda de consumo habitual"
+    "label_reason": "Fruta cruda de consumo habitual",
+    "usage_es": "Fruta de consumo habitual. Se come fresca como snack entre horas o postre, también en uvas de invierno. Intercambio con uva blanca, cerezas o mandarinas."
   },
   {
     "source": "BEDCA",
@@ -6099,7 +6145,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Harina básica para elaboración culinaria"
+    "label_reason": "Harina básica para elaboración culinaria",
+    "usage_es": "Harina de cereal integral. No se come directamente, es ingrediente para panes, masas y repostería en cualquier comida. Intercambio con harina de trigo normal o de espelta."
   },
   {
     "source": "BEDCA",
@@ -6146,7 +6193,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Zumo envasado, consumo en desayunos"
+    "label_reason": "Zumo envasado, consumo en desayunos",
+    "usage_es": "Bebida de frutas envasada. Se bebe directamente de forma exclusiva en desayuno. Intercambio con zumo de naranja natural, zumo de uva o pieza de fruta fresca."
   },
   {
     "source": "BEDCA",
@@ -6170,7 +6218,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Zumo envasado menos habitual que naranja"
+    "label_reason": "Zumo envasado menos habitual que naranja",
+    "usage_es": "Bebida de fruta envasada. Se bebe directamente de forma exclusiva en desayuno. Intercambio con zumo de naranja natural, zumo de piña o pieza de pomelo fresco."
   },
   {
     "source": "BEDCA",
@@ -6406,7 +6455,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Bollería industrial típica del desayuno"
+    "label_reason": "Bollería industrial típica del desayuno",
+    "usage_es": "Bollería tradicional. Se consume directamente como snack o en desayuno ocasional. Intercambio con magdalenas, mantecados o bollos de leche."
   },
   {
     "source": "BEDCA",
@@ -6477,7 +6527,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Pasta seca base para primer plato"
+    "label_reason": "Pasta seca base para primer plato",
+    "usage_es": "Cereal en grano. Ingrediente que requiere hervir para guarnición o plato único en comida. No comestible crudo. Intercambio con arroz cocido, cuscús o fideos."
   },
   {
     "source": "BEDCA",
@@ -6547,7 +6598,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 100,
-    "label_reason": "Pan tostado listo, muy versátil y habitual"
+    "label_reason": "Pan tostado listo, muy versátil y habitual",
+    "usage_es": "Derivado de cereal. Ingrediente para tostadas en desayuno, con aceite o tomate. Intercambio con pan de molde, regañás o picos."
   },
   {
     "source": "BEDCA",
@@ -6641,7 +6693,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 100,
-    "label_reason": "Legumbre seca que requiere remojo y cocción"
+    "label_reason": "Legumbre seca que requiere remojo y cocción",
+    "usage_es": "Legumbre seca. Ingrediente que requiere remojo y cocción para potajes o ensaladas en comida. No comestible crudo. Intercambio con lentejas o alubias secas."
   },
   {
     "source": "BEDCA",
@@ -6665,7 +6718,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "En conserva listo, típico en guisos españoles"
+    "label_reason": "En conserva listo, típico en guisos españoles",
+    "usage_es": "Legumbre en conserva. Ingrediente listo para potajes, guisos o ensaladas en comida. Intercambio con alubias o lentejas en conserva."
   },
   {
     "source": "BEDCA",
@@ -6688,7 +6742,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Untable para tostadas, producto light habitual"
+    "label_reason": "Untable para tostadas, producto light habitual",
+    "usage_es": "Dulce de fruta ligero. Ingrediente para untar en tostadas en desayuno. Intercambio con mermelada ligera de melocotón o compota sin azúcar."
   },
   {
     "source": "BEDCA",
@@ -6711,7 +6766,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 100,
-    "label_reason": "Mermelada clásica de desayuno en España"
+    "label_reason": "Mermelada clásica de desayuno en España",
+    "usage_es": "Dulce de fruta. Ingrediente para untar en tostadas en desayuno. Intercambio con mermelada de melocotón, de albaricoque o miel."
   },
   {
     "source": "BEDCA",
@@ -6734,7 +6790,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 100,
-    "label_reason": "Mermelada estándar de desayuno"
+    "label_reason": "Mermelada estándar de desayuno",
+    "usage_es": "Dulce de fruta. Ingrediente para untar en tostadas en desayuno. Intercambio con mermelada de fresa, de arándano o miel."
   },
   {
     "source": "BEDCA",
@@ -6757,7 +6814,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 100,
-    "label_reason": "Mermelada tradicional de desayuno"
+    "label_reason": "Mermelada tradicional de desayuno",
+    "usage_es": "Dulce de fruta. Ingrediente para untar en tostadas en desayuno. Intercambio con mermelada de higo, de melocotón o miel."
   },
   {
     "source": "BEDCA",
@@ -6922,7 +6980,8 @@
     "frequency": "raro",
     "exotic": true,
     "label_confidence": 95,
-    "label_reason": "Fruta tropical exótica poco integrada en España"
+    "label_reason": "Fruta tropical exótica poco integrada en España",
+    "usage_es": "Fruta tropical exótica y rara en España. Se consume directamente como snack fresco. Intercambio con uva, cereza o mandarina."
   },
   {
     "source": "BEDCA",
@@ -7038,7 +7097,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 100,
-    "label_reason": "Mermelada clásica de desayuno por excelencia"
+    "label_reason": "Mermelada clásica de desayuno por excelencia",
+    "usage_es": "Dulce de fruta. Se usa como ingrediente para untar en tostadas, exclusivamente en desayuno. Intercambio con miel, margarina o mermelada de otros sabores."
   },
   {
     "source": "BEDCA",
@@ -7061,7 +7121,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 100,
-    "label_reason": "Legumbre seca básica que requiere cocción"
+    "label_reason": "Legumbre seca básica que requiere cocción",
+    "usage_es": "Legumbre seca. No comestible directamente, requiere hervirse para guisos, potajes o ensaladas en comida. Intercambio con garbanzos cocidos, alubias o judías verdes."
   },
   {
     "source": "BEDCA",
@@ -7085,7 +7146,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Legumbre en conserva, típica de comida"
+    "label_reason": "Legumbre en conserva, típica de comida",
+    "usage_es": "Legumbre en conserva. Ingrediente para ensaladas, guisos o como guarnición en comida. Intercambio con lentejas cocidas, garbanzos cocidos o alubias."
   },
   {
     "source": "BEDCA",
@@ -7177,7 +7239,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Mermelada clásica, uso en tostadas"
+    "label_reason": "Mermelada clásica, uso en tostadas",
+    "usage_es": "Dulce de fruta. Se usa como ingrediente para untar en tostadas, exclusivamente en desayuno. Intercambio con mermelada de naranja, miel o compota."
   },
   {
     "source": "BEDCA",
@@ -7316,7 +7379,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Cítrico ácido, ingrediente de cocina"
+    "label_reason": "Cítrico ácido, ingrediente de cocina",
+    "usage_es": "Fruta cítrica exótica. Ingrediente para aliños, bebidas o decoración en cualquier momento. Intercambio con limón crudo en recetas, no como pieza entera."
   },
   {
     "source": "BEDCA",
@@ -7663,7 +7727,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pan tostado típico para desayunar"
+    "label_reason": "Pan tostado típico para desayunar",
+    "usage_es": "Cereal tostado. Se consume solo o untado, exclusivamente en desayuno. Intercambio con pan de molde, galletas tipo María o biscotes."
   },
   {
     "source": "BEDCA",
@@ -7686,7 +7751,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pan tostado clásico de desayuno"
+    "label_reason": "Pan tostado clásico de desayuno",
+    "usage_es": "Cereal tostado. Se consume solo o con aceite, exclusivamente en desayuno. Intercambio con pan de barra, biscotes o galletas de desayuno."
   },
   {
     "source": "BEDCA",
@@ -7709,7 +7775,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Baguette versátil en dieta española"
+    "label_reason": "Baguette versátil en dieta española",
+    "usage_es": "Pan de harina refinada. Se consume en rebanadas como ingrediente de bocadillos en desayuno o comida. Intercambio con pan de molde o pan rústico."
   },
   {
     "source": "BEDCA",
@@ -7732,7 +7799,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Pan de barra diario muy versátil"
+    "label_reason": "Pan de barra diario muy versátil",
+    "usage_es": "Pan de harina refinada. Se consume en rebanadas como ingrediente de bocadillos en desayuno o comida. Intercambio con baguette normal o pan de molde."
   },
   {
     "source": "BEDCA",
@@ -7805,7 +7873,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Fruta en conserva como postre"
+    "label_reason": "Fruta en conserva como postre",
+    "usage_es": "Fruta en conserva. Se consume como snack ocasional o postre. No es una fruta fresca. Intercambio con fruta fresca de postre como manzana o pera natural."
   },
   {
     "source": "BEDCA",
@@ -7875,7 +7944,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Fruta de temporada primaveral"
+    "label_reason": "Fruta de temporada primaveral",
+    "usage_es": "Fruta de hueso de temporada. Se consume fresca como snack ocasional en primavera. Intercambio con albaricoque, melocotón o ciruela fresca."
   },
   {
     "source": "BEDCA",
@@ -7993,7 +8063,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Fruta de hueso de verano"
+    "label_reason": "Fruta de hueso de verano",
+    "usage_es": "Fruta de hueso con piel. Se consume fresca como snack habitual en verano. Intercambio con melocotón, paraguayo o albaricoque."
   },
   {
     "source": "BEDCA",
@@ -8110,7 +8181,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Fruta veraniega muy consumida"
+    "label_reason": "Fruta veraniega muy consumida",
+    "usage_es": "Fruta de pepita de verano. Se consume fresca como snack o en ensalada. Intercambio con sandía, papaya o piña fresca."
   },
   {
     "source": "BEDCA",
@@ -8134,7 +8206,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Fruta de hueso muy habitual"
+    "label_reason": "Fruta de hueso muy habitual",
+    "usage_es": "Fruta de hueso. Se consume fresca como snack habitual en verano o en macedonia. Intercambio con nectarina, ciruela o albaricoque."
   },
   {
     "source": "BEDCA",
@@ -8203,7 +8276,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Tostada integral de desayuno"
+    "label_reason": "Tostada integral de desayuno",
+    "usage_es": "Pan de cereal integral tostado. Ingrediente exclusivo de desayuno con aceite y tomate. Intercambio con pan integral de molde o galletas integrales."
   },
   {
     "source": "BEDCA",
@@ -8226,7 +8300,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pan tostado de desayuno estándar"
+    "label_reason": "Pan tostado de desayuno estándar",
+    "usage_es": "Pan de trigo tostado. Ingrediente exclusivo de desayuno con aceite o mermelada. Intercambio con pan de molde blanco o galletas tipo María."
   },
   {
     "source": "BEDCA",
@@ -8365,7 +8440,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 98,
-    "label_reason": "Pan baguette, básico diario"
+    "label_reason": "Pan baguette, básico diario",
+    "usage_es": "Pan de harina de trigo. Ingrediente de desayuno o comida para acompañar tapas. Intercambio con pan de barra blanco o rústico."
   },
   {
     "source": "BEDCA",
@@ -8575,7 +8651,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pan versátil, consumo regular"
+    "label_reason": "Pan versátil, consumo regular",
+    "usage_es": "Pan de masa mixta con harina integral. Ingrediente de desayuno o comida para acompañar. Intercambio con pan de barra integral o de centeno."
   },
   {
     "source": "BEDCA",
@@ -8740,7 +8817,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Fruta de verano, muy consumida"
+    "label_reason": "Fruta de verano, muy consumida",
+    "usage_es": "Fruta de pepita de verano. Se consume fresca como snack o postre refrescante. Intercambio con melón, piña o papaya fresca."
   },
   {
     "source": "BEDCA",
@@ -8835,7 +8913,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Condimento básico, no se consume solo"
+    "label_reason": "Condimento básico, no se consume solo",
+    "usage_es": "Condimento ácido. No se consume directamente, sino como ingrediente para aliñar ensaladas o escabeches en cualquier comida. Intercambio sin equivalencia directa por su función, no por aporte nutricional."
   },
   {
     "source": "BEDCA",
@@ -8860,7 +8939,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Condimento básico, no se consume solo"
+    "label_reason": "Condimento básico, no se consume solo",
+    "usage_es": "Condimento ácido de origen italiano, aunque muy asentado. No se consume directamente, es ingrediente para ensaladas y reducciones en cualquier comida. Sin intercambio clínico directo por su función."
   },
   {
     "source": "BEDCA",
@@ -8932,7 +9012,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Plato cocinado típico español"
+    "label_reason": "Plato cocinado típico español",
+    "usage_es": "Plato de arroz con marisco. Se consume hervido en comida principal. Intercambio clínico con arroz blanco cocido, fideuá, paella de carne u otras preparations de arroz."
   },
   {
     "source": "BEDCA",
@@ -9048,7 +9129,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 100,
-    "label_reason": "Legumbre seca, requiere remojo y cocción"
+    "label_reason": "Legumbre seca, requiere remojo y cocción",
+    "usage_es": "Legumbre seca. No se come cruda, requiere remojo y cocción larga como plato en comida. Intercambio con lentejas cocidas, alubias blancas o garbanzos cocidos."
   },
   {
     "source": "BEDCA",
@@ -9420,7 +9502,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Fruta tropical española, consumo como snack"
+    "label_reason": "Fruta tropical española, consumo como snack",
+    "usage_es": "Fruta tropical española. Se consume fresca como snack o postre. Intercambio con plátano, mango o papaya por textura, o con otras frutas de hueso y pepita."
   },
   {
     "source": "BEDCA",
@@ -9489,7 +9572,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Fruta de temporada, típica como snack"
+    "label_reason": "Fruta de temporada, típica como snack",
+    "usage_es": "Fruta de hueso de temporada. Se consume fresca como snack o postre. Intercambio con ciruelas, melocotón, nectarina u otras frutas rojas de tamaño pequeño."
   },
   {
     "source": "BEDCA",
@@ -9512,7 +9596,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Base esencial en paellas y arroces"
+    "label_reason": "Base esencial en paellas y arroces",
+    "usage_es": "Cereal en grano. No se come crudo, requiere cocción como ingrediente base de platos en comida. Intercambio con pasta cocida, cuscús, bulgur o quinoa cocida."
   },
   {
     "source": "BEDCA",
@@ -9560,7 +9645,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Cítrico clásico, perfecto como snack"
+    "label_reason": "Cítrico clásico, perfecto como snack",
+    "usage_es": "Fruta cítrica. Se consume fresca pelada como snack o postre. Intercambio con naranja, pomelo, melocotón o cualquier otra fruta fresca de consumo habitual."
   },
   {
     "source": "BEDCA",
@@ -9701,7 +9787,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pasta rellena ya hervida, primer plato"
+    "label_reason": "Pasta rellena ya hervida, primer plato",
+    "usage_es": "Pasta rellena de carne. Se consume hervida con salsa como plato único en comida. Intercambio con pasta normal cocida, raviolis de queso o cannelloni."
   },
   {
     "source": "BEDCA",
@@ -9960,7 +10047,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Fruta de temporada clásica como snack"
+    "label_reason": "Fruta de temporada clásica como snack",
+    "usage_es": "Fruta dulce de temporada. Se consume fresca como snack o postre. Intercambio con dátiles, uvas, ciruelas pasas u otras frutas frescas de perfil similar."
   },
   {
     "source": "BEDCA",
@@ -10260,7 +10348,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Fruta fresca lista para consumir"
+    "label_reason": "Fruta fresca lista para consumir",
+    "usage_es": "Fruta de hueso pelada. Se toma como snack fresca entre horas. Intercambio con manzana, pera, melocotón o albaricoque."
   },
   {
     "source": "BEDCA",
@@ -10352,7 +10441,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Dulce navideño, consumo estacional"
+    "label_reason": "Dulce navideño, consumo estacional",
+    "usage_es": "Dulce navideño de almendras y miel. Se come como snack ocasional en Navidad. Intercambio con mazapán, polvorón o yema de huevo."
   },
   {
     "source": "BEDCA",
@@ -10608,7 +10698,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Especia básica de cocina, no se come sola"
+    "label_reason": "Especia básica de cocina, no se come sola",
+    "usage_es": "Especia de cocina. Ingrediente de postres, infusiones y repostería, no se come sola. Intercambio con clavo, jengibre o anís en polvo."
   },
   {
     "source": "BEDCA",
@@ -10846,7 +10937,8 @@
     "frequency": "ocasional",
     "exotic": true,
     "label_confidence": 85,
-    "label_reason": "Tahini, ingrediente oriental poco integrado"
+    "label_reason": "Tahini, ingrediente oriental poco integrado",
+    "usage_es": "Crema de semillas oleaginosas. Ingrediente raro en España para hummus o salsas, no es plato. Intercambio con crema de cacahuete o tahini."
   },
   {
     "source": "BEDCA",
@@ -10893,7 +10985,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Hierba aromática básica, no se come sola"
+    "label_reason": "Hierba aromática básica, no se come sola",
+    "usage_es": "Especia aromática de cocina. Ingrediente de guisos, asados y legumbres, no se come sola. Intercambio con orégano, romero o laurel."
   },
   {
     "source": "BEDCA",
@@ -11080,7 +11173,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Zumo, desayuno infantil habitual"
+    "label_reason": "Zumo, desayuno infantil habitual",
+    "usage_es": "Bebida de fruta. Se toma exclusivamente en desayuno. Intercambio con zumo de naranja, zumo de melocotón o fruta fresca entera."
   },
   {
     "source": "BEDCA",
@@ -11130,7 +11224,8 @@
     "frequency": "raro",
     "exotic": true,
     "label_confidence": 85,
-    "label_reason": "Batido de soja, producto exótico minoritario"
+    "label_reason": "Batido de soja, producto exótico minoritario",
+    "usage_es": "Bebida vegetal fermentada. Producto raro en España consumido como snack ocasional. Intercambio con yogur natural o kéfir de leche."
   },
   {
     "source": "BEDCA",
@@ -11252,7 +11347,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Bebida vegetal integrada, uso desayuno"
+    "label_reason": "Bebida vegetal integrada, uso desayuno",
+    "usage_es": "Bebida vegetal de leguminosa. Se toma exclusivamente en desayuno, sola o con café. Intercambio con leche de vaca o bebida de avena."
   },
   {
     "source": "BEDCA",
@@ -11853,7 +11949,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Cereal base para pan, no se come crudo"
+    "label_reason": "Cereal base para pan, no se come crudo",
+    "usage_es": "Cereal en grano. No se come crudo, precisa molienda para hacer pan o cocinado en gachas. Intercambio con trigo, avena o cebada crudos."
   },
   {
     "source": "BEDCA",
@@ -11946,7 +12043,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Tubérculo popular, requiere cocción siempre"
+    "label_reason": "Tubérculo popular, requiere cocción siempre",
+    "usage_es": "Tubérculo consumido asado, hervido o frito en comida. No se come crudo. Intercambio con patata cocida, boniato asado o calabaza al horno."
   },
   {
     "source": "BEDCA",
@@ -12297,7 +12395,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Básico culinario, ingrediente puro"
+    "label_reason": "Básico culinario, ingrediente puro",
+    "usage_es": "Ingrediente edulcorante para postres, cafés e infusiones. No es un plato. Intercambio con sacarina, estevia, miel o fructosa."
   },
   {
     "source": "BEDCA",
@@ -12853,7 +12952,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 92,
-    "label_reason": "Legumbre cocida lista para ensalada"
+    "label_reason": "Legumbre cocida lista para ensalada",
+    "usage_es": "Legumbre cocida en potajes, ensaladas o guisos de comida. Intercambio con lentejas estofadas, alubias cocidas o garbanzos de bote."
   },
   {
     "source": "BEDCA",
@@ -12973,7 +13073,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Alimento básico versátil en dieta española"
+    "label_reason": "Alimento básico versátil en dieta española",
+    "usage_es": "Pan de harina integral consumido en desayuno con aceite y tomate. Intercambio con pan blanco, tostadas de centeno o biscotes integrales."
   },
   {
     "source": "BEDCA",
@@ -13019,7 +13120,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pan tostado típico del desayuno español"
+    "label_reason": "Pan tostado típico del desayuno español",
+    "usage_es": "Tostada integral de molde para desayuno con tomate o mermelada. Intercambio con pan rústico integral, tostadas de maíz o galletas."
   },
   {
     "source": "BEDCA",
@@ -13510,7 +13612,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Masa base para cocinar, no se come sola"
+    "label_reason": "Masa base para cocinar, no se come sola",
+    "usage_es": "Ingrediente de repostería para empanadas y tartas. No se come crudo. Intercambio con masa quebrada, masa filo o pasta brisa."
   },
   {
     "source": "BEDCA",
@@ -13557,7 +13660,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Legumbre cocida lista para consumir"
+    "label_reason": "Legumbre cocida lista para consumir",
+    "usage_es": "Legumbre cocida en guisos y potajes de comida. Intercambio con alubias pintas cocidas, lentejas guisadas o garbanzos hervidos."
   },
   {
     "source": "BEDCA",
@@ -13792,7 +13896,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Legumbre en conserva lista para consumir"
+    "label_reason": "Legumbre en conserva lista para consumir",
+    "usage_es": "Legumbre de bote para ensaladas, guisos y potajes de comida. Intercambio con alubia negra cocida, lentejas escurridas o garbanzos."
   },
   {
     "source": "BEDCA",
@@ -13815,7 +13920,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Legumbre seca base para guisos"
+    "label_reason": "Legumbre seca base para guisos",
+    "usage_es": "Legumbre seca. No se come cruda, requiere remojo y cocción para guisos. Intercambio con lentejas crudas, garbanzos secos o soja seca."
   },
   {
     "source": "BEDCA",
@@ -13884,7 +13990,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Zumo de fruta exótica pero integrado"
+    "label_reason": "Zumo de fruta exótica pero integrado",
+    "usage_es": "Zumo de fruta exótico ocasional como ingrediente en cócteles o aliños. No es plato. Intercambio con zumo de limón, vinagre o aceto balsámico."
   },
   {
     "source": "BEDCA",
@@ -13908,7 +14015,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Cereal cocido listo para consumir"
+    "label_reason": "Cereal cocido listo para consumir",
+    "usage_es": "Cereal integral cocido. Se toma como guarnición o en ensaladas en la comida. Intercambio con arroz blanco cocido, cuscús o pasta cocida."
   },
   {
     "source": "BEDCA",
@@ -13931,7 +14039,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Cereal seco que requiere cocción"
+    "label_reason": "Cereal seco que requiere cocción",
+    "usage_es": "Cereal integral en grano. No es comestible directamente, requiere hervirse para guarniciones o ensaladas en la comida. Intercambio con arroz blanco crudo o pasta cruda."
   },
   {
     "source": "BEDCA",
@@ -13954,7 +14063,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 75,
-    "label_reason": "Pseudocereal seco, requiere cocción"
+    "label_reason": "Pseudocereal seco, requiere cocción",
+    "usage_es": "Semilla exótica ocasional en España. No es comestible directamente, se hierve para ensaladas o guarniciones en la comida. Intercambio con arroz o cuscús cocidos."
   },
   {
     "source": "BEDCA",
@@ -14024,7 +14134,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Legumbre cocida lista para consumir"
+    "label_reason": "Legumbre cocida lista para consumir",
+    "usage_es": "Legumbre cocida de consumo ocasional. Se toma hervida en potajes, guisos o ensaladas en la comida. Intercambio con garbanzos o alubias cocidas."
   },
   {
     "source": "BEDCA",
@@ -14047,7 +14158,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Dulce de desayuno listo para untar"
+    "label_reason": "Dulce de desayuno listo para untar",
+    "usage_es": "Dulce untable bajo en calorías. Uso exclusivo en el desayuno, sobre tostadas o galletas. Intercambio con mermelada convencional ligera o miel."
   },
   {
     "source": "BEDCA",
@@ -14282,7 +14394,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Cereal de desayuno, consumo directo"
+    "label_reason": "Cereal de desayuno, consumo directo",
+    "usage_es": "Cereal inflado de desayuno. Uso exclusivo en el desayuno, consumido con leche o yogur. Intercambio con copos de avena o corn flakes."
   },
   {
     "source": "BEDCA",
@@ -14334,7 +14447,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 75,
-    "label_reason": "Soja hervida, poco habitual en España"
+    "label_reason": "Soja hervida, poco habitual en España",
+    "usage_es": "Legumbre cocida de consumo raro en España. Ingrediente de guisos o ensaladas en la comida. Intercambio con soja texturizada o lentejas cocidas."
   },
   {
     "source": "BEDCA",
@@ -14357,7 +14471,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Harina, ingrediente básico de cocina"
+    "label_reason": "Harina, ingrediente básico de cocina",
+    "usage_es": "Harina de cereal. No es comestible directamente, ingrediente para panes o masas. Intercambio con harina de trigo o harina de espelta."
   },
   {
     "source": "BEDCA",
@@ -14381,7 +14496,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Tubérculo crudo, requiere cocción"
+    "label_reason": "Tubérculo crudo, requiere cocción",
+    "usage_es": "Tubérculo. No es comestible directamente, se hornea, hierve o fríe como guarnición en la comida. Intercambio con patata cocida o batata asada."
   },
   {
     "source": "BEDCA",
@@ -14450,7 +14566,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Cereal de desayuno, consumo directo"
+    "label_reason": "Cereal de desayuno, consumo directo",
+    "usage_es": "Cereal de desayuno rico en salvado. Se consume con leche o yogur, uso exclusivo de desayuno. Intercambio con otros cereales de desayuno o copos de avena."
   },
   {
     "source": "BEDCA",
@@ -14473,7 +14590,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 70,
-    "label_reason": "Fruta tropical enlatada, poco común"
+    "label_reason": "Fruta tropical enlatada, poco común",
+    "usage_es": "Fruta tropical enlatada en almíbar, consumo raro en España. Snack o postre. Intercambio con otras frutas en almíbar o fruta fresca pelada."
   },
   {
     "source": "BEDCA",
@@ -14589,7 +14707,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 100,
-    "label_reason": "Fruta fresca, consumo directo"
+    "label_reason": "Fruta fresca, consumo directo",
+    "usage_es": "Fruta de pepita fresca. Se consume como pieza entera de snack o postre. Intercambio con otras frutas frescas de pieza como manzana o melocotón."
   },
   {
     "source": "BEDCA",
@@ -14681,7 +14800,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Ingrediente básico para aliños y adobos"
+    "label_reason": "Ingrediente básico para aliños y adobos",
+    "usage_es": "Ingrediente líquido de cocina. No se consume como plato, se usa para aliñar o adobar. Intercambio con vinagre en aliños para reduzcar azúcar."
   },
   {
     "source": "BEDCA",
@@ -14704,7 +14824,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Fruta de temporada común como snack"
+    "label_reason": "Fruta de temporada común como snack",
+    "usage_es": "Fruta de hueso con piel, fresca. Se toma como pieza entera en snack o postre. Intercambio con otras frutas de hueso como melocotón o albaricoque."
   },
   {
     "source": "BEDCA",
@@ -14774,7 +14895,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Postre enlatado consumido como snack"
+    "label_reason": "Postre enlatado consumido como snack",
+    "usage_es": "Fruta de pepita enlatada en almíbar. Se toma como snack o postre ocasional. Intercambio con otras frutas en almíbar o compota de fruta."
   },
   {
     "source": "BEDCA",
@@ -14798,7 +14920,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 70,
-    "label_reason": "Requiere cocción, consumo poco común"
+    "label_reason": "Requiere cocción, consumo poco común",
+    "usage_es": "Cereal en grano crudo, formato raro en España. No es comestible directamente, requiere cocción en comida. Intercambio con maíz dulce en grano cocido."
   },
   {
     "source": "BEDCA",
@@ -14845,7 +14968,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Endulzante minoritario, solo ingrediente"
+    "label_reason": "Endulzante minoritario, solo ingrediente",
+    "usage_es": "Edulcorante puro, ingrediente de cocina, uso raro en el hogar. No se consume directamente. Intercambio con azúcar blanco o sacarina según pauta."
   },
   {
     "source": "BEDCA",
@@ -14868,7 +14992,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Básico de despensa, solo ingrediente"
+    "label_reason": "Básico de despensa, solo ingrediente",
+    "usage_es": "Edulcorante calórico, ingrediente de cocina. No se consume directamente, endulza cualquier momento. Intercambio con azúcar blanco o miel en repostería."
   },
   {
     "source": "BEDCA",
@@ -15123,7 +15248,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Ingrediente crudo para cocinar"
+    "label_reason": "Ingrediente crudo para cocinar",
+    "usage_es": "Harina de cereal integral, ingrediente de cocina. No es comestible cruda, requiere cocción para elaborar platos. Intercambio con harina de trigo normal o pasta cocida."
   },
   {
     "source": "BEDCA",
@@ -15149,7 +15275,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Ingrediente minoritario en cocina española"
+    "label_reason": "Ingrediente minoritario en cocina española",
+    "usage_es": "Harina de leguminosa rara en España. No se come directamente, se usa como ingrediente para elaborar texturas o derivados. Intercambio con harina de garbanzo o de trigo."
   },
   {
     "source": "BEDCA",
@@ -15454,7 +15581,8 @@
     "frequency": "raro",
     "exotic": true,
     "label_confidence": 80,
-    "label_reason": "Soja fresca no integrada en cocina"
+    "label_reason": "Soja fresca no integrada en cocina",
+    "usage_es": "Leguminosa fresca rara en España. Se consume hervida como guarnición o ingrediente en ensaladas y woks. Intercambio con habas tiernas, guisantes o edamames."
   },
   {
     "source": "BEDCA",
@@ -15692,7 +15820,8 @@
     "frequency": "raro",
     "exotic": true,
     "label_confidence": 75,
-    "label_reason": "Pudin de pasas, no típico español"
+    "label_reason": "Pudin de pasas, no típico español",
+    "usage_es": "Dulce de repostería raro en España. Se toma como snack entre horas o postre ocasional. Intercambio con bizcocho casero, magdalenas o torrijas."
   },
   {
     "source": "BEDCA",
@@ -15715,7 +15844,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Crema inglesa, postre ocasional"
+    "label_reason": "Crema inglesa, postre ocasional",
+    "usage_es": "Salsa láctea dulce de repostería. Se usa como ingrediente para acompañar postres en cualquier comida. Intercambio con natillas, flan o yogur natural azucarado."
   },
   {
     "source": "BEDCA",
@@ -17541,7 +17671,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Cereales de caja, desayuno estándar español"
+    "label_reason": "Cereales de caja, desayuno estándar español",
+    "usage_es": "Cereales procesados de desayuno. Se consumen exclusivamente en desayuno con leche o yogur. Intercambio con otros cereales de desayuno, galletas o tostadas de pan."
   },
   {
     "source": "BEDCA",
@@ -17610,7 +17741,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Cereal de caja básico, típico desayuno"
+    "label_reason": "Cereal de caja básico, típico desayuno",
+    "usage_es": "Cereales procesados de desayuno. Se consumen exclusivamente en desayuno con leche o yogur. Intercambio con otros cereales de desayuno, galletas o tostadas de pan."
   },
   {
     "source": "BEDCA",
@@ -17703,7 +17835,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Harina poco común, ingrediente de cocina"
+    "label_reason": "Harina poco común, ingrediente de cocina",
+    "usage_es": "Harina de cereal rara en España. No se come directamente, es ingrediente para panes o gachas. Intercambio con harina de trigo o de avena."
   },
   {
     "source": "BEDCA",
@@ -17726,7 +17859,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Cereal integral de caja, desayuno típico"
+    "label_reason": "Cereal integral de caja, desayuno típico",
+    "usage_es": "Cereales integrales procesados de desayuno. Se consumen exclusivamente en desayuno con leche o yogur. Intercambio con otros cereales integrales o tostadas de pan integral."
   },
   {
     "source": "BEDCA",
@@ -17749,7 +17883,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Cereal multicereales, desayuno habitual"
+    "label_reason": "Cereal multicereales, desayuno habitual",
+    "usage_es": "Cereales procesados de desayuno. Se consumen exclusivamente en desayuno con leche o yogur. Intercambio con otros cereales de desayuno, galletas o tostadas de pan."
   },
   {
     "source": "BEDCA",
@@ -17772,7 +17907,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Cereal maíz/trigo, desayuno básico"
+    "label_reason": "Cereal maíz/trigo, desayuno básico",
+    "usage_es": "Cereal procesado de desayuno. Se consume con leche o yogur en el desayuno. Intercambio con galletas tipo María, tostadas de pan o copos de avena."
   },
   {
     "source": "BEDCA",
@@ -17818,7 +17954,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Legumbre seca, requiere cocción prolongada"
+    "label_reason": "Legumbre seca, requiere cocción prolongada",
+    "usage_es": "Legumbre seca. No se come cruda, requiere remojo y cocción larga en potajes o guisos de comida. Intercambio con garbanzos, alubias y lentejas cocidas."
   },
   {
     "source": "BEDCA",
@@ -17864,7 +18001,8 @@
     "frequency": "ocasional",
     "exotic": true,
     "label_confidence": 75,
-    "label_reason": "Zumo tropical, no autóctono pero disponible"
+    "label_reason": "Zumo tropical, no autóctono pero disponible",
+    "usage_es": "Zumo de fruta exótico, consumo ocasional en España. Bebida de snack o entre horas. Intercambio con otros zumos naturales o pieza de fruta fresca."
   },
   {
     "source": "BEDCA",
@@ -17980,7 +18118,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Gachas de avena listas para comer"
+    "label_reason": "Gachas de avena listas para comer",
+    "usage_es": "Cereal en grano cocido en agua. Ingrediente de papillas o gachas exclusivas de desayuno. Intercambio con otros cereales cocidos como copos de avena o crema de trigo."
   },
   {
     "source": "BEDCA",
@@ -18003,7 +18142,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Harina básica, ingrediente de cocina"
+    "label_reason": "Harina básica, ingrediente de cocina",
+    "usage_es": "Harina de cereal. Ingrediente de cocina no comestible directamente para elaborar gachas, magdalenas o espesar masas. Intercambio con harina de trigo o pan rallado."
   },
   {
     "source": "BEDCA",
@@ -18027,7 +18167,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Legumbre minoritaria, requiere cocción"
+    "label_reason": "Legumbre minoritaria, requiere cocción",
+    "usage_es": "Legumbre seca de consumo raro en España. No comestible directamente, requiere cocción en potajes de comida. Intercambio con garbanzos, lentejas y alubias cocidas."
   },
   {
     "source": "BEDCA",
@@ -18119,7 +18260,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Fruta de hueso de temporada, snack"
+    "label_reason": "Fruta de hueso de temporada, snack",
+    "usage_es": "Fruta de hueso con piel. Se consume fresca como snack entre horas o postre. Intercambio con ciruela roja, melocotón o nectarina fresca."
   },
   {
     "source": "BEDCA",
@@ -18327,7 +18469,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 75,
-    "label_reason": "Cereal que requiere cocción, poco común"
+    "label_reason": "Cereal que requiere cocción, poco común",
+    "usage_es": "Cereal en grano, consumo raro en España. No comestible directamente, se transforma industrialmente en malta para cerveza o cocido en gachas. Intercambio con arroz o trigo."
   },
   {
     "source": "BEDCA",
@@ -18467,7 +18610,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Cereales de desayuno con fruta"
+    "label_reason": "Cereales de desayuno con fruta",
+    "usage_es": "Cereal procesado de desayuno. Se toma con leche o yogur en el desayuno. Intercambio con otros cereales de desayuno, galletas o tostadas de pan."
   },
   {
     "source": "BEDCA",
@@ -18490,7 +18634,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Cereales de desayuno con miel"
+    "label_reason": "Cereales de desayuno con miel",
+    "usage_es": "Cereal extrusionado de desayuno. Se consume con leche o yogur, uso exclusivo de desayuno. Intercambio con otros cereales de desayuno, copos de maíz o galletas."
   },
   {
     "source": "BEDCA",
@@ -19544,7 +19689,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Mermelada común para tostadas"
+    "label_reason": "Mermelada común para tostadas",
+    "usage_es": "Dulce de fruta envasado. Se consume en tostadas o galletas, exclusivamente en desayunos. Intercambio con miel, mermelada de melocotón o confitura de higos."
   },
   {
     "source": "BEDCA",
@@ -19591,7 +19737,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Postre lácteo listo para consumir"
+    "label_reason": "Postre lácteo listo para consumir",
+    "usage_es": "Postre lácteo con fruta. Se toma directamente como snack o postre ocasional. Intercambio con flan, natillas o yogur con frutas."
   },
   {
     "source": "BEDCA",
@@ -19615,7 +19762,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Postre lácteo desnatado listo"
+    "label_reason": "Postre lácteo desnatado listo",
+    "usage_es": "Postre lácteo ligero con fruta. Se consume directamente como snack o postre ocasional. Intercambio con yogur desnatado con frutas o flan light."
   },
   {
     "source": "BEDCA",
@@ -19639,7 +19787,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Postre lácteo con frutas listo"
+    "label_reason": "Postre lácteo con frutas listo",
+    "usage_es": "Postre lácteo con fruta. Se toma directamente como snack o postre ocasional. Intercambio con flan, natillas o yogur con frutas naturales."
   },
   {
     "source": "BEDCA",
@@ -19801,7 +19950,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Lácteo natural listo, snack ocasional"
+    "label_reason": "Lácteo natural listo, snack ocasional",
+    "usage_es": "Postre lácteo dulce. Se consume directamente, exclusivamente como snack ocasional. Intercambio con yogur natural azucarado o queso fresco con miel."
   },
   {
     "source": "BEDCA",
@@ -19917,7 +20067,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pasta cruda, ingrediente base habitual"
+    "label_reason": "Pasta cruda, ingrediente base habitual",
+    "usage_es": "Ingrediente de cereal integral crudo. No se come directamente, precisa hervirse para platos de comida. Intercambio con pasta normal cruda, cuscús o arroz crudo."
   },
   {
     "source": "BEDCA",
@@ -19942,7 +20093,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Pasta cruda requiere cocción"
+    "label_reason": "Pasta cruda requiere cocción",
+    "usage_es": "Ingrediente de pasta con vegetales crudo. No se come directamente, precisa hervirse para platos de comida. Intercambio con pasta normal cruda, fideos o cuscús."
   },
   {
     "source": "BEDCA",
@@ -19989,7 +20141,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pan versátil, menos común que trigo"
+    "label_reason": "Pan versátil, menos común que trigo",
+    "usage_es": "Pan de cereal menor. Se toma en tostadas o bocadillos, ocasional en desayunos. Intercambio con pan integral, pan de centeno o pan de trigo."
   },
   {
     "source": "BEDCA",
@@ -20013,7 +20166,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Néctar de fruta para desayunar"
+    "label_reason": "Néctar de fruta para desayunar",
+    "usage_es": "Zumo de fruta con azúcar añadido. Se bebe en vaso, exclusivamente en desayunos de forma ocasional. Intercambio con zumo de naranja o néctar de melocotón."
   },
   {
     "source": "BEDCA",
@@ -20037,7 +20191,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Pasta cocida, plato principal comida"
+    "label_reason": "Pasta cocida, plato principal comida",
+    "usage_es": "Pasta integral cocida. Ingrediente base para platos hervidos en comida. Intercambio con pasta normal hervida, arroz cocido, cuscús o patata cocida."
   },
   {
     "source": "BEDCA",
@@ -20060,7 +20215,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Néctar poco frecuente en España"
+    "label_reason": "Néctar poco frecuente en España",
+    "usage_es": "Bebida azucarada de fruta. Bebida fría de desayuno ocasional en España. Intercambio con zumos de fruta envasados, refrescos con azúcar o néctares similares."
   },
   {
     "source": "BEDCA",
@@ -20083,7 +20239,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Néctar para desayunar"
+    "label_reason": "Néctar para desayunar",
+    "usage_es": "Bebida azucarada de fruta. Bebida fría de desayuno ocasional en España. Intercambio con zumos de fruta envasados, refrescos con azúcar o néctares similares."
   },
   {
     "source": "BEDCA",
@@ -20106,7 +20263,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pan de maíz, consumo minoritario"
+    "label_reason": "Pan de maíz, consumo minoritario",
+    "usage_es": "Pan de cereales sin gluten. Tostado para desayuno o snack ocasional. Alimento raro en la dieta española. Intercambio con pan de trigo tostado o pan de centeno."
   },
   {
     "source": "BEDCA",
@@ -20223,7 +20381,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Néctar de fruta tropical envasado"
+    "label_reason": "Néctar de fruta tropical envasado",
+    "usage_es": "Bebida azucarada de fruta exótica. Bebida fría de desayuno ocasional en España. Alimento raro. Intercambio con zumos de fruta envasados o néctares de mango."
   },
   {
     "source": "BEDCA",
@@ -20246,7 +20405,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Zumo de grosella poco habitual"
+    "label_reason": "Zumo de grosella poco habitual",
+    "usage_es": "Zumo de fruta del bosque. Bebida fría de consumo raro en España. No es un uso típico nacional. Intercambio con otros zumos de frutas rojas o cítricos envasados."
   },
   {
     "source": "BEDCA",
@@ -20269,7 +20429,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Zumo de lima envasado minoritario"
+    "label_reason": "Zumo de lima envasado minoritario",
+    "usage_es": "Zumo de cítrico. Bebida fría de consumo raro en España, usada como ingrediente de cócteles. Intercambio con zumo de limón envasado o fresco."
   },
   {
     "source": "BEDCA",
@@ -20411,7 +20572,8 @@
     "frequency": "raro",
     "exotic": true,
     "label_confidence": 80,
-    "label_reason": "Néctar frutas exóticas, poco común"
+    "label_reason": "Néctar frutas exóticas, poco común",
+    "usage_es": "Bebida azucarada de frutas exóticas. Bebida fría de desayuno de consumo raro en España. Intercambio con zumos de fruta tropicales envasados u otros néctares."
   },
   {
     "source": "BEDCA",
@@ -20435,7 +20597,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Zumo de pomelo envasado"
+    "label_reason": "Zumo de pomelo envasado",
+    "usage_es": "Zumo de cítrico envasado. Bebida fría exclusiva de desayuno. Intercambio con zumo de naranja natural o envasado y otros zumos de cítricos."
   },
   {
     "source": "BEDCA",
@@ -20459,7 +20622,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Gachas de avena ya cocidas"
+    "label_reason": "Gachas de avena ya cocidas",
+    "usage_es": "Cereal en grano cocido. Papilla caliente de desayuno habitual. Uso importado, no tradicional español. Intercambio con gachas de avena con leche, papilla de cereales o crepas de trigo."
   },
   {
     "source": "BEDCA",
@@ -20483,7 +20647,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Zumo de frutas mezcla"
+    "label_reason": "Zumo de frutas mezcla",
+    "usage_es": "Zumo de frutas mezcla. Bebida fría exclusiva de desayuno ocasional. Intercambio con zumo de piña envasado, zumo de uva o zumos de fruta tropicales."
   },
   {
     "source": "BEDCA",
@@ -20529,7 +20694,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Ingredientes que precisa disolución, uso en desayuno"
+    "label_reason": "Ingredientes que precisa disolución, uso en desayuno",
+    "usage_es": "Infusión sin cafeína. Ingrediente para disolver en agua caliente, no comestible directamente. Consumo exclusivo en desayuno o merienda. Intercambio con otras infusiones sin azúcar."
   },
   {
     "source": "BEDCA",
@@ -20671,7 +20837,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Mermelada común para tostadas"
+    "label_reason": "Mermelada común para tostadas",
+    "usage_es": "Dulce de fruta. Se untan sobre tostadas o galletas, ingrediente de repostería. Consumo en desayuno. Intercambio con mermelada de melocotón, miel o mermelada de higo."
   },
   {
     "source": "BEDCA",
@@ -20694,7 +20861,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Mermelada menos común en España"
+    "label_reason": "Mermelada menos común en España",
+    "usage_es": "Dulce de fruta poco habitual en España. Se unta sobre tostadas, ingrediente de repostería. Consumo en desayuno. Intercambio con mermelada de frambuesa o mermelada de arándano."
   },
   {
     "source": "BEDCA",
@@ -21052,7 +21220,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Líquido listo para aliñar o beber"
+    "label_reason": "Líquido listo para aliñar o beber",
+    "usage_es": "Jugo cítrico exprimido. Ingrediente de cocina para aliños, salsas o pescados, no como bebida. Uso en comidas y cenas. Intercambio con vinagre suave o limón en polvo."
   },
   {
     "source": "BEDCA",
@@ -21099,7 +21268,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Almidón puro para espesar, no se come solo"
+    "label_reason": "Almidón puro para espesar, no se come solo",
+    "usage_es": "Espesante sin gluten derivado de cereal. No comestible directamente, se usa para espesar salsas o masas. Ingrediente en cualquier comida. Intercambio con maicena o harina de maíz."
   },
   {
     "source": "BEDCA",
@@ -21146,7 +21316,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 92,
-    "label_reason": "Smoothie de fruta listo para beber"
+    "label_reason": "Smoothie de fruta listo para beber",
+    "usage_es": "Bebida de fruta triturada. Se toma fría directamente como bebida. Consumo en desayuno. Intercambio con zumo de naranja natural, batido de melocotón o zumo de zanahoria."
   },
   {
     "source": "Consum",
@@ -21169,7 +21340,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Producto infantil de fruta listo para consumir"
+    "label_reason": "Producto infantil de fruta listo para consumir",
+    "usage_es": "Puré de fruta infantíl con lácteos. Se toma directamente como snack entre horas. Intercambio con yogur natural, puré de plátano o compota de manzana sin azúcar."
   },
   {
     "source": "Lidl",
@@ -21194,7 +21366,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 88,
-    "label_reason": "Postre vegetal listo, similar a yogur"
+    "label_reason": "Postre vegetal listo, similar a yogur",
+    "usage_es": "Postre lácteo vegetal aromatizado. Se toma directamente desde el envase, uso exclusivo en desayuno. Intercambio con yogur de soja natural, flan de huevo o natillas de soja."
   },
   {
     "source": "Lidl",
@@ -21217,7 +21390,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Macedonia de frutas lista para consumir"
+    "label_reason": "Macedonia de frutas lista para consumir",
+    "usage_es": "Mezcla de frutas de hueso y baya. Se toma fresca directamente como postre o entre horas. Intercambio con macedonia de frutas, melón en dados o pera al natural."
   },
   {
     "source": "Mercadona",
@@ -21241,7 +21415,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Yogur bebible típico del desayuno español"
+    "label_reason": "Yogur bebible típico del desayuno español",
+    "usage_es": "Lácteo líquido azucarado con fruta. Se bebe directamente del envase, consumo exclusivo en desayuno. Intercambio con yogur natural con trozos de fruta o leche con cacao soluble."
   },
   {
     "source": "Carrefour",
@@ -21264,7 +21439,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 88,
-    "label_reason": "Puré de manzana infantil listo para comer"
+    "label_reason": "Puré de manzana infantil listo para comer",
+    "usage_es": "Fruta de pepita envasada lista para consumir. Se toma como snack entre horas. Intercambio con manzana fresca, pera o melocotón."
   },
   {
     "source": "Carrefour",
@@ -21287,7 +21463,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Cereales con frutos secos, desayuno típico"
+    "label_reason": "Cereales con frutos secos, desayuno típico",
+    "usage_es": "Mezcla de frutas secas procesadas. Ingrediente o topping exclusivo de desayuno con yogur o cereales. Intercambio con nueces, almendras o pasas."
   },
   {
     "source": "Lidl",
@@ -21310,7 +21487,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 92,
-    "label_reason": "Postre lácteo bebible infantil de fresa"
+    "label_reason": "Postre lácteo bebible infantil de fresa",
+    "usage_es": "Bebida láctea azucarada con sabor a fresa. Uso exclusivo en desayuno. Intercambio con yogur líquido azucarado o leche con cacao."
   },
   {
     "source": "Lidl",
@@ -21333,7 +21511,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 92,
-    "label_reason": "Zumo de frutas listo para beber"
+    "label_reason": "Zumo de frutas listo para beber",
+    "usage_es": "Zumo de frutas envasado. Se bebe solo en cualquier comida como acompañamiento. Intercambio con otro zumo envasado o pieza de fruta fresca."
   },
   {
     "source": "Lidl",
@@ -21380,7 +21559,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Yogur de plátano, desayuno muy habitual"
+    "label_reason": "Yogur de plátano, desayuno muy habitual",
+    "usage_es": "Lácteo fermentado azucarado con sabor. Uso exclusivo de desayuno, tomado solo o con cereales. Intercambio con yogur natural, kefir o yogur de sabores."
   },
   {
     "source": "Alcampo",
@@ -21403,7 +21583,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 92,
-    "label_reason": "Zumo de frutas tropical listo para beber"
+    "label_reason": "Zumo de frutas tropical listo para beber",
+    "usage_es": "Zumo de frutas envasado. Se bebe solo en cualquier comida como acompañamiento. Intercambio con otro zumo envasado o pieza de fruta fresca."
   },
   {
     "source": "Consum",
@@ -21426,7 +21607,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Postre lácteo infantil listo para consumir"
+    "label_reason": "Postre lácteo infantil listo para consumir",
+    "usage_es": "Bebida láctea azucarada con sabor a frutas. Uso exclusivo en desayuno. Intercambio con yogur líquido azucarado o leche con cacao."
   },
   {
     "source": "Mercadona",
@@ -21449,7 +21631,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 92,
-    "label_reason": "Batido de fresa, consumo como snack"
+    "label_reason": "Batido de fresa, consumo como snack",
+    "usage_es": "Bebida láctea fría con sabor a fresa. Se toma como snack entre horas. Intercambio con yogur líquido, batido de frutas o leche."
   },
   {
     "source": "Mercadona",
@@ -21472,7 +21655,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Bebida de frutas lista para consumir"
+    "label_reason": "Bebida de frutas lista para consumir",
+    "usage_es": "Refresco de frutas envasado. Se bebe solo en cualquier momento del día. Intercambio con otro zumo envasado o refresco azucarado."
   },
   {
     "source": "Carrefour",
@@ -21497,7 +21681,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 88,
-    "label_reason": "Plato precocinado, requiere calentamiento"
+    "label_reason": "Plato precocinado, requiere calentamiento",
+    "usage_es": "Plato preparado de pescado con arroz. Se consume caliente como comida principal tras calentarlo. Intercambio con filete de pescado con arroz cocido."
   },
   {
     "source": "Lidl",
@@ -21521,7 +21706,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Kefir con frutas, desayuno o snack"
+    "label_reason": "Kefir con frutas, desayuno o snack",
+    "usage_es": "Lácteo fermentado azucarado con fruta. Se toma directamente como desayuno o snack. Intercambio con otros yogures azucarados, batidos lácteos o leches fermentadas de sabores."
   },
   {
     "source": "Mercadona",
@@ -21545,7 +21731,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Yogur con frutas del bosque muy típico"
+    "label_reason": "Yogur con frutas del bosque muy típico",
+    "usage_es": "Lácteo fermentado con frutas. Se consume directamente, exclusivamente en desayuno o snack. Intercambio con otros yogures de sabores, kéfir o leches fermentadas azucaradas."
   },
   {
     "source": "Mercadona",
@@ -21569,7 +21756,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Lácteo con yogur de pera listo"
+    "label_reason": "Lácteo con yogur de pera listo",
+    "usage_es": "Lácteo fermentado azucarado con pera. Se toma directamente como desayuno o snack. Intercambio con otros yogures con fruta, bifidus o leches fermentadas dulces."
   },
   {
     "source": "Lidl",
@@ -21594,7 +21782,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Bebida de soja con fresa lista"
+    "label_reason": "Bebida de soja con fresa lista",
+    "usage_es": "Bebida vegetal de soja con fresa. Se toma directamente como desayuno o snack. Intercambio con otras bebidas vegetales azucaradas, yogures vegetales o batidos dulces."
   },
   {
     "source": "Consum",
@@ -21617,7 +21806,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 92,
-    "label_reason": "Cereales azucarados rellenos de cacao"
+    "label_reason": "Cereales azucarados rellenos de cacao",
+    "usage_es": "Cereal de desayuno azucarado con relleno. Se consume directamente con leche, exclusivamente en desayuno. Intercambio con otros cereales de desayuno, galletas o bollería."
   },
   {
     "source": "Alcampo",
@@ -21640,7 +21830,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 92,
-    "label_reason": "Yogur bifidus con kiwi y cereales"
+    "label_reason": "Yogur bifidus con kiwi y cereales",
+    "usage_es": "Lácteo fermentado con kiwi y cereales. Se toma directamente como desayuno o snack. Intercambio con otros yogures con fibra, bifidus con fruta o lácteos dulces."
   },
   {
     "source": "Mercadona",
@@ -21663,7 +21854,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 92,
-    "label_reason": "Smoothie de fresa listo para beber"
+    "label_reason": "Smoothie de fresa listo para beber",
+    "usage_es": "Bebida de fruta licuada. Se toma directamente como snack o entre horas. Intercambio con otros zumos de fruta, batidos naturales o pieza de fruta fresca."
   },
   {
     "source": "Carrefour",
@@ -21686,7 +21878,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 88,
-    "label_reason": "Puré de frutas infantil listo para comer"
+    "label_reason": "Puré de frutas infantil listo para comer",
+    "usage_es": "Puré de frutas envasado. Se consume directamente, exclusivamente como snack. Intercambio con otros purés de fruta infantiles, zumos de fruta o pieza de fruta fresca."
   },
   {
     "source": "Carrefour",
@@ -21709,7 +21902,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 75,
-    "label_reason": "Arroz rojo preparado, requiere calentamiento"
+    "label_reason": "Arroz rojo preparado, requiere calentamiento",
+    "usage_es": "Plato de arroz rojo con verduras, uso ocasional en España. Se consume caliente en comida. Intercambio con arroz blanco cocido, cuscús o fideos chinos."
   },
   {
     "source": "Carrefour",
@@ -21732,7 +21926,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 70,
-    "label_reason": "Quinoa mexicana, requiere cocción previa"
+    "label_reason": "Quinoa mexicana, requiere cocción previa",
+    "usage_es": "Plato de quinoa con verduras, uso ocasional en España. Se consume caliente en comida. Intercambio con arroz cocido, cuscús, bulgur o pasta integral."
   },
   {
     "source": "Lidl",
