@@ -178,6 +178,57 @@ function _singularize(token) {
   return token;
 }
 
+// ============================================
+// SYNONYM GROUPS — para clustering en dedup de diversidad
+// ============================================
+//
+// Tokens distintos que clínicamente son la MISMA familia de alimento.
+// Se usan SOLO para construir el cluster key del dedup, no afectan el
+// matching o el filtro clínico.
+//
+// Ej: "Pasta alimenticia cruda" BEDCA + "Macarrones Boloñesa" + "Italpasta
+// almejas" + "Penne integral" → todos colapsan en cluster "pasta" del
+// source family correspondiente. Resultado: 1 representante por source
+// family (BEDCA + branded), no 5 variantes de pasta seguidas.
+//
+// Conservador: solo pasta-family por ahora (el caso reportado por Hugo).
+// Agregar más groups si aparecen casos similares (carnes NO — pollo y
+// ternera son clínicamente distintos; frutas NO — manzana y pera son
+// intercambios legítimamente separados).
+// Incluye formas naive-singularizadas (post _singularize): "macarrones"
+// → "macarrone" tras strip 's', etc. Por eso aparecen ambas variantes.
+const _PASTA_FAMILY = new Set([
+  "pasta", "pastas",
+  "macarron", "macarrones", "macarrone", "macaroni",
+  "fideo", "fideos",
+  "espagueti", "espaguetis", "spaghetti",
+  "tallarin", "tallarines", "tallarine", "tagliatelle",
+  "penne", "rigatoni", "fusilli", "farfalle", "fettuccine", "linguine",
+  "ravioli", "raviolis",
+  "tortellini", "tortelloni",
+  "cannelon", "cannelones", "cannelone", "cannelloni",
+  "lasana", "lasanas", "lasagna", "lasagnas",
+  "noqui", "noquis", "gnocchi",
+  "espiral", "espirales", "espirale",
+  "italpasta",
+  "lazo", "lazos",
+  "pluma", "plumas",
+  "codito", "coditos",
+  "cinta", "cintas",
+]);
+
+// Devuelve la clave de cluster para un food. Si algún token cae en un
+// grupo de sinónimos, el cluster es la "raíz" de ese grupo. Si no, se
+// usa el join de tokens como antes.
+function clusterIngredientKey(food) {
+  const tokens = ingredientTokens(food.name);
+  if (tokens.length === 0) return "__no_ingredient_" + food.id;
+  for (const t of tokens) {
+    if (_PASTA_FAMILY.has(t)) return "pasta::" + sourceFamily(food.source);
+  }
+  return tokens.slice().sort().join("|") + "::" + sourceFamily(food.source);
+}
+
 // Extrae los tokens-ingrediente: singulariza primero (para que plurales
 // como "cocidas"/"patatas" se normalicen), luego filtra stop words,
 // descriptores y numerales. El orden importa: singularizar después de
@@ -1169,17 +1220,14 @@ async function calculateAlternatives(originalFood, amount) {
         return b._sortScore - a._sortScore;
       });
 
-    // Diversidad: primer representante de cada cluster (por ingrediente raíz +
-    // sourceFamily) al frente; variantes secundarias al final del mismo tier.
-    // Reutiliza ingredientTokens() — ya filtra estados, cortes y marcas.
+    // Diversidad: primer representante de cada cluster al frente;
+    // variantes secundarias al final del mismo tier.
+    // clusterIngredientKey() colapsa sinónimos de pasta family.
     const seen = new Set();
     const primary = [];
     const secondary = [];
     for (const food of sorted) {
-      const tokens = ingredientTokens(food.name);
-      const key = tokens.length > 0
-        ? tokens.slice().sort().join('|') + '::' + sourceFamily(food.source)
-        : '__no_ingredient_' + food.id;
+      const key = clusterIngredientKey(food);
       if (seen.has(key)) {
         secondary.push(food);
       } else {
