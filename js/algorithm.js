@@ -601,20 +601,24 @@ function sourceFamily(source) {
 }
 
 // Bonus al sortScore según afinidad de fuente con el alimento original.
-// Valores calibrados: misma fuente +0.30, misma familia +0.15, distinta +0.
+// Valores calibrados (post-feedback Hugo): misma fuente +0.45, misma familia
+// +0.25, distinta +0. Bonus fuerte pero NEGOCIABLE — un candidato cross-family
+// con clínica correcta (ej. Bulgur Carrefour para Arroz BEDCA) puede ganarle
+// a un same-family con clínica mala (ej. Cereales desayuno BEDCA con
+// meal_slot mismatch demoteado ×0.6).
 //
-// Esto hace que misma-familia gane cuando hay diferencia de matchScore
-// menor a ~30 puntos, pero permite que un cross-family excelente le gane
-// a un same-family mediocre.
+// Configurable via window.SOURCE_AFFINITY_EXACT y SOURCE_AFFINITY_FAMILY.
 function sourceAffinityBonus(candidate, original) {
   const cs = (candidate.source || "").toLowerCase();
   const os = (original.source || "").toLowerCase();
+  const exactBonus  = Number((typeof window !== "undefined" && window.SOURCE_AFFINITY_EXACT))  || 0.45;
+  const familyBonus = Number((typeof window !== "undefined" && window.SOURCE_AFFINITY_FAMILY)) || 0.25;
 
   // Misma fuente exacta — máxima afinidad
-  if (cs && os && cs === os) return 0.30;
+  if (cs && os && cs === os) return exactBonus;
 
-  // Misma familia (ej: Mercadona ↔ Carrefour, OFF ↔ Lidl)
-  if (sourceFamily(cs) === sourceFamily(os)) return 0.15;
+  // Misma familia (ej: Mercadona ↔ Carrefour, OFF ↔ Lidl, BEDCA ↔ futuras genéricas)
+  if (sourceFamily(cs) === sourceFamily(os)) return familyBonus;
 
   // Cruza familias (BEDCA ↔ Mercadona, BEDCA ↔ OFF) — sin bonus
   return 0.00;
@@ -1105,26 +1109,7 @@ async function calculateAlternatives(originalFood, amount) {
         primary.push(food);
       }
     }
-    const deduped = [...primary, ...secondary];
-
-    // SOURCE FAMILY HARD PARTITION: dentro de un tier, candidatos de la misma
-    // familia que el origen (BEDCA/genérico ↔ otros genéricos ; Mercadona/
-    // branded ↔ otros branded) van TODOS primero. Solo después aparecen los
-    // de la otra familia. Esto respeta el contrato implícito: si la clienta
-    // selecciona un alimento BEDCA, prefiere ver alternativas BEDCA antes
-    // que productos comerciales (y viceversa). El sourceAffinityBonus aditivo
-    // sigue actuando DENTRO de cada partición para preferir misma fuente exacta.
-    const oFamily = sourceFamily(originalFood.source);
-    const sameFamily = [];
-    const otherFamily = [];
-    for (const food of deduped) {
-      if (sourceFamily(food.source) === oFamily) {
-        sameFamily.push(food);
-      } else {
-        otherFamily.push(food);
-      }
-    }
-    return [...sameFamily, ...otherFamily];
+    return [...primary, ...secondary];
   };
 
   return {
