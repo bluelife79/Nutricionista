@@ -77,6 +77,13 @@ def build_embedding_text(food: dict) -> str:
     parts.append(MACRO_PROFILE_MAP.get(food.get("macro_profile", ""), ""))
     for flag in food.get("flags", []):
         parts.append(FLAGS_MAP.get(flag, ""))
+    # usage_es: descripción culinaria detallada (auditada via GLM en
+    # audit_usage_with_llm.py). Si presente, enriquece la señal semántica
+    # — hace que "patata cocida" y "arroz hervido" se acerquen porque
+    # ambos describen "plato directo en comida", aunque tokens distintos.
+    usage = (food.get("usage_es") or "").strip()
+    if usage:
+        parts.append(usage)
     return " ".join(p for p in parts if p).strip()
 
 
