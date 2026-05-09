@@ -264,7 +264,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Carne fresca, requiere cocción"
+    "label_reason": "Carne fresca, requiere cocción",
+    "usage_es": "Carne de cerdo. Se consume asada, guisada o a la plancha como plato principal en comida o cena. Intercambio con otras carnes magras, pollo o conejo."
   },
   {
     "source": "BEDCA",
@@ -726,7 +727,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Carne cruda que requiere cocción obligatoria"
+    "label_reason": "Carne cruda que requiere cocción obligatoria",
+    "usage_es": "Carne picada mixta. Ingrediente de cocina para hacer albóndigas, hamburguesas o salsa boloñesa en comidas y cenas. Intercambio con carne de ternera picada o soja texturizada."
   },
   {
     "source": "BEDCA",
@@ -1156,7 +1158,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 100,
-    "label_reason": "Huevo cocido listo para consumir directamente"
+    "label_reason": "Huevo cocido listo para consumir directamente",
+    "usage_es": "Caracol. Molusco raro en España, consumido guisado con salsa o al ajillo como plato en comidas festivas. Intercambio con mejillones o almejas."
   },
   {
     "source": "BEDCA",
@@ -1225,7 +1228,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Caracoles: consumo minoritario, requiere cocción"
+    "label_reason": "Caracoles: consumo minoritario, requiere cocción",
+    "usage_es": "Huevo de gallina. Se consume entero y duro como plato en desayuno, comida o cena, o como ingrediente en ensaladas. Intercambio con huevo cocido, claro o tofu."
   },
   {
     "source": "BEDCA",
@@ -1271,7 +1275,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Ternera: segundo plato habitual, requiere cocción"
+    "label_reason": "Ternera: segundo plato habitual, requiere cocción",
+    "usage_es": "Carne de ternera. Se consume guisada, a la plancha o en estofado como plato principal en comida o cena. Intercambio con cerdo magro, pollo o pavo."
   },
   {
     "source": "BEDCA",
@@ -1318,7 +1323,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Yema cruda: ingrediente de cocina, no se come sola"
+    "label_reason": "Yema cruda: ingrediente de cocina, no se come sola",
+    "usage_es": "Yema de huevo cruda. Ingrediente de cocina para preparar mayonesa, salsas o postres, no comestible directamente. Intercambio con huevo entero líquido pasteurizado."
   },
   {
     "source": "BEDCA",
@@ -3721,7 +3727,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Frito cordobés, requiere cocción, ocasional"
+    "label_reason": "Frito cordobés, requiere cocción, ocasional",
+    "usage_es": "Carne procesada. Plato ocasional cordobés de cerdo enrollado con jamón y frito. Se consume en comida. Intercambio con san jacobo o escalope de cerdo empanado."
   },
   {
     "source": "BEDCA",
@@ -4335,7 +4342,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Precocinado, requiere horneado"
+    "label_reason": "Precocinado, requiere horneado",
+    "usage_es": "Carne procesada. Plato ocasional de masa de pan rellena de carne, horneada. Se consume en comida o como tapa. Intercambio con pizza, empanadilla o croqueta."
   },
   {
     "source": "BEDCA",
@@ -4381,7 +4389,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Fiambre listo, cena típica"
+    "label_reason": "Fiambre listo, cena típica",
+    "usage_es": "Fiambre de cerdo. Se consume loncheado en bocadillos, tapas o como plato en cenas ligeras. Intercambio con pavo cocido, jamón York o lomo embuchado."
   },
   {
     "source": "BEDCA",
@@ -4695,7 +4704,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 50,
-    "label_reason": "Término genérico, requiere cocción"
+    "label_reason": "Término genérico, requiere cocción",
+    "usage_es": "Pescado blanco o azul. Ingrediente de cocina para platos al horno, plancha o frito en comida o cena. Intercambio con merluza, lomo de bacalao o pollo."
   },
   {
     "source": "BEDCA",
@@ -4904,7 +4914,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pescado a la plancha, plato principal comida"
+    "label_reason": "Pescado a la plancha, plato principal comida",
+    "usage_es": "Pescado blanco magro a la plancha como plato principal en comida. Intercambio con lenguado, merluza o rape cocinados sin grasa."
   },
   {
     "source": "BEDCA",
@@ -4998,7 +5009,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Caza menor, consumo muy minoritario"
+    "label_reason": "Caza menor, consumo muy minoritario",
+    "usage_es": "Carne de caza menor rara en España, guisada o estofada como plato de comida. No es comestible cruda. Intercambio con conejo o pollo guisado."
   },
   {
     "source": "BEDCA",
@@ -5527,7 +5539,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pescado blanco crudo, consumo mensual"
+    "label_reason": "Pescado blanco crudo, consumo mensual",
+    "usage_es": "Pescado blanco ocasional, cocinado al horno o a la sal como plato de comida. No es comestible crudo. Intercambio con dorada o lubina al horno."
   },
   {
     "source": "BEDCA",
@@ -5550,7 +5563,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pescado crudo, común en dieta española"
+    "label_reason": "Pescado crudo, común en dieta española",
+    "usage_es": "Pescado azul de agua dulce, consumido asado o a la plancha como plato de comida. No es comestible crudo. Intercambio con salmonete o caballa."
   },
   {
     "source": "BEDCA",
@@ -5574,7 +5588,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Conserva lista, versátil y muy consumida"
+    "label_reason": "Conserva lista, versátil y muy consumida",
+    "usage_es": "Conserva de pescado azul lista para comer, en ensalada o tapa en cualquier momento. Intercambio con atún en conserva o caballa enlatada escurrida."
   },
   {
     "source": "BEDCA",
@@ -6553,7 +6568,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 100,
-    "label_reason": "Pasta cruda necesita cocción, básico español"
+    "label_reason": "Pasta cruda necesita cocción, básico español",
+    "usage_es": "Ingrediente de pasta con huevo. No es comestible cruda, se hierve como plato de comida. Intercambio con pasta sin huevo cocida, cuscús o fideos."
   },
   {
     "source": "BEDCA",
@@ -6625,7 +6641,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 100,
-    "label_reason": "Carne cruda requiere cocción, consumo semanal"
+    "label_reason": "Carne cruda requiere cocción, consumo semanal",
+    "usage_es": "Carne roja con grasa, no comestible cruda, consumida guisada o en estofado en comida. Intercambio con cerdo o ternera magra cocinada."
   },
   {
     "source": "BEDCA",
@@ -7052,7 +7069,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 75,
-    "label_reason": "Pescado crudo poco común en dieta española"
+    "label_reason": "Pescado crudo poco común en dieta española",
+    "usage_es": "Pescado azul raro en España, no comestible crudo, cocinado al horno en comida. Intercambio con salmonete o jurel al horno."
   },
   {
     "source": "BEDCA",
@@ -7194,7 +7212,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Casquería porcina, consumo muy minoritario"
+    "label_reason": "Casquería porcina, consumo muy minoritario",
+    "usage_es": "Corte de cerdo raro en España, no comestible crudo, cocinado en guisos de comida. Intercambio con morcilla o carne magra de cerdo guisada."
   },
   {
     "source": "BEDCA",
@@ -7358,7 +7377,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Caza menor, consumo muy minoritario"
+    "label_reason": "Caza menor, consumo muy minoritario",
+    "usage_es": "Carne de caza menor rara en España, no comestible cruda, guisada en comida. Intercambio con conejo estofado o pollo guisado."
   },
   {
     "source": "BEDCA",
@@ -7499,7 +7519,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Casquería, consumo muy minoritario"
+    "label_reason": "Casquería, consumo muy minoritario",
+    "usage_es": "Despojo cárneo de ternera. Se consume hervido en guisos y cocidos tradicionales en la comida. Alimento raro en España. Intercambio clínico con other vísceras cocidas o carne magra de ternera."
   },
   {
     "source": "BEDCA",
@@ -7545,7 +7566,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Casquería, consumo muy minoritario"
+    "label_reason": "Casquería, consumo muy minoritario",
+    "usage_es": "Despojo cárneo de cerdo. Se consume hervido en guisos y cocidos en la comida. Alimento raro en España. Intercambio clínico con otras vísceras cocidas o carne magra de cerdo."
   },
   {
     "source": "BEDCA",
@@ -7614,7 +7636,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Pavo entero, festivo u ocasional"
+    "label_reason": "Pavo entero, festivo u ocasional",
+    "usage_es": "Carne de ave. Se consume asado u horneado como plato principal en la comida, siendo típico en Navidad. Intercambio clínico con pollo asado o pechuga de pavo cocida."
   },
   {
     "source": "BEDCA",
@@ -7660,7 +7683,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pescado blanco, típico en cenas"
+    "label_reason": "Pescado blanco, típico en cenas",
+    "usage_es": "Pescado blanco magro. Se consume a la plancha o al horno como plato en la cena. Ingrediente de cocina. Intercambio clínico con lenguado, gallo o merluza a la plancha."
   },
   {
     "source": "BEDCA",
@@ -8466,7 +8490,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 88,
-    "label_reason": "Pescado blanco frito o plancha"
+    "label_reason": "Pescado blanco frito o plancha",
+    "usage_es": "Pescado azul pequeño. Se consume frito o a la plancha como plato en la cena. Ingrediente de cocina. Intercambio clínico con boquerones o chanquetes fritos."
   },
   {
     "source": "BEDCA",
@@ -8889,7 +8914,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 82,
-    "label_reason": "Marisco de roca, consumo minoritario"
+    "label_reason": "Marisco de roca, consumo minoritario",
+    "usage_es": "Molusco bivalvo. Se consume a la plancha o al vapor como plato en la comida. Alimento raro en España. Intercambio clínico con vieiras, almejas o mejillones al vapor."
   },
   {
     "source": "BEDCA",
@@ -9179,7 +9205,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pescado blanco, requiere cocción"
+    "label_reason": "Pescado blanco, requiere cocción",
+    "usage_es": "Pescado azul grande. Se consume a la plancha o al horno como plato en la comida. Ingrediente de cocina. Intercambio clínico con atún, pez espada o bonito a la plancha."
   },
   {
     "source": "BEDCA",
@@ -9813,7 +9840,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 75,
-    "label_reason": "Huevo crudo atípico, consumo muy minoritario"
+    "label_reason": "Huevo crudo atípico, consumo muy minoritario",
+    "usage_es": "Huevo de pato. No se consume directamente, se usa en repostería o frito en la comida. Alimento raro en España. Intercambio clínico con huevo de gallina fresco."
   },
   {
     "source": "BEDCA",
@@ -10327,7 +10355,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Alimento versátil que requiere cocción"
+    "label_reason": "Alimento versátil que requiere cocción",
+    "usage_es": "Huevo de gallina. Se consume frito, revuelto o cocido como plato en desayuno, comida o cena. Ingrediente básico de cocina. Intercambio clínico con otros huevos de gallina cocinados."
   },
   {
     "source": "BEDCA",
@@ -10420,7 +10449,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Fiambre de cerdo listo para consumir"
+    "label_reason": "Fiambre de cerdo listo para consumir",
+    "usage_es": "Fiambre de carne procesada. Se consume directamente en bocadillos como snack o comida. Exótico en la dieta española tradicional. Intercambio clínico con mortadela, salchichas o fiambre de pavo."
   },
   {
     "source": "BEDCA",
@@ -11011,7 +11041,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Suplemento, consumo minoritario como snack"
+    "label_reason": "Suplemento, consumo minoritario como snack",
+    "usage_es": "Suplemento dietético hiperproteico. Se consume como batido o shake, exclusivamente de snack. Intercambio clínico con claras de huevo o yogur proteico griego natural."
   },
   {
     "source": "BEDCA",
@@ -11129,7 +11160,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Nescafé, ingrediente para preparar café"
+    "label_reason": "Nescafé, ingrediente para preparar café",
+    "usage_es": "Infusión estimulante en polvo. Ingrediente que se disuelve en agua o leche, consumo exclusivo en desayuno. Intercambio clínico con café de filtro o infusión sin azúcar."
   },
   {
     "source": "BEDCA",
@@ -11492,7 +11524,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 88,
-    "label_reason": "Cabrito asado, consumo muy minoritario"
+    "label_reason": "Cabrito asado, consumo muy minoritario",
+    "usage_es": "Carne de cordero joven, corte de espalda. Se cocina al horno o frita, consumo en comida. Alimento raro en España. Intercambio clínico con cordero lechal asado."
   },
   {
     "source": "BEDCA",
@@ -11515,7 +11548,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 88,
-    "label_reason": "Cabrito asado, consumo muy minoritario"
+    "label_reason": "Cabrito asado, consumo muy minoritario",
+    "usage_es": "Carne de cordero joven, corte costillar. Se cocina al horno o a la plancha, consumo en comida. Alimento raro en España. Intercambio clínico con costilla de cordero."
   },
   {
     "source": "BEDCA",
@@ -11538,7 +11572,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 75,
-    "label_reason": "Jamón crudo para cocinar o curar"
+    "label_reason": "Jamón crudo para cocinar o curar",
+    "usage_es": "Carne fresca de cerdo, pieza entera para curar. No se consume crudo, precisa salazón y curado largo. Ingrediente. Intercambio clínico con jamón serrano curado."
   },
   {
     "source": "BEDCA",
@@ -11699,7 +11734,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 88,
-    "label_reason": "Cabrito lechal, consumo muy minoritario"
+    "label_reason": "Cabrito lechal, consumo muy minoritario",
+    "usage_es": "Carne de cordero joven, corte de pierna. Se cocina al horno, consumo en comida. Alimento raro en España. Intercambio clínico con pierna de cordero lechal asada."
   },
   {
     "source": "BEDCA",
@@ -11791,7 +11827,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Cabrito adulto, carne minoritaria en España"
+    "label_reason": "Cabrito adulto, carne minoritaria en España",
+    "usage_es": "Carne de cabrito adulto, corte magro. Se cocina guisada o al horno, consumo en comida. Alimento raro en España. Intercambio clínico con carne de chivo o cordero."
   },
   {
     "source": "BEDCA",
@@ -11860,7 +11897,8 @@
     "frequency": "raro",
     "exotic": true,
     "label_confidence": 55,
-    "label_reason": "Pescado de río poco consumido en España"
+    "label_reason": "Pescado de río poco consumido en España",
+    "usage_es": "Pescado de agua dulce entero. Se cocina frito o a la plancha, consumo en comida. Pescado raro en España. Intercambio clínico con trucha o lucio."
   },
   {
     "source": "BEDCA",
@@ -11883,7 +11921,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 75,
-    "label_reason": "Lujo gastronómico, consumo muy minoritario"
+    "label_reason": "Lujo gastronómico, consumo muy minoritario",
+    "usage_es": "Huevas de esturión curadas. Se consume directamente en pequeñas porciones, como aperitivo o ingrediente. Alimento muy raro en España. Intercambio clínico con huevas de lumpo o salmón."
   },
   {
     "source": "BEDCA",
@@ -11906,7 +11945,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Corte porcino habitual que requiere cocción"
+    "label_reason": "Corte porcino habitual que requiere cocción",
+    "usage_es": "Carne fresca de cerdo, corte de pierna. No se consume cruda, se cocina asada o guisada en comida. Intercambio clínico con magro de cerdo o lomo de cerdo."
   },
   {
     "source": "BEDCA",
@@ -12139,7 +12179,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Carne muy específica, consumo puntual"
+    "label_reason": "Carne muy específica, consumo puntual",
+    "usage_es": "Carne de cordero joven asada al horno con patatas. Plato ocasional de comida o cena festiva. Intercambio con pierna de cordero asada o costilla de ternera."
   },
   {
     "source": "BEDCA",
@@ -12162,7 +12203,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 60,
-    "label_reason": "Corte porcino muy específico y minoritario"
+    "label_reason": "Corte porcino muy específico y minoritario",
+    "usage_es": "Corte magro de cerdo crudo, raro en cocina doméstica. Se guisa o asa en comida. Intercambio con lomo de cerdo, solomillo o pechuga de pollo."
   },
   {
     "source": "BEDCA",
@@ -12185,7 +12227,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 60,
-    "label_reason": "Corte porcino muy específico y minoritario"
+    "label_reason": "Corte porcino muy específico y minoritario",
+    "usage_es": "Corte de cerdo crudo con grasa, poco habitual. Se guisa a fuego lento en comida. Intercambio con costilla de cerdo, panceta o falda de ternera."
   },
   {
     "source": "BEDCA",
@@ -12208,7 +12251,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Base del jamón, requiere cocción o curado"
+    "label_reason": "Base del jamón, requiere cocción o curado",
+    "usage_es": "Carne fresca de cerdo cruda para cocinar, base del jamón. Se asa o guisa en comida. Intercambio con lomo de cerdo, magro de ternera o pechuga de pollo."
   },
   {
     "source": "BEDCA",
@@ -12422,7 +12466,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Especia común, ingrediente de cocina"
+    "label_reason": "Especia común, ingrediente de cocina",
+    "usage_es": "Especia picante en polvo, ingrediente de cocina. No es plato. Condimenta guisos y salsas en cualquier comida. Intercambio con pimentón picante o cayena en polvo."
   },
   {
     "source": "BEDCA",
@@ -12629,7 +12674,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 75,
-    "label_reason": "Carne porcina sin corte específico"
+    "label_reason": "Carne porcina sin corte específico",
+    "usage_es": "Carne de cerdo cruda sin corte definido. Se guisa, asa o fríe en comida. Intercambio con costilla, magro de cerdo o carne de ternera similar."
   },
   {
     "source": "BEDCA",
@@ -13453,7 +13499,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Carne cruda que requiere cocción obligatoria"
+    "label_reason": "Carne cruda que requiere cocción obligatoria",
+    "usage_es": "Carne de ternera cruda con grasa visible. Se guisa o estofa lentamente en comida. Intercambio con morcillo, falda de ternera o jarrete de cerdo."
   },
   {
     "source": "BEDCA",
@@ -13476,7 +13523,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Carne cruda que requiere cocción obligatoria"
+    "label_reason": "Carne cruda que requiere cocción obligatoria",
+    "usage_es": "Carne de ave fresca cruda. Se asa al horno o se guisa en comida. Intercambio con pechuga de pollo, filete de pavo o magro de cerdo."
   },
   {
     "source": "BEDCA",
@@ -13947,7 +13995,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Casquería cruda que requiere cocción"
+    "label_reason": "Casquería cruda que requiere cocción",
+    "usage_es": "Carne de vacuno cruda, corte raro en España. Requiere cocción lenta para guisos de comida. Intercambio con morcillo de ternera o carrillera de cerdo."
   },
   {
     "source": "BEDCA",
@@ -14090,7 +14139,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Carne asada lista para consumir"
+    "label_reason": "Carne asada lista para consumir",
+    "usage_es": "Carne de ternera asada lista para comer. Plato principal de comida. Intercambio con filete de ternera a la plancha, solomillo de cerdo o pechuga de pavo asada."
   },
   {
     "source": "BEDCA",
@@ -14113,7 +14163,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Carne estofada lista para consumir"
+    "label_reason": "Carne estofada lista para consumir",
+    "usage_es": "Carne de vacuno guisada con sofrito. Se consume como plato principal en comida. Intercambio con cerdo estofado, pollo guisado o cordero estofado."
   },
   {
     "source": "BEDCA",
@@ -14208,7 +14259,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 75,
-    "label_reason": "Huevo poco común, requiere cocción"
+    "label_reason": "Huevo poco común, requiere cocción",
+    "usage_es": "Huevo de pato crudo. Alimento raro en España, no se consume directamente por riesgo sanitario. Ingrediente excepcional en repostería. Intercambio con huevo de gallina."
   },
   {
     "source": "BEDCA",
@@ -14232,7 +14284,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Clara cruda, requiere cocción o batido"
+    "label_reason": "Clara cruda, requiere cocción o batido",
+    "usage_es": "Clara de huevo cruda. Ingrediente de cocina no comestible directamente, usada para merengues o repostería. Intercambio con clara pasteurizada o huevo entero."
   },
   {
     "source": "BEDCA",
@@ -15137,7 +15190,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Carne asada típica de comida dominical"
+    "label_reason": "Carne asada típica de comida dominical",
+    "usage_es": "Carne de vacuno asada al horno o parrilla. Se consume como plato principal en comida. Intercambio con cerdo asado, lomo de ternera o pollo asado."
   },
   {
     "source": "BEDCA",
@@ -15160,7 +15214,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Guiso tradicional de consumo semanal"
+    "label_reason": "Guiso tradicional de consumo semanal",
+    "usage_es": "Carne de conejo guisada con verduras. Se consume como plato principal en comida. Intercambio con pollo guisado, pavo estofado o cerdo en salsa."
   },
   {
     "source": "BEDCA",
@@ -15872,7 +15927,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Tortilla francesa, cena típica"
+    "label_reason": "Tortilla francesa, cena típica",
+    "usage_es": "Preparación de huevo batido cocinado sin relleno. Se consume como plato exclusivo de cena. Intercambio con revuelto de huevo o tortilla de patata."
   },
   {
     "source": "BEDCA",
@@ -16203,7 +16259,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Pichón asado, consumo minoritario"
+    "label_reason": "Pichón asado, consumo minoritario",
+    "usage_es": "Carne de ave de caza asada. Alimento raro en España, se consume como plato principal en comida festiva. Intercambio con pollo asado o pavo al horno."
   },
   {
     "source": "BEDCA",
@@ -16273,7 +16330,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Bacón parrilla, guarnición ocasional"
+    "label_reason": "Bacón parrilla, guarnición ocasional",
+    "usage_es": "Carne procesada de cerdo ahumada a la parrilla. Se consume ocasionalmente como ingrediente en comida. Intercambio con torreznos, panceta o salchicha."
   },
   {
     "source": "BEDCA",
@@ -16488,7 +16546,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Bonito en lata, muy versátil"
+    "label_reason": "Bonito en lata, muy versátil",
+    "usage_es": "Pescado azul enlatado conservado en aceite. Se consume como ingrediente en ensaladas o tostadas, en comida o cena. Intercambio con atún en conserva o sardinas."
   },
   {
     "source": "BEDCA",
@@ -16534,7 +16593,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 70,
-    "label_reason": "Pescado de agua dulce, minoritario"
+    "label_reason": "Pescado de agua dulce, minoritario",
+    "usage_es": "Pescado blanco al horno. Alimento raro en España, se consume como plato principal en cena. Intercambio con lubina al horno, dorada o merluza."
   },
   {
     "source": "BEDCA",
@@ -16557,7 +16617,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 70,
-    "label_reason": "Lucio al horno, consumo muy local"
+    "label_reason": "Lucio al horno, consumo muy local",
+    "usage_es": "Pescado blanco asado, consumo raro en España. Se toma como plato en cenas. Intercambio con lubina al horno, lenguado o merluza cocida."
   },
   {
     "source": "BEDCA",
@@ -16580,7 +16641,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 75,
-    "label_reason": "Pescado de río poco consumido en España"
+    "label_reason": "Pescado de río poco consumido en España",
+    "usage_es": "Pescado de agua dulce asado, muy raro en España. Se sirve como plato en comidas. Intercambio con trucha al horno o lucio asado."
   },
   {
     "source": "BEDCA",
@@ -16603,7 +16665,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Pescado blanco al vapor, típico cena"
+    "label_reason": "Pescado blanco al vapor, típico cena",
+    "usage_es": "Pescado blanco plano al vapor. Ingrediente de plato en cenas ligeras. Intercambio con lenguado al vapor, rape cocido o gallo al horno."
   },
   {
     "source": "BEDCA",
@@ -16672,7 +16735,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Pescado de consumo minoritario en España"
+    "label_reason": "Pescado de consumo minoritario en España",
+    "usage_es": "Pescado azul asado, consumo raro en España. Se toma como plato principal en comidas. Intercambio con jurel al horno o caballa asada."
   },
   {
     "source": "BEDCA",
@@ -16695,7 +16759,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Huevo frito, muy versátil y habitual"
+    "label_reason": "Huevo frito, muy versátil y habitual",
+    "usage_es": "Huevo frito, plato habitual en cualquier comida. Se toma en desayuno, comida o cena. Intercambio con huevo revuelto o tortilla francesa."
   },
   {
     "source": "BEDCA",
@@ -16720,7 +16785,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Huevo cocido, versátil y muy habitual"
+    "label_reason": "Huevo cocido, versátil y muy habitual",
+    "usage_es": "Huevo cocido, plato habitual en cualquier comida. Ideal para desayuno, comida o cena. Intercambio con huevo pasado por agua o escalfado."
   },
   {
     "source": "BEDCA",
@@ -16813,7 +16879,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Semilla usada como ingrediente culinario"
+    "label_reason": "Semilla usada como ingrediente culinario",
+    "usage_es": "Semilla oleaginosa, ingrediente de cocina habitual. Añadida a ensaladas, panes o bocadillos. Intercambio con semillas de girasol o lino."
   },
   {
     "source": "BEDCA",
@@ -16908,7 +16975,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Caballa enlatada, consumo semanal"
+    "label_reason": "Caballa enlatada, consumo semanal",
+    "usage_es": "Conserva de pescado azul, ingrediente habitual. Se usa en ensaladas, bocadillos o como plato de comida. Intercambio con sardina o atún enlatado."
   },
   {
     "source": "BEDCA",
@@ -16954,7 +17022,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Huevo escalfado, versátil y habitual"
+    "label_reason": "Huevo escalfado, versátil y habitual",
+    "usage_es": "Huevo escalfado, plato habitual en cualquier comida. Se toma en desayuno, comida o cena. Intercambio con huevo pasado por agua o poché."
   },
   {
     "source": "BEDCA",
@@ -16977,7 +17046,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Oca asada, ave de consumo muy minoritario"
+    "label_reason": "Oca asada, ave de consumo muy minoritario",
+    "usage_es": "Carne de ave asada, consumo raro en España. Se sirve como plato principal en comidas. Intercambio con pato asado o pollo asado sin piel."
   },
   {
     "source": "BEDCA",
@@ -17024,7 +17094,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Pasta hervida, plato principal habitual"
+    "label_reason": "Pasta hervida, plato principal habitual",
+    "usage_es": "Pasta con huevo cocida. Se consume como plato principal en la comida. Intercambio con arroz cocido, cuscús o patata cocida."
   },
   {
     "source": "BEDCA",
@@ -17441,7 +17512,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Carne cruda, base de caldos y guisos"
+    "label_reason": "Carne cruda, base de caldos y guisos",
+    "usage_es": "Carne de ave cruda entera. No es comestible directamente, se hace en caldo o asada para comida. Intercambio con pollo entero o pavo."
   },
   {
     "source": "BEDCA",
@@ -17794,7 +17866,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 40,
-    "label_reason": "Nombre confuso, posible error en base de datos"
+    "label_reason": "Nombre confuso, posible error en base de datos",
+    "usage_es": "Pescado blanco crudo. Es raro en España, no se consume comestible directamente, requiere cocción en comida. Intercambio con pescadilla o merluza."
   },
   {
     "source": "BEDCA",
@@ -18030,7 +18103,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 70,
-    "label_reason": "Ingrediente industrial, no se come solo"
+    "label_reason": "Ingrediente industrial, no se come solo",
+    "usage_es": "Ingrediente de repostería raro en España. No se consume directamente, se usa para elaborar salsas o masas. Intercambio con yema de huevo fresco."
   },
   {
     "source": "BEDCA",
@@ -18053,7 +18127,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Huevo crudo, requiere cocción siempre"
+    "label_reason": "Huevo crudo, requiere cocción siempre",
+    "usage_es": "Huevo pequeño crudo. No comestible directamente, se consume hervido o frito como aperitivo o ingrediente. Intercambio con huevo de gallina."
   },
   {
     "source": "BEDCA",
@@ -18451,7 +18526,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Carne de caza, consumo minoritario"
+    "label_reason": "Carne de caza, consumo minoritario",
+    "usage_es": "Carne de caza cruda. Rara en España, no comestible directamente, se asa o guisa en comida. Intercambio con carne de ternera magra."
   },
   {
     "source": "BEDCA",
@@ -18780,7 +18856,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Pescado blanco que requiere cocción"
+    "label_reason": "Pescado blanco que requiere cocción",
+    "usage_es": "Pescado blanco crudo. No comestible directamente, se fríe o hace a la plancha en comida. Intercambio con pescadilla o bacalao."
   },
   {
     "source": "BEDCA",
@@ -18919,7 +18996,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Pescado crudo muy exclusivo, requiere cocción"
+    "label_reason": "Pescado crudo muy exclusivo, requiere cocción",
+    "usage_es": "Pescado azul crudo. Raro y caro en España, no comestible directamente, se saltea en la cena. Intercambio con gamba o langostino."
   },
   {
     "source": "BEDCA",
@@ -19492,7 +19570,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 75,
-    "label_reason": "Pescado de río poco conocido"
+    "label_reason": "Pescado de río poco conocido",
+    "usage_es": "Pescado de agua dulce crudo. Raro en España, no comestible directamente, se fríe o guisa en comida. Intercambio con carpa o lucio."
   },
   {
     "source": "BEDCA",
@@ -19515,7 +19594,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 75,
-    "label_reason": "Pescado blanco crudo, consumo ocasional"
+    "label_reason": "Pescado blanco crudo, consumo ocasional",
+    "usage_es": "Pescado azul crudo. No comestible directamente, se hace a la plancha o al horno en comida. Intercambio con sardina o jurel."
   },
   {
     "source": "BEDCA",
@@ -19538,7 +19618,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 55,
-    "label_reason": "Pescado poco común, consumo minoritario"
+    "label_reason": "Pescado poco común, consumo minoritario",
+    "usage_es": "Pescado blanco raro en España. Se cocina a la plancha o al horno. Se consume en comida. Intercambio con dorada, lubina o tilapia."
   },
   {
     "source": "BEDCA",
@@ -19561,7 +19642,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 75,
-    "label_reason": "Pescado crudo típico canario"
+    "label_reason": "Pescado crudo típico canario",
+    "usage_es": "Pescado blanco ocasional en España. Se prepara a la plancha o en guiso. Se consume en comida. Intercambio con sama, gallo o rape."
   },
   {
     "source": "BEDCA",
@@ -19826,7 +19908,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Casquería cruda, consumo minoritario"
+    "label_reason": "Casquería cruda, consumo minoritario",
+    "usage_es": "Carne de vacuno rara en España. Se cocina hervida y luego adobada. No se come cruda. Se consume en comida. Intercambio con morcilla o tofu."
   },
   {
     "source": "BEDCA",
@@ -19941,7 +20024,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 50,
-    "label_reason": "Huevo poco común, requiere cocción"
+    "label_reason": "Huevo poco común, requiere cocción",
+    "usage_es": "Huevo raro en España. No se consume habitualmente. Se usa como ingrediente cocinado en cualquier comida. Intercambio con huevo de gallina."
   },
   {
     "source": "BEDCA",
@@ -20302,7 +20386,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 75,
-    "label_reason": "Pescado de río poco común"
+    "label_reason": "Pescado de río poco común",
+    "usage_es": "Pescado de agua dulce raro en España. Se cocina a la plancha o frito. Se consume en comida. Intercambio con trucha o lucio."
   },
   {
     "source": "BEDCA",
@@ -21212,7 +21297,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Carne cruda que requiere cocción"
+    "label_reason": "Carne cruda que requiere cocción",
+    "usage_es": "Carne de ave ocasional. Se emplea para hacer caldo o cocido. No se come cruda. Se consume en comida. Intercambio con pollo o capón."
   },
   {
     "source": "BEDCA",
@@ -53554,7 +53640,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Huevo fresco requiere cocción"
+    "label_reason": "Huevo fresco requiere cocción",
+    "usage_es": "Huevo de gallina ingrediente básico. Se consume frito, tortilla o hervido. Apto para desayuno, comida o cena. Intercambio con otros huevos de gallina."
   },
   {
     "source": "Mercadona",
@@ -53600,7 +53687,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Huevos versátiles, consumo semanal en España"
+    "label_reason": "Huevos versátiles, consumo semanal en España",
+    "usage_es": "Huevo de gallina ingrediente básico. Se consume frito, tortilla o hervido. Apto para desayuno, comida o cena. Intercambio con otros huevos de gallina."
   },
   {
     "source": "Lidl",
@@ -53623,7 +53711,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Huevos básicos, consumo semanal en España"
+    "label_reason": "Huevos básicos, consumo semanal en España",
+    "usage_es": "Huevo de gallina ingrediente básico. Se consume frito, tortilla o hervido. Apto para desayuno, comida o cena. Intercambio con otros huevos de gallina."
   },
   {
     "source": "Lidl",
@@ -53646,7 +53735,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Huevos frescos, consumo semanal en España"
+    "label_reason": "Huevos frescos, consumo semanal en España",
+    "usage_es": "Huevo de gallina ingrediente básico. Se consume frito, tortilla o hervido. Apto para desayuno, comida o cena. Intercambio con otros huevos de gallina."
   },
   {
     "source": "Mercadona",
@@ -53762,7 +53852,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 50,
-    "label_reason": "Nombre ambiguo, posiblemente suplemento proteico"
+    "label_reason": "Nombre ambiguo, posiblemente suplemento proteico",
+    "usage_es": "Suplemento proteico de origen dudoso y raro en España. Se consume como batido en desayuno o snack. Intercambio con claras de huevo, yogur proteico o bebible de soja."
   },
   {
     "source": "Consum",
@@ -54722,7 +54813,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Huevos frescos, requieren cocción"
+    "label_reason": "Huevos frescos, requieren cocción",
+    "usage_es": "Huevo de gallina ingrediente de cocina. Se consume frito, tortilla o hervido en desayuno y comida. Intercambio con otras proteínas como pollo, pavo o tofu."
   },
   {
     "source": "Lidl",
@@ -54747,7 +54839,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Huevos frescos, requieren cocción"
+    "label_reason": "Huevos frescos, requieren cocción",
+    "usage_es": "Huevo de gallina ingrediente de cocina. Se consume frito, tortilla o hervido en desayuno y comida. Intercambio con otras proteínas como pollo, pavo o tofu."
   },
   {
     "source": "Mercadona",
@@ -54864,7 +54957,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 98,
-    "label_reason": "Huevo fresco requiere cocción, muy versátil"
+    "label_reason": "Huevo fresco requiere cocción, muy versátil",
+    "usage_es": "Huevo de gallina ingrediente de cocina. Se consume frito, tortilla o hervido en desayuno y comida. Intercambio con otras proteínas como pollo, pavo o tofu."
   },
   {
     "source": "Mercadona",
@@ -55551,7 +55645,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pasta seca que requiere cocción previa"
+    "label_reason": "Pasta seca que requiere cocción previa",
+    "usage_es": "Pasta seca al huevo ingrediente de cocina. Se consume hervida con salsa en comida. Intercambio con pasta normal cocida, fideos, cuscús o arroz hervido."
   },
   {
     "source": "Carrefour",
@@ -55574,7 +55669,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pasta seca que requiere cocción previa"
+    "label_reason": "Pasta seca que requiere cocción previa",
+    "usage_es": "Pasta seca al huevo ingrediente de cocina. Se consume hervida con salsa en comida. Intercambio con pasta normal cocida, fideos, cuscús o arroz hervido."
   },
   {
     "source": "Mercadona",
@@ -55597,7 +55693,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pasta seca que requiere cocción previa"
+    "label_reason": "Pasta seca que requiere cocción previa",
+    "usage_es": "Pasta seca al huevo ingrediente de cocina. Se consume hervida con salsa en comida. Intercambio con pasta normal cocida, fideos, cuscús o arroz hervido."
   },
   {
     "source": "Carrefour",
@@ -55620,7 +55717,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pasta seca que requiere cocción previa"
+    "label_reason": "Pasta seca que requiere cocción previa",
+    "usage_es": "Pasta seca al huevo ingrediente de cocina. Se consume hervida con salsa en comida. Intercambio con pasta normal cocida, fideos, cuscús o arroz hervido."
   },
   {
     "source": "Carrefour",
@@ -55643,7 +55741,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pasta seca que requiere cocción previa"
+    "label_reason": "Pasta seca que requiere cocción previa",
+    "usage_es": "Pasta seca al huevo ingrediente de cocina. Se consume hervida con salsa en comida. Intercambio con pasta normal cocida, fideos, cuscús o arroz hervido."
   },
   {
     "source": "Carrefour",
@@ -55666,7 +55765,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pasta seca que requiere cocción previa"
+    "label_reason": "Pasta seca que requiere cocción previa",
+    "usage_es": "Pasta seca al huevo ingrediente de cocina. Se consume hervida con salsa en comida. Intercambio con pasta normal cocida, fideos, cuscús o arroz hervido."
   },
   {
     "source": "Lidl",
@@ -55712,7 +55812,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pasta seca que requiere cocción previa"
+    "label_reason": "Pasta seca que requiere cocción previa",
+    "usage_es": "Pasta larga seca al huevo. Se cocina hervida con salsa en plato único de comida. Intercambio con fideos cocidos, macarrones, cuscús o arroz hervido en raciones equivalentes."
   },
   {
     "source": "Carrefour",
@@ -55735,7 +55836,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Noodles tipo asiático integrados, requieren cocción"
+    "label_reason": "Noodles tipo asiático integrados, requieren cocción",
+    "usage_es": "Pasta oriental al huevo. Se cocina hervida en sopas o salteada como plato de comida. Intercambio con espaguetis cocidos, fideos de arroz o noodles de cristal."
   },
   {
     "source": "Mercadona",
@@ -55758,7 +55860,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pasta seca que requiere cocción previa"
+    "label_reason": "Pasta seca que requiere cocción previa",
+    "usage_es": "Pasta corta seca al huevo. Se cocina hervida en sopas o con salsa como plato de comida. Intercambio con macarrones cocidos, espirales, cuscús o arroz hervido."
   },
   {
     "source": "Carrefour",
@@ -55781,7 +55884,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pasta seca que requiere cocción previa"
+    "label_reason": "Pasta seca que requiere cocción previa",
+    "usage_es": "Pasta larga plana seca al huevo. Se cocina hervida con salsa como plato de comida. Intercambio con espaguetis cocidos, pappardelle, cuscús o linguine."
   },
   {
     "source": "Lidl",
@@ -56130,7 +56234,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Sustituto vegano, requiere cocción"
+    "label_reason": "Sustituto vegano, requiere cocción",
+    "usage_es": "Preparado vegetal raro en España que imita la tortilla sin huevo. Se fríe como plato de cena. Intercambio con tortilla de patata tradicional o buñuelos de verdura."
   },
   {
     "source": "Carrefour",
@@ -56153,7 +56258,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Pasta rellena, requiere cocción"
+    "label_reason": "Pasta rellena, requiere cocción",
+    "usage_es": "Pasta rellena fresca al huevo con carne. Se cocina hervida con salsa como plato de comida. Intercambio con canelones rellenos, raviolis de queso o tortellini cocidos."
   },
   {
     "source": "Consum",
@@ -56176,7 +56282,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Pasta seca, necesita hervirse"
+    "label_reason": "Pasta seca, necesita hervirse",
+    "usage_es": "Pasta larga ancha seca al huevo. Se cocina hervida con salsa como plato de comida. Intercambio con tallarines cocidos, espaguetis, fettuccine o cuscús."
   },
   {
     "source": "Mercadona",
@@ -56559,7 +56666,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pasta clásica que necesita cocción"
+    "label_reason": "Pasta clásica que necesita cocción",
+    "usage_es": "Pasta corta curva seca al huevo. Se cocina hervida con salsa o en ensalada como plato de comida. Intercambio con macarrones cocidos, espirales, penne o arroz."
   },
   {
     "source": "Carrefour",
@@ -56723,7 +56831,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Dulce de untar para tostadas"
+    "label_reason": "Dulce de untar para tostadas",
+    "usage_es": "Crema de cacao untable de desayuno. Se toma sobre pan o tostadas exclusivamente en desayuno o snack. Intercambio con otras cremas de cacao, mermelada o aceite de oliva."
   },
   {
     "source": "Consum",
@@ -60572,7 +60681,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Ingrediente base para café"
+    "label_reason": "Ingrediente base para café",
+    "usage_es": "Ingrediente de cocina, no comestible directamente. Se infusiona o prepara en cafetera para desayuno o snack. No aplica intercambio clínico por su nulo aporte calórico."
   },
   {
     "source": "Mercadona",
@@ -60641,7 +60751,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Queso para fundir, requiere cocción"
+    "label_reason": "Queso para fundir, requiere cocción",
+    "usage_es": "Queso procesado para fundir. Ingrediente de cocina en sándwiches o tostadas. Consumo en desayuno o cena. Intercambio con queso semicurado rallado o queso de untar."
   },
   {
     "source": "Lidl",
@@ -60758,7 +60869,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Ingrediente de repostería, no se come solo"
+    "label_reason": "Ingrediente de repostería, no se come solo",
+    "usage_es": "Ingrediente de repostería sin azúcar. No se come solo, se añade a leche o bollería. Uso en desayuno o snack. Intercambio con carob en polvo o café soluble."
   },
   {
     "source": "Carrefour",
@@ -61293,7 +61405,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 30,
-    "label_reason": "Nombre ambiguo, sin contexto claro"
+    "label_reason": "Nombre ambiguo, sin contexto claro",
+    "usage_es": "Preparado cárnico ultraprocesado de nombre impreciso, raro en España. No es un alimento típico. Consumo ocasional como snack. Intercambio con fiambre de pavo o jamón cocido."
   },
   {
     "source": "Mercadona",
@@ -62108,7 +62221,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Preparado frío listo para consumir"
+    "label_reason": "Preparado frío listo para consumir",
+    "usage_es": "Preparado frío de tubérculos, huevo y pescado. Se come directamente como plato único. Consumo en comida o tapa. Intercambio con ensalada de pasta con atún."
   },
   {
     "source": "Mercadona",
@@ -62371,7 +62485,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 75,
-    "label_reason": "Merluza rebozada con huevo, requiere cocción"
+    "label_reason": "Merluza rebozada con huevo, requiere cocción",
+    "usage_es": "Plato de pescado rebozado con huevo y harina. Se fríe y sirve caliente. Consumo ocasional en comida. Intercambio con filetes de pescado empanado o tortilla de pescado."
   },
   {
     "source": "Lidl",
@@ -62918,7 +63033,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Salteado precocinado, requiere sartén"
+    "label_reason": "Salteado precocinado, requiere sartén",
+    "usage_es": "Plato único de carne y hortalizas salteadas en sartén. Se sirve caliente. Consumo en cena. Intercambio con salteado de verduras con pollo o pavo."
   },
   {
     "source": "Mercadona",
@@ -62966,7 +63082,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Plato preparado carne y verdura, requiere cocción"
+    "label_reason": "Plato preparado carne y verdura, requiere cocción",
+    "usage_es": "Plato único de carne y hortalizas asadas a la plancha. Se sirve caliente. Consumo en comida. Intercambio con pechuga de pollo a la plancha con ensalada."
   },
   {
     "source": "Mercadona",
@@ -63037,7 +63154,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Plato completo pollo, arroz y verdura"
+    "label_reason": "Plato completo pollo, arroz y verdura",
+    "usage_es": "Plato único de carne con cereal y hortalizas. Se come caliente. Consumo en comida. Intercambio con arroz con pollo o pasta con pollo."
   },
   {
     "source": "Mercadona",
@@ -63575,7 +63693,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Atún en conserva, listo para consumir"
+    "label_reason": "Atún en conserva, listo para consumir",
+    "usage_es": "Conserva de pescado azul listo para comer. Ingrediente de ensaladas, sándwiches o platos. Uso en comida o cena. Intercambio con atún en agua o caballa en conserva."
   },
   {
     "source": "Carrefour",
@@ -64725,7 +64844,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Caballa en tomate, conserva muy popular"
+    "label_reason": "Caballa en tomate, conserva muy popular",
+    "usage_es": "Conserva de pescado azul en salsa de tomate lista para comer. Se sirve fría o caliente. Consumo en comida. Intercambio con sardinas en tomate o atún en escabeche."
   },
   {
     "source": "Carrefour",
@@ -64820,7 +64940,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Conserva en tomate lista para consumir"
+    "label_reason": "Conserva en tomate lista para consumir",
+    "usage_es": "Conserva de pescado azul en salsa de tomate. Se consume directo como plato único en comida o cena. Intercambio con sardinas en tomate o atún en conserva."
   },
   {
     "source": "Mercadona",
@@ -64990,7 +65111,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Conserva en tomate lista para consumir"
+    "label_reason": "Conserva en tomate lista para consumir",
+    "usage_es": "Conserva de pescado azul en salsa de tomate. Se consume directo como plato único en comida o cena. Intercambio con sardinas en tomate o atún en conserva."
   },
   {
     "source": "Carrefour",
@@ -67772,7 +67894,8 @@
     "frequency": "ocasional",
     "exotic": true,
     "label_confidence": 85,
-    "label_reason": "Fideos instantáneos, no típicos aquí"
+    "label_reason": "Fideos instantáneos, no típicos aquí",
+    "usage_es": "Sopa instantánea de fideos exótica en España. Se hidrata y come como comida ocasional. Intercambio con fideos cocidos y pechuga de pollo separados."
   },
   {
     "source": "Mercadona",
@@ -68221,7 +68344,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Plato preparado, requiere calentamiento"
+    "label_reason": "Plato preparado, requiere calentamiento",
+    "usage_es": "Guiso de carne y cereal. Se come caliente como plato único en comida. Intercambio con arroz con pollo casero o macarrones con carne."
   },
   {
     "source": "Mercadona",
@@ -68317,7 +68441,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Guiso preparado, necesita calentarse"
+    "label_reason": "Guiso preparado, necesita calentarse",
+    "usage_es": "Guiso de carne y hortalizas. Se come caliente como plato único en comida. Intercambio con pollo estofado con verduras o pavo guisado."
   },
   {
     "source": "Mercadona",
@@ -68342,7 +68467,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Plato preparado, requiere cocción"
+    "label_reason": "Plato preparado, requiere cocción",
+    "usage_es": "Guiso de pasta italiana con carne y verduras. Se come caliente en comida. Intercambio con macarrones con pollo o fideos con verduras."
   },
   {
     "source": "Mercadona",
@@ -68367,7 +68493,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Calzone precocinado, al horno"
+    "label_reason": "Calzone precocinado, al horno",
+    "usage_es": "Panificado relleno de carne y salsa. Se hornea y come en comida ocasional. Intercambio con pizza de pollo o empanada de carne."
   },
   {
     "source": "Carrefour",
@@ -68392,7 +68519,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Tarrito infantil, precisa calentamiento"
+    "label_reason": "Tarrito infantil, precisa calentamiento",
+    "usage_es": "Papilla de verduras con carne para infantiles. Se calienta y come en comida. Intercambio con puré de verduras casero con pollo desmenuzado."
   },
   {
     "source": "Dia",
@@ -68465,7 +68593,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Preparado oriental, requiere cocción"
+    "label_reason": "Preparado oriental, requiere cocción",
+    "usage_es": "Guiso de fideos asiáticos con carne, exótico en España. Se come en comida ocasional. Intercambio con fideos cocidos y pollo salteado."
   },
   {
     "source": "Alcampo",
@@ -68490,7 +68619,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Sopa instantánea, necesita hidratación"
+    "label_reason": "Sopa instantánea, necesita hidratación",
+    "usage_es": "Sopa de fideos asiáticos, exótica en España. Se hidrata y come en comida ocasional. Intercambio con fideos cocidos y pechuga de pollo separados."
   },
   {
     "source": "Mercadona",
@@ -68959,7 +69089,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Crema lista para calentar y consumir"
+    "label_reason": "Crema lista para calentar y consumir",
+    "usage_es": "Plato cremoso de carne y hortalizas. Se consume caliente como primer plato en la comida. Intercambio con sopa de fideos, puré de verduras o crema de calabaza."
   },
   {
     "source": "Carrefour",
@@ -68984,7 +69115,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Plato preparado típico, listo para consumir"
+    "label_reason": "Plato preparado típico, listo para consumir",
+    "usage_es": "Plato único de carne con cereal. Se consume caliente en la comida. Intercambio con arroz con pollo, fideuá o espaguetis con carne."
   },
   {
     "source": "Mercadona",
@@ -69364,7 +69496,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Plato preparado indio, consumo ocasional"
+    "label_reason": "Plato preparado indio, consumo ocasional",
+    "usage_es": "Plato único de carne especiada con arroz, ocasional en España. Se consume caliente en la comida. Intercambio con arroz con pollo o curry de pollo."
   },
   {
     "source": "Mercadona",
@@ -69719,7 +69852,8 @@
     "frequency": "raro",
     "exotic": true,
     "label_confidence": 85,
-    "label_reason": "Fideo japonés, no español"
+    "label_reason": "Fideo japonés, no español",
+    "usage_es": "Plato de fideos salteados con carne, raro en España. No se come crudo, se consume caliente en la comida. Intercambio con fideos con pollo o arroz frito."
   },
   {
     "source": "Mercadona",
@@ -69744,7 +69878,8 @@
     "frequency": "raro",
     "exotic": true,
     "label_confidence": 85,
-    "label_reason": "Fideo japonés, no español"
+    "label_reason": "Fideo japonés, no español",
+    "usage_es": "Plato de fideos salteados con sabor a carne, raro en España. No se come crudo, se consume caliente en la comida. Intercambio con tallarines salteados o arroz frito."
   },
   {
     "source": "Mercadona",
@@ -69769,7 +69904,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Condimento básico de cocina"
+    "label_reason": "Condimento básico de cocina",
+    "usage_es": "Ingrediente de cocina, mezcla de especias. No es comestible directamente. Se usa como ingrediente para hornear pollo. Intercambio con sal, pimentón, ajo en polvo."
   },
   {
     "source": "Aldi",
@@ -90366,7 +90502,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 55,
-    "label_reason": "Nombre erróneo, probablemente yogur Santa Clara"
+    "label_reason": "Nombre erróneo, probablemente yogur Santa Clara",
+    "usage_es": "Lácteo fermentado azucarado. Se consume directamente como desayuno o snack. Intercambio con yogurt natural, kefir de leche o leche fermentada azucarada."
   },
   {
     "source": "OpenFoodFacts",
@@ -103258,7 +103395,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Salsa mayonesa sin alérgenos lista"
+    "label_reason": "Salsa mayonesa sin alérgenos lista",
+    "usage_es": "Salsa grasa vegetal. Ingrediente de cocina, no es comestible directamente. Se usa para acompañar platos. Intercambio con mayonesa, salsa rosa o alioli."
   },
   {
     "source": "OpenFoodFacts",
@@ -104646,7 +104784,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Preparado para cocinar, no se come solo"
+    "label_reason": "Preparado para cocinar, no se come solo",
+    "usage_es": "Ingrediente de cocina, mezcla de harinas. No es comestible directamente, se usa para rebozar. Intercambio con harina de trigo, pan rallado o masa de tempura."
   },
   {
     "source": "OpenFoodFacts",
@@ -104813,7 +104952,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Mezcla para rebozar, ingrediente crudo"
+    "label_reason": "Mezcla para rebozar, ingrediente crudo",
+    "usage_es": "Ingrediente de cocina, mezcla de harinas. No es comestible directamente, se usa para rebozar alimentos. Intercambio con harina de trigo o pan rallado."
   },
   {
     "source": "OpenFoodFacts",
@@ -104836,7 +104976,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Preparado para freír, no se consume solo"
+    "label_reason": "Preparado para freír, no se consume solo",
+    "usage_es": "Mezcla de harina para rebozar. No es comestible directamente, se usa como ingrediente para fritar pescado o pollo en comidas. Intercambio con harina de trigo o pan rallado."
   },
   {
     "source": "OpenFoodFacts",
@@ -104976,7 +105117,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Bollería dulce de desayuno"
+    "label_reason": "Bollería dulce de desayuno",
+    "usage_es": "Bollería dulce de espelta sin lactosa ni huevo. Consumo exclusivo de desayuno o snack entre horas. Alimento ocasional. Intercambio con otras galletas o roscos de bollería."
   },
   {
     "source": "OpenFoodFacts",
@@ -105346,7 +105488,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Pasta seca, requiere cocción, plato de comida"
+    "label_reason": "Pasta seca, requiere cocción, plato de comida",
+    "usage_es": "Pasta corta al huevo. Se consume hervida como plato único en la comida, acompañada de salsa. Intercambio con pasta cocida, cuscús, arroz hervido o fideos."
   },
   {
     "source": "OpenFoodFacts",
@@ -105484,7 +105627,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Mezcla para rebozar, ingrediente básico de cocina"
+    "label_reason": "Mezcla para rebozar, ingrediente básico de cocina",
+    "usage_es": "Mezcla de harina para tempura. No es comestible directamente, es ingrediente para rebozar verduras o marisco en comidas. Intercambio con harina de trigo o preparado de rebozar."
   },
   {
     "source": "OpenFoodFacts",
@@ -105624,7 +105768,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pasta seca tipo sopa, requiere cocción, comida"
+    "label_reason": "Pasta seca tipo sopa, requiere cocción, comida",
+    "usage_es": "Pasta en forma de galeta al huevo. Se consume hervida como plato en la comida, típicamente con sopa o caldo. Intercambio con fideos, macarrones o pasta cocida."
   },
   {
     "source": "OpenFoodFacts",
@@ -105647,7 +105792,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Pasta seca, requiere cocción, plato de comida"
+    "label_reason": "Pasta seca, requiere cocción, plato de comida",
+    "usage_es": "Pasta larga al huevo. Se consume hervida como plato único en la comida, con salsa carbonara o boloñesa. Intercambio con espaguetis, tagliatelle, cuscús o arroz."
   },
   {
     "source": "OpenFoodFacts",
@@ -105670,7 +105816,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Espagueti seco, requiere cocción, comida habitual"
+    "label_reason": "Espagueti seco, requiere cocción, comida habitual",
+    "usage_es": "Pasta larga al huevo. Se consume hervida como plato principal en la comida, acompañada de diversas salsas. Intercambio con otras pastas cocidas, cuscús, bulgur o arroz."
   },
   {
     "source": "OpenFoodFacts",
@@ -105693,7 +105840,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Fiambre ibérico versátil, consumo muy habitual"
+    "label_reason": "Fiambre ibérico versátil, consumo muy habitual",
+    "usage_es": "Embutido curado de cerdo ibérico. Se toma directamente como tapa, aperitivo o en bocadillo en desayunos y comidas. Intercambio con jamón serrano, lomo o salchichón."
   },
   {
     "source": "OpenFoodFacts",
@@ -105739,7 +105887,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Pasta específica navideña, consumo muy estacional"
+    "label_reason": "Pasta específica navideña, consumo muy estacional",
+    "usage_es": "Pasta grande al huevo de consumo raro en España, solo en sopa de Navidad. Se consume hervida como ingrediente en la comida festiva. Intercambio con cualquier pasta cocida."
   },
   {
     "source": "OpenFoodFacts",
@@ -105764,7 +105913,8 @@
     "frequency": "ocasional",
     "exotic": true,
     "label_confidence": 75,
-    "label_reason": "Plato precocinado oriental, consumo ocasional"
+    "label_reason": "Plato precocinado oriental, consumo ocasional",
+    "usage_es": "Plato precocinado oriental de fideos con pollo y setas, raro en la dieta española. Se consume como plato único en la comida. Intercambio con fideos cocidos y pollo."
   },
   {
     "source": "OpenFoodFacts",
@@ -105789,7 +105939,8 @@
     "frequency": "ocasional",
     "exotic": true,
     "label_confidence": 80,
-    "label_reason": "Sopa instantánea oriental, requiere cocción"
+    "label_reason": "Sopa instantánea oriental, requiere cocción",
+    "usage_es": "Preparado oriental de fideos con salsa. Alimento exótico en España, se come hervido como plato único de comida ocasional. Intercambio con fideos cocidos y pollo."
   },
   {
     "source": "OpenFoodFacts",
@@ -105835,7 +105986,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pasta seca que requiere cocción"
+    "label_reason": "Pasta seca que requiere cocción",
+    "usage_es": "Pasta larga al huevo. Ingrediente de cocina, se hierve para comer en comida con salsa. Intercambio con espaguetis cocidos, macarrones o fideos."
   },
   {
     "source": "OpenFoodFacts",
@@ -105858,7 +106010,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pasta italiana premium, requiere cocción"
+    "label_reason": "Pasta italiana premium, requiere cocción",
+    "usage_es": "Pasta ancha al huevo. Ingrediente de cocina, se hierve para consumo en comida ocasional con salsa. Intercambio con tagliatelli cocidos, pappardelle o fetuccini."
   },
   {
     "source": "OpenFoodFacts",
@@ -105927,7 +106080,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pasta seca que requiere cocción"
+    "label_reason": "Pasta seca que requiere cocción",
+    "usage_es": "Pasta corta al huevo típica de cocidos. Ingrediente que se hierve, consumido en comida. Intercambio con macarrones cocidos, espirales o penne."
   },
   {
     "source": "OpenFoodFacts",
@@ -106021,7 +106175,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pasta rellena que requiere cocción"
+    "label_reason": "Pasta rellena que requiere cocción",
+    "usage_es": "Pasta rellena al huevo con carne. Ingrediente que se hierve para plato de comida. Intercambio con raviolis cocidos, tortellini o canelones."
   },
   {
     "source": "OpenFoodFacts",
@@ -106117,7 +106272,8 @@
     "frequency": "ocasional",
     "exotic": true,
     "label_confidence": 80,
-    "label_reason": "Yakisoba instantáneo oriental"
+    "label_reason": "Yakisoba instantáneo oriental",
+    "usage_es": "Preparado instantáneo oriental de fideos con pollo. Exótico en España, se come hervido como comida ocasional. Intercambio con fideos cocidos y pollo."
   },
   {
     "source": "El Corte Inglés",
@@ -106236,7 +106392,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Potito infantil, nicho específico"
+    "label_reason": "Potito infantil, nicho específico",
+    "usage_es": "Guiso listo para comer de ternera con zanahoria. Plato único de comida, consumo raro en España. Intercambio con ternera guisada con verduras."
   },
   {
     "source": "OpenFoodFacts",
@@ -106261,7 +106418,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Potito infantil, nicho específico"
+    "label_reason": "Potito infantil, nicho específico",
+    "usage_es": "Guiso ecológico listo de pavo con arroz y verduras. Plato único de comida, consumo raro en España. Intercambio con arroz con pollo y verduras."
   },
   {
     "source": "OpenFoodFacts",
@@ -106286,7 +106444,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Potito infantil, nicho específico"
+    "label_reason": "Potito infantil, nicho específico",
+    "usage_es": "Guiso listo para comer de pavo con arroz y verduras. Plato único de comida, consumo raro en España. Intercambio con arroz con pollo y verduras."
   },
   {
     "source": "OpenFoodFacts",
@@ -106430,7 +106589,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Potito infantil, listo para consumir"
+    "label_reason": "Potito infantil, listo para consumir",
+    "usage_es": "Guiso listo para comer de ternera con zanahoria. Plato único de comida, consumo raro en España. Intercambio con ternera guisada con verduras."
   },
   {
     "source": "OpenFoodFacts",
@@ -106455,7 +106615,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Tarrito infantil ecológico, listo para comer"
+    "label_reason": "Tarrito infantil ecológico, listo para comer",
+    "usage_es": "Preparación infantil de pollo y arroz. Se consume caliente directamente en comida. No comestible crudo. Intercambio con potaje de verduras con pollo o puré de patata con carne."
   },
   {
     "source": "OpenFoodFacts",
@@ -106505,7 +106666,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Potito menestra con jamón, estándar infantil"
+    "label_reason": "Potito menestra con jamón, estándar infantil",
+    "usage_es": "Preparación de verduras con jamón y ternera. Se consume caliente directamente en comida. No comestible crudo. Intercambio con menestra de verduras tradicional o pisto con proteína."
   },
   {
     "source": "OpenFoodFacts",
@@ -106578,7 +106740,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Verduras con pavo, potito clásico infantil"
+    "label_reason": "Verduras con pavo, potito clásico infantil",
+    "usage_es": "Preparación de verduras con fiambre de pavo. Se consume caliente directamente en comida. No comestible crudo. Intercambio con menestra de verduras con pollo o judías verdes salteadas."
   },
   {
     "source": "OpenFoodFacts",
@@ -106626,7 +106789,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Potito verduras con pavo, clásico infantil"
+    "label_reason": "Potito verduras con pavo, clásico infantil",
+    "usage_es": "Preparación de verduras con fiambre de pavo. Se consume caliente directamente en comida. No comestible crudo. Intercambio con menestra de verduras con pollo o verduras salteadas."
   },
   {
     "source": "OpenFoodFacts",
@@ -106866,7 +107030,8 @@
     "frequency": "raro",
     "exotic": true,
     "label_confidence": 85,
-    "label_reason": "Fideos asiáticos, ingrediente crudo exótico"
+    "label_reason": "Fideos asiáticos, ingrediente crudo exótico",
+    "usage_es": "Pasta oriental con huevo, ingrediente raro en España. Se consume hervida como ingrediente en sopas o salteados. No comestible cruda. Intercambio con fideos chinos o espaguetis."
   },
   {
     "source": "OpenFoodFacts",
@@ -106891,7 +107056,8 @@
     "frequency": "raro",
     "exotic": true,
     "label_confidence": 85,
-    "label_reason": "Yakisoba preparado, asiático no integrado"
+    "label_reason": "Yakisoba preparado, asiático no integrado",
+    "usage_es": "Preparación ultraprocesada de fideos yakisoba, rara en España. Se consume caliente como plato único en comida. Intercambio con fideos chinos salteados o arroz frito."
   },
   {
     "source": "Bonpreu/Esclat",
@@ -107081,7 +107247,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Ingrediente básico de cocina"
+    "label_reason": "Ingrediente básico de cocina",
+    "usage_es": "Caldo concentrado de pollo, ingrediente de cocina. No es comestible directamente, se diluye para caldos o guisos. Intercambio con otro caldo de pollo o pastilla de verduras."
   },
   {
     "source": "OpenFoodFacts",
@@ -107106,7 +107273,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Plato precocinado tipo oriental"
+    "label_reason": "Plato precocinado tipo oriental",
+    "usage_es": "Preparación congelada de noodles con pollo, ocasional en España. Se consume caliente como plato único en cena. Intercambio con fideos chinos con verduras o arroz tres delicias."
   },
   {
     "source": "OpenFoodFacts",
@@ -107177,7 +107345,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Preparado frío listo para consumir"
+    "label_reason": "Preparado frío listo para consumir",
+    "usage_es": "Preparación fría de atún y mayonesa. Se consume directamente como plato en cena o aperitivo. Intercambio con ensaladilla rusa tradicional o ensalada de bonito."
   },
   {
     "source": "OpenFoodFacts",
@@ -107225,7 +107394,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Sándwich listo para comer"
+    "label_reason": "Sándwich listo para comer",
+    "usage_es": "Preparación de verduras con jamón y huevo. Se consume fría directamente como snack. No comestible cruda. Intercambio con ensaladilla rusa, pisto o crema de verduras."
   },
   {
     "source": "OpenFoodFacts",
@@ -107434,7 +107604,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 55,
-    "label_reason": "Nombre confuso, requiere revisión"
+    "label_reason": "Nombre confuso, requiere revisión",
+    "usage_es": "Preparado proteico de huevo raro en España. Ingrediente para repostería. Consumo en desayuno o snack. Intercambio con claras de huevo líquidas o pasteurizadas."
   },
   {
     "source": "OpenFoodFacts",
@@ -107457,7 +107628,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Clara líquida para cocinar"
+    "label_reason": "Clara líquida para cocinar",
+    "usage_es": "Huevo sin yema pasteurizado. Se consume montado en merengues, tortillas o batidos. Ingrediente de desayuno o snack. Intercambio con huevo entero o clara de huevo en polvo."
   },
   {
     "source": "OpenFoodFacts",
@@ -107482,7 +107654,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Mix setas para guarnición"
+    "label_reason": "Mix setas para guarnición",
+    "usage_es": "Mezcla de setas para revueltos o tortillas. Se cocina salteada. Ingrediente de cena. Intercambio con setas frescas y huevo por separado."
   },
   {
     "source": "OpenFoodFacts",
@@ -107530,7 +107703,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Potito infantil listo"
+    "label_reason": "Potito infantil listo",
+    "usage_es": "Plato precocinado de arroz con verdura. Se consume caliente tal cual. Comida. Intercambio con sopa de fideos o arroz con pollo casero."
   },
   {
     "source": "OpenFoodFacts",
@@ -107718,7 +107892,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Potito bebé, nicho específico infantil"
+    "label_reason": "Potito bebé, nicho específico infantil",
+    "usage_es": "Papilla infantil de verduras y carne. No es consumo habitual en adultos. Comida o cena infantil. Intercambio con puré de verduras casero con pavo."
   },
   {
     "source": "OpenFoodFacts",
@@ -108025,7 +108200,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Tarrito bebé, consumo infantil minoritario"
+    "label_reason": "Tarrito bebé, consumo infantil minoritario",
+    "usage_es": "Plato infantil precocinado de pasta y carne. Raro en dieta adulta. Comida o cena. Intercambio con macarrones con tomate y pollo casero."
   },
   {
     "source": "OpenFoodFacts",
@@ -108142,7 +108318,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Versátil en cocina española"
+    "label_reason": "Versátil en cocina española",
+    "usage_es": "Huevo de gallina. Se consume frito, cocido o en tortilla. Desayuno, comida o cena. Intercambio con huevo de codorniz o tofu firme."
   },
   {
     "source": "OpenFoodFacts",
@@ -108240,7 +108417,8 @@
     "frequency": "raro",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Potito infantil, no habitual"
+    "label_reason": "Potito infantil, no habitual",
+    "usage_es": "Plato infantil de verduras con ternera. Raro en adultos. Se consume caliente. Comida o cena. Intercambio con menestra de verduras con carne casera."
   },
   {
     "source": "OpenFoodFacts",
@@ -109151,7 +109329,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 50,
-    "label_reason": "Nombre confuso, probablemente huevo"
+    "label_reason": "Nombre confuso, probablemente huevo",
+    "usage_es": "Huevo fresco de gallina. Se prepara frito, duro o revuelto. Ingrediente de desayuno, comida o cena. Intercambio con huevo entero de otras marcas o codorniz."
   },
   {
     "source": "OpenFoodFacts",
@@ -109222,7 +109401,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Ravioli fresco, requiere cocción"
+    "label_reason": "Ravioli fresco, requiere cocción",
+    "usage_es": "Pasta rellena fresca de carne. Se hierve y se sirve con salsa. Comida. Intercambio con raviolis de ricotta, tortellini o ñoquis."
   },
   {
     "source": "OpenFoodFacts",
@@ -109435,7 +109615,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Estofado que requiere calentamiento"
+    "label_reason": "Estofado que requiere calentamiento",
+    "usage_es": "Guiso de carne con verduras y patata. Se come caliente como plato único en la comida. Intercambio con potaje de legumbres, cocido o puchero."
   },
   {
     "source": "OpenFoodFacts",
@@ -109527,7 +109708,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 98,
-    "label_reason": "Caldo en polvo, ingrediente de cocina"
+    "label_reason": "Caldo en polvo, ingrediente de cocina",
+    "usage_es": "Ingrediente de cocina tipo caldo concentrado. No se come solo, se disuelve en agua para sopas y arrozos en la comida. Intercambio con otro caldo de pollo."
   },
   {
     "source": "OpenFoodFacts",
@@ -109573,7 +109755,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 98,
-    "label_reason": "Caldo en polvo, ingrediente de cocina"
+    "label_reason": "Caldo en polvo, ingrediente de cocina",
+    "usage_es": "Ingrediente de cocina tipo caldo concentrado. No se come solo, se disuelve en agua para sopas y arrozos en la comida. Intercambio con otro caldo de pollo."
   },
   {
     "source": "OpenFoodFacts",
@@ -109949,7 +110132,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Ensalada preparada con atún y pasta"
+    "label_reason": "Ensalada preparada con atún y pasta",
+    "usage_es": "Plato frío de pasta con atún y hortalizas. Se consume como plato único en la comida. Intercambio con ensalada de arroz, pasta con tomate o tabulé."
   },
   {
     "source": "OpenFoodFacts",
@@ -110467,7 +110651,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Caldo en polvo, ingrediente de cocina"
+    "label_reason": "Caldo en polvo, ingrediente de cocina",
+    "usage_es": "Ingrediente de cocina tipo caldo concentrado. No se come solo, se disuelve en agua para sopas y arrozos en la comida. Intercambio con otro caldo de pollo."
   },
   {
     "source": "OpenFoodFacts",
@@ -110538,7 +110723,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Fiambre de pavo listo para consumir"
+    "label_reason": "Fiambre de pavo listo para consumir",
+    "usage_es": "Fiambre de carne mecánica de pavo. Se consume en bocadillo o como ingrediente en la cena. Intercambio con jamón cocido, pavo cocido o fiambre de pollo."
   },
   {
     "source": "OpenFoodFacts",
@@ -111151,7 +111337,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Conserva lista, consumo en comidas"
+    "label_reason": "Conserva lista, consumo en comidas",
+    "usage_es": "Conserva de pescado azul en salsa de tomate. Se come frío como plato único en la comida. Intercambio con sardinas en tomate, caballa en escabeche o atún."
   },
   {
     "source": "OpenFoodFacts",
@@ -115703,7 +115890,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Lomo en aceite, conserva lista para comer"
+    "label_reason": "Lomo en aceite, conserva lista para comer",
+    "usage_es": "Conserva de pescado azul en aceite de oliva. Ingrediente para ensaladas, bocadillos o platos en la comida. Intercambio con atún en aceite, bonito o sardinas."
   },
   {
     "source": "OpenFoodFacts",
@@ -115727,7 +115915,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Atún en aceite, conserva muy habitual"
+    "label_reason": "Atún en aceite, conserva muy habitual",
+    "usage_es": "Conserva de pescado azul en aceite. Ingrediente para ensaladas, bocadillos o platos en la comida. Intercambio con bonito del norte, caballa o sardinas en aceite."
   },
   {
     "source": "OpenFoodFacts",
@@ -116124,7 +116313,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 92,
-    "label_reason": "Atún ecológico en conserva listo"
+    "label_reason": "Atún ecológico en conserva listo",
+    "usage_es": "Conserva de pescado azul en aceite de oliva. Ingrediente para ensaladas, bocadillos o platos en la comida. Intercambio con atún en aceite, bonito o caballa."
   },
   {
     "source": "OpenFoodFacts",
@@ -116594,7 +116784,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Atún en lata, listo para consumir"
+    "label_reason": "Atún en lata, listo para consumir",
+    "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, bocadillos o tortillas. Apto para cualquier comida. Intercambio con其他 atunes en conserva, bonito o caballa en aceite."
   },
   {
     "source": "OpenFoodFacts",
@@ -117200,7 +117391,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Escabeche de atún listo, consumo moderado"
+    "label_reason": "Escabeche de atún listo, consumo moderado",
+    "usage_es": "Conserva de pescado en vinagreta mediterránea. Se toma directamente como entrante o tapa. Apto para comida o cena. Intercambio con otros pescados en escabeche o en aceite."
   },
   {
     "source": "Bonpreu/Esclat",
@@ -117270,7 +117462,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Lomitos de atún en conserva, listos"
+    "label_reason": "Lomitos de atún en conserva, listos",
+    "usage_es": "Conserva de pescado azul troceado. Se consume directamente en ensaladas, arroces o bocadillos. Ingrediente de cualquier comida. Intercambio con otros atunes en conserva o bonito."
   },
   {
     "source": "OpenFoodFacts",
@@ -117388,7 +117581,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Conserva de atún en aceite, lista"
+    "label_reason": "Conserva de atún en aceite, lista",
+    "usage_es": "Conserva de pescado azul en aceite vegetal. Se consume directamente en ensaladas o tapas. Apto para cualquier comida. Intercambio con otros atunes en conserva, caballa o bonito."
   },
   {
     "source": "OpenFoodFacts",
@@ -117437,7 +117631,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Clásica conserva de atún en aceite"
+    "label_reason": "Clásica conserva de atún en aceite",
+    "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, bocadillos o tortillas. Apto para cualquier comida. Intercambio con otros atunes en conserva, bonito o caballa."
   },
   {
     "source": "OpenFoodFacts",
@@ -118085,7 +118280,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Huevo fresco requiere cocción"
+    "label_reason": "Huevo fresco requiere cocción",
+    "usage_es": "Huevo de gallina ingrediente de cocina. Se consume frito, escalfado o en tortilla, no crudo. Para desayuno, comida o cena. Intercambio con otros huevos de gallina."
   },
   {
     "source": "OpenFoodFacts",
@@ -118108,7 +118304,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Huevo fresco requiere cocción"
+    "label_reason": "Huevo fresco requiere cocción",
+    "usage_es": "Huevo de gallina ingrediente de cocina. Se consume frito, revuelto o duro, nunca crudo. Para desayuno, comida o cena. Intercambio con otros huevos de gallina."
   },
   {
     "source": "OpenFoodFacts",
@@ -118131,7 +118328,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Huevo fresco requiere cocción"
+    "label_reason": "Huevo fresco requiere cocción",
+    "usage_es": "Huevo de gallina ingrediente de cocina. Se consume cocinado en tortilla, duro o revuelto, no crudo. Para cualquier comida. Intercambio con otros huevos de gallina."
   },
   {
     "source": "OpenFoodFacts",
@@ -118154,7 +118352,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Huevo fresco requiere cocción"
+    "label_reason": "Huevo fresco requiere cocción",
+    "usage_es": "Huevo de gallina ingrediente de cocina. Se consume cocinado en tortilla, frito o hervido, no crudo. Para cualquier comida. Intercambio con otros huevos de gallina."
   },
   {
     "source": "OpenFoodFacts",
@@ -118177,7 +118376,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Huevo ecológico requiere cocción"
+    "label_reason": "Huevo ecológico requiere cocción",
+    "usage_es": "Huevo de gallina ingrediente de cocina. Se consume cocinado en tortilla, hervido o revuelto, no crudo. Para cualquier comida. Intercambio con otros huevos de gallina."
   },
   {
     "source": "OpenFoodFacts",
@@ -118200,7 +118400,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Pasteurizadas listas para consumo"
+    "label_reason": "Pasteurizadas listas para consumo",
+    "usage_es": "Derivado de huevo pasteurizado. Se consume cocinado en tortillas o revueltos en cualquier comida. No se come crudo. Intercambio con huevo entero o clara fresca."
   },
   {
     "source": "OpenFoodFacts",
@@ -118223,7 +118424,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Claras pasteurizadas, requieren cocción típica"
+    "label_reason": "Claras pasteurizadas, requieren cocción típica",
+    "usage_es": "Derivado de huevo pasteurizado. Ingrediente cocinado en tortillas o repostería en cualquier comida. No se come crudo. Intercambio con huevo entero o clara fresca."
   },
   {
     "source": "Spar",
@@ -118362,7 +118564,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Pan sin gluten, versátil diario"
+    "label_reason": "Pan sin gluten, versátil diario",
+    "usage_es": "Pan especial sin gluten. Se consume tostado como ingrediente exclusivo de desayuno o snack. Intercambio con pan de molde sin gluten o pan de maíz tradicional."
   },
   {
     "source": "Bonpreu/Esclat",
@@ -118454,7 +118657,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Claras líquidas, requieren cocción"
+    "label_reason": "Claras líquidas, requieren cocción",
+    "usage_es": "Derivado de huevo. Ingrediente cocinado en tortillas, revueltos o repostería en cualquier comida. No se come crudo. Intercambio con huevo entero o clara fresca."
   },
   {
     "source": "OpenFoodFacts",
@@ -118477,7 +118681,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Clara líquida, precisa cocción"
+    "label_reason": "Clara líquida, precisa cocción",
+    "usage_es": "Fracción del huevo. Ingrediente cocinado en tortillas, merengues o repostería en cualquier momento. No se come cruda. Intercambio con huevo entero o clara pasteurizada."
   },
   {
     "source": "OpenFoodFacts",
@@ -118500,7 +118705,8 @@
     "frequency": "raro",
     "exotic": true,
     "label_confidence": 80,
-    "label_reason": "Sustituto vegetal, no integrado aún"
+    "label_reason": "Sustituto vegetal, no integrado aún",
+    "usage_es": "Sustituto vegetal del huevo raro en España. Ingrediente cocinado para tortillas veganas o repostería en cualquier comida. Intercambio con tofu revuelto o huevo de gallina."
   },
   {
     "source": "Bonpreu/Esclat",
@@ -118570,7 +118776,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Atún en conserva, consumo semanal"
+    "label_reason": "Atún en conserva, consumo semanal",
+    "usage_es": "Conserva de atún clara al natural. Se consume directamente como plato en la comida, en ensaladas o bocadillos. Intercambio con atún en conserva o bonito del norte."
   },
   {
     "source": "Bonpreu/Esclat",
@@ -118640,7 +118847,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Atún clara, conserva habitual"
+    "label_reason": "Atún clara, conserva habitual",
+    "usage_es": "Conserva de atún clara en aceite. Se consume directamente como plato en la comida, en ensaladas o tostas. Intercambio con atún en aceite o bonito del norte."
   },
   {
     "source": "El Corte Inglés",
@@ -118663,7 +118871,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Huevos frescos, requieren cocción"
+    "label_reason": "Huevos frescos, requieren cocción",
+    "usage_es": "Huevo fresco de gallina. Se consume cocinado en tortillas, frito o duro en cualquier comida. Intercambio con otros huevos frescos o clara de huevo pasteurizada."
   },
   {
     "source": "El Corte Inglés",
@@ -118686,7 +118895,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Huevos frescos, básico versátil"
+    "label_reason": "Huevos frescos, básico versátil",
+    "usage_es": "Huevo fresco de gallina. Se consume cocinado en tortillas, frito o duro en cualquier comida. Intercambio con otros huevos frescos o clara de huevo pasteurizada."
   },
   {
     "source": "OpenFoodFacts",
@@ -119037,7 +119247,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 55,
-    "label_reason": "Huevo líquido, requiere cocción"
+    "label_reason": "Huevo líquido, requiere cocción",
+    "usage_es": "Huevo líquido pasteurizado. Ingrediente para tortillas y revueltos en comida o cena. No se toma solo. Intercambio con huevo entero fresco."
   },
   {
     "source": "El Corte Inglés",
@@ -119205,7 +119416,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 70,
-    "label_reason": "Claras envasadas, requieren cocción"
+    "label_reason": "Claras envasadas, requieren cocción",
+    "usage_es": "Claras de huevo líquidas. Ingrediente para tortillas o repostería en comida o desayuno. No se toma sola. Intercambio con huevo entero o clara pasteurizada."
   },
   {
     "source": "OpenFoodFacts",
@@ -119228,7 +119440,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 75,
-    "label_reason": "Albúmina líquida, ingrediente de cocina"
+    "label_reason": "Albúmina líquida, ingrediente de cocina",
+    "usage_es": "Clara de huevo pasteurizada líquida. Ingrediente para repostería o tortillas en cualquier comida. No se toma sola. Intercambio con clara fresca o huevo entero."
   },
   {
     "source": "OpenFoodFacts",
@@ -119253,7 +119466,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 75,
-    "label_reason": "Claras pasteurizadas, ingrediente crudo"
+    "label_reason": "Claras pasteurizadas, ingrediente crudo",
+    "usage_es": "Clara de huevo pasteurizada líquida. Ingrediente para repostería o tortillas en cualquier comida. No se toma sola. Intercambio con clara fresca o huevo entero."
   },
   {
     "source": "OpenFoodFacts",
@@ -119276,7 +119490,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 75,
-    "label_reason": "Claras líquidas, ingrediente de cocina"
+    "label_reason": "Claras líquidas, ingrediente de cocina",
+    "usage_es": "Clara de huevo pasteurizada líquida. Ingrediente para repostería o tortillas en cualquier comida. No se toma sola. Intercambio con clara fresca o huevo entero."
   },
   {
     "source": "OpenFoodFacts",
@@ -119299,7 +119514,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 75,
-    "label_reason": "Claras envasadas, ingrediente para repostería"
+    "label_reason": "Claras envasadas, ingrediente para repostería",
+    "usage_es": "Claras de huevo líquidas. Ingrediente para tortillas o repostería en comida o desayuno. No se toman solas. Intercambio con clara pasteurizada o huevo entero."
   },
   {
     "source": "OpenFoodFacts",
@@ -119324,7 +119540,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 75,
-    "label_reason": "Albúmina pasteurizada, ingrediente crudo"
+    "label_reason": "Albúmina pasteurizada, ingrediente crudo",
+    "usage_es": "Clara de huevo pasteurizada líquida. Ingrediente para repostería o tortillas en cualquier comida. No se toma sola. Intercambio con clara fresca o huevo entero."
   },
   {
     "source": "OpenFoodFacts",
@@ -121046,7 +121263,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Conserva de pollo lista"
+    "label_reason": "Conserva de pollo lista",
+    "usage_es": "Carne de ave en conserva. Se consume directamente en ensaladas o sándwiches para comida o cena. Intercambio con pechuga de pollo o pavo a la plancha."
   },
   {
     "source": "OpenFoodFacts",
