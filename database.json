@@ -289,7 +289,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Verdura que suele cocinarse"
+    "label_reason": "Verdura que suele cocinarse",
+    "usage_es": "Hortaliza de hoja. Se consume hervido, guisado o en ensalada. Acompaña carnes y pescados en comida y cena. Intercambio con coliflor, coles de Bruselas o berza."
   },
   {
     "source": "BEDCA",
@@ -1719,7 +1720,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 100,
-    "label_reason": "Ajo: básico culinario, no se come solo"
+    "label_reason": "Ajo: básico culinario, no se come solo",
+    "usage_es": "Bulbo aromático. Ingrediente de cocina, no se come solo. Da sabor a guisos, sofritos y aliños en cualquier comida. Intercambio con cebolla o chalota."
   },
   {
     "source": "BEDCA",
@@ -2052,7 +2054,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Hierba aromática usada como condimento"
+    "label_reason": "Hierba aromática usada como condimento",
+    "usage_es": "Hierba aromática. Ingrediente de cocina que se añade fresco y picado a guisos, sopas y arroces en comida y cena. Intercambio con perejil fresco."
   },
   {
     "source": "BEDCA",
@@ -2379,7 +2382,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Hierba aromática minoritaria como condimento"
+    "label_reason": "Hierba aromática minoritaria como condimento",
+    "usage_es": "Hierba aromática. Ingrediente de cocina poco habitual en España. Se usa fresco en pescados y salsas en comida. Intercambio con hinojo o perejil."
   },
   {
     "source": "BEDCA",
@@ -2402,7 +2406,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Hierba aromática muy usada en asados"
+    "label_reason": "Hierba aromática muy usada en asados",
+    "usage_es": "Hierba aromática. Ingrediente de cocina seco para adobar carnes, aves y patatas al horno en comida y cena. Intercambio con tomillo o salvia."
   },
   {
     "source": "BEDCA",
@@ -2425,7 +2430,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Especia básica en cocina española"
+    "label_reason": "Especia básica en cocina española",
+    "usage_es": "Especia en grano o molida. Ingrediente de cocina para guisos, potajes y embutidos en comida. Intercambio con comino molido o pimentón."
   },
   {
     "source": "BEDCA",
@@ -2448,7 +2454,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Hierba aromática muy usada en guisos"
+    "label_reason": "Hierba aromática muy usada en guisos",
+    "usage_es": "Hierba aromática. Ingrediente de cocina seco que aromatiza carnes, pescados, legumbres y sofritos en comida y cena. Intercambio con romero u orégano."
   },
   {
     "source": "BEDCA",
@@ -3916,7 +3923,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Verdura cruda lista, típica en cenas"
+    "label_reason": "Verdura cruda lista, típica en cenas",
+    "usage_es": "Preparación de hortalizas crudas. Se consume como plato único o guarnición en cena. Intercambio con verduras de hoja verde, tomate o zanahoria rallada."
   },
   {
     "source": "BEDCA",
@@ -4206,7 +4214,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Sopa fría lista para consumir"
+    "label_reason": "Sopa fría lista para consumir",
+    "usage_es": "Sopa fría de hortalizas. Se consume como primer plato en comida, sobre todo en verano. Intercambio con salmorejo, vichyssoise o puré de verduras."
   },
   {
     "source": "BEDCA",
@@ -4570,7 +4579,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Acompañamiento listo, muy común"
+    "label_reason": "Acompañamiento listo, muy común",
+    "usage_es": "Hortaliza en conserva ácida. Se consume como aperitivo o guarnición en comida y cena. Intercambio con aceitunas, alcaparras o cebolleta en vinagre."
   },
   {
     "source": "BEDCA",
@@ -5214,7 +5224,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Verdura hervida habitual en cenas ligeras"
+    "label_reason": "Verdura hervida habitual en cenas ligeras",
+    "usage_es": "Verdura hortaliza consumida hervida con aceite como guarnición en la comida o cena. Intercambio con judión verde, habas verdes o espinacas cocidas."
   },
   {
     "source": "BEDCA",
@@ -5260,7 +5271,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Hortaliza cruda, requiere cocción o ensalada"
+    "label_reason": "Hortaliza cruda, requiere cocción o ensalada",
+    "usage_es": "Verdura hortaliza ocasional consumida hervida o al horno como guarnición en la cena. Intercambio con apio, brócoli o endibia."
   },
   {
     "source": "BEDCA",
@@ -6928,7 +6940,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "En conserva listo, típico en ensaladas"
+    "label_reason": "En conserva listo, típico en ensaladas",
+    "usage_es": "Verdura en conserva consumida directamente en ensaladas como guarnición en la cena. Intercambio con espárragos en conserva o corazones de alcachofa."
   },
   {
     "source": "BEDCA",
@@ -7334,7 +7347,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Hierba aromática, ingrediente de cocina"
+    "label_reason": "Hierba aromática, ingrediente de cocina",
+    "usage_es": "Hierba aromática fresca usada como ingrediente de cocina en cualquier comida. No es plato. Intercambio con hierbabuena."
   },
   {
     "source": "BEDCA",
@@ -7904,7 +7918,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Hierba aromática de cocina básica"
+    "label_reason": "Hierba aromática de cocina básica",
+    "usage_es": "Hierba aromática fresca usada como ingrediente de cocina en cualquier comida. No es plato. Intercambio con cilantro fresco."
   },
   {
     "source": "BEDCA",
@@ -9171,7 +9186,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Conserva, suele calentarse como guarnición"
+    "label_reason": "Conserva, suele calentarse como guarnición",
+    "usage_es": "Legumbre en conserva usada como ingrediente de cocina en ensaladas o guisos de la comida. Intercambio con guisantes congelados o judías verdes."
   },
   {
     "source": "BEDCA",
@@ -11598,7 +11614,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Especia seca, ingrediente de cocina básico"
+    "label_reason": "Especia seca, ingrediente de cocina básico",
+    "usage_es": "Especie seca usada como ingrediente de cocina en cualquier comida. No es comestible directamente. Intercambio con orégano seco."
   },
   {
     "source": "BEDCA",
@@ -12376,7 +12393,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Ingrediente base para cocinar, no se toma solo"
+    "label_reason": "Ingrediente base para cocinar, no se toma solo",
+    "usage_es": "Líquido de cocción usado como ingrediente de cocina para sopas y arroces. No es plato. Intercambio con caldo de pollo o agua."
   },
   {
     "source": "BEDCA",
@@ -19893,7 +19911,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Ingrediente base de cocina española"
+    "label_reason": "Ingrediente base de cocina española",
+    "usage_es": "Salsa de verdura usada como ingrediente de cocina para sofritos en cualquier comida. No es plato. Intercambio con tomate frito casero."
   },
   {
     "source": "BEDCA",
@@ -42984,7 +43003,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Salsa italiana para pasta, uso común"
+    "label_reason": "Salsa italiana para pasta, uso común",
+    "usage_es": "Salsa italiana usada como ingrediente de cocina para acompañar pasta en la comida. No es plato. Intercambio con tomate frito o salsa de tomate casera."
   },
   {
     "source": "Eroski",
@@ -43219,7 +43239,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Gazpacho envasado, plato español"
+    "label_reason": "Gazpacho envasado, plato español",
+    "usage_es": "Sopa fría de hortalizas. Se bebe directamente como primer plato en comida o cena. Intercambio clínico con salmorejo, vichysoisse o crema de verduras fría."
   },
   {
     "source": "Carrefour",
@@ -43886,7 +43907,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Gazpacho listo, típico en comidas"
+    "label_reason": "Gazpacho listo, típico en comidas",
+    "usage_es": "Sopa fría de hortalizas con menos ajo. Se bebe directamente como primer plato en comida o cena. Intercambio clínico con gazpacho tradicional o salmorejo."
   },
   {
     "source": "Mercadona",
@@ -55081,7 +55103,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Verdura congelada, requiere cocción"
+    "label_reason": "Verdura congelada, requiere cocción",
+    "usage_es": "Legumbre verde ultracongelada. Se cocinan hervidos o rehogados como guarnición o ingrediente en paellas y arroces en la comida. Intercambio clínico con judías verdes o tirabeques."
   },
   {
     "source": "Mercadona",
@@ -55104,7 +55127,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Legumbre seca típica catalana, guisar"
+    "label_reason": "Legumbre seca típica catalana, guisar",
+    "usage_es": "Legumbre seca blanca plana, rara fuera de Cataluña. No es comestible sin remojo y cocción larga en cazuela. Se toma en comida. Intercambio clínico con alubia blanca o garrofón."
   },
   {
     "source": "Eroski",
@@ -55772,7 +55796,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 92,
-    "label_reason": "Verdura congelada para guarnición, requiere cocción"
+    "label_reason": "Verdura congelada para guarnición, requiere cocción",
+    "usage_es": "Mezcla de hortalizas con aceite, ingrediente de cocina. Se rehoga o saltea para acompañar carnes o pescados en la comida. Intercambio clínico con verduras salteadas o judías verdes."
   },
   {
     "source": "Dia",
@@ -55945,7 +55970,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Gazpacho bebible listo, primer plato"
+    "label_reason": "Gazpacho bebible listo, primer plato",
+    "usage_es": "Sopa fría de hortalizas. Se bebe directamente como primer plato en comida o cena. Intercambio clínico con gazpacho tradicional, salmorejo o crema de verduras."
   },
   {
     "source": "Aldi",
@@ -56062,7 +56088,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Salmorejo listo para consumir, primer plato"
+    "label_reason": "Salmorejo listo para consumir, primer plato",
+    "usage_es": "Crema fría de tomate con aceite y pan. Se sirve como primer plato en comida o cena. Intercambio clínico con gazpacho, porra antequerana o crema de zanahoria."
   },
   {
     "source": "Mercadona",
@@ -56157,7 +56184,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Salmorejo tradicional listo, primer plato"
+    "label_reason": "Salmorejo tradicional listo, primer plato",
+    "usage_es": "Crema fría de tomate con aceite y pan. Se sirve como primer plato en comida o cena. Intercambio clínico con gazpacho, salmorejo suave o crema de verduras."
   },
   {
     "source": "Carrefour",
@@ -56226,7 +56254,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 88,
-    "label_reason": "Habas frescas que requieren cocción"
+    "label_reason": "Habas frescas que requieren cocción",
+    "usage_es": "Legumbre verde fresca. No es comestible cruda. Se cocina hervida, rehogada o en tortilla como plato o guarnición en la comida. Intercambio clínico con guisantes o judías verdes."
   },
   {
     "source": "Eroski",
@@ -56368,7 +56397,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 88,
-    "label_reason": "Especias para cocinar, no se comen solas"
+    "label_reason": "Especias para cocinar, no se comen solas",
+    "usage_es": "Mezcla de hierbas aromáticas, ingrediente de cocina. No es un plato. Aporta sabor a pizzas, pastas y ensaladas en cualquier comida. Intercambio clínico con tomillo, romero o perejil."
   },
   {
     "source": "Eroski",
@@ -56392,7 +56422,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Aperitivo listo para consumir directo"
+    "label_reason": "Aperitivo listo para consumir directo",
+    "usage_es": "Verdura en conserva. Se consumen como aperitivo o tapa, también en ensaladas. Momento típico: aperitivo. Intercambio clínico: otras aceitunas, pepinillos, alcaparras."
   },
   {
     "source": "Consum",
@@ -56582,7 +56613,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Guisantes congelados, requieren cocción"
+    "label_reason": "Guisantes congelados, requieren cocción",
+    "usage_es": "Legumbre verde en grano. Se consumen hervidos con jamón, en paellas o purés. Momento típico: comida. Intercambio clínico: judías verdes, habas tiernas."
   },
   {
     "source": "Carrefour",
@@ -56724,7 +56756,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Ensalada en bolsa lista para consumir"
+    "label_reason": "Ensalada en bolsa lista para consumir",
+    "usage_es": "Preparación de hortalizas mixtas. Se consume como primer plato frío. Momento típico: cena. Intercambio clínico: ensalada mixta, verduras asadas."
   },
   {
     "source": "Carrefour",
@@ -56841,7 +56874,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Hortaliza cruda versátil y común"
+    "label_reason": "Hortaliza cruda versátil y común",
+    "usage_es": "Hortaliza fresca. Ingrediente de ensaladas y gazpachos, o consumido entero. Momento típico: cena e ingrediente. Intercambio clínico: calabacín crudo, pimiento."
   },
   {
     "source": "Eroski",
@@ -56956,7 +56990,8 @@
     "frequency": "raro",
     "exotic": true,
     "label_confidence": 90,
-    "label_reason": "Alga asiática poco integrada en España"
+    "label_reason": "Alga asiática poco integrada en España",
+    "usage_es": "Alga marina, alimento raro en España. Se consume como ensalada fría. Momento típico: cena. Intercambio clínico: espinacas frescas, lechuga."
   },
   {
     "source": "Alcampo",
@@ -56979,7 +57014,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Conserva vegetal lista para ensalada"
+    "label_reason": "Conserva vegetal lista para ensalada",
+    "usage_es": "Verdura en conserva. Ingrediente de ensaladas, tortillas, arroces o pizzas. Momento típico: ingrediente. Intercambio clínico: espárragos, judías verdes."
   },
   {
     "source": "Carrefour",
@@ -57101,7 +57137,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Sopa fría andaluza lista"
+    "label_reason": "Sopa fría andaluza lista",
+    "usage_es": "Sopa fría de hortalizas. Se consume directamente como primer plato. Momento típico: comida. Intercambio clínico: salmorejo, crema de verduras."
   },
   {
     "source": "Eroski",
@@ -57174,7 +57211,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Maíz en conserva, uso versátil"
+    "label_reason": "Maíz en conserva, uso versátil",
+    "usage_es": "Cereal en grano dulce. Ingrediente de ensaladas, sopas o consumido como guarnición. Momento típico: ingrediente. Intercambio clínico: patata cocida, zanahoria."
   },
   {
     "source": "Alcampo",
@@ -57270,7 +57308,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Pisto preparado, necesita calentarse"
+    "label_reason": "Pisto preparado, necesita calentarse",
+    "usage_es": "Sofrito de hortalizas. Se consume como guarnición, con huevo frito o en sándwich. Momento típico: comida. Intercambio clínico: verduras salteadas, menestra."
   },
   {
     "source": "Carrefour",
@@ -57293,7 +57332,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Guisantes en conserva, requieren cocción"
+    "label_reason": "Guisantes en conserva, requieren cocción",
+    "usage_es": "Legumbre verde en grano. Se consumen hervidos, en arroces, tortillas o purés. Momento típico: comida. Intercambio clínico: guisantes extrafinos, habas tiernas."
   },
   {
     "source": "Eroski",
@@ -57340,7 +57380,8 @@
     "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Sopa instantánea asiática, requiere agua"
+    "label_reason": "Sopa instantánea asiática, requiere agua",
+    "usage_es": "Legumbre verde en conserva. Se consume hervida como guarnición o ingrediente en potajes y ensaladas en comida o cena. Intercambio con judías verdes, zanahoria o tirabeques."
   },
   {
     "source": "Carrefour",
@@ -57413,7 +57454,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Fritada de verduras, requiere calentarse"
+    "label_reason": "Fritada de verduras, requiere calentarse",
+    "usage_es": "Sofrito de hortalizas confitadas en aceite. Ingrediente de cocina para añadir a arroces, guisos y huevos en la comida. Intercambio con sofrito casero de tomate y cebolla."
   },
   {
     "source": "Carrefour",
@@ -57436,7 +57478,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Legumbre tierna que requiere cocción"
+    "label_reason": "Legumbre tierna que requiere cocción",
+    "usage_es": "Legumbre verde fresca muy tierna. Ingrediente de cocina que se saltea, saltea o incorpora a arroces en la comida. Intercambio con guisantes extrafinos o judías verdes."
   },
   {
     "source": "Mercadona",
@@ -57552,7 +57595,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Legumbre tierna que requiere cocción"
+    "label_reason": "Legumbre tierna que requiere cocción",
+    "usage_es": "Legumbre verde fresca tierna. Ingrediente de cocina que se saltea o rehoga para guarnición y arroces en la comida. Intercambio con guisantes, habas baby o judías verdes."
   },
   {
     "source": "Mercadona",
@@ -57601,7 +57645,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Congelado que necesita cocción previa"
+    "label_reason": "Congelado que necesita cocción previa",
+    "usage_es": "Legumbre verde ultracongelada. Ingrediente de cocina que se cocina directamente en arroces, salteados o guisos en la comida. Intercambio con guisantes congelados o judías verdes."
   },
   {
     "source": "Mercadona",
@@ -57697,7 +57742,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Conserva versátil lista para consumir"
+    "label_reason": "Conserva versátil lista para consumir",
+    "usage_es": "Cereal dulce en grano en conserva. Se consume directamente en ensaladas, como guarnición o ingrediente de cocina en cualquier comida. Intercambio con patata cocida o zanahoria."
   },
   {
     "source": "Lidl",
@@ -57748,7 +57794,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Guisante congelado para paella"
+    "label_reason": "Guisante congelado para paella",
+    "usage_es": "Mezcla de hortalizas frescas. Ingrediente de cocina exclusivo para añadir a paellas y arroces en la comida. Intercambio con judía verde plana, garrofón o babera."
   },
   {
     "source": "Dia",
@@ -57771,7 +57818,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Mezcla de verduras que requiere salteado"
+    "label_reason": "Mezcla de verduras que requiere salteado",
+    "usage_es": "Mezcla de hortalizas con aceite. Ingrediente de cocina que se saltea como guarnición o acompañamiento en la comida. Intercambio con menestra de verduras o verduras salteadas."
   },
   {
     "source": "Carrefour",
@@ -57794,7 +57842,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Preparado que requiere cocción"
+    "label_reason": "Preparado que requiere cocción",
+    "usage_es": "Mezcla de hortalizas con aceite. Ingrediente de cocina que se saltea como guarnición o acompañamiento en la comida. Intercambio con pisto o salteado de verduras variadas."
   },
   {
     "source": "Carrefour",
@@ -57817,7 +57866,8 @@
     "frequency": "ocasional",
     "exotic": true,
     "label_confidence": 80,
-    "label_reason": "Mezcla oriental poco integrada en España"
+    "label_reason": "Mezcla oriental poco integrada en España",
+    "usage_es": "Mezcla de hortalizas con aceite. Preparación ocasional que se saltea como guarnición o ingrediente en la comida. Intercambio con salteado campestre o verduras orientales congeladas."
   },
   {
     "source": "Mercadona",
@@ -57840,7 +57890,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Verdura asada lista, típica cena"
+    "label_reason": "Verdura asada lista, típica cena",
+    "usage_es": "Preparación de hortalizas asadas. Se consume como guarnición o plato único en cena. Intercambio con verduras asadas como pimientos asados, berenjenas asadas o calabacín al horno."
   },
   {
     "source": "Eroski",
@@ -58972,7 +59023,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Verdura que requiere cocción"
+    "label_reason": "Verdura que requiere cocción",
+    "usage_es": "Verdura fresca. Se consume hervida, al vapor o rehogada como plato o guarnición en comida. Intercambio con otras verduras como judías verdes, espinacas o vainitas cocidas."
   },
   {
     "source": "Consum",
@@ -65131,7 +65183,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Gazpacho listo para beber, típico comida"
+    "label_reason": "Gazpacho listo para beber, típico comida",
+    "usage_es": "Sopa fría de hortalizas. Se consume directamente como primer plato en comida. Intercambio con salmorejo, vichysoisse o crema de verduras frías según textura."
   },
   {
     "source": "Eroski",
@@ -65273,7 +65326,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Gazpacho Hacendado, clásico comida española"
+    "label_reason": "Gazpacho Hacendado, clásico comida española",
+    "usage_es": "Sopa fría de hortalizas. Se consume directamente como primer plato en comida. Intercambio con salmorejo, vichysoisse o crema de verduras frías según textura."
   },
   {
     "source": "Alcampo",
@@ -66658,7 +66712,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Brócoli fresco requiere cocción"
+    "label_reason": "Brócoli fresco requiere cocción",
+    "usage_es": "Verdura fresca. Se consume hervido, al vapor o salteado como guarnición en comida. Intercambio con coles de Bruselas, coliflor o judías verdes cocidas."
   },
   {
     "source": "Carrefour",
@@ -66729,7 +66784,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Salsa de tomate lista, para pasta"
+    "label_reason": "Salsa de tomate lista, para pasta",
+    "usage_es": "Salsa de tomate italiana, rara en cocina española tradicional. Ingrediente para acompañar pasta en comida. Intercambio con salsa de tomate frito casera o sofrito de tomate."
   },
   {
     "source": "Carrefour",
@@ -66777,7 +66833,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Hierba aromática cruda, no se come sola"
+    "label_reason": "Hierba aromática cruda, no se come sola",
+    "usage_es": "Hierba aromática fresca. Ingrediente de cocina para adobar, guisos y sopas. Intercambio con cilantro fresco, cebollino o hierbas provenzales en pequeñas cantidades."
   },
   {
     "source": "Lidl",
@@ -67015,7 +67072,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Encurtidos típicos españoles listos"
+    "label_reason": "Encurtidos típicos españoles listos",
+    "usage_es": "Mezcla de hortalizas en vinagre. Se consume directamente como snack o aperitivo. Intercambio con aceitunas, pepinillos en vinagre o cebolletas encurtidas."
   },
   {
     "source": "Mercadona",
@@ -67107,7 +67165,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Tapas de encurtidos listas"
+    "label_reason": "Tapas de encurtidos listas",
+    "usage_es": "Aperitivo de hortalizas en vinagre. Se consume directamente como tapa o snack. Intercambio con aceitunas rellenas, pepinillos encurtidos o banderillas sin picante."
   },
   {
     "source": "Eroski",
@@ -67581,7 +67640,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Condimento crudo, no se come solo"
+    "label_reason": "Condimento crudo, no se come solo",
+    "usage_es": "Hierba aromática fresca. Ingrediente de cocina para adobar, guisos y sopas. Intercambio con cilantro fresco, cebollino o hierbas provenzales en pequeñas cantidades."
   },
   {
     "source": "Carrefour",
@@ -67706,7 +67766,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Salsa de tomate lista para usar"
+    "label_reason": "Salsa de tomate lista para usar",
+    "usage_es": "Salsa de hortalizas. Ingrediente para acompañar pastas, pizzas o carnes en cualquier comida. Intercambio con otras salsas de tomate convencionales."
   },
   {
     "source": "Mercadona",
@@ -68129,7 +68190,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Salsa lista para usar en múltiples platos"
+    "label_reason": "Salsa lista para usar en múltiples platos",
+    "usage_es": "Salsa de hortalizas. Ingrediente para acompañar pastas, pizzas o carnes en cualquier comida. Intercambio con otras salsas de tomate convencionales."
   },
   {
     "source": "Mercadona",
@@ -68638,7 +68700,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 75,
-    "label_reason": "Habas, probablemente secas o congeladas"
+    "label_reason": "Habas, probablemente secas o congeladas",
+    "usage_es": "Legumbre en grano fresco. Se consumen hervidas con jamón en comida. No se comen crudas. Intercambio con guisantes o judías verdes cocidas."
   },
   {
     "source": "Mercadona",
@@ -70412,7 +70475,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Salsa italiana muy integrada en España"
+    "label_reason": "Salsa italiana muy integrada en España",
+    "usage_es": "Salsa de hortalizas. Ingrediente para acompañar pastas o arroces en cualquier comida. Intercambio con otras salsas de tomate convencionales."
   },
   {
     "source": "Mercadona",
@@ -70435,7 +70499,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Ensalada en bolsa, comida o cena habitual"
+    "label_reason": "Ensalada en bolsa, comida o cena habitual",
+    "usage_es": "Plato de verduras mixtas. Se consume como primer plato en la comida. Intercambio con otras ensaladas mixtas de verduras frescas."
   },
   {
     "source": "Eroski",
@@ -70507,7 +70572,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Sopa fría típica andaluza"
+    "label_reason": "Sopa fría típica andaluza",
+    "usage_es": "Sopa fría de hortalizas. Se toma como primer plato en comida o cena. Intercambio con salmorejo, vichyssoise u otras cremas frías."
   },
   {
     "source": "Dia",
@@ -70576,7 +70642,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Acompañamiento típico español"
+    "label_reason": "Acompañamiento típico español",
+    "usage_es": "Verdura encurtida. Se toman como aperitivo o acompañamiento en cualquier comida. Intercambio con otros encurtidos como cebolletas o aceitunas."
   },
   {
     "source": "Carrefour",
@@ -120390,7 +120457,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Tomate frito, base culinaria muy usada"
+    "label_reason": "Tomate frito, base culinaria muy usada",
+    "usage_es": "Salsa de hortaliza sofrita. Ingrediente típico catalán para untar pan con ajo en cualquier comida. Intercambio con sofrito de tomate convencional."
   },
   {
     "source": "El Corte Inglés",
@@ -121123,7 +121191,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Salmorejo envasado listo para consumir"
+    "label_reason": "Salmorejo envasado listo para consumir",
+    "usage_es": "Crema fría de hortalizas. Se toma como primer plato en comida o cena. Intercambio con gazpacho u otras cremas frías de verdura."
   },
   {
     "source": "Spar",
@@ -121169,7 +121238,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 85,
-    "label_reason": "Guisantes en conserva, requieren cocción"
+    "label_reason": "Guisantes en conserva, requieren cocción",
+    "usage_es": "Legumbre en grano. Ingrediente que se añade hervido a guisos, arroces o ensaladas en la comida. Intercambio con habas o judías verdes cocidas."
   },
   {
     "source": "El Corte Inglés",
@@ -121789,7 +121859,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 95,
-    "label_reason": "Piquillo asado listo para consumir"
+    "label_reason": "Piquillo asado listo para consumir",
+    "usage_es": "Hortaliza asada en conserva. Se consume rellena, en ensalada o como guarnición en comidas y cenas. Ingrediente de cocina. Intercambio clínico con otros pimientos asados o hortalizas de guarnición."
   },
   {
     "source": "Spar",
@@ -122208,7 +122279,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 80,
-    "label_reason": "Guisante listo para ensalada o cena"
+    "label_reason": "Guisante listo para ensalada o cena",
+    "usage_es": "Hortaliza en conserva típica levantina. Se consume directamente como entrante o guarnición, principalmente en cenas. Ingrediente de cocina. Intercambio clínico con otras alcachofas cocidas o hortalizas de ensalada."
   },
   {
     "source": "OpenFoodFacts",
@@ -123751,7 +123823,8 @@
     "frequency": "habitual",
     "exotic": false,
     "label_confidence": 90,
-    "label_reason": "Guindillas en vinagre, guarnición lista"
+    "label_reason": "Guindillas en vinagre, guarnición lista",
+    "usage_es": "Hortaliza encurtida. No es un plato, es ingrediente de cocina o aperitivo en comidas y cenas. Intercambio clínico con otros encurtidos como cebolleta, pepinillo o alcaparras."
   },
   {
     "source": "OpenFoodFacts",
