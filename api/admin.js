@@ -88,6 +88,28 @@ module.exports = async (req, res) => {
       return res.json({ success: true, user });
     }
 
+    if (action === 'update') {
+      const { originalEmail } = req.body;
+      if (!originalEmail || !name || !email || !code) {
+        return res.status(400).json({ success: false, error: 'Todos los campos son obligatorios.' });
+      }
+
+      const { data: user, error } = await supabase
+        .from('users')
+        .update({
+          name: name.trim(),
+          email: email.toLowerCase().trim(),
+          code: code.toUpperCase().trim(),
+        })
+        .eq('email', originalEmail.toLowerCase().trim())
+        .select()
+        .single();
+
+      if (error) return res.status(500).json({ success: false, error: 'Error al actualizar clienta.' });
+
+      return res.json({ success: true, user });
+    }
+
     return res.status(400).json({ success: false, error: 'Acción desconocida.' });
   }
 

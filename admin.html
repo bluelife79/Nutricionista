@@ -408,6 +408,23 @@
       }
 
       @keyframes spin { to { transform: rotate(360deg); } }
+
+      .btn-edit {
+        padding: 8px 12px;
+        border: none;
+        border-radius: 10px;
+        font-size: 12px;
+        font-weight: 700;
+        font-family: "Inter", sans-serif;
+        cursor: pointer;
+        background: #e8ecf3;
+        color: #534b90;
+        box-shadow: 3px 3px 6px #c5c9d1, -3px -3px 6px #ffffff;
+        flex-shrink: 0;
+        transition: all 0.2s;
+      }
+
+      .btn-edit:hover { transform: scale(1.05); }
     </style>
   </head>
   <body>
@@ -444,9 +461,10 @@
         <button id="logoutBtn" class="btn-logout">Cerrar sesión</button>
       </div>
 
-      <!-- NUEVA CLIENTA -->
+      <!-- NUEVA CLIENTA / EDITAR CLIENTA -->
       <div class="card-neo">
-        <span class="section-label">Nueva clienta</span>
+        <span id="formSectionLabel" class="section-label">Nueva clienta</span>
+        <input type="hidden" id="editOriginalEmail" />
 
         <div class="form-row">
           <div class="field" style="margin-bottom:0">
@@ -470,6 +488,7 @@
         <div id="createError" class="error-msg" style="margin-top:8px"></div>
 
         <button id="createBtn" class="btn-create" style="margin-top:16px">Crear clienta</button>
+        <button id="cancelEditBtn" class="btn-logout" style="display:none;margin-top:10px;width:100%;text-align:center">Cancelar edición</button>
       </div>
 
       <!-- LISTA -->
@@ -615,6 +634,10 @@
         list.querySelectorAll('.btn-toggle').forEach(btn => {
           btn.addEventListener('click', () => toggleUser(btn.dataset.email, btn));
         });
+
+        list.querySelectorAll('.btn-edit').forEach(btn => {
+          btn.addEventListener('click', () => openEditMode(btn.dataset.email));
+        });
       }
 
       async function loadUsers() {
@@ -662,6 +685,7 @@
               <div class="user-code">${u.code}</div>
             </div>
             <span class="badge ${badgeClass}">${badgeText}</span>
+            <button class="btn-edit" data-email="${u.email}">Editar</button>
             <button class="btn-toggle ${btnClass}" data-email="${u.email}">${btnText}</button>
           </div>
         `;
@@ -688,17 +712,46 @@
         }
       }
 
-      // ── CREAR CLIENTA ──
+      // ── CREAR / EDITAR CLIENTA ──
       document.getElementById('newCode').addEventListener('input', (e) => {
         e.target.value = e.target.value.toUpperCase();
       });
+
+      function openEditMode(email) {
+        const u = allUsers.find(u => u.email === email);
+        if (!u) return;
+        document.getElementById('editOriginalEmail').value = u.email;
+        document.getElementById('newName').value = u.name;
+        document.getElementById('newEmail').value = u.email;
+        document.getElementById('newCode').value = u.code;
+        document.getElementById('formSectionLabel').textContent = `Editando: ${u.name}`;
+        document.getElementById('createBtn').textContent = 'Guardar cambios';
+        document.getElementById('cancelEditBtn').style.display = 'block';
+        document.getElementById('createError').classList.remove('visible');
+        document.getElementById('formSectionLabel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function resetForm() {
+        document.getElementById('editOriginalEmail').value = '';
+        document.getElementById('newName').value = '';
+        document.getElementById('newEmail').value = '';
+        document.getElementById('newCode').value = '';
+        document.getElementById('formSectionLabel').textContent = 'Nueva clienta';
+        document.getElementById('createBtn').textContent = 'Crear clienta';
+        document.getElementById('cancelEditBtn').style.display = 'none';
+        document.getElementById('createError').classList.remove('visible');
+      }
+
+      document.getElementById('cancelEditBtn').addEventListener('click', resetForm);
 
       document.getElementById('createBtn').addEventListener('click', async () => {
         const name = document.getElementById('newName').value.trim();
         const email = document.getElementById('newEmail').value.trim();
         const code = document.getElementById('newCode').value.trim();
+        const originalEmail = document.getElementById('editOriginalEmail').value;
         const btn = document.getElementById('createBtn');
         const err = document.getElementById('createError');
+        const isEdit = !!originalEmail;
 
         err.classList.remove('visible');
 
@@ -709,21 +762,30 @@
         }
 
         btn.disabled = true;
-        btn.innerHTML = '<span class="loading-spinner"></span>Creando...';
+        btn.innerHTML = `<span class="loading-spinner"></span>${isEdit ? 'Guardando...' : 'Creando...'}`;
 
-        const data = await api('POST', { action: 'create', name, email, code }).catch(() => ({ success: false }));
+        const payload = isEdit
+          ? { action: 'update', originalEmail, name, email, code }
+          : { action: 'create', name, email, code };
+
+        const data = await api('POST', payload).catch(() => ({ success: false }));
 
         btn.disabled = false;
-        btn.textContent = 'Crear clienta';
+        btn.textContent = isEdit ? 'Guardar cambios' : 'Crear clienta';
 
         if (data.success) {
-          document.getElementById('newName').value = '';
-          document.getElementById('newEmail').value = '';
-          document.getElementById('newCode').value = '';
-          showToast(`✅ ${data.user.name} creada correctamente`);
-          loadUsers();
+          if (isEdit) {
+            const idx = allUsers.findIndex(u => u.email === originalEmail);
+            if (idx !== -1) allUsers[idx] = data.user;
+            renderUserList();
+            showToast(`✅ ${data.user.name} actualizada`);
+          } else {
+            showToast(`✅ ${data.user.name} creada correctamente`);
+            loadUsers();
+          }
+          resetForm();
         } else {
-          err.textContent = data.error || 'Error al crear clienta.';
+          err.textContent = data.error || (isEdit ? 'Error al actualizar.' : 'Error al crear clienta.');
           err.classList.add('visible');
         }
       });
