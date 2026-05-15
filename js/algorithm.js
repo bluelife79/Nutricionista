@@ -977,12 +977,20 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
   //      gracefully to category-only filtering (no ReferenceError).
   const _subgroupFilterAvailable = typeof window.isCompatibleSubgroup === "function";
 
+  // Read dietary filters fresh per call so toggles in the UI take effect
+  // without a page reload. window.DIETARY_FILTERS is a Set or array of
+  // strings: "vegetarian", "lactose_free". Empty / undefined → no filter.
+  const _dietary = (typeof window !== "undefined") ? window.DIETARY_FILTERS : null;
+  const _applyDietary = typeof window.passesDietaryFilters === "function" &&
+    _dietary && (_dietary.size ? _dietary.size > 0 : _dietary.length > 0);
+
   const candidates = foodsDatabase.filter(
     (f) => {
       if (f.id === originalFood.id) return false;
       if (!isCompatibleCategory(f, originalFood)) return false;
       if ((f.flags || []).includes("condiment")) return false;
       if ((f.flags || []).includes("sweet")) return false;
+      if (_applyDietary && !window.passesDietaryFilters(f, _dietary)) return false;
       if ((f.flags || []).includes("hidden")) return false;
 
       // Subgroup filter: only on same-category pairs.

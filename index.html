@@ -569,6 +569,60 @@
         margin-bottom: 16px;
       }
 
+      /* Dietary filter chips (vegetarian / lactose-free) */
+      .dietary-filters {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        margin: 4px 0 16px;
+      }
+      .dietary-label {
+        font-size: 12px;
+        font-weight: 600;
+        color: #6c757d;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-right: 4px;
+      }
+      .diet-chip {
+        appearance: none;
+        border: 1.5px solid #d8d4ee;
+        background: #fff;
+        color: #534b90;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 6px 14px;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
+      .diet-chip:hover {
+        background: #f1eeff;
+        border-color: #b8b0e8;
+      }
+      .diet-chip.active {
+        background: linear-gradient(135deg, #534b90 0%, #ae4c7a 100%);
+        border-color: transparent;
+        color: #fff;
+      }
+
+      /* Household measure badge (e.g. "≈ 1 cucharada sopera") shown next
+         to the gram amount. Subtle so it doesn't compete with the macro. */
+      .result-household {
+        display: inline-block;
+        margin-left: 10px;
+        padding: 4px 10px;
+        font-size: 13px;
+        font-weight: 600;
+        color: #6c5ce7;
+        background: #f1eeff;
+        border-radius: 999px;
+        vertical-align: middle;
+        -webkit-text-fill-color: initial;
+        background-clip: padding-box;
+      }
+
       .result-macros {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -1330,6 +1384,16 @@
           />
         </div>
 
+        <div class="dietary-filters" id="dietaryFilters">
+          <span class="dietary-label">Filtros opcionales:</span>
+          <button type="button" class="diet-chip" data-filter="vegetarian">
+            Vegetariano
+          </button>
+          <button type="button" class="diet-chip" data-filter="lactose_free">
+            Sin lactosa
+          </button>
+        </div>
+
         <button id="calculateBtn" class="btn-neo" disabled>
           Buscar alternativas
         </button>
@@ -1417,6 +1481,8 @@
     </div>
 
     <script src="js/exchange_groups.js"></script>
+    <script src="js/household_measures.js"></script>
+    <script src="js/dietary_filters.js"></script>
     <script src="js/algorithm.js"></script>
     <script>
       // ============================================
@@ -1789,6 +1855,29 @@
 
       amountInput.addEventListener("input", checkFormComplete);
 
+      // ============================================
+      // DIETARY FILTERS (vegetarian / lactose-free)
+      // ============================================
+      window.DIETARY_FILTERS = new Set();
+      document.querySelectorAll(".diet-chip").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          const f = chip.dataset.filter;
+          if (window.DIETARY_FILTERS.has(f)) {
+            window.DIETARY_FILTERS.delete(f);
+            chip.classList.remove("active");
+          } else {
+            window.DIETARY_FILTERS.add(f);
+            chip.classList.add("active");
+          }
+          // If results are already showing, re-run the calculation with
+          // the new filter set. Otherwise it just affects the next click
+          // on "Buscar alternativas".
+          if (resultsSection.classList.contains("active") && selectedFood) {
+            calculateEquivalences();
+          }
+        });
+      });
+
       function checkFormComplete() {
         const hasFood = selectedFood !== null;
         const hasAmount =
@@ -1849,7 +1938,14 @@
 
         originalFoodCard.innerHTML = `
       <div class="original-food-header">TIENES EN TU MENÚ</div>
-      <div class="original-food-name">${amount}g ${originalFood.name}</div>
+      <div class="original-food-name">
+        ${amount}g ${originalFood.name}${(() => {
+          const hm = window.formatHouseholdMeasure
+            ? window.formatHouseholdMeasure(originalFood, amount)
+            : null;
+          return hm ? `<span class="result-household">${hm}</span>` : "";
+        })()}
+      </div>
       <div class="original-macros">
         <div class="original-macro-item">
           <div class="original-macro-label">Proteína</div>
@@ -1930,7 +2026,14 @@
           </div>
         </div>
 
-        <div class="result-amount">${alt.equivalentAmount}g</div>
+        <div class="result-amount">
+          ${alt.equivalentAmount}g${(() => {
+            const hm = window.formatHouseholdMeasure
+              ? window.formatHouseholdMeasure(alt, alt.equivalentAmount)
+              : null;
+            return hm ? `<span class="result-household">${hm}</span>` : "";
+          })()}
+        </div>
 
         <div class="result-macros">
           <div class="result-macro-item">
