@@ -76,8 +76,13 @@ class JudgeCache:
         """Prepend db_version to the key (namespace isolation)."""
         return f"{self.db_version}:{key}"
 
-    def get(self, key: str) -> tuple[list[str], list[str]] | None:
-        """Return the cached verdict or None on miss/expiry."""
+    def get(self, key: str) -> tuple[list[str], list[str], bool] | tuple[list[str], list[str]] | None:
+        """Return the cached verdict or None on miss/expiry.
+
+        May return either a 3-tuple (ranked, removed, insufficient_matches)
+        for entries written by prompt v1.4.0+, or a legacy 2-tuple for older
+        entries. Callers must unpack defensively.
+        """
         try:
             value = self._cache[self._ns(key)]
             self._hits += 1
@@ -86,8 +91,8 @@ class JudgeCache:
             self._misses += 1
             return None
 
-    def set(self, key: str, value: tuple[list[str], list[str]]) -> None:
-        """Store a verdict. value = (ranked_ids, removed_ids)."""
+    def set(self, key: str, value: tuple[list[str], list[str], bool]) -> None:
+        """Store a verdict. value = (ranked_ids, removed_ids, insufficient_matches)."""
         self._cache[self._ns(key)] = value
 
     def stats(self) -> dict:

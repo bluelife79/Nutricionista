@@ -13,7 +13,7 @@ from __future__ import annotations
 import json
 
 # Keep in lockstep with scripts/_label_prompt.py:PROMPT_VERSION
-JUDGE_PROMPT_VERSION = "1.3.0"
+JUDGE_PROMPT_VERSION = "1.4.0"
 
 SYSTEM_PROMPT = """\
 Eres un experto en gastronomía española y dietética clínica. Clasificas
@@ -151,6 +151,35 @@ Reglas culinarias (ESTRICTO):
        (removed_ids), remové SOLO si el alimento es CLARAMENTE no usable
        en el contexto del origen. En duda, relegá al final del ranked_ids.
 
+13. INTERCAMBIO INSUFICIENTE: si después de aplicar todas las reglas
+    quedan MENOS DE 3 candidatos genuinamente intercambiables (válidos
+    tanto en macros como culinariamente), indicá "insufficient_matches":
+    true en tu respuesta. El frontend mostrará un mensaje honesto en lugar
+    de forzar resultados inapropiados. Casos típicos: chocolate negro,
+    aceites muy específicos, alimentos sin equivalente culinario real.
+
+14. JERARQUÍA DE PROCESADO (aplica en ranked_ids, NO en removed_ids):
+    Dentro del mismo grupo culinario, poné primero el alimento MÁS
+    SIMPLE y al final el más procesado. Jerarquía orientativa:
+      0. Ingrediente simple (garbanzo cocido, pollo a la plancha, lenteja)
+      1. Conserva básica sin aditivos (atún al natural, garbanzo en bote)
+      2. Preparado con sazonado simple (atún en aceite de oliva)
+      3. Elaborado/saborizado (garbanzos al garam masala, lomo adobado,
+         salmón ahumado, escalopines marinados)
+      4. Ultraprocesado (burger meat, frankfurt, salchichas elaboradas)
+    No removés los procesados — solo los relegás al final del ranked_ids.
+
+15. ALIMENTOS MIXTOS proteína+grasa (huevo, salmón, yogur griego,
+    aguacate, frutos secos, quesos): cuando el ORIGEN tiene TANTO
+    proteína significativa (>8g/100g) COMO grasa significativa (>5g/100g),
+    NO priorizés candidatos que igualan proteína pero pierden >20% de
+    calorías respecto al origen (comparando cantidades equivalentes).
+    Ej: "huevo 100g → 150 kcal" → candidato que da 80 kcal NO es ideal.
+    Para estos orígenes, la equivalencia real requiere respetar proteína,
+    grasa Y calorías conjuntamente. Candidatos muy magros (merluza,
+    langostino, pechuga sin piel) van al final o a removed_ids si la
+    pérdida calórica supera el 30%.
+
 Devuelve EXCLUSIVAMENTE un array JSON. Sin texto antes ni después. Sin
 markdown. Sin explicaciones fuera del campo "reason".\
 """
@@ -233,6 +262,7 @@ def build_judge_user_message(origin, candidates, triggered_reasons=None) -> str:
         f'{{\n'
         f'  "ranked_ids": ["<id1>", "<id2>", ...],\n'
         f'  "removed_ids": ["<idX>", ...],\n'
+        f'  "insufficient_matches": false,\n'
         f'  "rationale": "<máx 20 palabras>"\n'
         f"}}\n\n"
         f"Reglas de la respuesta:\n"
@@ -241,8 +271,11 @@ def build_judge_user_message(origin, candidates, triggered_reasons=None) -> str:
         f"- removed_ids: candidatos que NO deberían aparecer como intercambio "
         f"(serán demoteados ×0.05, no eliminados). Solo incluye ids con incompatibilidad CLARA.\n"
         f"- ranked_ids debe contener TODOS los ids no incluidos en removed_ids.\n"
+        f"- insufficient_matches: true SOLO si tras aplicar todas las reglas quedan "
+        f"MENOS DE 3 candidatos culinariamente válidos (aplica regla 13). "
+        f"En la mayoría de casos debe ser false.\n"
         f"- Si todo está bien, devuelve ranked_ids con el orden que consideres "
-        f"correcto y removed_ids=[].\n"
+        f"correcto, removed_ids=[] e insufficient_matches=false.\n"
         f"- DIVERSIDAD (regla DURA — aplicar SIEMPRE):\n"
         f"  * Identificá el alimento base de cada candidato (raíz sin "
         f"estado/cocción/corte/marca). \"patata cruda/asada/hervida\" → base "

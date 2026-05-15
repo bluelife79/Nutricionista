@@ -122,6 +122,7 @@ class JudgeRequest(BaseModel):
 class JudgeResponse(BaseModel):
     ranked_ids: list[str]
     removed_ids: list[str] = []
+    insufficient_matches: bool = False
     provider: str = PROVIDER
     cache: Literal["hit", "miss", "error", "disabled"]
     latency_ms: int
@@ -245,7 +246,7 @@ _JSON_GREEDY_RE = re.compile(r"\{[\s\S]*\}", re.MULTILINE)
 
 def parse_verdict(
     text: str, candidate_ids: list[str]
-) -> tuple[list[str], list[str]]:
+) -> tuple[list[str], list[str], bool]:
     """3-tier extraction: json.loads → regex block → fallback ValueError.
 
     Defensive rules:
@@ -281,9 +282,9 @@ def parse_verdict(
 
 def _extract_from_obj(
     obj: dict, cand_set: set[str], candidate_ids: list[str]
-) -> tuple[list[str], list[str]]:
-    """Extract ranked_ids/removed_ids from a parsed dict. Raises ValueError if
-    ranked_ids is absent. Silently drops unknown ids."""
+) -> tuple[list[str], list[str], bool]:
+    """Extract ranked_ids/removed_ids/insufficient_matches from a parsed dict.
+    Raises ValueError if ranked_ids is absent. Silently drops unknown ids."""
     if "ranked_ids" not in obj:
         raise ValueError("ranked_ids key missing from parsed object")
 
@@ -297,7 +298,8 @@ def _extract_from_obj(
         if cid not in seen:
             ranked.append(cid)
 
-    return ranked, removed
+    insufficient = bool(obj.get("insufficient_matches", False))
+    return ranked, removed, insufficient
 
 
 # ── FastAPI handlers ──────────────────────────────────────────────────────────
@@ -335,7 +337,14 @@ async def judge_handler(req: JudgeRequest) -> JudgeResponse:
         cached = _cache.get(key)
         if cached is not None:
             _stats["cache_hits"] += 1
-            ranked, removed = cached
+            # Defensive unpack: old cache entries are 2-tuples (pre-1.4.0).
+            # Degrade gracefully — insufficient defaults to False until the
+            # entry is overwritten by a fresh MISS that produces a 3-tuple.
+            try:
+                ranked, removed, insufficient = cached
+            except ValueError:
+                ranked, removed = cached
+                insufficient = False
             latency = int((time.perf_counter() - t0) * 1000)
             _stats["latencies_ms"].append(latency)
             logger.info(
@@ -345,6 +354,7 @@ async def judge_handler(req: JudgeRequest) -> JudgeResponse:
             return JudgeResponse(
                 ranked_ids=ranked,
                 removed_ids=removed,
+                insufficient_matches=insufficient,
                 cache="hit",
                 latency_ms=latency,
             )
@@ -368,10 +378,10 @@ async def judge_handler(req: JudgeRequest) -> JudgeResponse:
             call_llm(build_messages(req)),
             timeout=timeout_s,
         )
-        ranked, removed = parse_verdict(text, cand_ids)
+        ranked, removed, insufficient = parse_verdict(text, cand_ids)
 
         if _cache and key:
-            _cache.set(key, (ranked, removed))
+            _cache.set(key, (ranked, removed, insufficient))
 
         latency = int((time.perf_counter() - t0) * 1000)
         _stats["latencies_ms"].append(latency)
@@ -383,6 +393,7 @@ async def judge_handler(req: JudgeRequest) -> JudgeResponse:
         return JudgeResponse(
             ranked_ids=ranked,
             removed_ids=removed,
+            insufficient_matches=insufficient,
             cache="miss",
             latency_ms=latency,
             tokens_in=tokens_in,
