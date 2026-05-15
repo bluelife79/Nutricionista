@@ -456,6 +456,22 @@
           -8px -8px 16px #ffffff;
         transition: all 0.3s;
         border: 2px solid transparent;
+        /* Fade-in on creation. Triggers automatically whenever innerHTML
+           is reassigned (partial render + post-judge re-render), so the
+           order change after "Refinando con IA…" feels like a smooth
+           transition instead of a brusque flash. */
+        animation: card-fade-in 0.22s ease-out both;
+      }
+
+      @keyframes card-fade-in {
+        from { opacity: 0; transform: translateY(6px); }
+        to   { opacity: 1; transform: translateY(0);   }
+      }
+
+      /* Respetar prefers-reduced-motion: usuarios con sensibilidad al
+         movimiento no ven la animación. */
+      @media (prefers-reduced-motion: reduce) {
+        .result-card { animation: none; }
       }
 
       .result-card:hover {
