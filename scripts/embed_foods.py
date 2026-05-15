@@ -12,11 +12,59 @@ Writes three files into microservicio/data/:
 import hashlib
 import json
 import os
+import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 
 import numpy as np
 from sentence_transformers import SentenceTransformer
+
+
+def _norm(s: str) -> str:
+    """Lowercase + strip diacritics. Mirrors js/algorithm.js:norm() so the
+    processing-level inference matches frontend behavior token-for-token."""
+    if not s:
+        return ""
+    nfkd = unicodedata.normalize("NFKD", s.lower())
+    return "".join(c for c in nfkd if not unicodedata.combining(c))
+
+
+def infer_processing_level(food: dict) -> int:
+    """Port of inferProcessingLevel() from js/algorithm.js:852.
+
+    Returns 0 (simple) → 3 (ultraprocessed). Used as fallback when the
+    `processing_level` field is absent from the DB row.
+    """
+    sub = (food.get("subgroup") or "").lower()
+    name = _norm(food.get("name") or "")
+
+    # Level 3 — ultraprocessed (cured meats, industrial plant protein)
+    if sub == "processed_meat":
+        return 3
+    if any(tok in name for tok in ("frankfurt", "salchicha", "mortadela", "chopped")):
+        return 3
+
+    # Level 2 — processed (marinated, smoked, burger, processed cheese)
+    if any(tok in name for tok in ("adobado", "marinado", "ahumado", "escabechado")):
+        return 2
+    if "burger" in name or "hamburgue" in name:
+        return 2
+    if sub == "butter_margarine":
+        return 2
+    if sub == "other_oils" and any(
+        tok in name for tok in ("palma", "algodon", "germen", "semilla", "higado")
+    ):
+        return 2
+
+    # Level 1 — minimally processed (light flavoring, basic preparations)
+    if any(tok in name for tok in ("sabor", "saborizado", "con miel", "azucarado")):
+        return 1
+    if any(tok in name for tok in ("al garam", "con especias", "con trufa")):
+        return 1
+    if "tostado" in name and sub == "legumes":
+        return 1
+
+    return 0
 
 # ---------------------------------------------------------------------------
 # Semantic context maps (ADR-1)
@@ -77,6 +125,30 @@ def build_embedding_text(food: dict) -> str:
     parts.append(MACRO_PROFILE_MAP.get(food.get("macro_profile", ""), ""))
     for flag in food.get("flags", []):
         parts.append(FLAGS_MAP.get(flag, ""))
+
+    # Culinary context tokens — push the embedding away from purely numeric
+    # macro similarity and toward "what would a real cook reach for". Mirrors
+    # the demotions applied client-side in js/algorithm.js so retrieval and
+    # ranking share the same signal.
+    if food.get("raw_ingredient"):
+        parts.append("ingrediente de cocina no comestible directo")
+
+    meal_slot = (food.get("meal_slot") or "").lower()
+    if meal_slot == "desayuno":
+        parts.append("alimento de desayuno")
+    elif meal_slot == "comida":
+        parts.append("plato de comida principal")
+    elif meal_slot == "snack":
+        parts.append("snack merienda entre horas")
+
+    # processing_level may be absent from the DB row — fall back to the
+    # heuristic so the signal works on every food regardless of bulk-label state.
+    proc = food.get("processing_level")
+    if proc is None:
+        proc = infer_processing_level(food)
+    if proc and proc >= 2:
+        parts.append("alimento procesado elaborado")
+
     # usage_es: descripción culinaria detallada (auditada via GLM en
     # audit_usage_with_llm.py). Si presente, enriquece la señal semántica
     # — hace que "patata cocida" y "arroz hervido" se acerquen porque
