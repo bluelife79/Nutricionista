@@ -882,7 +882,7 @@ function inferProcessingLevel(food) {
 // ============================================
 // ALTERNATIVES CALCULATION (with tier system)
 // ============================================
-async function calculateAlternatives(originalFood, amount) {
+async function calculateAlternatives(originalFood, amount, opts = {}) {
   // T4.6: Run the consistency check once per page load (lazy, idempotent).
   // This fires assertSubgroupConsistency the first time calculateAlternatives
   // is called so DB drift warnings appear in the console without blocking startup.
@@ -1349,6 +1349,91 @@ async function calculateAlternatives(originalFood, amount) {
     };
   });
 
+  // Group by semantic type using the existing tier field:
+  //   T2 (different subgroup, same category) → real exchanges — show first, expanded
+  //   T1 (same subgroup)                     → same ingredient family — collapsed
+  //   T3 (prepared flag)                     → processed/prepared dishes — collapsed last
+  //
+  // Within each group, sort by _judgeRank (primary, when judge ran) then by
+  // _sortScore DESC (secondary / fallback for items outside judge top-50 or
+  // when the judge gate was skipped — _judgeRank ?? 9999 guarantees correct
+  // behavior on the SKIP path without any special-casing).
+  //
+  // Defined BEFORE the judge gate so the progressive-UI partial emit can call
+  // it with _judgeRank still absent — the `?? 9999` fallback yields a clean
+  // math-only ranking. After applyJudgeVerdict() injects _judgeRank, calling
+  // byTier again reflects the LLM-corrected order.
+  const byTier = (t) => {
+    const sorted = withHybrid
+      .filter(a => a.tier === t)
+      .sort((a, b) => {
+        const ra = a._judgeRank ?? 9999;
+        const rb = b._judgeRank ?? 9999;
+        if (ra !== rb) return ra - rb;
+        return b._sortScore - a._sortScore;
+      });
+
+    // Diversidad: primer representante de cada cluster al frente;
+    // variantes secundarias al final del mismo tier.
+    // clusterIngredientKey() colapsa por primer token + sinónimos.
+    const seen = new Set();
+    const primary = [];
+    const secondary = [];
+    for (const food of sorted) {
+      const key = clusterIngredientKey(food);
+      if (seen.has(key)) {
+        secondary.push(food);
+      } else {
+        seen.add(key);
+        primary.push(food);
+      }
+    }
+
+    // SOURCE FAMILY HARD PARTITION: dentro del primary (y secondary)
+    // ya deduped, candidatos de la MISMA familia que el origen van TODOS
+    // primero. Si origen es BEDCA → todos los BEDCA del tier antes que
+    // cualquier branded; si origen es Mercadona → todos los branded antes
+    // que BEDCA. Combinado con el dedup estricto (un representante por
+    // cluster), esto da el comportamiento esperado: BEDCA primero pero
+    // sin saturar con variantes del mismo alimento.
+    const oFamily = sourceFamily(originalFood.source);
+    const partition = (list) => {
+      const same = [], other = [];
+      for (const f of list) {
+        if (sourceFamily(f.source) === oFamily) same.push(f);
+        else other.push(f);
+      }
+      return [...same, ...other];
+    };
+    return [...partition(primary), ...partition(secondary)];
+  };
+
+  // ── PROGRESSIVE UI: PARTIAL RESULT ────────────────────────────────────────
+  // Emit a math-only result NOW so the UI can render immediately while the
+  // LLM judge call (2-3 s in cache MISS) runs in the background. The partial
+  // result has noMatch=false (we don't know yet) and an _isPartial flag so
+  // the caller can show a subtle "refinando..." indicator.
+  //
+  // byTier() falls back to _sortScore when _judgeRank is absent (via `?? 9999`)
+  // so the partial result is already ranked by the math + bulk-label demotions
+  // + same-subgroup/fat-bridge bonuses — i.e. the best ranking we can produce
+  // without the judge.
+  if (typeof opts.onPartialUpdate === "function") {
+    try {
+      opts.onPartialUpdate({
+        intercambios: byTier(2),
+        familia:      byTier(1),
+        preparados:   byTier(3),
+        noMatch:      false,
+        _isPartial:   true,
+      });
+    } catch (e) {
+      if (window.location.search.includes('?debug=1')) {
+        console.debug('[progressive-ui] onPartialUpdate threw:', e);
+      }
+    }
+  }
+
   // ── LLM JUDGE GATE ───────────────────────────────────────────────────────────
   // ALWAYS-ON judge en top-N T2 candidates. El cache server-side (TTL 24h
   // db-namespaced en microservicio/judge_cache.py) absorbe el costo de
@@ -1408,60 +1493,8 @@ async function calculateAlternatives(originalFood, amount) {
   }
   // ─────────────────────────────────────────────────────────────────────────────
 
-  // Group by semantic type using the existing tier field:
-  //   T2 (different subgroup, same category) → real exchanges — show first, expanded
-  //   T1 (same subgroup)                     → same ingredient family — collapsed
-  //   T3 (prepared flag)                     → processed/prepared dishes — collapsed last
-  //
-  // Within each group, sort by _judgeRank (primary, when judge ran) then by
-  // _sortScore DESC (secondary / fallback for items outside judge top-50 or
-  // when the judge gate was skipped — _judgeRank ?? 9999 guarantees correct
-  // behavior on the SKIP path without any special-casing).
-  const byTier = (t) => {
-    const sorted = withHybrid
-      .filter(a => a.tier === t)
-      .sort((a, b) => {
-        const ra = a._judgeRank ?? 9999;
-        const rb = b._judgeRank ?? 9999;
-        if (ra !== rb) return ra - rb;
-        return b._sortScore - a._sortScore;
-      });
-
-    // Diversidad: primer representante de cada cluster al frente;
-    // variantes secundarias al final del mismo tier.
-    // clusterIngredientKey() colapsa por primer token + sinónimos.
-    const seen = new Set();
-    const primary = [];
-    const secondary = [];
-    for (const food of sorted) {
-      const key = clusterIngredientKey(food);
-      if (seen.has(key)) {
-        secondary.push(food);
-      } else {
-        seen.add(key);
-        primary.push(food);
-      }
-    }
-
-    // SOURCE FAMILY HARD PARTITION: dentro del primary (y secondary)
-    // ya deduped, candidatos de la MISMA familia que el origen van TODOS
-    // primero. Si origen es BEDCA → todos los BEDCA del tier antes que
-    // cualquier branded; si origen es Mercadona → todos los branded antes
-    // que BEDCA. Combinado con el dedup estricto (un representante por
-    // cluster), esto da el comportamiento esperado: BEDCA primero pero
-    // sin saturar con variantes del mismo alimento.
-    const oFamily = sourceFamily(originalFood.source);
-    const partition = (list) => {
-      const same = [], other = [];
-      for (const f of list) {
-        if (sourceFamily(f.source) === oFamily) same.push(f);
-        else other.push(f);
-      }
-      return [...same, ...other];
-    };
-    return [...partition(primary), ...partition(secondary)];
-  };
-
+  // Final result: byTier now consumes _judgeRank fields injected by
+  // applyJudgeVerdict() above, so the ordering reflects LLM correction.
   const intercambios = byTier(2);
   // noMatch: true cuando el judge confirma que hay <3 intercambios
   // culinariamente válidos. El frontend puede mostrar un mensaje honesto

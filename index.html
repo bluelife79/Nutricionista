@@ -317,6 +317,28 @@
         display: block;
       }
 
+      /* Progressive UI: subtle banner while the LLM judge refines the order.
+         Auto-hides when .refining is removed (final render). */
+      .results-section.refining .results-header::after {
+        content: "Refinando con IA…";
+        display: inline-block;
+        margin-left: 10px;
+        padding: 3px 10px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.4px;
+        color: #6c5ce7;
+        background: #ece9ff;
+        border-radius: 999px;
+        animation: pulse-refine 1.4s ease-in-out infinite;
+        vertical-align: middle;
+      }
+
+      @keyframes pulse-refine {
+        0%, 100% { opacity: 0.55; }
+        50%      { opacity: 1; }
+      }
+
       .results-header {
         text-align: center;
         margin-bottom: 24px;
@@ -1785,12 +1807,30 @@
         searchSection.style.display = "none";
         loading.classList.add("active");
 
-        await new Promise((resolve) => setTimeout(resolve, 300));
-        const results = await calculateAlternatives(selectedFood, amount);
-        displayResults(selectedFood, amount, results);
+        // Progressive UI: render math-only results AS SOON as they're ready
+        // (typically <50 ms), then re-render when the LLM judge response
+        // arrives (~1-3 s on cache MISS, ~50 ms on HIT). Avoids a 2-3 s
+        // blank-screen pause that hits hardest on mobile.
+        let partialShown = false;
+        const results = await calculateAlternatives(selectedFood, amount, {
+          onPartialUpdate: (partial) => {
+            displayResults(selectedFood, amount, partial);
+            loading.classList.remove("active");
+            resultsSection.classList.add("active");
+            resultsSection.classList.add("refining");
+            partialShown = true;
+          },
+        });
 
-        loading.classList.remove("active");
-        resultsSection.classList.add("active");
+        // Final render with judge-corrected ordering. If partial never fired
+        // (shouldn't happen, but defensive) just render straight.
+        displayResults(selectedFood, amount, results);
+        if (partialShown) {
+          resultsSection.classList.remove("refining");
+        } else {
+          loading.classList.remove("active");
+          resultsSection.classList.add("active");
+        }
       }
 
       // calculateAlternatives, getAnchorMacro, calculateEquivalence
