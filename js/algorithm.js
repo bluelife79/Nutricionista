@@ -844,6 +844,42 @@ function isCompatibleCategory(candidate, original) {
 }
 
 // ============================================
+// PROCESSING LEVEL INFERENCE
+// ============================================
+// Infiere el nivel de procesado cuando el campo processing_level no está
+// en la DB. Usa subgroup y tokens del nombre como señales.
+// 0=simple/natural, 1=mínimamente procesado, 2=procesado, 3=ultraprocesado.
+function inferProcessingLevel(food) {
+  const sub  = (food.subgroup  || "").toLowerCase();
+  const name = norm(food.name  || "");
+
+  // Nivel 3 — ultraprocesado (fiambres elaborados, plant-protein industrial)
+  if (sub === "processed_meat") return 3;
+  if (name.includes("frankfurt") || name.includes("salchicha") ||
+      name.includes("mortadela") || name.includes("chopped")) return 3;
+
+  // Nivel 2 — procesado (marinados, ahumados, burger, queso fundido)
+  if (name.includes("adobado") || name.includes("marinado") ||
+      name.includes("ahumado") || name.includes("escabechado")) return 2;
+  if (name.includes("burger")  || name.includes("hamburgue")) return 2;
+  if (sub === "butter_margarine") return 2;
+  // Aceites industriales poco habituales (palma, algodón, germen de trigo...)
+  if (sub === "other_oils" &&
+      (name.includes("palma") || name.includes("algodon") ||
+       name.includes("germen") || name.includes("semilla") ||
+       name.includes("higado"))) return 2;
+
+  // Nivel 1 — mínimamente procesado (saborizados ligeros, preparados básicos)
+  if (name.includes("sabor") || name.includes("saborizado") ||
+      name.includes("con miel") || name.includes("azucarado")) return 1;
+  if (name.includes("al garam") || name.includes("con especias") ||
+      name.includes("con trufa")) return 1;
+  if (name.includes("tostado") && sub === "legumes") return 1;
+
+  return 0;
+}
+
+// ============================================
 // ALTERNATIVES CALCULATION (with tier system)
 // ============================================
 async function calculateAlternatives(originalFood, amount) {
@@ -906,6 +942,11 @@ async function calculateAlternatives(originalFood, amount) {
   // no se consumen como plato en España. Demote casi-eliminatorio.
   const _demoteNonStapleGrain =
     Number(window.NON_STAPLE_GRAIN_DEMOTION) || 0.1;
+  // Breakfast-on-lunch: candidato es meal_slot="desayuno" y origen es "comida".
+  // Más agresivo que el mismatch genérico — cereales de caja, bollería, etc.
+  // no son intercambio de plato principal aunque cuadren en macros.
+  const _demoteBreakfastOnLunch =
+    Number(window.BREAKFAST_ON_LUNCH_DEMOTION) || 0.05;
 
   const originalMacros = {
     protein: (originalFood.protein * amount) / 100,
@@ -1137,6 +1178,18 @@ async function calculateAlternatives(originalFood, amount) {
           console.debug('[bulk-label] DEMOTED candidate=\'' + a.name + '\' factor=' + _demoteUncooked + ' reason=needs_cooking');
         }
       }
+      // BREAKFAST-ON-LUNCH: candidato de desayuno cuando origen es comida.
+      // Más agresivo que el mismatch genérico ya aplicado arriba — cereales
+      // de caja, granola, bollería, etc. no son intercambio de plato principal.
+      if (
+        a.meal_slot === "desayuno" &&
+        originalFood.meal_slot === "comida"
+      ) {
+        demotion *= _demoteBreakfastOnLunch;
+        if (window.location.search.includes('?debug=1')) {
+          console.debug('[bulk-label] DEMOTED candidate=\'' + a.name + '\' factor=' + _demoteBreakfastOnLunch + ' reason=breakfast_on_lunch');
+        }
+      }
     }
 
     // CLINICAL: cooking state symmetry. Independiente de bulk-label flags
@@ -1214,6 +1267,45 @@ async function calculateAlternatives(originalFood, amount) {
       }
     }
 
+    // CLINICAL: mixed macro fat loss. Para alimentos donde proteína Y grasa
+    // son ambas significativas (huevo, salmón, yogur griego, aguacate),
+    // penalizar candidatos que igualan proteína pero pierden >50% de la
+    // grasa del origen. La clienta no puede cambiar huevo por merluza sin
+    // perder saciedad y calorías.
+    // Solo aplica cuando la grasa del origen es ≥6g/100g (threshold calibrado
+    // para excluir pollo/pechuga que tiene proteína alta pero grasa baja).
+    {
+      const isMixedMacroOrigin =
+        (originalFood.protein || 0) > 5 && (originalFood.fat || 0) >= 6;
+      if (isMixedMacroOrigin && originalMacros.fat > 0 && a.diffs) {
+        const fatLoss = a.diffs.fat < 0 ? Math.abs(a.diffs.fat) : 0;
+        const fatLossRatio = fatLoss / originalMacros.fat;
+        if (fatLossRatio > 0.5) {
+          const mixedDemotion = Math.max(0.3, 1 - fatLossRatio * 0.8);
+          demotion *= mixedDemotion;
+          if (window.location.search.includes('?debug=1')) {
+            console.debug('[mixed-macro] DEMOTED candidate=\'' + a.name + '\' factor=' + mixedDemotion.toFixed(2) + ' fat_loss_ratio=' + fatLossRatio.toFixed(2));
+          }
+        }
+      }
+    }
+
+    // CLINICAL: processing level. Alimentos más procesados se demoten
+    // ligeramente para que simples/básicos aparezcan antes. Usa el campo
+    // processing_level de la DB (0-3) o lo infiere del subgroup/nombre.
+    {
+      const procLevel = a.processing_level != null
+        ? a.processing_level
+        : inferProcessingLevel(a);
+      if (procLevel > 0) {
+        const procDemotion = 1 - procLevel * 0.12;  // 1→×0.88, 2→×0.76, 3→×0.64
+        demotion *= procDemotion;
+        if (window.location.search.includes('?debug=1') && procLevel > 1) {
+          console.debug('[proc-level] DEMOTED candidate=\'' + a.name + '\' level=' + procLevel + ' factor=' + procDemotion.toFixed(2));
+        }
+      }
+    }
+
     return {
       ...a,
       _hybridScore: hybrid,
@@ -1233,6 +1325,7 @@ async function calculateAlternatives(originalFood, amount) {
   //
   // Kill-switch: window.LLM_JUDGE_ENABLED = false → skip entirely.
   // On any error (timeout, 5xx, abort, parse) → no-op, original order preserved.
+  let _judgeInsufficientMatches = false;
   {
     const _llmJudgeEnabled = window.LLM_JUDGE_ENABLED !== false;
     const _isDebug         = window.location.search.includes('?debug=1');
@@ -1261,12 +1354,14 @@ async function calculateAlternatives(originalFood, amount) {
           const _verdict = await callJudge(originalFood, _topT2, _reasonsForLog);
           if (_verdict) {
             applyJudgeVerdict(withHybrid, _verdict);
+            _judgeInsufficientMatches = _verdict.insufficient_matches === true;
             if (_isDebug) {
               console.debug(
                 '[llm-judge] APPLIED cache=' + _verdict.cache +
                 ' latency_ms=' + _verdict.latency_ms +
                 ' ranked=' + (_verdict.ranked_ids || []).length +
-                ' removed=' + (_verdict.removed_ids || []).length
+                ' removed=' + (_verdict.removed_ids || []).length +
+                ' insufficient_matches=' + _judgeInsufficientMatches
               );
             }
           } else {
@@ -1332,10 +1427,18 @@ async function calculateAlternatives(originalFood, amount) {
     return [...partition(primary), ...partition(secondary)];
   };
 
+  const intercambios = byTier(2);
+  // noMatch: true cuando el judge confirma que hay <3 intercambios
+  // culinariamente válidos. El frontend puede mostrar un mensaje honesto
+  // ("No encontramos un intercambio equivalente para este alimento")
+  // en vez de forzar resultados clínicamente inapropiados.
+  const noMatch = _judgeInsufficientMatches && intercambios.length < 3;
+
   return {
-    intercambios: byTier(2),
-    familia:      byTier(1),
-    preparados:   byTier(3),
+    intercambios,
+    familia:   byTier(1),
+    preparados: byTier(3),
+    noMatch,
   };
 }
 
