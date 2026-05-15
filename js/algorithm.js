@@ -947,6 +947,15 @@ async function calculateAlternatives(originalFood, amount) {
   // no son intercambio de plato principal aunque cuadren en macros.
   const _demoteBreakfastOnLunch =
     Number(window.BREAKFAST_ON_LUNCH_DEMOTION) || 0.05;
+  // Fat cross-subgroup bridge: dentro de category='fat', los aceites
+  // (olive_oil, other_oils, butter_margarine) y los alimentos densos en
+  // grasa (avocado, nuts_seeds, other_fat que alberga aceitunas/almendras)
+  // viven en subgroups distintos. Sin este bridge, el same-subgroup boost
+  // empuja "aceite de oliva → aceite de palma" arriba y deja aguacate/nueces
+  // abajo. Igualamos el boost para que el cross-subgroup grasa-fuente
+  // compita en pie de igualdad con la misma-familia.
+  const _fatCrossSubgroupBoost =
+    Number(window.FAT_CROSS_SUBGROUP_BOOST) || 0.10;
 
   const originalMacros = {
     protein: (originalFood.protein * amount) / 100,
@@ -1110,6 +1119,32 @@ async function calculateAlternatives(originalFood, amount) {
       a.subgroup && originalFood.subgroup &&
       a.subgroup === originalFood.subgroup
     ) ? _subgroupBoost : 0;
+
+    // Fat cross-subgroup bridge: aceites ↔ frutos secos / aguacate /
+    // aceitunas. Sin esto, "aceite oliva → aceite palma" gana por
+    // same-subgroup contra "aceite oliva → aguacate/nueces", pero
+    // clínicamente y para una clienta real las grasas vegetales densas
+    // SON el intercambio útil de aceite. Aplica solo cuando subgroups
+    // SON DISTINTOS (si coinciden, ya tienen subgroupBonus arriba).
+    const _OIL_SUBS = new Set([
+      "olive_oil",
+      "other_oils",
+      "butter_margarine",
+    ]);
+    const _DENSE_FAT_SUBS = new Set([
+      "avocado",
+      "nuts_seeds",
+      "other_fat", // aceitunas, almendras, avellanas
+    ]);
+    const osub = originalFood.subgroup || "";
+    const csub = a.subgroup || "";
+    const isOilToDenseFat = _OIL_SUBS.has(osub) && _DENSE_FAT_SUBS.has(csub);
+    const isDenseFatToOil = _DENSE_FAT_SUBS.has(osub) && _OIL_SUBS.has(csub);
+    const fatBridgeBonus = (
+      a.category === "fat" && originalFood.category === "fat" &&
+      osub !== csub &&
+      (isOilToDenseFat || isDenseFatToOil)
+    ) ? _fatCrossSubgroupBoost : 0;
 
     // Soft demotions from bulk-label flags. Multiplicative, applied on top of
     // the additive sourceAffinityBonus. No-op when flags absent (strict equality
@@ -1309,8 +1344,8 @@ async function calculateAlternatives(originalFood, amount) {
     return {
       ...a,
       _hybridScore: hybrid,
-      _sortScoreBase: hybrid + affinityBonus + subgroupBonus,
-      _sortScore: (hybrid + affinityBonus + subgroupBonus) * demotion,
+      _sortScoreBase: hybrid + affinityBonus + subgroupBonus + fatBridgeBonus,
+      _sortScore: (hybrid + affinityBonus + subgroupBonus + fatBridgeBonus) * demotion,
     };
   });
 
