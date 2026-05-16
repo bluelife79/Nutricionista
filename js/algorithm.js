@@ -43,7 +43,7 @@ const MAX_CANDIDATES = 50;
 // JUDGE_TOP_N must be ≤ server-side LLM_MAX_CANDIDATES (default 30) — fewer
 // candidates = lower input tokens = lower latency.
 const JUDGE_TIMEOUT_MS    = 16000;
-const JUDGE_TOP_N         = 30;
+const JUDGE_TOP_N         = 40;  // el LLM ve más opciones para juzgar mejor
 const JUDGE_DEMOTE_FACTOR = 0.05;  // removed_ids → ×0.05 on _sortScore (soft demote, never delete)
 
 function norm(str) {

@@ -324,6 +324,16 @@ def _extract_from_obj(
             ranked.append(cid)
 
     insufficient = bool(obj.get("insufficient_matches", False))
+
+    # DEFENSIVE OVERRIDE: si después de rellenar ranked tiene 3+ candidatos,
+    # el LLM se equivocó marcando insufficient_matches (probablemente fue
+    # perezoso y no enumeró los descartes). Override a false para que el
+    # frontend NO muestre el empty-state "no encontramos intercambio".
+    # El cliente confirmó este síntoma con aguacate (350+ candidatos válidos
+    # pero LLM devolvió ranked=1, removed=0, insufficient=true).
+    if insufficient and len(ranked) - len(removed) >= 3:
+        insufficient = False
+
     return ranked, removed, insufficient
 
 

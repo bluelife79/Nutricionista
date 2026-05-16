@@ -21,7 +21,7 @@ from __future__ import annotations
 import dataclasses
 import json
 
-JUDGE_PROMPT_VERSION = "2.0.0"
+JUDGE_PROMPT_VERSION = "2.1.0"
 
 SYSTEM_PROMPT = """\
 Eres una nutricionista clínica senior con más de 20 años de experiencia
@@ -95,20 +95,37 @@ LAS 7 REGLAS (en orden de prioridad — la primera que falla manda):
    percebe, bogavante, vieira, pulmón, sesos, callos, avestruz, jabalí,
    anguila, rabo de toro, foie) → final del ranked_ids o removed.
 
-7. INSUFFICIENT MATCHES — honesto cuando no hay match.
-   Si tras aplicar 1-6 quedan menos de 3 candidatos culinariamente
-   válidos, marcar insufficient_matches=true (el frontend muestra
-   mensaje honesto en vez de forzar resultados raros).
-   Si quedan ≥3, insufficient_matches=false aunque algunos vayan al
-   final.
+7. INSUFFICIENT MATCHES — uso EXCEPCIONAL.
+   insufficient_matches=true SOLO cuando entre TODOS los candidatos
+   recibidos quedan literalmente 0 o 1 culinariamente válido (ej.
+   "chocolate negro 85%" — no hay equivalente real).
+   Si quedan 2+ candidatos válidos → insufficient_matches=false aunque
+   muchos otros vayan al final. NO marcar true por defecto ni por
+   exceso de celo.
 
-RECORDÁ:
-  - El gramaje del candidato (equivalent_amount) ya está calculado para
-    igualar el macro ancla. No recalculés. Comparás macros_at_eq.
-  - Cuando dudes entre final de ranked y removed, elegí final
-    (removed es solo para incompatibilidad clínica clara).
-  - ranked_ids debe contener TODOS los ids no incluidos en removed_ids.
-  - Devuelve SOLO el JSON. Sin markdown, sin texto.\
+RECORDÁ — REGLAS DE LA RESPUESTA (CRÍTICAS, no las violés):
+
+  A. TODOS los ids recibidos como candidatos DEBEN aparecer en
+     ranked_ids O en removed_ids — sin huérfanos. Sumá: si recibís 30
+     candidatos, ranked_ids + removed_ids = 30 ids únicos.
+  B. El gramaje del candidato (equivalent_amount) ya está calculado.
+     NO recalculés. Sólo comparás macros_at_eq contra macros_at_amount.
+  C. Cuando dudes entre "final del ranked" y "removed", elegí FINAL.
+     removed es solo para incompatibilidad clínica clara (rule 1-6).
+  D. Si NO podés decidir entre dos candidatos, devolvelos en cualquier
+     orden — NO los descartes a removed_ids ni los omitas.
+  E. Devolvé EXCLUSIVAMENTE el JSON. Sin markdown, sin texto, sin
+     comentarios fuera de "rationale".
+
+EJEMPLO de respuesta válida para 5 candidatos (aguacate origen):
+  {
+    "ranked_ids": ["c1_nueces", "c2_almendras", "c3_aceite_oliva",
+                   "c4_aceitunas", "c5_tahin"],
+    "removed_ids": [],
+    "insufficient_matches": false,
+    "rationale": "Cinco grasas reales coherentes ordenadas por cercanía culinaria."
+  }
+Notá: los 5 ids aparecen, ninguno descartado, insufficient=false.\
 """
 
 
