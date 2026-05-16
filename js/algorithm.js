@@ -999,6 +999,26 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
   const _applyDietary = typeof window.passesDietaryFilters === "function" &&
     _dietary && (_dietary.size ? _dietary.size > 0 : _dietary.length > 0);
 
+  // HARD FILTER: cuando origen es plato real (meal_dish/staple, ej. arroz,
+  // pasta, pollo, huevo, pan) excluimos del POOL los candidatos que son
+  // claramente NO meal-equivalents — harinas, sémolas, pan rallado, copos,
+  // cereales crudos no-staple (centeno crudo, cebada cruda, trigo entero,
+  // espelta entera, alpiste, sorgo, amaranto, etc.) y todo culinary_role
+  // recipe_ingredient/dessert.
+  //
+  // Cliente: "harina, snack o muy raro no debería salir arriba aunque
+  // cuadre macros". Demotions ×0.20 no alcanzaban — seguían visibles en
+  // posición 9-14 del top. La única solución honesta es sacarlos del pool.
+  //
+  // Excepción: si origen ES recipe_ingredient/non-staple/cooking-input
+  // (clienta buscó "harina de trigo" o "centeno crudo" directamente),
+  // se permite porque ahí son familia natural.
+  const _oRoleForFilter = originalFood.culinary_role || "meal_dish";
+  const _originIsMealLike =
+    (_oRoleForFilter === "meal_dish" || _oRoleForFilter === "staple") &&
+    !isCookingInput(originalFood.name) &&
+    !isNonStapleGrain(originalFood.name);
+
   const candidates = foodsDatabase.filter(
     (f) => {
       if (f.id === originalFood.id) return false;
@@ -1007,6 +1027,16 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       if ((f.flags || []).includes("sweet")) return false;
       if (_applyDietary && !window.passesDietaryFilters(f, _dietary)) return false;
       if ((f.flags || []).includes("hidden")) return false;
+
+      // Origin is a real plate / staple → exclude basura técnica del pool.
+      if (_originIsMealLike) {
+        const cRole = f.culinary_role || "meal_dish";
+        if (cRole === "recipe_ingredient") return false;
+        if (cRole === "dessert") return false;
+        if (cRole === "snack") return false;
+        if (isCookingInput(f.name)) return false;
+        if (isNonStapleGrain(f.name)) return false;
+      }
 
       // Subgroup filter: only on same-category pairs.
       // Cross-category path (e.g. postres_proteicos <-> dairy/high_protein_dairy)
