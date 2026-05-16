@@ -956,6 +956,14 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
   // compita en pie de igualdad con la misma-familia.
   const _fatCrossSubgroupBoost =
     Number(window.FAT_CROSS_SUBGROUP_BOOST) || 0.10;
+  // Protein bridge: cliente explicito para pollo "el pavo no puede salir
+  // peor posicionado que nécora o cangrejo". Boost para proteína cotidiana
+  // (meat / fish / eggs no-exotic, meal_dish) cuando origen también lo es.
+  // Compensa el demote que R3 + mixed-macro aplican sobre proteínas
+  // magras (pavo pechuga, merluza, bacalao) que matemáticamente pierden
+  // calorías pero culinariamente SON el intercambio que la clienta usaría.
+  const _proteinBridgeBoost =
+    Number(window.PROTEIN_BRIDGE_BOOST) || 0.12;
   // R1: culinary role demotion. Cuando origen es meal_dish (arroz, pollo,
   // patata) y candidato es snack/recipe_ingredient/dessert, demote fuerte.
   // El cliente: "harina, snack o muy raro no debería salir arriba aunque
@@ -1210,6 +1218,24 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
        (oIsDenseFat && cIsDenseFat))
     ) ? _fatCrossSubgroupBoost : 0;
 
+    // PROTEIN BRIDGE: ambos category=protein, meal_dish, no-exotic,
+    // subgroups de proteína cotidiana (meat/fish/eggs). Boost simétrico
+    // para que pavo / merluza / bacalao / atún / huevo compitan en pie de
+    // igualdad como intercambio de pollo (y viceversa), no pierdan contra
+    // cerdo grande por cuestiones de R3 calorie floor.
+    const _COMMON_PROTEIN_SUBS = new Set([
+      "meat", "meat_lean", "meat_fatty",
+      "fish", "fish_white", "fish_fatty",
+      "eggs", "other_protein",
+    ]);
+    const proteinBridgeBonus = (
+      a.category === "protein" && originalFood.category === "protein" &&
+      (a.culinary_role || "meal_dish") === "meal_dish" &&
+      (originalFood.culinary_role || "meal_dish") === "meal_dish" &&
+      a.exotic !== true && originalFood.exotic !== true &&
+      _COMMON_PROTEIN_SUBS.has(osub) && _COMMON_PROTEIN_SUBS.has(csub)
+    ) ? _proteinBridgeBoost : 0;
+
     // Soft demotions from bulk-label flags. Multiplicative, applied on top of
     // the additive sourceAffinityBonus. No-op when flags absent (strict equality
     // means undefined !== true / undefined !== "raro" — graceful degradation).
@@ -1422,23 +1448,27 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       }
     }
 
-    // R3 CLINICAL: calorie floor. El cliente lo formuló como "si pierde
+    // R3 CLINICAL: calorie floor. El cliente lo formuló para alimentos
+    // MIXTOS (huevo, salmón, yogur griego, aguacate, hummus) — "si pierde
     // más del 25% de las calorías del origen, no puede ser top match".
-    // Generaliza el mixed-macro fat-loss para CUALQUIER alimento, no solo
-    // mixtos. Una clienta que cambia huevo (150 kcal) por merluza (67 kcal)
-    // pierde saciedad y energía aunque proteína cuadre.
     //
-    // No aplica a foods de muy baja densidad calórica (verduras, infusiones)
-    // donde la regla daría falsos positivos. Threshold: origen >= 80 kcal/100g
-    // — debajo de eso la diferencia absoluta es chica e irrelevante.
+    // IMPORTANTE: NO generalizar a toda proteína. Si lo hago, pollo muslo
+    // (183 kcal) sabotea pavo pechuga (~120 kcal, ratio 0.65) y el cliente
+    // pierde EL #1 de su lista de preferencias para pollo. R3 estricto:
+    //   - origen con fat >= 8g (densidad grasa significativa)
+    //   - origen con kcal >= 100/100g
+    //   - se aplica más suave en proteínas magras-moderadas para no destruir
+    //     pavo / pescado blanco como alternativa de pollo
     {
       const oKcal100 = originalFood.calories || 0;
-      if (oKcal100 >= 80 && originalMacros.calories > 0 && a.macros) {
+      const oFat100  = originalFood.fat || 0;
+      const isMixedOrigin = oFat100 >= 8 && oKcal100 >= 100;
+      if (isMixedOrigin && originalMacros.calories > 0 && a.macros) {
         const calRatio = a.macros.calories / originalMacros.calories;
         if (calRatio < 0.75) {
-          // Demote scales smoothly with how much we miss:
-          //   0.74 → ×0.85   |   0.50 → ×0.50   |   0.25 → ×0.25
-          const floorDemotion = Math.max(0.25, calRatio);
+          // Soft: 0.74 → ×0.93   |   0.50 → ×0.80   |   0.25 → ×0.65
+          // (Antes era hasta ×0.25 — demasiado agresivo, eliminaba pavo)
+          const floorDemotion = Math.max(0.65, 0.5 + calRatio * 0.6);
           demotion *= floorDemotion;
           if (window.location.search.includes('?debug=1')) {
             console.debug('[cal-floor] DEMOTED candidate=\'' + a.name + '\' factor=' + floorDemotion.toFixed(2) + ' cal_ratio=' + calRatio.toFixed(2));
@@ -1502,8 +1532,8 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     return {
       ...a,
       _hybridScore: hybrid,
-      _sortScoreBase: hybrid + affinityBonus + subgroupBonus + fatBridgeBonus,
-      _sortScore: (hybrid + affinityBonus + subgroupBonus + fatBridgeBonus) * demotion,
+      _sortScoreBase: hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus,
+      _sortScore: (hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus) * demotion,
     };
   });
 

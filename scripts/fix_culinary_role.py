@@ -136,7 +136,18 @@ RARE_SEAFOOD_RE = re.compile(
     r"cigala(?:s)?|vieira(?:s)?|"
     r"centollo|buey de mar|"
     r"ostra(?:s)?|navaja(?:s)?|"
-    r"erizo de mar|caracola(?:s)?"
+    r"erizo de mar|caracola(?:s)?|"
+    # Pescados poco comunes en cocina española semanal
+    r"anguila(?:s)?|"
+    r"rape negro|"
+    r"raya\b[\s,]*(?:al|cruda|hervida|frita)|"
+    r"morena(?:s)?|"
+    r"perlon|"
+    r"esturion|"
+    r"foie\b[\s,]*(?:de\s+)?(?:pato|oca)|"
+    # Cefalopodos y similares fuera del consumo semanal estándar
+    r"chipiron(?:es)?(?: en su tinta)?|"
+    r"choco(?:s)?(?: cocido| frito)?"
     r")\b"
 )
 
@@ -152,9 +163,15 @@ CASQUERIA_RE = re.compile(
     r"molleja(?:s)?|"
     r"rinon(?:es)?\b[\s,]*(?:de\s+)?(?:cordero|cerdo|ternera)?|"
     r"lengua\b[\s,]*(?:de\s+)?(?:cordero|ternera|cerdo)|"
+    # Rabo de toro / oxtail / partes de carne no cotidianas en menú semanal
+    r"rabo\b[\s,]*(?:de\s+)?(?:toro|vaca|res|buey)|"
     r"morro|oreja(?: de cerdo)?|"
     r"manitas? de cerdo|"
-    r"sangrecilla|morcilla(?: de )?(?:burgos|leon|asturias)?"
+    r"sangrecilla|morcilla(?: de )?(?:burgos|leon|asturias)?|"
+    # Tripa / panza / criadillas / corazón uncommon
+    r"tripa(?:s)?\b[\s,]*(?:de\s+)?(?:ternera|cordero|cerdo)?|"
+    r"corazon\b[\s,]*(?:de\s+)?(?:cordero|ternera|cerdo|pollo)|"
+    r"criadilla(?:s)?"
     r")\b"
 )
 
