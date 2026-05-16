@@ -13,7 +13,7 @@ from __future__ import annotations
 import json
 
 # Keep in lockstep with scripts/_label_prompt.py:PROMPT_VERSION
-JUDGE_PROMPT_VERSION = "1.5.0"
+JUDGE_PROMPT_VERSION = "1.6.0"
 
 SYSTEM_PROMPT = """\
 Eres un experto en gastronomía española y dietética clínica. Clasificas
@@ -206,6 +206,53 @@ Reglas culinarias (ESTRICTO):
     pechuga, atún, pavo). Para esas, esta regla NO se aplica — usá la
     jerarquía normal de subgrupos y procesado.
 
+16. LÁCTEOS — JERARQUÍA POR USO CULINARIO (cliente punto 4).
+
+    Cada lácteo tiene un campo "dairy_subfamily" precalculado con uno de
+    5 valores que reflejan USO real en cocina española:
+
+      - frescos_proteicos: yogur (natural / griego / desnatado / sabores),
+        skyr, Fage, quark, kéfir, queso fresco batido 0%, queso fresco
+        tipo Burgos, requesón, mató, ricotta, cottage, mozzarella fresca.
+        USO: postre, snack proteico, desayuno, base de bowl.
+
+      - quesos_solidos: manchego, parmesano, cheddar, gouda, gruyere,
+        brie, camembert, roquefort, feta, halloumi, lonchas, quesitos,
+        queso fundido, queso para untar.
+        USO: aperitivo, fiambre, gratinar.
+
+      - liquidos: leche entera/semi/desnatada/sin lactosa, bebidas
+        vegetales (almendra/avena/soja/coco), yogur bebible.
+        USO: desayuno, café, recetas líquidas.
+
+      - grasas_lacteas: nata líquida/montada/para cocinar, crème fraîche,
+        crema agria, mascarpone.
+        USO: repostería, topping, salsa.
+
+      - postres_lacteos: flan, natillas, panna cotta, tiramisú,
+        cheesecake, helado, sorbete, dulce de leche, leche condensada,
+        leche evaporada, arroz con leche, cuajada con miel.
+        USO: postre dulce ocasional.
+
+    REGLA: respetá la subfamilia. Cuando origen es de subfamilia X, los
+    candidatos de SUBFAMILIA X van arriba; los de OTRA subfamilia van al
+    final o a removed_ids si la incompatibilidad es total.
+
+    Ejemplos concretos del cliente para yogur griego (frescos_proteicos):
+      - Yogur natural / griego / skyr / kéfir / requesón / queso fresco
+        batido / Burgos / ricotta → frescos_proteicos → TOP de ranked_ids.
+      - Manchego / queso fundido / lonchas / quesitos → quesos_solidos
+        → FINAL de ranked_ids (uso distinto).
+      - Nata montada → grasas_lacteas → removed_ids (no es sustituto
+        natural de yogur).
+      - Leche de almendras 382g / bebida vegetal → liquidos → removed_ids
+        (cantidad absurda + uso distinto, doble penalización).
+      - Flan / natilla / helado → postres_lacteos → final o removed.
+
+    Esta regla COMBINA con la regla 15 (alimentos mixtos): si origen es
+    yogur griego (frescos_proteicos + mixto), los candidatos deben pasar
+    AMBAS reglas — misma subfamilia Y respetar coherencia calórica.
+
 Devuelve EXCLUSIVAMENTE un array JSON. Sin texto antes ni después. Sin
 markdown. Sin explicaciones fuera del campo "reason".\
 """
@@ -239,6 +286,7 @@ def build_judge_user_message(origin, candidates, triggered_reasons=None) -> str:
         "name": origin.name,
         "category": origin.category,
         "subgroup": origin.subgroup,
+        "dairy_subfamily": getattr(origin, "dairy_subfamily", None),
         "ready_to_eat": origin.ready_to_eat,
         "raw_ingredient": origin.raw_ingredient,
         "meal_slot": origin.meal_slot,
@@ -265,6 +313,7 @@ def build_judge_user_message(origin, candidates, triggered_reasons=None) -> str:
             "name": c.name,
             "category": c.category,
             "subgroup": c.subgroup,
+            "dairy_subfamily": getattr(c, "dairy_subfamily", None),
             "ready_to_eat": c.ready_to_eat,
             "raw_ingredient": c.raw_ingredient,
             "meal_slot": c.meal_slot,

@@ -656,6 +656,7 @@ function pickJudgeFields(f) {
     name:             f.name,
     category:         f.category         ?? null,
     subgroup:         f.subgroup          ?? null,
+    dairy_subfamily:  f.dairy_subfamily   ?? null,
     ready_to_eat:     f.ready_to_eat      ?? null,
     raw_ingredient:   f.raw_ingredient    ?? null,
     meal_slot:        f.meal_slot         ?? null,
@@ -970,6 +971,15 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
   // calorías pero culinariamente SON el intercambio que la clienta usaría.
   const _proteinBridgeBoost =
     Number(window.PROTEIN_BRIDGE_BOOST) || 0.12;
+  // Dairy sub-family logic (audit punto 4 del cliente):
+  // - Same subfamily   → boost +0.12  (yogur griego ↔ skyr, queso fresco)
+  // - Cross subfamily  → demote ×0.35 (yogur ↔ nata / queso curado / leche)
+  // Cliente: "yogur griego no debería surfacear hummus light, queso fundido,
+  // nata montada, leche almendras 382g, kéfir 350g, quesos curados".
+  const _dairySubfamilyBoost =
+    Number(window.DAIRY_SUBFAMILY_BOOST) || 0.12;
+  const _dairyCrossSubfamilyDemotion =
+    Number(window.DAIRY_CROSS_SUBFAMILY_DEMOTION) || 0.35;
   // R1: culinary role demotion. Cuando origen es meal_dish (arroz, pollo,
   // patata) y candidato es snack/recipe_ingredient/dessert, demote fuerte.
   // El cliente: "harina, snack o muy raro no debería salir arriba aunque
@@ -1242,6 +1252,15 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       _COMMON_PROTEIN_SUBS.has(osub) && _COMMON_PROTEIN_SUBS.has(csub)
     ) ? _proteinBridgeBoost : 0;
 
+    // DAIRY SUB-FAMILY BRIDGE: boost cuando ambos son lácteos de la misma
+    // subfamilia culinaria (frescos_proteicos, quesos_solidos, etc.).
+    // 0 si distinta o si uno de los dos no es dairy.
+    const oDairyFam = originalFood.dairy_subfamily;
+    const cDairyFam = a.dairy_subfamily;
+    const dairyFamilyBonus = (
+      oDairyFam && cDairyFam && oDairyFam === cDairyFam
+    ) ? _dairySubfamilyBoost : 0;
+
     // Soft demotions from bulk-label flags. Multiplicative, applied on top of
     // the additive sourceAffinityBonus. No-op when flags absent (strict equality
     // means undefined !== true / undefined !== "raro" — graceful degradation).
@@ -1480,6 +1499,16 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       }
     }
 
+    // R4 DAIRY CROSS-SUBFAMILY: yogur griego ↔ nata / queso curado /
+    // leche almendras / leche entera = NO equivalente culinario aunque
+    // macros cuadren. Demote fuerte cross-subfamily dentro de dairy.
+    if (oDairyFam && cDairyFam && oDairyFam !== cDairyFam) {
+      demotion *= _dairyCrossSubfamilyDemotion;
+      if (window.location.search.includes('?debug=1')) {
+        console.debug('[dairy-cross] DEMOTED candidate=\'' + a.name + '\' (' + cDairyFam + ' vs ' + oDairyFam + ') factor=' + _dairyCrossSubfamilyDemotion);
+      }
+    }
+
     // R3 CLINICAL: calorie floor. El cliente lo formuló para alimentos
     // MIXTOS (huevo, salmón, yogur griego, aguacate, hummus) — "si pierde
     // más del 25% de las calorías del origen, no puede ser top match".
@@ -1564,8 +1593,8 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     return {
       ...a,
       _hybridScore: hybrid,
-      _sortScoreBase: hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus,
-      _sortScore: (hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus) * demotion,
+      _sortScoreBase: hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus,
+      _sortScore: (hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus) * demotion,
     };
   });
 

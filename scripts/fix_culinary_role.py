@@ -185,6 +185,109 @@ EXOTIC_MEAT_RE = re.compile(
 )
 
 
+# ── DAIRY SUB-FAMILY (audit punto 4 del cliente) ─────────────────────────────
+# 5 subfamilias por USO CULINARIO real, no por subgroup microscópico:
+#   - frescos_proteicos: yogur, skyr, kéfir, queso fresco, batido, requesón
+#   - quesos_solidos:    curados, fundidos, lonchas, untables
+#   - liquidos:          leche, bebida vegetal
+#   - grasas_lacteas:    nata, crema, mascarpone
+#   - postres_lacteos:   flan, natilla, panna cotta, helado, dulce/condensada
+#
+# Algoritmo: same subfamily → boost, cross-subfamily → demote fuerte.
+# Yogur griego ya no surfacea nata montada / queso fundido / leche almendras.
+
+_DAIRY_FRESCOS_RE = re.compile(
+    r"\b("
+    r"yogur(?:t)?(?:es)?|yogures|"
+    r"skyr|fage|quark|"
+    r"kefir|"
+    r"queso fresco|queso batido|queso de burgos|"
+    r"requeson|mato|ricotta|cottage|"
+    r"mozzarella fresca|mozzarella di bufala|burrata"
+    r")\b"
+)
+
+_DAIRY_QUESOS_SOLIDOS_RE = re.compile(
+    r"\b("
+    r"queso (?:curado|semicurado|tierno|viejo|anejo|de oveja|de cabra|manchego|gouda|cheddar|emmental|gruyere|brie|camembert|roquefort|cabrales|gorgonzola|parmesano|pecorino|edam|provolone|havarti|tilsit)|"
+    r"queso fundido|queso para untar|queso untable|"
+    r"lonchas? de queso|porciones? de queso|quesito|"
+    r"manchego|cheddar|gruyere|parmesano|gorgonzola|roquefort|"
+    r"feta|halloumi"
+    r")\b"
+)
+
+_DAIRY_LIQUIDOS_RE = re.compile(
+    r"\b("
+    r"leche(?: entera| semidesnatada| desnatada| fresca| uht| en polvo| sin lactosa)?|"
+    r"bebida (?:de |vegetal)|"
+    r"leche de (?:almendras?|avena|soja|coco|arroz|avellana|anacardo)|"
+    r"horchata|"
+    r"yogur (?:bebible|para beber|liquido)"
+    r")\b"
+)
+
+_DAIRY_GRASAS_RE = re.compile(
+    r"\b("
+    r"nata(?: liquida| montada| para cocinar| para postres| acida)?|"
+    r"creme fraiche|crema agria|crema de leche|"
+    r"mascarpone"
+    r")\b"
+)
+
+_DAIRY_POSTRES_RE = re.compile(
+    r"\b("
+    r"flan|natilla(?:s)?|panna cotta|tiramisu|cheesecake|"
+    r"helado|sorbete|polo helado|"
+    r"dulce de leche|leche condensada|leche evaporada|"
+    r"arroz con leche|cuajada(?: con miel)?"
+    r")\b"
+)
+
+
+def infer_dairy_subfamily(food: dict) -> str | None:
+    """Returns one of frescos_proteicos | quesos_solidos | liquidos |
+    grasas_lacteas | postres_lacteos | None when food is not dairy."""
+    if food.get("category") != "dairy":
+        return None
+    name = _norm(food.get("name") or "")
+    # Order matters: postres y grasas más específicos que frescos.
+    if _DAIRY_POSTRES_RE.search(name):    return "postres_lacteos"
+    if _DAIRY_GRASAS_RE.search(name):     return "grasas_lacteas"
+    if _DAIRY_LIQUIDOS_RE.search(name):   return "liquidos"
+    if _DAIRY_QUESOS_SOLIDOS_RE.search(name): return "quesos_solidos"
+    if _DAIRY_FRESCOS_RE.search(name):    return "frescos_proteicos"
+    # Fallback por subgroup
+    sub = food.get("subgroup")
+    if sub == "high_protein_dairy":       return "frescos_proteicos"
+    if sub == "low_fat_dairy":            return "frescos_proteicos"
+    if sub in ("aged_cheese", "cheese"):  return "quesos_solidos"
+    if sub == "fresh_cheese":             return "frescos_proteicos"
+    if sub == "other_dairy":              return "postres_lacteos"  # safer default
+    # whole_dairy → ambiguo (yogur entero, leche entera, postres lácteos enteros)
+    # Si el regex no lo cazó, defaultea a frescos (es la categoría más común)
+    return "frescos_proteicos"
+
+
+# ── HUMMUS MISCATEGORIZATION FIX (cliente reportó hummus light en yogur) ────
+# Algunos hummus aparecen como category=dairy por categorización legacy
+# incorrecta. Hummus es legumbre + grasa, NUNCA dairy. Movemos a fat/other_fat.
+def fix_miscategorized_hummus(food: dict) -> bool:
+    """Returns True if the food was reclassified. Idempotent."""
+    name = _norm(food.get("name") or "")
+    if "hummus" not in name:
+        return False
+    if food.get("category") != "dairy":
+        return False
+    # Hummus is fat/other_fat, not dairy
+    if "category_prev" not in food:
+        food["category_prev"] = food.get("category")
+    food["category"] = "fat"
+    food["subgroup"] = "other_fat"
+    food["macro_profile"] = "fat"
+    return True
+
+
 # ── ROLE INFERENCE ───────────────────────────────────────────────────────────
 def infer_culinary_role(food: dict) -> str:
     """Returns one of: meal_dish | snack | recipe_ingredient | dessert | staple.
@@ -252,8 +355,14 @@ def main() -> None:
     role_counts: dict[str, int] = {}
     exotic_added = 0
     exotic_already = 0
+    hummus_fixed = 0
+    dairy_subfam_counts: dict[str, int] = {}
 
     for food in foods:
+        # Hummus miscategorization fix FIRST so dairy_subfamily skips them
+        if fix_miscategorized_hummus(food):
+            hummus_fixed += 1
+
         # culinary_role — always (re)derive, idempotent
         role = infer_culinary_role(food)
         food["culinary_role"] = role
@@ -266,6 +375,15 @@ def main() -> None:
             else:
                 food["exotic"] = True
                 exotic_added += 1
+
+        # dairy_subfamily — only for category=dairy after hummus fix
+        sub_family = infer_dairy_subfamily(food)
+        if sub_family is not None:
+            food["dairy_subfamily"] = sub_family
+            dairy_subfam_counts[sub_family] = dairy_subfam_counts.get(sub_family, 0) + 1
+        else:
+            # If food was previously labeled and is no longer dairy, drop the field
+            food.pop("dairy_subfamily", None)
 
     with DB_PATH.open("w", encoding="utf-8") as f:
         json.dump(foods, f, ensure_ascii=False, indent=2)
@@ -284,6 +402,18 @@ def main() -> None:
     print("=" * 72)
     print(f"  Flipped false → true:          {exotic_added}")
     print(f"  Already true (no change):      {exotic_already}")
+    print()
+    print("=" * 72)
+    print(" HUMMUS RECLASSIFIED dairy → fat")
+    print("=" * 72)
+    print(f"  Fixed entries:                 {hummus_fixed}")
+    print()
+    print("=" * 72)
+    print(" DAIRY SUB-FAMILY DISTRIBUTION")
+    print("=" * 72)
+    for sf in ("frescos_proteicos", "quesos_solidos", "liquidos", "grasas_lacteas", "postres_lacteos"):
+        count = dairy_subfam_counts.get(sf, 0)
+        print(f"  {sf:<22}  {count:>5}")
     print()
     print("=" * 72)
     print(f"  Total foods en DB:             {len(foods)}")

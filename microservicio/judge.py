@@ -100,6 +100,10 @@ class FoodFlags(BaseModel):
     name: str
     category: str | None = None
     subgroup: str | None = None
+    # Subfamilia culinaria dentro de dairy (Regla 16, prompt v1.6+):
+    # frescos_proteicos | quesos_solidos | liquidos | grasas_lacteas |
+    # postres_lacteos. None para foods no-dairy.
+    dairy_subfamily: str | None = None
     ready_to_eat: bool | None = None
     raw_ingredient: bool | None = None
     meal_slot: str | None = None
