@@ -504,6 +504,19 @@
           expectInTop10: ["almendra", "anacardo", "pistacho", "avellana"],
           expectNotInResults: ["arroz", "pollo", "comino", "pimenton"],
           note: "Importante para mujer adulta (omega-3). Solo frutos secos en T1."
+        },
+        {
+          // Cliente Hugo brief 16/05/2026 punto 5: "Si busca aguacate,
+          // debería poder salir X g nueces, almendras, aceitunas,
+          // cacahuetes, sésamo, tahín — no 'tomate con aceite' ni
+          // 'pimientos en aceite'. Productos con oil_added deben bajar."
+          id: "T21",
+          label: "Aguacate — grasa real (cluster funcional Hugo)",
+          searchQuery: "aguacate",
+          amount: 80,
+          expectInTop10: ["nuez", "almendra", "aceituna", "avellana", "pistacho", "anacardo", "cacahuete", "sesamo"],
+          expectNotInResults: ["tomate con aceite", "ajos en aceite", "pimientos en aceite", "berenjena frita", "boletus en aceite", "habitas en aceite"],
+          note: "Hugo punto 5: aguacate cruza con cluster grasa real. NO 'cosas con aceite añadido'."
         }
       ];
 

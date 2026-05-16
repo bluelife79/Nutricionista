@@ -2060,15 +2060,85 @@
           preparadosSection, preparadosContainer, preparadosCount,
         );
 
-        // PUNTO 9: si familia tiene 5+ entradas (pan integral, yogur, skyr,
-        // atún, garbanzos…), una mujer probablemente quiere ver primero
-        // OTROS PANES / OTROS YOGURES antes que los intercambios reales
-        // (que pueden ser All-Bran o pasta de fruta). Invertir orden visual.
-        // El bloque "preparados" mantiene su posición al final siempre.
-        const familyDominant = alternatives.familia.length >= 5;
+        // PUNTO 9 Hugo brief 16/05/2026 + extensión nutricionista clínica:
+        // El flip "familia primero, intercambios después" se aplica cuando
+        // la clienta está en intención de COMPRA (elegir marca/formato de
+        // un alimento envasado con variabilidad real entre marcas), NO
+        // cuando está resolviendo una comida sin tener el alimento en casa.
+        //
+        // Heurística combinada (3 capas + whitelist Hugo explícita):
+        //   1) culinary_role: snack, dessert → siempre comerciales
+        //   2) category dairy → todos los lácteos envasados varían mucho
+        //   3) subgroup: processed_meat, sweets_bakery → fiambres, bollería
+        //   4) name tokens: panes, cereales, galletas, conservas pescado,
+        //                   embutidos, untables (hummus, tahin, mermelada),
+        //                   bebidas, leches
+        //   + whitelist Hugo: pan, yogur, skyr, atún, garbanzo
+        //
+        // EXCLUYE explícitamente: pollo, arroz, aceite, huevo, aguacate,
+        // pescado fresco, verduras, frutas, legumbres secas — para esos
+        // gana el orden default (intercambios primero).
+        const _norm = (s) => (s || "")
+          .toLowerCase()
+          .normalize("NFD").replace(/[̀-ͯ]/g, "");
+        const _origNameN = _norm(originalFood.name);
+        const _oRole = originalFood.culinary_role || "meal_dish";
+        const _oCat  = originalFood.category;
+        const _oSub  = originalFood.subgroup;
+
+        // Capa 1+2+3: role/category/subgroup
+        const _ROLE_FAMILY_FIRST    = new Set(["snack", "dessert"]);
+        const _SUBGRP_FAMILY_FIRST  = new Set(["processed_meat", "sweets_bakery"]);
+        const _byClassification =
+          _ROLE_FAMILY_FIRST.has(_oRole) ||
+          _oCat === "dairy" ||
+          _SUBGRP_FAMILY_FIRST.has(_oSub);
+
+        // Capa 4: tokens del nombre (cubre conservas, embutidos, panes,
+        // cereales, untables, bebidas — todos comerciales con marcas)
+        const _TOKEN_FAMILY_FIRST = [
+          // panes y derivados de panadería envasada
+          "pan", "tostada", "biscote", "pico", "colin",
+          // cereales de desayuno y barritas
+          "cereales", "muesli", "granola", "barrita", "all-bran", "all bran",
+          "corn flakes", "fitness", "special k", "choco krispies",
+          // galletas, tortitas, crackers
+          "galleta", "tortita", "cracker", "crujiente",
+          // conservas pescado y marisco
+          "atun", "atún", "sardina", "caballa", "bonito", "anchoa",
+          "surimi", "mejillon", "berberecho", "almeja",
+          // fiambres y embutidos
+          "jamon", "jamón", "chorizo", "salchichon", "salchichón",
+          "fuet", "salchicha", "hamburguesa", "bacon", "mortadela",
+          "pavo cocido", "pollo cocido", "fiambre",
+          // untables / pastas saladas
+          "hummus", "tahin", "tahini", "pate", "paté",
+          // mermeladas y compotas
+          "mermelada", "confitura", "compota", "jalea",
+          // bebidas (zumos, vegetales, leches)
+          "zumo", "bebida vegetal", "leche", "horchata",
+          // lácteos específicos (refuerza category dairy)
+          "yogur", "yogurt", "yoghurt", "skyr", "fage", "quark",
+          "kefir", "kéfir",
+          // legumbres en conserva (no las secas crudas)
+          "garbanzo", "alubia cocida", "lenteja cocida",
+          "judia cocida", "judía cocida",
+          // aceitunas / encurtidos
+          "aceitun", "encurtido", "pepinillo",
+          // chocolate envasado
+          "chocolate", "tableta",
+        ];
+        const _byToken = _TOKEN_FAMILY_FIRST.some((t) => _origNameN.includes(t));
+
+        const isBasicoFamiliaFirst = _byClassification || _byToken;
+
+        // Umbral mínimo: aunque sea básico, si familia < 5 no merece flip
+        // (poca variedad → mejor mostrar intercambios reales arriba)
+        const familyDominant =
+          isBasicoFamiliaFirst && alternatives.familia.length >= 5;
         const parent = intercambiosSection.parentNode;
         if (familyDominant) {
-          // Familia primero, intercambios después
+          // Familia primero (solo básicos: pan/yogur/skyr/atún/garbanzos)
           parent.insertBefore(familiaSection, intercambiosSection);
         } else {
           // Default: intercambios primero, familia después

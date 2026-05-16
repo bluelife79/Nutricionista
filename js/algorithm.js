@@ -1005,6 +1005,76 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
   const _demoteExoticMismatch =
     Number(window.EXOTIC_MISMATCH_DEMOTION) || 0.25;     // ×0.25
 
+  // CULTURAL PAIRS BOOST (nutricionista clínica + Hugo brief punto 2):
+  // Pares de intercambio NATURAL en consulta privada España. Cuando origen
+  // y candidato matchean una de estas parejas, su _sortScore recibe un
+  // boost para que surfacee en top 1-3. Lista cerrada y conservadora —
+  // solo los pares culturalmente OBVIOS para una mujer adulta española.
+  //
+  // Hugo: "Si busca pollo, lo lógico arriba sería: 1. Pavo." Estas reglas
+  // codifican ese tipo de preferencia cultural sin inventar nutrición.
+  //
+  // Cada par es bidireccional: [tokenA, tokenB] aplica A→B y B→A.
+  const _CULTURAL_PAIRS = [
+    // Carnes magras hermanas
+    ["pollo", "pavo"],
+    // Pescado azul cotidiano
+    ["atun", "bonito"],
+    ["atún", "bonito"],
+    ["salmon", "trucha"],
+    ["salmón", "trucha"],
+    // Pescado blanco hermanos
+    ["merluza", "bacalao"],
+    ["merluza", "rape"],
+    // Huevo y derivados
+    ["huevo", "tortilla"],
+    ["huevo", "clara"],
+    // Cereales hermanos
+    ["arroz", "quinoa"],
+    ["arroz", "cuscus"],
+    ["arroz", "cuscús"],
+    ["arroz", "bulgur"],
+    ["pasta", "arroz"],
+    // Tubérculos hermanos
+    ["patata", "boniato"],
+    ["patata", "batata"],
+    // Lácteos hermanos
+    ["yogur", "kefir"],
+    ["yogur", "kéfir"],
+    ["leche", "bebida vegetal"],
+    ["leche", "bebida de avena"],
+    ["leche", "bebida de almendra"],
+    ["leche", "bebida de soja"],
+    // Quesos frescos hermanos
+    ["queso fresco", "requeson"],
+    ["queso fresco", "requesón"],
+    ["queso fresco", "mato"],
+    ["queso fresco", "ricotta"],
+    // Grasas hermanas (refuerza fat cluster)
+    ["aceite", "aguacate"],
+    ["aguacate", "nueces"],
+    ["aguacate", "almendra"],
+    ["aceitunas", "aguacate"],
+    ["aceituna", "aguacate"],
+    // Legumbres hermanas
+    ["lenteja", "garbanzo"],
+    ["lenteja", "alubia"],
+    ["garbanzo", "alubia"],
+  ];
+  const _culturalPairBoost =
+    Number(window.CULTURAL_PAIR_BOOST) || 0.25;  // boost fuerte, 1-3 surfaceo
+
+  function _hasCulturalPair(originalName, candidateName) {
+    if (!originalName || !candidateName) return false;
+    const o = originalName.toLowerCase();
+    const c = candidateName.toLowerCase();
+    for (const [a, b] of _CULTURAL_PAIRS) {
+      if (o.includes(a) && c.includes(b)) return true;
+      if (o.includes(b) && c.includes(a)) return true;
+    }
+    return false;
+  }
+
   const originalMacros = {
     protein: (originalFood.protein * amount) / 100,
     carbs: (originalFood.carbs * amount) / 100,
@@ -1280,6 +1350,14 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       oDairyFam && cDairyFam && oDairyFam === cDairyFam
     ) ? _dairySubfamilyBoost : 0;
 
+    // CULTURAL PAIRS BOOST: parejas naturales (pollo↔pavo, huevo↔tortilla,
+    // leche↔bebida vegetal, etc.). Hugo brief punto 2 explícito.
+    const culturalPairBonus =
+      _hasCulturalPair(originalFood.name, a.name) ? _culturalPairBoost : 0;
+    if (culturalPairBonus > 0 && window.location.search.includes('?debug=1')) {
+      console.debug('[cultural-pair] BOOST candidate=\'' + a.name + '\' +' + culturalPairBonus);
+    }
+
     // Soft demotions from bulk-label flags. Multiplicative, applied on top of
     // the additive sourceAffinityBonus. No-op when flags absent (strict equality
     // means undefined !== true / undefined !== "raro" — graceful degradation).
@@ -1361,14 +1439,44 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       }
     }
 
+    // ESCAPE HATCH: cuando origen y candidato son ambos PROTEÍNAS MAGRAS
+    // hermanas (pollo, pavo, ternera magra, pescados, huevo — no exotic),
+    // las reglas de cooking-state / kcal-density / mixed-macro NO aplican.
+    //
+    // Razonamiento clínico (nutricionista 20+ años): si una mujer compra
+    // pollo crudo y la BD tiene pavo a la plancha (cocido), intercambiar
+    // ESOS macros es VÁLIDO porque así lo va a comer ella en el plato.
+    // Las reglas de cocción están pensadas para granos (arroz crudo vs
+    // hervido = macros muy distintas) y mixtos verdaderos (huevo, salmón,
+    // aguacate), no para el cluster proteico magro.
+    //
+    // Hugo brief punto 2: "Si busca pollo, el pavo no puede salir peor
+    // posicionado que nécora o cangrejo. Matemáticamente puede cuadrar
+    // algo peor por grasa, pero como intercambio real de cocina es
+    // mucho más útil." → este escape implementa esa intención.
+    const _LEAN_PROTEIN_CLUSTER = new Set([
+      "meat_lean", "meat", "meat_fatty",
+      "fish_white", "fish_fatty",
+      "eggs",
+    ]);
+    const isSameLeanProteinCluster =
+      originalFood.category === "protein" && a.category === "protein" &&
+      _LEAN_PROTEIN_CLUSTER.has(originalFood.subgroup) &&
+      _LEAN_PROTEIN_CLUSTER.has(a.subgroup) &&
+      a.exotic !== true && originalFood.exotic !== true &&
+      (a.culinary_role || "meal_dish") === "meal_dish" &&
+      (originalFood.culinary_role || "meal_dish") === "meal_dish";
+
     // CLINICAL: cooking state symmetry. Independiente de bulk-label flags
     // (corre siempre, basado en regex sobre el nombre). Si origen=raw y
     // candidato=cooked (o al revés), demotion fuerte. Si alguno es 'neutral',
     // no penaliza (la mayoría de foods no marcan estado).
+    // EXCEPCIÓN: proteínas magras hermanas (ver escape hatch arriba).
     {
       const _originState   = getCookingState(originalFood.name);
       const _candidateState = getCookingState(a.name);
       if (
+        !isSameLeanProteinCluster &&
         _originState !== "neutral" &&
         _candidateState !== "neutral" &&
         _originState !== _candidateState
@@ -1417,10 +1525,13 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     // cocido = 100g arroz crudo en calorías, intercambio clínico válido).
     // Sirve para detectar "Arroz crudo (360 kcal)" vs "Arroz hervido (130 kcal)"
     // dentro de sub:grains — son la misma cosa en estados distintos.
+    // EXCEPCIÓN: lean protein cluster (pollo/pavo magros distintos cortes
+    // varían naturalmente en kcal por % grasa — no es bug de estado).
     {
       const oKcal = originalFood.calories;
       const cKcal = a.calories;
       if (
+        !isSameLeanProteinCluster &&
         oKcal != null && cKcal != null &&
         originalFood.subgroup && a.subgroup &&
         originalFood.subgroup === a.subgroup
@@ -1437,23 +1548,31 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     }
 
     // CLINICAL: mixed macro coherence (punto 3 del cliente).
-    // Para alimentos MIXTOS (huevo, salmón, yogur griego, aguacate, hummus,
-    // queso fresco entero, frutos secos) donde proteína Y grasa son ambas
-    // significativas, NO basta con igualar proteína — hay que respetar
-    // grasa Y calorías conjuntamente.
+    // Para alimentos MIXTOS REALES (huevo, salmón, yogur griego entero,
+    // aguacate, hummus, queso fresco entero, frutos secos) donde proteína
+    // Y grasa son ambas significativas, NO basta con igualar proteína —
+    // hay que respetar grasa Y calorías conjuntamente.
     //
     // Cliente: "si una clienta cambia 2 huevos por merluza/rape/panga/
     // langostino, pierde mucha energía y saciedad. Luego a las 23:30
     // aparece el monstruo del armario de las galletas."
+    //
+    // CRITERIO CLÍNICO REFINADO: "mixto verdadero" = ratio F/P >= 0.6 Y
+    // fat absoluto >= 8g/100g. Pollo con piel (F=9, P=21, F/P=0.43)
+    // NO es mixto — su intercambio natural ES pavo magro (Hugo punto 2).
+    // Además, exemption explícita para lean protein cluster (escape hatch).
     //
     // Doble check:
     //   (a) fat-loss > 50% → demote
     //   (b) calorie-loss > 25% → demote (umbral exacto del cliente)
     // El demote final = mínimo de los dos (el más estricto manda).
     {
+      const _oP = originalFood.protein || 0;
+      const _oF = originalFood.fat || 0;
+      const _fpRatio = _oP > 0 ? _oF / _oP : 0;
       const isMixedMacroOrigin =
-        (originalFood.protein || 0) > 5 && (originalFood.fat || 0) >= 6;
-      if (isMixedMacroOrigin && a.macros) {
+        _oP > 5 && _oF >= 8 && _fpRatio >= 0.6;
+      if (isMixedMacroOrigin && !isSameLeanProteinCluster && a.macros) {
         let mixedDemotion = 1;
 
         // (a) Fat-loss check
@@ -1529,25 +1648,43 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     }
 
     // R3 CLINICAL: calorie floor. El cliente lo formuló para alimentos
-    // MIXTOS (huevo, salmón, yogur griego, aguacate, hummus) — "si pierde
-    // más del 25% de las calorías del origen, no puede ser top match".
+    // MIXTOS REALES (huevo F=10.5, salmón F=12, yogur griego F=10.2,
+    // aguacate F=12, hummus F=8.6) — "si pierde más del 25% de las
+    // calorías del origen, no puede ser top match".
     //
-    // IMPORTANTE: NO generalizar a toda proteína. Si lo hago, pollo muslo
-    // (183 kcal) sabotea pavo pechuga (~120 kcal, ratio 0.65) y el cliente
-    // pierde EL #1 de su lista de preferencias para pollo. R3 estricto:
-    //   - origen con fat >= 8g (densidad grasa significativa)
-    //   - origen con kcal >= 100/100g
-    //   - se aplica más suave en proteínas magras-moderadas para no destruir
-    //     pavo / pescado blanco como alternativa de pollo
+    // CRITERIO CLÍNICO (nutricionista 20+ años, validado 16/05/2026):
+    // un alimento es "mixto verdadero" cuando su ratio FAT/PROTEIN >= 0.6.
+    // Pollo con piel (F/P=9/21=0.43) NO es mixto — es proteína magra
+    // con piel-grasa. Pavo es su intercambio NATURAL (Hugo punto 2).
+    //
+    // Triple gate para activar R3:
+    //   - fat >= 10g (sube de 8 — deja fuera pollo con piel 9g)
+    //   - kcal >= 100/100g (densidad calórica significativa)
+    //   - fat/protein >= 0.6 (proporción de grasa relevante)
+    //
+    // Además, NUNCA aplicar R3 entre proteínas magras del mismo cluster
+    // (meat_lean ↔ meat_lean, fish_white ↔ fish_white) — son intercambios
+    // clínicos naturales aunque kcal varíen.
     {
       const oKcal100 = originalFood.calories || 0;
       const oFat100  = originalFood.fat || 0;
-      const isMixedOrigin = oFat100 >= 8 && oKcal100 >= 100;
-      if (isMixedOrigin && originalMacros.calories > 0 && a.macros) {
+      const oProt100 = originalFood.protein || 0;
+      const fatProtRatio = oProt100 > 0 ? oFat100 / oProt100 : 0;
+      const isMixedOrigin =
+        oFat100 >= 10 && oKcal100 >= 100 && fatProtRatio >= 0.6;
+      // Escape hatch para proteínas magras hermanas (Hugo punto 2)
+      const _LEAN_PROTEIN_SUBS = new Set([
+        "meat_lean", "meat", "fish_white", "fish_fatty", "eggs",
+      ]);
+      const sameLeanCluster =
+        originalFood.category === "protein" && a.category === "protein" &&
+        _LEAN_PROTEIN_SUBS.has(originalFood.subgroup) &&
+        _LEAN_PROTEIN_SUBS.has(a.subgroup) &&
+        a.exotic !== true;
+      if (isMixedOrigin && !sameLeanCluster &&
+          originalMacros.calories > 0 && a.macros) {
         const calRatio = a.macros.calories / originalMacros.calories;
         if (calRatio < 0.75) {
-          // Soft: 0.74 → ×0.93   |   0.50 → ×0.80   |   0.25 → ×0.65
-          // (Antes era hasta ×0.25 — demasiado agresivo, eliminaba pavo)
           const floorDemotion = Math.max(0.65, 0.5 + calRatio * 0.6);
           demotion *= floorDemotion;
           if (window.location.search.includes('?debug=1')) {
@@ -1628,8 +1765,8 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     return {
       ...a,
       _hybridScore: hybrid,
-      _sortScoreBase: hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus,
-      _sortScore: (hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus) * demotion,
+      _sortScoreBase: hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus,
+      _sortScore: (hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus) * demotion,
     };
   });
 
@@ -1673,19 +1810,33 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       }
     }
 
-    // SOURCE FAMILY HARD PARTITION: dentro del primary (y secondary)
-    // ya deduped, candidatos de la MISMA familia que el origen van TODOS
-    // primero. Si origen es BEDCA → todos los BEDCA del tier antes que
-    // cualquier branded; si origen es Mercadona → todos los branded antes
-    // que BEDCA. Combinado con el dedup estricto (un representante por
-    // cluster), esto da el comportamiento esperado: BEDCA primero pero
-    // sin saturar con variantes del mismo alimento.
+    // SOURCE FAMILY SOFT PARTITION: dentro del primary (y secondary)
+    // ya deduped, candidatos de la MISMA familia que el origen van
+    // primero SOLO SI superan un threshold mínimo de _sortScore. Los
+    // que están culinariamente demoteados (cross-subfamily lácteos,
+    // exotic, oil_added, role mismatch) NO suben por venir de BEDCA.
+    //
+    // Caso disparador: "Yogur griego" BEDCA → "Leche de oveja" BEDCA
+    // tenía _sortScore=0.12 (correctamente demoteada por dairy-cross
+    // ×0.35) pero igual surfaceaba pos 2 porque el partition viejo
+    // ponía TODOS los BEDCA al frente, ignorando el sortScore. Hugo
+    // reportó esto: "yogur griego no debería surfacear leche".
+    //
+    // Threshold: 0.30 deja pasar candidatos con matchScore decente y
+    // demociones suaves; bloquea los muy castigados (cross-subfamily
+    // 0.35 deja 0.12; exotic 0.25 deja ~0.08; etc).
     const oFamily = sourceFamily(originalFood.source);
+    const _SAME_FAMILY_MIN_SORT_SCORE =
+      Number(window.SAME_FAMILY_MIN_SORT_SCORE) || 0.30;
     const partition = (list) => {
       const same = [], other = [];
       for (const f of list) {
-        if (sourceFamily(f.source) === oFamily) same.push(f);
-        else other.push(f);
+        const sameSrc = sourceFamily(f.source) === oFamily;
+        if (sameSrc && (f._sortScore ?? 0) >= _SAME_FAMILY_MIN_SORT_SCORE) {
+          same.push(f);
+        } else {
+          other.push(f);
+        }
       }
       return [...same, ...other];
     };

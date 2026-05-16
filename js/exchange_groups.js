@@ -91,6 +91,7 @@
     meat_lean: [
       // T1 STRICT — mismo perfil proteico magro por tablas españolas
       'meat_lean',
+      'meat',          // genérico "Pavo crudo", "Pavo entero" sin parte específica
       'fish_white',
       'fish_fatty',
       'eggs',
@@ -105,12 +106,22 @@
       // T1 STRICT — grupo cárnico con grasa; equivalencia por proteína bruta
       'meat_fatty',
       'meat_lean',
+      'meat',          // genérico cárnico
       'fish_fatty',
       'eggs',
       // T2 ADVANCED — diferencia en perfil graso justifica clasificar como avanzado
       'fish_white',
       'legumes',
       'plant_protein',
+    ],
+
+    // Subgroup 'meat' genérico (sin parte específica): "Pavo entero crudo",
+    // "Pavo crudo", "Pollo entero", "Cordero entero". BEDCA los etiqueta
+    // así cuando no especifican corte. Compatibles con cualquier carne
+    // (magra o grasa) y huevos como intercambio proteico estándar.
+    meat: [
+      'meat', 'meat_lean', 'meat_fatty', 'eggs',
+      'fish_white', 'fish_fatty', 'legumes', 'plant_protein',
     ],
 
     viscera: [
@@ -233,41 +244,53 @@
     // ── GRASAS ────────────────────────────────────────────────────────────────
     // Fuente: Russolillo — 1 ración grasa = 10 ml aceite / 25–30 g frutos secos.
 
+    // FAT CLUSTER FUNCIONAL (Hugo brief 16/05/2026 punto 5):
+    //   "Crear un clúster funcional de grasas reales: aceite, aguacate,
+    //    frutos secos, aceitunas, semillas, tahín, crema de cacahuete.
+    //    Permitir que crucen entre sí como intercambios reales."
+    //
+    // Diseño:
+    //   - Todos los subgroups grasa-real (olive_oil, other_oils, avocado,
+    //     nuts_seeds, other_fat) son MUTUAMENTE intercambiables.
+    //   - butter_margarine queda APARTE (saturada, perfil distinto — uso
+    //     supervisado, Fisterra). NO cruza con el cluster.
+    //   - El matchScore + fat-bridge boost (algorithm.js:973-1254) decide
+    //     el orden fino dentro del cluster; isCompatibleSubgroup solo
+    //     decide quién entra al pool.
+    //
+    // Russolillo: 10 ml aceite = 25-30 g frutos secos = 50-60 g aguacate =
+    //   1 ración de grasa. Esto valida el cluster a nivel raciones.
+
     olive_oil: [
-      // T1 STRICT — intercambio estándar entre aceites vegetales
-      'olive_oil',
-      'other_oils',
-      // T2 ADVANCED — perfil monoinsaturado similar, pero matriz sólida vs líquida
-      'avocado',
+      'olive_oil', 'other_oils',
+      'avocado', 'nuts_seeds', 'other_fat',
     ],
-    // Russolillo: 10 ml aceite = 1 ración de grasa. AOVE es referencia en tablas españolas.
 
     other_oils: [
-      // T1 STRICT — intercambio entre aceites vegetales
-      'other_oils',
-      'olive_oil',
+      'other_oils', 'olive_oil',
+      'avocado', 'nuts_seeds', 'other_fat',
     ],
 
     nuts_seeds: [
-      // T1 STRICT — frutos secos y semillas permanecen dentro de su subgrupo
-      // Distinto perfil de uso culinario e IG respecto a aceites.
       'nuts_seeds',
+      'olive_oil', 'other_oils', 'avocado', 'other_fat',
     ],
-    // Russolillo: 25–30 g frutos secos = 1 ración grasa. No equivale a aceite en contexto culinario.
 
     butter_margarine: [
-      // T1 STRICT — grasa saturada sólida; no intercambiable con aceites sin supervisión
+      // Cluster aparte — grasa saturada, no intercambia con aceite/aguacate.
       'butter_margarine',
     ],
-    // Fisterra: mantequilla/margarina — uso limitado; perfil de grasa saturada diferente.
 
     avocado: [
-      // T2 ADVANCED — base grasa monoinsaturada compatible; diferente densidad y contexto culinario
       'avocado',
-      'olive_oil',
-      'other_oils',
+      'olive_oil', 'other_oils', 'nuts_seeds', 'other_fat',
     ],
-    // Russolillo: aguacate = grasa monoinsaturada en matriz vegetal. 50–60 g = 1 ración.
+
+    other_fat: [
+      // Aceitunas, tahín, crema de cacahuete, semillas categorizadas aquí.
+      'other_fat',
+      'olive_oil', 'other_oils', 'avocado', 'nuts_seeds',
+    ],
 
     // ── HIDRATOS DE CARBONO ───────────────────────────────────────────────────
     // Fuente: Russolillo — 60 g pan = 60 g pasta cruda = 60 g arroz crudo = 200 g patata cocida.

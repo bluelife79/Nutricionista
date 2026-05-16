@@ -455,7 +455,7 @@
     "code": null,
     "quantity": null,
     "subgroup": "other",
-    "macro_profile": "fat",
+    "macro_profile": "calories",
     "flags": [
       "condiment"
     ],
@@ -2935,7 +2935,7 @@
     "code": null,
     "quantity": null,
     "subgroup": "other",
-    "macro_profile": "protein",
+    "macro_profile": "calories",
     "flags": [],
     "ready_to_eat": false,
     "raw_ingredient": true,
@@ -3623,7 +3623,7 @@
     "code": null,
     "quantity": null,
     "subgroup": "other",
-    "macro_profile": "fat",
+    "macro_profile": "calories",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -3648,7 +3648,7 @@
     "code": null,
     "quantity": null,
     "subgroup": null,
-    "macro_profile": "fat",
+    "macro_profile": "calories",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -5581,7 +5581,7 @@
     "code": null,
     "quantity": null,
     "subgroup": "vegetables",
-    "macro_profile": "fat",
+    "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
     "ready_to_eat": true,
@@ -9622,7 +9622,7 @@
     "code": null,
     "quantity": null,
     "subgroup": "other_carbs",
-    "macro_profile": "carbs",
+    "macro_profile": "calories",
     "flags": [
       "condiment"
     ],
@@ -12711,7 +12711,7 @@
     "code": null,
     "quantity": null,
     "subgroup": "other",
-    "macro_profile": "carbs",
+    "macro_profile": "calories",
     "flags": [],
     "ready_to_eat": false,
     "raw_ingredient": true,
@@ -12736,7 +12736,7 @@
     "code": null,
     "quantity": null,
     "subgroup": "other",
-    "macro_profile": "carbs",
+    "macro_profile": "calories",
     "flags": [],
     "ready_to_eat": false,
     "raw_ingredient": true,
@@ -13238,7 +13238,7 @@
     "code": null,
     "quantity": null,
     "subgroup": "vegetables",
-    "macro_profile": "protein",
+    "macro_profile": "carbs",
     "flags": [
       "condiment"
     ],
@@ -21223,7 +21223,7 @@
     "code": null,
     "quantity": null,
     "subgroup": null,
-    "macro_profile": "carbs",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -26351,7 +26351,7 @@
     "code": "3560070469055",
     "quantity": "500 g",
     "subgroup": "other_carbs",
-    "macro_profile": "carbs",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
     "raw_ingredient": true,
@@ -29001,7 +29001,7 @@
     "code": "8480000162083",
     "quantity": "340 g.",
     "subgroup": "tubers",
-    "macro_profile": "fat",
+    "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
     "raw_ingredient": false,
@@ -29967,7 +29967,7 @@
     "code": "8431876059403",
     "quantity": "500 ml",
     "subgroup": "fruit",
-    "macro_profile": "carbs",
+    "macro_profile": "calories",
     "flags": [
       "condiment"
     ],
@@ -32840,7 +32840,7 @@
     "code": "8480010017007",
     "quantity": "35,8g 650 unidades",
     "subgroup": "other_carbs",
-    "macro_profile": "carbs",
+    "macro_profile": "calories",
     "flags": [
       "condiment"
     ],
@@ -34443,7 +34443,7 @@
     "code": "8480000198181",
     "quantity": "39 g",
     "subgroup": "other_carbs",
-    "macro_profile": "carbs",
+    "macro_profile": "calories",
     "flags": [
       "condiment"
     ],
@@ -35467,7 +35467,7 @@
     "code": "3560070680986",
     "quantity": "4,5 g",
     "subgroup": "other_carbs",
-    "macro_profile": "carbs",
+    "macro_profile": "calories",
     "flags": [
       "condiment"
     ],
@@ -51558,7 +51558,7 @@
     "code": "20460815",
     "quantity": "Salat (Penny DE) 300 g / Miel (Lidl ES): 1 kg",
     "subgroup": "other_dairy",
-    "macro_profile": "fat",
+    "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -54813,7 +54813,7 @@
     "code": "8480017057488",
     "quantity": "",
     "subgroup": "other_dairy",
-    "macro_profile": "protein",
+    "macro_profile": "calories",
     "flags": [],
     "ready_to_eat": false,
     "raw_ingredient": true,
@@ -55677,7 +55677,7 @@
     "code": "20805555",
     "quantity": "800g",
     "subgroup": "other_dairy",
-    "macro_profile": "carbs",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
     "raw_ingredient": false,
@@ -57186,7 +57186,7 @@
     "code": "20253479",
     "quantity": "250 g",
     "subgroup": "other_dairy",
-    "macro_profile": "protein",
+    "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
     "raw_ingredient": false,
@@ -60334,7 +60334,7 @@
     "code": "8425779042532",
     "quantity": "200 g",
     "subgroup": "vegetables",
-    "macro_profile": "protein",
+    "macro_profile": "calories",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -60461,7 +60461,7 @@
     "code": "3560070446384",
     "quantity": "300 g",
     "subgroup": "vegetables",
-    "macro_profile": "fat",
+    "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -62765,7 +62765,7 @@
     "code": "8480000162168",
     "quantity": "250 g",
     "subgroup": "vegetables",
-    "macro_profile": "fat",
+    "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
     "raw_ingredient": false,
@@ -65511,7 +65511,7 @@
     "code": "8480017167316",
     "quantity": "2 x 250 g",
     "subgroup": "other_protein",
-    "macro_profile": "protein",
+    "macro_profile": "calories",
     "flags": [],
     "ready_to_eat": false,
     "raw_ingredient": true,
@@ -66401,7 +66401,7 @@
     "code": "8480000197269",
     "quantity": "750g",
     "subgroup": "fish_fatty",
-    "macro_profile": "carbs",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
     "raw_ingredient": false,
@@ -66451,7 +66451,7 @@
     "code": "3560070371600",
     "quantity": "350 g",
     "subgroup": "fish_fatty",
-    "macro_profile": "carbs",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
     "raw_ingredient": false,
@@ -71434,7 +71434,7 @@
     "code": "20797751",
     "quantity": "375 ml",
     "subgroup": "other",
-    "macro_profile": "carbs",
+    "macro_profile": "calories",
     "flags": [
       "condiment"
     ],
@@ -74018,7 +74018,7 @@
     "code": "8480017058058",
     "quantity": "900 g",
     "subgroup": "meat_lean",
-    "macro_profile": "carbs",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -80037,7 +80037,7 @@
     "code": "8414807503640",
     "quantity": "75 g",
     "subgroup": "other_carbs",
-    "macro_profile": "carbs",
+    "macro_profile": "calories",
     "flags": [
       "sweet"
     ],
@@ -80091,7 +80091,7 @@
     "code": "8480010082067",
     "quantity": "",
     "subgroup": "other_carbs",
-    "macro_profile": "carbs",
+    "macro_profile": "calories",
     "flags": [
       "condiment"
     ],
@@ -80533,7 +80533,7 @@
     "code": "40879260",
     "quantity": "300 g",
     "subgroup": "other_carbs",
-    "macro_profile": "carbs",
+    "macro_profile": "calories",
     "flags": [
       "sweet"
     ],
@@ -80560,7 +80560,7 @@
     "code": "8480000198051",
     "quantity": "115 g",
     "subgroup": "other_carbs",
-    "macro_profile": "carbs",
+    "macro_profile": "calories",
     "flags": [
       "sweet"
     ],
@@ -80587,7 +80587,7 @@
     "code": "20103958",
     "quantity": "96 g (3 x 32 g)",
     "subgroup": "other_carbs",
-    "macro_profile": "carbs",
+    "macro_profile": "calories",
     "flags": [
       "sweet"
     ],
@@ -80614,7 +80614,7 @@
     "code": "8480000792563",
     "quantity": "",
     "subgroup": "other_carbs",
-    "macro_profile": "carbs",
+    "macro_profile": "calories",
     "flags": [
       "sweet"
     ],
@@ -81704,7 +81704,7 @@
     "code": "8480017510662",
     "quantity": "75 g",
     "subgroup": "other_carbs",
-    "macro_profile": "carbs",
+    "macro_profile": "calories",
     "flags": [
       "sweet"
     ],
@@ -81806,7 +81806,7 @@
     "code": "3596710336340",
     "quantity": "0.15 kg",
     "subgroup": "other_carbs",
-    "macro_profile": "carbs",
+    "macro_profile": "calories",
     "flags": [
       "sweet"
     ],
@@ -81833,7 +81833,7 @@
     "code": "3560071112271",
     "quantity": "60 x 1 g = 60 g",
     "subgroup": "other_carbs",
-    "macro_profile": "carbs",
+    "macro_profile": "calories",
     "flags": [
       "condiment"
     ],
@@ -84074,7 +84074,7 @@
     "code": "3560070497195",
     "quantity": "340 g",
     "subgroup": "other_fat",
-    "macro_profile": "fat",
+    "macro_profile": "carbs",
     "flags": [
       "condiment"
     ],
@@ -87443,7 +87443,7 @@
     "code": "8480010163193",
     "quantity": "",
     "subgroup": "other_fat",
-    "macro_profile": "fat",
+    "macro_profile": "carbs",
     "flags": [
       "condiment"
     ],
@@ -88221,7 +88221,7 @@
     "code": "3560070657544",
     "quantity": "330 g",
     "subgroup": "other_fat",
-    "macro_profile": "fat",
+    "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": false,
     "raw_ingredient": false,
@@ -92576,7 +92576,7 @@
     "code": "24068864",
     "quantity": "420 g",
     "subgroup": "low_fat_dairy",
-    "macro_profile": "fat",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -111145,7 +111145,7 @@
     "code": "8480013171034",
     "quantity": "",
     "subgroup": "other_carbs",
-    "macro_profile": "carbs",
+    "macro_profile": "calories",
     "flags": [
       "condiment"
     ],
@@ -116395,7 +116395,7 @@
     "code": "8411246071839",
     "quantity": "300 g",
     "subgroup": "fish_white",
-    "macro_profile": "carbs",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
     "raw_ingredient": false,
@@ -120530,7 +120530,7 @@
     "code": "7501791663618",
     "quantity": "74 g",
     "subgroup": "fish_fatty",
-    "macro_profile": "carbs",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
