@@ -25,6 +25,7 @@ load_dotenv(Path(__file__).parent / ".env")
 
 from judge import router as judge_router, init_cache
 from judge_cache import compute_db_version
+from _judge_prompt import JUDGE_PROMPT_VERSION
 
 logger = logging.getLogger(__name__)
 state: dict = {}
@@ -36,10 +37,13 @@ async def lifespan(app: FastAPI):
     # to the current DB content. Restarting after a DB update auto-invalidates
     # all cached verdicts (different prefix → miss on every key).
     db_path = Path(__file__).parent.parent / "database.json"
-    db_version = compute_db_version(db_path)
+    # Pasamos prompt_version → al cambiar el prompt todo el cache se
+    # invalida automáticamente (evita servir verdicts viejos cuando el
+    # judge se comportaba distinto, como pasó con aguacate post-v1.7).
+    db_version = compute_db_version(db_path, prompt_version=JUDGE_PROMPT_VERSION)
     state["db_version"] = db_version
     init_cache(db_version)
-    logger.info("microservicio ready — db_version=%s", db_version[:12])
+    logger.info("microservicio ready — db_version=%s prompt=%s", db_version, JUDGE_PROMPT_VERSION)
 
     yield
 

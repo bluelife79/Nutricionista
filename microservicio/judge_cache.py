@@ -16,22 +16,30 @@ from pathlib import Path
 from cachetools import TTLCache
 
 
-def compute_db_version(db_path: Path) -> str:
-    """MD5 of database.json bytes (16-char hex). Used as cache namespace prefix.
+def compute_db_version(db_path: Path, prompt_version: str = "") -> str:
+    """Cache namespace prefix combining DB content + prompt version.
+
+    Composición: db_hash[:12] + ':' + prompt_version
+    Cada cambio de prompt (v2.0.0 → v2.1.0 → etc.) invalida automáticamente
+    todo el cache previo — evita servir verdicts cacheados con prompts
+    viejos que producían resultados malos (caso aguacate: cache servía un
+    verdict de cuando el LLM era perezoso con prompt v1.x).
 
     Resolution order:
-      1. DB_VERSION_OVERRIDE env var — manual invalidation knob for deploys
-         where the file isn't accessible (Railway, container builds).
-      2. MD5 of database.json if the file exists.
-      3. "no-db" fallback — cache works but never auto-invalidates.
+      1. DB_VERSION_OVERRIDE env var — manual invalidation knob.
+      2. MD5(database.json) + ':' + prompt_version
+      3. "no-db:{prompt_version}" fallback — cache nunca auto-invalida la DB
+         pero sí el prompt.
     """
     import os
     override = os.getenv("DB_VERSION_OVERRIDE", "").strip()
     if override:
-        return override[:16]
-    if not db_path.exists():
-        return "no-db"
-    return hashlib.md5(db_path.read_bytes()).hexdigest()[:16]
+        return f"{override[:12]}:{prompt_version}"
+    db_part = (
+        hashlib.md5(db_path.read_bytes()).hexdigest()[:12]
+        if db_path.exists() else "no-db"
+    )
+    return f"{db_part}:{prompt_version}"
 
 
 def make_cache_key(origin_id: str, candidate_ids_sorted: list[str]) -> str:
