@@ -663,6 +663,12 @@ function pickJudgeFields(f) {
     exotic:           f.exotic            ?? null,
     label_confidence: f.label_confidence  ?? null,
     calories:         f.calories          ?? null,
+    // Macros per 100g — necesarios para que el judge razone coherencia
+    // de alimentos mixtos (Regla 15, prompt v1.5+). Sin esto el LLM
+    // recibía solo calories y no podía calcular kcal_perdidas_pct.
+    protein:          f.protein           ?? null,
+    fat:              f.fat               ?? null,
+    carbs:            f.carbs             ?? null,
     usage_es:         f.usage_es          ?? null,
   };
 }
@@ -1392,24 +1398,50 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       }
     }
 
-    // CLINICAL: mixed macro fat loss. Para alimentos donde proteína Y grasa
-    // son ambas significativas (huevo, salmón, yogur griego, aguacate),
-    // penalizar candidatos que igualan proteína pero pierden >50% de la
-    // grasa del origen. La clienta no puede cambiar huevo por merluza sin
-    // perder saciedad y calorías.
-    // Solo aplica cuando la grasa del origen es ≥6g/100g (threshold calibrado
-    // para excluir pollo/pechuga que tiene proteína alta pero grasa baja).
+    // CLINICAL: mixed macro coherence (punto 3 del cliente).
+    // Para alimentos MIXTOS (huevo, salmón, yogur griego, aguacate, hummus,
+    // queso fresco entero, frutos secos) donde proteína Y grasa son ambas
+    // significativas, NO basta con igualar proteína — hay que respetar
+    // grasa Y calorías conjuntamente.
+    //
+    // Cliente: "si una clienta cambia 2 huevos por merluza/rape/panga/
+    // langostino, pierde mucha energía y saciedad. Luego a las 23:30
+    // aparece el monstruo del armario de las galletas."
+    //
+    // Doble check:
+    //   (a) fat-loss > 50% → demote
+    //   (b) calorie-loss > 25% → demote (umbral exacto del cliente)
+    // El demote final = mínimo de los dos (el más estricto manda).
     {
       const isMixedMacroOrigin =
         (originalFood.protein || 0) > 5 && (originalFood.fat || 0) >= 6;
-      if (isMixedMacroOrigin && originalMacros.fat > 0 && a.diffs) {
-        const fatLoss = a.diffs.fat < 0 ? Math.abs(a.diffs.fat) : 0;
-        const fatLossRatio = fatLoss / originalMacros.fat;
-        if (fatLossRatio > 0.5) {
-          const mixedDemotion = Math.max(0.3, 1 - fatLossRatio * 0.8);
+      if (isMixedMacroOrigin && a.macros) {
+        let mixedDemotion = 1;
+
+        // (a) Fat-loss check
+        if (originalMacros.fat > 0 && a.diffs) {
+          const fatLoss = a.diffs.fat < 0 ? Math.abs(a.diffs.fat) : 0;
+          const fatLossRatio = fatLoss / originalMacros.fat;
+          if (fatLossRatio > 0.5) {
+            // 0.51 → ×0.59  |  0.75 → ×0.40  |  1.0 → ×0.20
+            mixedDemotion = Math.min(mixedDemotion, Math.max(0.20, 1 - fatLossRatio));
+          }
+        }
+
+        // (b) Calorie-loss check (umbral 25% del cliente)
+        if (originalMacros.calories > 0) {
+          const calRatio = a.macros.calories / originalMacros.calories;
+          if (calRatio < 0.75) {
+            // 0.74 → ×0.74  |  0.50 → ×0.50  |  0.30 → ×0.30
+            // Más agresivo que R3 genérico porque acá el origen es MIXTO.
+            mixedDemotion = Math.min(mixedDemotion, Math.max(0.20, calRatio));
+          }
+        }
+
+        if (mixedDemotion < 1) {
           demotion *= mixedDemotion;
           if (window.location.search.includes('?debug=1')) {
-            console.debug('[mixed-macro] DEMOTED candidate=\'' + a.name + '\' factor=' + mixedDemotion.toFixed(2) + ' fat_loss_ratio=' + fatLossRatio.toFixed(2));
+            console.debug('[mixed-macro] DEMOTED candidate=\'' + a.name + '\' factor=' + mixedDemotion.toFixed(2));
           }
         }
       }

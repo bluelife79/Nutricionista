@@ -13,7 +13,7 @@ from __future__ import annotations
 import json
 
 # Keep in lockstep with scripts/_label_prompt.py:PROMPT_VERSION
-JUDGE_PROMPT_VERSION = "1.4.0"
+JUDGE_PROMPT_VERSION = "1.5.0"
 
 SYSTEM_PROMPT = """\
 Eres un experto en gastronomía española y dietética clínica. Clasificas
@@ -169,16 +169,42 @@ Reglas culinarias (ESTRICTO):
       4. Ultraprocesado (burger meat, frankfurt, salchichas elaboradas)
     No removés los procesados — solo los relegás al final del ranked_ids.
 
-15. ALIMENTOS MIXTOS proteína+grasa (huevo, salmón, yogur griego,
-    aguacate, frutos secos, quesos): cuando el ORIGEN tiene TANTO
-    proteína significativa (>8g/100g) COMO grasa significativa (>5g/100g),
-    NO priorizés candidatos que igualan proteína pero pierden >20% de
-    calorías respecto al origen (comparando cantidades equivalentes).
-    Ej: "huevo 100g → 150 kcal" → candidato que da 80 kcal NO es ideal.
-    Para estos orígenes, la equivalencia real requiere respetar proteína,
-    grasa Y calorías conjuntamente. Candidatos muy magros (merluza,
-    langostino, pechuga sin piel) van al final o a removed_ids si la
-    pérdida calórica supera el 30%.
+15. ALIMENTOS MIXTOS — REGLA CLÍNICA CRÍTICA del cliente.
+
+    Un alimento ORIGEN es MIXTO cuando tiene TANTO proteína significativa
+    (>5g/100g) COMO grasa significativa (>5g/100g). Ejemplos típicos:
+    huevo (12.5p / 11g), salmón (20p / 13g), yogur griego entero
+    (5p / 10g), aguacate (2p / 15g), hummus, queso fresco entero, frutos
+    secos, quesos curados.
+
+    Para estos orígenes, la equivalencia NUNCA es solo proteína. Aplicá
+    este cálculo en cada candidato (los macros vienen por 100g):
+
+      ratio_proteina = origen.protein / candidato.protein
+      gramos_equivalentes = 100 × ratio_proteina (aprox para igualar proteína)
+      kcal_candidato_equivalente = candidato.calories × gramos_equivalentes / 100
+      kcal_perdidas_pct = 1 - (kcal_candidato_equivalente / origen.calories)
+
+    Reglas DURAS (cliente fue explícito):
+      - Si kcal_perdidas_pct > 25%  → enviá al FINAL de ranked_ids.
+      - Si kcal_perdidas_pct > 35%  → enviá a removed_ids.
+      - Si candidato.fat es < 25% de origen.fat → tratá como pérdida grave
+        aunque las kcal cuadren (la grasa da saciedad y energía).
+
+    Ejemplo concreto del cliente para huevo (12.5p, 11g grasa, 150 kcal):
+      - merluza (12p prot, 1g grasa, 67 kcal):
+          gramos_eq = 100 × 12.5/12 ≈ 104g  →  ~70 kcal → pierde 53% kcal
+          → removed_ids (pierde más del 35%)
+      - langostino, rape, panga, clara de huevo (90 kcal): mismo caso.
+      - salmón (20p, 13g, 200 kcal):
+          gramos_eq = 100 × 12.5/20 ≈ 63g  →  ~126 kcal → pierde 16% kcal
+          → OK como intercambio (sube en ranked_ids).
+      - sardina/caballa/arenque: equivalente, suben arriba.
+      - tortilla francesa, huevo en otra preparación: T1 familia, suben.
+
+    NO confundir alimentos mixtos con proteínas magras puras (pollo
+    pechuga, atún, pavo). Para esas, esta regla NO se aplica — usá la
+    jerarquía normal de subgrupos y procesado.
 
 Devuelve EXCLUSIVAMENTE un array JSON. Sin texto antes ni después. Sin
 markdown. Sin explicaciones fuera del campo "reason".\
@@ -219,7 +245,13 @@ def build_judge_user_message(origin, candidates, triggered_reasons=None) -> str:
         "frequency": origin.frequency,
         "exotic": origin.exotic,
         "label_confidence": getattr(origin, "label_confidence", None),
+        # Macros per 100g — necesarios para Regla 15 (coherencia de
+        # alimentos mixtos). Sin protein + fat el juez no puede calcular
+        # el ratio de pérdida calórica relativo a la cantidad equivalente.
         "calories": getattr(origin, "calories", None),
+        "protein":  getattr(origin, "protein",  None),
+        "fat":      getattr(origin, "fat",      None),
+        "carbs":    getattr(origin, "carbs",    None),
         # Descripción enriquecida del uso culinario español (audit_usage_with_llm.py).
         # Cuando está presente, ayuda al juicio clínico — explica el rol del
         # alimento ("plato directo" vs "ingrediente de cocina") sin que el LLM
@@ -240,6 +272,9 @@ def build_judge_user_message(origin, candidates, triggered_reasons=None) -> str:
             "exotic": c.exotic,
             "label_confidence": getattr(c, "label_confidence", None),
             "calories": getattr(c, "calories", None),
+            "protein":  getattr(c, "protein",  None),
+            "fat":      getattr(c, "fat",      None),
+            "carbs":    getattr(c, "carbs",    None),
             "usage_es": getattr(c, "usage_es", None),
         }
         for c in candidates

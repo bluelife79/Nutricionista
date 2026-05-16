@@ -107,6 +107,14 @@ class FoodFlags(BaseModel):
     exotic: bool | None = None
     label_confidence: int | None = None
     calories: float | None = None
+    # Macros per 100g — necesarios para que el juez razone coherencia de
+    # alimentos mixtos (huevo, salmón, yogur griego, aguacate). Sin protein
+    # + fat el LLM no puede calcular ratios de pérdida calórica relativos
+    # a la cantidad equivalente, y termina priorizando candidatos magros
+    # que aunque igualan proteína se cargan calorías y saciedad.
+    protein: float | None = None
+    fat: float | None = None
+    carbs: float | None = None
     # Descripción enriquecida del uso culinario español (opcional).
     # Cuando está presente, el juez la usa para razonamiento clínico sin
     # tener que inferir de flags. Generada offline por audit_usage_with_llm.py.
