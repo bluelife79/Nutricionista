@@ -1735,25 +1735,44 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     if (!_llmJudgeEnabled) {
       if (_isDebug) console.debug('[llm-judge] SKIP enabled=false');
     } else {
-      // Top-N T2 candidates sorted by descending _sortScore
-      const _topT2 = withHybrid
-        .filter(a => a.tier === 2)
-        .sort((a, b) => b._sortScore - a._sortScore)
-        .slice(0, JUDGE_TOP_N);
+      // Top-N candidatos para el judge. ALWAYS-ON: el LLM corre en TODA
+      // búsqueda (cliente lo exigió explícito — "todos tienen que llamar
+      // al menos 1 vez"). Si T2 está escaso, complementamos con T1
+      // (familia) y T3 (preparados) hasta llegar a un pool mínimo de 5.
+      //
+      // Aguacate, por ejemplo, puede tener T2 vacío (todos los demás
+      // fat-foods caen en T1 por compartir tokens raros en el nombre).
+      // En ese caso el judge igual juzga T1/T3 — no se salta.
+      const _t2 = withHybrid.filter(a => a.tier === 2)
+                            .sort((a, b) => b._sortScore - a._sortScore);
+      const _t1 = withHybrid.filter(a => a.tier === 1)
+                            .sort((a, b) => b._sortScore - a._sortScore);
+      const _t3 = withHybrid.filter(a => a.tier === 3)
+                            .sort((a, b) => b._sortScore - a._sortScore);
 
-      if (_topT2.length === 0) {
-        if (_isDebug) console.debug('[llm-judge] SKIP no T2 candidates');
+      let _topJudge;
+      if (_t2.length >= 5) {
+        // Caso normal: T2 alcanza.
+        _topJudge = _t2.slice(0, JUDGE_TOP_N);
+      } else {
+        // T2 escaso → complementar con T1 + T3 (priorizando T1).
+        const combined = [..._t2, ..._t1, ..._t3].slice(0, JUDGE_TOP_N);
+        _topJudge = combined;
+      }
+
+      if (_topJudge.length === 0) {
+        if (_isDebug) console.debug('[llm-judge] SKIP no candidates at all in any tier');
       } else {
         // Evaluamos triggers para informar al LLM por qué se le consulta,
         // pero la llamada es ALWAYS-ON (cache absorbe el costo).
-        const _triggered = evaluateJudgeTriggers(originalFood, _topT2);
+        const _triggered = evaluateJudgeTriggers(originalFood, _topJudge);
         const _reasonsForLog = _triggered.length > 0 ? _triggered : ['always_on'];
 
         {
           if (_isDebug) {
-            console.debug('[llm-judge] ALWAYS-ON top_t2=' + _topT2.length + ' triggers=[' + _reasonsForLog.join(',') + ']');
+            console.debug('[llm-judge] ALWAYS-ON judge_pool=' + _topJudge.length + ' (t2=' + _t2.length + ' t1=' + _t1.length + ' t3=' + _t3.length + ') triggers=[' + _reasonsForLog.join(',') + ']');
           }
-          const _verdict = await callJudge(originalFood, _topT2, _reasonsForLog, amount);
+          const _verdict = await callJudge(originalFood, _topJudge, _reasonsForLog, amount);
           if (_verdict) {
             applyJudgeVerdict(withHybrid, _verdict);
             _judgeInsufficientMatches = _verdict.insufficient_matches === true;
