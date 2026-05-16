@@ -956,6 +956,21 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
   // compita en pie de igualdad con la misma-familia.
   const _fatCrossSubgroupBoost =
     Number(window.FAT_CROSS_SUBGROUP_BOOST) || 0.10;
+  // R1: culinary role demotion. Cuando origen es meal_dish (arroz, pollo,
+  // patata) y candidato es snack/recipe_ingredient/dessert, demote fuerte.
+  // El cliente: "harina, snack o muy raro no debería salir arriba aunque
+  // cuadre macros". El score se modula por la severidad del mismatch.
+  const _demoteRoleSnack =
+    Number(window.ROLE_SNACK_DEMOTION) || 0.30;          // ×0.30
+  const _demoteRoleRecipeIngredient =
+    Number(window.ROLE_INGREDIENT_DEMOTION) || 0.20;     // ×0.20 más fuerte
+  const _demoteRoleDessert =
+    Number(window.ROLE_DESSERT_DEMOTION) || 0.35;        // ×0.35
+  // R2: exotic demotion. Cuando candidato es exotic (nécora, percebe,
+  // pulmón, avestruz) y origen NO lo es, demote fuerte. Si origen TAMBIÉN
+  // es exotic (clienta buscó "casquería"), no aplica.
+  const _demoteExoticMismatch =
+    Number(window.EXOTIC_MISMATCH_DEMOTION) || 0.25;     // ×0.25
 
   const originalMacros = {
     protein: (originalFood.protein * amount) / 100,
@@ -1341,6 +1356,39 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
             console.debug('[mixed-macro] DEMOTED candidate=\'' + a.name + '\' factor=' + mixedDemotion.toFixed(2) + ' fat_loss_ratio=' + fatLossRatio.toFixed(2));
           }
         }
+      }
+    }
+
+    // R1 CULINARY ROLE: si origen es meal_dish/staple y candidato es
+    // snack/recipe_ingredient/dessert, el intercambio NO es práctico
+    // aunque cuadre macros. Cliente: "una mujer no cambia 60g de arroz
+    // por harina cruda o por bolitas de maíz para cenar".
+    {
+      const oRole = originalFood.culinary_role || "meal_dish";
+      const cRole = a.culinary_role || "meal_dish";
+      const oIsMealLike = oRole === "meal_dish" || oRole === "staple";
+      if (oIsMealLike) {
+        let roleDemotion = 1;
+        if (cRole === "recipe_ingredient") roleDemotion = _demoteRoleRecipeIngredient;
+        else if (cRole === "snack")        roleDemotion = _demoteRoleSnack;
+        else if (cRole === "dessert")      roleDemotion = _demoteRoleDessert;
+        if (roleDemotion < 1) {
+          demotion *= roleDemotion;
+          if (window.location.search.includes('?debug=1')) {
+            console.debug('[role] DEMOTED candidate=\'' + a.name + '\' role=' + cRole + ' factor=' + roleDemotion);
+          }
+        }
+      }
+    }
+
+    // R2 EXOTIC: si candidato es exotic (nécora, percebe, pulmón,
+    // avestruz, casquería) y origen NO lo es, demote fuerte. Cliente:
+    // "no son alternativas normales para una clienta que quiere cambiar
+    // pollo un martes por la noche".
+    if (a.exotic === true && originalFood.exotic !== true) {
+      demotion *= _demoteExoticMismatch;
+      if (window.location.search.includes('?debug=1')) {
+        console.debug('[exotic] DEMOTED candidate=\'' + a.name + '\' factor=' + _demoteExoticMismatch);
       }
     }
 

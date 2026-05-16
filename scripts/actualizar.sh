@@ -3,14 +3,15 @@
 # scripts/actualizar.sh
 # Ejecutar después de cualquier cambio en database.json.
 #
-# Hace siete cosas en orden:
+# Hace ocho cosas en orden:
 #   1. Reclasifica verduras mal categorizadas (fix_categories.py)
 #   2. Reclasifica frutas mal categorizadas (fix_fruits.py)
 #   3. Marca golosinas y dulces (fix_sweets.py)
 #   4. Marca platos preparados (fix_prepared.py)
 #   5. Mueve bebidas calientes con leche fuera de dairy (fix_beverages.py)
-#   6. Deduplica básicos repetidos (dedupe_basicos.py)
-#   7. Regenera los embeddings semánticos (embed_foods.py) + cuantización int8
+#   6. Asigna culinary_role + refuerza exotic (fix_culinary_role.py)
+#   7. Deduplica básicos repetidos (dedupe_basicos.py)
+#   8. Regenera los embeddings semánticos (embed_foods.py) + cuantización int8
 #
 # Todos los scripts son IDEMPOTENTES: correrlos varias veces produce el mismo
 # resultado. No borran datos, solo agregan/modifican flags y categorías.
@@ -51,17 +52,22 @@ python3 scripts/fix_prepared.py
 echo ""
 
 # ── PASO 5: Mover bebidas calientes con leche fuera de dairy ─────────────────
-echo "▶ Paso 5/7 — Reclasificando bebidas con leche (café/té/latte)..."
+echo "▶ Paso 5/8 — Reclasificando bebidas con leche (café/té/latte)..."
 python3 scripts/fix_beverages.py
 echo ""
 
-# ── PASO 6: Deduplicar básicos ───────────────────────────────────────────────
-echo "▶ Paso 6/7 — Deduplicando alimentos básicos..."
+# ── PASO 6: Asignar culinary_role + reforzar exotic (R1, R2) ─────────────────
+echo "▶ Paso 6/8 — Asignando rol culinario (meal_dish/snack/ingrediente/postre/staple)..."
+python3 scripts/fix_culinary_role.py
+echo ""
+
+# ── PASO 7: Deduplicar básicos ───────────────────────────────────────────────
+echo "▶ Paso 7/8 — Deduplicando alimentos básicos..."
 python3 scripts/dedupe_basicos.py
 echo ""
 
-# ── PASO 7: Regenerar embeddings ─────────────────────────────────────────────
-echo "▶ Paso 7/7 — Regenerando embeddings semánticos..."
+# ── PASO 8: Regenerar embeddings ─────────────────────────────────────────────
+echo "▶ Paso 8/8 — Regenerando embeddings semánticos..."
 uv run --with "numpy>=2.0" --with "sentence-transformers>=5.0" \
   --directory microservicio python3 ../scripts/embed_foods.py
 uv run --with "numpy>=2.0" \

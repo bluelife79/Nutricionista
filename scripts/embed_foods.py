@@ -149,6 +149,18 @@ def build_embedding_text(food: dict) -> str:
     if proc and proc >= 2:
         parts.append("alimento procesado elaborado")
 
+    # culinary_role (added by scripts/fix_culinary_role.py) — gives the
+    # retrieval layer the same signal the algorithm uses for R1.
+    role = food.get("culinary_role")
+    if role == "snack":
+        parts.append("snack aperitivo no es comida principal")
+    elif role == "recipe_ingredient":
+        parts.append("ingrediente de receta no se come solo")
+    elif role == "dessert":
+        parts.append("postre dulce")
+    elif role == "staple":
+        parts.append("alimento base versatil")
+
     # usage_es: descripción culinaria detallada (auditada via GLM en
     # audit_usage_with_llm.py). Si presente, enriquece la señal semántica
     # — hace que "patata cocida" y "arroz hervido" se acerquen porque
