@@ -626,6 +626,58 @@
         margin-bottom: 16px;
       }
 
+      /* Empty-state amable cuando no hay intercambios equivalentes
+         (judge marcó insufficient o literalmente 0 candidatos). */
+      .empty-state {
+        text-align: center;
+        padding: 40px 24px;
+        background: #f8f7fc;
+        border: 2px dashed #d8d4ee;
+        border-radius: 20px;
+        margin: 16px 0;
+      }
+      .empty-state-icon {
+        font-size: 42px;
+        margin-bottom: 14px;
+      }
+      .empty-state-title {
+        font-size: 17px;
+        font-weight: 800;
+        color: #1a1a2e;
+        margin-bottom: 10px;
+        line-height: 1.35;
+      }
+      .empty-state-text {
+        font-size: 14px;
+        color: #555;
+        line-height: 1.5;
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      /* "Ver más" toggle for collapsible secondary blocks (familia, preparados).
+         Cliente: "para básicos no necesitamos 30 versiones casi iguales". */
+      .ver-mas-wrap {
+        text-align: center;
+        margin: 8px 0 16px;
+      }
+      .ver-mas-btn {
+        appearance: none;
+        border: 1.5px dashed #b8b0e8;
+        background: transparent;
+        color: #534b90;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 8px 18px;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
+      .ver-mas-btn:hover {
+        background: #f1eeff;
+        border-style: solid;
+      }
+
       /* Household measure badge (e.g. "≈ 1 cucharada sopera") shown next
          to the gram amount. Subtle so it doesn't compete with the macro. */
       .result-household {
@@ -1429,10 +1481,10 @@
         <div id="intercambiosSection" style="display: none">
           <div class="section-header intercambios">
             <div class="section-title">
-              🔄 INTERCAMBIOS REALES (<span id="intercambiosCount">0</span>)
+              🔄 ALTERNATIVAS RECOMENDADAS (<span id="intercambiosCount">0</span>)
             </div>
             <div class="section-subtitle">
-              Diferente ingrediente · perfil calórico equivalente
+              Lo que comerías en lugar de este alimento
             </div>
           </div>
           <div id="intercambiosGroups"></div>
@@ -1442,7 +1494,7 @@
         <div id="familiaSection" class="advanced-section" style="display: none">
           <details>
             <summary>
-              📦 MISMA FAMILIA (<span id="familiaCount">0</span>)
+              📦 OTRAS MARCAS Y FORMATOS SIMILARES (<span id="familiaCount">0</span>)
             </summary>
             <div
               class="warning-box"
@@ -1964,28 +2016,96 @@
           alternatives.intercambios.length +
           alternatives.familia.length +
           alternatives.preparados.length;
-        resultsCount.textContent = totalCount + " alternativas encontradas";
+        resultsCount.textContent =
+          totalCount === 0
+            ? "Sin intercambios disponibles"
+            : "Alternativas recomendadas";
 
-        renderIntercambiosGroups(alternatives.intercambios);
-
-        if (alternatives.familia.length > 0) {
-          familiaSection.style.display = "block";
-          familiaCount.textContent = alternatives.familia.length;
-          familiaContainer.innerHTML = alternatives.familia
-            .map((alt) => renderResultCard(alt, "familia"))
-            .join("");
+        // Empty-state amable. Cliente: "no quiero '0 alternativas
+        // encontradas' frío — prefiero un mensaje honesto."
+        // Cubre dos casos: judge dijo insufficient O literalmente 0 candidates.
+        const noResults = alternatives.intercambios.length === 0;
+        if (noResults || alternatives.noMatch) {
+          const hasAnyFamily =
+            alternatives.familia.length + alternatives.preparados.length > 0;
+          intercambiosSection.style.display = "block";
+          intercambiosCount.textContent = "0";
+          intercambiosGroups.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-state-icon">🤔</div>
+              <div class="empty-state-title">
+                No encontramos un intercambio equivalente para este alimento
+              </div>
+              <div class="empty-state-text">
+                ${hasAnyFamily
+                  ? "Abajo te mostramos opciones de la misma familia que pueden servirte como referencia, pero ninguna es un sustituto exacto sin descuadrar el menú."
+                  : "Probá con un alimento similar o consultalo con el equipo. No todo tiene un intercambio clínico equivalente."
+                }
+              </div>
+            </div>
+          `;
         } else {
-          familiaSection.style.display = "none";
+          renderIntercambiosGroups(alternatives.intercambios);
         }
 
-        if (alternatives.preparados.length > 0) {
-          preparadosSection.style.display = "block";
-          preparadosCount.textContent = alternatives.preparados.length;
-          preparadosContainer.innerHTML = alternatives.preparados
-            .map((alt) => renderResultCard(alt, "preparados"))
-            .join("");
-        } else {
-          preparadosSection.style.display = "none";
+        // Cliente: "para básicos no necesitamos 30 versiones casi iguales".
+        // Cap visible a 8 por bloque secundario + botón "Ver más" que
+        // expande el resto. El total real sigue en el counter.
+        renderCollapsibleBlock(
+          alternatives.familia, "familia",
+          familiaSection, familiaContainer, familiaCount,
+        );
+        renderCollapsibleBlock(
+          alternatives.preparados, "preparados",
+          preparadosSection, preparadosContainer, preparadosCount,
+        );
+      }
+
+      const FAMILIA_VISIBLE_DEFAULT = 8;
+
+      function renderCollapsibleBlock(items, tier, section, container, countEl) {
+        if (!items || items.length === 0) {
+          section.style.display = "none";
+          return;
+        }
+        section.style.display = "block";
+        countEl.textContent = items.length;
+
+        // Cliente: en pan/skyr/yogur/atún la familia tiene mucho contenido
+        // útil — abrir el <details> por defecto para que la clienta no
+        // tenga que clickear. Solo aplica al bloque familia y solo cuando
+        // hay 5+ elementos. Preparados sigue cerrado por default.
+        const details = section.querySelector("details");
+        if (details) {
+          details.open = (tier === "familia" && items.length >= 5);
+        }
+
+        const visible = items.slice(0, FAMILIA_VISIBLE_DEFAULT);
+        const hidden  = items.slice(FAMILIA_VISIBLE_DEFAULT);
+
+        let html = visible.map((alt) => renderResultCard(alt, tier)).join("");
+        if (hidden.length > 0) {
+          html += `
+            <div class="ver-mas-wrap" data-tier="${tier}">
+              <button type="button" class="ver-mas-btn">
+                Ver ${hidden.length} más ▾
+              </button>
+            </div>
+            <div class="ver-mas-hidden" hidden>
+              ${hidden.map((alt) => renderResultCard(alt, tier)).join("")}
+            </div>
+          `;
+        }
+        container.innerHTML = html;
+
+        const btn = container.querySelector(".ver-mas-btn");
+        if (btn) {
+          btn.addEventListener("click", () => {
+            const hiddenBlock = container.querySelector(".ver-mas-hidden");
+            const wrap        = container.querySelector(".ver-mas-wrap");
+            if (hiddenBlock) hiddenBlock.hidden = false;
+            if (wrap)        wrap.remove();
+          });
         }
       }
 

@@ -1144,14 +1144,25 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       "nuts_seeds",
       "other_fat", // aceitunas, almendras, avellanas
     ]);
+    // Keyword fallback for tahin / crema de cacahuete / semillas / pasta
+    // de almendras — viven en subgroups variables pero clínicamente son
+    // grasas reales intercambiables. Detectamos por nombre normalizado.
+    const _FAT_BRIDGE_NAME_RE =
+      /\b(tahin|crema de cacahuete|pasta de almendra|pasta de avellana|mantequilla de cacahuete|peanut butter|tahini|semilla(s)? de (sesamo|chia|lino|girasol|calabaza))\b/i;
     const osub = originalFood.subgroup || "";
     const csub = a.subgroup || "";
-    const isOilToDenseFat = _OIL_SUBS.has(osub) && _DENSE_FAT_SUBS.has(csub);
-    const isDenseFatToOil = _DENSE_FAT_SUBS.has(osub) && _OIL_SUBS.has(csub);
+    const oname = (originalFood.name || "").toLowerCase();
+    const cname = (a.name || "").toLowerCase();
+    const oIsOil       = _OIL_SUBS.has(osub);
+    const cIsOil       = _OIL_SUBS.has(csub);
+    const oIsDenseFat  = _DENSE_FAT_SUBS.has(osub) || _FAT_BRIDGE_NAME_RE.test(oname);
+    const cIsDenseFat  = _DENSE_FAT_SUBS.has(csub) || _FAT_BRIDGE_NAME_RE.test(cname);
     const fatBridgeBonus = (
       a.category === "fat" && originalFood.category === "fat" &&
       osub !== csub &&
-      (isOilToDenseFat || isDenseFatToOil)
+      ((oIsOil && cIsDenseFat) || (oIsDenseFat && cIsOil) ||
+       // Cross-dense-fat: aguacate ↔ nueces, aceitunas ↔ tahín, etc.
+       (oIsDenseFat && cIsDenseFat))
     ) ? _fatCrossSubgroupBoost : 0;
 
     // Soft demotions from bulk-label flags. Multiplicative, applied on top of
@@ -1328,6 +1339,67 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
           demotion *= mixedDemotion;
           if (window.location.search.includes('?debug=1')) {
             console.debug('[mixed-macro] DEMOTED candidate=\'' + a.name + '\' factor=' + mixedDemotion.toFixed(2) + ' fat_loss_ratio=' + fatLossRatio.toFixed(2));
+          }
+        }
+      }
+    }
+
+    // R3 CLINICAL: calorie floor. El cliente lo formuló como "si pierde
+    // más del 25% de las calorías del origen, no puede ser top match".
+    // Generaliza el mixed-macro fat-loss para CUALQUIER alimento, no solo
+    // mixtos. Una clienta que cambia huevo (150 kcal) por merluza (67 kcal)
+    // pierde saciedad y energía aunque proteína cuadre.
+    //
+    // No aplica a foods de muy baja densidad calórica (verduras, infusiones)
+    // donde la regla daría falsos positivos. Threshold: origen >= 80 kcal/100g
+    // — debajo de eso la diferencia absoluta es chica e irrelevante.
+    {
+      const oKcal100 = originalFood.calories || 0;
+      if (oKcal100 >= 80 && originalMacros.calories > 0 && a.macros) {
+        const calRatio = a.macros.calories / originalMacros.calories;
+        if (calRatio < 0.75) {
+          // Demote scales smoothly with how much we miss:
+          //   0.74 → ×0.85   |   0.50 → ×0.50   |   0.25 → ×0.25
+          const floorDemotion = Math.max(0.25, calRatio);
+          demotion *= floorDemotion;
+          if (window.location.search.includes('?debug=1')) {
+            console.debug('[cal-floor] DEMOTED candidate=\'' + a.name + '\' factor=' + floorDemotion.toFixed(2) + ' cal_ratio=' + calRatio.toFixed(2));
+          }
+        }
+      }
+    }
+
+    // R4 CLINICAL: absurd quantity. El cliente: "si para cuadrar hace falta
+    // una cantidad que una persona normal no comería en ese contexto, no
+    // puede salir arriba." Ej. yogur griego 125g → té con leche 516g.
+    //
+    // Excepción explícita del cliente: NO aplica a hidratos crudos↔cocidos
+    // (arroz crudo 60g = 250g patata cocida es clínicamente correcto).
+    // Detectamos esa excepción por subgroups: grains/tubers/legumes intra-
+    // o inter-grupo con cooking-state diff = es legítimo.
+    {
+      const ratio = a.equivalentAmount > 0 && amount > 0
+        ? a.equivalentAmount / amount
+        : 1;
+      if (ratio > 3) {
+        // Hidratos húmedos exception: si AMBOS son carbs y al menos uno
+        // tiene raw_ingredient=true (el otro es la versión cocida) =>
+        // legitimate dry-vs-cooked equivalence, no demote.
+        const HYDRATE_SUBS = new Set(["grains", "tubers", "legumes"]);
+        const bothHydrates =
+          originalFood.category === "carbs" && a.category === "carbs" &&
+          HYDRATE_SUBS.has(originalFood.subgroup) && HYDRATE_SUBS.has(a.subgroup);
+        const cookingStateDiff =
+          (originalFood.raw_ingredient && !a.raw_ingredient) ||
+          (!originalFood.raw_ingredient && a.raw_ingredient);
+        const isLegitDryWet = bothHydrates && cookingStateDiff;
+
+        if (!isLegitDryWet) {
+          // ratio 3.1 → ×0.7   |   ratio 5 → ×0.4   |   ratio 8+ → ×0.2
+          const absurdDemotion = Math.max(0.2, 1 - (ratio - 3) * 0.15);
+          demotion *= absurdDemotion;
+          if (window.location.search.includes('?debug=1')) {
+            console.debug('[absurd-qty] DEMOTED candidate=\'' + a.name + '\' factor=' + absurdDemotion.toFixed(2) + ' ratio=' + ratio.toFixed(1) + 'x');
           }
         }
       }
