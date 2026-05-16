@@ -269,6 +269,46 @@ def infer_dairy_subfamily(food: dict) -> str | None:
     return "frescos_proteicos"
 
 
+# ── OIL_ADDED DETECTION (audit punto 5 del cliente) ──────────────────────────
+# Productos que están en category=fat por dominancia macro pero NO son
+# grasa pura — son comida cocinada/enlatada que LLEVA aceite añadido.
+# Ejemplos: atún en aceite, sardina enlatada en aceite, berenjena frita,
+# patata frita con aceite, sofrito, vinagreta, tomate seco con aceite,
+# ajos/pimientos/boletus/habitas en aceite.
+#
+# Cliente: "no debería poner arriba tomate con aceite o ajos en aceite
+# cuando busco aguacate. Eso no es cambiar aguacate, eso es buscar
+# 'cosas que llevan aceite'".
+_OIL_ADDED_RE = re.compile(
+    r"\b("
+    # Cocción con aceite
+    r"frit[oa]s?|frita|en aceite|con aceite|al aceite|"
+    r"saltead[oa]s?|reboz[oa]d[oa]s?|"
+    r"escabech[ea]d[oa]s?|conserva en aceite|"
+    # Salsas / mezclas con aceite
+    r"sofrito|salsa|vinagreta|aderezo|mayonesa|alioli|"
+    r"mojo |chimichurri|pesto|tapenade|"
+    # Productos preparados típicos
+    r"coctel|cóctel|"
+    r"tomate(?:s)? seco(?:s)?(?: con aceite)?|"
+    r"tomate(?:s)? rallad[oa]s?(?: con aceite)?|"
+    r"ajos en aceite|pimientos en aceite|"
+    r"boletus en aceite|habit?as? en aceite|"
+    r"berenjena(?:s)? frita(?:s)?|berenjena(?:s)? en aceite|"
+    r"alcachofa(?:s)? en aceite|esparrago(?:s)? en aceite"
+    r")\b"
+)
+
+
+def is_oil_added(food: dict) -> bool:
+    """True if food is 'with oil added' rather than pure fat.
+    Solo aplica cuando category=fat (lo demás ya está fuera del pool de grasas)."""
+    if food.get("category") != "fat":
+        return False
+    name = _norm(food.get("name") or "")
+    return bool(_OIL_ADDED_RE.search(name))
+
+
 # ── HUMMUS MISCATEGORIZATION FIX (cliente reportó hummus light en yogur) ────
 # Algunos hummus aparecen como category=dairy por categorización legacy
 # incorrecta. Hummus es legumbre + grasa, NUNCA dairy. Movemos a fat/other_fat.
@@ -356,6 +396,7 @@ def main() -> None:
     exotic_added = 0
     exotic_already = 0
     hummus_fixed = 0
+    oil_added_count = 0
     dairy_subfam_counts: dict[str, int] = {}
 
     for food in foods:
@@ -384,6 +425,14 @@ def main() -> None:
         else:
             # If food was previously labeled and is no longer dairy, drop the field
             food.pop("dairy_subfamily", None)
+
+        # oil_added — solo relevante en category=fat. Productos enlatados/
+        # fritos/con salsa que SON aceite añadido y no grasa pura.
+        if is_oil_added(food):
+            food["oil_added"] = True
+            oil_added_count += 1
+        else:
+            food.pop("oil_added", None)
 
     with DB_PATH.open("w", encoding="utf-8") as f:
         json.dump(foods, f, ensure_ascii=False, indent=2)
@@ -414,6 +463,11 @@ def main() -> None:
     for sf in ("frescos_proteicos", "quesos_solidos", "liquidos", "grasas_lacteas", "postres_lacteos"):
         count = dairy_subfam_counts.get(sf, 0)
         print(f"  {sf:<22}  {count:>5}")
+    print()
+    print("=" * 72)
+    print(" OIL_ADDED (productos con aceite añadido, no grasa pura)")
+    print("=" * 72)
+    print(f"  Marked oil_added=true:         {oil_added_count}")
     print()
     print("=" * 72)
     print(f"  Total foods en DB:             {len(foods)}")

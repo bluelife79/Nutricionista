@@ -3071,7 +3071,8 @@
     "label_confidence": 90,
     "label_reason": "Conserva lista para ensaladas o tostas",
     "usage_es": "Conserva de pescado azul en aceite. Ingrediente habitual para ensaladas, bocadillos o aperitivos en cualquier comida. No es un plato único. Intercambio con atún en conserva o caballa.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "BEDCA",
@@ -3097,7 +3098,8 @@
     "label_confidence": 95,
     "label_reason": "Conserva muy consumida en España",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, bocadillos o tostadas. Apto para cualquier comida o snack. Intercambio con caballa en conserva, sardinas o pollo asado.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "BEDCA",
@@ -3783,7 +3785,8 @@
     "label_confidence": 50,
     "label_reason": "Etiqueta errónea, probablemente atún en conserva",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, tostadas o bocadillos. Apto para cualquier comida o snack. Intercambio con atún en aceite vegetal o sardinas.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "BEDCA",
@@ -3915,7 +3918,8 @@
     "label_confidence": 85,
     "label_reason": "Salsa canaria lista, uso versátil habitual",
     "usage_es": "Salsa grasa canaria. Se consume directamente como acompañamiento de patatas o pescados, no es un plato. En comidas y cenas. Intercambio con mojo verde o salsa romesco.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "BEDCA",
@@ -5828,7 +5832,8 @@
     "label_confidence": 95,
     "label_reason": "Base de guisos, requiere cocción posterior",
     "usage_es": "Base grasa de cocina. Ingrediente para guisos, arroces y legumbres, no es un plato. Exclusivamente en comida. Intercambio con refrito, sofrito casero o aceite de oliva.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "BEDCA",
@@ -6030,7 +6035,8 @@
     "label_confidence": 95,
     "label_reason": "Conserva lista, versátil y muy consumida",
     "usage_es": "Conserva de pescado azul lista para comer, en ensalada o tapa en cualquier momento. Intercambio con atún en conserva o caballa enlatada escurrida.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "BEDCA",
@@ -6778,7 +6784,8 @@
     "label_confidence": 90,
     "label_reason": "Salsa elaborada lista para ensaladas",
     "usage_es": "Salsa emulsionada grasa. Se consume directamente aliñando ensaladas o verduras, no es un plato. En comidas y cenas. Intercambio con aceite de oliva virgen extra.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "BEDCA",
@@ -10392,7 +10399,8 @@
     "label_confidence": 90,
     "label_reason": "Conserva lista para tapas y ensaladas",
     "usage_es": "Conserva de pescado azul. Ingrediente para tapas, ensaladas y bocadillos, consumida en comida o cena. Intercambio con sardinas en conserva y caballa.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "BEDCA",
@@ -10444,7 +10452,8 @@
     "label_confidence": 80,
     "label_reason": "Conserva de calamar, uso en ensaladas",
     "usage_es": "Conserva de molusco. Ingrediente de tapas, ensaladas y arroces, consumo ocasional en comida o cena. Intercambio con mejillones en conserva y sepia.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "BEDCA",
@@ -14814,7 +14823,8 @@
     "label_confidence": 85,
     "label_reason": "Hortaliza frita lista para comer",
     "usage_es": "Hortaliza frita como ingrediente de platos como la escalivada o las berenjenas rellenas, consumida en la comida. Intercambio con calabacín frito.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "BEDCA",
@@ -14916,7 +14926,8 @@
     "label_confidence": 90,
     "label_reason": "Patata salteada lista para consumir",
     "usage_es": "Tubérculo cocinado. Se toma como guarnición en la comida. Intercambio con patata hervida, patata asada o boniato salteado.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "BEDCA",
@@ -14942,7 +14953,8 @@
     "label_confidence": 90,
     "label_reason": "Patata frita cocinada lista para comer",
     "usage_es": "Tubérculo frito. Se consume como guarnición en la comida. Intercambio con patata panadera, patata asada o boniato frito.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "BEDCA",
@@ -17048,7 +17060,8 @@
     "label_confidence": 95,
     "label_reason": "Bonito enlatado, consumo semanal",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas o bocadillos, uso de comida o cena. Intercambio con atún enlatado, sardinas o caballa en conserva.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "BEDCA",
@@ -17226,7 +17239,8 @@
     "label_confidence": 95,
     "label_reason": "Alioli, salsa muy popular",
     "usage_es": "Salsa emulsionada de ajo y aceite. Ingrediente de cocina para acompañar carnes, pescados o patatas en la comida. Intercambio con mayonesa o salsa yogur.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "BEDCA",
@@ -17859,7 +17873,8 @@
     "label_confidence": 95,
     "label_reason": "Bonito en lata, muy versátil",
     "usage_es": "Pescado azul enlatado conservado en aceite. Se consume como ingrediente en ensaladas o tostadas, en comida o cena. Intercambio con atún en conserva o sardinas.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "BEDCA",
@@ -18263,7 +18278,8 @@
     "label_confidence": 90,
     "label_reason": "Cacahuete salado, snack muy habitual",
     "usage_es": "Fruto seco tostado. Se toma como snack entre horas. Intercambio clínico con otros frutos secos tostados sin sal como almendras, avellanas o pistachos.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "BEDCA",
@@ -18289,7 +18305,8 @@
     "label_confidence": 90,
     "label_reason": "Almendra salada, snack muy habitual",
     "usage_es": "Fruto seco tostado. Se consume como snack entre horas o tapa. Intercambio clínico con otros frutos secos tostados como cacahuetes, nueces o anacardos.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "BEDCA",
@@ -18315,7 +18332,8 @@
     "label_confidence": 95,
     "label_reason": "Caballa enlatada, consumo semanal",
     "usage_es": "Conserva de pescado azul, ingrediente habitual. Se usa en ensaladas, bocadillos o como plato de comida. Intercambio con sardina o atún enlatado.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "BEDCA",
@@ -22533,7 +22551,8 @@
     "label_confidence": 90,
     "label_reason": "Salsa lista para acompañar platos",
     "usage_es": "Salsa emulsionada de aceite y ajo. Ingrediente en comidas para acompañar carnes, pescados o patatas. Intercambio con mayonesa, salsa romesco o aceite de oliva virgen extra.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "BEDCA",
@@ -56965,7 +56984,8 @@
     "label_confidence": 85,
     "label_reason": "Conserva lista para ensaladas",
     "usage_es": "Hortaliza conservada en aceite de oliva. Ingrediente de cocina para ensaladas, tostadas o pizzas en cualquier comida. Intercambio clínico con aceitunas negras.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "Lidl",
@@ -57975,7 +57995,8 @@
     "label_confidence": 90,
     "label_reason": "Anchoa en conserva, lista para consumir",
     "usage_es": "Conserva de pescado azul. Se consume directamente como tapa, aperitivo o ingrediente en ensaladas. Intercambio con other conservas de pescado azul.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Aldi",
@@ -58888,7 +58909,8 @@
     "label_confidence": 80,
     "label_reason": "Ingrediente graso para cocinar",
     "usage_es": "Conserva de molusco poco habitual. No se come directamente, es ingrediente para ensaladillas, guisos o arroces. Intercambio con calamar o sepia en conserva.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Lidl",
@@ -69800,7 +69822,8 @@
     "label_confidence": 90,
     "label_reason": "Atún en conserva, básico en comidas",
     "usage_es": "Conserva de pescado azul. Se consume en ensaladas, bocadillos o como ingrediente. Momento típico en comida o cena. Intercambio clínico con atún en oliva, sardinas o caballa.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -76721,7 +76744,8 @@
     "label_confidence": 95,
     "label_reason": "Conserva de atún lista para consumir",
     "usage_es": "Conserva de pescado azul en aceite de oliva. Ingrediente para ensaladas, tostadas o bocadillos. Consumo en comida o cena. Intercambio clínico con bonito del norte o caballa.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -76748,7 +76772,8 @@
     "label_confidence": 95,
     "label_reason": "Conserva de atún lista para consumir",
     "usage_es": "Conserva de pescado azul en aceite de oliva. Ingrediente para ensaladas, tostadas o bocadillos. Consumo en comida o cena. Intercambio clínico con bonito del norte o sardinas.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -76775,7 +76800,8 @@
     "label_confidence": 95,
     "label_reason": "Conserva de bonito lista para consumir",
     "usage_es": "Conserva de pescado azul premium en aceite de oliva. Ingrediente para ensaladas, pintxos o tostadas. Consumo en comida o cena. Intercambio clínico con atún en oliva o caballa.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -76802,7 +76828,8 @@
     "label_confidence": 95,
     "label_reason": "Conserva de atún lista para consumir",
     "usage_es": "Conserva de pescado azul en aceite de oliva. Ingrediente para ensaladas, tostadas o bocadillos. Consumo en comida o cena. Intercambio clínico con bonito del norte o sardinas.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Consum",
@@ -76829,7 +76856,8 @@
     "label_confidence": 95,
     "label_reason": "Conserva de bonito lista para consumir",
     "usage_es": "Conserva de pescado azul premium en aceite de oliva. Ingrediente para ensaladas, pintxos o tostadas. Consumo en comida o cena. Intercambio clínico con atún en oliva o caballa.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -77082,7 +77110,8 @@
     "label_confidence": 95,
     "label_reason": "Fruto seco listo para snackar",
     "usage_es": "Fruto seco frito. Snack exclusivamente entre horas o tapa. No es plato ni ingrediente de cocina. Intercambio con otros frutos secos tostados sin sal preferiblemente.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "Eroski",
@@ -82125,7 +82154,8 @@
     "label_confidence": 90,
     "label_reason": "Margarina, ingrediente para untar o cocinar",
     "usage_es": "Grasa untable procesada, exclusivamente ingrediente de cocina, no se come sola. Se usa en desayuno o snack. Intercambio con aceite de oliva o mantequilla.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -82152,7 +82182,8 @@
     "label_confidence": 90,
     "label_reason": "Conserva lista, consumo versátil habitual",
     "usage_es": "Conserva de pescado azul en aceite de oliva. Se consume directamente como tapa o ingrediente de ensaladas y tostadas en comida o cena. Intercambio con otras conservas de pescado azul.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Lidl",
@@ -84542,7 +84573,8 @@
     "label_confidence": 90,
     "label_reason": "Conserva de sardinas muy popular",
     "usage_es": "Conserva grasa de pescado azul. Se toma en tapa, ensalada o pan con tomate en cualquier comida. Intercambio con sardinas en escabeche, anchoas o caballa en conserva.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Consum",
@@ -84567,7 +84599,8 @@
     "label_confidence": 90,
     "label_reason": "Salsa italiana muy integrada en España",
     "usage_es": "Salsa grasa de origen italiano. Ingrediente para pasta, arroces o pizzas en la comida. No es plato. Intercambio con salsa carbonara, nata o queso rallado.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -84746,7 +84779,8 @@
     "label_confidence": 85,
     "label_reason": "Salsa para cocinar, se usa en pasta",
     "usage_es": "Salsa grasa de tomate seco y quesos. Ingrediente de cocina raro en España, usado para acompañar pasta en comida. Intercambio con otras salsas grasas tipo pesto.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "Lidl",
@@ -85007,7 +85041,8 @@
     "label_confidence": 95,
     "label_reason": "Conserva de pescado, lista para comer",
     "usage_es": "Conserva de pescado azul en aceite. Ingrediente de tapas, ensaladas o tostadas en comida y cena. Intercambio con sardinas en escabeche o caballa.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -85296,7 +85331,8 @@
     "label_confidence": 90,
     "label_reason": "Snack de maíz listo para comer",
     "usage_es": "Picos de harina de trigo con aceite. Snack exclusivo entre horas para acompañar bebidas. Intercambio con regañás, picos artesanos o galletas de aperitivo.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "oil_added": true
   },
   {
     "source": "Consum",
@@ -85371,7 +85407,8 @@
     "label_confidence": 75,
     "label_reason": "Salsa canaria para acompañar platos",
     "usage_es": "Salsa típica canaria, ingrediente para acompañar papas arrugadas o pescados en la comida. Intercambio clínico con mojo picante, alioli o salsa verde.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "Carrefour",
@@ -85551,7 +85588,8 @@
     "label_confidence": 90,
     "label_reason": "Aperitivo listo para comer",
     "usage_es": "Snack de bollería salada con aceite de oliva, consumido entre horas. Intercambio clínico con palitos de pan normales, grissinos o picos.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Lidl",
@@ -85780,7 +85818,8 @@
     "label_confidence": 90,
     "label_reason": "Pesto listo para usar",
     "usage_es": "Salsa elaborada con aceitunas. Ingrediente ocasional para acompañar pasta, tostadas o pescados en comida o cena. Intercambio con pesto tradicional o tapenade.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "Alcampo",
@@ -86437,7 +86476,8 @@
     "label_confidence": 90,
     "label_reason": "Mejillones en escabeche, conserva muy consumida",
     "usage_es": "Conserva de molusco en aceite. Se toma en tapas, aperitivos o como ingrediente de ensaladas y arroces. Intercambio clínico con otros mariscos en conserva o pescados en escabeche.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Lidl",
@@ -86662,7 +86702,8 @@
     "label_confidence": 65,
     "label_reason": "Nombre ilegible, probablemente sardinillas o anchoas",
     "usage_es": "Conserva de pescado graso. Ingrediente raro en España por error de etiqueta. Se usa en tostadas o ensaladas. Intercambio con sardinas en aceite.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "Alcampo",
@@ -86687,7 +86728,8 @@
     "label_confidence": 85,
     "label_reason": "Conservas de pescado típicas españolas",
     "usage_es": "Conserva de pescado graso. Ingrediente de tostadas, ensaladas o aperitivos en cualquier comida. Intercambio con sardinas en aceite o caballa.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Carrefour",
@@ -86764,7 +86806,8 @@
     "label_confidence": 95,
     "label_reason": "Boquerones en vinagre, tapa clásica",
     "usage_es": "Pescado azul marinado en vinagre y aceite. Se consume como tapa o aperitivo en cualquier comida. Intercambio con anchoas en aceite, sardinas en conserva o pulpo a la gallega.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Lidl",
@@ -86789,7 +86832,8 @@
     "label_confidence": 90,
     "label_reason": "Tomate seco conservado, uso versátil",
     "usage_es": "Hortaliza deshidratada en aceite. Ingrediente de cocina ocasional para ensaladas, tostadas o salsas. Intercambio con tomate natural, aceitunas o pimiento asado en conserva.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "Carrefour",
@@ -87071,7 +87115,8 @@
     "label_confidence": 90,
     "label_reason": "Porras fritas envasadas, aperitivo",
     "usage_es": "Masa frita de harina y aceite. Snack o tapa ocasional en cualquier comida. Intercambio con patatas fritas de bolsa, nachos, churros o palomitas de maíz.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -87438,7 +87483,8 @@
     "label_confidence": 70,
     "label_reason": "Pescado ahumado poco común en España",
     "usage_es": "Pescado azul ahumado en conserva, raro en España. Se consume directamente en cenas o tapas. Intercambio con sardinas en aceite, trucha ahumada o caballa en escabeche.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -87539,7 +87585,8 @@
     "label_confidence": 90,
     "label_reason": "Tomate rallado, base culinaria versátil",
     "usage_es": "Salsa de tomate con aceite de oliva, ingrediente de cocina. Se usa en cualquier comida para untar pan o tostadas. Intercambio con tomate triturado natural o sofrito casero.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "Lidl",
@@ -87874,7 +87921,8 @@
     "label_confidence": 90,
     "label_reason": "Banderillas de anchoa, aperitivo típico",
     "usage_es": "Conserva de pescado azul. Snack habitual tipo tapa, no es plato principal. Intercambio con otras banderillas de pescado o anchoas en aceite.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Consum",
@@ -87999,7 +88047,8 @@
     "label_confidence": 90,
     "label_reason": "Crema de avellanas para tostadas",
     "usage_es": "Crema untable de fruto seco. Consumida en tostadas como ingrediente exclusivo de desayuno. Intercambio con mermelada, crema de cacao o aceite de oliva en tostadas.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "Carrefour",
@@ -88103,7 +88152,8 @@
     "label_confidence": 90,
     "label_reason": "Conserva de melva versátil",
     "usage_es": "Conserva de pescado azul. Ingerido directamente en ensaladas o tostadas en cualquier comida. Intercambio con atún en conserva, sardinas o bonito del norte.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Eroski",
@@ -88206,7 +88256,8 @@
     "label_confidence": 85,
     "label_reason": "Vinagreta lista para ensaladas",
     "usage_es": "Aliño líquido graso. Ingrediente ocasional para aderezar ensaladas o verduras en la comida. Intercambio con aceite de oliva virgen extra y vinagre por separado.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -88385,7 +88436,8 @@
     "label_confidence": 95,
     "label_reason": "Fruto seco frito como aperitivo",
     "usage_es": "Fruto seco tostado con sal. Snack entre horas o aperitivo. Consumo exclusivo como snack. Intercambio con almendras tostadas sin freír, avellanas tostadas o pistachos.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "Consum",
@@ -88410,7 +88462,8 @@
     "label_confidence": 95,
     "label_reason": "Almendras fritas de aperitivo",
     "usage_es": "Fruto seco frito en aceite. Snack entre horas o aperitivo. Consumo exclusivo como snack. Intercambio con almendras tostadas sin freír, nueces o anacardos.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -88435,7 +88488,8 @@
     "label_confidence": 95,
     "label_reason": "Atún en conserva básico español",
     "usage_es": "Conserva de pescado en aceite. Ingrediente de ensaladas, bocadillos o platos de arroz. Consumo en comida o cena. Intercambio con atún en escabeche, bonito o caballa en conserva.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Carrefour",
@@ -88462,7 +88516,8 @@
     "label_confidence": 95,
     "label_reason": "Ventresca, producto premium ocasional",
     "usage_es": "Conserva de pescado graso en aceite. Ingrediente de ensaladas, tostadas o arroces. Consumo en comida o cena. Intercambio con ventresca de bonito, atún claro o melva en conserva.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -88512,7 +88567,8 @@
     "label_confidence": 90,
     "label_reason": "Pesto para pasta, cada vez más común",
     "usage_es": "Salsa de quesos y frutos secos exótica en España. Ingrediente para pasta o arroz. Consumo en comida. Intercambio con pesto tradicional, salsa de nuez o salsa carbonara.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -88539,7 +88595,8 @@
     "label_confidence": 90,
     "label_reason": "Pulpo en conserva, consumo mensual",
     "usage_es": "Fruto seco exótico en España. Snack entre horas o ingrediente de repostería. Consumo ocasional como snack. Intercambio con nueces, anacardos o avellanas.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Alcampo",
@@ -88566,7 +88623,8 @@
     "label_confidence": 95,
     "label_reason": "Atún en aceite, básico de despensa",
     "usage_es": "Conserva de pescado azul escurrido. Ingrediente de ensaladas, bocadillos y platos de cuchara. Consumo en comida o cena. Intercambio con bonito, caballa, sardinas en conserva.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Alcampo",
@@ -88591,7 +88649,8 @@
     "label_confidence": 85,
     "label_reason": "Error de etiquetado: nombre vs categoría aceite",
     "usage_es": "Conserva de pescado azul sin escurrir, con alto aporte graso. Ingrediente de ensaladas y arroces. Consumo en comida o cena. Intercambio con atún escurrido, bonito o caballa.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Eroski",
@@ -88968,7 +89027,8 @@
     "label_confidence": 90,
     "label_reason": "Conserva lista para ensaladas y comidas",
     "usage_es": "Grasa exclusiva para cocinar y aliñar, no comestible directamente como plato. Ingrediente básico en todas las comidas. Intercambio clínico con otros aceites vegetales.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Aldi",
@@ -89022,7 +89082,8 @@
     "label_confidence": 95,
     "label_reason": "Conserva de marisco muy popular",
     "usage_es": "Conserva de molusco consumida como tapa, aperitivo o ingrediente de ensaladas. No es plato principal. Intercambio clínico con otros moluscos en conserva o pescados en escabeche.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Carrefour",
@@ -89374,7 +89435,8 @@
     "label_confidence": 92,
     "label_reason": "Conserva de atún lista para consumir",
     "usage_es": "Conserva de pescado azul en aceite. Ingrediente de ensaladas, bocadillos o platos de arroz en la comida. Intercambio con atún en escabeche, caballa o sardinas.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -89399,7 +89461,8 @@
     "label_confidence": 90,
     "label_reason": "Conserva de sardina lista para consumir",
     "usage_es": "Conserva de pescado azul pequeño en aceite. Ingrediente de tostadas, ensaladas o aperitivos. Intercambio con sardinas en aceite, anchoas o caballa en conserva.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -89426,7 +89489,8 @@
     "label_confidence": 92,
     "label_reason": "Conserva de sardinas lista para consumir",
     "usage_es": "Conserva de pescado azul en aceite. Ingrediente de ensaladas, tostadas o guarnición en comida y cena. Intercambio con sardinillas, anchoas o caballa en conserva.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Consum",
@@ -90228,7 +90292,8 @@
     "label_confidence": 90,
     "label_reason": "Pesto de tomate y almendra, pasta",
     "usage_es": "Salsa untable de frutos secos y tomate. Ingrediente para pasta o tostadas en la comida. Intercambio con pesto clásico o hummus.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -90428,7 +90493,8 @@
     "label_confidence": 95,
     "label_reason": "Almendra marcona frita, tapa clásica",
     "usage_es": "Fruto seco frito y salado, exclusivo de snack o tapa. No es un plato. Intercambio clínico con almendra tostada, avellana frita o anacardo.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -90453,7 +90519,8 @@
     "label_confidence": 95,
     "label_reason": "Almendra frita, aperitivo muy común",
     "usage_es": "Fruto seco frito consumido como snack o tapa. No es un plato. Intercambio clínico con almendra tostada, avellana o anacardo.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "Eroski",
@@ -90753,7 +90820,8 @@
     "label_confidence": 90,
     "label_reason": "Tortas de aceite, bollería de desayuno",
     "usage_es": "Bollería dulce de masa hojaldrada, consumo exclusivo de desayuno o merienda. No es un plato. Intercambio clínico con magdalenas, rosquillas o palmeras.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Consum",
@@ -90803,7 +90871,8 @@
     "label_confidence": 95,
     "label_reason": "Atún en lata, clásico en ensaladas",
     "usage_es": "Conserva de pescado azul, ingrediente de ensaladas, bocadillos o platos de comida. Intercambio clínico con atún en escabeche, bonito o caballa en conserva.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "Consum",
@@ -90953,7 +91022,8 @@
     "label_confidence": 90,
     "label_reason": "Piquillo en conserva, guarnición típica",
     "usage_es": "Verdura en conserva lista para comer. Se sirve como guarnición o relleno en raciones. Consumo en comida. Intercambio con pimientos asados naturales o pimientos fritos.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Consum",
@@ -91003,7 +91073,8 @@
     "label_confidence": 90,
     "label_reason": "Caballa en conserva, segundo plato",
     "usage_es": "Pescado azul en conserva listo para comer. Se toma en ensaladas o tostadas directamente. Consumo en comida o cena. Intercambio con sardinas, atún en conserva o caballa fresca.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Carrefour",
@@ -91028,7 +91099,8 @@
     "label_confidence": 90,
     "label_reason": "Pan especial con semillas, muy versátil",
     "usage_es": "Pan de horno con grasas añadidas. Se consume solo o acompañando alimentos salados. Uso exclusivo en desayuno. Intercambio con pan de molde, pan de barra normal o tostadas.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Lidl",
@@ -91083,7 +91155,8 @@
     "label_confidence": 90,
     "label_reason": "Anchoa en aceite, tapa y ensalada",
     "usage_es": "Pescado azul curado en semiconserva listo para comer. Ingrediente para tapas, ensaladas o montaditos. Consumo en comida o cena. Intercambio con sardinas en conserva o boquerones frescos.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -91108,7 +91181,8 @@
     "label_confidence": 95,
     "label_reason": "Anchoa en conserva, aperitivo habitual",
     "usage_es": "Conserva de pescado azul en aceite. Se consume directamente como tapa, aperitivo o en ensaladas. Intercambio con otras conservas de pescado azul o proteínas magras.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -91158,7 +91232,8 @@
     "label_confidence": 55,
     "label_reason": "Perlas de aceite, producto gourmet poco común",
     "usage_es": "Salsa emulsionada de origen exótico y raro en España. Ingrediente para decorar platos, no se consume solo. Intercambio con vinagretas o salsas ligeras.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -91308,7 +91383,8 @@
     "label_confidence": 85,
     "label_reason": "Salsa italiana muy integrada en España",
     "usage_es": "Salsa de hierbas y aceite. Ingrediente para pasta o ensaladas en la comida, raro en platos españoles. Intercambio con sofrito, alioli o vinagreta.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "Lidl",
@@ -91358,7 +91434,8 @@
     "label_confidence": 85,
     "label_reason": "Pesto listo para añadir a pasta",
     "usage_es": "Salsa grasa de albahaca y quesos. Ingrediente para aliñar pastas en comida. Intercambio con otras salsas grasas como carbonara o nata.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -91436,7 +91513,8 @@
     "label_confidence": 90,
     "label_reason": "Picatoste para acompañar ensaladas o sopas",
     "usage_es": "Panecillo tostado con grasa. Snack en comidas o cenas. Intercambio con picos, regañás o pan tostado normal.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Carrefour",
@@ -91490,7 +91568,8 @@
     "label_confidence": 75,
     "label_reason": "Base de tomate frito para guisos",
     "usage_es": "Preparación vegetal con tomate y aceite. Ingrediente de guisos y revueltos en comidas. Intercambio con sofrito casero o tomate frito.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "Eroski",
@@ -91540,7 +91619,8 @@
     "label_confidence": 90,
     "label_reason": "Picatoste típico para sopas y ensaladas",
     "usage_es": "Pan tostado con grasa añadida. Snack o acompañamiento en comidas y cenas. Intercambio con regañás, picos o galletas saladas.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Carrefour",
@@ -91615,7 +91695,8 @@
     "label_confidence": 90,
     "label_reason": "Conserva de pescado azul muy consumida",
     "usage_es": "Conserva grasa de pescado azul. Ingrediente o plato en comidas y cenas. Intercambio con sardinas o atún en conserva.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Alcampo",
@@ -91667,7 +91748,8 @@
     "label_confidence": 90,
     "label_reason": "Conserva de sardina en aceite clásica",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, tostadas o como plato principal en comidas y cenas. Intercambio con otras conservas de pescado azul como caballa, atún o salmón.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Lidl",
@@ -91694,7 +91776,8 @@
     "label_confidence": 90,
     "label_reason": "Caballa en conserva muy consumida",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, tostadas o como ingrediente en comidas y cenas. Intercambio con otras conservas de pescado azul como sardinas, atún o salmón.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Carrefour",
@@ -91719,7 +91802,8 @@
     "label_confidence": 90,
     "label_reason": "Mejillones en escabeche, aperitivo típico",
     "usage_es": "Conserva de molusco. Se consume directamente como tapa, aperitivo o en ensaladas durante comidas y cenas. Intercambio con otros moluscos en conserva como almejas, berberechos o chipirones.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Lidl",
@@ -91771,7 +91855,8 @@
     "label_confidence": 85,
     "label_reason": "Fruto seco frito, consumo esporádico",
     "usage_es": "Fruto seco exótico frito, consumo ocasional en España. Se toma exclusivamente como snack entre horas. Intercambio con otros frutos secos tostados como almendras, anacardos o avellanas.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "Carrefour",
@@ -91798,7 +91883,8 @@
     "label_confidence": 85,
     "label_reason": "Salmón ahumado en conserva, listo para consumir",
     "usage_es": "Conserva de pescado azul ahumado. Se consume directamente en tostadas, ensaladas o como ingrediente en comidas y cenas. Intercambio con salmón fresco, trucha ahumada u otras conservas de pescado azul.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -91823,7 +91909,8 @@
     "label_confidence": 80,
     "label_reason": "Conserva de marisco cóctel, lista para comer",
     "usage_es": "Mezcla de mariscos en conserva. Se consume directamente como tapa, aperitivo o ingrediente de ensaladas en comidas y cenas. Intercambio con otras conservas de marisco como pulpo, calamar o gambas.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -91848,7 +91935,8 @@
     "label_confidence": 90,
     "label_reason": "Sardinas en conserva, consumo muy habitual",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, tostadas o como plato principal en comidas y cenas. Intercambio con sardinas en aceite de oliva u otras conservas de pescado azul.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Carrefour",
@@ -91900,7 +91988,8 @@
     "label_confidence": 90,
     "label_reason": "Sardinas en aceite de oliva, conserva típica",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, tostadas o como plato principal en comidas y cenas. Intercambio con otras conservas de pescado azul como caballa, atún o salmón.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Eroski",
@@ -91925,7 +92014,8 @@
     "label_confidence": 90,
     "label_reason": "Caballa en conserva, consumo semanal",
     "usage_es": "Conserva de pescado azul. Se consume directamente como ingrediente de ensaladas, tostadas o bocadillos en comida y cena. Intercambio con otras conservas de pescado azul en aceite.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -91950,7 +92040,8 @@
     "label_confidence": 90,
     "label_reason": "Mejillones en escabeche, tapa clásica",
     "usage_es": "Conserva de molusco. Se toma directamente como tapa o aperitivo en cualquier comida. Intercambio con otros moluscos en conserva o mariscos cocidos.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Alcampo",
@@ -91977,7 +92068,8 @@
     "label_confidence": 90,
     "label_reason": "Sardinillas en conserva, muy populares",
     "usage_es": "Conserva de pescado azul pequeño. Se consume directamente en tostadas, ensaladas o como tapa en comida y cena. Intercambio con sardinas en tomate o caballa en aceite.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Lidl",
@@ -92027,7 +92119,8 @@
     "label_confidence": 85,
     "label_reason": "Agujas en conserva, listo para consumir",
     "usage_es": "Conserva de pescado azul. Se consume directamente como ingrediente en ensaladas o tapas en comida y cena. Intercambio con sardinas o anchoas en conserva.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Dia",
@@ -92054,7 +92147,8 @@
     "label_confidence": 90,
     "label_reason": "Anchoas en conserva, ingrediente versátil",
     "usage_es": "Conserva de pescado azul curado. Se consume directamente como ingrediente de ensaladas, pizzas o tostadas en comida y cena. Intercambio con otros pescados azules en conserva.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Carrefour",
@@ -92079,7 +92173,8 @@
     "label_confidence": 90,
     "label_reason": "Caballa en conserva, consumo semanal",
     "usage_es": "Conserva de pescado azul. Se consume directamente como ingrediente de ensaladas, bocadillos o platos en comida y cena. Intercambio con otras conservas de pescado azul.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -92104,7 +92199,8 @@
     "label_confidence": 90,
     "label_reason": "Caballa en conserva baja en sal",
     "usage_es": "Conserva de pescado azul baja en sal. Se consume directamente como ingrediente de ensaladas o tostadas en comida y cena. Intercambio con caballa u otros pescados en conserva.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Carrefour",
@@ -92131,7 +92227,8 @@
     "label_confidence": 90,
     "label_reason": "Bonito del norte en conserva, muy habitual",
     "usage_es": "Conserva de pescado azul. Se consume directamente como ingrediente de ensaladas, bocadillos o platos en comida y cena. Intercambio con atún claro o otras conservas de pescado azul.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -92156,7 +92253,8 @@
     "label_confidence": 85,
     "label_reason": "Melva en conserva, consumo común",
     "usage_es": "Conserva de pescado azul. Se consume directamente como ingrediente de ensaladas, tostadas o guisos en comida y cena. Intercambio con atún o bonito en conserva.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Consum",
@@ -92181,7 +92279,8 @@
     "label_confidence": 85,
     "label_reason": "Ajos confitados en conserva, listos para usar",
     "usage_es": "Preparación de ajo confitado en aceite de oliva. Se usa como ingrediente para guisos, tostadas o ensaladas en cualquier comida. Intercambio con ajo crudo, sofrito casero o aceite de oliva virgen extra.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Dia",
@@ -92308,7 +92407,8 @@
     "label_confidence": 90,
     "label_reason": "Pisto, requiere calentamiento para consumo",
     "usage_es": "Guiso de hortalizas con aceite de oliva. No comestible directamente, requiere calentamiento. Se consume en comida como plato o guarnición. Intercambio con verduras salteadas, menestra de verduras o puré de verduras.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "Carrefour",
@@ -92333,7 +92433,8 @@
     "label_confidence": 85,
     "label_reason": "Ajos confitados listos para consumir",
     "usage_es": "Conserva de ajos enteros en aceite de oliva. Se usa como ingrediente para dar sabor a guisos, tostadas o ensaladas en cualquier comida. Intercambio con ajo crudo, ajo confitado casero o sofrito.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Mercadona",
@@ -92358,7 +92459,8 @@
     "label_confidence": 90,
     "label_reason": "Atún en conserva, básico en dieta española",
     "usage_es": "Conserva de pescado azul en aceite de girasol. Se consume directamente en ensaladas, bocadillos o como ingrediente de comidas y cenas. Intercambio con atún en aceite de oliva, sardinas o caballa en conserva.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Alcampo",
@@ -92433,7 +92535,8 @@
     "label_confidence": 85,
     "label_reason": "Guiso de habas fritas, consumo puntual",
     "usage_es": "Legumbre verde frita en aceite de oliva. Se consume como guarnición o ingrediente en platos de comida de forma ocasional. Intercambio con judías verdes salteadas, espárragos verdes o other_hortalizas_verdes_cocidas.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Otros",
@@ -110507,7 +110610,8 @@
     "label_confidence": 80,
     "label_reason": "Bacalao ahumado, cena ocasional",
     "usage_es": "Pescado ahumado con grasa añadida. Se consume en frío en la cena. Intercambio con salmón ahumado o bacalao salado.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "Bonpreu/Esclat",
@@ -112093,7 +112197,8 @@
     "label_confidence": 90,
     "label_reason": "Fruto seco frito típico de aperitivo español",
     "usage_es": "Fruto seco tostado. Snack entre horas o acompañamiento de bebidas. No es ingrediente de cocina. Intercambio con otros frutos secos tostados como nuez o pistacho.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -112168,7 +112273,8 @@
     "label_confidence": 90,
     "label_reason": "Fruto seco salado aperitivo muy habitual",
     "usage_es": "Fruto seco tostado. Snack entre horas o aperitivo con bebidas. No es ingrediente de cocina. Intercambio con otros frutos secos tostados salados.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -113854,7 +113960,8 @@
     "label_confidence": 90,
     "label_reason": "Almendra frita lista para consumir, aperitivo típico",
     "usage_es": "Fruto seco frito, consumido exclusivamente como snack o aperitivo. Intercambio clínico con almendra tostada sin freír u otros frutos secos crudos.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -114843,7 +114950,8 @@
     "label_confidence": 95,
     "label_reason": "Atún en conserva marca blanca habitual",
     "usage_es": "Conserva de pescado azul. Se consume directo en ensaladas, bocadillos o empanadas. Ingrediente de comida y cena. Intercambio con otras conservas de pescado, salmón ahumado o pechuga de pollo.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -115656,7 +115764,8 @@
     "label_confidence": 90,
     "label_reason": "Bonito en conserva, listo para consumir",
     "usage_es": "Conserva de pescado azul de calidad. Se consume directo en ensaladas, tostas o pintxos. Ingrediente de comida y cena. Intercambio con atún claro, salmón ahumado o mejillones en escabeche.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "El Corte Inglés",
@@ -115681,7 +115790,8 @@
     "label_confidence": 90,
     "label_reason": "Atún en conserva, básico en dieta española",
     "usage_es": "Conserva de pescado azul baja en sal. Se consume directo en ensaladas, sándwiches o ensaladillas. Ingrediente de comida y cena. Intercambio con atún normal, bonito o caballa en conserva.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -122924,7 +123034,8 @@
     "label_confidence": 85,
     "label_reason": "Conserva premium lista, consumo ocasional",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas o tostadas. Uso ocasional en comida o cena. Intercambio con bonito en agua o atún en conserva.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -123024,7 +123135,8 @@
     "label_confidence": 85,
     "label_reason": "Mantequilla con AOVE, ingrediente habitual",
     "usage_es": "Materia grasa de cocina. Ingrediente para tostadas, salsas o repostería en desayuno o cena. No es plato. Intercambio con mantequilla convencional u aceite de oliva.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -123049,7 +123161,8 @@
     "label_confidence": 90,
     "label_reason": "Fruto seco listo, snack habitual español",
     "usage_es": "Fruto seco frito y salado. Snack exclusivo entre horas o en aperitivos. No es plato principal. Intercambio con almendras tostadas, nueces o avellanas.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -123181,7 +123294,8 @@
     "label_confidence": 85,
     "label_reason": "Margarina con AOVE, ingrediente habitual",
     "usage_es": "Materia grasa untable de cocina. Ingrediente para tostadas o repostería en desayuno. No es plato. Intercambio con mantequilla o margarina convencional.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -123416,7 +123530,8 @@
     "label_confidence": 95,
     "label_reason": "Conserva de pescado azul muy consumida",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas o tostadas en la comida. Intercambio con atún, sardinas o bonito en conserva.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -123443,7 +123558,8 @@
     "label_confidence": 95,
     "label_reason": "Conserva de caballa muy popular",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas o tostadas en la comida. Intercambio con atún, sardinas o bonito en conserva.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -123520,7 +123636,8 @@
     "label_confidence": 95,
     "label_reason": "Atún en conserva versión saludable",
     "usage_es": "Conserva de atún claro. Se consume directamente en ensaladas, bocadillos o tortillas, en la comida. Intercambio con atún en aceite, bonito del norte o caballa en conserva.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -123547,7 +123664,8 @@
     "label_confidence": 90,
     "label_reason": "Conserva premium de bonito del norte",
     "usage_es": "Conserva de bonito del norte. Se consume directamente en ensaladas, pintxos o bocadillos, en la comida. Intercambio con atún en aceite, ventresca o caballa en conserva.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -123597,7 +123715,8 @@
     "label_confidence": 90,
     "label_reason": "Margarina untable para tostadas",
     "usage_es": "Margarina con aceite de oliva. Se usa untada en tostadas, exclusivamente en el desayuno. Intercambio con aceite de oliva virgen extra, mantequilla o margarina estándar.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -123676,7 +123795,8 @@
     "label_confidence": 95,
     "label_reason": "Conserva de atún muy habitual",
     "usage_es": "Conserva de atún. Se consume directamente en ensaladas, bocadillos o tortillas, en la comida. Intercambio con atún claro, bonito del norte o caballa en conserva.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -123701,7 +123821,8 @@
     "label_confidence": 95,
     "label_reason": "Anchoa en conserva, tapa y cocina",
     "usage_es": "Conserva de anchoas. Se consume directamente en pizzas, ensaladas o tostadas, en cualquier momento. Intercambio con boquerones en vinagre o sardinas en conserva.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -123753,7 +123874,8 @@
     "label_confidence": 95,
     "label_reason": "Fruto seco frito para aperitivo",
     "usage_es": "Fruto seco frito. Se consume directamente como snack entre horas. Intercambio con almendras naturales, avellanas tostadas o pistachos tostados.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -123830,7 +123952,8 @@
     "label_confidence": 90,
     "label_reason": "Conserva de chipirones para cena",
     "usage_es": "Conserva de marisco lista para comer. Se consume en cena como tapa o guarnición. Intercambio con otros moluscos en conserva o sepia cocida.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -123855,7 +123978,8 @@
     "label_confidence": 75,
     "label_reason": "Melva canutera, consumo muy minoritario",
     "usage_es": "Conserva de pescado azul rara en España. Se come en comida como tapa o ingrediente de ensaladas. Intercambio con atún, bonito o sardinas en conserva.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -123932,7 +124056,8 @@
     "label_confidence": 80,
     "label_reason": "Salsa de aguacate, producto moderno",
     "usage_es": "Salsa exótica rara en España. Ingrediente para acompañar carnes, pescados o tostadas en cualquier comida. Intercambio con salsa de yogur, mayonesa o guacamole.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -123957,7 +124082,8 @@
     "label_confidence": 85,
     "label_reason": "Hummus, cada vez más integrado",
     "usage_es": "Crema de legumbre lista para comer. Ingrediente de tostadas, bocadillos o tapas en cualquier momento. Intercambio con puré de garbanzos o hummus clásico.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -123982,7 +124108,8 @@
     "label_confidence": 85,
     "label_reason": "Conserva lista para tapas o ensaladas",
     "usage_es": "Conserva de legumbre lista para comer. Ingrediente de ensaladas, arroces o guarniciones en cualquier comida. Intercambio con judías verdes, tirabeques o alubias verdes.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -124007,7 +124134,8 @@
     "label_confidence": 95,
     "label_reason": "Conserva básica semanal española",
     "usage_es": "Conserva de pescado en aceite vegetal. Ingrediente habitual en ensaladas, arroces o platos de comida. Intercambio con atún en oliva, bonito o caballa.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -124034,7 +124162,8 @@
     "label_confidence": 85,
     "label_reason": "Conserva de cefalópodos para ensaladas",
     "usage_es": "Conserva de marisco lista para comer. Ingrediente de arroces, ensaladas o tapas en cualquier comida. Intercambio con chipirones, sepia o calamar en conserva.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -124059,7 +124188,8 @@
     "label_confidence": 95,
     "label_reason": "Sardinas en conserva muy consumidas",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, tostadas o como ingrediente. Uso en comida o cena. Intercambio con atún en conserva, caballa o melva.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -124134,7 +124264,8 @@
     "label_confidence": 90,
     "label_reason": "Ventresca, corte premium de atún",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, tostadas o como ingrediente. Uso en comida o cena. Intercambio con atún claro, melva o bonito del norte.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -124313,7 +124444,8 @@
     "label_confidence": 90,
     "label_reason": "Sardinillas en AOVE, conserva típica",
     "usage_es": "Conserva de pescado azul. Se consume directamente en tostadas, ensaladas o tapas. Apta para cualquier comida. Intercambio con otras conservas de pescado azul en aceite.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -124338,7 +124470,8 @@
     "label_confidence": 80,
     "label_reason": "Salsa pesto con tomate seco, italiana adaptada",
     "usage_es": "Salsa grasa de origen italiano, ocasional en España. Ingrediente para pastas y ensaladas. Cualquier comida. Intercambio con pesto clásico u otras salsas para pasta.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -124363,7 +124496,8 @@
     "label_confidence": 95,
     "label_reason": "Atún en girasol, opción económica común",
     "usage_es": "Conserva de pescado azul en aceite. Se consume directamente en ensaladas, bocadillos o platos combinados. Cualquier comida. Intercambio con atún en aceite de oliva u otra conserva de pescado.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -124438,7 +124572,8 @@
     "label_confidence": 90,
     "label_reason": "Ventresca de atún en conserva premium",
     "usage_es": "Conserva de pescado azul premium. Se consume directamente en tostadas, ensaladas o tapas. Cualquier comida. Intercambio con bonito del norte o atún en aceite de oliva.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -124463,7 +124598,8 @@
     "label_confidence": 90,
     "label_reason": "Bonito del norte, conserva muy popular",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, bocadillos o tapas. Cualquier comida. Intercambio con atún en aceite de oliva u otras conservas de pescado azul.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -124488,7 +124624,8 @@
     "label_confidence": 90,
     "label_reason": "Sardinas en aceite, conserva habitual",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, tostadas o como tapa. Cualquier comida. Intercambio con sardinillas o caballa en aceite de oliva.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -124563,7 +124700,8 @@
     "label_confidence": 95,
     "label_reason": "Atún bajo en sal, versión saludable común",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, bocadillos o platos. Uso en comida, cena o snack. Intercambio con otras conservas de pescado, pechuga de pollo o huevo.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -124588,7 +124726,8 @@
     "label_confidence": 85,
     "label_reason": "Boletus en conserva, ingrediente gourmet",
     "usage_es": "Conserva de seta silvestre. Ingrediente de cocina raro, se usa en arroces, tostas o guarnición. Uso en comida o cena. Intercambio con otras setas cocinadas o champiñones frescos.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -124613,7 +124752,8 @@
     "label_confidence": 95,
     "label_reason": "Conserva lista para comer, muy habitual",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, bocadillos o platos. Uso en comida, cena o snack. Intercambio con otras conservas de pescado, pechuga de pollo o huevo.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -124640,7 +124780,8 @@
     "label_confidence": 95,
     "label_reason": "Sardina en conserva, consumo versátil",
     "usage_es": "Conserva de pescado azul. Se consume directamente en tostas, ensaladas o aperitivos. Uso en comida, cena o snack. Intercambio con otras conservas de pescado azul o caballa.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -124667,7 +124808,8 @@
     "label_confidence": 95,
     "label_reason": "Conserva picante lista, consumo habitual",
     "usage_es": "Conserva de pescado azul. Se consume directamente en tostas o aperitivos. Uso en comida, cena o snack. Intercambio con otras conservas de pescado azul o sardinas sin picante.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -124694,7 +124836,8 @@
     "label_confidence": 95,
     "label_reason": "Marca blanca, atún en conserva habitual",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, bocadillos o platos. Uso en comida, cena o snack. Intercambio con otras conservas de pescado, pechuga de pollo o huevo.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -124719,7 +124862,8 @@
     "label_confidence": 95,
     "label_reason": "Sardinillas en conserva premium habitual",
     "usage_es": "Conserva de pescado azul. Se consume directamente en tostas, ensaladas o aperitivos. Uso en comida, cena o snack. Intercambio con otras conservas de pescado azul o caballa.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -124746,7 +124890,8 @@
     "label_confidence": 95,
     "label_reason": "Sardinas ecológicas en conserva, versátil",
     "usage_es": "Conserva de pescado azul. Se consume directamente en tostas, ensaladas o aperitivos. Uso en comida, cena o snack. Intercambio con otras conservas de pescado azul o caballa.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -124771,7 +124916,8 @@
     "label_confidence": 95,
     "label_reason": "Atún en aceite AOVE, lista y versátil",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, bocadillos o platos. Uso en comida, cena o snack. Intercambio con otras conservas de pescado, pechuga de pollo o huevo.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -125180,7 +125326,8 @@
     "label_confidence": 95,
     "label_reason": "Lomo en aceite, conserva lista para comer",
     "usage_es": "Conserva de pescado azul en aceite de oliva. Ingrediente para ensaladas, bocadillos o platos en la comida. Intercambio con atún en aceite, bonito o sardinas.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -125206,7 +125353,8 @@
     "label_confidence": 95,
     "label_reason": "Atún en aceite, conserva muy habitual",
     "usage_es": "Conserva de pescado azul en aceite. Ingrediente para ensaladas, bocadillos o platos en la comida. Intercambio con bonito del norte, caballa o sardinas en aceite.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -125283,7 +125431,8 @@
     "label_confidence": 85,
     "label_reason": "Atún en conserva listo para consumir",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, bocadillos o platos. Uso en comida, cena o snack. Intercambio con atún en oliva, pechuga de pollo o huevo.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -126883,7 +127032,8 @@
     "label_confidence": 95,
     "label_reason": "Lomitos de atún en conserva, listos",
     "usage_es": "Conserva de pescado azul troceado. Se consume directamente en ensaladas, arroces o bocadillos. Ingrediente de cualquier comida. Intercambio con otros atunes en conserva o bonito.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -127011,7 +127161,8 @@
     "label_confidence": 95,
     "label_reason": "Conserva de atún en aceite, lista",
     "usage_es": "Conserva de pescado azul en aceite vegetal. Se consume directamente en ensaladas o tapas. Apto para cualquier comida. Intercambio con otros atunes en conserva, caballa o bonito.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -127064,7 +127215,8 @@
     "label_confidence": 95,
     "label_reason": "Clásica conserva de atún en aceite",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, bocadillos o tortillas. Apto para cualquier comida. Intercambio con otros atunes en conserva, bonito o caballa.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -130988,7 +131140,8 @@
     "label_confidence": 85,
     "label_reason": "Conserva de pollo lista",
     "usage_es": "Carne de ave en conserva. Se consume directamente en ensaladas o sándwiches para comida o cena. Intercambio con pechuga de pollo o pavo a la plancha.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "oil_added": true
   },
   {
     "source": "OpenFoodFacts",
@@ -132331,7 +132484,8 @@
     "label_confidence": 80,
     "label_reason": "Conserva de pollo lista, dudosa categoría",
     "usage_es": "Carne magra en conserva. Se consume en ensaladas o tapas, normalmente en la comida. No es plato único. Intercambio con pechuga de pollo fresca, pavo asado o atún en conserva en pautas dietéticas.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "oil_added": true
   },
   {
     "source": "El Corte Inglés",

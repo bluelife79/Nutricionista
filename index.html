@@ -2059,6 +2059,21 @@
           alternatives.preparados, "preparados",
           preparadosSection, preparadosContainer, preparadosCount,
         );
+
+        // PUNTO 9: si familia tiene 5+ entradas (pan integral, yogur, skyr,
+        // atún, garbanzos…), una mujer probablemente quiere ver primero
+        // OTROS PANES / OTROS YOGURES antes que los intercambios reales
+        // (que pueden ser All-Bran o pasta de fruta). Invertir orden visual.
+        // El bloque "preparados" mantiene su posición al final siempre.
+        const familyDominant = alternatives.familia.length >= 5;
+        const parent = intercambiosSection.parentNode;
+        if (familyDominant) {
+          // Familia primero, intercambios después
+          parent.insertBefore(familiaSection, intercambiosSection);
+        } else {
+          // Default: intercambios primero, familia después
+          parent.insertBefore(intercambiosSection, familiaSection);
+        }
       }
 
       const FAMILIA_VISIBLE_DEFAULT = 8;

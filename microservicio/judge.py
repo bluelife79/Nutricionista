@@ -104,6 +104,15 @@ class FoodFlags(BaseModel):
     # frescos_proteicos | quesos_solidos | liquidos | grasas_lacteas |
     # postres_lacteos. None para foods no-dairy.
     dairy_subfamily: str | None = None
+    # Productos en category=fat que NO son grasa pura sino comida con
+    # aceite añadido (atún en aceite, berenjena frita, sofrito, etc.)
+    oil_added: bool | None = None
+    # Culinary role: meal_dish | snack | recipe_ingredient | dessert | staple
+    culinary_role: str | None = None
+    # Pre-calculated by the frontend so the LLM compares directly without
+    # doing arithmetic (prompt v2.0+).
+    equivalent_amount: float | None = None
+    macros_at_eq: dict | None = None
     ready_to_eat: bool | None = None
     raw_ingredient: bool | None = None
     meal_slot: str | None = None
@@ -129,6 +138,9 @@ class JudgeRequest(BaseModel):
     origin: FoodFlags
     candidates: list[FoodFlags] = Field(min_length=1, max_length=LLM_MAX_CANDIDATES)
     debug_triggers: list[str] = Field(default_factory=list)  # ["S2","S4"] advisory
+    # Gramos buscados por la usuaria (prompt v2.0+). Default 100 si ausente
+    # — backward-compatible con clientes que aún no envían el campo.
+    amount_searched: float | None = None
 
 
 class JudgeResponse(BaseModel):
@@ -213,7 +225,8 @@ def build_messages(req: JudgeRequest) -> list[dict]:
         {
             "role": "user",
             "content": build_judge_user_message(
-                req.origin, req.candidates, req.debug_triggers
+                req.origin, req.candidates, req.debug_triggers,
+                amount_searched=req.amount_searched,
             ),
         },
     ]

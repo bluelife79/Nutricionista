@@ -657,6 +657,8 @@ function pickJudgeFields(f) {
     category:         f.category         ?? null,
     subgroup:         f.subgroup          ?? null,
     dairy_subfamily:  f.dairy_subfamily   ?? null,
+    oil_added:        f.oil_added         ?? null,
+    culinary_role:    f.culinary_role     ?? null,
     ready_to_eat:     f.ready_to_eat      ?? null,
     raw_ingredient:   f.raw_ingredient    ?? null,
     meal_slot:        f.meal_slot         ?? null,
@@ -664,12 +666,14 @@ function pickJudgeFields(f) {
     exotic:           f.exotic            ?? null,
     label_confidence: f.label_confidence  ?? null,
     calories:         f.calories          ?? null,
-    // Macros per 100g — necesarios para que el judge razone coherencia
-    // de alimentos mixtos (Regla 15, prompt v1.5+). Sin esto el LLM
-    // recibía solo calories y no podía calcular kcal_perdidas_pct.
+    // Macros per 100g (prompt v1.5+).
     protein:          f.protein           ?? null,
     fat:              f.fat               ?? null,
     carbs:            f.carbs             ?? null,
+    // Pre-computed equivalence (prompt v2.0+) — el LLM compara directo
+    // origen.macros_at_amount vs candidato.macros_at_eq sin recalcular.
+    equivalent_amount: f.equivalentAmount ?? null,
+    macros_at_eq:     f.macros            ?? null,
     usage_es:         f.usage_es          ?? null,
   };
 }
@@ -677,15 +681,18 @@ function pickJudgeFields(f) {
 // Single fetch to POST /judge with AbortController.
 // Returns verdict object ({ranked_ids, removed_ids, ...}) on success, null on any failure.
 // NEVER throws — all errors are caught and return null (graceful no-op).
-async function callJudge(originalFood, topCandidates, triggered) {
+async function callJudge(originalFood, topCandidates, triggered, amountSearched) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), JUDGE_TIMEOUT_MS);
   const _isDebug = window.location.search.includes('?debug=1');
   try {
     const payload = {
-      origin:         pickJudgeFields(originalFood),
-      candidates:     topCandidates.map(pickJudgeFields),
-      debug_triggers: triggered,
+      origin:          pickJudgeFields(originalFood),
+      candidates:      topCandidates.map(pickJudgeFields),
+      debug_triggers:  triggered,
+      // Gramos buscados por la usuaria (prompt v2.0+). Backend default=100
+      // si ausente para mantener backward-compat.
+      amount_searched: amountSearched ?? null,
     };
     if (_isDebug) {
       console.debug('[llm-judge] CALL origin=\'' + originalFood.name + '\' candidates=' + topCandidates.length + ' triggers=[' + triggered.join(',') + ']');
@@ -1060,6 +1067,16 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         if (cRole === "snack") return false;
         if (isCookingInput(f.name)) return false;
         if (isNonStapleGrain(f.name)) return false;
+      }
+
+      // PUNTO 5: cuando origen es grasa PURA (aceite, aguacate, frutos
+      // secos, aceitunas, semillas, mantequilla), excluir productos
+      // marcados como "con aceite añadido" (atún en aceite, berenjena
+      // frita, sofrito, vinagreta, tomate seco con aceite, etc.).
+      // Cliente: "no es cambiar aguacate, es buscar cosas que llevan aceite".
+      if (f.oil_added === true && originalFood.category === "fat" &&
+          originalFood.oil_added !== true) {
+        return false;
       }
 
       // Subgroup filter: only on same-category pairs.
@@ -1538,22 +1555,32 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       }
     }
 
-    // R4 CLINICAL: absurd quantity. El cliente: "si para cuadrar hace falta
-    // una cantidad que una persona normal no comería en ese contexto, no
-    // puede salir arriba." Ej. yogur griego 125g → té con leche 516g.
+    // R4 CLINICAL: absurd quantity. Cliente punto 7: "si para cuadrar hace
+    // falta una cantidad que una persona normal no comería, no puede salir
+    // arriba." Ej. yogur griego 125g → té con leche 516g, skyr 125g →
+    // gelatina yogur 568g, yogur griego → kéfir 350g.
     //
-    // Excepción explícita del cliente: NO aplica a hidratos crudos↔cocidos
-    // (arroz crudo 60g = 250g patata cocida es clínicamente correcto).
-    // Detectamos esa excepción por subgroups: grains/tubers/legumes intra-
-    // o inter-grupo con cooking-state diff = es legítimo.
+    // Threshold CONTEXTUAL por categoría del origen (cliente listó lácteos /
+    // bebidas / postres / snacks / salsas como casos donde x3 ya es absurdo,
+    // pero permite x3-5 en hidratos húmedos crudo↔cocido).
+    //
+    // Excepción explícita: hidratos crudo↔cocido (arroz crudo 60g ≈
+    // 250g patata cocida es clínicamente correcto).
     {
       const ratio = a.equivalentAmount > 0 && amount > 0
         ? a.equivalentAmount / amount
         : 1;
-      if (ratio > 3) {
-        // Hidratos húmedos exception: si AMBOS son carbs y al menos uno
-        // tiene raw_ingredient=true (el otro es la versión cocida) =>
-        // legitimate dry-vs-cooked equivalence, no demote.
+
+      // Threshold por categoría del origen
+      const STRICT_CATS = new Set(["dairy", "fat"]);  // lácteos + grasas
+      // Postres y salsas detectados por culinary_role (también estrictos)
+      const oRole = originalFood.culinary_role || "meal_dish";
+      const isStrictContext = STRICT_CATS.has(originalFood.category) ||
+                              oRole === "dessert" || oRole === "snack";
+      const threshold = isStrictContext ? 2.5 : 3.0;
+
+      if (ratio > threshold) {
+        // Hidratos húmedos exception: ambos carbs + cooking-state diff
         const HYDRATE_SUBS = new Set(["grains", "tubers", "legumes"]);
         const bothHydrates =
           originalFood.category === "carbs" && a.category === "carbs" &&
@@ -1564,11 +1591,17 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         const isLegitDryWet = bothHydrates && cookingStateDiff;
 
         if (!isLegitDryWet) {
-          // ratio 3.1 → ×0.7   |   ratio 5 → ×0.4   |   ratio 8+ → ×0.2
-          const absurdDemotion = Math.max(0.2, 1 - (ratio - 3) * 0.15);
+          // Para contextos estrictos (lácteos, bebidas, postres, snacks),
+          // el demote es MÁS agresivo — cliente quiere "ocultar o mandar
+          // al final", no solo penalizar suavemente.
+          //   strict ratio 2.6 → ×0.45  |  ratio 4 → ×0.20  |  ratio 6+ → ×0.10
+          //   normal ratio 3.1 → ×0.70  |  ratio 5 → ×0.40  |  ratio 8+ → ×0.20
+          const slope = isStrictContext ? 0.30 : 0.15;
+          const floor = isStrictContext ? 0.10 : 0.20;
+          const absurdDemotion = Math.max(floor, 1 - (ratio - threshold) * slope);
           demotion *= absurdDemotion;
           if (window.location.search.includes('?debug=1')) {
-            console.debug('[absurd-qty] DEMOTED candidate=\'' + a.name + '\' factor=' + absurdDemotion.toFixed(2) + ' ratio=' + ratio.toFixed(1) + 'x');
+            console.debug('[absurd-qty] DEMOTED candidate=\'' + a.name + '\' factor=' + absurdDemotion.toFixed(2) + ' ratio=' + ratio.toFixed(1) + 'x ctx=' + (isStrictContext ? 'strict' : 'normal'));
           }
         }
       }
@@ -1720,7 +1753,7 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
           if (_isDebug) {
             console.debug('[llm-judge] ALWAYS-ON top_t2=' + _topT2.length + ' triggers=[' + _reasonsForLog.join(',') + ']');
           }
-          const _verdict = await callJudge(originalFood, _topT2, _reasonsForLog);
+          const _verdict = await callJudge(originalFood, _topT2, _reasonsForLog, amount);
           if (_verdict) {
             applyJudgeVerdict(withHybrid, _verdict);
             _judgeInsufficientMatches = _verdict.insufficient_matches === true;
