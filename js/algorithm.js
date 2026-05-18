@@ -1689,6 +1689,52 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       }
     }
 
+    // R10 SWEETS CROSS-CLUSTER (Hugo mail 16/05/2026 punto 3):
+    // Dentro de sweets_bakery, alimentos de TIPO distinto no son
+    // intercambio: chocolate negro 70% no es turrón ni gusanito ni
+    // pudding. Hugo: "chocolate negro: correcto que no fuerce
+    // intercambio si no hay alternativa limpia. Mejor 0 que basura".
+    //
+    // Sub-clusters dentro de sweets_bakery (mismo "tipo" culinario):
+    //   - chocolate (chocolate, cacao)
+    //   - turron (turrón, turron, mazapán)
+    //   - galleta (galleta, biscote, oblea)
+    //   - pudin (pudding, pudin, natilla, flan, mousse, cuajada)
+    //   - bakery (sobao, magdalena, bizcocho, muffin, donut, brownie, cookie)
+    //   - snack (gusanito, palomita, bola, sticks, dianitos)
+    //   - barrita (barrita, energetica, proteica)
+    //   - cereal (cereales, muesli, granola, copos)
+    if (originalFood.subgroup === "sweets_bakery" &&
+        a.subgroup === "sweets_bakery") {
+      const _SWEETS_CLUSTERS = [
+        ["chocolate", "cacao"],
+        ["turron", "turrón", "mazapan", "mazapán"],
+        ["galleta", "biscote", "oblea", "barquillo"],
+        ["pudin", "pudding", "natilla", "flan", "mousse", "cuajada", "panna cotta"],
+        ["sobao", "magdalena", "bizcocho", "muffin", "donut", "brownie", "cookie", "croissant", "palmera"],
+        ["gusanito", "palomita", "bola de maiz", "stick", "dianitos", "nubes", "chuches", "chuche"],
+        ["barrita"],
+        ["cereales", "muesli", "granola", "copos", "honey pops", "smacks", "frosties"],
+        ["tortita"],
+      ];
+      const oName = norm(originalFood.name || "");
+      const cName = norm(a.name || "");
+      function _clusterOf(name) {
+        for (let i = 0; i < _SWEETS_CLUSTERS.length; i++) {
+          if (_SWEETS_CLUSTERS[i].some((t) => name.includes(t))) return i;
+        }
+        return -1;
+      }
+      const oCluster = _clusterOf(oName);
+      const cCluster = _clusterOf(cName);
+      if (oCluster !== -1 && cCluster !== -1 && oCluster !== cCluster) {
+        demotion *= 0.10;
+        if (window.location.search.includes('?debug=1')) {
+          console.debug('[sweets-cross] DEMOTED candidate=\'' + a.name + '\' factor=0.10 (origin_cluster=' + oCluster + ' cand_cluster=' + cCluster + ')');
+        }
+      }
+    }
+
     // R9 FAT-CLUSTER NOISE (Hugo mail 16/05/2026 punto 2.C):
     // Cuando origen es grasa real (aceite/aguacate/nueces/aceitunas/tahin),
     // penalizar productos que tienen ALGO de grasa pero NO son grasa pura.
@@ -2061,11 +2107,35 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
   // Final result: byTier now consumes _judgeRank fields injected by
   // applyJudgeVerdict() above, so the ordering reflects LLM correction.
   const intercambios = byTier(2);
+
   // noMatch: true cuando el judge confirma que hay <3 intercambios
   // culinariamente válidos. El frontend puede mostrar un mensaje honesto
   // ("No encontramos un intercambio equivalente para este alimento")
   // en vez de forzar resultados clínicamente inapropiados.
-  const noMatch = _judgeInsufficientMatches && intercambios.length < 3;
+  const _judgeNoMatch = _judgeInsufficientMatches && intercambios.length < 3;
+
+  // Hugo mail 16/05/2026 punto 3: "chocolate negro: correcto que no
+  // fuerce intercambio si no hay alternativa limpia". Threshold
+  // automático: si los top 3 intercambios tienen _sortScore < 0.30
+  // todos (todo demoteado/basura), forzar noMatch independiente
+  // del judge. Aplica a alimentos snack/dessert sin equivalente claro.
+  const oRoleForNoMatch = originalFood.culinary_role || "meal_dish";
+  const isSnackishOrigin =
+    oRoleForNoMatch === "snack" || oRoleForNoMatch === "dessert" ||
+    originalFood.subgroup === "sweets_bakery";
+  let _thresholdNoMatch = false;
+  if (isSnackishOrigin && intercambios.length > 0) {
+    const top3 = intercambios.slice(0, 3);
+    const allLow = top3.every(a => (a._sortScore || 0) < 0.30);
+    if (allLow) {
+      _thresholdNoMatch = true;
+      if (window.location.search.includes('?debug=1')) {
+        console.debug('[no-match-threshold] FORZADO origen=\'' + originalFood.name + '\' top3 sortScore < 0.30 (Hugo punto 3)');
+      }
+    }
+  }
+
+  const noMatch = _judgeNoMatch || _thresholdNoMatch;
 
   return {
     intercambios,
