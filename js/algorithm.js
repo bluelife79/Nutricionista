@@ -432,6 +432,22 @@ function calculateEquivalence(
   if (equivalentAmount < 5) return null; // evita 0g / 1g raros
   if (equivalentAmount > 600) return null; // evita monstruos
 
+  // Hugo mail 16/05/2026 punto 1.B HARD FILTER:
+  // ratio cantidad_sugerida / cantidad_original > 4 → excluir del pool.
+  // Excepción legítima: hidratos SECOS (raw_ingredient=true) → cocidos
+  // (raw_ingredient=false) en mismo subgroup carbs (arroz crudo 60g →
+  // patata cocida 250g es Russolillo válido). Para legumbres cocidas →
+  // legumbres cocidas con ratio 5x NO hay excepción: es bug de data.
+  const qtyRatio = equivalentAmount / originalAmount;
+  if (qtyRatio > 4) {
+    const _HYDRATE_SUBS = new Set(["grains", "tubers"]);  // no legumes
+    const isDrySrcWetCand =
+      original.category === "carbs" && alt.category === "carbs" &&
+      _HYDRATE_SUBS.has(original.subgroup) && _HYDRATE_SUBS.has(alt.subgroup) &&
+      original.raw_ingredient === true && alt.raw_ingredient !== true;
+    if (!isDrySrcWetCand) return null; // hard filter — fuera del pool
+  }
+
   const altMacros = {
     protein: (alt.protein * equivalentAmount) / 100,
     carbs: (alt.carbs * equivalentAmount) / 100,
@@ -1876,25 +1892,42 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       const threshold = isStrictContext ? 2.5 : 3.0;
 
       if (ratio > threshold) {
-        // Hidratos húmedos exception: ambos carbs + cooking-state diff
-        const HYDRATE_SUBS = new Set(["grains", "tubers", "legumes"]);
-        const bothHydrates =
-          originalFood.category === "carbs" && a.category === "carbs" &&
-          HYDRATE_SUBS.has(originalFood.subgroup) && HYDRATE_SUBS.has(a.subgroup);
-        const cookingStateDiff =
-          (originalFood.raw_ingredient && !a.raw_ingredient) ||
-          (!originalFood.raw_ingredient && a.raw_ingredient);
-        const isLegitDryWet = bothHydrates && cookingStateDiff;
+        // Hidratos SECOS → HÚMEDOS exception: solo válida cuando origen ES
+        // SECO (raw_ingredient=true, ej. arroz crudo) y candidato es cocido
+        // (ej. patata cocida). NO aplica cuando ambos son COCIDOS (lentejas
+        // cocidas → judías troceadas cocidas: NO tiene sentido 5x).
+        //
+        // Legumbres en la BD están casi todas cocidas/en conserva → la
+        // excepción rara vez aplica para legumes.
+        const HYDRATE_SUBS = new Set(["grains", "tubers"]);
+        const bothHydratesDry = originalFood.category === "carbs" &&
+          a.category === "carbs" &&
+          HYDRATE_SUBS.has(originalFood.subgroup) &&
+          HYDRATE_SUBS.has(a.subgroup);
+        // Solo válido cuando ORIGEN es seco/crudo
+        const isLegitDryWet = bothHydratesDry &&
+          originalFood.raw_ingredient === true &&
+          a.raw_ingredient !== true;
 
         if (!isLegitDryWet) {
-          // Para contextos estrictos (lácteos, bebidas, postres, snacks),
-          // el demote es MÁS agresivo — cliente quiere "ocultar o mandar
-          // al final", no solo penalizar suavemente.
-          //   strict ratio 2.6 → ×0.45  |  ratio 4 → ×0.20  |  ratio 6+ → ×0.10
-          //   normal ratio 3.1 → ×0.70  |  ratio 5 → ×0.40  |  ratio 8+ → ×0.20
-          const slope = isStrictContext ? 0.30 : 0.15;
-          const floor = isStrictContext ? 0.10 : 0.20;
-          const absurdDemotion = Math.max(floor, 1 - (ratio - threshold) * slope);
+          // Hugo mail 16/05/2026 punto 1.B: ratio >3 manda al fondo.
+          // Endurecido: ratio > 4x → ×0.05 (casi-eliminatorio).
+          //   strict ratio 2.6 → ×0.45  |  ratio 4 → ×0.10  |  ratio 6+ → ×0.05
+          //   normal ratio 3.1 → ×0.60  |  ratio 4   → ×0.25 |  ratio 5+ → ×0.10
+          //   ratio 7+ siempre   → ×0.05 (cantidad inviable culinariamente)
+          let absurdDemotion;
+          if (ratio >= 7) {
+            absurdDemotion = 0.05;
+          } else if (ratio >= 5) {
+            absurdDemotion = isStrictContext ? 0.05 : 0.10;
+          } else if (ratio >= 4) {
+            absurdDemotion = isStrictContext ? 0.10 : 0.20;
+          } else {
+            // ratio 2.5-4.0 → demote gradual
+            const slope = isStrictContext ? 0.30 : 0.20;
+            const floor = isStrictContext ? 0.15 : 0.30;
+            absurdDemotion = Math.max(floor, 1 - (ratio - threshold) * slope);
+          }
           demotion *= absurdDemotion;
           if (window.location.search.includes('?debug=1')) {
             console.debug('[absurd-qty] DEMOTED candidate=\'' + a.name + '\' factor=' + absurdDemotion.toFixed(2) + ' ratio=' + ratio.toFixed(1) + 'x ctx=' + (isStrictContext ? 'strict' : 'normal'));
