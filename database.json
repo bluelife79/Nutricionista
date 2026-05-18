@@ -11355,12 +11355,12 @@
     "carbs": 0.7,
     "fat": 4.2,
     "calories": 73.0,
-    "category": "dairy",
+    "category": "protein",
     "brand": "Marca Blanca",
     "id": "bedca_0462",
     "code": null,
     "quantity": null,
-    "subgroup": "other_dairy",
+    "subgroup": "plant_protein",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -11372,7 +11372,8 @@
     "label_reason": "Alimento asiático poco integrado en España",
     "usage_es": "Derivado de soja, alimento raro en España. Ingrediente que requiere cocinarse, salteado o empanado, en comida o cena. Intercambio con pollo, pavo o magro de cerdo.",
     "culinary_role": "meal_dish",
-    "dairy_subfamily": "postres_lacteos"
+    "dairy_subfamily": "postres_lacteos",
+    "category_prev": "dairy"
   },
   {
     "source": "BEDCA",
@@ -53179,12 +53180,12 @@
     "carbs": 1.5,
     "fat": 4.6,
     "calories": 78.0,
-    "category": "dairy",
+    "category": "protein",
     "brand": "Auchan",
     "id": "off_7ed4e65e81",
     "code": "8436019091227",
     "quantity": "",
-    "subgroup": "other_dairy",
+    "subgroup": "plant_protein",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -53196,7 +53197,8 @@
     "label_reason": "Tofu silken no integrado en España",
     "usage_es": "Tofu sedoso, derivado de soja. Alimento raro en España. Se usa como ingrediente en cremas o sopas. Intercambio con queso fresco batido o yogur natural por textura.",
     "culinary_role": "meal_dish",
-    "dairy_subfamily": "postres_lacteos"
+    "dairy_subfamily": "postres_lacteos",
+    "category_prev": "dairy"
   },
   {
     "source": "Mercadona",
@@ -53543,12 +53545,12 @@
     "carbs": 0.9,
     "fat": 6.9,
     "calories": 110.0,
-    "category": "dairy",
+    "category": "protein",
     "brand": "Hacendado,Frias",
     "id": "off_873b01b809",
     "code": "8410789140118",
     "quantity": "400 g",
-    "subgroup": "other_dairy",
+    "subgroup": "plant_protein",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -53560,7 +53562,8 @@
     "label_reason": "Tofu firme, exótico, requiere cocción",
     "usage_es": "Derivado de soja. Salteado o rebozado en comida. Alimento raro en la dieta española. Intercambio con pollo o pavo cocido.",
     "culinary_role": "meal_dish",
-    "dairy_subfamily": "postres_lacteos"
+    "dairy_subfamily": "postres_lacteos",
+    "category_prev": "dairy"
   },
   {
     "source": "Dia",
@@ -111476,12 +111479,12 @@
     "carbs": 2.2,
     "fat": 11.3,
     "calories": 198.0,
-    "category": "fat",
+    "category": "protein",
     "brand": "Taifun, Tukan",
     "id": "off_032707aa1b",
     "code": "4012359713100",
     "quantity": "200g",
-    "subgroup": "nuts_seeds",
+    "subgroup": "plant_protein",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -111492,7 +111495,8 @@
     "label_confidence": 90,
     "label_reason": "Tofu ahumado, producto asiático",
     "usage_es": "Derivado de soja con frutos secos. Alimento raro en España, ingrediente que requiere cocinar en la comida. Intercambio con tofu natural o tempeh.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "category_prev": "fat"
   },
   {
     "source": "OpenFoodFacts",

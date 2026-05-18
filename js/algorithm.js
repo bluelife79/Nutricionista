@@ -856,6 +856,17 @@ function isCompatibleCategory(candidate, original) {
     return true;
   }
 
+  // Cross-category Hugo punto 2.E: plant_protein ↔ legumes.
+  // Tofu/tempeh/seitán (category=protein, subgroup=plant_protein) cruzan
+  // con lentejas/garbanzos/alubias (category=carbs, subgroup=legumes).
+  // Son la primera línea de intercambio culinario para quien come tofu.
+  if (
+    (original.subgroup === "plant_protein" && candidate.subgroup === "legumes") ||
+    (original.subgroup === "legumes" && candidate.subgroup === "plant_protein")
+  ) {
+    return true;
+  }
+
   return false;
 }
 
@@ -1005,6 +1016,15 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
   const _demoteExoticMismatch =
     Number(window.EXOTIC_MISMATCH_DEMOTION) || 0.25;     // ×0.25
 
+  // PLANT PROTEIN BOOST (Hugo mail 16/05/2026 punto 2.E):
+  // Cuando origen es tofu/tempeh/seitán/soja (subgroup=plant_protein),
+  // los candidatos de su mismo cluster vegetal (plant_protein o legumes)
+  // reciben un boost +0.30 para surfacear antes que pescados o carnes
+  // (que cumplen subgroup compatible pero culinariamente no son la
+  // primera opción de quien come tofu).
+  const _plantProteinBoost =
+    Number(window.PLANT_PROTEIN_BOOST) || 0.30;
+
   // CULTURAL PAIRS BOOST (nutricionista clínica + Hugo brief punto 2):
   // Pares de intercambio NATURAL en consulta privada España. Cuando origen
   // y candidato matchean una de estas parejas, su _sortScore recibe un
@@ -1060,6 +1080,18 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     ["lenteja", "garbanzo"],
     ["lenteja", "alubia"],
     ["garbanzo", "alubia"],
+    // Proteína vegetal (Hugo mail 16/05/2026 punto 2.E)
+    ["tofu", "tempeh"],
+    ["tofu", "seitan"],
+    ["tofu", "seitán"],
+    ["tofu", "soja"],
+    ["tofu", "heura"],
+    ["tofu", "legumbre"],
+    ["tofu", "garbanzo"],
+    ["tofu", "lenteja"],
+    ["tempeh", "seitan"],
+    ["tempeh", "soja"],
+    ["seitan", "soja"],
   ];
   const _culturalPairBoost =
     Number(window.CULTURAL_PAIR_BOOST) || 0.25;  // boost fuerte, 1-3 surfaceo
@@ -1354,6 +1386,15 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     // leche↔bebida vegetal, etc.). Hugo brief punto 2 explícito.
     const culturalPairBonus =
       _hasCulturalPair(originalFood.name, a.name) ? _culturalPairBoost : 0;
+
+    // PLANT PROTEIN BOOST: cuando origen es proteína vegetal (tofu, tempeh,
+    // seitán, soja texturizada), priorizar otros plant_protein / legumes
+    // sobre pescados/carnes. Hugo punto 2.E: "tofu no debería abrir con
+    // chanquete, ostras, mejillones o pijota".
+    const plantProteinBonus = (
+      originalFood.subgroup === "plant_protein" &&
+      (a.subgroup === "plant_protein" || a.subgroup === "legumes")
+    ) ? _plantProteinBoost : 0;
     if (culturalPairBonus > 0 && window.location.search.includes('?debug=1')) {
       console.debug('[cultural-pair] BOOST candidate=\'' + a.name + '\' +' + culturalPairBonus);
     }
@@ -1362,6 +1403,17 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     // the additive sourceAffinityBonus. No-op when flags absent (strict equality
     // means undefined !== true / undefined !== "raro" — graceful degradation).
     let demotion = 1;
+
+    // PLANT PROTEIN demote inverso (Hugo punto 2.E): cuando origen es
+    // plant_protein y candidato es pescado, demote fuerte para que NO
+    // surfacee arriba. "Pescados raros, mariscos, huevas" abajo.
+    if (originalFood.subgroup === "plant_protein" &&
+        (a.subgroup === "fish_white" || a.subgroup === "fish_fatty")) {
+      demotion *= 0.30;
+      if (window.location.search.includes('?debug=1')) {
+        console.debug('[plant-protein-fish-demote] DEMOTED candidate=\'' + a.name + '\' factor=0.30');
+      }
+    }
     if (_bulkLabelEnabled) {
       // Meal slot mismatch (origin breakfast → candidate dinner) — demote.
       // "any" del candidato cuando origen tiene slot específico = light demote.
@@ -1637,6 +1689,56 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       }
     }
 
+    // R9 FAT-CLUSTER NOISE (Hugo mail 16/05/2026 punto 2.C):
+    // Cuando origen es grasa real (aceite/aguacate/nueces/aceitunas/tahin),
+    // penalizar productos que tienen ALGO de grasa pero NO son grasa pura.
+    // Casos vistos por Hugo: foie, paté de sardina, mortadela con aceitunas,
+    // ensalada César, hummus con aceitunas, cremas de jamón.
+    //
+    // Estos suelen ser category=protein o tienen subgroup engañoso —
+    // oil_added no los pesca porque oil_added solo aplica a category=fat.
+    {
+      const _origIsRealFat =
+        originalFood.category === "fat" &&
+        (_OIL_SUBS.has(originalFood.subgroup) ||
+         _DENSE_FAT_SUBS.has(originalFood.subgroup) ||
+         _FAT_BRIDGE_NAME_RE.test((originalFood.name || "").toLowerCase()));
+      if (_origIsRealFat) {
+        const _candName = (a.name || "").toLowerCase();
+        // Hugo punto 2.C: penalizar productos que NO son grasa real pura
+        // aunque tengan category=fat o aparezcan cerca. Incluye fiambres,
+        // patés, foie, ensaladas con dressing, productos preparados.
+        const _NON_FAT_NOISE_RE =
+          /\b(foie|pat[eé]|mortadela|ensalada cesar|ensalada césar|crema de jam[oó]n|jam[oó]n.*crema|sobrasada|chorizo|salchich[oó]n|salami|fiambre|sushi|tortilla|empanada|croqueta|cesar|caesar|salsa|mayonesa|alioli|aderezo|vinagreta)\b/i;
+        if (_NON_FAT_NOISE_RE.test(_candName)) {
+          demotion *= 0.20;
+          if (window.location.search.includes('?debug=1')) {
+            console.debug('[fat-noise] DEMOTED candidate=\'' + a.name + '\' factor=0.20 reason=processed_protein_not_pure_fat');
+          }
+        }
+      }
+    }
+
+    // R8 TECHO CALÓRICO OUTLIERS (Hugo mail 16/05/2026 punto 1.A):
+    // Si alternativa.kcal > original.kcal * 1.40 → outlier extremo,
+    // demote muy fuerte (×0.15). Caso disparador: tofu 73 kcal → mix
+    // frutos secos 855 kcal. Una mujer no cambia tofu por nueces puras.
+    //
+    // Excepción: lean protein cluster (pollo 170 → atún natural 116 → OK
+    // ya en su propia regla; pero ternera 250 vs pollo 170 = ratio 1.47
+    // y son intercambio válido). Por eso saltamos sameLeanCluster.
+    if (!isSameLeanProteinCluster &&
+        originalFood.calories > 0 && a.calories > 0) {
+      const kcalRatio = a.calories / originalFood.calories;
+      if (kcalRatio > 1.40) {
+        const outlierDemotion = kcalRatio > 2.0 ? 0.10 : 0.20;
+        demotion *= outlierDemotion;
+        if (window.location.search.includes('?debug=1')) {
+          console.debug('[kcal-ceiling] DEMOTED candidate=\'' + a.name + '\' factor=' + outlierDemotion + ' kcal_ratio=' + kcalRatio.toFixed(2) + ' (' + originalFood.calories + ' vs ' + a.calories + ')');
+        }
+      }
+    }
+
     // R4 DAIRY CROSS-SUBFAMILY: yogur griego ↔ nata / queso curado /
     // leche almendras / leche entera = NO equivalente culinario aunque
     // macros cuadren. Demote fuerte cross-subfamily dentro de dairy.
@@ -1684,8 +1786,17 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       if (isMixedOrigin && !sameLeanCluster &&
           originalMacros.calories > 0 && a.macros) {
         const calRatio = a.macros.calories / originalMacros.calories;
-        if (calRatio < 0.75) {
-          const floorDemotion = Math.max(0.65, 0.5 + calRatio * 0.6);
+        // Hugo mail 16/05/2026 punto 1.C — doble escalón:
+        //   <0.75 → penalizar fuerte (visible pero abajo)
+        //   <0.60 → sacar del top, mover a bloque secundario (factor agresivo)
+        if (calRatio < 0.60) {
+          const floorDemotion = Math.max(0.20, calRatio * 0.5);
+          demotion *= floorDemotion;
+          if (window.location.search.includes('?debug=1')) {
+            console.debug('[cal-floor-strict] DEMOTED candidate=\'' + a.name + '\' factor=' + floorDemotion.toFixed(2) + ' cal_ratio=' + calRatio.toFixed(2) + ' (lighter-option)');
+          }
+        } else if (calRatio < 0.75) {
+          const floorDemotion = Math.max(0.55, 0.4 + calRatio * 0.5);
           demotion *= floorDemotion;
           if (window.location.search.includes('?debug=1')) {
             console.debug('[cal-floor] DEMOTED candidate=\'' + a.name + '\' factor=' + floorDemotion.toFixed(2) + ' cal_ratio=' + calRatio.toFixed(2));
@@ -1765,8 +1876,8 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     return {
       ...a,
       _hybridScore: hybrid,
-      _sortScoreBase: hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus,
-      _sortScore: (hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus) * demotion,
+      _sortScoreBase: hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus,
+      _sortScore: (hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus) * demotion,
     };
   });
 
