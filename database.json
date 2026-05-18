@@ -564,7 +564,7 @@
     "raw_ingredient": false,
     "meal_slot": "any",
     "frequency": "raro",
-    "exotic": false,
+    "exotic": true,
     "label_confidence": 85,
     "label_reason": "Producto delicado, consumo minoritario",
     "usage_es": "Paté graso de hígado de pato o ganso. Alimento raro en España, consumido como aperitivo untable sobre tostadas en Navidad o celebraciones. Intercambio con paté de cerdo o hummus.",
@@ -6018,12 +6018,12 @@
     "carbs": 0.0,
     "fat": 15.75,
     "calories": 237.5,
-    "category": "fat",
+    "category": "protein",
     "brand": "Marca Blanca",
     "id": "bedca_0248",
     "code": null,
     "quantity": null,
-    "subgroup": "fish",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "category_prev": "protein",
@@ -17857,12 +17857,12 @@
     "carbs": 0.0,
     "fat": 10.97,
     "calories": 203.6,
-    "category": "fat",
+    "category": "protein",
     "brand": "Marca Blanca",
     "id": "bedca_0744",
     "code": null,
     "quantity": null,
-    "subgroup": "fish",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "category_prev": "protein",
@@ -18316,13 +18316,13 @@
     "carbs": 0.0,
     "fat": 16.6,
     "calories": 209.0,
-    "category": "fat",
+    "category": "protein",
     "brand": "Marca Blanca",
     "id": "bedca_0763",
     "code": null,
     "quantity": null,
-    "subgroup": "fish",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [],
     "category_prev": "protein",
     "ready_to_eat": true,
@@ -84520,7 +84520,7 @@
     "raw_ingredient": false,
     "meal_slot": "comida",
     "frequency": "ocasional",
-    "exotic": false,
+    "exotic": true,
     "label_confidence": 85,
     "label_reason": "Paté gourmet para aperitivos",
     "usage_es": "Charcuteria grasa de hígado. Se unta en pan como aperitivo o starters en comidas festivas. No es plato principal. Intercambio con foie, chorizo o sobrasada.",
@@ -117477,7 +117477,7 @@
     "raw_ingredient": false,
     "meal_slot": "any",
     "frequency": "raro",
-    "exotic": false,
+    "exotic": true,
     "label_confidence": 80,
     "label_reason": "Foie gras, consumo minoritario",
     "usage_es": "Paté de hígado graso, alimento raro en España. Se consume directo sobre tostas en aperitivos o cenas festivas. Intercambio con paté de cerdo, foie de oca o queso untable.",
@@ -125313,12 +125313,12 @@
     "carbs": 1.18,
     "fat": 14.5,
     "calories": 225.0,
-    "category": "fat",
+    "category": "protein",
     "brand": "TUNY",
     "id": "off_44460441a9",
     "code": "7501041416759",
     "quantity": "75 G",
-    "subgroup": "fish",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "category_prev": "protein",
@@ -125340,12 +125340,12 @@
     "carbs": 1.8,
     "fat": 15.0,
     "calories": 230.0,
-    "category": "fat",
+    "category": "protein",
     "brand": "DOLORES",
     "id": "off_12e90e2f19",
     "code": "7501046401423",
     "quantity": "140 G",
-    "subgroup": "fish",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "category_prev": "protein",
@@ -127019,12 +127019,12 @@
     "carbs": 0.0,
     "fat": 4.67,
     "calories": 138.0,
-    "category": "fat",
+    "category": "protein",
     "brand": "Coto",
     "id": "off_e00faa0cde",
     "code": "2800001795510",
     "quantity": "165 g",
-    "subgroup": "fish",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "category_prev": "protein",
@@ -127148,12 +127148,12 @@
     "carbs": 0.0,
     "fat": 9.0,
     "calories": 186.0,
-    "category": "fat",
+    "category": "protein",
     "brand": "Pescamar",
     "id": "off_42ccf7410d",
     "code": "8410599024547",
     "quantity": "",
-    "subgroup": "fish",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "category_prev": "protein",
@@ -127202,12 +127202,12 @@
     "carbs": 0.0,
     "fat": 4.0,
     "calories": 143.0,
-    "category": "fat",
+    "category": "protein",
     "brand": "Van Camp's",
     "id": "off_a76f106860",
     "code": "7702367002637",
     "quantity": "160 g",
-    "subgroup": "fish",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "category_prev": "protein",
@@ -133111,7 +133111,8 @@
     "label_confidence": 90,
     "label_reason": "Bollería dulce, típica del desayuno",
     "usage_es": "Bollería dulce de almendra. Uso exclusivo de desayuno o snack entre horas. Ocasional en España. Intercambio clínico con other galletas de almendra o magdalenas clásicas.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_24045087",
@@ -133134,7 +133135,8 @@
     "label_confidence": 85,
     "label_reason": "Pan tipo tortita salada, versátil",
     "usage_es": "Snack salado tipo cracker. Se toma solo o con acompañamientos en snack o aperitivo. Intercambio clínico con galletas saladas, picos de pan y crackers clásicos.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8422424100074",
@@ -133158,7 +133160,8 @@
     "label_reason": "Tortitas de trigo tipo wrap, uso versátil",
     "subgroup": "grains",
     "usage_es": "Cereal extrusionado de trigo. Snack entre horas o desayuno, solo o con toppings dulces. Intercambio con tortitas de arroz, tostadas de pan o galletas tipo María.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8410376036046",
@@ -133182,7 +133185,8 @@
     "label_confidence": 90,
     "label_reason": "Tortitas de arroz, snack típico",
     "usage_es": "Cereal extrusionado de arroz. Snack exclusivo entre horas, solo o con mermelada. Intercambio con tortitas de maíz, tortitas de trigo o arroz inflado.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8410376040456",
@@ -133206,7 +133210,8 @@
     "label_reason": "Tortitas de maíz, uso versátil",
     "subgroup": "grains",
     "usage_es": "Cereal extrusionado de maíz. Snack entre horas o desayuno, solo o salado. Intercambio con tortitas de arroz, tortitas de trigo o palomitas de maíz sin grasa.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8422424100166",
@@ -133230,7 +133235,8 @@
     "label_reason": "Tortitas de trigo, uso versátil",
     "subgroup": "grains",
     "usage_es": "Cereal extrusionado de trigo. Snack entre horas o desayuno, solo o con toppings dulces. Intercambio con tortitas de arroz, tostadas de pan o galletas tipo María.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_4068263002908",
@@ -133254,7 +133260,8 @@
     "label_reason": "Tortitas de maíz, uso versátil",
     "subgroup": "grains",
     "usage_es": "Cereal extrusionado de maíz. Snack entre horas o desayuno, solo o salado. Intercambio con tortitas de arroz, tortitas de trigo o palomitas de maíz sin grasa.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8431876280036",
@@ -133281,7 +133288,8 @@
     "label_reason": "Mini tortitas saborizadas, tipo snack",
     "subgroup": "grains",
     "usage_es": "Snack salado de maíz saborizado. Consumo exclusivo como snack ocasional entre horas. Intercambio con palomitas de maíz saladas, snacks de maíz o patatas fritas de bolsa.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8431876280029",
@@ -133305,7 +133313,8 @@
     "label_reason": "Mini tortitas saborizadas, tipo snack",
     "subgroup": "grains",
     "usage_es": "Snack de cereales extrusionados con queso. Se consume directamente como aperitivo ocasional entre horas. Intercambio clínico con palomitas de maíz, galletas saladas o crackers.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8431876352139",
@@ -133330,7 +133339,8 @@
     "label_confidence": 85,
     "label_reason": "Tortitas de arroz y trigo sarraceno",
     "usage_es": "Snack de cereales extrusionados sin gluten. Se toma directamente como aperitivo habitual entre horas. Intercambio clínico con pan de molde sin gluten, tortitas de arroz o galletas.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8431876007930",
@@ -133357,7 +133367,8 @@
     "label_confidence": 90,
     "label_reason": "Tortitas de arroz integral ecológicas",
     "usage_es": "Snack de cereal extrusionado integral sin gluten. Se consume directamente como aperitivo habitual entre horas. Intercambio clínico con pan de molde integral sin gluten o galletas sin gluten.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8431876118230",
@@ -133384,7 +133395,8 @@
     "label_confidence": 90,
     "label_reason": "Tortitas de arroz integrales ecológicas",
     "usage_es": "Snack de cereal extrusionado integral sin gluten. Se consume directamente como aperitivo habitual entre horas. Intercambio clínico con pan de molde integral sin gluten o galletas sin gluten.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_3560071014193",
@@ -133408,7 +133420,8 @@
     "label_reason": "Tortitas de maíz ecológicas",
     "subgroup": "grains",
     "usage_es": "Snack de cereal extrusionado sin gluten. Se toma directamente como aperitivo o acompañamiento a lo largo del día. Intercambio clínico con pan de maíz, arepas o galletas de maíz.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8431876276220",
@@ -133432,7 +133445,8 @@
     "label_reason": "Tortitas de arroz con amaranto",
     "subgroup": "grains",
     "usage_es": "Snack de cereales extrusionados sin gluten. Se consume directamente como aperitivo habitual entre horas. Intercambio clínico con tortitas de arroz, quinoa cocida o galletas sin gluten.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8431876276237",
@@ -133459,7 +133473,8 @@
     "label_reason": "Tortitas de arroz con quinoa",
     "subgroup": "grains",
     "usage_es": "Snack de cereales extrusionados sin gluten. Se consume directamente como aperitivo habitual entre horas. Intercambio clínico con tortitas de arroz, quinoa cocida o galletas sin gluten.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8431876332438",
@@ -133486,7 +133501,8 @@
     "label_confidence": 90,
     "label_reason": "Tortitas de arroz integral",
     "usage_es": "Snack de cereal extrusionado integral sin gluten. Se toma directamente como aperitivo habitual entre horas. Intercambio clínico con pan integral sin gluten, arroz cocido o galletas sin gluten.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8431876218275",
@@ -133510,7 +133526,8 @@
     "label_confidence": 85,
     "label_reason": "Tortitas de arroz y maíz",
     "usage_es": "Snack de cereales extrusionados sin gluten. Se consume directamente como aperitivo habitual entre horas. Intercambio clínico con galletas de maíz, palomitas o crackers sin gluten.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8431876270617",
@@ -133534,7 +133551,8 @@
     "label_confidence": 90,
     "label_reason": "Tortitas de arroz clásicas",
     "usage_es": "Snack de cereal extrusionado sin gluten. Se consume directamente como aperitivo habitual entre horas. Intercambio clínico con pan de molde sin gluten, arroz cocido o galletas sin gluten.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8431876276244",
@@ -133558,7 +133576,8 @@
     "label_reason": "Tortitas de maíz multicereales",
     "subgroup": "grains",
     "usage_es": "Cereal expandido de maíz y cereales. Snack o desayuno al que se le añade dulce. Intercambio con pan tostado, galletas tipo María o copos de avena.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8431876186994",
@@ -133581,7 +133600,8 @@
     "label_confidence": 50,
     "label_reason": "Nombre genérico tortitas, sin detalle",
     "usage_es": "Snack dulce de cereales tipo rice cake. Uso exclusivo de desayuno o snack. Intercambio clínico con tortitas de arroz, tostadas de pan y galletas tipo María.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8414807549273",
@@ -133608,7 +133628,8 @@
     "label_confidence": 90,
     "label_reason": "Tortitas de arroz integral",
     "usage_es": "Cereal expandido de arroz integral. Snack entre horas consumido solo o con toppings dulces. Intercambio con tortitas de maíz, tostadas de pan integral o arroz cocido.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8414807549303",
@@ -133632,7 +133653,8 @@
     "label_reason": "Tortitas de maíz Consum",
     "subgroup": "grains",
     "usage_es": "Cereal expandido de maíz frito. Snack o base de tostadas en desayunos y cenas, con salmón o tomate. Intercambio con pan de maíz, arepas o crackers.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8480017102713",
@@ -133659,7 +133681,8 @@
     "label_confidence": 80,
     "label_reason": "Mini tortitas sabor queso, snack",
     "usage_es": "Snack salado de maíz y arroz con queso. Consumido ocasionalmente entre horas, no como base de plato. Intercambio con palomitas de maíz con mantequilla o crackers.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8480017198815",
@@ -133683,7 +133706,8 @@
     "label_reason": "Mini tortitas de maíz Dia",
     "subgroup": "grains",
     "usage_es": "Cereal expandido de maíz en mini formato. Snack entre horas consumido solo o con ingredientes dulces o salados. Intercambio con tortitas normales, tostadas de pan o galletas.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8480017102706",
@@ -133707,7 +133731,8 @@
     "label_confidence": 85,
     "label_reason": "Mini tortitas de maíz y arroz",
     "usage_es": "Snack extrusionado de maíz y arroz. Consumido exclusivamente como snack entre horas por su alto contenido en grasa. Intercambio con palomitas de maíz o galletas de mantequilla.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8433329079662",
@@ -133730,7 +133755,8 @@
     "label_confidence": 85,
     "label_reason": "Bio tortitas de esperta, snack",
     "usage_es": "Snack de cereales de espelta. Uso exclusivo de snack o desayuno. Intercambio clínico con tortitas de arroz, tostadas de pan integral y galletas de cereales.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8433329135016",
@@ -133753,7 +133779,8 @@
     "label_confidence": 85,
     "label_reason": "Tortitas de trigo espelta, snack",
     "usage_es": "Snack de cereales de trigo espelta. Uso exclusivo de snack o desayuno. Intercambio clínico con tortitas de arroz, tostadas de pan integral y crackers de cereales.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8480010193107",
@@ -133777,7 +133804,8 @@
     "label_reason": "Snack aperitivo de marca blanca habitual",
     "subgroup": "grains",
     "usage_es": "Snack salado de maíz con sabor a cebolla. Consumido exclusivamente como snack entre horas, no forma parte de platos. Intercambio con palomitas sazonadas, patatas fritas o cortezas.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8480010193114",
@@ -133801,7 +133829,8 @@
     "label_reason": "Snack de maíz básico de marca blanca",
     "subgroup": "grains",
     "usage_es": "Cereal expandido de maíz en mini formato. Snack entre horas tomado solo o acompañado de dulce. Intercambio con tortitas de maíz normales, tostadas de pan o galletas.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8480010193121",
@@ -133825,7 +133854,8 @@
     "label_reason": "Snack de maíz básico de marca blanca",
     "subgroup": "grains",
     "usage_es": "Snack extrusionado de maíz. Consumido exclusivamente como snack entre horas por su contenido en grasa añadida. Intercambio con palomitas de maíz, crackers salados o galletas.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8480010182958",
@@ -133850,7 +133880,8 @@
     "label_confidence": 85,
     "label_reason": "Tortita aperitivo con quinoa integrada",
     "usage_es": "Cereal expandido de maíz y quinoa. Snack entre horas consumido solo o con dulce. Intercambio con tortitas de maíz, tostadas de pan o galletas integrales.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8480010195699",
@@ -133876,7 +133907,8 @@
     "label_confidence": 85,
     "label_reason": "Snack multigrano de marca blanca",
     "usage_es": "Snack de pseudocereales sin gluten. Uso exclusivo de snack o desayuno. Intercambio clínico con tortitas de arroz, tostadas de pan sin gluten y quinoa hinchada.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8480010193077",
@@ -133900,7 +133932,8 @@
     "label_confidence": 88,
     "label_reason": "Tortitas de arroz versátiles sin gluten",
     "usage_es": "Cereal extrusionado sin gluten. Snack o desayuno untado con tomate y aceite. Intercambio con tostada de pan sin gluten o galletas de arroz.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8480010182972",
@@ -133924,7 +133957,8 @@
     "label_confidence": 90,
     "label_reason": "Snack aperitivo saborizado de marca blanca",
     "usage_es": "Cereal extrusionado con sabor aperitivo. Snack ocasional entre horas. Intercambio con patatas fritas de bolsa o palomitas de maíz.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8480010193091",
@@ -133947,7 +133981,8 @@
     "label_confidence": 90,
     "label_reason": "Snack aperitivo sabor barbacoa",
     "usage_es": "Snack salado de maíz con sabor. Uso exclusivo de snack o aperitivo entre horas. Intercambio clínico con otros snacks de maíz tipo nachos, palomitas o crackers salados.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8480010193084",
@@ -133970,7 +134005,8 @@
     "label_confidence": 90,
     "label_reason": "Snack aperitivo sabor cebolla",
     "usage_es": "Snack salado de maíz con sabor. Uso exclusivo de snack o aperitivo entre horas. Intercambio clínico con otros snacks de maíz tipo nachos, palomitas o crackers salados.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8480010193060",
@@ -133994,7 +134030,8 @@
     "label_reason": "Tortitas de maíz versátiles sin gluten",
     "subgroup": "grains",
     "usage_es": "Cereal extrusionado de maíz sin gluten. Snack o desayuno con tomate y jamón. Intercambio con tostada de pan de maíz o arepa.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8480000864833",
@@ -134018,7 +134055,8 @@
     "label_reason": "Tortitas de arroz y legumbres versátiles",
     "subgroup": "legumes",
     "usage_es": "Cereal extrusionado de arroz y legumbres. Snack o desayuno con toppings salados. Intercambio con tostada de pan integral o crackers de legumbres.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8480000140005",
@@ -134042,7 +134080,8 @@
     "label_confidence": 88,
     "label_reason": "Tortitas de cereales versátiles",
     "usage_es": "Cereal extrusionado de avena y arroz. Snack o desayuno con fruta y yogur. Intercambio con gachas de avena o tostada de pan de espelta.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8402001010187",
@@ -134066,7 +134105,8 @@
     "label_reason": "Snack sabor jamón serrano muy español",
     "subgroup": "grains",
     "usage_es": "Cereal extrusionado con sabor a jamón. Snack exclusivo entre horas. Intercambio con palomitas de maíz saladas o cortezas de cerdo.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "id": "tortita_8402001039263",
@@ -134090,7 +134130,8 @@
     "label_reason": "Snack campestre de maíz Hacendado",
     "subgroup": "grains",
     "usage_es": "Cereal extrusionado de maíz con sabor aperitivo. Snack exclusivo entre horas. Intercambio con patatas fritas de bolsa o galletas saladas.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "carbs"
   },
   {
     "name": "Queso fresco cottage",
@@ -134131,7 +134172,9 @@
     "label_reason": "Queso cottage versátil y habitual",
     "subgroup": "fresh_cheese",
     "usage_es": "Queso fresco granulado. Se consume directo con fruta o en ensaladas, en desayuno, comida o cena. Intercambio con queso fresco batido, quark o requesón.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Cottage Cheese",
@@ -134172,7 +134215,9 @@
     "label_reason": "Cottage en inglés, mismo producto habitual",
     "subgroup": "fresh_cheese",
     "usage_es": "Queso fresco granulado. Se consume directo con fruta o ensaladas, en desayuno, comida o cena. Intercambio con queso fresco batido, quark o requesón.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Queso Fresco Quark",
@@ -134213,7 +134258,9 @@
     "label_reason": "Quark versátil, ya integrado en España",
     "subgroup": "fresh_cheese",
     "usage_es": "Queso fresco cremoso untable. Se consume directo con tostadas, fruta o dulce, en desayuno o snack. Intercambio con queso fresco batido o requesón.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Mousse Salmón",
@@ -134253,7 +134300,9 @@
     "label_confidence": 85,
     "label_reason": "Mousse salada de salmón, uso ocasional",
     "usage_es": "Elaborado cárnico untable de salmón. Ingrediente de tostadas o canapés en desayuno o aperitivo. Ocasional en España. Intercambio clínico con paté de pescado o atún en conserva.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "fat",
+    "source": "legacy"
   },
   {
     "name": "Mousse Chocolate Proteínas",
@@ -134294,7 +134343,9 @@
     "label_reason": "Postre proteico de chocolate ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico con chocolate. Producto procesado consumido directamente como snack. Intercambio con yogur proteico o queso fresco batido.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Mousse vainilla",
@@ -134335,7 +134386,9 @@
     "label_reason": "Postre proteico de vainilla ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico de vainilla. Producto procesado consumido directamente como snack. Intercambio con yogur proteico o queso fresco batido.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Natillas Proteínas  Sabor Vainilla",
@@ -134376,7 +134429,9 @@
     "label_reason": "Natillas proteicas, consumo ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico de vainilla. Producto procesado consumido directamente como snack. Intercambio con yogur proteico o queso fresco batido.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Pudding Sabor Caramelo Proteínas",
@@ -134417,7 +134472,9 @@
     "label_reason": "Pudding proteico caramelo, ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico de caramelo. Producto procesado consumido directamente como snack. Intercambio con yogur proteico o queso fresco batido.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Flan de huevo proteínas 0%",
@@ -134458,7 +134515,9 @@
     "label_reason": "Flan proteico, producto de nicho ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico listo para consumir. Uso exclusivo como snack entre horas. Intercambio clínico con otros postres proteicos, yogur natural o cuajada. Producto procesado de consumo ocasional.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Mousse protéica con sabor a chocolate",
@@ -134499,7 +134558,9 @@
     "label_reason": "Mousse proteica chocolate, consumo ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico sabor chocolate listo para consumir. Uso exclusivo como snack entre horas. Intercambio clínico con otros postres proteicos, yogur natural o cuajada. Producto procesado de consumo ocasional.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "High Protein Chocolate Pudding",
@@ -134540,7 +134601,9 @@
     "label_reason": "Pudding proteico Milbona, nombre en inglés",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico importado listo para consumir. Uso exclusivo como snack entre horas. Intercambio clínico con otros postres proteicos, yogur natural o cuajada. Producto procesado de consumo ocasional.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Yogur proteínas stracciatella 0%",
@@ -134581,7 +134644,9 @@
     "label_reason": "Yogur proteico listo para consumir",
     "subgroup": "high_protein_dairy",
     "usage_es": "Lácteo fermentado proteico con trocillos de chocolate listo para consumir. Uso exclusivo en desayuno. Intercambio clínico con yogur natural, skyr o queso fresco batido.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Requesón",
@@ -134622,7 +134687,9 @@
     "label_reason": "Requesón versátil, consumo habitual",
     "subgroup": "fresh_cheese",
     "usage_es": "Queso fresco blando listo para consumir. Ingrediente o plato en desayuno, comida o cena, tanto dulce como salado. Intercambio clínico con queso fresco batido, yogur natural o skyr.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "fat",
+    "source": "legacy"
   },
   {
     "name": "Postre de chocolate proteínas",
@@ -134663,7 +134730,9 @@
     "label_reason": "Postre proteico de chocolate ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico sabor chocolate listo para consumir. Uso exclusivo como snack entre horas. Intercambio clínico con otros postres proteicos, yogur natural o cuajada. Producto procesado de consumo ocasional.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "carbs",
+    "source": "legacy"
   },
   {
     "name": "Proteinas Limón",
@@ -134704,7 +134773,9 @@
     "label_reason": "Postre proteico limón, consumo ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico sabor limón listo para consumir. Uso exclusivo como snack entre horas. Intercambio clínico con otros postres proteicos, yogur natural o cuajada. Producto procesado de consumo ocasional.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Kéfir Coco",
@@ -134744,7 +134815,9 @@
     "label_confidence": 85,
     "label_reason": "Kéfir de coco, ocasional pero asentado",
     "usage_es": "Postre lácteo vegetal. Se consume frío como snack o desayuno ocasional. Intercambio con yogur natural o bebida vegetal sin azúcar.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "carbs",
+    "source": "legacy"
   },
   {
     "name": "Proteínas Sabor Tropical",
@@ -134785,7 +134858,9 @@
     "label_reason": "Proteína tropical, consumo ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico sabor tropical listo para consumir. Uso exclusivo como snack entre horas. Intercambio clínico con otros postres proteicos, yogur natural o cuajada. Producto procesado de consumo ocasional.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Skyrella",
@@ -134826,7 +134901,9 @@
     "label_reason": "Skyr lácteo habitual en desayunos",
     "subgroup": "high_protein_dairy",
     "usage_es": "Lácteo alto en proteínas tipo queso fresco batido listo para consumir. Uso exclusivo en desayuno. Intercambio clínico con queso fresco batido, yogur natural o skyr.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Queso fresco batido melocotón y maracuyá",
@@ -134867,7 +134944,9 @@
     "label_reason": "Queso batido con fruta, desayuno típico",
     "subgroup": "fresh_cheese",
     "usage_es": "Queso fresco batido con fruta listo para consumir. Uso exclusivo en desayuno. Intercambio clínico con queso fresco batido natural, yogur natural o skyr.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Chocolate & Topping with Protein",
@@ -134908,7 +134987,9 @@
     "label_reason": "Postre proteico chocolate, uso ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Salsa dulce proteica de chocolate. Se consume directo como snack o topper. Uso exclusivo desayuno o snack. Intercambio con otros postres lácteos proteicos o queso fresco.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Greek style yoghurt low-fat",
@@ -134949,7 +135030,9 @@
     "label_reason": "Yogur griego light, desayuno habitual",
     "subgroup": "high_protein_dairy",
     "usage_es": "Lácteo fermentado alto en proteína. Se consume directo con fruta o cereales. Uso exclusivo desayuno. Intercambio con yogur natural, queso fresco u otros lácteos proteicos.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Yogur proteínas",
@@ -134990,7 +135073,9 @@
     "label_reason": "Yogur proteico Lidl, desayuno habitual",
     "subgroup": "high_protein_dairy",
     "usage_es": "Lácteo fermentado proteico edulcorado. Se consume directo como postre. Uso exclusivo desayuno. Intercambio con yogur griego, queso fresco u otros lácteos fermentados.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Pudding proteínas vainilla",
@@ -135031,7 +135116,9 @@
     "label_reason": "Pudding proteico, snack ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico de vainilla. Se consume directo como snack. Alimento procesado raro en dieta tradicional. Intercambio con flan casero, natillas u otros postres lácteos.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "High Protein Sour Cherry",
@@ -135072,7 +135159,9 @@
     "label_reason": "Postre proteico cereza, ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico sabor cereza. Se consume directo como snack. Alimento procesado raro en dieta tradicional. Intercambio con flan casero, yogur con fruta u otros postres.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Budino Proteico Cioccolato XXL",
@@ -135113,7 +135202,9 @@
     "label_reason": "Budín proteico chocolate, snack ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico de chocolate. Se consume directo como snack. Alimento procesado raro en dieta española. Intercambio con flan casero, mousse u otros postres lácteos.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "High Protein Pudding Kokos",
@@ -135154,7 +135245,9 @@
     "label_reason": "Pudding coco proteico, ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico sabor coco. Se consume directo como snack. Alimento procesado raro en cocina española. Intercambio con arroz con leche, flan u otros postres lácteos.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "High protein mousse vainilla",
@@ -135195,7 +135288,9 @@
     "label_reason": "Mousse proteica vainilla, ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo tipo mousse proteico. Se consume directo como snack. Alimento procesado raro en España. Intercambio con mousse casera, flan o natillas tradicionales.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "High Protein Flan",
@@ -135236,7 +135331,9 @@
     "label_reason": "Flan proteico, postre ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo tipo flan proteico. Se consume directo como snack. Producto procesado de uso ocasional. Intercambio con flan de huevo casero u otros postres lácteos tradicionales.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Postre gelaficado con gelatina. Frutos rojos",
@@ -135276,7 +135373,9 @@
     "label_confidence": 85,
     "label_reason": "Postre gelificado frutos rojos, ocasional",
     "usage_es": "Postre gelatinoso proteico. Se toma frío como snack ocasional. Intercambio con gelatina neutra o claras montadas.",
-    "culinary_role": "recipe_ingredient"
+    "culinary_role": "recipe_ingredient",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Caramel Pudding",
@@ -135317,7 +135416,9 @@
     "label_reason": "Pudding caramelo proteico, ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico sabor caramelo. Se consume directo como snack. Alimento procesado raro en dieta tradicional. Intercambio con flan casero, yogur o natillas de huevo.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "High Protein Mousse Chocolate",
@@ -135358,7 +135459,9 @@
     "label_reason": "Mousse chocolate proteica, ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico de chocolate listo para consumir. Uso exclusivo como snack dulce ocasional. Intercambio clínico con yogur griego natural, queso fresco batido o flan casero ligero.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "High Protein Natillas Chocolate",
@@ -135398,7 +135501,9 @@
     "label_confidence": 85,
     "label_reason": "Natillas proteicas chocolate, ocasionales",
     "usage_es": "Postre lácteo proteico. Se consume frío como snack ocasional. Intercambio con natillas convencionales o yogur cremoso.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "carbs",
+    "source": "legacy"
   },
   {
     "name": "High Protein Strataciella",
@@ -135439,7 +135544,9 @@
     "label_reason": "Yogur stracciatella proteico, habitual",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico con trocillos de chocolate listo para consumir. Uso exclusivo de desayuno. Intercambio clínico con skyr natural, queso fresco batido o yogur proteico.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Bio Skyr vanilla",
@@ -135480,7 +135587,9 @@
     "label_reason": "Skyr vainilla bio, desayuno habitual",
     "subgroup": "high_protein_dairy",
     "usage_es": "Lácteo fermentado proteico aromatizado con vainilla listo para consumir. Uso exclusivo de desayuno. Intercambio clínico con yogur griego natural, yogur desnatado o queso fresco batido.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "carbs",
+    "source": "legacy"
   },
   {
     "name": "Banana, Mango & Cereals Strained Yogurt Dessert",
@@ -135520,7 +135629,9 @@
     "label_confidence": 90,
     "label_reason": "Yogur con fruta y cereales, desayuno",
     "usage_es": "Alimento exótico en España. Buñuelo de garbanzos cocinado al horno o frito. Se come en cena ocasional. Intercambio con hamburguesa de legumbre.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "carbs",
+    "source": "legacy"
   },
   {
     "name": "Light Greek Style Yogurt",
@@ -135561,7 +135672,9 @@
     "label_reason": "Yogur griego light, desayuno habitual",
     "subgroup": "low_fat_dairy",
     "usage_es": "Lácteo fermentado bajo en grasa listo para consumir. Uso exclusivo de desayuno. Intercambio clínico con yogur desnatado natural, skyr sin azúcar o queso fresco batido.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "carbs",
+    "source": "legacy"
   },
   {
     "name": "Skyr rutinario y frambuesa",
@@ -135602,7 +135715,9 @@
     "label_reason": "Lácteo proteico muy consumido en desayunos",
     "subgroup": "high_protein_dairy",
     "usage_es": "Lácteo fermentado proteico con frambuesa listo para consumir. Uso exclusivo de desayuno. Intercambio clínico con skyr natural, yogur griego ligero o queso fresco batido.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "carbs",
+    "source": "legacy"
   },
   {
     "name": "Yogur Fresa",
@@ -135643,7 +135758,9 @@
     "label_reason": "Yogur azucarado típico del desayuno español",
     "subgroup": "basic_dairy",
     "usage_es": "Lácteo fermentado dulce con fresa listo para consumir. Uso exclusivo de desayuno. Intercambio clínico con yogur natural, yogur desnatado o otras leches fermentadas aromatizadas.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "carbs",
+    "source": "legacy"
   },
   {
     "name": "Falafel",
@@ -135683,7 +135800,9 @@
     "label_confidence": 75,
     "label_reason": "Requiere cocción, integrado pero no diario",
     "usage_es": "Alimento exótico y ocasional en España, elaborado con garbanzos. Se come frito en pan pita con salsa. Ingrediente de cena o snack. Intercambio con croquetas de verdura o tortilla de patata.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "carbs",
+    "source": "legacy"
   },
   {
     "name": "Skyr de Frambuesa",
@@ -135723,7 +135842,9 @@
     "label_confidence": 90,
     "label_reason": "Lácteo proteico de consumo habitual en desayuno",
     "usage_es": "Lácteo fermentado azucarado. Se toma frío en desayuno habitual. Intercambio con yogur de frutas o queso fresco batido.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "carbs",
+    "source": "legacy"
   },
   {
     "name": "Nescafé Classic",
@@ -135763,7 +135884,9 @@
     "label_confidence": 95,
     "label_reason": "Ingrediente base para café, requiere infusión",
     "usage_es": "Ingrediente de cocina. Polvo soluble para preparar café. Uso exclusivo en desayuno. Intercambio con café de sobre o cápsula.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Pudin de Bonito del Norte",
@@ -135804,7 +135927,9 @@
     "label_reason": "Pudin de pescado muy minoritario en España",
     "subgroup": "high_protein_dairy",
     "usage_es": "Preparado salado listo para consumir a base de bonito del norte. Alimento raro en España consumido en cena. Intercambio clínico con atún en conserva, pescado blanco a la plancha.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Quark con Frambues",
@@ -135845,7 +135970,9 @@
     "label_reason": "Quark con fruta, desayuno o snack habitual",
     "subgroup": "high_protein_dairy",
     "usage_es": "Queso fresco batido proteico con frambuesa listo para consumir. Uso exclusivo de desayuno. Intercambio clínico con queso fresco batido natural, skyr o yogur griego ligero.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Quark con Fresa",
@@ -135886,7 +136013,9 @@
     "label_reason": "Quark con fruta, desayuno o snack habitual",
     "subgroup": "high_protein_dairy",
     "usage_es": "Queso fresco batido proteico con fresa listo para consumir. Uso exclusivo de desayuno. Intercambio clínico con queso fresco batido natural, skyr o yogur proteico sin azúcar.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Queso Cottage proteico",
@@ -135927,7 +136056,9 @@
     "label_reason": "Queso cottage versátil, consumo frecuente",
     "subgroup": "fresh_cheese",
     "usage_es": "Queso fresco graneado bajo en grasa listo para consumir. Ingrediente o snack en desayuno y cena. Intercambio clínico con queso fresco batido, yogur griego natural o requesón.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Requesón",
@@ -135968,7 +136099,9 @@
     "label_reason": "Requesón tradicional, muy versátil",
     "subgroup": "fresh_cheese",
     "usage_es": "Queso fresco granuloso. Se toma solo, con miel o frutos secos, en desayuno, comida o snack. Intercambio con queso fresco, queso de Burgos o yogur natural.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "fat",
+    "source": "legacy"
   },
   {
     "name": "Requesón",
@@ -136009,7 +136142,9 @@
     "label_reason": "Requesón tradicional, muy versátil",
     "subgroup": "fresh_cheese",
     "usage_es": "Queso fresco granuloso. Se toma solo, con miel o frutos secos, en desayuno, comida o snack. Intercambio con queso fresco, queso de Burgos o yogur natural.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "fat",
+    "source": "legacy"
   },
   {
     "name": "Profeel Protein Mousse Chocolate",
@@ -136050,7 +136185,9 @@
     "label_reason": "Mousse proteica, consumo como snack ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico dulce, consumo ocasional. Se toma directamente como snack. Intercambio con yogur proteico, flan de huevo o natillas caseras.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Mousse de cabracho",
@@ -136090,7 +136227,9 @@
     "label_confidence": 65,
     "label_reason": "Mousse de pescado, producto muy minoritario",
     "usage_es": "Elaboración culinaria rara en España. Mousse de pescado. Se toma fría en cena. Intercambio con mousse de salmón o atún.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Requesón",
@@ -136131,7 +136270,9 @@
     "label_reason": "Requesón tradicional, muy versátil",
     "subgroup": "fresh_cheese",
     "usage_es": "Queso fresco granuloso. Se toma solo, con miel o frutos secos, en desayuno, comida o snack. Intercambio con queso fresco, queso de Burgos o yogur natural.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "fat",
+    "source": "legacy"
   },
   {
     "name": "Bebida láctea 00% vainilla proteína plus",
@@ -136172,7 +136313,9 @@
     "label_reason": "Bebida proteica de marca, consumo ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Lácteo líquido dulce enriquecido con proteína, consumo ocasional. Se bebe como snack. Intercambio con batido de leche, yogur líquido o leche con vainilla.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Natillas sabor vainilla high protein",
@@ -136213,7 +136356,9 @@
     "label_reason": "Natillas proteicas, postre o snack ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico listo para consumir. Exclusivo snack entre horas. Raro en la dieta tradicional española. Intercambio con yogur natural, queso fresco o natillas convencionales.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Natillas Sabor A Vainilla PROteína Plus",
@@ -136254,7 +136399,9 @@
     "label_reason": "Natillas proteicas, postre o snack ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico listo para consumir. Exclusivo snack entre horas. Raro en la dieta tradicional española. Intercambio con yogur natural, queso fresco o natillas convencionales.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Protein Pudding Caramel Flavour",
@@ -136295,7 +136442,9 @@
     "label_reason": "Pudding proteico YoPro, snack ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico listo para consumir. Exclusivo snack entre horas. Raro en la dieta tradicional española. Intercambio con yogur natural, queso fresco o natillas convencionales.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Natillas Sabor Vainilla Protein +",
@@ -136336,7 +136485,9 @@
     "label_reason": "Natillas proteicas, postre o snack ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico listo para consumir. Exclusivo snack entre horas. Raro en la dieta tradicional española. Intercambio con yogur natural, queso fresco o natillas convencionales.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Pudding sabor cacahuete PROteína",
@@ -136377,7 +136528,9 @@
     "label_reason": "Pudding proteico sabor cacahuete, ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico listo para consumir. Exclusivo snack entre horas. Raro en la dieta tradicional española. Intercambio con yogur natural, queso fresco o natillas convencionales.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Pudding Sabor Caramelo Salado PROteína Plus",
@@ -136418,7 +136571,9 @@
     "label_reason": "Pudding proteico, consumo como snack ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico listo para consumir. Uso exclusivo como snack o postre ocasional. Intercambio clínico con yogur proteico, queso fresco batido o natillas convencionales.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Postre 0% azucares añadidos chocolate proteina plus",
@@ -136459,7 +136614,9 @@
     "label_reason": "Postre proteico premium, snack ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico sin azúcar listo para consumir. Uso exclusivo como snack o postre ocasional. Intercambio clínico con yogur proteico, queso fresco o flan casero.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Proteínas Plus Chocolate",
@@ -136500,7 +136657,9 @@
     "label_reason": "Postre proteico, consumo como snack ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico de chocolate listo para consumir. Uso exclusivo como snack o postre ocasional. Intercambio clínico con yogur proteico, mousse o flan casero.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Natillas con caramelo altas en proteínas",
@@ -136541,7 +136700,9 @@
     "label_reason": "Natillas proteicas, postre o snack ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Natilla láctea alta en proteínas lista para consumir. Uso exclusivo como snack o postre ocasional. Intercambio clínico con yogur natural, queso fresco batido o flan.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Flan De Clara De Huevo",
@@ -136582,7 +136743,9 @@
     "label_reason": "Flan proteico de clara, consumo ocasional",
     "subgroup": "high_protein_dairy",
     "usage_es": "Flan lácteo de clara de huevo listo para consumir. Uso exclusivo como snack o postre ocasional. Intercambio clínico con flan convencional, yogur natural o cuajada.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Natillas Con chocolate",
@@ -136623,7 +136786,9 @@
     "label_reason": "Postre lácteo listo para consumir",
     "subgroup": "sweets_bakery",
     "usage_es": "Postre lácteo azucarado con chocolate. Snack o postre ocasional tras las comidas. Intercambio con flan casero o arroz con leche.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "carbs",
+    "source": "legacy"
   },
   {
     "name": "Natillas, Chicolate, High Protein",
@@ -136664,7 +136829,9 @@
     "label_reason": "Natillas proteicas listas para consumir",
     "subgroup": "high_protein_dairy",
     "usage_es": "Natilla láctea de chocolate alta en proteínas lista para consumir. Uso exclusivo como snack o postre. Intercambio clínico con yogur proteico, mousse o cuajada.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Mousse de cacao alta en proteínas",
@@ -136705,7 +136872,9 @@
     "label_reason": "Mousse lácteo listo para consumir",
     "subgroup": "high_protein_dairy",
     "usage_es": "Mousse láctea de cacao alta en proteínas lista para consumir. Uso exclusivo como snack o postre. Intercambio clínico con yogur proteico, queso fresco batido o flan.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Pudding sabor chocolate",
@@ -136746,7 +136915,9 @@
     "label_reason": "Pudding proteico listo para consumir",
     "subgroup": "high_protein_dairy",
     "usage_es": "Pudding lácteo de chocolate proteico listo para consumir. Uso exclusivo como snack o postre. Intercambio clínico con yogur proteico, natillas o queso fresco batido.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "High Protein Mousse Chocolate",
@@ -136787,7 +136958,9 @@
     "label_reason": "Mousse proteico listo para consumir",
     "subgroup": "high_protein_dairy",
     "usage_es": "Mousse láctea de chocolate alta en proteínas lista para consumir. Uso exclusivo como snack o postre. Intercambio clínico con yogur proteico, queso fresco o natillas.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Queso fresco batido proteína plus",
@@ -136828,7 +137001,9 @@
     "label_reason": "Queso batido versátil listo para consumir",
     "subgroup": "fresh_cheese",
     "usage_es": "Queso fresco batido proteico listo para consumir. Ingrediente o snack en desayuno y merienda. Intercambio clínico con yogur natural, queso fresco o requesón.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "ProFeel Protein Snack Mango & Vanilla",
@@ -136869,7 +137044,9 @@
     "label_reason": "Snack proteico lácteo listo para consumir",
     "subgroup": "high_protein_dairy",
     "usage_es": "Snack lácteo proteico listo para consumir. Uso exclusivo como snack entre horas. Intercambio clínico con otros lácteos proteicos edulcorados, yogur proteico o queso fresco batido.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Yogur High Protein Stracciatella",
@@ -136910,7 +137087,9 @@
     "label_reason": "Yogur proteico típico de desayuno",
     "subgroup": "high_protein_dairy",
     "usage_es": "Lácteo proteico con trocillos de chocolate listo para consumir. Uso exclusivo en desayunos. Intercambio clínico con yogur natural, skyr o yogur proteico de otros sabores.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "High protein natural",
@@ -136951,7 +137130,9 @@
     "label_reason": "Yogur natural proteico muy versátil",
     "subgroup": "high_protein_dairy",
     "usage_es": "Lácteo proteico sin sabor listo para consumir. Ingrediente o desayuno versatility. Intercambio clínico con yogur natural, skyr, yogur griego o queso fresco batido.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Mousse 4 Quesos",
@@ -136991,7 +137172,9 @@
     "label_confidence": 85,
     "label_reason": "Mousse de quesos, consumo ocasional",
     "usage_es": "Preparación láctea con quesos. Se consume fría como snack ocasional. Intercambio con queso crema untable o queso de untar light.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "fat",
+    "source": "legacy"
   },
   {
     "name": "Requesón tradicional",
@@ -137032,7 +137215,9 @@
     "label_reason": "Requesón tradicional listo para consumir",
     "subgroup": "fresh_cheese",
     "usage_es": "Queso fresco lácteo listo para consumir. Se toma en desayuno, merienda o postre, a menudo con miel o nueces. Intercambio clínico con queso fresco batido o yogur griego.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "fat",
+    "source": "legacy"
   },
   {
     "name": "Bocaditos en gelatina",
@@ -137072,7 +137257,9 @@
     "label_confidence": 80,
     "label_reason": "Bocaditos en gelatina, dulce ocasional",
     "usage_es": "Confitería proteica en gelatina. Se toma como snack ocasional entre horas. Intercambio con gelatina neutra o gominolas sin azúcar.",
-    "culinary_role": "recipe_ingredient"
+    "culinary_role": "recipe_ingredient",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Yogur colado receta griega",
@@ -137113,7 +137300,9 @@
     "label_reason": "Yogur griego colado, desayuno habitual",
     "subgroup": "high_protein_dairy",
     "usage_es": "Lácteo proteico cremoso listo para consumir. Uso exclusivo en desayunos, habitualmente con fruta o cereales. Intercambio clínico con yogur griego natural, skyr o queso fresco batido.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Queso fresco batido",
@@ -137154,7 +137343,9 @@
     "label_reason": "Queso fresco batido versátil",
     "subgroup": "fresh_cheese",
     "usage_es": "Queso fresco líquido listo para consumir. Ingrediente dulce o salado en desayunos, comidas o cenas. Intercambio clínico con yogur natural, requesón desnatado o skyr natural.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Yogur Frutos del Bosque + Proteína",
@@ -137195,7 +137386,9 @@
     "label_reason": "Yogur de frutos del bosque con proteína",
     "subgroup": "high_protein_dairy",
     "usage_es": "Lácteo proteico con frutos rojos listo para consumir. Uso exclusivo en desayunos. Intercambio clínico con yogur proteico de otros sabores, skyr o yogur griego con fruta.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Postre proteína 0% fresa",
@@ -137236,7 +137429,9 @@
     "label_reason": "Postre proteico de fresa listo para consumir",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico de fresa listo para consumir. Uso exclusivo como snack entre horas. Intercambio clínico con otros postres proteicos 0%, yogur proteico o flan light.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Postre proteína 0% arándanos",
@@ -137277,7 +137472,9 @@
     "label_reason": "Postre proteico de arándanos listo",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico de arándanos listo para consumir. Uso exclusivo como snack entre horas. Intercambio clínico con otros postres proteicos 0%, yogur proteico o flan light.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Skyr + protein",
@@ -137318,7 +137515,9 @@
     "label_reason": "Skyr con proteína, desayuno habitual",
     "subgroup": "high_protein_dairy",
     "usage_es": "Lácteo proteico de origen islandés listo para consumir. Uso exclusivo en desayunos, solo o con toppings. Intercambio clínico con yogur griego natural, skyr normal o requesón.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Skyr Natural",
@@ -137359,7 +137558,9 @@
     "label_reason": "Skyr natural versátil y habitual",
     "subgroup": "high_protein_dairy",
     "usage_es": "Lácteo proteico nórdico. Se consume directamente como snack o desayuno. Intercambio con yogur natural, queso fresco o kéfir.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Flan De Huevo Proteina",
@@ -137400,7 +137601,9 @@
     "label_reason": "Flan de huevo proteico listo",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico. Se consume directamente como snack o postre. Intercambio con flan tradicional, yogur natural o natillas.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "carbs",
+    "source": "legacy"
   },
   {
     "name": "Flan proteina de clara de huevo 0%",
@@ -137441,7 +137644,9 @@
     "label_reason": "Flan proteico de clara listo",
     "subgroup": "high_protein_dairy",
     "usage_es": "Postre lácteo proteico de clara. Se consume directamente como snack o postre. Intercambio con flan tradicional, yogur natural o gelatina.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "carbs",
+    "source": "legacy"
   },
   {
     "name": "Skyr Natural 00%",
@@ -137482,7 +137687,9 @@
     "label_reason": "Skyr natural 0% versátil",
     "subgroup": "high_protein_dairy",
     "usage_es": "Lácteo proteico nórdico desnatado. Se consume directamente como snack o desayuno. Intercambio con yogur desnatado, queso fresco o kéfir.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Mousse De Salmón Con Queso De Cabra",
@@ -137522,7 +137729,9 @@
     "label_confidence": 75,
     "label_reason": "Mousse salada de salmón, uso raro",
     "usage_es": "Elaboración cárnica fría de pescado y lácteo. Se consume untada en tostadas como cena o aperitivo. Alimento raro en España. Intercambio clínico con paté de pavo, hummus o queso crema ligero.",
-    "culinary_role": "dessert"
+    "culinary_role": "dessert",
+    "macro_profile": "fat",
+    "source": "legacy"
   },
   {
     "name": "Skyr",
@@ -137563,7 +137772,9 @@
     "label_reason": "Skyr natural versátil y habitual",
     "subgroup": "high_protein_dairy",
     "usage_es": "Lácteo proteico nórdico azucarado. Se consume directamente como snack o desayuno. Intercambio con yogur sabores, queso fresco o kéfir.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Yogur Protein Plátano",
@@ -137604,7 +137815,9 @@
     "label_reason": "Yogur proteico de plátano para desayuno",
     "subgroup": "high_protein_dairy",
     "usage_es": "Lácteo proteico saborizado. Uso exclusivo de desayuno. Se consume directamente. Intercambio con yogur sabores o queso fresco.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Yogur líquido sabor tropical",
@@ -137645,7 +137858,9 @@
     "label_reason": "Yogur líquido de marca blanca, desayuno típico",
     "subgroup": "high_protein_dairy",
     "usage_es": "Lácteo proteico líquido saborizado. Uso exclusivo de desayuno. Se bebe directamente. Intercambio con yogur líquido o batido lácteo.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Yogur líquido sabor plátano proteína",
@@ -137686,7 +137901,9 @@
     "label_reason": "Yogur proteico líquido, consumo en desayuno",
     "subgroup": "high_protein_dairy",
     "usage_es": "Lácteo proteico líquido saborizado. Uso exclusivo de desayuno. Se bebe directamente. Intercambio con yogur líquido o batido lácteo.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Yogur líquido sabor fresa proteína",
@@ -137727,7 +137944,9 @@
     "label_reason": "Yogur líquido fresa, desayuno o merienda",
     "subgroup": "high_protein_dairy",
     "usage_es": "Lácteo proteico líquido saborizado. Uso exclusivo de desayuno. Se bebe directamente. Intercambio con yogur líquido o batido lácteo.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Yogur sabor tropical",
@@ -137768,7 +137987,9 @@
     "label_reason": "Yogur tropical Eroski, muy común en España",
     "subgroup": "high_protein_dairy",
     "usage_es": "Lácteo proteico saborizado. Uso exclusivo de desayuno. Se consume directamente. Intercambio con yogur sabores o queso fresco.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Queso Fresco Batido",
@@ -137809,7 +138030,9 @@
     "label_reason": "Queso fresco batido versátil y habitual",
     "subgroup": "fresh_cheese",
     "usage_es": "Queso fresco batido sin grasa listo para consumir. Ingrediente o desayuno, comida y cena. Intercambio con yogur natural, skyr o queso fresco troceado.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Skyr Fresa 0%Mg",
@@ -137850,7 +138073,9 @@
     "label_reason": "Skyr muy popular en desayunos españoles",
     "subgroup": "high_protein_dairy",
     "usage_es": "Lácteo fermentado alto en proteína listo para consumir. Exclusivo desayuno. Intercambio con yogur natural, queso fresco batido o kefir.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "protein",
+    "source": "legacy"
   },
   {
     "name": "Fromages frais aux fruits",
@@ -137891,7 +138116,9 @@
     "label_reason": "Queso fresco con frutas Bio, desayuno habitual",
     "subgroup": "fresh_cheese",
     "usage_es": "Queso fresco con fruta listo para consumir. Exclusivo desayuno. Intercambio con yogur de frutas, queso fresco con mermelada o skyr con fruta.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "macro_profile": "carbs",
+    "source": "legacy"
   },
   {
     "source": "BEDCA",
