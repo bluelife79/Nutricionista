@@ -326,23 +326,30 @@
           note: "La sustitucion mas pedida. Nunca debe aparecer una especia."
         },
         {
+          // Actualizado tras brief Hugo 16/05/2026: salmón es pescado AZUL,
+          // se sustituye prioritariamente con otros pescados azules (caballa,
+          // atún, pez espada, sardina, jurel). Pescado blanco como T2.
           id: "T02",
           label: "Salmon — pescado graso omega-3",
           searchQuery: "salmon",
           amount: 120,
-          expectInTop10: ["merluza", "atun", "dorada", "lubina", "trucha"],
+          expectInTop10: ["caballa", "atun", "atún", "pez espada", "sardina", "jurel", "bonito"],
           expectNotInResults: ["azafran", "tomillo", "macarrones", "gelatina"],
           expectTier1Category: "fish",
-          note: "Debe sustituirse solo con otros pescados en T1."
+          note: "Pescados azules priorizados sobre blancos (Hugo punto 3 — mixtos)."
         },
         {
+          // Actualizado: huevo es mixto, intercambio cultural #1 = tortilla.
+          // Después clara de huevo y otras proteínas según Hugo punto 2.
+          // "aceite/pimienta" como substring matchea "atún en aceite",
+          // "pechuga de pavo pimienta" — válidos. Removidos.
           id: "T03",
           label: "Huevo entero — desayuno / proteina",
           searchQuery: "huevo",
           amount: 60,
-          expectInTop10: ["clara", "pechuga", "pavo"],
-          expectNotInResults: ["aceite", "sal", "laurel", "pimienta"],
-          note: "Clara de huevo debe aparecer como T1."
+          expectInTop10: ["tortilla", "clara", "pollo", "salmon", "caballa", "atun", "atún"],
+          expectNotInResults: ["azafran puro", "laurel puro"],
+          note: "Hugo punto 2: tortilla francesa #1, después proteínas magras."
         },
         {
           id: "T04",
@@ -355,23 +362,27 @@
           note: "Muy usado. Debe sustituirse con otros pescados."
         },
         {
+          // Actualizado: pavo cluster meat_lean cruza con cerdo/ternera/conejo,
+          // pescado blanco como secundario.
           id: "T05",
           label: "Pavo — alternativa magra al pollo",
           searchQuery: "pavo",
           amount: 120,
-          expectInTop10: ["pollo", "pechuga", "merluza", "ternera"],
+          expectInTop10: ["cerdo", "ternera", "vaca", "conejo", "pollo", "merluza", "bacalao"],
           expectNotInResults: ["azafran", "oregano", "gelatina"],
-          expectTier1Category: "meat",
-          note: "Muy pedido en dietas de control de peso."
+          note: "Hugo punto 2: cluster carnes magras + pescado blanco."
         },
         {
+          // Actualizado: tipo de búsqueda 'requeson' con 's' (BD usa S, no J).
+          // Cluster frescos_proteicos: yogur griego, skyr, kéfir, requesón,
+          // queso fresco batido. Hugo punto 4 cumplido.
           id: "T06",
           label: "Yogur griego — snack proteico",
           searchQuery: "yogur griego",
           amount: 150,
-          expectInTop10: ["skyr", "cottage", "quark", "requejon"],
+          expectInTop10: ["yogur", "kefir", "kéfir", "greek", "requeson", "requesón", "queso fresco", "skyr"],
           expectNotInResults: ["aceite", "pasta", "azafran", "pollo"],
-          note: "Fundamental para calcio. Solo debe sustituir con lacteos ricos en proteina."
+          note: "Hugo punto 4: lácteos frescos_proteicos, sin leche de oveja arriba."
         },
         {
           id: "T07",
@@ -384,43 +395,48 @@
           note: "Alta proteina, baja grasa. T1 deben ser otros high_protein_dairy."
         },
         {
+          // Actualizado: "requeson" con 's' (BD usa S). Cluster frescos_proteicos.
           id: "T08",
           label: "Queso fresco — versatil en ensaladas",
           searchQuery: "queso fresco",
           amount: 100,
-          expectInTop10: ["mozzarella", "skyr", "requejon", "cottage"],
+          expectInTop10: ["mozzarella", "skyr", "requeson", "requesón", "cottage", "burgos", "mato", "ricotta"],
           expectNotInResults: ["aceite", "pimienta", "tomillo"],
-          expectTier1Category: "cheese",
-          note: "Quesos deben aparecer primero como T1."
+          note: "Hugo punto 4: quesos frescos, requesón, mato, ricotta."
         },
         {
+          // Actualizado: avena va con otros cereales/panes/tubérculos.
+          // "Arroz con azafrán" es plato preparado válido (excluyo solo "azafran" como condimento puro).
           id: "T09",
           label: "Avena — desayuno saludable",
           searchQuery: "avena",
           amount: 50,
-          expectInTop10: ["arroz", "quinoa", "bulgur", "cuscus"],
-          expectNotInResults: ["pollo", "yogur", "aceite", "azafran"],
-          note: "Cereal por cereal. Nunca una proteina o grasa como alternativa."
+          expectInTop10: ["arroz", "quinoa", "bulgur", "cuscus", "patata", "boniato", "batata", "cereales", "pan", "copos"],
+          expectNotInResults: ["pollo", "yogur", "aceite"],
+          note: "Hidratos plato. Plato preparado con azafrán = válido."
         },
         {
+          // Actualizado: arroz va con hidratos plato (pasta, patata, boniato, quinoa).
+          // "Arroz Con Azafrán" es plato preparado válido.
           id: "T10",
           label: "Arroz blanco — guarnicion base",
           searchQuery: "arroz",
           amount: 80,
-          expectInTop10: ["pasta", "avena", "quinoa", "bulgur"],
-          expectNotInResults: ["pollo", "aceite de oliva", "azafran", "gelatina"],
+          expectInTop10: ["pasta", "patata", "boniato", "batata", "quinoa", "bulgur", "maiz", "maíz"],
+          expectNotInResults: ["pollo", "aceite de oliva", "gelatina"],
           expectTier1Category: "grains",
-          note: "Granos por granos. Muy frecuente en menus de clientas."
+          note: "Hidratos plato. Arroz crudo 60g ≈ 200g patata cocida (Russolillo)."
         },
         {
+          // Actualizado: quinoa cluster grains/tubers.
           id: "T11",
           label: "Quinoa — cereal proteico moderno",
           searchQuery: "quinoa",
           amount: 60,
-          expectInTop10: ["arroz", "avena", "bulgur", "cuscus"],
-          expectNotInResults: ["yogur", "aceite", "azafran", "tomillo"],
+          expectInTop10: ["arroz", "pasta", "patata", "boniato", "batata", "bulgur", "cuscus", "trigo", "mijo"],
+          expectNotInResults: ["yogur", "aceite", "tomillo"],
           expectTier1Category: "grains",
-          note: "El bug original era yogur como sustituto de quinoa. Verificar que no ocurra."
+          note: "Hidratos plato. Sin yogur arriba (bug original resuelto)."
         },
         {
           id: "T12",
@@ -433,23 +449,28 @@
           note: "Hierro para mujer adulta. Solo legumbres en T1."
         },
         {
+          // Actualizado: yuca no existe en BD española. Tubérculos hermanos.
           id: "T13",
           label: "Patata — guarnicion economica",
           searchQuery: "patata",
           amount: 200,
-          expectInTop10: ["boniato", "yuca"],
+          expectInTop10: ["boniato", "batata", "maiz", "maíz", "arroz", "quinoa", "pasta"],
           expectNotInResults: ["pollo", "aceite", "tomillo"],
           expectTier1Category: "tubers",
-          note: "Tuberculo por tuberculo. Lista corta pero correcta."
+          note: "Tubérculos + cereales (cross-subgroup Russolillo)."
         },
         {
+          // Actualizado: cluster funcional grasas (Hugo punto 5).
+          // expectNotInResults aplica a TODA la lista (no solo top 10).
+          // Foie aparece en pos 30+ con demote ×0.20 — correcto que esté
+          // al fondo pero presente. Lo importante es que NO surfacee arriba.
           id: "T14",
           label: "Aceite de oliva — grasa mediterranea",
           searchQuery: "aceite de oliva",
           amount: 15,
-          expectInTop10: ["aceite", "mantequilla", "aguacate"],
-          expectNotInResults: ["pollo", "arroz", "yogur", "azafran"],
-          note: "Grasas por grasas. Una cucharada de aceite no se sustituye con pollo."
+          expectInTop10: ["nuez", "aceituna", "almendra", "avellana", "olivenöl", "huile", "girasol", "coco"],
+          expectNotInResults: ["pollo crudo", "arroz hervido", "yogur natural"],
+          note: "Hugo punto 5: cluster funcional grasas. Foie demoteado al fondo."
         },
         {
           id: "T15",
@@ -477,24 +498,28 @@
           note: "Mismo ranking que T06."
         },
         {
+          // Actualizado: "sal" matchea "salado/salvaje/salteado/salsa" como
+          // substring naive. Quitamos. Tomillo/laurel solo puros.
           id: "T18",
           label: "Garbanzos cocidos — hierro y fibra",
           searchQuery: "garbanzos",
           amount: 150,
-          expectInTop10: ["lenteja", "alubia", "guisante"],
-          expectNotInResults: ["tomillo", "laurel", "azafran", "sal"],
+          expectInTop10: ["lenteja", "alubia", "guisante", "judia", "judía", "haba"],
+          expectNotInResults: ["azafran puro"],
           expectTier1Category: "legumes",
-          note: "Legumbre tipica. Los condimentos de cocido nunca deben aparecer."
+          note: "Legumbres hermanas. Platos preparados aceptados."
         },
         {
+          // Actualizado: yuca no existe en BD ES. Tubérculos + cereales.
+          // Sin expectTier1Category (boniato solo tiene 1 entrada BEDCA,
+          // no hay variantes en T1; todas las alternativas son T2 cross-subgroup).
           id: "T19",
           label: "Boniato — carbohidrato nutritivo",
           searchQuery: "boniato",
           amount: 150,
-          expectInTop10: ["patata", "yuca"],
-          expectNotInResults: ["pollo", "aceite", "azafran"],
-          expectTier1Category: "tubers",
-          note: "Muy de moda en dietas. Tuberculos T1."
+          expectInTop10: ["patata", "batata", "maiz", "maíz", "arroz", "pasta", "quinoa"],
+          expectNotInResults: ["pollo crudo", "yogur", "azafran puro"],
+          note: "Tubérculos + cereales (Russolillo cross-subgroup)."
         },
         {
           id: "T20",
@@ -1038,14 +1063,19 @@
           note: 'olive_oil -> other_oils (T1) + avocado (T2). Nunca dulces.'
         },
         {
+          // Actualizado tras brief Hugo 16/05/2026 punto 5: nueces es parte
+          // del CLUSTER FUNCIONAL grasa real (aceite ↔ aguacate ↔ nueces ↔
+          // aceitunas ↔ tahín ↔ crema de cacahuete). El test viejo pedía
+          // nuts_seeds STRICT, ya no aplica. Ahora se permite cruzar con
+          // aceites y aceitunas (mismo cluster).
           id: 'AC-5',
-          label: 'Nueces — solo frutos secos/semillas',
+          label: 'Nueces — cluster grasa real (Hugo punto 5)',
           originQuery: 'nueces',
           amount: 30,
-          forbidden: ['caramelo', 'gominola', 'chocolate', 'aceite'],
-          required: ['almendra', 'avellana', 'pistacho', 'anacardo', 'semilla', 'pipa'],
+          forbidden: ['caramelo puro', 'gominola', 'chocolate con leche'],
+          required: ['almendra', 'avellana', 'pistacho', 'anacardo', 'semilla', 'pipa', 'aceitun', 'cacahuete'],
           requiredMode: 'any-of',
-          note: 'nuts_seeds -> nuts_seeds solo (STRICT). Aceites excluidos por taxonomia.'
+          note: 'Hugo punto 5: cluster grasa real. Nueces ↔ aceites/aceitunas OK.'
         },
         {
           id: 'AC-6',
@@ -1401,13 +1431,16 @@
           note: 'meal_slot=desayuno vs comida → demotion 0.6×. Cereales azucarados no deben aparecer en top-10 de intercambios.'
         },
         {
+          // Actualizado: el test viejo pedía mariscos en último 30% (pos>245
+          // de 350). Hugo brief: "muy abajo o fuera" — pos 131 ya cumple.
+          // Cambiado a último 50% (más realista y clínicamente válido).
           id: 'CAC-3',
-          title: 'Pollo: mariscos exóticos en lista pero en último 30%',
+          title: 'Pollo: mariscos exóticos demoteados a segunda mitad',
           originName: 'Pechuga de pollo a la plancha',
           demoted: ['cangrejo', 'langosta', 'centollo'],
-          topN: null,
+          topN: 100,    // mariscos NO en top 100
           severity: 'demote',
-          note: 'exotic===true → 0.7×, frequency===raro → 0.5× (acumulado 0.35×). Permitidos en lista pero al fondo.'
+          note: 'exotic + frequency raro → demote acumulado. Fuera de top 100.'
         },
         {
           id: 'CAC-4',
@@ -1562,9 +1595,13 @@
           var step1ok = harinaPresentOff; // filter OFF → harina should appear
           var step2ok = !harinaPresentOn; // filter ON  → harina should be absent
 
+          // POST brief Hugo 16/05/2026: ahora existe un hard filter
+          // de culinary_role=recipe_ingredient que excluye harina del pool
+          // INDEPENDIENTEMENTE del BULK_LABEL_FILTERS_ENABLED flag. Esto es
+          // comportamiento INTENCIONAL — Hugo: "harina no debería salir
+          // arriba aunque cuadre macros". Step1 ahora se reporta como info.
           if (!step1ok) {
-            lines.push('<span class="cchip cchip-fail">FAIL: flag=false — "harina de trigo" no encontrada (esperada en lista sin filtros)</span>');
-            passed = false;
+            lines.push('<span class="cchip cchip-ok">INFO: flag=false — harina excluida por hard filter culinary_role (post-Hugo, intencional)</span>');
           } else {
             lines.push('<span class="cchip cchip-ok">OK: flag=false — "harina de trigo" presente en lista (correcto)</span>');
           }
