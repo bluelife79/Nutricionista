@@ -1762,6 +1762,30 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       }
     }
 
+    // R12 LECHE PREPARADA / SABORIZADA DEMOTE (Hugo brief D):
+    // Cuando origen es leche/bebida PURA (sin tokens café/cacao/sabor/
+    // infantil) y candidato es leche modificada/preparada (café con leche,
+    // cacaolat, leche infantil, merengada, evaporada, condensada, batido
+    // saborizado), demote MUY fuerte (×0.05). Aplica independiente de tier
+    // (también baja en bloque familia, no solo intercambios).
+    {
+      const oName = norm(originalFood.name || "");
+      const cName = norm(a.name || "");
+      const _LECHE_PURA_RE =
+        /^(leche|bebida)\s+(de\s+)?(vaca|cabra|oveja|burra|soja|avena|almendra|coco|arroz|avellana|anacardo)|^leche\s+(entera|semidesnatada|desnatada|semi|sin\s+lactosa|uht|fresca|pasteurizada)/i;
+      const _LECHE_PREPARADA_RE =
+        /\b(cafe?\s*con\s*leche|caf[eé]\s+latte|caf[eé]\s+cortado|caf[eé]\s+capuc|cacaolat|colacao|nesquik|chococao|leche\s+chocolate|leche\s+con\s+cacao|leche\s+con\s+chocolate|leche\s+infantil|leche\s+de\s+continuacion|leche\s+merengada|leche\s+evaporada|leche\s+condensada|batido\s+sabor|batido\s+de\s+(chocolate|fresa|vainilla|cacao|platano)|monster\s+caf[eé]|frappuccino|frappe)\b/i;
+      const originIsPureMilk = _LECHE_PURA_RE.test(oName) &&
+                                !_LECHE_PREPARADA_RE.test(oName);
+      const candIsPrepared = _LECHE_PREPARADA_RE.test(cName);
+      if (originIsPureMilk && candIsPrepared) {
+        demotion *= 0.05;
+        if (window.location.search.includes('?debug=1')) {
+          console.debug('[leche-preparada] DEMOTED candidate=\'' + a.name + '\' factor=0.05 (origen leche pura, candidato leche preparada)');
+        }
+      }
+    }
+
     // R11 RAW vs PROCESSED MEAL_DISH (Hugo mail 16/05/2026 punto 2.A):
     // Cuando origen es ingrediente CRUDO/SECO (avena cruda, arroz crudo,
     // quinoa cruda) — alimento que la clienta tiene en su despensa para

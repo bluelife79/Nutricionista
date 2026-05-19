@@ -909,7 +909,7 @@
     "label_reason": "Bebida vegetal lista, uso similar a la leche",
     "usage_es": "Bebida vegetal de soja. Se consume fría o con café, exclusivamente en desayunos. Intercambio con leche semidesnatada o bebida de avena.",
     "culinary_role": "staple",
-    "dairy_subfamily": "liquidos"
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "BEDCA",
@@ -5086,12 +5086,12 @@
     "carbs": 17.0,
     "fat": 2.7,
     "calories": 97.1,
-    "category": "other",
+    "category": "dairy",
     "brand": "Marca Blanca",
     "id": "bedca_0211",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "other_dairy",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -5102,7 +5102,9 @@
     "label_confidence": 90,
     "label_reason": "Bebida fresca lista, bebida típica",
     "usage_es": "Bebida dulce de chufa. Consumo exclusivo de snack, muy típica en el Mediterráneo. Intercambio con leche entera, batido de cacao o zumo de frutas.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal",
+    "category_prev": "other"
   },
   {
     "source": "BEDCA",
@@ -5487,7 +5489,7 @@
     "label_reason": "Bebida vegetal ya integrada en desayunos",
     "usage_es": "Bebida vegetal. Se toma sola o con café, exclusivamente en desayuno. No es lácteo. Intercambio con leche semidesnatada u otras bebidas vegetales sin azúcar.",
     "culinary_role": "staple",
-    "dairy_subfamily": "liquidos"
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "BEDCA",
@@ -12272,12 +12274,12 @@
     "carbs": 5.76,
     "fat": 1.84,
     "calories": 52.7,
-    "category": "carbs",
+    "category": "dairy",
     "brand": "Marca Blanca",
     "id": "bedca_0500",
     "code": null,
     "quantity": null,
-    "subgroup": "other_carbs",
+    "subgroup": "other_dairy",
     "macro_profile": "carbs",
     "flags": [
       "condiment"
@@ -12291,7 +12293,8 @@
     "label_confidence": 85,
     "label_reason": "Bebida vegetal integrada, uso desayuno",
     "usage_es": "Bebida vegetal de leguminosa. Se toma exclusivamente en desayuno, sola o con café. Intercambio con leche de vaca o bebida de avena.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "BEDCA",
@@ -15878,7 +15881,7 @@
     "label_reason": "Leche condensada, consumo directo",
     "usage_es": "Lácteo azucarado muy concentrado. Ingrediente de repostería y postres como flanes, consumo ocasional. Intercambio con mermelada o dulce de leche.",
     "culinary_role": "staple",
-    "dairy_subfamily": "postres_lacteos"
+    "dairy_subfamily": "leche_preparada"
   },
   {
     "source": "BEDCA",
@@ -21519,7 +21522,7 @@
     "label_reason": "Bebida láctea lista, consumo ocasional",
     "usage_es": "Bebida láctea azucarada con canela y limón. Se toma fría como snack ocasional de verano. Intercambio con batido de leche con fruta o yogur líquido azucarado.",
     "culinary_role": "staple",
-    "dairy_subfamily": "liquidos"
+    "dairy_subfamily": "leche_preparada"
   },
   {
     "source": "BEDCA",
@@ -21724,7 +21727,7 @@
     "label_reason": "Ingrediente exótico para cocinar",
     "usage_es": "Bebida vegetal exótica de coco. Ingrediente en curris o postres, rara como bebida en España. Intercambio con crema de coco o leche entera según la grasa.",
     "culinary_role": "staple",
-    "dairy_subfamily": "liquidos"
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "BEDCA",
@@ -24405,7 +24408,7 @@
     "label_reason": "Batido lácteo de desayuno muy común",
     "usage_es": "Bebida láctea con fresa. Uso exclusivo de desayuno o snack. Se toma directamente muy fría. Intercambio con leche entera, batido de chocolate o yogur líquido.",
     "culinary_role": "staple",
-    "dairy_subfamily": "liquidos"
+    "dairy_subfamily": "leche_preparada"
   },
   {
     "source": "Carrefour",
@@ -24941,12 +24944,12 @@
     "carbs": 12.1,
     "fat": 0.7,
     "calories": 60.5,
-    "category": "carbs",
+    "category": "dairy",
     "brand": "Hacendado",
     "id": "off_4a14441279",
     "code": "8480000396174",
     "quantity": "990 ml (3 x 330 ml)",
-    "subgroup": "fruit",
+    "subgroup": "other_dairy",
     "macro_profile": "carbs",
     "flags": [
       "condiment"
@@ -24959,7 +24962,9 @@
     "label_confidence": 78,
     "label_reason": "Bebida soja sabores, desayuno ocasional",
     "usage_es": "Bebida vegetal con frutas, rara en España. Se toma directamente, exclusivamente en desayuno. Intercambio con bebida de soja natural, leche con frutas o yogur líquido.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal",
+    "category_prev": "carbs"
   },
   {
     "source": "Mercadona",
@@ -25195,12 +25200,12 @@
     "carbs": 12.0,
     "fat": 1.9,
     "calories": 67.0,
-    "category": "carbs",
+    "category": "dairy",
     "brand": "Hacendado",
     "id": "off_06774637ef",
     "code": "8480000239198",
     "quantity": "1 l",
-    "subgroup": "grains",
+    "subgroup": "other_dairy",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -25211,7 +25216,9 @@
     "label_confidence": 90,
     "label_reason": "Bebida vegetal lista para consumir",
     "usage_es": "Bebida vegetal de arroz y coco. Se toma sola o con café en el desayuno. Intercambio con bebida de avena, leche de vaca o bebida de soja.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal",
+    "category_prev": "carbs"
   },
   {
     "source": "Carrefour",
@@ -25873,7 +25880,7 @@
     "carbs": 5.5,
     "fat": 1.7,
     "calories": 50.9,
-    "category": "carbs",
+    "category": "dairy",
     "brand": "Hacendado",
     "id": "off_bd5b7779aa",
     "code": "8480000293039",
@@ -25892,7 +25899,8 @@
     "label_confidence": 85,
     "label_reason": "Bebida vegetal con café, desayuno ocasional",
     "usage_es": "Bebida vegetal con café, rara en España. Uso exclusivo de desayuno. Se toma directamente fría o caliente. Intercambio con café con leche de soja o avena.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "Carrefour",
@@ -26084,7 +26092,7 @@
     "carbs": 2.04,
     "fat": 1.6,
     "calories": 36.0,
-    "category": "carbs",
+    "category": "dairy",
     "brand": "Auchan",
     "id": "off_1dd22a7565",
     "code": "8436019091142",
@@ -26103,7 +26111,8 @@
     "label_confidence": 90,
     "label_reason": "Bebida de soja UHT lista para consumir",
     "usage_es": "Bebida vegetal de soja. Ingrediente o bebida habitual en desayuno, comida o cena. No es leche. Intercambio con otras bebidas vegetales o leche desnatada.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "Mercadona",
@@ -29407,7 +29416,7 @@
     "carbs": 3.8,
     "fat": 1.8,
     "calories": 45.4,
-    "category": "carbs",
+    "category": "dairy",
     "brand": "Carrefour",
     "id": "off_32aca2e344",
     "code": "8431876119213",
@@ -29426,7 +29435,8 @@
     "label_confidence": 75,
     "label_reason": "Bebida de soja, producto descatálogo",
     "usage_es": "Bebida vegetal de soja. Producto descatalogado y raro en la dieta base. Se bebe sola o con café. Intercambio con leche desnatada u otras bebidas vegetales.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "Mercadona",
@@ -41794,7 +41804,7 @@
     "label_reason": "Postre listo, consumo ocasional",
     "usage_es": "Postre lácteo congelado con café. Se consume solo como postre ocasional. Intercambio con flan, natillas, tiramisú u otros postres lácteos dulces.",
     "culinary_role": "dessert",
-    "dairy_subfamily": "postres_lacteos"
+    "dairy_subfamily": "leche_preparada"
   },
   {
     "source": "Lidl",
@@ -42452,7 +42462,7 @@
     "label_reason": "Ingrediente para café",
     "usage_es": "Ingrediente lácteo concentrado. Se usa para preparar café con leche en desayuno, no se bebe sola. Intercambio clínico con leche entera o semidesnatada para café.",
     "culinary_role": "staple",
-    "dairy_subfamily": "postres_lacteos"
+    "dairy_subfamily": "leche_preparada"
   },
   {
     "source": "Consum",
@@ -43576,7 +43586,7 @@
     "label_reason": "Leche evaporada, ingrediente de cocina",
     "usage_es": "Lácteo concentrado ingrediente. No se bebe solo, se usa en salsas, postres y repostería. Intercambio con nata líquida o leche entera en recetas.",
     "culinary_role": "staple",
-    "dairy_subfamily": "postres_lacteos"
+    "dairy_subfamily": "leche_preparada"
   },
   {
     "source": "Mercadona",
@@ -46363,7 +46373,7 @@
     "label_reason": "Queso batido dulce tipo desayuno",
     "usage_es": "Queso fresco batido aromatizado. Consumo exclusivo en desayuno como lácteo dulce. Intercambio con yogur de sabores, queso fresco con mermelada o natillas lácteas.",
     "culinary_role": "meal_dish",
-    "dairy_subfamily": "frescos_proteicos"
+    "dairy_subfamily": "leche_preparada"
   },
   {
     "source": "Lidl",
@@ -46776,7 +46786,7 @@
     "label_reason": "Leche condensada desnatada, uso repostero",
     "usage_es": "Lácteo concentrado y azucarado desnatado. Ingrediente de repostería y postres, no es plato. Intercambio con leche condensada normal u otros edulcorantes.",
     "culinary_role": "staple",
-    "dairy_subfamily": "postres_lacteos"
+    "dairy_subfamily": "leche_preparada"
   },
   {
     "source": "Consum",
@@ -46802,7 +46812,7 @@
     "label_reason": "Leche condensada, uso ocasional repostero",
     "usage_es": "Lácteo concentrado y azucarado. Ingrediente de repostería, café o tostadas, no es plato. Intercambio con leche condensada desnatada, dulce de leche o mermelada.",
     "culinary_role": "staple",
-    "dairy_subfamily": "postres_lacteos"
+    "dairy_subfamily": "leche_preparada"
   },
   {
     "source": "Carrefour",
@@ -46854,7 +46864,7 @@
     "label_reason": "Bebida vegetal para desayuno",
     "usage_es": "Bebida vegetal de arroz enriquecida. Se bebe sola o con café, exclusivamente en desayuno. Intercambio con leche de avena o bebida de almendras con calcio.",
     "culinary_role": "staple",
-    "dairy_subfamily": "liquidos"
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "Dia",
@@ -47452,7 +47462,7 @@
     "label_reason": "Leche condensada, ingrediente versátil",
     "usage_es": "Ingrediente lácteo muy azucarado. No es un plato, se usa para postres, café o repostería. Intercambio con mermelada, azúcar o dulce de leche.",
     "culinary_role": "staple",
-    "dairy_subfamily": "postres_lacteos"
+    "dairy_subfamily": "leche_preparada"
   },
   {
     "source": "Lidl",
@@ -49618,7 +49628,7 @@
     "carbs": 8.2,
     "fat": 1.8,
     "calories": 62.0,
-    "category": "carbs",
+    "category": "dairy",
     "brand": "Consum",
     "id": "off_69a32aa4e7",
     "code": "8414807523242",
@@ -49637,7 +49647,8 @@
     "label_confidence": 80,
     "label_reason": "Bebida soja vainilla, desayuno ocasional",
     "usage_es": "Bebida vegetal con vainilla. Uso exclusivo de desayuno, raro en España. Intercambio con leche semidesnatada u otra bebida vegetal.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "Mercadona",
@@ -49885,7 +49896,7 @@
     "carbs": 2.8,
     "fat": 2.0,
     "calories": 44.0,
-    "category": "carbs",
+    "category": "dairy",
     "brand": "Hacendado",
     "id": "off_adf029a9ee",
     "code": "8480000293138",
@@ -49904,7 +49915,8 @@
     "label_confidence": 75,
     "label_reason": "Bebida soja versátil, exótico leve",
     "usage_es": "Bebida vegetal de cocina. Ingrediente para batidos, café o gachas. Consumo en desayuno o cena. Intercambio con leche semidesnatada u otras bebidas vegetales.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "Mercadona",
@@ -49913,7 +49925,7 @@
     "carbs": 4.9,
     "fat": 1.6,
     "calories": 49.0,
-    "category": "carbs",
+    "category": "dairy",
     "brand": "Hacendado",
     "id": "off_9fe6f62d80",
     "code": "8480000293190",
@@ -49932,7 +49944,8 @@
     "label_confidence": 80,
     "label_reason": "Bebida soja vainilla, desayuno ocasional",
     "usage_es": "Bebida vegetal aromatizada. Se bebe sola en desayuno o snack. Uso ocasional en España. Intercambio con otras bebidas vegetales o leche desnatada.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "Eroski",
@@ -51389,7 +51402,7 @@
     "carbs": 8.1,
     "fat": 1.8,
     "calories": 62.9,
-    "category": "carbs",
+    "category": "dairy",
     "brand": "Carrefour",
     "id": "off_c22f37304b",
     "code": "8431876167184",
@@ -51408,7 +51421,8 @@
     "label_confidence": 85,
     "label_reason": "Bebida soja con cacao, típica desayuno",
     "usage_es": "Bebida vegetal con cacao. Se bebe fría o caliente, uso exclusivo de desayuno. Intercambio con leche con cacao o otras bebidas vegetales con cacao.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "Eroski",
@@ -51417,7 +51431,7 @@
     "carbs": 3.7,
     "fat": 1.7,
     "calories": 43.0,
-    "category": "carbs",
+    "category": "dairy",
     "brand": "Eroski",
     "id": "off_099a2522b4",
     "code": "8480010078589",
@@ -51436,7 +51450,8 @@
     "label_confidence": 90,
     "label_reason": "Bebida de soja, uso versátil habitual",
     "usage_es": "Bebida vegetal enriquecida en calcio. Se bebe fría o en café, en desayuno o como ingrediente. Intercambio con leche semidesnatada u otra bebida de soja.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "Dia",
@@ -51445,7 +51460,7 @@
     "carbs": 4.7,
     "fat": 1.8,
     "calories": 48.3,
-    "category": "carbs",
+    "category": "dairy",
     "brand": "Dia",
     "id": "off_0a5c592bab",
     "code": "8480017061171",
@@ -51464,7 +51479,8 @@
     "label_confidence": 90,
     "label_reason": "Bebida de soja, consumo versátil",
     "usage_es": "Bebida vegetal de soja. Se bebe fría o con café, en desayuno o como ingrediente de cocina. Intercambio con leche semidesnatada u otra bebida vegetal.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "Carrefour",
@@ -51473,7 +51489,7 @@
     "carbs": 3.7,
     "fat": 1.7,
     "calories": 43.0,
-    "category": "carbs",
+    "category": "dairy",
     "brand": "Carrefour",
     "id": "off_a5ebb00a68",
     "code": "8431876245561",
@@ -51492,7 +51508,8 @@
     "label_confidence": 90,
     "label_reason": "Bebida de soja con calcio, versátil",
     "usage_es": "Bebida vegetal de soja con calcio. Se bebe fría o en café, en desayuno o como ingrediente. Intercambio con leche semidesnatada u otra bebida de soja.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "Mercadona",
@@ -51518,7 +51535,7 @@
     "label_reason": "Batido lácteo, consumo como snack",
     "usage_es": "Bebida láctea con sabor a vainilla. Se bebe fría, uso exclusivo de snack. Intercambio con otros batidos lácteos o yogures líquidos azucarados.",
     "culinary_role": "meal_dish",
-    "dairy_subfamily": "frescos_proteicos"
+    "dairy_subfamily": "leche_preparada"
   },
   {
     "source": "Mercadona",
@@ -55408,7 +55425,7 @@
     "carbs": 1.6,
     "fat": 2.0,
     "calories": 40.0,
-    "category": "carbs",
+    "category": "dairy",
     "brand": "Carrefour BIO, Carrefour",
     "id": "off_7f3e7dd088",
     "code": "8431876247213",
@@ -55427,7 +55444,8 @@
     "label_confidence": 85,
     "label_reason": "Bebida de soja, alternativa láctea habitual",
     "usage_es": "Bebida vegetal de soja sin azúcar. Exclusivamente para desayuno, con café o cereales. Intercambio clínico con leche desnatada u otras bebidas vegetales.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "Eroski",
@@ -56120,7 +56138,7 @@
     "carbs": 3.2,
     "fat": 2.0,
     "calories": 46.0,
-    "category": "carbs",
+    "category": "dairy",
     "brand": "Carrefour",
     "id": "off_b602ea0616",
     "code": "8431876114577",
@@ -56139,7 +56157,8 @@
     "label_confidence": 90,
     "label_reason": "Bebida de soja, desayuno habitual",
     "usage_es": "Bebida vegetal enriquecida. Se toma sola o con café, exclusivamente en desayuno. No comestible directamente sin reconstituir. Intercambio con leche semidesnatada o bebida de avena.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "Dia",
@@ -62888,12 +62907,12 @@
     "carbs": 3.5,
     "fat": 1.4,
     "calories": 29.0,
-    "category": "other",
+    "category": "dairy",
     "brand": "Dia",
     "id": "off_79e0ac0865",
     "code": "8480017172020",
     "quantity": "1 l",
-    "subgroup": "other",
+    "subgroup": "other_dairy",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -62904,7 +62923,9 @@
     "label_confidence": 90,
     "label_reason": "Bebida vegetal, desayuno habitual",
     "usage_es": "Bebida vegetal de almendras. Se consume como sustituto lácteo en desayuno, con café o cereales. No es un plato. Intercambio con leche semidesnatada u otras bebidas vegetales.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal",
+    "category_prev": "other"
   },
   {
     "source": "Dia",
@@ -79090,7 +79111,7 @@
     "label_reason": "Bebida vegetal de desayuno",
     "usage_es": "Bebida vegetal exótica en España. Ingrediente de desayuno, no se toma sola como plato. Intercambio clínico con otras leches vegetales o leche de vaca semidesnatada.",
     "culinary_role": "staple",
-    "dairy_subfamily": "liquidos"
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "Carrefour",
@@ -86308,12 +86329,12 @@
     "carbs": 8.2,
     "fat": 0.8,
     "calories": 45.0,
-    "category": "carbs",
+    "category": "dairy",
     "brand": "Hacendado",
     "id": "off_896cde2507",
     "code": "8480000239334",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "other_dairy",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -86325,7 +86346,8 @@
     "label_confidence": 90,
     "label_reason": "Bebida vegetal, desayuno cada vez más habitual",
     "usage_es": "Bebida vegetal de avena. Se consume fría o caliente, sola o con café y cereales. Uso exclusivo en desayuno o snack. Intercambio con leche semidesnatada u otra bebida vegetal.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "Eroski",
@@ -86334,12 +86356,12 @@
     "carbs": 7.6,
     "fat": 1.1,
     "calories": 44.5,
-    "category": "carbs",
+    "category": "dairy",
     "brand": "Eroski",
     "id": "off_7fcb63a4e7",
     "code": "8480010166309",
     "quantity": "1 l",
-    "subgroup": "other",
+    "subgroup": "other_dairy",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -86351,7 +86373,8 @@
     "label_confidence": 90,
     "label_reason": "Bebida de avena enriquecida, desayuno típico",
     "usage_es": "Bebida vegetal de avena enriquecida en calcio. Se consume sola, con café o cereales. Uso exclusivo en desayuno o snack. Intercambio con leche semidesnatada u otra bebida vegetal.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "Alcampo",
@@ -86360,12 +86383,12 @@
     "carbs": 9.0,
     "fat": 1.1,
     "calories": 46.0,
-    "category": "carbs",
+    "category": "dairy",
     "brand": "Auchan",
     "id": "off_a7e2a48590",
     "code": "8436019097052",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "other_dairy",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -86377,7 +86400,8 @@
     "label_confidence": 85,
     "label_reason": "Bebida de arroz, alternativa láctea habitual",
     "usage_es": "Bebida vegetal de arroz. Se consume fría o caliente, sola o con café y cereales. Uso exclusivo en desayuno o snack. Intercambio con leche semidesnatada u otra bebida vegetal.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "Carrefour",
@@ -86386,12 +86410,12 @@
     "carbs": 7.6,
     "fat": 1.1,
     "calories": 44.0,
-    "category": "carbs",
+    "category": "dairy",
     "brand": "CRF Específicos - Calcio, Carrefour",
     "id": "off_d26073e6da",
     "code": "8431876247534",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "other_dairy",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -86403,7 +86427,8 @@
     "label_confidence": 90,
     "label_reason": "Bebida de avena con calcio, desayuno estándar",
     "usage_es": "Bebida vegetal de avena enriquecida en calcio. Se consume sola o con café y cereales. Uso exclusivo en desayuno o snack. Intercambio con leche semidesnatada u otra bebida vegetal.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "Carrefour",
@@ -87179,12 +87204,12 @@
     "carbs": 8.3,
     "fat": 0.8,
     "calories": 46.0,
-    "category": "carbs",
+    "category": "dairy",
     "brand": "Carrefour BIO, Carrefour",
     "id": "off_29a6b7ef0f",
     "code": "8431876247251",
     "quantity": "1 L",
-    "subgroup": "other",
+    "subgroup": "other_dairy",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -87196,7 +87221,8 @@
     "label_confidence": 90,
     "label_reason": "Bebida vegetal de desayuno",
     "usage_es": "Bebida vegetal de avena. Consumo exclusivo en desayuno, con café o cereales. Intercambio con leche semidesnatada u otras bebidas vegetales sin azúcar.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "Lidl",
@@ -87256,12 +87282,12 @@
     "carbs": 8.2,
     "fat": 0.8,
     "calories": 45.0,
-    "category": "carbs",
+    "category": "dairy",
     "brand": "Hacendado",
     "id": "off_c2083350f8",
     "code": "8480000239327",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "other_dairy",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -87273,7 +87299,8 @@
     "label_confidence": 90,
     "label_reason": "Bebida de avena de desayuno",
     "usage_es": "Bebida vegetal de avena. Consumo exclusivo en desayuno, sola o con café. Intercambio con leche semidesnatada, bebida de soja u otras bebidas vegetales.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "Dia",
@@ -87336,12 +87363,12 @@
     "carbs": 9.5,
     "fat": 1.1,
     "calories": 49.0,
-    "category": "carbs",
+    "category": "dairy",
     "brand": "Dia",
     "id": "off_e3bfc43735",
     "code": "8480017172013",
     "quantity": "1 l",
-    "subgroup": "other",
+    "subgroup": "other_dairy",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -87353,7 +87380,8 @@
     "label_confidence": 85,
     "label_reason": "Bebida vegetal para desayuno habitual",
     "usage_es": "Bebida vegetal de arroz. Se toma sola o con café, uso exclusivo de desayuno. No es comestible como plato. Intercambio con otras bebidas vegetales.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "Lidl",
@@ -87388,12 +87416,12 @@
     "carbs": 11.0,
     "fat": 1.0,
     "calories": 54.0,
-    "category": "carbs",
+    "category": "dairy",
     "brand": "CRF Específicos - Calcio, Carrefour",
     "id": "off_947797acd3",
     "code": "8431876247527",
     "quantity": "1 l",
-    "subgroup": "other",
+    "subgroup": "other_dairy",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -87405,7 +87433,8 @@
     "label_confidence": 85,
     "label_reason": "Bebida vegetal enriquecida, desayuno",
     "usage_es": "Bebida vegetal de arroz enriquecida con calcio. Se toma sola o con café, uso exclusivo de desayuno. No es comestible como plato. Intercambio con leche.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "Mercadona",
@@ -92616,7 +92645,7 @@
     "label_reason": "Ingrediente para repostería o flanes",
     "usage_es": "Lácteo concentrado por evaporación, ingrediente raro en España. Se usa en repostería y postres caseros. Intercambio con leche entera o nata líquida en recetas.",
     "culinary_role": "staple",
-    "dairy_subfamily": "postres_lacteos"
+    "dairy_subfamily": "leche_preparada"
   },
   {
     "source": "OpenFoodFacts",
@@ -94119,7 +94148,7 @@
     "label_reason": "Leche de soja muy integrada",
     "usage_es": "Bebida vegetal de soja sin azúcar. Se bebe en desayunos o se usa como ingrediente en cocina. Intercambio con leche de vaca, bebida de avena u otras bebidas vegetales.",
     "culinary_role": "staple",
-    "dairy_subfamily": "liquidos"
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "OpenFoodFacts",
@@ -94865,7 +94894,7 @@
     "label_reason": "Bebida láctea con cacao, snack ocasional",
     "usage_es": "Bebida láctea con cacao, de consumo ocasional. Se toma fría directamente como snack. Intercambio con batido de cacao, leche con colacao o yogurt líquido azucarado.",
     "culinary_role": "staple",
-    "dairy_subfamily": "liquidos"
+    "dairy_subfamily": "leche_preparada"
   },
   {
     "source": "OpenFoodFacts",
@@ -97435,7 +97464,7 @@
     "label_reason": "Leche evaporada, ingrediente de cocina",
     "usage_es": "Lácteo concentrado ingrediente. Se usa para flanes, salsas o café, no como bebida directa. Intercambio con leche entera o nata líquida según receta.",
     "culinary_role": "staple",
-    "dairy_subfamily": "postres_lacteos"
+    "dairy_subfamily": "leche_preparada"
   },
   {
     "source": "OpenFoodFacts",
@@ -97487,7 +97516,7 @@
     "label_reason": "Leche evaporada mexicana, no común",
     "usage_es": "Lácteo concentrado sin lactosa, marca rara en España. Ingrediente para postres o salsas, no bebida directa. Intercambio con leche evaporada habitual.",
     "culinary_role": "staple",
-    "dairy_subfamily": "postres_lacteos"
+    "dairy_subfamily": "leche_preparada"
   },
   {
     "source": "OpenFoodFacts",
@@ -97539,7 +97568,7 @@
     "label_reason": "Leche evaporada mexicana, no integrada",
     "usage_es": "Lácteo concentrado, marca rara en España. Ingrediente para salsas o postres, no se bebe directamente. Intercambio con leche evaporada habitual.",
     "culinary_role": "staple",
-    "dairy_subfamily": "postres_lacteos"
+    "dairy_subfamily": "leche_preparada"
   },
   {
     "source": "OpenFoodFacts",
@@ -97643,7 +97672,7 @@
     "label_reason": "Leche evaporada Nestlé, ingrediente común",
     "usage_es": "Lácteo concentrado por evaporación. Ingrediente de cocina para postres, salsas y flanes en cualquier comida. No se bebe como tal. Intercambio con leche entera normal.",
     "culinary_role": "staple",
-    "dairy_subfamily": "postres_lacteos"
+    "dairy_subfamily": "leche_preparada"
   },
   {
     "source": "OpenFoodFacts",
@@ -97671,7 +97700,7 @@
     "label_reason": "Leche evaporada Nestlé, ingrediente común",
     "usage_es": "Lácteo concentrado por evaporación. Ingrediente de cocina para postres y salsas en cualquier comida. No se bebe como tal. Intercambio con leche semidesnatada normal.",
     "culinary_role": "staple",
-    "dairy_subfamily": "postres_lacteos"
+    "dairy_subfamily": "leche_preparada"
   },
   {
     "source": "OpenFoodFacts",
@@ -97723,7 +97752,7 @@
     "label_reason": "Bebida vegetal, versátil y habitual",
     "usage_es": "Bebida vegetal de almendra sin azúcar. Se consume sola o con café en desayuno. Producto raro como sustituto directo de leche por su bajo aporte proteico. Intercambio con otras bebidas vegetales.",
     "culinary_role": "staple",
-    "dairy_subfamily": "liquidos"
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "OpenFoodFacts",
@@ -107728,7 +107757,7 @@
     "label_reason": "Bebida de soya saborizada, menos común",
     "usage_es": "Bebida vegetal de soja con sabor. Alimento exótico y raro en España, se bebe como ingrediente o snack. Intercambio con otras bebidas vegetales sin azúcar añadido.",
     "culinary_role": "staple",
-    "dairy_subfamily": "liquidos"
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "OpenFoodFacts",
@@ -109178,7 +109207,7 @@
     "label_reason": "Bebida láctea dulce, consumo ocasional",
     "usage_es": "Bebida láctea dulce aromatizada, consumo ocasional. Uso exclusivo de snack, se toma muy fría directamente. Intercambio con batido de vainilla, horchata o yogurt líquido azucarado.",
     "culinary_role": "staple",
-    "dairy_subfamily": "liquidos"
+    "dairy_subfamily": "leche_preparada"
   },
   {
     "source": "OpenFoodFacts",
@@ -109806,7 +109835,7 @@
     "label_reason": "Bebida de avena lista, versátil y asentada",
     "usage_es": "Bebida vegetal de avena. Ingrediente o bebida en desayuno y comida. Intercambio con leche de vacía u otras bebidas vegetales.",
     "culinary_role": "staple",
-    "dairy_subfamily": "liquidos"
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "OpenFoodFacts",
@@ -110562,7 +110591,7 @@
     "label_reason": "Bebida vegetal de almendras habitual",
     "usage_es": "Bebida vegetal de almendra. Se toma sola o con café, exclusivamente en desayuno. Intercambio con otras bebidas vegetales o leche desnatada.",
     "culinary_role": "staple",
-    "dairy_subfamily": "liquidos"
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "OpenFoodFacts",
@@ -125392,12 +125421,12 @@
     "carbs": 8.3,
     "fat": 0.8,
     "calories": 46.0,
-    "category": "carbs",
+    "category": "dairy",
     "brand": "Coviran",
     "id": "off_dcb6fa61a7",
     "code": "8422823050857",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "other_dairy",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -125409,7 +125438,8 @@
     "label_confidence": 90,
     "label_reason": "Bebida vegetal lista para desayunar",
     "usage_es": "Bebida vegetal de cereal. Se consume directamente con café o cacao, exclusivamente en el desayuno. Intercambio con otras bebidas vegetales sin azúcar o leche semidesnatada.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "OpenFoodFacts",
@@ -125723,12 +125753,12 @@
     "carbs": 3.5,
     "fat": 1.4,
     "calories": 29.0,
-    "category": "other",
+    "category": "dairy",
     "brand": "Froiz",
     "id": "off_66f6426d2d",
     "code": "8424818268292",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "other_dairy",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -125739,7 +125769,9 @@
     "label_confidence": 90,
     "label_reason": "Bebida de almendras lista para consumir",
     "usage_es": "Bebida vegetal de almendras. Se consume exclusivamente en desayuno, con café o cereales. No es comestible directamente. Intercambio con leche semidesnatada u otra bebida vegetal.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal",
+    "category_prev": "other"
   },
   {
     "source": "Spar",
@@ -125926,12 +125958,12 @@
     "carbs": 8.3,
     "fat": 0.8,
     "calories": 46.0,
-    "category": "carbs",
+    "category": "dairy",
     "brand": "Bonpreu",
     "id": "off_c51408bc44",
     "code": "8422410080427",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "other_dairy",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -125943,7 +125975,8 @@
     "label_confidence": 92,
     "label_reason": "Bebida de avena lista para desayunar",
     "usage_es": "Bebida vegetal de cereales. Consumo exclusivo en desayuno, con café o cacao. No es comestible directamente. Intercambio con leche semidesnatada u otra bebida vegetal.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "Spar",
@@ -125952,12 +125985,12 @@
     "carbs": 9.5,
     "fat": 1.1,
     "calories": 49.0,
-    "category": "carbs",
+    "category": "dairy",
     "brand": "Spar",
     "id": "off_1876ab24f8",
     "code": "8480013341512",
     "quantity": "1 L",
-    "subgroup": "other",
+    "subgroup": "other_dairy",
     "macro_profile": "carbs",
     "flags": [],
     "category_prev": "other",
@@ -125969,7 +126002,8 @@
     "label_confidence": 90,
     "label_reason": "Bebida de arroz lista para desayuno",
     "usage_es": "Bebida vegetal de arroz. Consumo exclusivo en desayuno, sola o con café. No es comestible directamente. Intercambio con leche semidesnatada u otra bebida vegetal.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal"
   },
   {
     "source": "El Corte Inglés",
@@ -125978,12 +126012,12 @@
     "carbs": 5.9,
     "fat": 1.9,
     "calories": 45.0,
-    "category": "other",
+    "category": "dairy",
     "brand": "El Corte Inglés",
     "id": "off_8abbd9c5e9",
     "code": "8433329079921",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "other_dairy",
     "macro_profile": "carbs",
     "flags": [],
     "ready_to_eat": true,
@@ -125994,7 +126028,9 @@
     "label_confidence": 92,
     "label_reason": "Bebida de almendras UHT lista",
     "usage_es": "Bebida vegetal de almendras. Consumo exclusivo en desayuno, con café o cereales. No es comestible directamente. Intercambio con leche semidesnatada u otra bebida vegetal.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "dairy_subfamily": "bebida_vegetal",
+    "category_prev": "other"
   },
   {
     "source": "OpenFoodFacts",
@@ -132592,7 +132628,7 @@
     "label_reason": "Ingrediente para café o repostería",
     "usage_es": "Lácteo concentrado. Ingrediente de cocina para postres flan o café. Consumo en desayunos o meriendas. Intercambio con leche entera o nata líquida de cocina.",
     "culinary_role": "staple",
-    "dairy_subfamily": "postres_lacteos"
+    "dairy_subfamily": "leche_preparada"
   },
   {
     "source": "OpenFoodFacts",
@@ -132878,7 +132914,7 @@
     "label_reason": "Leche evaporada, ingrediente culinario",
     "usage_es": "Leche evaporada entera, ingrediente de cocina. No se consume directamente. Se usa en repostería, salsas y flanes. Intercambio con leche entera, nata líquida o leche condensada en recetas. Intercambio con leche concentrada.",
     "culinary_role": "staple",
-    "dairy_subfamily": "postres_lacteos"
+    "dairy_subfamily": "leche_preparada"
   },
   {
     "source": "OpenFoodFacts",
@@ -133088,7 +133124,7 @@
     "label_reason": "Leche evaporada, ingrediente de cocina",
     "usage_es": "Lácteo concentrado entero. Ingrediente de cocina no consumido directamente, usado en flanes, natillas o café. Intercambio con leche entera líquida o nata líquida.",
     "culinary_role": "staple",
-    "dairy_subfamily": "postres_lacteos"
+    "dairy_subfamily": "leche_preparada"
   },
   {
     "id": "tortita_4068263008160",
