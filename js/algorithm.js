@@ -883,6 +883,27 @@ function isCompatibleCategory(candidate, original) {
     return true;
   }
 
+  // Cross-category Hugo punto 2.E: plant_protein ↔ queso fresco/requesón.
+  // Hugo: "queso fresco/requesón si encaja como opción no vegetal" para
+  // sustituto de tofu. Permite category protein ↔ category dairy cuando
+  // el dairy es fresco proteico (no curado/fundido).
+  if (
+    original.subgroup === "plant_protein" &&
+    candidate.category === "dairy" &&
+    (candidate.subgroup === "fresh_cheese" ||
+     candidate.subgroup === "high_protein_dairy")
+  ) {
+    return true;
+  }
+  if (
+    candidate.subgroup === "plant_protein" &&
+    original.category === "dairy" &&
+    (original.subgroup === "fresh_cheese" ||
+     original.subgroup === "high_protein_dairy")
+  ) {
+    return true;
+  }
+
   return false;
 }
 
@@ -1403,14 +1424,23 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     const culturalPairBonus =
       _hasCulturalPair(originalFood.name, a.name) ? _culturalPairBoost : 0;
 
-    // PLANT PROTEIN BOOST: cuando origen es proteína vegetal (tofu, tempeh,
-    // seitán, soja texturizada), priorizar otros plant_protein / legumes
-    // sobre pescados/carnes. Hugo punto 2.E: "tofu no debería abrir con
-    // chanquete, ostras, mejillones o pijota".
-    const plantProteinBonus = (
-      originalFood.subgroup === "plant_protein" &&
-      (a.subgroup === "plant_protein" || a.subgroup === "legumes")
-    ) ? _plantProteinBoost : 0;
+    // PLANT PROTEIN BOOST (Hugo brief 16/05/2026 punto 2.E):
+    // Jerarquía cuando origen es tofu/tempeh/seitán/soja:
+    //   1. otros plant_protein y legumes       → boost +0.30
+    //   2. eggs (huevo)                         → boost +0.20 ("huevo si encaja")
+    //   3. fresh_cheese, high_protein_dairy     → boost +0.15 ("queso fresco/requesón")
+    //
+    // Penalización en el demote inverso más abajo (R10_PP_FISH/MEAT).
+    let plantProteinBonus = 0;
+    if (originalFood.subgroup === "plant_protein") {
+      if (a.subgroup === "plant_protein" || a.subgroup === "legumes") {
+        plantProteinBonus = _plantProteinBoost;          // +0.30
+      } else if (a.subgroup === "eggs") {
+        plantProteinBonus = 0.20;
+      } else if (a.subgroup === "fresh_cheese" || a.subgroup === "high_protein_dairy") {
+        plantProteinBonus = 0.30;   // Hugo: "queso fresco/requesón si encaja"
+      }
+    }
     if (culturalPairBonus > 0 && window.location.search.includes('?debug=1')) {
       console.debug('[cultural-pair] BOOST candidate=\'' + a.name + '\' +' + culturalPairBonus);
     }
@@ -1421,13 +1451,40 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     let demotion = 1;
 
     // PLANT PROTEIN demote inverso (Hugo punto 2.E): cuando origen es
-    // plant_protein y candidato es pescado, demote fuerte para que NO
-    // surfacee arriba. "Pescados raros, mariscos, huevas" abajo.
-    if (originalFood.subgroup === "plant_protein" &&
-        (a.subgroup === "fish_white" || a.subgroup === "fish_fatty")) {
-      demotion *= 0.30;
-      if (window.location.search.includes('?debug=1')) {
-        console.debug('[plant-protein-fish-demote] DEMOTED candidate=\'' + a.name + '\' factor=0.30');
+    // plant_protein (tofu, tempeh, seitán, soja), los pescados/mariscos/
+    // carnes NO son intercambio cultural natural. Hugo: "tofu no debería
+    // abrir con chanquete, ostras, mejillones o pijota".
+    //
+    // Jerarquía de demote:
+    //   - mariscos exóticos (calamar, pulpo, langosta, ostra, mejillón,
+    //     chanquete, percebe) → ×0.05 (casi-eliminatorio)
+    //   - pescado blanco/azul normal                            → ×0.15
+    //   - carnes magras/grasas                                  → ×0.15
+    //   - vísceras                                              → ×0.05
+    if (originalFood.subgroup === "plant_protein") {
+      const cName = norm(a.name || "");
+      const _MARISCO_EXOTICO_RE =
+        /\b(calamares?|pulpos?|langostas?|ostras?|mejillones?|mejill[oó]n|chanquetes?|percebes?|cigalas?|n[eé]coras?|bogavantes?|sepias?|chipirones?|chipir[oó]n|gambas?|langostinos?|cangrejos?|centollos?|vieiras?|navajas?|berberechos?|almejas?|caracoles?|caracol|huevas?|caviar|camarones?|camar[oó]n|brecas?|fanecas?|rayas?|fletanes?|fletan|fletán|carabineros?|pijotas?)\b/i;
+      if (_MARISCO_EXOTICO_RE.test(cName)) {
+        demotion *= 0.05;
+        if (window.location.search.includes('?debug=1')) {
+          console.debug('[plant-protein-marisco] DEMOTED candidate=\'' + a.name + '\' factor=0.05 (marisco/exótico)');
+        }
+      } else if (a.subgroup === "fish_white" || a.subgroup === "fish_fatty") {
+        demotion *= 0.15;
+        if (window.location.search.includes('?debug=1')) {
+          console.debug('[plant-protein-fish] DEMOTED candidate=\'' + a.name + '\' factor=0.15');
+        }
+      } else if (a.subgroup === "meat_lean" || a.subgroup === "meat_fatty" || a.subgroup === "meat") {
+        demotion *= 0.15;
+        if (window.location.search.includes('?debug=1')) {
+          console.debug('[plant-protein-meat] DEMOTED candidate=\'' + a.name + '\' factor=0.15');
+        }
+      } else if (a.subgroup === "viscera" || a.exotic === true) {
+        demotion *= 0.05;
+        if (window.location.search.includes('?debug=1')) {
+          console.debug('[plant-protein-exotic] DEMOTED candidate=\'' + a.name + '\' factor=0.05');
+        }
       }
     }
     if (_bulkLabelEnabled) {
