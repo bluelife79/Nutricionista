@@ -794,45 +794,74 @@ function applyJudgeVerdict(withHybrid, verdict) {
 // futuro. Cualquier fuente que no esté listada cae automáticamente en
 // COMERCIALES por defecto (comportamiento conservador).
 
+// Hugo brief 16/05/2026 punto 4 — jerarquía 3 niveles:
+//   generic       (BEDCA, legacy) — máxima afinidad
+//   es_super      (supermercados/marcas ES conocidas) — afinidad media
+//   international (OpenFoodFacts internacional) — afinidad mínima
+
 const GENERIC_SOURCES = new Set([
   "bedca",
+  "legacy",
   // Si en el futuro se agrega CESNID, USDA-equivalente español, etc., va acá
 ]);
 
-const BRANDED_SOURCES = new Set([
-  "openfoodfacts",
+// Supermercados ES + marcas españolas conocidas (Hugo punto 4):
+// Mercadona, Lidl, Carrefour, Dia, Alcampo, Eroski, Consum + extensiones.
+const ES_SUPER_SOURCES = new Set([
   "mercadona", "carrefour", "lidl", "dia", "eroski",
   "alcampo", "aldi", "consum", "hipercor", "hacendado",
-  // Otros, otros marca → caen acá por default
+  "el corte inglés", "el corte ingles",
+  "bonpreu/esclat", "bonpreu", "esclat",
+  "spar", "coviran", "covirán",
+  "otros",  // entradas con marca española genérica
 ]);
 
 function sourceFamily(source) {
   const s = (source || "").toLowerCase();
   if (GENERIC_SOURCES.has(s)) return "generic";
-  return "branded"; // default para todo lo no-genérico
+  if (ES_SUPER_SOURCES.has(s)) return "es_super";
+  return "international"; // OpenFoodFacts y cualquier otra fuente desconocida
 }
 
 // Bonus al sortScore según afinidad de fuente con el alimento original.
-// Valores calibrados (post-feedback Hugo): misma fuente +0.45, misma familia
-// +0.25, distinta +0. Bonus fuerte pero NEGOCIABLE — un candidato cross-family
-// con clínica correcta (ej. Bulgur Carrefour para Arroz BEDCA) puede ganarle
-// a un same-family con clínica mala (ej. Cereales desayuno BEDCA con
-// meal_slot mismatch demoteado ×0.6).
+// Hugo brief punto 4 — jerarquía 3 niveles:
+//   - Misma fuente exacta (Mercadona ↔ Mercadona)       → +0.45
+//   - Misma familia (Mercadona ↔ Lidl, ambos es_super)  → +0.25
+//   - Cross-family GENÉRICO→ES_SUPER (BEDCA → Mercadona)→ +0.10
+//   - Cross-family GENÉRICO→INTERNACIONAL (BEDCA → OFF) → +0.00
+//   - Cross-family ES_SUPER→INTERNACIONAL               → -0.05 (suave demote)
 //
-// Configurable via window.SOURCE_AFFINITY_EXACT y SOURCE_AFFINITY_FAMILY.
+// Configurable via window.SOURCE_AFFINITY_EXACT, SOURCE_AFFINITY_FAMILY,
+// SOURCE_AFFINITY_CROSS_GENERIC_ES, SOURCE_AFFINITY_INTERNATIONAL_PENALTY.
 function sourceAffinityBonus(candidate, original) {
   const cs = (candidate.source || "").toLowerCase();
   const os = (original.source || "").toLowerCase();
   const exactBonus  = Number((typeof window !== "undefined" && window.SOURCE_AFFINITY_EXACT))  || 0.45;
   const familyBonus = Number((typeof window !== "undefined" && window.SOURCE_AFFINITY_FAMILY)) || 0.25;
+  const genericEsBonus = Number((typeof window !== "undefined" && window.SOURCE_AFFINITY_CROSS_GENERIC_ES)) || 0.25;
+  const intlPenalty = Number((typeof window !== "undefined" && window.SOURCE_AFFINITY_INTERNATIONAL_PENALTY)) || -0.20;
 
   // Misma fuente exacta — máxima afinidad
   if (cs && os && cs === os) return exactBonus;
 
-  // Misma familia (ej: Mercadona ↔ Carrefour, OFF ↔ Lidl, BEDCA ↔ futuras genéricas)
-  if (sourceFamily(cs) === sourceFamily(os)) return familyBonus;
+  const cFam = sourceFamily(cs);
+  const oFam = sourceFamily(os);
 
-  // Cruza familias (BEDCA ↔ Mercadona, BEDCA ↔ OFF) — sin bonus
+  // Misma familia (Mercadona ↔ Lidl, BEDCA ↔ legacy)
+  if (cFam === oFam) return familyBonus;
+
+  // Cross-family generic ↔ es_super (BEDCA → Mercadona vale más que → OFF)
+  if ((oFam === "generic" && cFam === "es_super") ||
+      (oFam === "es_super" && cFam === "generic")) {
+    return genericEsBonus;
+  }
+
+  // Cross-family hacia INTERNATIONAL (Hugo: duplicados internacionales abajo)
+  if (cFam === "international" && (oFam === "generic" || oFam === "es_super")) {
+    return intlPenalty;
+  }
+
+  // Cualquier otro caso cross-family — sin bonus
   return 0.00;
 }
 
@@ -2164,19 +2193,35 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     const oFamily = sourceFamily(originalFood.source);
     const _SAME_FAMILY_MIN_SORT_SCORE =
       Number(window.SAME_FAMILY_MIN_SORT_SCORE) || 0.30;
+    // Hugo brief 16/05/2026 punto 4 — partition 3-niveles GLOBAL:
+    //   tier 1: same family que origen (BEDCA si origen=BEDCA) + sortScore OK
+    //   tier 2: es_super (Mercadona, Lidl, Carrefour, Dia, Alcampo, Eroski, Consum…)
+    //   tier 3: international (OpenFoodFacts genérico, marcas extranjeras)
+    //
+    // GLOBAL: aplica sobre [primary, secondary] combinado para que TODOS
+    // los BEDCA y supermercados ES queden ARRIBA de cualquier OpenFoodFacts,
+    // independiente del dedup cluster. Si el dedup mete "Cacahuete tostado
+    // salado" BEDCA en secondary, igual va antes que los OFF.
     const partition = (list) => {
-      const same = [], other = [];
+      const tier1 = [], tier2 = [], tier3 = [];
       for (const f of list) {
-        const sameSrc = sourceFamily(f.source) === oFamily;
-        if (sameSrc && (f._sortScore ?? 0) >= _SAME_FAMILY_MIN_SORT_SCORE) {
-          same.push(f);
+        const fFam = sourceFamily(f.source);
+        const sameSrc = fFam === oFamily;
+        const passesThreshold = (f._sortScore ?? 0) >= _SAME_FAMILY_MIN_SORT_SCORE;
+        if (sameSrc && passesThreshold) {
+          tier1.push(f);
+        } else if (fFam === "es_super") {
+          tier2.push(f);
+        } else if (fFam === "international") {
+          tier3.push(f);
         } else {
-          other.push(f);
+          // Si origen no es generic ni es_super (raro) o fallback
+          tier2.push(f);
         }
       }
-      return [...same, ...other];
+      return [...tier1, ...tier2, ...tier3];
     };
-    return [...partition(primary), ...partition(secondary)];
+    return partition([...primary, ...secondary]);
   };
 
   // ── PROGRESSIVE UI: PARTIAL RESULT ────────────────────────────────────────

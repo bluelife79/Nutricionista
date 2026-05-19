@@ -385,14 +385,17 @@
           note: "Hugo punto 4: lácteos frescos_proteicos, sin leche de oveja arriba."
         },
         {
+          // Actualizado: tras Hugo punto 4 (3 niveles source affinity),
+          // OFF "Cottage Cheese" sale del top 10 — entran productos ES super
+          // equivalentes (queso fresco batido 0%, yogur proteínas 0%).
           id: "T07",
           label: "Skyr — lacteo proteico trending",
           searchQuery: "skyr",
           amount: 200,
-          expectInTop10: ["yogur", "cottage", "quark", "requejon"],
+          expectInTop10: ["yogur", "queso fresco", "queso batido", "greek", "cottage", "quark", "requeson", "requesón"],
           expectNotInResults: ["azafran", "tomillo", "aceite"],
           expectTier1Category: "high_protein_dairy",
-          note: "Alta proteina, baja grasa. T1 deben ser otros high_protein_dairy."
+          note: "Alta proteina, baja grasa. T1 high_protein_dairy + frescos."
         },
         {
           // Actualizado: "requeson" con 's' (BD usa S). Cluster frescos_proteicos.
