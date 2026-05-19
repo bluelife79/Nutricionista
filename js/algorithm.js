@@ -1962,6 +1962,26 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       const fatProtRatio = oProt100 > 0 ? oFat100 / oProt100 : 0;
       const isMixedOrigin =
         oFat100 >= 10 && oKcal100 >= 100 && fatProtRatio >= 0.6;
+
+      // Hugo brief 16/05/2026 punto 4 — DENSIDAD CALÓRICA POR 100g:
+      // Embutidos curados (jamón serrano P=28 F=14.5 kcal=245; cecina
+      // P=39 F=9.5 kcal=241) tienen alta densidad calórica. Fiambres
+      // cocidos magros (pavo fiambre kcal=105/100g, jamón cocido
+      // kcal=113/100g) pierden ~50% densidad — clínicamente no son
+      // intercambio aunque la porción equivalente compense en kcal totales.
+      //
+      // Regla independiente: si origen=processed_meat con kcal>=200 y
+      // candidato.kcal_per_100g < origen * 0.60 → demote ×0.30.
+      if (originalFood.subgroup === "processed_meat" && oKcal100 >= 200 &&
+          a.subgroup === "processed_meat" && a.calories) {
+        const densityRatio = a.calories / oKcal100;
+        if (densityRatio < 0.60) {
+          demotion *= 0.30;
+          if (window.location.search.includes('?debug=1')) {
+            console.debug('[curado-density] DEMOTED candidate=\'' + a.name + '\' factor=0.30 density_ratio=' + densityRatio.toFixed(2) + ' (' + a.calories + ' vs ' + oKcal100 + ' kcal/100g)');
+          }
+        }
+      }
       // Escape hatch para proteínas magras hermanas (Hugo punto 2)
       const _LEAN_PROTEIN_SUBS = new Set([
         "meat_lean", "meat", "fish_white", "fish_fatty", "eggs",
