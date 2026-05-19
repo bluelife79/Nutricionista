@@ -1705,6 +1705,51 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       }
     }
 
+    // R11 RAW vs PROCESSED MEAL_DISH (Hugo mail 16/05/2026 punto 2.A):
+    // Cuando origen es ingrediente CRUDO/SECO (avena cruda, arroz crudo,
+    // quinoa cruda) — alimento que la clienta tiene en su despensa para
+    // cocinar — los candidatos READY-TO-EAT comerciales con meal_slot=
+    // desayuno reciben demote fuerte. Hugo: "una mujer que busca avena
+    // NO la cambia por Petit Beurre ni Corazón Fundente".
+    //
+    // Casos disparadores reportados:
+    //   Avena cruda 100g → "Cereales Corazón fundente", "P'tit Déj",
+    //   "Petit beurre multicereales", "Bolas de cereales".
+    //
+    // Lógica: origen raw_ingredient=true → candidato ready_to_eat=true
+    // procesado = NO intercambio cocina real. Aplica para cereales (grains)
+    // sin importar source (también BEDCA "Cereales desayuno base de trigo
+    // y arroz", "Arroz hinchado para desayuno", etc).
+    if (originalFood.raw_ingredient === true &&
+        a.ready_to_eat === true) {
+      // Solo aplica si ambos son grains (cereales) — no para legumbres
+      // ni proteínas (donde sí queremos pollo/atún comercial).
+      if (originalFood.subgroup === "grains" && a.subgroup === "grains") {
+        demotion *= 0.20;
+        if (window.location.search.includes('?debug=1')) {
+          console.debug('[raw-vs-rte] DEMOTED candidate=\'' + a.name + '\' factor=0.20 origin=raw_ingredient candidate=ready_to_eat');
+        }
+      }
+    }
+
+    // R11b TOKEN-BASED CEREAL DESAYUNO (Hugo punto 2.A):
+    // Algunos cereales no tienen ready_to_eat marcado pero su nombre los
+    // delata como producto desayuno comercial. Demote por tokens cuando
+    // origen es grano crudo/seco.
+    if ((originalFood.raw_ingredient === true ||
+         /^(arroz|avena|quinoa|trigo|cebada|centeno|mijo|bulgur|cuscus)/i.test(originalFood.name || "")) &&
+        originalFood.subgroup === "grains" && a.subgroup === "grains") {
+      const cName = norm(a.name || "");
+      const _CEREAL_DESAYUNO_RE =
+        /\b(cereales? desayuno|cereales? para desayunar|arroz hinchado|trigo hinchado|maiz hinchado|muesli|granola|copos de maiz|honey pops|smacks|frosties|choco krispies|all.?bran|fitness|special k|chocapic|nesquik cereal)\b/i;
+      if (_CEREAL_DESAYUNO_RE.test(cName)) {
+        demotion *= 0.20;
+        if (window.location.search.includes('?debug=1')) {
+          console.debug('[cereal-desayuno-token] DEMOTED candidate=\'' + a.name + '\' factor=0.20');
+        }
+      }
+    }
+
     // R10 SWEETS CROSS-CLUSTER (Hugo mail 16/05/2026 punto 3):
     // Dentro de sweets_bakery, alimentos de TIPO distinto no son
     // intercambio: chocolate negro 70% no es turrón ni gusanito ni
