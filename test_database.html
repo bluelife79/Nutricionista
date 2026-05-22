@@ -545,6 +545,198 @@
           expectInTop10: ["nuez", "almendra", "aceituna", "avellana", "pistacho", "anacardo", "cacahuete", "sesamo"],
           expectNotInResults: ["tomate con aceite", "ajos en aceite", "pimientos en aceite", "berenjena frita", "boletus en aceite", "habitas en aceite"],
           note: "Hugo punto 5: aguacate cruza con cluster grasa real. NO 'cosas con aceite añadido'."
+        },
+        // ─────────────────────────────────────────────────────────────────
+        // 20 TESTS DEL INFORME PDF DE HUGO (T22-T41)
+        // Sección 5 del informe operativo — criterios de cierre.
+        // Para cada uno: validar el top 8-12 visible.
+        // ─────────────────────────────────────────────────────────────────
+        {
+          id: "T22",
+          label: "PDF#1 Tofu 100g — priorizar vegetal",
+          searchQuery: "tofu",
+          amount: 100,
+          expectInTop10: ["tofu", "tempeh", "seitan", "seitán", "soja", "requeson", "requesón", "cottage", "quark", "huevo", "clara"],
+          expectNotInResults: ["pulmon", "casqueria", "casquería"],
+          note: "PDF#1 Hugo: tofu priorizar tofu/tempeh/seitán/soja/legumbres/queso fresco/huevo. NO pescados/mariscos arriba."
+        },
+        {
+          id: "T23",
+          label: "PDF#2 Salmón 150g — pescado azul",
+          searchQuery: "salmon",
+          amount: 150,
+          expectInTop10: ["caballa", "atun", "atún", "sardina", "pez espada", "jurel", "bonito"],
+          expectNotInResults: ["azafran"],
+          note: "PDF#2 Hugo: salmón mantener pescados con grasa/kcal comparable."
+        },
+        {
+          id: "T24",
+          label: "PDF#3 Crema cacahuete 15g — frutos secos",
+          searchQuery: "crema de cacahuete",
+          amount: 15,
+          expectInTop10: ["nuez", "almendra", "avellana", "pistacho", "aceituna", "cacahuete", "frutos secos", "sesamo"],
+          expectNotInResults: ["mortadela", "foie", "pate", "paté", "salsa"],
+          note: "PDF#3 Hugo: crema cacahuete priorizar frutos secos. NO mortadela/foie/patés/salsas."
+        },
+        {
+          id: "T25",
+          label: "PDF#4 Aceite oliva 15g — grasas limpias",
+          searchQuery: "aceite de oliva",
+          amount: 15,
+          expectInTop10: ["nuez", "aceituna", "almendra", "avellana", "olivenöl", "huile", "girasol", "coco"],
+          expectNotInResults: ["mayonesa", "alioli", "foie", "pate", "paté", "sobrasada"],
+          note: "PDF#4 Hugo: aceite priorizar grasas limpias. NO mayonesa/alioli/foie/patés/sobrasada."
+        },
+        {
+          id: "T26",
+          label: "PDF#5 Aguacate 80g — grasas vegetales",
+          searchQuery: "aguacate",
+          amount: 80,
+          expectInTop10: ["aceituna", "nuez", "almendra", "avellana", "pistacho", "frutos secos"],
+          expectNotInResults: ["sour cream", "cesar", "césar", "crema de jam", "untable"],
+          note: "PDF#5 Hugo: aguacate priorizar aguacate/aceitunas/frutos secos. NO sour cream/César/cremas jamón."
+        },
+        {
+          id: "T27",
+          label: "PDF#6 Nueces 20g — frutos secos puros",
+          searchQuery: "nueces",
+          amount: 20,
+          expectInTop10: ["almendra", "avellana", "pistacho", "anacardo", "aceituna", "cacahuete", "semilla"],
+          expectNotInResults: ["mayonesa", "sobrasada", "pate", "paté de sardina", "salsa"],
+          note: "PDF#6 Hugo: nueces priorizar frutos secos/semillas/aceitunas. NO mayonesa/sobrasada/patés."
+        },
+        {
+          id: "T28",
+          label: "PDF#7 Lentejas cocidas 100g — legumbres",
+          searchQuery: "lentejas",
+          amount: 100,
+          expectInTop10: ["garbanzo", "alubia", "judia", "judía", "haba", "guisante"],
+          expectNotInResults: ["azafran puro"],
+          note: "PDF#7 Hugo: lentejas priorizar legumbres cocidas. Control de cantidad absurda + platos preparados grasos."
+        },
+        {
+          id: "T29",
+          label: "PDF#8 Garbanzos cocidos 100g — legumbres",
+          searchQuery: "garbanzos",
+          amount: 100,
+          expectInTop10: ["lenteja", "alubia", "judia", "judía", "haba", "guisante"],
+          expectNotInResults: ["azafran puro"],
+          note: "PDF#8 Hugo: garbanzos priorizar legumbres cocidas/conserva. NO snacks crujientes ni preparados muy grasos."
+        },
+        {
+          id: "T30",
+          label: "PDF#9 Patata asada 250g — hidratos base",
+          searchQuery: "patata",
+          amount: 250,
+          expectInTop10: ["arroz", "patata", "boniato", "batata", "pasta", "quinoa", "cuscus", "maiz", "maíz"],
+          expectNotInResults: ["digestive", "galleta", "gominola", "prefrito"],
+          note: "PDF#9 Hugo: patata priorizar hidratos plato. NO galletas/snacks/prefritos/platos preparados."
+        },
+        {
+          id: "T31",
+          label: "PDF#10 Arroz precocido 100g — hidratos base",
+          searchQuery: "arroz",
+          amount: 100,
+          expectInTop10: ["pasta", "patata", "boniato", "batata", "quinoa", "cuscus", "maiz", "maíz", "bulgur"],
+          // "dulce" como substring matchea "Maíz dulce en grano" (válido). Removido.
+          expectNotInResults: ["haribo", "gominola", "pasta de fruta"],
+          note: "PDF#10 Hugo: arroz priorizar arroz/pasta/patata/cereales base. NO Haribo/gominolas/pasta de fruta."
+        },
+        {
+          id: "T32",
+          label: "PDF#11 Pan integral 60g — panes/tostadas",
+          searchQuery: "pan integral",
+          amount: 60,
+          expectInTop10: ["pan", "tostada", "patata", "boniato", "batata", "arroz", "pasta", "wrap"],
+          expectNotInResults: ["honey pops", "frosties", "smacks", "choco krispies", "gominola"],
+          note: "PDF#11 Hugo: pan integral priorizar panes/tostadas/wraps simples. NO galletas/snacks/cereales desayuno."
+        },
+        {
+          // "pollo pechuga" como búsqueda devuelve top con muchas variantes
+          // de pollo (T1 mismo ingrediente). Cuando familia se priorizan,
+          // los pavos/cerdos/etc. quedan en intercambios T2. El test usa
+          // alts.intercambios directo así que los pollos no aparecen.
+          id: "T33",
+          label: "PDF#12 Pollo pechuga plancha 120g — carnes magras",
+          searchQuery: "pollo pechuga",
+          amount: 120,
+          expectInTop10: ["pavo", "pechuga", "filete", "conejo", "cerdo", "ternera", "vaca", "merluza", "bacalao"],
+          expectNotInResults: ["azafran puro", "casqueria", "casquería"],
+          note: "PDF#12 Hugo: pollo priorizar pavo/conejo/carnes magras. Pescados después."
+        },
+        {
+          id: "T34",
+          label: "PDF#13 Huevo fresco 100g — coherentes",
+          searchQuery: "huevo",
+          amount: 100,
+          expectInTop10: ["tortilla", "clara", "pollo", "pavo", "salmon", "caballa"],
+          expectNotInResults: ["azafran puro"],
+          note: "PDF#13 Hugo: huevo priorizar huevo/tortilla y opciones coherentes. NO fritos/rebozados arriba."
+        },
+        {
+          id: "T35",
+          label: "PDF#14 Atún natural 100g — pescado/atún",
+          searchQuery: "atun",
+          amount: 100,
+          expectInTop10: ["atun", "atún", "bonito", "merluza", "bacalao", "rape", "pavo"],
+          expectNotInResults: ["azafran"],
+          note: "PDF#14 Hugo: atún priorizar proteínas magras coherentes y pescado/atún. NO opciones grasas arriba."
+        },
+        {
+          id: "T36",
+          label: "PDF#15 Queso fresco batido 0% 125g — frescos proteicos",
+          searchQuery: "queso fresco batido",
+          amount: 125,
+          expectInTop10: ["skyr", "yogur", "queso fresco", "queso batido", "requeson", "requesón", "greek"],
+          expectNotInResults: ["azafran"],
+          note: "PDF#15 Hugo: queso batido priorizar skyr/yogur griego 0%/queso batido/requesón light. Sabores abajo."
+        },
+        {
+          id: "T37",
+          label: "PDF#16 Yogur griego 125g — frescos proteicos",
+          searchQuery: "yogur griego",
+          amount: 125,
+          expectInTop10: ["yogur", "kefir", "kéfir", "skyr", "queso fresco", "queso batido", "requeson", "requesón", "greek"],
+          expectNotInResults: ["azafran"],
+          note: "PDF#16 Hugo: yogur griego priorizar yogur/kéfir/skyr/queso batido/requesón. NO queso curado/nata/batidos dulces."
+        },
+        {
+          id: "T38",
+          label: "PDF#17 Queso curado 30g — curados/semicurados",
+          searchQuery: "queso curado",
+          amount: 30,
+          expectInTop10: ["parmesano", "parmigiano", "manchego", "emmental", "gruyere", "gouda", "grana padano", "curado", "semicurado"],
+          expectNotInResults: ["azafran"],
+          note: "PDF#17 Hugo: queso curado priorizar curados/semicurados/duros. Frescos y untables abajo."
+        },
+        {
+          id: "T39",
+          label: "PDF#18 Jamón serrano 40g — curados similares",
+          searchQuery: "jamon serrano",
+          amount: 40,
+          expectInTop10: ["cecina", "lomo embuchado", "paleta", "lombo", "jamon", "jamón", "serrano", "iberico", "ibérico"],
+          expectNotInResults: ["azafran"],
+          note: "PDF#18 Hugo: jamón serrano priorizar curados similares. Controlar fiambres muy magros o preparados."
+        },
+        {
+          id: "T40",
+          label: "PDF#19 Manzana 150g — fruta fresca",
+          searchQuery: "manzana",
+          amount: 150,
+          expectInTop10: ["uva", "pera", "ciruela", "mango", "piña", "albaricoque", "melocoton", "melocotón", "mandarina"],
+          expectNotInResults: ["azafran"],
+          note: "PDF#19 Hugo: manzana priorizar fruta fresca. Conservas/deshidratados/mezclas abajo."
+        },
+        {
+          id: "T41",
+          label: "PDF#20 Chocolate negro 85% 20g — noMatch OK",
+          searchQuery: "chocolate negro",
+          amount: 20,
+          // Hugo: "Es correcto no forzar intercambio si no hay alternativa limpia."
+          // No assertions estrictas — el test pasa si noMatch=true O si top tiene <=6 alternativas.
+          expectInTop10: [],
+          expectNotInResults: ["azafran"],
+          note: "PDF#20 Hugo: chocolate negro — correcto NO forzar intercambio si no hay alternativa limpia."
         }
       ];
 

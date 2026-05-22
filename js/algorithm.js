@@ -432,20 +432,51 @@ function calculateEquivalence(
   if (equivalentAmount < 5) return null; // evita 0g / 1g raros
   if (equivalentAmount > 600) return null; // evita monstruos
 
-  // Hugo mail 16/05/2026 punto 1.B HARD FILTER:
-  // ratio cantidad_sugerida / cantidad_original > 4 → excluir del pool.
-  // Excepción legítima: hidratos SECOS (raw_ingredient=true) → cocidos
-  // (raw_ingredient=false) en mismo subgroup carbs (arroz crudo 60g →
-  // patata cocida 250g es Russolillo válido). Para legumbres cocidas →
-  // legumbres cocidas con ratio 5x NO hay excepción: es bug de data.
+  // Hugo PDF Regla 7 HARD FILTER (mail 16/05 + informe operativo):
+  // ratio cantidad_sugerida / cantidad_original > 3 → excluir del pool.
+  // Excepción legítima ÚNICA: hidratos SECOS (raw_ingredient=true) →
+  // cocidos (raw_ingredient=false) en mismo subgroup carbs (arroz crudo
+  // 60g → patata cocida 250g es Russolillo válido). NO aplica para
+  // legumbres, lácteos, grasas, proteínas, aceites o quesos.
   const qtyRatio = equivalentAmount / originalAmount;
-  if (qtyRatio > 4) {
+  if (qtyRatio > 3) {
     const _HYDRATE_SUBS = new Set(["grains", "tubers"]);  // no legumes
     const isDrySrcWetCand =
       original.category === "carbs" && alt.category === "carbs" &&
       _HYDRATE_SUBS.has(original.subgroup) && _HYDRATE_SUBS.has(alt.subgroup) &&
       original.raw_ingredient === true && alt.raw_ingredient !== true;
     if (!isDrySrcWetCand) return null; // hard filter — fuera del pool
+  }
+
+  // Hugo PDF Regla 1 HARD FILTER — TECHO CALÓRICO:
+  // Si kcal_alt > kcal_original * 1.40 → exclude_from_recommended_top.
+  //
+  // Excepciones:
+  //   - Lean protein cluster (pollo 170 → ternera 250 = ratio 1.47 OK).
+  //   - Fat cluster real (aguacate 137 → nueces 660 = ratio 4.8 OK,
+  //     porque la porción equivalente se ajusta: 80g aguacate → 17g
+  //     nueces. Las densidades dispares son normales en grasas).
+  if (original.calories > 0 && alt.calories > 0) {
+    const kcalRatio = alt.calories / original.calories;
+    if (kcalRatio > 1.40) {
+      const _LEAN_PROTEIN_SUBS = new Set([
+        "meat_lean", "meat", "meat_fatty", "fish_white", "fish_fatty", "eggs",
+      ]);
+      const isSameLeanCluster =
+        original.category === "protein" && alt.category === "protein" &&
+        _LEAN_PROTEIN_SUBS.has(original.subgroup) &&
+        _LEAN_PROTEIN_SUBS.has(alt.subgroup) &&
+        alt.exotic !== true && original.exotic !== true;
+      const _FAT_CLUSTER_SUBS = new Set([
+        "olive_oil", "other_oils", "avocado", "nuts_seeds", "other_fat",
+        "butter_margarine",
+      ]);
+      const isSameFatCluster =
+        original.category === "fat" && alt.category === "fat" &&
+        _FAT_CLUSTER_SUBS.has(original.subgroup) &&
+        _FAT_CLUSTER_SUBS.has(alt.subgroup);
+      if (!isSameLeanCluster && !isSameFatCluster) return null; // hard filter
+    }
   }
 
   const altMacros = {
@@ -1239,6 +1270,21 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         if (isNonStapleGrain(f.name)) return false;
       }
 
+      // Hugo PDF Regla 4 — Exclusión de procesados en hidratos base:
+      // Cuando origen es hidrato BASE (arroz/pasta/patata/pan/avena/quinoa),
+      // excluir TODOS los sweets_bakery (galletas, gominolas, pastas de
+      // fruta, chocolate, bizcochos) y tokens de cereal desayuno comercial
+      // desde el POOL. Hugo: "galletas Digestive en patata, gominolas en
+      // arroz... no deben aparecer arriba".
+      if (originalFood.category === "carbs" &&
+          (originalFood.subgroup === "grains" || originalFood.subgroup === "tubers")) {
+        if (f.subgroup === "sweets_bakery") return false;
+        const fNameN = norm(f.name || "");
+        const _CEREAL_DESAYUNO_HARD_RE =
+          /\b(cereales? desayuno|cereales? para desayunar|arroz hinchado|trigo hinchado|maiz hinchado|honey pops|smacks|frosties|choco krispies|chocapic|all.?bran|fitness|special k|nesquik cereal|gominola|haribo|pasta de fruta)\b/i;
+        if (_CEREAL_DESAYUNO_HARD_RE.test(fNameN)) return false;
+      }
+
       // PUNTO 5: cuando origen es grasa PURA (aceite, aguacate, frutos
       // secos, aceitunas, semillas, mantequilla), excluir productos
       // marcados como "con aceite añadido" (atún en aceite, berenjena
@@ -1247,6 +1293,24 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       if (f.oil_added === true && originalFood.category === "fat" &&
           originalFood.oil_added !== true) {
         return false;
+      }
+
+      // Hugo PDF Regla 5 — Grasas limpias: cuando origen es grasa REAL
+      // (aceite, aguacate, frutos secos, semillas, aceitunas, crema de
+      // frutos secos), excluir foie/paté/mortadela/sobrasada/chorizo/
+      // salami/salsa/mayonesa/alioli del POOL. Hugo: "no deben mezclarse
+      // arriba con salsas, patés, foie, sobrasada".
+      {
+        const _OIL_OR_DENSE_FAT = new Set([
+          "olive_oil", "other_oils", "avocado", "nuts_seeds", "other_fat",
+        ]);
+        if (originalFood.category === "fat" &&
+            _OIL_OR_DENSE_FAT.has(originalFood.subgroup)) {
+          const fNameN = norm(f.name || "");
+          const _GRASA_NOISE_HARD_RE =
+            /\b(foie|pat[eé]|mortadela|sobrasada|chorizo|salchich[oó]n|salami|fiambre|salsa|mayonesa|alioli|aderezo|vinagreta|c[eé]sar|crema (de|para untar).*(jam[oó]n|carne|pollo|pavo)|jam[oó]n.*crema|sour\s*crea?n?|sour\s*cream|ventresca en aceite|cremas? para untar|hummus|crema de espar|crema de queso|caesar)\b/i;
+          if (_GRASA_NOISE_HARD_RE.test(fNameN)) return false;
+        }
       }
 
       // Subgroup filter: only on same-category pairs.
