@@ -1363,6 +1363,35 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         }
       }
 
+      // Hugo Regla 3 — Grasos saciantes (HARD FLOOR kcal_ratio ≥ 0.75).
+      // Cuando el origen es graso saciante (pescado azul, aguacate, frutos
+      // secos, o mixed-macro fat-dominant alto-kcal), excluir del POOL todo
+      // candidato con kcal_ratio < 0.75. Hugo: "no swap salmón 270 kcal por
+      // magro 140 kcal aunque la proteína cuadre".
+      //
+      // Reemplaza el comportamiento de los soft demotes existentes (línea
+      // 1859, 2143, 2149) cuando se cumple el criterio de graso saciante:
+      // ellos siguen aplicando para otros casos (lean exchanges con kcal
+      // floor menos estricto), pero acá hard-filtramos antes del scoring.
+      {
+        const _FATTY_SATIATING_SUBGROUPS = new Set([
+          "fish_fatty", "avocado", "nuts_seeds",
+        ]);
+        const oKcal = originalFood.calories || 0;
+        const oFat = originalFood.fat || 0;
+        const oProt = originalFood.protein || 0;
+        const oFatRatio = oKcal > 0 ? (oFat * 9) / oKcal : 0;
+        const originIsFattySatiating =
+          oKcal >= 150 && (
+            _FATTY_SATIATING_SUBGROUPS.has(originalFood.subgroup) ||
+            (oFat >= 8 && oProt >= 5 && oFatRatio >= 0.4)
+          );
+        if (originIsFattySatiating && oKcal > 0 && f.calories > 0) {
+          const ratio = f.calories / oKcal;
+          if (ratio < 0.75) return false;
+        }
+      }
+
       // Subgroup filter: only on same-category pairs.
       // Cross-category path (e.g. postres_proteicos <-> dairy/high_protein_dairy)
       // has already been approved by isCompatibleCategory — skip subgroup here.
