@@ -1,0 +1,3176 @@
+{
+  "proposed": [
+    {
+      "id": "bedca_0025",
+      "code": null,
+      "name": "Foie gras",
+      "kcal": 448,
+      "macros": {
+        "P": 10,
+        "C": 3,
+        "F": 44
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_cured"
+    },
+    {
+      "id": "bedca_0164",
+      "code": null,
+      "name": "Mojo picon",
+      "kcal": 721,
+      "macros": {
+        "P": 0.94,
+        "C": 1.78,
+        "F": 78.9
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_sauce"
+    },
+    {
+      "id": "bedca_0240",
+      "code": null,
+      "name": "Sofrito",
+      "kcal": 212.2,
+      "macros": {
+        "P": 1.1,
+        "C": 4.7,
+        "F": 21
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_sauce"
+    },
+    {
+      "id": "bedca_0428",
+      "code": null,
+      "name": "Aceituna",
+      "kcal": 121.7,
+      "macros": {
+        "P": 1.3,
+        "C": 1,
+        "F": 12.5
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": true
+      },
+      "rule": "clean_olives"
+    },
+    {
+      "id": "bedca_0567",
+      "code": null,
+      "name": "Aceituna negra, con hueso",
+      "kcal": 287.9,
+      "macros": {
+        "P": 2,
+        "C": 4,
+        "F": 29.8
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": true
+      },
+      "rule": "clean_olives"
+    },
+    {
+      "id": "bedca_0719",
+      "code": null,
+      "name": "Alioli",
+      "kcal": 795.2,
+      "macros": {
+        "P": 0.46,
+        "C": 2.84,
+        "F": 86.89
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_sauce"
+    },
+    {
+      "id": "bedca_0943",
+      "code": null,
+      "name": "Alioli, aceite s/e",
+      "kcal": 795.3,
+      "macros": {
+        "P": 0.5,
+        "C": 2.8,
+        "F": 86.9
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_sauce"
+    },
+    {
+      "id": "off_1a4b43bd34",
+      "code": "8480010286809",
+      "name": "Hummus light",
+      "kcal": 180,
+      "macros": {
+        "P": 9,
+        "C": 10,
+        "F": 11
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_dip"
+    },
+    {
+      "id": "off_511f8362e8",
+      "code": "3560070422098",
+      "name": "Aceituna negras s/h",
+      "kcal": 152,
+      "macros": {
+        "P": 0.6,
+        "C": 0,
+        "F": 16
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": true
+      },
+      "rule": "clean_olives"
+    },
+    {
+      "id": "off_76641d4023",
+      "code": "8480000800947",
+      "name": "Aceituna verde gazpacha",
+      "kcal": 138,
+      "macros": {
+        "P": 1.8,
+        "C": 0.1,
+        "F": 13.6
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": true
+      },
+      "rule": "clean_olives"
+    },
+    {
+      "id": "off_cbc829106a",
+      "code": "8480010158847",
+      "name": "Aceituna rellena de anchoa",
+      "kcal": 126,
+      "macros": {
+        "P": 1.3,
+        "C": 2,
+        "F": 13
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": true
+      },
+      "rule": "clean_olives"
+    },
+    {
+      "id": "off_44e24c0e15",
+      "code": "8480000800121",
+      "name": "Aceituna negra de Aragón",
+      "kcal": 181.2,
+      "macros": {
+        "P": 1.8,
+        "C": 0.2,
+        "F": 18.4
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": true
+      },
+      "rule": "clean_olives"
+    },
+    {
+      "id": "off_f51d168802",
+      "code": "8410813220359",
+      "name": "Aceituna Ecologica verde entera",
+      "kcal": 181,
+      "macros": {
+        "P": 1.2,
+        "C": 5.1,
+        "F": 16.8
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": true
+      },
+      "rule": "clean_olives"
+    },
+    {
+      "id": "off_2e42af3329",
+      "code": "8431876265682",
+      "name": "Aceituna manzanilla sin hueso",
+      "kcal": 162,
+      "macros": {
+        "P": 1,
+        "C": 0,
+        "F": 17
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": true
+      },
+      "rule": "clean_olives"
+    },
+    {
+      "id": "off_4913a331e5",
+      "code": "8480017179234",
+      "name": "Aceituna gordal",
+      "kcal": 60,
+      "macros": {
+        "P": 0.8,
+        "C": 4.1,
+        "F": 5.1
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": true
+      },
+      "rule": "clean_olives"
+    },
+    {
+      "id": "off_7fa77026e9",
+      "code": "3560070422302",
+      "name": "Aceituna verde c/h",
+      "kcal": 180,
+      "macros": {
+        "P": 1.1,
+        "C": 0,
+        "F": 19
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": true
+      },
+      "rule": "clean_olives"
+    },
+    {
+      "id": "off_6e72dd7b9c",
+      "code": "8480017555748",
+      "name": "Margarine light",
+      "kcal": 363,
+      "macros": {
+        "P": 0.3,
+        "C": 0.5,
+        "F": 40
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "butter_margarine",
+        "clean_fat": false
+      },
+      "rule": "noise_butter_margarine"
+    },
+    {
+      "id": "off_65c6676014",
+      "code": "8480010149821",
+      "name": "Cacahuetes. Tostados y salados",
+      "kcal": 587,
+      "macros": {
+        "P": 27,
+        "C": 11,
+        "F": 46
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_8b7c576a26",
+      "code": "3560070590179",
+      "name": "Pistachos",
+      "kcal": 596,
+      "macros": {
+        "P": 26,
+        "C": 15,
+        "F": 47
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_f5c74a16db",
+      "code": "8714100731925",
+      "name": "Calvé Sabor Casero",
+      "kcal": 384,
+      "macros": {
+        "P": 0.5,
+        "C": 5.1,
+        "F": 41
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_sauce"
+    },
+    {
+      "id": "off_dd823a9439",
+      "code": "8480017034403",
+      "name": "Cacahuetes con miel",
+      "kcal": 595,
+      "macros": {
+        "P": 23,
+        "C": 19,
+        "F": 46
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "sweets_bakery",
+        "clean_fat": false
+      },
+      "rule": "noise_sweet_bakery"
+    },
+    {
+      "id": "off_c8f7f75eab",
+      "code": "20554910",
+      "name": "César",
+      "kcal": 410,
+      "macros": {
+        "P": 2.6,
+        "C": 4.4,
+        "F": 42.4
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_sauce"
+    },
+    {
+      "id": "off_42d990a7c8",
+      "code": "3560070209071",
+      "name": "Mascarpone",
+      "kcal": 392,
+      "macros": {
+        "P": 4.5,
+        "C": 3.5,
+        "F": 40
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_cheese"
+    },
+    {
+      "id": "off_bca2f86006",
+      "code": "20496319",
+      "name": "Trüffel",
+      "kcal": 386,
+      "macros": {
+        "P": 3.1,
+        "C": 3,
+        "F": 39
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "sweets_bakery",
+        "clean_fat": false
+      },
+      "rule": "noise_sweet_bakery"
+    },
+    {
+      "id": "off_048b573f83",
+      "code": "8414807515223",
+      "name": "Anacardos",
+      "kcal": 581,
+      "macros": {
+        "P": 16.9,
+        "C": 15,
+        "F": 47.8
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_5ff70beafa",
+      "code": "3560070976140",
+      "name": "Pâté au foie de canard Recette landaise",
+      "kcal": 422,
+      "macros": {
+        "P": 11,
+        "C": 1.3,
+        "F": 41
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_cured"
+    },
+    {
+      "id": "off_a046faf99a",
+      "code": "8414807541086",
+      "name": "Pesto",
+      "kcal": 344,
+      "macros": {
+        "P": 4.5,
+        "C": 3.2,
+        "F": 34.6
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_sauce"
+    },
+    {
+      "id": "off_058f868294",
+      "code": "8480000341891",
+      "name": "Mix pimientas",
+      "kcal": 346.6,
+      "macros": {
+        "P": 3.1,
+        "C": 4.8,
+        "F": 35
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_condiment"
+    },
+    {
+      "id": "off_4641a27885",
+      "code": "8480000331113",
+      "name": "Aceitunas naturales de Aragón",
+      "kcal": 334,
+      "macros": {
+        "P": 1.6,
+        "C": 2.4,
+        "F": 34
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": true
+      },
+      "rule": "clean_olives"
+    },
+    {
+      "id": "off_a6b3dcfcf0",
+      "code": "3560070940257",
+      "name": "Aceitunas negras ESTILO GRIEGO",
+      "kcal": 379,
+      "macros": {
+        "P": 1.9,
+        "C": 3.5,
+        "F": 36
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": true
+      },
+      "rule": "clean_olives"
+    },
+    {
+      "id": "off_6d357fbafe",
+      "code": "8480000172655",
+      "name": "Aliño de aceite con perejil y ajo",
+      "kcal": 725,
+      "macros": {
+        "P": 0.5,
+        "C": 2.6,
+        "F": 75
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_sauce"
+    },
+    {
+      "id": "off_7fa30e845b",
+      "code": "8480000172211",
+      "name": "Pesto rosso",
+      "kcal": 357,
+      "macros": {
+        "P": 6.5,
+        "C": 9.1,
+        "F": 32
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_sauce"
+    },
+    {
+      "id": "off_2b90b2f7f4",
+      "code": "20442910",
+      "name": "Crema de alcachofas",
+      "kcal": 316,
+      "macros": {
+        "P": 0.9,
+        "C": 6.6,
+        "F": 30.8
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_sauce"
+    },
+    {
+      "id": "off_d0cdee0cfd",
+      "code": "8480000171726",
+      "name": "Allioli",
+      "kcal": 712,
+      "macros": {
+        "P": 1.1,
+        "C": 1.5,
+        "F": 78
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_sauce"
+    },
+    {
+      "id": "off_4a9d24a031",
+      "code": "20815356",
+      "name": "Negro Avellanas enteras",
+      "kcal": 587,
+      "macros": {
+        "P": 8.6,
+        "C": 34.4,
+        "F": 44.3
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "sweets_bakery",
+        "clean_fat": false
+      },
+      "rule": "noise_sweet_bakery"
+    },
+    {
+      "id": "off_c589efdfed",
+      "code": "3560070355570",
+      "name": "Dados con ajo y finas hierbas",
+      "kcal": 352,
+      "macros": {
+        "P": 8.4,
+        "C": 5.4,
+        "F": 33
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_sauce"
+    },
+    {
+      "id": "off_a9703ee774",
+      "code": "3270190180890",
+      "name": "Blanco avellanas enteras",
+      "kcal": 604,
+      "macros": {
+        "P": 10,
+        "C": 45,
+        "F": 42
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "sweets_bakery",
+        "clean_fat": false
+      },
+      "rule": "noise_sweet_bakery"
+    },
+    {
+      "id": "off_3cda03008a",
+      "code": "8480017480958",
+      "name": "Mascarpone (42% MG) - 250 g - Dia",
+      "kcal": 411,
+      "macros": {
+        "P": 3.6,
+        "C": 4.6,
+        "F": 42
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_cheese"
+    },
+    {
+      "id": "off_0d01a4bf4d",
+      "code": "24044493",
+      "name": "Cacahuetes con cáscara tostados con sal",
+      "kcal": 640.5,
+      "macros": {
+        "P": 15.7,
+        "C": 29.2,
+        "F": 51.1
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_3820c2da7c",
+      "code": "8480017175564",
+      "name": "Cacahuetes con cascara",
+      "kcal": 616,
+      "macros": {
+        "P": 28.1,
+        "C": 10,
+        "F": 44.9
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_970b7587dd",
+      "code": "8414807542144",
+      "name": "Pistachos tostados ecológicos",
+      "kcal": 642,
+      "macros": {
+        "P": 23,
+        "C": 7,
+        "F": 56
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_d0c98bd016",
+      "code": "8412139065690",
+      "name": "Almendras comunas crudas repaladas",
+      "kcal": 668,
+      "macros": {
+        "P": 20,
+        "C": 19.6,
+        "F": 53.6
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_54dc78a470",
+      "code": "8480000171672",
+      "name": "Mojó canario suave",
+      "kcal": 523,
+      "macros": {
+        "P": 0,
+        "C": 3.3,
+        "F": 57.3
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_sauce"
+    },
+    {
+      "id": "off_58e4302a1b",
+      "code": "3560070263103",
+      "name": "Mayonnaise à la moutarde de Dijon",
+      "kcal": 660,
+      "macros": {
+        "P": 1.6,
+        "C": 1.8,
+        "F": 72
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_sauce"
+    },
+    {
+      "id": "off_c2d0ec1106",
+      "code": "3560070340378",
+      "name": "Aceite para freír",
+      "kcal": 828,
+      "macros": {
+        "P": 0,
+        "C": 0,
+        "F": 92
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_oils",
+        "clean_fat": true
+      },
+      "rule": "clean_other_oil"
+    },
+    {
+      "id": "off_87d44e2c5d",
+      "code": "8414807536563",
+      "name": "Pistachos tostados sal consum",
+      "kcal": 620,
+      "macros": {
+        "P": 26,
+        "C": 6.5,
+        "F": 52
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_95d932b748",
+      "code": "20013592",
+      "name": "Sonnenblumenöl",
+      "kcal": 828,
+      "macros": {
+        "P": 0,
+        "C": 0,
+        "F": 92
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_oils",
+        "clean_fat": true
+      },
+      "rule": "clean_other_oil"
+    },
+    {
+      "id": "off_7d3816a3fa",
+      "code": "8480017001016",
+      "name": "Aceite refinado de girasol",
+      "kcal": 826,
+      "macros": {
+        "P": 0,
+        "C": 0,
+        "F": 91.8
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_oils",
+        "clean_fat": true
+      },
+      "rule": "clean_other_oil"
+    },
+    {
+      "id": "off_697543b5b6",
+      "code": "3270190128472",
+      "name": "Aceite virgen de girasol",
+      "kcal": 819,
+      "macros": {
+        "P": 0,
+        "C": 0,
+        "F": 91
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_oils",
+        "clean_fat": true
+      },
+      "rule": "clean_other_oil"
+    },
+    {
+      "id": "off_09a6a8571e",
+      "code": "8480000047410",
+      "name": "Huile d'olive extra vierge",
+      "kcal": 822,
+      "macros": {
+        "P": 0,
+        "C": 0,
+        "F": 91
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "olive_oil",
+        "clean_fat": true
+      },
+      "rule": "clean_olive_oil"
+    },
+    {
+      "id": "off_2bf4da0205",
+      "code": "8480000042040",
+      "name": "Huil d'olive",
+      "kcal": 822,
+      "macros": {
+        "P": 0,
+        "C": 0,
+        "F": 91
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "olive_oil",
+        "clean_fat": true
+      },
+      "rule": "clean_olive_oil"
+    },
+    {
+      "id": "off_9890e1b423",
+      "code": "8480017176332",
+      "name": "Pistachos tostados",
+      "kcal": 615,
+      "macros": {
+        "P": 21.6,
+        "C": 12,
+        "F": 51
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_ecf48c2223",
+      "code": "3560070616589",
+      "name": "Matiere grasse vegetale 55% m.g.",
+      "kcal": 496,
+      "macros": {
+        "P": 0,
+        "C": 0,
+        "F": 55
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "butter_margarine",
+        "clean_fat": false
+      },
+      "rule": "noise_butter_margarine"
+    },
+    {
+      "id": "off_e94319989a",
+      "code": "20944742",
+      "name": "Allioli aja negro",
+      "kcal": 699,
+      "macros": {
+        "P": 1.6,
+        "C": 5.6,
+        "F": 74.2
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_sauce"
+    },
+    {
+      "id": "off_604249aeaf",
+      "code": "20621414",
+      "name": "Pesto de aceitunas y anchoas",
+      "kcal": 363,
+      "macros": {
+        "P": 1.3,
+        "C": 5.5,
+        "F": 36.6
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_sauce"
+    },
+    {
+      "id": "off_fb881fecc6",
+      "code": "3560070740529",
+      "name": "Cacahuetes",
+      "kcal": 615,
+      "macros": {
+        "P": 26,
+        "C": 9.6,
+        "F": 50
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_4dc14ab2d4",
+      "code": "8480017034540",
+      "name": "Anacardos al punto de sal",
+      "kcal": 596,
+      "macros": {
+        "P": 21.2,
+        "C": 9,
+        "F": 49.5
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_15ebd93f34",
+      "code": "8480010160222",
+      "name": "Cacahuetes tostados",
+      "kcal": 629,
+      "macros": {
+        "P": 30,
+        "C": 11,
+        "F": 50
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_1ea7855cfc",
+      "code": "3560071008574",
+      "name": "PISTACHOS Tostados salados",
+      "kcal": 604,
+      "macros": {
+        "P": 24,
+        "C": 13,
+        "F": 49
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_481ee1a8dd",
+      "code": "3560070687589",
+      "name": "Cacahuetes con cáscara tostados y salados",
+      "kcal": 595,
+      "macros": {
+        "P": 31,
+        "C": 7.9,
+        "F": 47
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_149ee3327b",
+      "code": "20244347",
+      "name": "Kochbutter",
+      "kcal": 744,
+      "macros": {
+        "P": 0.5,
+        "C": 0.5,
+        "F": 82.2
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "butter_margarine",
+        "clean_fat": false
+      },
+      "rule": "noise_butter_margarine"
+    },
+    {
+      "id": "off_05da36ad89",
+      "code": "3560071044510",
+      "name": "Pistachos tostados y salados",
+      "kcal": 583,
+      "macros": {
+        "P": 19,
+        "C": 12,
+        "F": 49
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_c552a96200",
+      "code": "3245390039828",
+      "name": "Crujientes con almendras",
+      "kcal": 460,
+      "macros": {
+        "P": 8.8,
+        "C": 65,
+        "F": 17
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "sweets_bakery",
+        "clean_fat": false
+      },
+      "rule": "noise_sweet_bakery"
+    },
+    {
+      "id": "off_711551a3de",
+      "code": "8480010158878",
+      "name": "Muesli con pasas, arándanos y almendras",
+      "kcal": 457,
+      "macros": {
+        "P": 8,
+        "C": 66,
+        "F": 17
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "sweets_bakery",
+        "clean_fat": false
+      },
+      "rule": "noise_sweet_bakery"
+    },
+    {
+      "id": "off_1a921123ad",
+      "code": "20107710",
+      "name": "hummus clasico",
+      "kcal": 273,
+      "macros": {
+        "P": 5.2,
+        "C": 11.8,
+        "F": 22.5
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_dip"
+    },
+    {
+      "id": "off_aa521d5bc0",
+      "code": "8480000593016",
+      "name": "Mortadella con aceitunas",
+      "kcal": 244,
+      "macros": {
+        "P": 10.5,
+        "C": 5.6,
+        "F": 20
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_cured"
+    },
+    {
+      "id": "off_7e733116ab",
+      "code": "3560070374199",
+      "name": "El triángulo fundente",
+      "kcal": 255,
+      "macros": {
+        "P": 8,
+        "C": 8.5,
+        "F": 21
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_cheese"
+    },
+    {
+      "id": "off_6e4fe09955",
+      "code": "8480000593429",
+      "name": "Chicharrón con pistachos",
+      "kcal": 245,
+      "macros": {
+        "P": 20,
+        "C": 0.8,
+        "F": 18
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_cured"
+    },
+    {
+      "id": "off_70748fd8a6",
+      "code": "8480000523198",
+      "name": "Olivada",
+      "kcal": 284,
+      "macros": {
+        "P": 2.1,
+        "C": 0.2,
+        "F": 30.5
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": true
+      },
+      "rule": "clean_olives"
+    },
+    {
+      "id": "off_1acf096b15",
+      "code": "20442934",
+      "name": "Crema de espárrago verde",
+      "kcal": 222,
+      "macros": {
+        "P": 1.6,
+        "C": 7.9,
+        "F": 20.1
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_sauce"
+    },
+    {
+      "id": "off_da2361df8a",
+      "code": "8480000674050",
+      "name": "Crema al cacao con avellanas",
+      "kcal": 556,
+      "macros": {
+        "P": 4,
+        "C": 60,
+        "F": 33
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "sweets_bakery",
+        "clean_fat": false
+      },
+      "rule": "noise_sweet_bakery"
+    },
+    {
+      "id": "off_550789f324",
+      "code": "8480010160918",
+      "name": "Crema de cacao con avellanas",
+      "kcal": 567,
+      "macros": {
+        "P": 3.4,
+        "C": 56,
+        "F": 36.1
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "sweets_bakery",
+        "clean_fat": false
+      },
+      "rule": "noise_sweet_bakery"
+    },
+    {
+      "id": "off_432c751a96",
+      "code": "8480017178916",
+      "name": "Saefinillsd en aceite picante",
+      "kcal": 215,
+      "macros": {
+        "P": 20,
+        "C": 0,
+        "F": 15
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "protein",
+        "subgroup": "seafood",
+        "clean_fat": null
+      },
+      "rule": "non_fat_seafood"
+    },
+    {
+      "id": "off_7a69d559b5",
+      "code": "3560071005672",
+      "name": "KAONUTS 13% de avellanas",
+      "kcal": 549,
+      "macros": {
+        "P": 5.9,
+        "C": 54,
+        "F": 34
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "sweets_bakery",
+        "clean_fat": false
+      },
+      "rule": "noise_sweet_bakery"
+    },
+    {
+      "id": "off_11984c1b6f",
+      "code": "8414807514493",
+      "name": "Mini Almendrado",
+      "kcal": 363,
+      "macros": {
+        "P": 4.1,
+        "C": 31,
+        "F": 25
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "sweets_bakery",
+        "clean_fat": false
+      },
+      "rule": "noise_sweet_bakery"
+    },
+    {
+      "id": "off_0efdf0cb3a",
+      "code": "20798581",
+      "name": "Tomate seco en aceite",
+      "kcal": 199,
+      "macros": {
+        "P": 3,
+        "C": 7.6,
+        "F": 16
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "vegetables",
+        "subgroup": "vegetables",
+        "clean_fat": null
+      },
+      "rule": "non_fat_vegetable"
+    },
+    {
+      "id": "off_d3c58847a5",
+      "code": "8480000829245",
+      "name": "Tortas de aceite",
+      "kcal": 527,
+      "macros": {
+        "P": 7.8,
+        "C": 62.5,
+        "F": 27
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "sweets_bakery",
+        "clean_fat": false
+      },
+      "rule": "noise_sweet_bakery"
+    },
+    {
+      "id": "off_dd21b97a3f",
+      "code": "8414807513946",
+      "name": "Bombón Almendrado",
+      "kcal": 337,
+      "macros": {
+        "P": 4.1,
+        "C": 29,
+        "F": 23
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "sweets_bakery",
+        "clean_fat": false
+      },
+      "rule": "noise_sweet_bakery"
+    },
+    {
+      "id": "off_60eeb808f2",
+      "code": "8480000599933",
+      "name": "Crema para untar de jamón york",
+      "kcal": 239,
+      "macros": {
+        "P": 6,
+        "C": 8,
+        "F": 20.3
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_cured"
+    },
+    {
+      "id": "off_e264442128",
+      "code": "8414807530080",
+      "name": "Tortas d'aceite coques d'oli",
+      "kcal": 494,
+      "macros": {
+        "P": 7.9,
+        "C": 67,
+        "F": 21
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "sweets_bakery",
+        "clean_fat": false
+      },
+      "rule": "noise_sweet_bakery"
+    },
+    {
+      "id": "off_cbf64d71cb",
+      "code": "3245414667341",
+      "name": "24 Moules farcies à la persillade",
+      "kcal": 274,
+      "macros": {
+        "P": 8.1,
+        "C": 6,
+        "F": 24
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "protein",
+        "subgroup": "seafood",
+        "clean_fat": null
+      },
+      "rule": "non_fat_seafood"
+    },
+    {
+      "id": "off_0f47e02077",
+      "code": "8480000330444",
+      "name": "Aceituna verde gordal aliñada",
+      "kcal": 196.2,
+      "macros": {
+        "P": 2.4,
+        "C": 0.3,
+        "F": 20.6
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": true
+      },
+      "rule": "clean_olives"
+    },
+    {
+      "id": "off_a3059390fb",
+      "code": "20103644",
+      "name": "Coconut Milk 91% Lidl",
+      "kcal": 194,
+      "macros": {
+        "P": 0.8,
+        "C": 1.4,
+        "F": 20.5
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "other",
+        "subgroup": "other",
+        "clean_fat": null
+      },
+      "rule": "non_fat_beverage"
+    },
+    {
+      "id": "off_cd67a034fd",
+      "code": "8414807516046",
+      "name": "Aceitunas gazpachas verdial",
+      "kcal": 191,
+      "macros": {
+        "P": 0.8,
+        "C": 0.6,
+        "F": 20
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": true
+      },
+      "rule": "clean_olives"
+    },
+    {
+      "id": "off_4a242d9533",
+      "code": "3560070577774",
+      "name": "Mini bimbón clásico y almendrado",
+      "kcal": 274,
+      "macros": {
+        "P": 5,
+        "C": 21,
+        "F": 20
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "sweets_bakery",
+        "clean_fat": false
+      },
+      "rule": "noise_sweet_bakery"
+    },
+    {
+      "id": "off_edcfbcd39f",
+      "code": "20095253",
+      "name": "Pâté de sardinha",
+      "kcal": 239,
+      "macros": {
+        "P": 9.7,
+        "C": 4.3,
+        "F": 20
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "protein",
+        "subgroup": "seafood",
+        "clean_fat": null
+      },
+      "rule": "non_fat_seafood"
+    },
+    {
+      "id": "off_255a80518a",
+      "code": "20672973",
+      "name": "Hummus con aceitunas de Kalamata",
+      "kcal": 267.7,
+      "macros": {
+        "P": 5.1,
+        "C": 11.2,
+        "F": 22.4
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_dip"
+    },
+    {
+      "id": "off_2e5ec03a60",
+      "code": "8431876251166",
+      "name": "Ensalada césar",
+      "kcal": 242,
+      "macros": {
+        "P": 9,
+        "C": 5,
+        "F": 20
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_sauce"
+    },
+    {
+      "id": "off_2aa21a1ef7",
+      "code": "8480000807151",
+      "name": "Ensaladilla Cangrejo",
+      "kcal": 254.8,
+      "macros": {
+        "P": 4.8,
+        "C": 8.9,
+        "F": 22
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "protein",
+        "subgroup": "seafood",
+        "clean_fat": null
+      },
+      "rule": "non_fat_seafood"
+    },
+    {
+      "id": "off_98a5dda6b9",
+      "code": "8414807518835",
+      "name": "Mini clásico almendrado 0%",
+      "kcal": 280,
+      "macros": {
+        "P": 4.9,
+        "C": 23,
+        "F": 0
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "sweets_bakery",
+        "clean_fat": false
+      },
+      "rule": "noise_sweet_bakery"
+    },
+    {
+      "id": "off_abe5427a8e",
+      "code": "3560071186487",
+      "name": "Canistrelli con avellanas",
+      "kcal": 474,
+      "macros": {
+        "P": 7.2,
+        "C": 68,
+        "F": 19
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "sweets_bakery",
+        "clean_fat": false
+      },
+      "rule": "noise_sweet_bakery"
+    },
+    {
+      "id": "off_ea75454a63",
+      "code": "8431876264500",
+      "name": "Crema 13% avellanas con aceite girasol",
+      "kcal": 535,
+      "macros": {
+        "P": 6.1,
+        "C": 58,
+        "F": 30
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "sweets_bakery",
+        "clean_fat": false
+      },
+      "rule": "noise_sweet_bakery"
+    },
+    {
+      "id": "off_8475235da0",
+      "code": "8431876267358",
+      "name": "Crema Para Untar Al Cacao Con Avellanas.",
+      "kcal": 543,
+      "macros": {
+        "P": 1.7,
+        "C": 61,
+        "F": 31
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "sweets_bakery",
+        "clean_fat": false
+      },
+      "rule": "noise_sweet_bakery"
+    },
+    {
+      "id": "off_f56bc67f64",
+      "code": "3560070657544",
+      "name": "Zanahorias enteras",
+      "kcal": 28,
+      "macros": {
+        "P": 0.8,
+        "C": 3.6,
+        "F": 0
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "vegetables",
+        "subgroup": "vegetables",
+        "clean_fat": null
+      },
+      "rule": "non_fat_vegetable"
+    },
+    {
+      "id": "off_4b70e771ba",
+      "code": "8480000171450",
+      "name": "Vinagreta",
+      "kcal": 292,
+      "macros": {
+        "P": 0.5,
+        "C": 7.9,
+        "F": 29
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_sauce"
+    },
+    {
+      "id": "off_bf1a8fa8a3",
+      "code": "8480000170835",
+      "name": "Ligera",
+      "kcal": 261,
+      "macros": {
+        "P": 0.6,
+        "C": 6.6,
+        "F": 25.8
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_cheese"
+    },
+    {
+      "id": "off_fc776aaa3c",
+      "code": "8480000808714",
+      "name": "Hummus classic",
+      "kcal": 300,
+      "macros": {
+        "P": 6.4,
+        "C": 8.7,
+        "F": 25.5
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_dip"
+    },
+    {
+      "id": "off_15e2288672",
+      "code": "8480000808615",
+      "name": "Hummus con olivas de kalamata",
+      "kcal": 290.4,
+      "macros": {
+        "P": 6.2,
+        "C": 6.9,
+        "F": 24.8
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_dip"
+    },
+    {
+      "id": "off_331ba6d7c8",
+      "code": "3560071010522",
+      "name": "Houmous",
+      "kcal": 324,
+      "macros": {
+        "P": 6.7,
+        "C": 8.5,
+        "F": 28
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_dip"
+    },
+    {
+      "id": "off_ac9ab61a7d",
+      "code": "3560070906000",
+      "name": "Almendras fritas saladas",
+      "kcal": 635,
+      "macros": {
+        "P": 26,
+        "C": 3.6,
+        "F": 55
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_82cb513233",
+      "code": "8414807527509",
+      "name": "Almendras fritas",
+      "kcal": 626,
+      "macros": {
+        "P": 24,
+        "C": 4.1,
+        "F": 55
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_a849cca247",
+      "code": "24045209",
+      "name": "Cacahuetes con cáscara tostados sin sal",
+      "kcal": 616,
+      "macros": {
+        "P": 27,
+        "C": 9.6,
+        "F": 50
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_0a4b774c71",
+      "code": "3560070905973",
+      "name": "Almendras crudas",
+      "kcal": 637,
+      "macros": {
+        "P": 25,
+        "C": 3.5,
+        "F": 56
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_b78810f1e3",
+      "code": "3560070778546",
+      "name": "Almendras",
+      "kcal": 618,
+      "macros": {
+        "P": 19,
+        "C": 5,
+        "F": 53
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_a4792ddd1d",
+      "code": "8435177051036",
+      "name": "Almendras crudas repeladas",
+      "kcal": 592,
+      "macros": {
+        "P": 25,
+        "C": 5.4,
+        "F": 50
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_7524c23d99",
+      "code": "8414807542120",
+      "name": "Almendras crudas con piel",
+      "kcal": 618,
+      "macros": {
+        "P": 24,
+        "C": 3,
+        "F": 54
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_b792558258",
+      "code": "20797676",
+      "name": "Perlas de aceite en vinagreta",
+      "kcal": 551.2,
+      "macros": {
+        "P": 0,
+        "C": 11.2,
+        "F": 56.1
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_sauce"
+    },
+    {
+      "id": "off_bbcb5c213d",
+      "code": "3560070976775",
+      "name": "Financiers Con almendras",
+      "kcal": 417,
+      "macros": {
+        "P": 8.2,
+        "C": 50,
+        "F": 20
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "sweets_bakery",
+        "clean_fat": false
+      },
+      "rule": "noise_sweet_bakery"
+    },
+    {
+      "id": "off_a11db6e448",
+      "code": "20005719",
+      "name": "Pistachos de California tostados y salados",
+      "kcal": 605,
+      "macros": {
+        "P": 26,
+        "C": 10,
+        "F": 49
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_009a95faea",
+      "code": "3245413808196",
+      "name": "Pesto verde",
+      "kcal": 447,
+      "macros": {
+        "P": 2.6,
+        "C": 3.2,
+        "F": 46
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_sauce"
+    },
+    {
+      "id": "off_d6d7c5af1f",
+      "code": "20144968",
+      "name": "Beurre doux Bio",
+      "kcal": 747,
+      "macros": {
+        "P": 0.5,
+        "C": 0.6,
+        "F": 82.5
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "butter_margarine",
+        "clean_fat": false
+      },
+      "rule": "noise_butter_margarine"
+    },
+    {
+      "id": "off_504f15467d",
+      "code": "8480000174031",
+      "name": "Salsas frescas pesto",
+      "kcal": 560,
+      "macros": {
+        "P": 5,
+        "C": 2,
+        "F": 59
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_sauce"
+    },
+    {
+      "id": "off_dab7ecd121",
+      "code": "8431876267846",
+      "name": "Olivenöl",
+      "kcal": 900,
+      "macros": {
+        "P": 0,
+        "C": 0,
+        "F": 100
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "olive_oil",
+        "clean_fat": true
+      },
+      "rule": "clean_olive_oil"
+    },
+    {
+      "id": "off_03e95cacb3",
+      "code": "8480010059953",
+      "name": "Pastas almendradas",
+      "kcal": 531,
+      "macros": {
+        "P": 6.9,
+        "C": 55.9,
+        "F": 33.1
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "sweets_bakery",
+        "clean_fat": false
+      },
+      "rule": "noise_sweet_bakery"
+    },
+    {
+      "id": "off_a3fdd089d5",
+      "code": "8435177059254",
+      "name": "Cacahuetes tostados y salados",
+      "kcal": 618,
+      "macros": {
+        "P": 26,
+        "C": 9.2,
+        "F": 51
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_e462e580ee",
+      "code": "8414807539533",
+      "name": "55% cacao con almendras enteras",
+      "kcal": 547,
+      "macros": {
+        "P": 10.5,
+        "C": 40,
+        "F": 36.5
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "sweets_bakery",
+        "clean_fat": false
+      },
+      "rule": "noise_sweet_bakery"
+    },
+    {
+      "id": "off_013e0d88b7",
+      "code": "8436033824566",
+      "name": "Ali oli",
+      "kcal": 634,
+      "macros": {
+        "P": 1.2,
+        "C": 2.2,
+        "F": 68.8
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_sauce"
+    },
+    {
+      "id": "off_90408b999b",
+      "code": "8433329023214",
+      "name": "Almendras marcona crudas",
+      "kcal": 631,
+      "macros": {
+        "P": 19.1,
+        "C": 11.6,
+        "F": 55
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_b0959ac5b2",
+      "code": "8433329088640",
+      "name": "Almendras repeladas crudas",
+      "kcal": 597,
+      "macros": {
+        "P": 22,
+        "C": 3.8,
+        "F": 52
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_e7548eeb91",
+      "code": "8422410812462",
+      "name": "Sobrassada",
+      "kcal": 609,
+      "macros": {
+        "P": 10,
+        "C": 0.5,
+        "F": 63
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_cured"
+    },
+    {
+      "id": "off_1256367dcd",
+      "code": "8422410052905",
+      "name": "Oli d'oliva verge extra",
+      "kcal": 900,
+      "macros": {
+        "P": 0,
+        "C": 0,
+        "F": 100
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "olive_oil",
+        "clean_fat": true
+      },
+      "rule": "clean_olive_oil"
+    },
+    {
+      "id": "off_a2ab5ba4de",
+      "code": "8422410685967",
+      "name": "Oli d'oliva arbequina",
+      "kcal": 900,
+      "macros": {
+        "P": 0,
+        "C": 0,
+        "F": 100
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "olive_oil",
+        "clean_fat": true
+      },
+      "rule": "clean_olive_oil"
+    },
+    {
+      "id": "off_e10d96aade",
+      "code": "8422410321896",
+      "name": "Xocolata negra 99% cacau",
+      "kcal": 631,
+      "macros": {
+        "P": 10,
+        "C": 8.5,
+        "F": 58
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "sweets_bakery",
+        "clean_fat": false
+      },
+      "rule": "noise_sweet_bakery"
+    },
+    {
+      "id": "off_9e85178f84",
+      "code": "8422410844722",
+      "name": "Oli d'oliva suau",
+      "kcal": 900,
+      "macros": {
+        "P": 0,
+        "C": 0,
+        "F": 100
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "olive_oil",
+        "clean_fat": true
+      },
+      "rule": "clean_olive_oil"
+    },
+    {
+      "id": "off_092b2d2531",
+      "code": "8433329046381",
+      "name": "Bloc de foie gras de pato",
+      "kcal": 495,
+      "macros": {
+        "P": 3.8,
+        "C": 0.6,
+        "F": 53
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_cured"
+    },
+    {
+      "id": "off_188eb44a32",
+      "code": "8433329082112",
+      "name": "Bio anacardos",
+      "kcal": 613,
+      "macros": {
+        "P": 18,
+        "C": 23,
+        "F": 49
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_37c05e2f90",
+      "code": "8422410523429",
+      "name": "Noix de macadamia",
+      "kcal": 754,
+      "macros": {
+        "P": 7.9,
+        "C": 5.4,
+        "F": 76
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_5064e27e36",
+      "code": "8433329023290",
+      "name": "Anacardos crudos",
+      "kcal": 594,
+      "macros": {
+        "P": 18,
+        "C": 30,
+        "F": 44
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_58fbcba533",
+      "code": "8480013362012",
+      "name": "Cheese sticks",
+      "kcal": 284,
+      "macros": {
+        "P": 5,
+        "C": 3,
+        "F": 28
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_cheese"
+    },
+    {
+      "id": "off_ab23142f8e",
+      "code": "8422410136469",
+      "name": "Avellanas KM 0",
+      "kcal": 719,
+      "macros": {
+        "P": 12,
+        "C": 17,
+        "F": 67
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_e81ea830e7",
+      "code": "8422410496723",
+      "name": "Olives amb pinyol àlora",
+      "kcal": 220,
+      "macros": {
+        "P": 1.1,
+        "C": 0,
+        "F": 23
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": true
+      },
+      "rule": "clean_olives"
+    },
+    {
+      "id": "off_96a71c8729",
+      "code": "8433329020671",
+      "name": "Avellanas crudas",
+      "kcal": 687,
+      "macros": {
+        "P": 13,
+        "C": 15,
+        "F": 63
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_a42a3aa3de",
+      "code": "5999033868662",
+      "name": "Sour Crean",
+      "kcal": 204,
+      "macros": {
+        "P": 2.5,
+        "C": 2.9,
+        "F": 20
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_sauce"
+    },
+    {
+      "id": "off_fd1c7efb49",
+      "code": "8433329064149",
+      "name": "Tort as de aceite",
+      "kcal": 518,
+      "macros": {
+        "P": 6.7,
+        "C": 63,
+        "F": 26
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "sweets_bakery",
+        "clean_fat": false
+      },
+      "rule": "noise_sweet_bakery"
+    },
+    {
+      "id": "off_185cd7a01d",
+      "code": "8413585020936",
+      "name": "Almendras crudas molidas",
+      "kcal": 609,
+      "macros": {
+        "P": 19.1,
+        "C": 6.2,
+        "F": 54.6
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_89750f3f41",
+      "code": "20724696",
+      "name": "Almendras al natural",
+      "kcal": 621,
+      "macros": {
+        "P": 24.5,
+        "C": 4.8,
+        "F": 53.3
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_0a2963130b",
+      "code": "8410199013002",
+      "name": "Almendras al Horno",
+      "kcal": 622,
+      "macros": {
+        "P": 24,
+        "C": 6.1,
+        "F": 57
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_d666f011fe",
+      "code": "8410199013019",
+      "name": "Almendras Horno",
+      "kcal": 622,
+      "macros": {
+        "P": 24,
+        "C": 6.1,
+        "F": 57
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_1033c27cf1",
+      "code": "20658663",
+      "name": "Almendras frita y salada",
+      "kcal": 629,
+      "macros": {
+        "P": 23.9,
+        "C": 4.1,
+        "F": 55.4
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_66510f8115",
+      "code": "8410199003010",
+      "name": "Horno Almendras",
+      "kcal": 622,
+      "macros": {
+        "P": 24,
+        "C": 6.1,
+        "F": 57
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_23b7caad8a",
+      "code": "8412139007515",
+      "name": "Almendras crudas sin piel",
+      "kcal": 604,
+      "macros": {
+        "P": 18.8,
+        "C": 5.8,
+        "F": 51.1
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_625c651072",
+      "code": "8410219670062",
+      "name": "Almendras Molidas",
+      "kcal": 613,
+      "macros": {
+        "P": 21,
+        "C": 8.8,
+        "F": 53
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_c91197b023",
+      "code": "8410564005205",
+      "name": "Almendras 100% naturales",
+      "kcal": 616,
+      "macros": {
+        "P": 25,
+        "C": 8.1,
+        "F": 52
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_eaa5b9a7c0",
+      "code": "8410148501949",
+      "name": "Almendras fritas y saladas",
+      "kcal": 611,
+      "macros": {
+        "P": 25,
+        "C": 4.3,
+        "F": 52
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_0d18d08a77",
+      "code": "0041570071731",
+      "name": "Blue Diamond Almendras",
+      "kcal": 576,
+      "macros": {
+        "P": 17.1,
+        "C": 21.4,
+        "F": 47.5
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    },
+    {
+      "id": "off_b25ef927c5",
+      "code": "0096619227990",
+      "name": "Almendras Espolvoreadas de Cocoa",
+      "kcal": 550,
+      "macros": {
+        "P": 18,
+        "C": 31,
+        "F": 44.3
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "sweets_bakery",
+        "clean_fat": false
+      },
+      "rule": "noise_sweet_bakery"
+    },
+    {
+      "id": "off_b98704c52e",
+      "code": "8410109000726",
+      "name": "70% cacao con almendras enteras",
+      "kcal": 562,
+      "macros": {
+        "P": 14,
+        "C": 26,
+        "F": 42
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "sweets_bakery",
+        "clean_fat": false
+      },
+      "rule": "noise_sweet_bakery"
+    },
+    {
+      "id": "off_5a46abff4c",
+      "code": "8010503506499",
+      "name": "Pesto Tapanese (con tomates secos y almendras)",
+      "kcal": 446,
+      "macros": {
+        "P": 11.3,
+        "C": 14.4,
+        "F": 37.5
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_fat",
+        "clean_fat": false
+      },
+      "rule": "noise_sauce"
+    },
+    {
+      "id": "off_eb986cb06e",
+      "code": "8410090010636",
+      "name": "Atún claro aceite girasol latas",
+      "kcal": 367,
+      "macros": {
+        "P": 17,
+        "C": 0,
+        "F": 33
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "protein",
+        "subgroup": "seafood",
+        "clean_fat": null
+      },
+      "rule": "non_fat_seafood"
+    },
+    {
+      "id": "off_258cd3a220",
+      "code": "8426594050689",
+      "name": "Aceite Hipocalórico",
+      "kcal": 769.5,
+      "macros": {
+        "P": 0,
+        "C": 0,
+        "F": 85.5
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "other_oils",
+        "clean_fat": true
+      },
+      "rule": "clean_other_oil"
+    },
+    {
+      "id": "off_312a18047b",
+      "code": "24045148",
+      "name": "Almendras Largueta",
+      "kcal": 580,
+      "macros": {
+        "P": 21,
+        "C": 4,
+        "F": 50
+      },
+      "from": {
+        "category": "fat",
+        "subgroup": "other_fat"
+      },
+      "to": {
+        "category": "fat",
+        "subgroup": "nuts_seeds",
+        "clean_fat": true
+      },
+      "rule": "clean_nuts_seeds"
+    }
+  ],
+  "residual": []
+}

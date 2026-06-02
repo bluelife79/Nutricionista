@@ -1295,21 +1295,30 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         return false;
       }
 
-      // Hugo PDF Regla 5 — Grasas limpias: cuando origen es grasa REAL
-      // (aceite, aguacate, frutos secos, semillas, aceitunas, crema de
-      // frutos secos), excluir foie/paté/mortadela/sobrasada/chorizo/
-      // salami/salsa/mayonesa/alioli del POOL. Hugo: "no deben mezclarse
-      // arriba con salsas, patés, foie, sobrasada".
+      // Hugo Regla — Grasas limpias (gate determinístico por flag clean_fat).
+      // Cuando el origen es grasa LIMPIA (aceite, aguacate, frutos secos,
+      // semillas, aceitunas — clean_fat:true), excluir del POOL toda grasa
+      // NO-limpia: salsas, embutido, queso-grasa, dulces, manteca/margarina,
+      // dips y conservas pescado/verdura en aceite (clean_fat:false).
+      //
+      // Reemplaza el viejo regex de nombres (frágil ante grafías multilingües:
+      // alioli/allioli, sobrasada/sobrassada, mayonesa/mayonnaise, etc.).
+      // clean_fat está poblado en TODA la categoría fat
+      // (scripts/apply_clean_fat.js). Fallback por subgrupo para datos viejos
+      // sin flag. Candidatos sin flag = no-op backward-compatible.
       {
-        const _OIL_OR_DENSE_FAT = new Set([
-          "olive_oil", "other_oils", "avocado", "nuts_seeds", "other_fat",
+        const _CLEAN_FAT_SUBGROUPS = new Set([
+          "olive_oil", "other_oils", "avocado", "nuts_seeds",
         ]);
-        if (originalFood.category === "fat" &&
-            _OIL_OR_DENSE_FAT.has(originalFood.subgroup)) {
-          const fNameN = norm(f.name || "");
-          const _GRASA_NOISE_HARD_RE =
-            /\b(foie|pat[eé]|mortadela|sobrasada|chorizo|salchich[oó]n|salami|fiambre|salsa|mayonesa|alioli|aderezo|vinagreta|c[eé]sar|crema (de|para untar).*(jam[oó]n|carne|pollo|pavo)|jam[oó]n.*crema|sour\s*crea?n?|sour\s*cream|ventresca en aceite|cremas? para untar|hummus|crema de espar|crema de queso|caesar)\b/i;
-          if (_GRASA_NOISE_HARD_RE.test(fNameN)) return false;
+        const originIsCleanFat =
+          originalFood.category === "fat" &&
+          (originalFood.clean_fat === true ||
+            (originalFood.clean_fat === undefined &&
+              _CLEAN_FAT_SUBGROUPS.has(originalFood.subgroup)));
+        if (originIsCleanFat &&
+            f.category === "fat" &&
+            f.clean_fat === false) {
+          return false;
         }
       }
 
