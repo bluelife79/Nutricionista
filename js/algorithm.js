@@ -1334,6 +1334,35 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         }
       }
 
+      // Hugo Regla 4 — Fritos/rebozados/preparados (gate por flag clean_protein).
+      // Cuando el origen es proteína FRESCA (huevo/pollo/pavo/pescado fresco —
+      // clean_protein:true), excluir del POOL toda proteína procesada/transformada
+      // (clean_protein:false): fritos, rebozados, empanados, nuggets, milanesas,
+      // croquetas, tempura, salchichas, embutido curado (jamón serrano/chorizo/
+      // salami/mortadela/sobrasada), patés, foie, surimi, conservas en aceite/
+      // escabeche, snacks brand (Iberitos/Big Pavo/Wieners) y platos preparados.
+      //
+      // clean_protein poblado en TODA category=protein (scripts/apply_clean_protein.js).
+      // Fallback subgrupo para backward-compat con datos viejos sin flag.
+      {
+        const _CLEAN_PROTEIN_SUBGROUPS = new Set([
+          "meat_lean", "meat", "meat_fatty",
+          "fish_white", "fish_fatty", "fish",
+          "eggs", "viscera", "seafood",
+          "plant_protein", "legumes",
+        ]);
+        const originIsCleanProtein =
+          originalFood.category === "protein" &&
+          (originalFood.clean_protein === true ||
+            (originalFood.clean_protein === undefined &&
+              _CLEAN_PROTEIN_SUBGROUPS.has(originalFood.subgroup)));
+        if (originIsCleanProtein &&
+            f.category === "protein" &&
+            f.clean_protein === false) {
+          return false;
+        }
+      }
+
       // Subgroup filter: only on same-category pairs.
       // Cross-category path (e.g. postres_proteicos <-> dairy/high_protein_dairy)
       // has already been approved by isCompatibleCategory — skip subgroup here.
