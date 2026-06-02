@@ -1270,19 +1270,31 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         if (isNonStapleGrain(f.name)) return false;
       }
 
-      // Hugo PDF Regla 4 — Exclusión de procesados en hidratos base:
-      // Cuando origen es hidrato BASE (arroz/pasta/patata/pan/avena/quinoa),
-      // excluir TODOS los sweets_bakery (galletas, gominolas, pastas de
-      // fruta, chocolate, bizcochos) y tokens de cereal desayuno comercial
-      // desde el POOL. Hugo: "galletas Digestive en patata, gominolas en
-      // arroz... no deben aparecer arriba".
-      if (originalFood.category === "carbs" &&
-          (originalFood.subgroup === "grains" || originalFood.subgroup === "tubers")) {
-        if (f.subgroup === "sweets_bakery") return false;
-        const fNameN = norm(f.name || "");
-        const _CEREAL_DESAYUNO_HARD_RE =
-          /\b(cereales? desayuno|cereales? para desayunar|arroz hinchado|trigo hinchado|maiz hinchado|honey pops|smacks|frosties|choco krispies|chocapic|all.?bran|fitness|special k|nesquik cereal|gominola|haribo|pasta de fruta)\b/i;
-        if (_CEREAL_DESAYUNO_HARD_RE.test(fNameN)) return false;
+      // Hugo Regla 5 — Hidratos base (gate determinístico por flag clean_carb).
+      // Cuando el origen es hidrato BASE limpio (arroz/avena/pan/pasta/patata/
+      // legumbre/fruta entera — clean_carb:true), excluir del POOL todo carb
+      // NO-limpio: snacks/galletas/cereales desayuno/prefritas/platos preparados/
+      // dulces/bollería/azúcar puro (clean_carb:false).
+      //
+      // Reemplaza el viejo regex de cereales-desayuno (frágil ante marcas)
+      // + filtro sweets_bakery solo para grains/tubers. Ahora cubre legumes
+      // y fruit también, y usa flag estructurado independiente del idioma.
+      // clean_carb está poblado en TODA la categoría carbs
+      // (scripts/apply_clean_carb.js).
+      {
+        const _CLEAN_CARB_SUBGROUPS = new Set([
+          "grains", "tubers", "legumes", "fruit", "vegetables",
+        ]);
+        const originIsCleanCarb =
+          originalFood.category === "carbs" &&
+          (originalFood.clean_carb === true ||
+            (originalFood.clean_carb === undefined &&
+              _CLEAN_CARB_SUBGROUPS.has(originalFood.subgroup)));
+        if (originIsCleanCarb &&
+            f.category === "carbs" &&
+            f.clean_carb === false) {
+          return false;
+        }
       }
 
       // PUNTO 5: cuando origen es grasa PURA (aceite, aguacate, frutos
@@ -2445,15 +2457,31 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
 // ============================================
 // TOKEN-AWARE SORT SCORE
 // ============================================
+// Adjetivos de estado de un alimento canónico: "Arroz, hervido" / "Patata,
+// cruda" / "Pasta alimenticia, integral, cruda" / "Avena en copos". Si el
+// nombre matchea <query> + alguno → es el alimento canónico, no "X de Y".
+const _CANONICAL_STATE_RE =
+  /^([a-z]+)\s+(crudo|cruda|hervido|hervida|asado|asada|tostado|tostada|natural|integral|entero|entera|en copos|en grano|molido|molida|hinchado|hinchada|alimenticia|alimenticio|blanco|blanca)\b/;
+
 function tokenSortScore(nameNorm, queryTokens) {
+  // Normalizar puntuación BEDCA ("Arroz, hervido", "Patata, cruda") → espacios
+  // para que startsWith(t + " ") matchee igual que "Arroz Hervido".
+  // Sin esto, BEDCA materia prima pierde contra productos brand de super.
+  const nn = nameNorm.replace(/[,;:]/g, " ").replace(/\s+/g, " ");
   let score = 0;
-  const allPresent = queryTokens.every((t) => nameNorm.includes(t));
+  const allPresent = queryTokens.every((t) => nn.includes(t));
   if (allPresent) score += 5;
   queryTokens.forEach((t) => {
-    if (nameNorm.includes(t)) score += 1;
-    if (nameNorm.startsWith(t + " ") || nameNorm === t) score += 2;
+    if (nn.includes(t)) score += 1;
+    if (nn.startsWith(t + " ") || nn === t) score += 2;
   });
-  if (queryTokens.some((t) => nameNorm.startsWith(t))) score += 3;
+  if (queryTokens.some((t) => nn.startsWith(t))) score += 3;
+  // Bonus canónico: <query> + adjetivo-de-estado gana sobre "<query> de X".
+  // Ej: "pasta alimenticia cruda" > "pasta de sésamo" ; "pan tostado" > "pan rallado".
+  if (queryTokens.length === 1 && _CANONICAL_STATE_RE.test(nn)) {
+    const m = nn.match(_CANONICAL_STATE_RE);
+    if (m && m[1] === queryTokens[0]) score += 2;
+  }
   return score;
 }
 
@@ -2500,7 +2528,13 @@ async function searchFoods(query) {
       const boostA = sourceBoost(a);
       const boostB = sourceBoost(b);
       if (boostA !== boostB) return boostB - boostA;
-      // 2do desempate: nombre más corto primero
+      // 2do desempate: materia prima (raw_ingredient:true) > preparado.
+      // Cuando el usuario busca "arroz" / "avena" / "pasta", quiere el grano
+      // base, no "Arroz con leche" ni "Avena crunchy" ni "Pasta de fruta".
+      const rawA = a.raw_ingredient === true ? 1 : 0;
+      const rawB = b.raw_ingredient === true ? 1 : 0;
+      if (rawA !== rawB) return rawB - rawA;
+      // 3er desempate: nombre más corto primero
       return (a.name || "").length - (b.name || "").length;
     });
 
