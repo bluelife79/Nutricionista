@@ -1392,6 +1392,30 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         }
       }
 
+      // Hugo Regla 1 — Proteína vegetal (HARD whitelist).
+      // Cuando origen es proteína vegetal (subgroup plant_protein: tofu,
+      // tempeh, seitán, soja proteica), excluir del POOL claras, lácteos,
+      // pescados y carnes. TOP debe priorizar vegetales. Hugo: "ahora sigue
+      // metiendo demasiado arriba claras, lácteos o pescados".
+      //
+      // Whitelist estricta (permitidos): plant_protein + legumes (cross-
+      // category protein↔carbs). Eggs EXCLUIDOS — Hugo explícito sobre
+      // claras dominando TOP. Reemplaza el demote R10 soft (~1520) cuando
+      // origen es plant_protein.
+      {
+        if (originalFood.category === "protein" &&
+            originalFood.subgroup === "plant_protein") {
+          const isPlant =
+            f.category === "protein" && f.subgroup === "plant_protein";
+          const isLegume =
+            (f.category === "carbs" || f.category === "protein") &&
+            f.subgroup === "legumes";
+          const isProteinNoise = f.category === "protein" && !isPlant && !isLegume;
+          const isDairy = f.category === "dairy";
+          if (isProteinNoise || isDairy) return false;
+        }
+      }
+
       // Subgroup filter: only on same-category pairs.
       // Cross-category path (e.g. postres_proteicos <-> dairy/high_protein_dairy)
       // has already been approved by isCompatibleCategory — skip subgroup here.
