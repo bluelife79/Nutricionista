@@ -1683,6 +1683,34 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         }
       }
     }
+
+    // Hugo audit (Feedback Elena) Bloque 2 + ajuste salmón/caballa/merluza:
+    // cuando el ORIGEN es pescado/marisco (fish_fatty/fish_white/seafood),
+    // la carne (jamón/lomo ibérico, cerdo, ternera, pollo) NO es intercambio
+    // de cocina natural y NO debe dominar el TOP visible de una conserva o
+    // pescado fresco. Demote moderado (no eliminatorio: Hugo "el puesto 40 no
+    // importa", se mantiene en el pool). ASIMÉTRICO a propósito: el sentido
+    // inverso (origen carne → candidato pescado, ej. pollo→atún) NO se toca,
+    // sigue siendo intercambio válido de proteína magra (Hugo "casi cerrado").
+    // Corre SIEMPRE: ignora isSameLeanProteinCluster, que es justo lo que hoy
+    // protege mal al jamón ibérico al lado de la conserva de pescado.
+    {
+      const _demoteFishOriginMeat =
+        Number(window.FISH_ORIGIN_MEAT_DEMOTION) || 0.15;
+      const _FISH_ORIGIN_SUBS = new Set(["fish_fatty", "fish_white", "seafood"]);
+      const _MEAT_CAND_SUBS = new Set(["meat", "meat_lean", "meat_fatty"]);
+      if (
+        originalFood.category === "protein" &&
+        _FISH_ORIGIN_SUBS.has(originalFood.subgroup) &&
+        _MEAT_CAND_SUBS.has(a.subgroup)
+      ) {
+        demotion *= _demoteFishOriginMeat;
+        if (window.location.search.includes("?debug=1")) {
+          console.debug("[fish-origin-meat] DEMOTED candidate='" + a.name + "' factor=" + _demoteFishOriginMeat);
+        }
+      }
+    }
+
     if (_bulkLabelEnabled) {
       // Meal slot mismatch (origin breakfast → candidate dinner) — demote.
       // "any" del candidato cuando origen tiene slot específico = light demote.
