@@ -1479,6 +1479,17 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         }
       }
 
+      // Hugo audit (Feedback Elena) Bloque 5 — sopas frías (cluster cerrado).
+      // Gazpacho/salmorejo/ajoblanco (flag cold_soup) sólo intercambian entre
+      // sí. Antes traían encurtidos, salteados, crema de setas, tumaca, té/
+      // café con leche. Hugo: "misma lógica culinaria o, si no existen, no
+      // forzar". Si origen es sopa fría → sólo sopa fría; si candidato es sopa
+      // fría y el origen no → fuera (no contamina búsquedas de verdura).
+      // cold_soup poblado en scripts/reclassify_cold_soup.js. Si tras el
+      // match calórico no queda nada, el pipeline devuelve noMatch.
+      if (originalFood.cold_soup === true && f.cold_soup !== true) return false;
+      if (f.cold_soup === true && originalFood.cold_soup !== true) return false;
+
       // Subgroup filter: only on same-category pairs.
       // Cross-category path (e.g. postres_proteicos <-> dairy/high_protein_dairy)
       // has already been approved by isCompatibleCategory — skip subgroup here.

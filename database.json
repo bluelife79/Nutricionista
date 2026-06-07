@@ -4589,12 +4589,12 @@
     "carbs": 5,
     "fat": 2.5,
     "calories": 40,
-    "category": "other",
+    "category": "vegetables",
     "brand": "Marca Blanca",
     "id": "bedca_0187",
     "code": null,
     "quantity": null,
-    "subgroup": "vegetables",
+    "subgroup": "cold_soup",
     "macro_profile": "fat",
     "flags": [
       "prepared"
@@ -4607,7 +4607,10 @@
     "label_confidence": 95,
     "label_reason": "Sopa fría lista para consumir",
     "usage_es": "Sopa fría de hortalizas. Se consume como primer plato en comida, sobre todo en verano. Intercambio con salmorejo, vichyssoise o puré de verduras.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "subgroup_prev": "vegetables",
+    "category_prev": "other",
+    "cold_soup": true
   },
   {
     "source": "BEDCA",
@@ -28580,12 +28583,12 @@
     "carbs": 6.9,
     "fat": 1.1,
     "calories": 42,
-    "category": "carbs",
+    "category": "vegetables",
     "brand": "Chef Select",
     "id": "off_79622624d1",
     "code": "20880637",
     "quantity": "",
-    "subgroup": "fruit",
+    "subgroup": "cold_soup",
     "macro_profile": "carbs",
     "flags": [
       "prepared"
@@ -28599,7 +28602,10 @@
     "label_reason": "Gazpacho dulce mezcla inusual",
     "usage_es": "Sopa fría de frutas rojas. Producto exótico y raro en España. Se consume como aperitivo. Intercambio con gazpacho tradicional.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": true,
+    "subgroup_prev": "fruit",
+    "category_prev": "carbs",
+    "cold_soup": true
   },
   {
     "source": "Carrefour",
@@ -47189,12 +47195,12 @@
     "carbs": 3.6,
     "fat": 2.3,
     "calories": 42,
-    "category": "other",
+    "category": "vegetables",
     "brand": "Dia",
     "id": "off_e9e8215274",
     "code": "8480017829559",
     "quantity": "990 ml (3 x 330 ml)",
-    "subgroup": "vegetables",
+    "subgroup": "cold_soup",
     "macro_profile": "carbs",
     "flags": [
       "prepared"
@@ -47207,7 +47213,10 @@
     "label_confidence": 90,
     "label_reason": "Gazpacho envasado, plato español",
     "usage_es": "Sopa fría de hortalizas. Se bebe directamente como primer plato en comida o cena. Intercambio clínico con salmorejo, vichysoisse o crema de verduras fría.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "subgroup_prev": "vegetables",
+    "category_prev": "other",
+    "cold_soup": true
   },
   {
     "source": "Carrefour",
@@ -47918,12 +47927,12 @@
     "carbs": 3.5,
     "fat": 2.5,
     "calories": 43,
-    "category": "other",
+    "category": "vegetables",
     "brand": "Hacendado",
     "id": "off_10c1e76e19",
     "code": "8480000399113",
     "quantity": "",
-    "subgroup": "vegetables",
+    "subgroup": "cold_soup",
     "macro_profile": "carbs",
     "flags": [
       "prepared"
@@ -47936,7 +47945,10 @@
     "label_confidence": 95,
     "label_reason": "Gazpacho listo, típico en comidas",
     "usage_es": "Sopa fría de hortalizas con menos ajo. Se bebe directamente como primer plato en comida o cena. Intercambio clínico con gazpacho tradicional o salmorejo.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "subgroup_prev": "vegetables",
+    "category_prev": "other",
+    "cold_soup": true
   },
   {
     "source": "Mercadona",
@@ -51491,12 +51503,12 @@
     "carbs": 5.2,
     "fat": 1.5,
     "calories": 39,
-    "category": "carbs",
+    "category": "vegetables",
     "brand": "Chef Select",
     "id": "off_2491852aa9",
     "code": "20880620",
     "quantity": "500 ml",
-    "subgroup": "fruit",
+    "subgroup": "cold_soup",
     "macro_profile": "carbs",
     "flags": [
       "prepared"
@@ -51510,7 +51522,10 @@
     "label_reason": "Gazpacho listo, consumo en comida",
     "usage_es": "Sopa fría de fruta. Se bebe fría como primer plato en comida. Intercambio con gazpacho tradicional, salmorejo o cremas frías de verdura.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": true,
+    "subgroup_prev": "fruit",
+    "category_prev": "carbs",
+    "cold_soup": true
   },
   {
     "source": "Lidl",
@@ -61089,12 +61104,12 @@
     "carbs": 2.6,
     "fat": 1.8,
     "calories": 28.6,
-    "category": "other",
+    "category": "vegetables",
     "brand": "Auchan",
     "id": "off_1f1048ef8a",
     "code": "8410171004547",
     "quantity": "",
-    "subgroup": "vegetables",
+    "subgroup": "cold_soup",
     "macro_profile": "carbs",
     "flags": [
       "prepared"
@@ -61107,7 +61122,10 @@
     "label_confidence": 95,
     "label_reason": "Gazpacho bebible listo, primer plato",
     "usage_es": "Sopa fría de hortalizas. Se bebe directamente como primer plato en comida o cena. Intercambio clínico con gazpacho tradicional, salmorejo o crema de verduras.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "subgroup_prev": "vegetables",
+    "category_prev": "other",
+    "cold_soup": true
   },
   {
     "source": "Aldi",
@@ -61219,12 +61237,12 @@
     "carbs": 9.5,
     "fat": 10,
     "calories": 134,
-    "category": "other",
+    "category": "vegetables",
     "brand": "Hacendado",
     "id": "off_df1620dd2b",
     "code": "8480000399014",
     "quantity": "1 l",
-    "subgroup": "vegetables",
+    "subgroup": "cold_soup",
     "macro_profile": "fat",
     "flags": [
       "prepared"
@@ -61237,7 +61255,10 @@
     "label_confidence": 95,
     "label_reason": "Salmorejo listo para consumir, primer plato",
     "usage_es": "Crema fría de tomate con aceite y pan. Se sirve como primer plato en comida o cena. Intercambio clínico con gazpacho, porra antequerana o crema de zanahoria.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "subgroup_prev": "vegetables",
+    "category_prev": "other",
+    "cold_soup": true
   },
   {
     "source": "Mercadona",
@@ -61323,12 +61344,12 @@
     "carbs": 9.5,
     "fat": 10,
     "calories": 134,
-    "category": "other",
+    "category": "vegetables",
     "brand": "Chef Select",
     "id": "off_2c9c185117",
     "code": "20410063",
     "quantity": "750 ml",
-    "subgroup": "vegetables",
+    "subgroup": "cold_soup",
     "macro_profile": "carbs",
     "flags": [
       "prepared"
@@ -61341,7 +61362,10 @@
     "label_confidence": 95,
     "label_reason": "Salmorejo tradicional listo, primer plato",
     "usage_es": "Crema fría de tomate con aceite y pan. Se sirve como primer plato en comida o cena. Intercambio clínico con gazpacho, salmorejo suave o crema de verduras.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "subgroup_prev": "vegetables",
+    "category_prev": "other",
+    "cold_soup": true
   },
   {
     "source": "Carrefour",
@@ -61425,12 +61449,12 @@
     "carbs": 5.1,
     "fat": 4.6,
     "calories": 68,
-    "category": "other",
+    "category": "vegetables",
     "brand": "Eroski",
     "id": "off_c3f5292435",
     "code": "8480010242324",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "cold_soup",
     "macro_profile": "carbs",
     "flags": [
       "prepared"
@@ -61443,7 +61467,10 @@
     "label_confidence": 95,
     "label_reason": "Gazpacho listo para consumir frío",
     "usage_es": "Crema fría de hortalizas. Se consume como primer plato en comida. Intercambio con gazpacho, vichyssoise o puré de verduras cocidas.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "subgroup_prev": "other",
+    "category_prev": "other",
+    "cold_soup": true
   },
   {
     "source": "Carrefour",
@@ -62244,12 +62271,12 @@
     "carbs": 5,
     "fat": 5,
     "calories": 71,
-    "category": "other",
+    "category": "vegetables",
     "brand": "Carrefour BIO, Carrefour",
     "id": "off_a8613e52a9",
     "code": "8431876267839",
     "quantity": "1 l",
-    "subgroup": "other",
+    "subgroup": "cold_soup",
     "macro_profile": "carbs",
     "flags": [
       "prepared"
@@ -62262,7 +62289,10 @@
     "label_confidence": 95,
     "label_reason": "Sopa fría andaluza lista para servir",
     "usage_es": "Crema fría de tomate, pan y aceite. Se consume como primer plato en la comida. Intercambio con gazpacho, vichyssoise o crema de verduras frías.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "subgroup_prev": "other",
+    "category_prev": "other",
+    "cold_soup": true
   },
   {
     "source": "Lidl",
@@ -62349,12 +62379,12 @@
     "carbs": 2.5,
     "fat": 2.5,
     "calories": 33,
-    "category": "other",
+    "category": "vegetables",
     "brand": "Hacendado",
     "id": "off_90df7c71f5",
     "code": "8480000399007",
     "quantity": "1 l",
-    "subgroup": "vegetables",
+    "subgroup": "cold_soup",
     "macro_profile": "fat",
     "flags": [
       "prepared"
@@ -62367,7 +62397,10 @@
     "label_confidence": 95,
     "label_reason": "Sopa fría andaluza lista",
     "usage_es": "Sopa fría de hortalizas. Se consume directamente como primer plato. Momento típico: comida. Intercambio clínico: salmorejo, crema de verduras.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "subgroup_prev": "vegetables",
+    "category_prev": "other",
+    "cold_soup": true
   },
   {
     "source": "Eroski",
@@ -62664,12 +62697,12 @@
     "carbs": 5.1,
     "fat": 6.2,
     "calories": 84,
-    "category": "other",
+    "category": "vegetables",
     "brand": "Consum",
     "id": "off_cae259f986",
     "code": "8414807540980",
     "quantity": "1 l",
-    "subgroup": "other",
+    "subgroup": "cold_soup",
     "macro_profile": "fat",
     "flags": [
       "prepared"
@@ -62682,7 +62715,10 @@
     "label_confidence": 95,
     "label_reason": "Salmorejo tradicional listo",
     "usage_es": "Crema fría de tomate, pan y aceite. Se consume como primer plato en la comida. Intercambio con gazpacho, vichyssoise o crema de verduras frías.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "subgroup_prev": "other",
+    "category_prev": "other",
+    "cold_soup": true
   },
   {
     "source": "Mercadona",
@@ -71303,12 +71339,12 @@
     "carbs": 3.3,
     "fat": 2.9,
     "calories": 45,
-    "category": "other",
+    "category": "vegetables",
     "brand": "EROSKI",
     "id": "off_e136249b45",
     "code": "8480010303988",
     "quantity": "",
-    "subgroup": "vegetables",
+    "subgroup": "cold_soup",
     "macro_profile": "carbs",
     "flags": [
       "prepared"
@@ -71321,7 +71357,10 @@
     "label_confidence": 95,
     "label_reason": "Gazpacho listo para beber, típico comida",
     "usage_es": "Sopa fría de hortalizas. Se consume directamente como primer plato en comida. Intercambio con salmorejo, vichysoisse o crema de verduras frías según textura.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "subgroup_prev": "vegetables",
+    "category_prev": "other",
+    "cold_soup": true
   },
   {
     "source": "Eroski",
@@ -71460,12 +71499,12 @@
     "carbs": 3.6,
     "fat": 2.4,
     "calories": 44,
-    "category": "other",
+    "category": "vegetables",
     "brand": "Hacendado",
     "id": "off_d559197d94",
     "code": "8480000399090",
     "quantity": "2 l (2 x 1 l)",
-    "subgroup": "vegetables",
+    "subgroup": "cold_soup",
     "macro_profile": "carbs",
     "flags": [
       "prepared"
@@ -71478,7 +71517,10 @@
     "label_confidence": 95,
     "label_reason": "Gazpacho Hacendado, clásico comida española",
     "usage_es": "Sopa fría de hortalizas. Se consume directamente como primer plato en comida. Intercambio con salmorejo, vichysoisse o crema de verduras frías según textura.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "subgroup_prev": "vegetables",
+    "category_prev": "other",
+    "cold_soup": true
   },
   {
     "source": "Alcampo",
@@ -77220,12 +77262,12 @@
     "carbs": 3.5,
     "fat": 2.9,
     "calories": 46,
-    "category": "other",
+    "category": "vegetables",
     "brand": "Hacendado",
     "id": "off_21bb129acf",
     "code": "8480000399274",
     "quantity": "1 L",
-    "subgroup": "vegetables",
+    "subgroup": "cold_soup",
     "macro_profile": "carbs",
     "flags": [
       "prepared"
@@ -77238,7 +77280,10 @@
     "label_confidence": 90,
     "label_reason": "Sopa fría típica andaluza",
     "usage_es": "Sopa fría de hortalizas. Se toma como primer plato en comida o cena. Intercambio con salmorejo, vichyssoise u otras cremas frías.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "subgroup_prev": "vegetables",
+    "category_prev": "other",
+    "cold_soup": true
   },
   {
     "source": "Dia",
@@ -89466,12 +89511,12 @@
     "carbs": 2.6,
     "fat": 8.5,
     "calories": 98,
-    "category": "other",
+    "category": "vegetables",
     "brand": "Hacendado",
     "id": "off_5f6c0b54ab",
     "code": "8480000399045",
     "quantity": "330 ml",
-    "subgroup": "other",
+    "subgroup": "cold_soup",
     "macro_profile": "fat",
     "flags": [
       "prepared"
@@ -89484,7 +89529,10 @@
     "label_confidence": 85,
     "label_reason": "Sopa fría de almendras lista",
     "usage_es": "Sopa fría de almendras. Se toma como primer plato en comidas de verano. Intercambio con gazpacho tradicional, salmorejo o cremas frías de verduras.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "subgroup_prev": "other",
+    "category_prev": "other",
+    "cold_soup": true
   },
   {
     "source": "Lidl",
@@ -133061,12 +133109,12 @@
     "carbs": 3.8,
     "fat": 6.6,
     "calories": 82,
-    "category": "other",
+    "category": "vegetables",
     "brand": "El Corte Inglés",
     "id": "off_c13aa2407c",
     "code": "8433329092166",
     "quantity": "",
-    "subgroup": "vegetables",
+    "subgroup": "cold_soup",
     "macro_profile": "fat",
     "flags": [
       "prepared"
@@ -133079,7 +133127,10 @@
     "label_confidence": 95,
     "label_reason": "Salmorejo envasado listo para consumir",
     "usage_es": "Crema fría de hortalizas. Se toma como primer plato en comida o cena. Intercambio con gazpacho u otras cremas frías de verdura.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "subgroup_prev": "vegetables",
+    "category_prev": "other",
+    "cold_soup": true
   },
   {
     "source": "Spar",
