@@ -426,6 +426,17 @@ function calculateEquivalence(
   if (!original[anchor] || original[anchor] <= 0) return null;
   if (!alt[anchor] || alt[anchor] <= 0) return null;
 
+  // Hugo audit (Feedback Elena) Bloque 1 — cluster vegetal (plant_protein +
+  // legumes). Cross-category (protein↔carbs). Se usa abajo en dos sitios:
+  // (1) excepción al techo calórico, (2) fallback de nivel cuando no hay
+  // equivalencia macro exacta (legumbre tiene carbs que tofu no, pero como
+  // FUENTE PROTEICA VEGETAL es un intercambio real). Hugo: "referencias
+  // vegetales útiles antes que dejarlo vacío".
+  const _PLANT_CLUSTER_SUBS = new Set(["plant_protein", "legumes"]);
+  const isSamePlantCluster =
+    _PLANT_CLUSTER_SUBS.has(original.subgroup) &&
+    _PLANT_CLUSTER_SUBS.has(alt.subgroup);
+
   const ratio = original[anchor] / alt[anchor];
   const equivalentAmount = Math.round(originalAmount * ratio);
 
@@ -475,7 +486,14 @@ function calculateEquivalence(
         original.category === "fat" && alt.category === "fat" &&
         _FAT_CLUSTER_SUBS.has(original.subgroup) &&
         _FAT_CLUSTER_SUBS.has(alt.subgroup);
-      if (!isSameLeanCluster && !isSameFatCluster) return null; // hard filter
+      // Hugo audit (Feedback Elena) Bloque 1 — cluster vegetal exento del
+      // techo calórico (isSamePlantCluster hoisteado arriba). La densidad
+      // calórica varía mucho (tofu 73 kcal vs garbanzo cocido 139 o crudo
+      // 330) pero la porción equivalente se ajusta por gramaje — igual que
+      // el fat cluster. Sin esto tofu/seitán quedaban con 0 intercambios.
+      if (!isSameLeanCluster && !isSameFatCluster && !isSamePlantCluster) {
+        return null; // hard filter
+      }
     }
   }
 
@@ -525,7 +543,21 @@ function calculateEquivalence(
   if (matchScore >= 95 && equivalentAmount <= 300) level = "perfect";
   else if (matchScore >= 75 && equivalentAmount <= 400) level = "good";
   else if (matchScore >= 60) level = "advanced";
-  else return null;
+  else if (
+    // Hugo audit (Feedback Elena) Bloque 1 — FALLBACK VEGETAL.
+    // Dentro del cluster vegetal el matchScore macro castiga los carbs de la
+    // legumbre (tofu ~2g carbs vs garbanzo ~17g) y hunde el score, dejando
+    // tofu/seitán sin intercambios. Pero como FUENTE PROTEICA VEGETAL la
+    // legumbre SÍ es un intercambio real. Aceptamos como "advanced" cuando
+    // la proteína está razonablemente cerca (±50% del ancla proteico) y la
+    // porción es realista. Hugo: "referencias vegetales útiles, no vacío".
+    isSamePlantCluster &&
+    anchor === "protein" &&
+    Math.abs(proteinDiff) <= originalMacros.protein * 0.5 &&
+    equivalentAmount <= 400
+  ) {
+    level = "advanced";
+  } else return null;
 
   return {
     ...alt,
