@@ -1765,7 +1765,8 @@
     "label_reason": "Cereal de desayuno, consumo directo con leche",
     "usage_es": "Mezcla de cereales con frutos secos. Uso exclusivo en el desayuno con leche o yogur. Intercambio con copos de avena, cereales de desayuno integrales, granola.",
     "culinary_role": "snack",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "BEDCA",
@@ -24011,7 +24012,8 @@
     "label_reason": "Bebida de frutas lista para consumir",
     "usage_es": "Refresco de frutas envasado. Se bebe solo en cualquier momento del día. Intercambio con otro zumo envasado o refresco azucarado.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Carrefour",
@@ -24381,7 +24383,8 @@
     "label_reason": "Muesli de caja, desayuno típico español",
     "usage_es": "Mezcla de cereales y frutos secos. Alimento listo exclusivo de desayuno. Intercambio con otros mueslis, copos de avena con frutos secos o granola.",
     "culinary_role": "snack",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Mercadona",
@@ -28313,7 +28316,8 @@
     "label_reason": "Muesli natural de desayuno",
     "usage_es": "Mezcla de copos de cereales. Uso exclusivo en desayuno, con leche o yogur. Intercambio con copos de avena o muesli con frutos secos.",
     "culinary_role": "snack",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Mercadona",
@@ -28736,7 +28740,8 @@
     "label_reason": "Bebida láctea saborizada lista",
     "usage_es": "Bebida láctea de fresa. Se toma directamente como snack entre horas. Intercambio clínico con otros lácteos líquidos desnatados o batidos de fruta sin azúcar añadido.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Eroski",
@@ -32422,7 +32427,8 @@
     "label_reason": "Bebida isotónica, consumo deportivo",
     "usage_es": "Bebida isotónica de fruta. Se bebe fría como snack deportivo ocasional. No es un alimento habitual. Intercambio con otros zumos de fruta o bebidas para hidratación.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Mercadona",
@@ -32475,7 +32481,8 @@
     "label_reason": "Bebida de manzana, desayuno habitual",
     "usage_es": "Bebida refrescante de manzana. Se toma fría en el desayuno. Uso exclusivo de desayuno. Intercambio con zumo de manzana, zumo de naranja u otras frutas exprimidas.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Alcampo",
@@ -35624,7 +35631,8 @@
     "label_reason": "Cereales de desayuno con achicoria",
     "usage_es": "Cereales de desayuno con achicoria. Se toman con leche o yogur en el desayuno. Intercambio clínico con otros copos de desayuno, cereales integrales o avena.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Lidl",
@@ -50133,7 +50141,8 @@
     "label_reason": "Postre de soja con frutos del bosque",
     "usage_es": "Postre vegetal con frutas del bosque. Se toma como snack o postre ocasional. Intercambio con yogur natural con frutos rojos o arroz con leche.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Dia",
@@ -50492,7 +50501,8 @@
     "label_reason": "Bebida de piña, versátil y habitual",
     "usage_es": "Refresco de fruta habitual. Ingrediente de cocina o bebida para cualquier momento. Intercambio con zumo de piña, soda con limón o granizado de limón.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Mercadona",
@@ -51054,7 +51064,8 @@
     "label_reason": "Bebida frutas rojas, snack refrescante",
     "usage_es": "Refresco de frutas azucarado o edulcorado. Uso exclusivo de snack ocasional. Intercambio con una porción de fruta roja fresca entera.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Carrefour",
@@ -51498,7 +51509,8 @@
     "label_reason": "Bebida de frutos rojos común",
     "usage_es": "Bebida fría de frutas rojas. Se bebe en desayuno o snack. Intercambio con zumo de frutas del bosque, limonada o bebida vegetal.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Lidl",
@@ -53505,7 +53517,8 @@
     "label_reason": "Yogur bifidus, desayuno muy habitual",
     "usage_es": "Lácteo fermentado con fruta. Se consume directamente en desayuno habitual. Intercambio con yogur de frutas o kefir.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Mercadona",
@@ -53970,7 +53983,8 @@
     "label_reason": "Muesli típico de desayuno español",
     "usage_es": "Mezcla de cereales con frutos secos. Uso exclusivo de desayuno listo para consumir habitual. Intercambio con copos de avena, cereales integrales o galletas integrales.",
     "culinary_role": "snack",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Mercadona",
@@ -54100,7 +54114,8 @@
     "label_reason": "Yogur líquido con frutas del bosque",
     "usage_es": "Bebida láctea con frutos rojos. Uso exclusivo en desayuno como snack líquido. No es fruta natural. Intercambio clínico con yogur líquido de frutas o batido de leche con fresas.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Lidl",
@@ -54126,7 +54141,8 @@
     "label_reason": "Bebida láctea saborizada lista",
     "usage_es": "Bebida proteica con sabor a cóctel. Snack ocasional entre horas de origen exótico. No es fruta natural. Intercambio clínico con batido de leche o yogur líquido proteico.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Carrefour",
@@ -79662,7 +79678,8 @@
     "label_reason": "Muesli con frutas, típico desayuno español",
     "usage_es": "Cereal de desayuno con frutas y frutos secos. Se toma con leche o yogur en desayuno. Intercambio con copos de avena, cereales integrales o granola sin azúcar.",
     "culinary_role": "snack",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Lidl",
@@ -80185,7 +80202,8 @@
     "label_reason": "Muesli, cereal de desayuno muy habitual",
     "usage_es": "Cereal de desayuno con fruta y frutos secos. Exclusivamente desayuno con leche o yogur. Intercambio con avena, copos de maíz o galletas.",
     "culinary_role": "snack",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Mercadona",
@@ -80237,7 +80255,8 @@
     "label_reason": "Muesli con frutos secos, desayuno clásico",
     "usage_es": "Cereal de desayuno con fruta y frutos secos. Exclusivamente desayuno con leche o yogur. Intercambio con avena, copos de maíz o galletas.",
     "culinary_role": "snack",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Mercadona",
@@ -80420,7 +80439,8 @@
     "label_reason": "Cereal crunchy de plátano, desayuno habitual",
     "usage_es": "Snack ultraprocesado de fruta deshidratada y semillas. Se toma en el desayuno con yogur o leche. Intercambio clínico con avena en copos, muesli sin azúcar o frutos secos.",
     "culinary_role": "snack",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Mercadona",
@@ -80628,7 +80648,8 @@
     "label_reason": "Preparado de frutas con avena, desayuno",
     "usage_es": "Preparado dulce de fruta con cereales. Se toma en el desayuno como ingrediente con lácteos. Intercambio clínico con compota de fruta o papilla de cereales infantiles.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Carrefour",
@@ -80705,7 +80726,8 @@
     "label_reason": "Copos de trigo con frutas, desayuno habitual",
     "usage_es": "Cereal de desayuno con fruta. Se consume con leche o yogur, exclusivamente en el desayuno. Intercambio clínico con otros copos de trigo, avena o galletas integrales.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Lidl",
@@ -80783,7 +80805,8 @@
     "label_reason": "Cereal de desayuno con frutas",
     "usage_es": "Mezcla de cereales con frutas deshidratadas. Ingrediente de desayuno, se toma con leche o yogur. Intercambio clínico con copos de avena, granola o muesli clásico.",
     "culinary_role": "snack",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Carrefour",
@@ -81251,7 +81274,8 @@
     "label_reason": "Muesli con fruta y semillas",
     "usage_es": "Cereal de desayuno con copos, fruta y semillas. Uso exclusivo en desayuno con leche o yogur. Intercambio con otros mueslis, copos de avena o galletas.",
     "culinary_role": "snack",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Consum",
@@ -81331,7 +81355,8 @@
     "label_reason": "Patatas fritas crujientes para picar",
     "usage_es": "Aperitivo de patata frita crujiente. Se consume exclusivamente como snack. Intercambio con patatas fritas de bolsa o aperitivos extrusionados.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Dia",
@@ -81751,7 +81776,8 @@
     "label_reason": "Cereal de desayuno listo",
     "usage_es": "Cereal procesado. Se consume exclusivamente en desayuno con leche o yogur. Intercambio con copos de avena convencionales, muesli sin azúcar o granola.",
     "culinary_role": "snack",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Mercadona",
@@ -92027,7 +92053,8 @@
     "label_reason": "Cereal de desayuno con fresa, marca blanca",
     "usage_es": "Cereal crujiente de fresa con avena. Ingrediente exclusivo de desayuno, consumido con leche o yogur. Intercambio con granola, cereales de desayuno o copos de avena.",
     "culinary_role": "snack",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Carrefour",
@@ -103898,7 +103925,8 @@
     "label_reason": "Polvo para bebida, ingrediente crudo",
     "usage_es": "Polvo para bebida vegetal. Ingrediente que se diluye en agua, uso exclusivo de desayuno. Intercambio con leche de vaca, bebida de soja sin azúcar o avena natural.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Bonpreu/Esclat",
@@ -105000,7 +105028,8 @@
     "label_reason": "Granola en bolitas para desayunar",
     "usage_es": "Granola dulce con trozos. Uso exclusivo en el desayuno o snack con leche o yogur. Intercambio con otros cereales de desayuno o copos de avena.",
     "culinary_role": "snack",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "OpenFoodFacts",
@@ -105611,7 +105640,8 @@
     "label_reason": "Papilla infantil, requiere preparación",
     "usage_es": "Harina de cereales hidrolizada, ingrediente para papilla exclusiva de desayuno infantil. No se come sin cocinar. Intercambio con papilla de arroz, harina de maíz o avena.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "OpenFoodFacts",
@@ -107418,7 +107448,8 @@
     "label_reason": "Muesli de caja, desayuno habitual",
     "usage_es": "Mezcla de cereales con frutas deshidratadas. Se toma con leche o yogur en desayuno. Intercambio con copos de avena, cereales integrales sin azúcar o granola.",
     "culinary_role": "snack",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Otros",
@@ -128837,7 +128868,8 @@
     "label_reason": "Bebida vegetal lista para desayuno",
     "usage_es": "Bebida vegetal de cereales. Exclusivo desayuno, se toma sola o con café y cereales. Intercambio con leche semidesnatada u otra bebida vegetal sin azúcar.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Otros",
