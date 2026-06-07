@@ -56493,12 +56493,12 @@
     "carbs": 10,
     "fat": 4,
     "calories": 130,
-    "category": "dairy",
+    "category": "carbs",
     "brand": "Hacendado",
     "id": "off_ee4492acee",
     "code": "8480000610232",
     "quantity": "500 g",
-    "subgroup": "other_dairy",
+    "subgroup": "legumes",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
@@ -56510,7 +56510,9 @@
     "label_reason": "Edamame exótico, requiere cocción",
     "usage_es": "Legumbre verde en vaina, alimento exótico en España. Se consume hervida o al vapor en cena, de forma ocasional. Intercambio con judías verdes o guisantes.",
     "culinary_role": "meal_dish",
-    "dairy_subfamily": "postres_lacteos"
+    "subgroup_prev": "other_dairy",
+    "category_prev": "dairy",
+    "clean_carb": true
   },
   {
     "source": "Eroski",
@@ -63445,12 +63447,12 @@
     "carbs": 3,
     "fat": 7,
     "calories": 140,
-    "category": "dairy",
+    "category": "carbs",
     "brand": "Hacendado",
     "id": "off_61ffc84c39",
     "code": "8480000342416",
     "quantity": "100 g",
-    "subgroup": "aged_cheese",
+    "subgroup": "legumes",
     "macro_profile": "protein",
     "flags": [
       "condiment"
@@ -63465,7 +63467,8 @@
     "label_reason": "Legumbre asiática que requiere cocción",
     "usage_es": "Leguminosas de origen asiático, alimento raro en España. Ingrediente que requiere cocción para ensaladas o salteados en la comida. Intercambio con garbanzos o judías verdes cocidas.",
     "culinary_role": "meal_dish",
-    "dairy_subfamily": "quesos_solidos"
+    "subgroup_prev": "aged_cheese",
+    "clean_carb": true
   },
   {
     "source": "Alcampo",

@@ -2702,6 +2702,7 @@ const _SEARCH_MOD_GROUPS = [
   { re: /\b(yema|clara)s?\b/, kw: ["yema", "yemas", "clara", "claras"] },
   { re: /\bcondensad[ao]\b/, kw: ["condensada", "condensado"] },
   { re: /(con fresa|con frut|con cereal|con galleta|con miel|con nata|con az[uú]car|sabor|aromatiz|edulcorad|chocolate|vainilla|caramelo)/, kw: ["fresa", "frutas", "fruta", "cereales", "sabor", "chocolate", "vainilla", "caramelo", "miel"] },
+  { re: /\b(rellen[ao]s?|stuffed|farci)\b/, kw: ["relleno", "rellena", "rellenas", "rellenos", "stuffed"] },
 ];
 
 function searchModifierPenalty(nameNorm, queryTokens) {
