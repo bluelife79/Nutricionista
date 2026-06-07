@@ -1448,6 +1448,37 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         }
       }
 
+      // Hugo audit (Feedback Elena) Bloque 3 — subfamilias lácteas (HARD).
+      // Cuando origen y candidato son lácteos con subfamilia conocida y NO
+      // compatible, excluir del POOL. Hugo: "separar leche simple / yogur-
+      // kéfir-skyr / queso fresco / queso curado / postres-bebidas". La leche
+      // no debe traer yogures/quesos/batidos; el yogur natural no debe traer
+      // leche/café/Actimel/saborizados. Compatibilidad cruzada ÚNICA:
+      // yogur_kefir ↔ queso_fresco (Hugo griego: "skyr, kéfir, queso fresco
+      // batido"). dairy_subfamily refinado en scripts/refine_dairy_subfamily.js.
+      // Hugo acepta "pocas opciones pero coherentes" (caso queso de Burgos).
+      {
+        const _DAIRY_COMPAT = {
+          leche: ["leche"],
+          yogur_kefir: ["yogur_kefir", "queso_fresco"],
+          queso_fresco: ["queso_fresco", "yogur_kefir"],
+          quesos_solidos: ["quesos_solidos"],
+          grasa_lactea: ["grasa_lactea"],
+          bebida_postre: ["bebida_postre"],
+          bebida_vegetal: ["bebida_vegetal"],
+          postres_lacteos: ["postres_lacteos"],
+        };
+        const oFam = originalFood.dairy_subfamily;
+        const cFam = f.dairy_subfamily;
+        if (
+          originalFood.category === "dairy" && f.category === "dairy" &&
+          oFam && _DAIRY_COMPAT[oFam] &&
+          (!cFam || !_DAIRY_COMPAT[oFam].includes(cFam))
+        ) {
+          return false;
+        }
+      }
+
       // Subgroup filter: only on same-category pairs.
       // Cross-category path (e.g. postres_proteicos <-> dairy/high_protein_dairy)
       // has already been approved by isCompatibleCategory — skip subgroup here.
