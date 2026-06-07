@@ -1036,6 +1036,27 @@ function inferProcessingLevel(food) {
 }
 
 // ============================================
+// CARB SHAPE — "forma" culinaria del hidrato (Hugo Feedback Elena)
+// ============================================
+// Hugo (ajuste fino avena/pan): "priorizar avena/cereal base"; "priorizar
+// pan/tostada/wrap antes que otros hidratos". Dentro de carbs, agrupa por
+// FORMA culinaria para que el intercambio respete el formato del plato:
+//   bread (pan/tostada/wrap), flakes (avena/copos/cereal), pasta, grain
+//   (arroz/quinoa/cuscús/maíz), tuber (patata/boniato). Misma forma se
+//   premia; distinta se demota suave (sigue siendo intercambio válido — pan
+//   ↔ patata cuadra nutricionalmente — pero no debe ir PRIMERO).
+function carbShape(food) {
+  if (!food || food.category !== "carbs") return null;
+  const n = norm(food.name || "");
+  if (/\b(pan|tostad\w*|biscote|wrap|pita|rega[ñn]\w*|picos|colines|colin|bagel|baguet\w*|chapata|molde|mollete|barrita de pan|cracker|crackers)\b/.test(n)) return "bread";
+  if (/\b(avena|copos|cereal\w*|salvado|m[üu]esli|granola|porridge|gachas)\b/.test(n)) return "flakes";
+  if (/\b(pasta|macarr\w*|espagueti\w*|espagueti|fideo\w*|tallarin\w*|noodle\w*|raviol\w*|penne|fusilli|rigaton\w*|lasa[ñn]\w*|[ñn]oqui\w*|gnocchi|canelon\w*|tortellini|maccaron\w*|spaguetti|spaghetti)\b/.test(n)) return "pasta";
+  if (/\b(patata\w*|papa|papas|boniato\w*|batata\w*|yuca|mandioca|[ñn]ame)\b/.test(n)) return "tuber";
+  if (/\b(arroz|quinoa|mijo|bulgur|cuscus|cusc[uú]s|s[eé]mola|trigo|cebada|centeno|espelta|sorgo|amaranto|kamut|farro|ma[ií]z|teff|alforf[oó]n|sarraceno)\b/.test(n)) return "grain";
+  return null;
+}
+
+// ============================================
 // ALTERNATIVES CALCULATION (with tier system)
 // ============================================
 async function calculateAlternatives(originalFood, amount, opts = {}) {
@@ -1689,6 +1710,16 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       oDairyFam && cDairyFam && oDairyFam === cDairyFam
     ) ? _dairySubfamilyBoost : 0;
 
+    // CARB SHAPE BRIDGE (Hugo Feedback Elena ajuste avena/pan): boost cuando
+    // origen y candidato son hidratos de la MISMA forma culinaria (pan↔pan,
+    // avena↔copos/cereal, pasta↔pasta, arroz↔grano, patata↔tubérculo). El
+    // demote inverso (forma distinta) está abajo en la sección de demotion.
+    const oCarbShape = carbShape(originalFood);
+    const cCarbShape = carbShape(a);
+    const carbShapeBonus = (
+      oCarbShape && cCarbShape && oCarbShape === cCarbShape
+    ) ? (Number(window.CARB_SHAPE_BOOST) || 0.80) : 0;
+
     // CULTURAL PAIRS BOOST: parejas naturales (pollo↔pavo, huevo↔tortilla,
     // leche↔bebida vegetal, etc.). Hugo brief punto 2 explícito.
     const culturalPairBonus =
@@ -1782,6 +1813,17 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         if (window.location.search.includes("?debug=1")) {
           console.debug("[fish-origin-meat] DEMOTED candidate='" + a.name + "' factor=" + _demoteFishOriginMeat);
         }
+      }
+    }
+
+    // Hugo Feedback Elena (ajuste avena/pan): demote suave cuando origen y
+    // candidato son hidratos de FORMA distinta (pan vs patata, avena vs maíz).
+    // No eliminatorio: el intercambio cross-forma es válido (cuadra macros),
+    // pero la misma forma debe ir primero en el TOP visible.
+    if (oCarbShape && cCarbShape && oCarbShape !== cCarbShape) {
+      demotion *= Number(window.CARB_SHAPE_CROSS_DEMOTION) || 0.25;
+      if (window.location.search.includes("?debug=1")) {
+        console.debug("[carb-shape] DEMOTED candidate='" + a.name + "' " + oCarbShape + "->" + cCarbShape);
       }
     }
 
@@ -2399,8 +2441,8 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     return {
       ...a,
       _hybridScore: hybrid,
-      _sortScoreBase: hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus,
-      _sortScore: (hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus) * demotion,
+      _sortScoreBase: hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus + carbShapeBonus,
+      _sortScore: (hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus + carbShapeBonus) * demotion,
     };
   });
 
