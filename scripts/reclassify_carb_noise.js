@@ -26,8 +26,13 @@ const path = require("path");
 const DB = path.join(__dirname, "..", "database.json");
 const APPLY = process.argv.includes("--apply");
 
-const DRINK = /(\bbebida\b|\bdrink\b|batido|horchata|\bzumo|isot[oó]nic|polvo para preparar)/i;
+const DRINK = /(\bbebida\b|\bdrink\b|batido|horchata|\bzumo|isot[oó]nic|polvo para preparar|n[eé]ctar|smoothie|licuad)/i;
+// Procesados infantiles / golosina de fruta — no son fruta entera.
+const BABY_PROCESSED = /(papilla|\bbaby\b|beb[eé] fruta|merienda|pouch|calipo|polo de|gelatina|gominola|bolitas|tarrina infantil|\+\s?\d+\s?meses|chuche)/i;
 const SWEET_MIX = /(muesli|granola|porridge|gachas|crunch|frutas con |con frutas|con fruta\b|frutos secos y frutas|cereales con|copos.*(frutas|chocolate|miel)|barrita)/i;
+// Mezclas de fruta — para un origen de fruta single (manzana, plátano) NO son
+// intercambio fruta-por-fruta. Hugo: la fruta funciona "fruta por fruta".
+const FRUIT_MIX = /(macedonia|multifruta|multi fruta|(dos|tres|cuatro|cinco|seis) frutas|fruta variada|frutas variadas|c[oó]ctel de frutas|mezcla de frutas|frutas del bosque|tutti|pur[eé] de frutas|compota|frutas en almibar|almíbar|fruta troceada variada)/i;
 
 const db = JSON.parse(fs.readFileSync(DB, "utf8"));
 
@@ -35,7 +40,7 @@ const targets = db.filter((f) => {
   if (f.category !== "carbs") return false;
   if (f.clean_carb !== true) return false;
   const n = f.name || "";
-  return DRINK.test(n) || SWEET_MIX.test(n);
+  return DRINK.test(n) || SWEET_MIX.test(n) || FRUIT_MIX.test(n) || BABY_PROCESSED.test(n);
 });
 
 let changed = 0;

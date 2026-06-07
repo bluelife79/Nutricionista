@@ -7679,7 +7679,8 @@
     "label_confidence": 90,
     "label_reason": "Untable listo para tostadas de desayuno",
     "usage_es": "Grasa vegetal untable, ingrediente de cocina y desayuno. Se usa para tostadas o repostería. No es plato. Intercambio con aceite de oliva o mantequilla.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "clean_fat": false
   },
   {
     "source": "BEDCA",
@@ -14600,7 +14601,8 @@
     "label_confidence": 85,
     "label_reason": "Crema untable para tostadas de desayuno",
     "usage_es": "Pasta untable de fruto seco consumida exclusivamente en el desayuno sobre tostadas. Intercambio con crema de cacahuete sin azúcar o aceite de oliva.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "clean_fat": true
   },
   {
     "source": "BEDCA",
@@ -15827,7 +15829,8 @@
     "label_confidence": 90,
     "label_reason": "Crema para untar, consumo directo",
     "usage_es": "Pasta untable de fruto seco consumida exclusivamente en el desayuno sobre pan. No es plato. Intercambio con crema de cacahuete sin azúcar.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "clean_fat": true
   },
   {
     "source": "BEDCA",
@@ -19084,7 +19087,8 @@
     "label_reason": "Bebida azucarada envasada, consumo versátil",
     "usage_es": "Bebida azucarada de fruta consumida como snack o acompañamiento. No equivale a fruta fresca. Intercambio con zumos envasados o refrescos.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "BEDCA",
@@ -19111,7 +19115,8 @@
     "label_reason": "Clásico del desayuno español envasado",
     "usage_es": "Bebida azucarada de fruta. Bebida exclusiva de desayuno. Intercambio con zumos de fruta, refrescos o leche semidesnatada en pautas de hidratos.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "BEDCA",
@@ -21226,7 +21231,8 @@
     "label_reason": "Bebida azucarada de consumo esporádico",
     "usage_es": "Zumo de fruta envasado. Se bebe frío como snack o entre horas. No es fruta entera. Intercambio con zumo de piña natural o zumo de melocotón.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "BEDCA",
@@ -21253,7 +21259,8 @@
     "label_reason": "Bebida azucarada poco habitual",
     "usage_es": "Zumo de fruta envasado. Se bebe frío como snack o entre horas. No es fruta entera. Intercambio con zumo de pera natural o zumo de manzana.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "BEDCA",
@@ -21280,7 +21287,8 @@
     "label_reason": "Néctar, normalmente en desayuno",
     "usage_es": "Bebida azucarada de fruta. Bebida lista para desayuno o snack. No es zumo natural. Intercambio con otros néctares o refrescos con azúcar.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "BEDCA",
@@ -21307,7 +21315,8 @@
     "label_reason": "Néctar de consumo ocasional",
     "usage_es": "Bebida azucarada de fruta. Bebida lista para desayuno, comida o snack. No es zumo natural. Intercambio con otros néctares o refrescos con azúcar.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "BEDCA",
@@ -22452,7 +22461,8 @@
     "label_reason": "Néctar de fruta para desayunar",
     "usage_es": "Zumo de fruta con azúcar añadido. Se bebe en vaso, exclusivamente en desayunos de forma ocasional. Intercambio con zumo de naranja o néctar de melocotón.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "BEDCA",
@@ -23729,7 +23739,8 @@
     "label_reason": "Smoothie de fruta listo para beber",
     "usage_es": "Bebida de fruta triturada. Se toma fría directamente como bebida. Consumo en desayuno. Intercambio con zumo de naranja natural, batido de melocotón o zumo de zanahoria.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Consum",
@@ -24313,7 +24324,8 @@
     "label_reason": "Smoothie de fresa listo para beber",
     "usage_es": "Bebida de fruta licuada. Se toma directamente como snack o entre horas. Intercambio con otros zumos de fruta, batidos naturales o pieza de fruta fresca.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Carrefour",
@@ -24574,7 +24586,8 @@
     "label_reason": "Postre lácteo listo para consumir",
     "usage_es": "Postre lacteo gelificado de fresa. Se consume directo como merienda o postre. Intercambio clinico con otros postres lacteos, flan de sobre o yogur liquido azucarado.",
     "culinary_role": "recipe_ingredient",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Mercadona",
@@ -24909,7 +24922,8 @@
     "label_reason": "Pack yogures sabores, desayuno habitual",
     "usage_es": "Lácteo azucarado con fruta consumido en desayuno. Intercambio clínico con otros yogures de sabores, yogur natural con fruta o leche con azúcar.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Lidl",
@@ -25171,7 +25185,8 @@
     "label_reason": "Néctar de manzana, desayuno habitual",
     "usage_es": "Néctar de fruta a partir de concentrado. Se bebe directamente, uso exclusivo de desayuno. Intercambio clínico con zumo de manzana.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Carrefour",
@@ -25736,7 +25751,8 @@
     "label_reason": "Smoothie de frutas listo para consumir",
     "usage_es": "Batido licuado de frutas. Se bebe muy frío en el desayuno. Intercambio con fruta fresca, zumo natural o batido de frutas casero.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Lidl",
@@ -25815,7 +25831,8 @@
     "label_reason": "Compota lista, snack infantil típico",
     "usage_es": "Puré de manzana cocida. Se toma solo o con queso como snack. Intercambio con manzana asada, pera cocida o plátano maduro.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Eroski",
@@ -26359,7 +26376,8 @@
     "label_reason": "Zumo de naranja, desayuno habitual español",
     "usage_es": "Bebida azucarada de fruta. Bebida exclusiva de desayuno. Intercambio con zumo de naranja natural o refresco de naranja.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Carrefour",
@@ -27840,7 +27858,8 @@
     "label_reason": "Bebida de fruta lista para tomar",
     "usage_es": "Bebida de fruta licuada. Uso ocasional como snack. Intercambio con pieza de fruta fresca o zumo natural.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Carrefour",
@@ -28255,7 +28274,8 @@
     "label_confidence": 80,
     "label_reason": "Ensalada preparada lista para consumir",
     "usage_es": "Plato de pseudocereal con hortalizas. Se toma en comida. Intercambio con ensalada de arroz, tabulé o pasta fria.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "clean_fat": false
   },
   {
     "source": "Carrefour",
@@ -29153,7 +29173,8 @@
     "label_reason": "Néctar light, típico del desayuno",
     "usage_es": "Bebida azucarada reducida en calorías. Bebida fría de desayuno en España. No es fruta natural. Intercambio con zumo de naranja light o bebida de soja azucarada.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Mercadona",
@@ -29259,7 +29280,8 @@
     "label_reason": "Néctar light para desayunar",
     "usage_es": "Bebida azucarada reducida en calorías. Bebida fría exclusiva de desayuno. No es zumo natural. Intercambio con néctar de melocotón light o zumo light.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Mercadona",
@@ -29634,7 +29656,8 @@
     "label_reason": "Néctar de frutas, desayuno o merienda",
     "usage_es": "Bebida azucarada de frutas. Uso exclusivo de desayuno. No sustituye a la fruta entera. Intercambio con zumo de naranja natural o pieza de fruta fresca.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Dia",
@@ -31327,7 +31350,8 @@
     "label_reason": "Néctar de manzana, desayuno habitual",
     "usage_es": "Bebida de fruta con azúcar añadida. Ingesta directa en vaso. Uso exclusivo de desayuno. Intercambio clínico con zumos de fruta naturales o piece de fruta fresca entera.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Carrefour",
@@ -31353,7 +31377,8 @@
     "label_reason": "Néctar de frutas, desayuno común",
     "usage_es": "Bebida de frutas mezcladas con azúcar. Se bebe directamente en vaso. Uso exclusivo de desayuno. Intercambio clínico con otros néctares de fruta o zumos naturales sin azúcar.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Mercadona",
@@ -31941,7 +31966,8 @@
     "label_reason": "Smoothie de frutas, desayuno ocasional",
     "usage_es": "Bebida de frutas ultraprocesada. Se bebe directamente como desayuno ocasional. Intercambio con zumo de naranja natural o fruta fresca entera.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Carrefour",
@@ -32019,7 +32045,8 @@
     "label_reason": "Gelatina de fresa, postre infantil habitual",
     "usage_es": "Postre dulce gelatinoso con aromas. Se toma directamente como desayuno o merienda. Intercambio con gelatina de fruta natural o flan casero.",
     "culinary_role": "recipe_ingredient",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Eroski",
@@ -32097,7 +32124,8 @@
     "label_reason": "Néctar light, desayuno ocasional",
     "usage_es": "Bebida refrescante de pera con edulcorantes. Se bebe directamente en el desayuno ocasional. Intercambio con néctar de melocotón light o zumo natural.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Mercadona",
@@ -32330,7 +32358,8 @@
     "label_reason": "Néctar de naranja, desayuno habitual",
     "usage_es": "Néctar de fruta con azúcar añadido. Se toma como bebida exclusiva de desayuno. Intercambio clínico con pieza de fruta fresca evitando refrescos.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Aldi",
@@ -32492,7 +32521,8 @@
     "label_reason": "Néctar de pera, desayuno habitual",
     "usage_es": "Néctar de fruta con azúcar añadido. Se toma como bebida exclusiva de desayuno. Intercambio clínico con pieza de pera fresca evitando refrescos.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Carrefour",
@@ -33358,7 +33388,8 @@
     "label_confidence": 90,
     "label_reason": "Piñones, fruto seco versátil y caro",
     "usage_es": "Fruto seco oleaginoso. Ingrediente de cocina o snack ocasional. Se usa en repostería, ensaladas o pesto en cualquier comida. Intercambio clínico con otros frutos secos como almendras o nueces.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "clean_fat": true
   },
   {
     "source": "Carrefour",
@@ -34217,7 +34248,8 @@
     "label_confidence": 90,
     "label_reason": "Bollería industrial típica del desayuno",
     "usage_es": "Galleta salada tipo palillo. Se toma como snack entre horas, sola o con embutido. Exclusivo de snack. Intercambio con picos, regañás, galletas saladas o crackers.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "clean_fat": false
   },
   {
     "source": "Dia",
@@ -35565,7 +35597,8 @@
     "label_confidence": 85,
     "label_reason": "Helado, consumo esporádico como snack",
     "usage_es": "Barquillo de bollería exótica con frutos secos. Snack ocasional entre horas, poco típico en España. Intercambio con otros conos, barquillos o galletas dulces.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "clean_fat": false
   },
   {
     "source": "Mercadona",
@@ -50001,7 +50034,8 @@
     "label_reason": "Néctar multifrutas, muy común",
     "usage_es": "Bebida de frutas con pulpa. Se bebe fría como snack o en desayunos. Intercambio con zumo de naranja, manzana o fruta fresca entera.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Carrefour",
@@ -50052,7 +50086,8 @@
     "label_reason": "Zumo multifrutas genérico",
     "usage_es": "Bebida de frutas. Se bebe fría como snack o en desayunos. Intercambio con zumo de naranja, manzana o fruta fresca entera.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Carrefour",
@@ -50256,7 +50291,8 @@
     "label_reason": "Fruta congelada requiere descongelar o batir",
     "usage_es": "Mezcla de frutas congeladas. Se usan como ingrediente en batidos o yogures, no se comen directamente congeladas. Consumo en desayuno o snack. Intercambio con fruta fresca troceada.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Carrefour",
@@ -50516,7 +50552,8 @@
     "label_reason": "Puré de frutas infantil, snack habitual",
     "usage_es": "Puré de frutas envasado. Uso exclusivo como snack entre horas. Intercambio con compota de manzana, plátano machacado o pieza de fruta fresca.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Mercadona",
@@ -50644,7 +50681,8 @@
     "label_reason": "Smoothie congelado, requiere batir, ocasional",
     "usage_es": "Mezcla exótica ocasional de frutas tropicales troceadas. Ingrediente para batidos de desayuno. Intercambio con trozos de melón, melocotón o plátano natural.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Lidl",
@@ -50695,7 +50733,8 @@
     "label_reason": "Smoothie mango y coco, snack ocasional",
     "usage_es": "Bebida exótica ocasional de frutas tropicales licuadas. Se toma como snack frío. Intercambio con zumo de melocotón, de naranja o batido de fresa.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Carrefour",
@@ -50746,7 +50785,8 @@
     "label_reason": "Néctar light de piña, desayuno ocasional",
     "usage_es": "Bebida dulce exótica ocasional de piña. Consumo exclusivo en desayuno. Intercambio con zumo de piña normal, zumo de melocotón o compota ligera.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Alcampo",
@@ -50876,7 +50916,8 @@
     "label_reason": "Fruta lista para comer, snack típico",
     "usage_es": "Fruta fresca variada. Se consume como snack o postre, directamente. Intercambio con cualquier otra fruta fresca de temporada en porción equivalente.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Carrefour",
@@ -50902,7 +50943,8 @@
     "label_reason": "Congeladas requieren descongelación o cocción",
     "usage_es": "Fruta congelada, ingrediente de cocina. No se come directamente, se usa en batidos, yogures o postres caseros. Intercambio con fruta roja fresca.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Lidl",
@@ -50928,7 +50970,8 @@
     "label_reason": "Zumo envasado, típico del desayuno",
     "usage_es": "Zumo de frutas envasado. Uso exclusivo de desayuno o snack. Intercambio con otra pieza de fruta fresca entera, preferiblemente con piel.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Mercadona",
@@ -51442,7 +51485,8 @@
     "label_reason": "Saborizante o bebida, uso versátil",
     "usage_es": "Saborizante de origen vegetal, no es alimento. Se usa como ingrediente en repostería o bebidas. No aplica intercambio clínico directo.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Consum",
@@ -51468,7 +51512,8 @@
     "label_reason": "Néctar light, snack ocasional",
     "usage_es": "Zumo de fruta azucarado y light. Uso exclusivo de snack ocasional. Intercambio con una ración de piña natural fresca o zumo natural.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Carrefour",
@@ -51731,7 +51776,8 @@
     "label_reason": "Néctar de frutas para desayuno",
     "usage_es": "Bebida azucarada de frutas. Se bebe fría en desayuno. Intercambio con otro zumo de frutas, refresco azucarado o leche con azúcar.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Mercadona",
@@ -51941,7 +51987,8 @@
     "label_reason": "Smoothie consumido como snack",
     "usage_es": "Bebida batida de fruta y verdura. Se bebe fría como snack entre horas. Intercambio con zumo de frutas, batido de leche o fruta entera.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Carrefour",
@@ -52224,7 +52271,8 @@
     "label_reason": "Fruta variada lista para consumir",
     "usage_es": "Macedonia de frutas variadas. Uso exclusivo como snack o postre, listo para comer. Intercambio con pieza de fruta fresca de temporada o ensalada de frutas casera.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Mercadona",
@@ -52303,7 +52351,8 @@
     "label_reason": "Smoothie de frutas listo para beber",
     "usage_es": "Bebida de frutas trituradas. Uso exclusivo como snack, no sustituye a fruta entera por falta de masticación. Intercambio con zumo natural, batido de leche o fruta fresca.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Lidl",
@@ -52511,7 +52560,8 @@
     "label_reason": "Macedonia o fruta lista para consumir",
     "usage_es": "Macedonia de frutas envasada. Se consume como postre o snack. No sustituye a la pieza de fruta fresca. Intercambio con compota de frutas, melocotón en almíbar o fruta fresca.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Lidl",
@@ -52537,7 +52587,8 @@
     "label_reason": "Postre lácteo con frutas del bosque",
     "usage_es": "Postre lácteo con frutas. Uso exclusivo como snack o postre ocasional. No es fruta natural. Intercambio con natillas, flan o yogur de frutas azucarado.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Mercadona",
@@ -53593,7 +53644,8 @@
     "label_reason": "Puré de frutas, típico desayuno infantil",
     "usage_es": "Puré o compota de frutas variadas. Consumo exclusivo en desayuno, solo o con lácteos. Intercambio con macedonia de frutas frescas o zumo natural.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Mercadona",
@@ -53745,7 +53797,8 @@
     "label_reason": "Postre gelatina, snack dulce ocasional",
     "usage_es": "Postre dulce de fruta. Se consume directamente como snack ocasional. Intercambio con other gelatinas, flan o compota de fruta.",
     "culinary_role": "recipe_ingredient",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Lidl",
@@ -53773,7 +53826,8 @@
     "label_reason": "Postre vegetal, snack ocasional",
     "usage_es": "Postre vegetal de frutas. Se toma directamente como snack ocasional. Intercambio con yogur de frutas o flan de huevo.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Dia",
@@ -53799,7 +53853,8 @@
     "label_reason": "Néctar de mango, desayuno ocasional",
     "usage_es": "Bebida de fruta con azúcar. Uso exclusivo de desayuno ocasional. Intercambio con zumo de naranja o jugo de uva.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Carrefour",
@@ -53957,7 +54012,8 @@
     "label_reason": "Gominolas de fruta, snack infantil",
     "usage_es": "Bollería dulce de fruta. Uso exclusivo de snack habitual. Intercambio con magdalenas, bizcocho casero o roscón de fiesta.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Mercadona",
@@ -54035,7 +54091,8 @@
     "label_reason": "Pouch infantil, snack habitual infantil",
     "usage_es": "Puré de frutas infantilen envase. Snack listo para consumir habitual. Intercambio con fruta fresca troceada, compota casera sin azúcar u otro puré de frutas natural.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Mercadona",
@@ -54061,7 +54118,8 @@
     "label_reason": "Fruta variada envasada, snack común",
     "usage_es": "Mezcla de frutas frescas troceadas. Snack listo para consumir habitual. Intercambio con cualquier pieza de fruta fresca de temporada o ensalada de frutas casera.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Alcampo",
@@ -54243,7 +54301,8 @@
     "label_reason": "Macedonia fresca lista para comer",
     "usage_es": "Ensalada de frutas frescas variadas. Snack o postre listo para consumir habitual. Intercambio con pieza de fruta fresca, melón o sandía troceada.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Carrefour",
@@ -54372,7 +54431,8 @@
     "label_reason": "Bebible de granada listo",
     "usage_es": "Bebida de fruta exprimida. Se toma como snack ocasional fría. No es intercambiable por fruta entera por su ausencia de fibra. Intercambio clínico con zumo de naranja natural.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Alcampo",
@@ -54398,7 +54458,8 @@
     "label_reason": "Puré baby listo para consumir",
     "usage_es": "Puré de frutas infantilen envase. Snack habitual para niños entre horas. No equivale a fruta entera por el procesado. Intercambio clínico con compota de manzana o plátano maduro.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Dia",
@@ -57593,7 +57654,8 @@
     "label_reason": "Néctar de piña light, listo beber",
     "usage_es": "Néctar de fruta con edulcorante. Bebida ocasional de cualquier momento del día. No equivale a fruta entera. Intercambio clínico con zumo de piña natural o piña fresca.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Mercadona",
@@ -71414,7 +71476,8 @@
     "label_reason": "Néctar de fruta, bebida versátil habitual",
     "usage_es": "Bebida azucarada de fruta. Se consume como snack o bebida ocasional entre horas. No es un alimento típico. Intercambio con zumo de fruta natural o refresco normal.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Mercadona",
@@ -73903,7 +73966,8 @@
     "label_confidence": 85,
     "label_reason": "Bebida tropical con chía",
     "usage_es": "Zumo de fruta con semillas, producto ocasional. Se bebe directamente, consumo como snack. Intercambio con zumo de frutas natural o pieza de fruta fresca con fibra.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "clean_fat": false
   },
   {
     "source": "Mercadona",
@@ -78437,7 +78501,8 @@
     "label_reason": "Postre gelatinoso listo para consumir",
     "usage_es": "Postre gelatinoso de frutas. Se consume directo como snack dulce. Intercambio clínico con gelatina neutra, compota de fruta o yogur líquido azucarado.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Dia",
@@ -79884,7 +79949,8 @@
     "label_confidence": 80,
     "label_reason": "Mezcla de legumbres y cereales para cocinar",
     "usage_es": "Mezcla de cereales y legumbres para cocinar. Se consume hervida como guarnición o plato en la comida. Intercambio con arroz hervido, quinoa o bulgur.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "clean_fat": false
   },
   {
     "source": "Alcampo",
@@ -80015,7 +80081,8 @@
     "label_reason": "Papilla infantil lista para comer",
     "usage_es": "Papilla de frutas infantiles lista para comer. Uso exclusivo en alimentación complementaria de bebés. Intercambio con puré de plátano, compota de manzana o papilla de frutas casera.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Carrefour",
@@ -80564,7 +80631,8 @@
     "label_reason": "Helado de agua clásico español, snack veraniego",
     "usage_es": "Helado de agua sabor fruta. Snack dulce habitual entre horas, no es fruta real. Intercambio con otros polos de hielo o sorbetes artesanos.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Dia",
@@ -81037,7 +81105,8 @@
     "label_reason": "Gelatina de fresa, postre versátil habitual",
     "usage_es": "Postre dulce gelificado de sabor a fruta. Se consume en cualquier comida como postre ligero. Intercambio clínico con flan de hambre, arroz con leche u otros postres lácteos.",
     "culinary_role": "recipe_ingredient",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Mercadona",
@@ -83054,7 +83123,8 @@
     "label_confidence": 90,
     "label_reason": "Pasta corta con forma de piñón",
     "usage_es": "Pasta corta con forma de piñón. Se hierve como ingrediente de sopas o ensaladas en comida. No se come crudo. Intercambio con macarrones o espirales cocidos.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "clean_fat": false
   },
   {
     "source": "Mercadona",
@@ -83807,7 +83877,8 @@
     "label_confidence": 90,
     "label_reason": "Dulce de higos listo para comer",
     "usage_es": "Fruta seca rellena de fruto seco. Snack ocasional consumido entre horas. Producto de repostería dulce. Intercambio con dátiles con nueces, pasas o frutos secos naturales.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "clean_fat": false
   },
   {
     "source": "Dia",
@@ -84074,7 +84145,8 @@
     "label_confidence": 85,
     "label_reason": "Cereales con nueces, desayuno habitual",
     "usage_es": "Barrita de cereales con frutos secos. Se come directamente como snack. Uso exclusivo de desayuno. Intercambio con barritas de cereales, tostadas o galletas integrales.",
-    "culinary_role": "snack"
+    "culinary_role": "snack",
+    "clean_fat": false
   },
   {
     "source": "Alcampo",
@@ -89612,7 +89684,8 @@
     "label_confidence": 95,
     "label_reason": "Pan de molde versátil diario",
     "usage_es": "Pan de molde con semillas. Se consume tostado o directamente en desayuno o snack. Uso exclusivo de desayuno o snack. Intercambio con pan de barra integral.",
-    "culinary_role": "staple"
+    "culinary_role": "staple",
+    "clean_fat": false
   },
   {
     "source": "Consum",
@@ -103942,7 +104015,8 @@
     "label_reason": "Papilla de cereales para desayuno",
     "usage_es": "Harina de cereales mezclada para papilla. Ingrediente exclusivo de desayuno que se cocina con leche o agua hasta espesar. No se come crudo. Intercambio con harina de avena pura, sémola o papillas infantiles.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "OpenFoodFacts",
@@ -105974,7 +106048,8 @@
     "label_reason": "Papilla infantil de cereales mixtos",
     "usage_es": "Harina de cereales para papilla, alimento raro en España. Ingrediente que requiere cocción, no comestible directamente. Se usa en desayuno o merienda. Intercambio con gachas de avena o harina de maíz.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "OpenFoodFacts",
@@ -106630,7 +106705,8 @@
     "label_reason": "Papilla infantil, requiere preparación",
     "usage_es": "Cereal procesado, ingrediente de cocina. Hervido con leche para desayuno infantil. Intercambio con papilla de avena o gachas de harina.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "OpenFoodFacts",
@@ -107767,7 +107843,8 @@
     "label_reason": "Zumo multifrutas marca blanca, desayuno",
     "usage_es": "Bebida de frutas exprimidas. Se bebe solo en desayuno. Intercambio con zumo de naranja, pieza de fruta fresca o fruta en almíbar.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Otros",
@@ -107793,7 +107870,8 @@
     "label_reason": "Néctar de frutas, típico del desayuno",
     "usage_es": "Bebida de frutas con pulpa y azúcar. Se bebe solo en desayuno. Intercambio con zumo de naranja, pieza de fruta fresca o batido lácteo.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "OpenFoodFacts",
@@ -107925,7 +108003,8 @@
     "label_reason": "Chuchería de fresa marca desconocida",
     "usage_es": "Chuchería de azúcar con sabor a fresa. Snack muy raro en España. No es fruta. Intercambio con caramelos duros, regaliz o piruletas.",
     "culinary_role": "meal_dish",
-    "clean_carb": true
+    "clean_carb": false,
+    "clean_carb_prev": true
   },
   {
     "source": "Otros",
@@ -110294,7 +110373,8 @@
     "label_confidence": 85,
     "label_reason": "Producto lácteo de desayuno con cereales",
     "usage_es": "Bebida láctea con nueces y avena. Producto lácteo funcional. Consumo exclusivo en desayuno. Intercambio con yogur bebido, leche o batido lácteo.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "clean_fat": false
   },
   {
     "source": "OpenFoodFacts",

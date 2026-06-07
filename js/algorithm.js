@@ -2647,6 +2647,31 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
 const _CANONICAL_STATE_RE =
   /^([a-z]+)\s+(crudo|cruda|hervido|hervida|asado|asada|tostado|tostada|natural|integral|entero|entera|en copos|en grano|molido|molida|hinchado|hinchada|alimenticia|alimenticio|blanco|blanca)\b/;
 
+// ============================================
+// SEARCH MODIFIER PENALTY — forma canónica > forma modificada
+// ============================================
+// Hugo audit (Feedback Elena): el autocomplete elegía formas no canónicas
+// como origen (Leche en polvo, Yogur con fresas, yema de huevo, Aceite de
+// soja). El cliente busca el alimento simple. Penaliza modificadores SALVO
+// que el query los pida explícitamente. Devuelve nº de penalizaciones (más
+// alto = peor). Se usa como desempate en searchFoods, antes de sourceBoost.
+const _SEARCH_MOD_GROUPS = [
+  { re: /\b(en polvo|polvo|deshidratad|desecad|liofiliz|concentrad)\b/, kw: ["polvo", "deshidratado", "deshidratada", "desecado", "desecada", "concentrado", "concentrada"] },
+  { re: /\b(yema|clara)s?\b/, kw: ["yema", "yemas", "clara", "claras"] },
+  { re: /\bcondensad[ao]\b/, kw: ["condensada", "condensado"] },
+  { re: /(con fresa|con frut|con cereal|con galleta|con miel|con nata|con az[uú]car|sabor|aromatiz|edulcorad|chocolate|vainilla|caramelo)/, kw: ["fresa", "frutas", "fruta", "cereales", "sabor", "chocolate", "vainilla", "caramelo", "miel"] },
+];
+
+function searchModifierPenalty(nameNorm, queryTokens) {
+  const nn = nameNorm.replace(/[,;:]/g, " ").replace(/\s+/g, " ");
+  const q = (queryTokens || []).join(" ");
+  let p = 0;
+  for (const g of _SEARCH_MOD_GROUPS) {
+    if (g.re.test(nn) && !g.kw.some((k) => q.includes(k))) p += 1;
+  }
+  return p;
+}
+
 function tokenSortScore(nameNorm, queryTokens) {
   // Normalizar puntuación BEDCA ("Arroz, hervido", "Patata, cruda") → espacios
   // para que startsWith(t + " ") matchee igual que "Arroz Hervido".
@@ -2655,6 +2680,11 @@ function tokenSortScore(nameNorm, queryTokens) {
   let score = 0;
   const allPresent = queryTokens.every((t) => nn.includes(t));
   if (allPresent) score += 5;
+  // Match EXACTO de nombre completo (Hugo Feedback Elena): si el usuario
+  // tipea "manzana" y existe el alimento llamado exactamente "Manzana", ese
+  // gana sobre "Manzana asada" / "Manzana, cruda" (que reciben bonus canónico
+  // por el adjetivo). El nombre desnudo ES la forma más canónica.
+  if (nn === queryTokens.join(" ")) score += 4;
   queryTokens.forEach((t) => {
     if (nn.includes(t)) score += 1;
     if (nn.startsWith(t + " ") || nn === t) score += 2;
@@ -2708,11 +2738,37 @@ async function searchFoods(query) {
       const scoreA = tokenSortScore(norm(a.name || ""), tokens);
       const scoreB = tokenSortScore(norm(b.name || ""), tokens);
       if (scoreA !== scoreB) return scoreB - scoreA;
-      // 1er desempate: prioridad de fuente — BEDCA primero, después OFF completo
+      // 1er desempate: forma canónica > forma modificada (Hugo Feedback Elena).
+      // El cliente busca "leche semidesnatada" y quiere LECHE LÍQUIDA, no "en
+      // polvo"; "huevo" → huevo entero, no "yema"; "yogur" → natural, no "con
+      // fresas". Penaliza polvo/deshidratado/condensado/yema-clara/saborizado
+      // SALVO que el propio query lo pida.
+      const penA = searchModifierPenalty(norm(a.name || ""), tokens);
+      const penB = searchModifierPenalty(norm(b.name || ""), tokens);
+      if (penA !== penB) return penA - penB;
+      // 2do desempate: prioridad de fuente — BEDCA primero, después OFF completo
       const boostA = sourceBoost(a);
       const boostB = sourceBoost(b);
       if (boostA !== boostB) return boostB - boostA;
-      // 2do desempate: materia prima (raw_ingredient:true) > preparado.
+      // 3er desempate: NO exótico > exótico (Hugo Feedback Elena). "huevo" →
+      // huevo de gallina, no de pato/codorniz; "leche" → vaca, no de búfala.
+      const exA = a.exotic === true ? 1 : 0;
+      const exB = b.exotic === true ? 1 : 0;
+      if (exA !== exB) return exA - exB;
+      // 4to desempate: frecuencia de consumo en España (habitual > ocasional >
+      // raro). "aceite" → oliva (habitual), no soja (raro); "arroz" → blanco/
+      // integral, no salvaje.
+      const _freqRank = (f) => {
+        const fr = (f.frequency || "").toLowerCase();
+        if (fr === "habitual") return 0;
+        if (fr === "ocasional") return 1;
+        if (fr === "raro") return 2;
+        return 1; // sin dato: neutro
+      };
+      const frA = _freqRank(a);
+      const frB = _freqRank(b);
+      if (frA !== frB) return frA - frB;
+      // 5to desempate: materia prima (raw_ingredient:true) > preparado.
       // Cuando el usuario busca "arroz" / "avena" / "pasta", quiere el grano
       // base, no "Arroz con leche" ni "Avena crunchy" ni "Pasta de fruta".
       const rawA = a.raw_ingredient === true ? 1 : 0;
