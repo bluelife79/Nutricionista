@@ -3109,12 +3109,12 @@
     "carbs": 0,
     "fat": 11.5,
     "calories": 199,
-    "category": "fat",
+    "category": "protein",
     "brand": "Marca Blanca",
     "id": "bedca_0131",
     "code": null,
     "quantity": null,
-    "subgroup": "other_oils",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "category_prev": "protein",
@@ -3128,7 +3128,8 @@
     "usage_es": "Conserva de pescado azul en aceite. Ingrediente habitual para ensaladas, bocadillos o aperitivos en cualquier comida. No es un plato único. Intercambio con atún en conserva o caballa.",
     "culinary_role": "meal_dish",
     "oil_added": true,
-    "clean_fat": false
+    "subgroup_prev": "other_oils",
+    "clean_protein": true
   },
   {
     "source": "BEDCA",
@@ -3137,12 +3138,12 @@
     "carbs": 0,
     "fat": 12.1,
     "calories": 204.1,
-    "category": "fat",
+    "category": "protein",
     "brand": "Marca Blanca",
     "id": "bedca_0132",
     "code": null,
     "quantity": null,
-    "subgroup": "other_oils",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "category_prev": "protein",
@@ -3156,7 +3157,8 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, bocadillos o tostadas. Apto para cualquier comida o snack. Intercambio con caballa en conserva, sardinas o pollo asado.",
     "culinary_role": "meal_dish",
     "oil_added": true,
-    "clean_fat": false
+    "subgroup_prev": "other_oils",
+    "clean_protein": true
   },
   {
     "source": "BEDCA",
@@ -3833,7 +3835,7 @@
     "label_reason": "Conserva en escabeche muy habitual",
     "usage_es": "Conserva de pescado azul. Se consume directamente como ingrediente en ensaladas o tapas. Típico en comidas y cenas. Intercambio con bonito en escabeche, sardinas en conserva o caballa.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "BEDCA",
@@ -3842,12 +3844,12 @@
     "carbs": 0,
     "fat": 8.08,
     "calories": 179.2,
-    "category": "fat",
+    "category": "protein",
     "brand": "Marca Blanca",
     "id": "bedca_0159",
     "code": null,
     "quantity": null,
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "category_prev": "protein",
@@ -3861,7 +3863,8 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, tostadas o bocadillos. Apto para cualquier comida o snack. Intercambio con atún en aceite vegetal o sardinas.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "BEDCA",
@@ -5420,13 +5423,13 @@
     "carbs": 0,
     "fat": 14,
     "calories": 168.8,
-    "category": "dairy",
+    "category": "protein",
     "brand": "Marca Blanca",
     "id": "bedca_0221",
     "code": null,
     "quantity": null,
-    "subgroup": null,
-    "macro_profile": "fat",
+    "subgroup": "seafood",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -5437,7 +5440,10 @@
     "label_reason": "Conserva muy popular en tapas y aperitivos",
     "usage_es": "Conserva de molusco listo para comer, como snack o aperitivo en cualquier momento. Intercambio con otros mariscos en conserva o pescados en escabeche.",
     "culinary_role": "meal_dish",
-    "dairy_subfamily": "frescos_proteicos"
+    "dairy_subfamily": "frescos_proteicos",
+    "category_prev": "dairy",
+    "subgroup_prev": null,
+    "clean_protein": true
   },
   {
     "source": "BEDCA",
@@ -6157,7 +6163,7 @@
     "usage_es": "Conserva de pescado azul lista para comer, en ensalada o tapa en cualquier momento. Intercambio con atún en conserva o caballa enlatada escurrida.",
     "culinary_role": "meal_dish",
     "oil_added": true,
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "BEDCA",
@@ -6529,7 +6535,7 @@
     "label_reason": "Conserva en escabeche lista y versátil",
     "usage_es": "Pescado azul en conserva. No necesita cocción. Se consume como tapa, aperitivo o ingrediente. Intercambio con sardinas en aceite o caballa en conserva.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "BEDCA",
@@ -10402,12 +10408,12 @@
     "carbs": 0,
     "fat": 0.5,
     "calories": 47.3,
-    "category": "other",
+    "category": "protein",
     "brand": "Marca Blanca",
     "id": "bedca_0414",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "seafood",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -10418,7 +10424,10 @@
     "label_confidence": 95,
     "label_reason": "Conserva lista para consumo directo",
     "usage_es": "Molusco bivalvo en conserva. Se come directamente como aperitivo o ingrediente en la comida. Intercambio con almeja o mejillón en conserva.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "category_prev": "other",
+    "subgroup_prev": null,
+    "clean_protein": true
   },
   {
     "source": "BEDCA",
@@ -10604,12 +10613,12 @@
     "carbs": 0,
     "fat": 9.71,
     "calories": 203,
-    "category": "fat",
+    "category": "protein",
     "brand": "Marca Blanca",
     "id": "bedca_0422",
     "code": null,
     "quantity": null,
-    "subgroup": "other_oils",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "category_prev": "protein",
@@ -10623,7 +10632,8 @@
     "usage_es": "Conserva de pescado azul. Ingrediente para tapas, ensaladas y bocadillos, consumida en comida o cena. Intercambio con sardinas en conserva y caballa.",
     "culinary_role": "meal_dish",
     "oil_added": true,
-    "clean_fat": false
+    "subgroup_prev": "other_oils",
+    "clean_protein": true
   },
   {
     "source": "BEDCA",
@@ -10658,12 +10668,12 @@
     "carbs": 0.6,
     "fat": 13.8,
     "calories": 216.6,
-    "category": "fat",
+    "category": "protein",
     "brand": "Marca Blanca",
     "id": "bedca_0424",
     "code": null,
     "quantity": null,
-    "subgroup": "other_oils",
+    "subgroup": "fish_white",
     "macro_profile": "protein",
     "flags": [],
     "category_prev": "protein",
@@ -10677,7 +10687,8 @@
     "usage_es": "Conserva de molusco. Ingrediente de tapas, ensaladas y arroces, consumo ocasional en comida o cena. Intercambio con mejillones en conserva y sepia.",
     "culinary_role": "meal_dish",
     "oil_added": true,
-    "clean_fat": false
+    "subgroup_prev": "other_oils",
+    "clean_protein": true
   },
   {
     "source": "BEDCA",
@@ -13062,7 +13073,7 @@
     "label_reason": "Conserva clásica española, muy consumida",
     "usage_es": "Pescado azul enlatado listo para comer. Se toma en ensalada o como ingrediente en comida o cena. Intercambio con sardinas en escabeche, atún o caballa al natural.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "BEDCA",
@@ -17414,12 +17425,12 @@
     "carbs": 0,
     "fat": 8.4,
     "calories": 204.4,
-    "category": "fat",
+    "category": "protein",
     "brand": "Marca Blanca",
     "id": "bedca_0711",
     "code": null,
     "quantity": null,
-    "subgroup": "other_oils",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [
       "condiment"
@@ -17435,7 +17446,8 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas o bocadillos, uso de comida o cena. Intercambio con atún enlatado, sardinas o caballa en conserva.",
     "culinary_role": "meal_dish",
     "oil_added": true,
-    "clean_fat": false
+    "subgroup_prev": "other_oils",
+    "clean_protein": true
   },
   {
     "source": "BEDCA",
@@ -18260,7 +18272,7 @@
     "usage_es": "Pescado azul enlatado conservado en aceite. Se consume como ingrediente en ensaladas o tostadas, en comida o cena. Intercambio con atún en conserva o sardinas.",
     "culinary_role": "meal_dish",
     "oil_added": true,
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "BEDCA",
@@ -18734,7 +18746,7 @@
     "usage_es": "Conserva de pescado azul, ingrediente habitual. Se usa en ensaladas, bocadillos o como plato de comida. Intercambio con sardina o atún enlatado.",
     "culinary_role": "meal_dish",
     "oil_added": true,
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "BEDCA",
@@ -20609,7 +20621,7 @@
     "label_reason": "Conserva lista para consumir",
     "usage_es": "Pescado azul en conserva. Se consume directamente como ingrediente de ensaladas, patatas o sándwich. Típico en comida o cena. Intercambio con atún en escabeche, sardinas o caballa.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "BEDCA",
@@ -21693,12 +21705,12 @@
     "carbs": 0,
     "fat": 3.5,
     "calories": 117,
-    "category": "other",
+    "category": "protein",
     "brand": "Marca Blanca",
     "id": "bedca_0887",
     "code": null,
     "quantity": null,
-    "subgroup": null,
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -21709,7 +21721,10 @@
     "label_confidence": 85,
     "label_reason": "Ahumado listo, típico en cenas",
     "usage_es": "Pescado graso ahumado listo para comer. Se consume en tostadas o ensaladas, principalmente en cena. Intercambio con salmón ahumado o caballa en conserva.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "category_prev": "other",
+    "subgroup_prev": null,
+    "clean_protein": true
   },
   {
     "source": "BEDCA",
@@ -49087,12 +49102,12 @@
     "carbs": 1.9,
     "fat": 2.5,
     "calories": 74,
-    "category": "dairy",
+    "category": "protein",
     "brand": "Hacendado",
     "id": "off_c218d15023",
     "code": "8480000186133",
     "quantity": "111 g, 13/18",
-    "subgroup": "other_dairy",
+    "subgroup": "seafood",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -49104,7 +49119,10 @@
     "label_reason": "Conserva mejillones, versátil habitual",
     "usage_es": "Marisco en conserva cocido. Se consume directamente en ensaladas, arroces o tapas. Consumo en comida o cena. Intercambio con almejas cocidas, berberechos o pulpo cocido.",
     "culinary_role": "meal_dish",
-    "dairy_subfamily": "postres_lacteos"
+    "dairy_subfamily": "postres_lacteos",
+    "category_prev": "dairy",
+    "subgroup_prev": "other_dairy",
+    "clean_protein": true
   },
   {
     "source": "Eroski",
@@ -59114,12 +59132,12 @@
     "carbs": 0.9,
     "fat": 9.7,
     "calories": 187,
-    "category": "fat",
+    "category": "protein",
     "brand": "Hacendado",
     "id": "off_dd6fb938d1",
     "code": "8480000184078",
     "quantity": "29 g",
-    "subgroup": "other_oils",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "category_prev": "protein",
@@ -59133,7 +59151,8 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente como tapa, aperitivo o ingrediente en ensaladas. Intercambio con other conservas de pescado azul.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "subgroup_prev": "other_oils",
+    "clean_protein": true
   },
   {
     "source": "Aldi",
@@ -59263,7 +59282,7 @@
     "label_reason": "Sardinas en conserva, listas para consumir",
     "usage_es": "Pescado graso en conserva. Ingrediente de ensaladas o tapa en cualquier comida. Intercambio con sardinas en oliva, caballa o melva.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "Aldi",
@@ -59642,12 +59661,12 @@
     "carbs": 1.1,
     "fat": 8.4,
     "calories": 196,
-    "category": "fat",
+    "category": "protein",
     "brand": "Carrefour",
     "id": "off_40eabfdab2",
     "code": "8431876173666",
     "quantity": "48 g",
-    "subgroup": "other_oils",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "category_prev": "protein",
@@ -59660,7 +59679,8 @@
     "label_reason": "Filetes de anchoa en conserva, listos",
     "usage_es": "Conserva de pescado azul. Se consume directamente como tapa, aperitivo o ingrediente en ensaladas. Intercambio con otras conservas de pescado azul.",
     "culinary_role": "staple",
-    "clean_fat": false
+    "subgroup_prev": "other_oils",
+    "clean_protein": true
   },
   {
     "source": "Carrefour",
@@ -62402,12 +62422,12 @@
     "carbs": 6.2,
     "fat": 0.4,
     "calories": 63,
-    "category": "other",
+    "category": "protein",
     "brand": "Auchan",
     "id": "off_43504095e6",
     "code": "8413548670147",
     "quantity": "111 g",
-    "subgroup": "other",
+    "subgroup": "seafood",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -62418,7 +62438,10 @@
     "label_confidence": 90,
     "label_reason": "Conserva de marisco lista para consumir",
     "usage_es": "Molusco bivalvo en conserva. Se consume directamente como aperitivo o ingrediente en comida. Intercambio con almejas, mejillones o chirlas en conserva.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "category_prev": "other",
+    "subgroup_prev": "other",
+    "clean_protein": true
   },
   {
     "source": "Mercadona",
@@ -63158,7 +63181,7 @@
     "label_reason": "Mejillones en escabeche, aperitivo típico",
     "usage_es": "Conserva de molusco. Se consume directamente como snack entre horas o aperitivo. Intercambio con mejillones normales en escabeche, berberechos o pulpo en conserva.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "Dia",
@@ -64862,13 +64885,13 @@
     "carbs": 0.05,
     "fat": 16,
     "calories": 158,
-    "category": "fat",
+    "category": "protein",
     "brand": "La Española",
     "id": "off_2be99ef6c2",
     "code": "8410226011568",
     "quantity": "",
-    "subgroup": "other_fat",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -64879,7 +64902,9 @@
     "label_reason": "Aceitunas rellenas listas para aperitivo",
     "usage_es": "Aceituna verde en conserva rellena. Snack entre horas o ingrediente de aperitivo. Intercambio con aceitunas negras, alcaparras o aceitunas sin relleno.",
     "culinary_role": "meal_dish",
-    "clean_fat": true
+    "category_prev": "fat",
+    "subgroup_prev": "other_fat",
+    "clean_protein": true
   },
   {
     "source": "Lidl",
@@ -65607,7 +65632,7 @@
     "label_reason": "Conserva típica, aperitivo o tapa habitual",
     "usage_es": "Conserva de molusco. Se comen directamente como tapa o aperitivo. Consumo exclusivo de snack o tapa. Intercambio con mejillones normales, berberechos o pulpo en escabeche.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "Mercadona",
@@ -65633,7 +65658,7 @@
     "label_reason": "Conserva española muy popular y versátil",
     "usage_es": "Conserva de pescado azul en vinagreta. Se consume directamente como plato único en comida o cena. Intercambio clínico con otras conservas de pescado azul como sardinas o caballa.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "Carrefour",
@@ -66578,7 +66603,7 @@
     "label_reason": "Conserva clásica, muy popular",
     "usage_es": "Conserva de molusco. Se consume directamente como snack o ingrediente de ensalada. Uso exclusivo de aperitivo. Intercambio con berberechos, anchoas o sardinas en conserva.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "Dia",
@@ -66630,7 +66655,7 @@
     "label_reason": "Conserva gallega popular",
     "usage_es": "Conserva de molusco gallego. Se consume directamente como snack o ingrediente de ensalada. Uso exclusivo de aperitivo. Intercambio con berberechos, anchoas o sardinas en conserva.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "Carrefour",
@@ -66682,7 +66707,7 @@
     "label_reason": "Variante picante, conserva popular",
     "usage_es": "Conserva de molusco gallego. Se consume directamente como snack o ingrediente de ensalada. Uso exclusivo de aperitivo. Intercambio con mejillones normales, berberechos o anchoas.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "Mercadona",
@@ -67230,7 +67255,7 @@
     "label_reason": "Conserva gallega, muy popular",
     "usage_es": "Conserva de molusco. Se toma directamente como tapa, snack o ingrediente de ensaladas en cualquier comida. Intercambio clínico con other conservas de pescado o pulpo cocido.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "Carrefour",
@@ -67756,7 +67781,7 @@
     "label_reason": "Preparado crudo, requiere cocción",
     "usage_es": "Producto raro en España, no es salmón ahumado real. Se cocina como ingrediente en ensaladas o tostadas en la comida. Intercambio con salmón ahumado, trucha o bacalao.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "Carrefour",
@@ -70334,7 +70359,7 @@
     "label_reason": "Atún en escabeche, listo para consumir",
     "usage_es": "Pescado azul en conserva con vinagre. Ingrediente listo para consumir directamente en ensaladas, bocadillos o tapas en comida o cena. Intercambio clínico con atún al natural, caballa en escabeche o melva.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "Carrefour",
@@ -71020,7 +71045,7 @@
     "label_reason": "Conserva de pescado lista, consumo en comida",
     "usage_es": "Conserva de pescado azul en escabeche. Se consume directamente como plato o aperitivo en la comida. Intercambio con sardinas en escabeche, atún en conserva o caballa en aceite.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "Mercadona",
@@ -71262,12 +71287,12 @@
     "carbs": 0,
     "fat": 9.1,
     "calories": 182,
-    "category": "fat",
+    "category": "protein",
     "brand": "Dia",
     "id": "off_eb0e08c61f",
     "code": "8480017089519",
     "quantity": "900 g",
-    "subgroup": "other_oils",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "category_prev": "protein",
@@ -71281,7 +71306,8 @@
     "usage_es": "Conserva de pescado azul. Se consume en ensaladas, bocadillos o como ingrediente. Momento típico en comida o cena. Intercambio clínico con atún en oliva, sardinas o caballa.",
     "culinary_role": "meal_dish",
     "oil_added": true,
-    "clean_fat": false
+    "subgroup_prev": "other_oils",
+    "clean_protein": true
   },
   {
     "source": "Mercadona",
@@ -71484,7 +71510,7 @@
     "id": "off_fa7388e141",
     "code": "8414807516909",
     "quantity": "120 g",
-    "subgroup": "other",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "category_prev": "protein",
@@ -71497,7 +71523,8 @@
     "label_reason": "Caballa en tomate, conserva muy popular",
     "usage_es": "Conserva de pescado azul en salsa de tomate lista para comer. Se sirve fría o caliente. Consumo en comida. Intercambio con sardinas en tomate o atún en escabeche.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true,
+    "subgroup_prev": "other"
   },
   {
     "source": "Carrefour",
@@ -71549,7 +71576,7 @@
     "label_reason": "Conserva en escabeche lista para consumir",
     "usage_es": "Conserva de pescado azul en escabeche. Se consume directamente como aperitivo o ingrediente de ensaladas. Comida o cena. Intercambio con sardinas o caballa en conserva.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "Lidl",
@@ -71591,7 +71618,7 @@
     "id": "off_357bfb08b8",
     "code": "8480010028881",
     "quantity": "",
-    "subgroup": "other",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "category_prev": "protein",
@@ -71604,7 +71631,8 @@
     "label_reason": "Conserva en tomate lista para consumir",
     "usage_es": "Conserva de pescado azul en salsa de tomate. Se consume directo como plato único en comida o cena. Intercambio con sardinas en tomate o atún en conserva.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true,
+    "subgroup_prev": "other"
   },
   {
     "source": "Mercadona",
@@ -71782,7 +71810,7 @@
     "id": "off_1fa3cd0c87",
     "code": "8480000183132",
     "quantity": "2 x 90g",
-    "subgroup": "other",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "category_prev": "protein",
@@ -71795,7 +71823,8 @@
     "label_reason": "Conserva en tomate lista para consumir",
     "usage_es": "Conserva de pescado azul en salsa de tomate. Se consume directo como plato único en comida o cena. Intercambio con sardinas en tomate o atún en conserva.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true,
+    "subgroup_prev": "other"
   },
   {
     "source": "Carrefour",
@@ -72087,7 +72116,7 @@
     "label_reason": "Atún en escabeche en conserva",
     "usage_es": "Conserva de pescado azul en escabeche. Se consume directamente como ingrediente de ensaladas, bocadillos o tapas. Intercambio con atún en aceite o bonito en escabeche.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "Carrefour",
@@ -78334,13 +78363,13 @@
     "carbs": 0,
     "fat": 31.9,
     "calories": 352.8,
-    "category": "fat",
+    "category": "protein",
     "brand": "Lidl, Nixe",
     "id": "off_32446e2971",
     "code": "20203733",
     "quantity": "",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [
       "hidden"
     ],
@@ -78354,7 +78383,9 @@
     "usage_es": "Conserva de pescado azul en aceite de oliva. Ingrediente para ensaladas, tostadas o bocadillos. Consumo en comida o cena. Intercambio clínico con bonito del norte o caballa.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Mercadona",
@@ -78363,13 +78394,13 @@
     "carbs": 0.5,
     "fat": 32,
     "calories": 363,
-    "category": "fat",
+    "category": "protein",
     "brand": "Hacendado",
     "id": "off_4d2ebda0c1",
     "code": "8480000180308",
     "quantity": "900 g",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [
       "hidden"
     ],
@@ -78383,7 +78414,9 @@
     "usage_es": "Conserva de pescado azul en aceite de oliva. Ingrediente para ensaladas, tostadas o bocadillos. Consumo en comida o cena. Intercambio clínico con bonito del norte o sardinas.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Mercadona",
@@ -78392,13 +78425,13 @@
     "carbs": 0.5,
     "fat": 31,
     "calories": 331,
-    "category": "fat",
+    "category": "protein",
     "brand": "Hacendado",
     "id": "off_b1f734ef92",
     "code": "8480000181046",
     "quantity": "",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [
       "hidden"
     ],
@@ -78412,7 +78445,9 @@
     "usage_es": "Conserva de pescado azul premium en aceite de oliva. Ingrediente para ensaladas, pintxos o tostadas. Consumo en comida o cena. Intercambio clínico con atún en oliva o caballa.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Mercadona",
@@ -78421,13 +78456,13 @@
     "carbs": 0.9,
     "fat": 31,
     "calories": 357,
-    "category": "fat",
+    "category": "protein",
     "brand": "Hacendado",
     "id": "off_a7d9f7fb4a",
     "code": "8480000180278",
     "quantity": "80 g",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [
       "hidden"
     ],
@@ -78441,7 +78476,9 @@
     "usage_es": "Conserva de pescado azul en aceite de oliva. Ingrediente para ensaladas, tostadas o bocadillos. Consumo en comida o cena. Intercambio clínico con bonito del norte o sardinas.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Consum",
@@ -78450,13 +78487,13 @@
     "carbs": 0.9,
     "fat": 30,
     "calories": 350,
-    "category": "fat",
+    "category": "protein",
     "brand": "Consum",
     "id": "off_9fc28d9117",
     "code": "8414807512819",
     "quantity": "230 g",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [
       "hidden"
     ],
@@ -78470,7 +78507,9 @@
     "usage_es": "Conserva de pescado azul premium en aceite de oliva. Ingrediente para ensaladas, pintxos o tostadas. Consumo en comida o cena. Intercambio clínico con atún en oliva o caballa.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Mercadona",
@@ -88388,13 +88427,13 @@
     "carbs": 4.1,
     "fat": 14,
     "calories": 193,
-    "category": "fat",
+    "category": "protein",
     "brand": "Hacendado",
     "id": "off_0d3e9d6f15",
     "code": "8480000186096",
     "quantity": "111 g, 13/18",
-    "subgroup": "other_oils",
-    "macro_profile": "fat",
+    "subgroup": "seafood",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -88406,7 +88445,9 @@
     "usage_es": "Conserva de molusco en aceite. Se toma en tapas, aperitivos o como ingrediente de ensaladas y arroces. Intercambio clínico con otros mariscos en conserva o pescados en escabeche.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "other_oils",
+    "clean_protein": true
   },
   {
     "source": "Lidl",
@@ -88729,12 +88770,12 @@
     "carbs": 0.8,
     "fat": 13.6,
     "calories": 203,
-    "category": "fat",
+    "category": "protein",
     "brand": "Hacendado",
     "id": "off_0a6b0cdb17",
     "code": "8480000804051",
     "quantity": "80g neto 60 g escurrido",
-    "subgroup": "other_oils",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [
       "condiment"
@@ -88749,7 +88790,9 @@
     "usage_es": "Pescado azul marinado en vinagre y aceite. Se consume como tapa o aperitivo en cualquier comida. Intercambio con anchoas en aceite, sardinas en conserva o pulpo a la gallega.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "other_oils",
+    "clean_protein": true
   },
   {
     "source": "Lidl",
@@ -90061,12 +90104,12 @@
     "carbs": 0.6,
     "fat": 10,
     "calories": 192,
-    "category": "fat",
+    "category": "protein",
     "brand": "Hacendado",
     "id": "off_4e93e02652",
     "code": "8480000181169",
     "quantity": "111 g",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [
       "hidden"
@@ -90080,7 +90123,9 @@
     "label_reason": "Conserva de bonito muy versátil",
     "usage_es": "Conserva de pescado azul. Ingerido directamente en ensaladas o bocadillos en cualquier comida. Intercambio con atún en conserva, caballa o sardinas en aceite.",
     "culinary_role": "meal_dish",
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Carrefour",
@@ -90116,13 +90161,13 @@
     "carbs": 0.5,
     "fat": 24,
     "calories": 303,
-    "category": "fat",
+    "category": "protein",
     "brand": "Hacendado",
     "id": "off_0392aec472",
     "code": "8480000181107",
     "quantity": "90 g",
-    "subgroup": "other_oils",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -90134,7 +90179,9 @@
     "usage_es": "Conserva de pescado azul. Ingerido directamente en ensaladas o tostadas en cualquier comida. Intercambio con atún en conserva, sardinas o bonito del norte.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "other_oils",
+    "clean_protein": true
   },
   {
     "source": "Eroski",
@@ -90275,12 +90322,12 @@
     "carbs": 0,
     "fat": 7.7,
     "calories": 185,
-    "category": "fat",
+    "category": "protein",
     "brand": "Carrefour",
     "id": "off_4e9efcca7b",
     "code": "8431876004953",
     "quantity": "3 x 50 g",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [
       "hidden"
@@ -90294,7 +90341,9 @@
     "label_reason": "Anchoas en conserva muy típicas",
     "usage_es": "Conserva de pescado azul curado. Ingerido directamente en tapas, ensaladas o pizzas en cualquier comida. Intercambio con boquerones en vinagre, sardinas o caballa.",
     "culinary_role": "meal_dish",
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Mercadona",
@@ -90462,12 +90511,12 @@
     "carbs": 0.9,
     "fat": 18,
     "calories": 245,
-    "category": "fat",
+    "category": "protein",
     "brand": "Hacendado",
     "id": "off_0064046ced",
     "code": "8480000180087",
     "quantity": "240 g (3 x 80 g)",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -90480,7 +90529,9 @@
     "usage_es": "Conserva de pescado en aceite. Ingrediente de ensaladas, bocadillos o platos de arroz. Consumo en comida o cena. Intercambio con atún en escabeche, bonito o caballa en conserva.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Carrefour",
@@ -90489,12 +90540,12 @@
     "carbs": 0,
     "fat": 17,
     "calories": 242,
-    "category": "fat",
+    "category": "protein",
     "brand": "Carrefour",
     "id": "off_1c6c58c052",
     "code": "3560071012755",
     "quantity": "105 g",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [
       "hidden"
@@ -90509,7 +90560,9 @@
     "usage_es": "Conserva de pescado graso en aceite. Ingrediente de ensaladas, tostadas o arroces. Consumo en comida o cena. Intercambio con ventresca de bonito, atún claro o melva en conserva.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Mercadona",
@@ -90571,13 +90624,13 @@
     "carbs": 0.8,
     "fat": 21,
     "calories": 264,
-    "category": "fat",
+    "category": "protein",
     "brand": "Hacendado",
     "id": "off_08600f3de4",
     "code": "8480000187260",
     "quantity": "115 g",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_white",
+    "macro_profile": "protein",
     "flags": [
       "hidden"
     ],
@@ -90591,7 +90644,9 @@
     "usage_es": "Fruto seco exótico en España. Snack entre horas o ingrediente de repostería. Consumo ocasional como snack. Intercambio con nueces, anacardos o avellanas.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Alcampo",
@@ -90600,13 +90655,13 @@
     "carbs": 0,
     "fat": 11,
     "calories": 190,
-    "category": "fat",
+    "category": "protein",
     "brand": "Auchan",
     "id": "off_bea24c2c9b",
     "code": "8429583006612",
     "quantity": "72 g",
-    "subgroup": "other_oils",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [
       "hidden"
     ],
@@ -90620,7 +90675,9 @@
     "usage_es": "Conserva de pescado azul escurrido. Ingrediente de ensaladas, bocadillos y platos de cuchara. Consumo en comida o cena. Intercambio con bonito, caballa, sardinas en conserva.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "other_oils",
+    "clean_protein": true
   },
   {
     "source": "Alcampo",
@@ -90629,13 +90686,13 @@
     "carbs": 0,
     "fat": 34,
     "calories": 363,
-    "category": "fat",
+    "category": "protein",
     "brand": "Auchan",
     "id": "off_8f7b7aced6",
     "code": "8429583006322",
     "quantity": "3 x 80 g",
-    "subgroup": "other_oils",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": false,
     "raw_ingredient": true,
@@ -90647,7 +90704,9 @@
     "usage_es": "Conserva de pescado azul sin escurrir, con alto aporte graso. Ingrediente de ensaladas y arroces. Consumo en comida o cena. Intercambio con atún escurrido, bonito o caballa.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "other_oils",
+    "clean_protein": true
   },
   {
     "source": "Eroski",
@@ -91020,12 +91079,12 @@
     "carbs": 0,
     "fat": 10,
     "calories": 197,
-    "category": "fat",
+    "category": "protein",
     "brand": "Auchan",
     "id": "off_e91b54489f",
     "code": "8429583008715",
     "quantity": "",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [
       "hidden"
@@ -91040,7 +91099,9 @@
     "usage_es": "Grasa exclusiva para cocinar y aliñar, no comestible directamente como plato. Ingrediente básico en todas las comidas. Intercambio clínico con otros aceites vegetales.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Aldi",
@@ -91077,13 +91138,13 @@
     "carbs": 4.1,
     "fat": 14,
     "calories": 193,
-    "category": "fat",
+    "category": "protein",
     "brand": "Hacendado",
     "id": "off_2948566fe2",
     "code": "8480000186010",
     "quantity": "111 g, 6/8",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "seafood",
+    "macro_profile": "protein",
     "flags": [
       "hidden"
     ],
@@ -91097,7 +91158,9 @@
     "usage_es": "Conserva de molusco consumida como tapa, aperitivo o ingrediente de ensaladas. No es plato principal. Intercambio clínico con otros moluscos en conserva o pescados en escabeche.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Carrefour",
@@ -91444,13 +91507,13 @@
     "carbs": 0,
     "fat": 29,
     "calories": 336,
-    "category": "fat",
+    "category": "protein",
     "brand": "Carrefour",
     "id": "off_ddac2d2512",
     "code": "8431876117530",
     "quantity": "",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [
       "hidden"
     ],
@@ -91464,7 +91527,9 @@
     "usage_es": "Conserva de pescado azul en aceite. Ingrediente de ensaladas, bocadillos o platos de arroz en la comida. Intercambio con atún en escabeche, caballa o sardinas.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Mercadona",
@@ -91500,13 +91565,13 @@
     "carbs": 0.7,
     "fat": 23,
     "calories": 289,
-    "category": "fat",
+    "category": "protein",
     "brand": "Hacendado",
     "id": "off_6750eba742",
     "code": "8480000182258",
     "quantity": "117 g x 2",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [
       "hidden"
     ],
@@ -91520,7 +91585,9 @@
     "usage_es": "Conserva de pescado azul en aceite. Ingrediente de ensaladas, tostadas o guarnición en comida y cena. Intercambio con sardinillas, anchoas o caballa en conserva.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Consum",
@@ -92935,12 +93002,12 @@
     "carbs": 0,
     "fat": 10,
     "calories": 191,
-    "category": "fat",
+    "category": "protein",
     "brand": "Carrefour, Carrefour Simpl",
     "id": "off_ee2405b466",
     "code": "3560071012748",
     "quantity": "750 g",
-    "subgroup": "other_oils",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -92953,7 +93020,9 @@
     "usage_es": "Conserva de pescado azul, ingrediente de ensaladas, bocadillos o platos de comida. Intercambio clínico con atún en escabeche, bonito o caballa en conserva.",
     "culinary_role": "meal_dish",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "other_oils",
+    "clean_protein": true
   },
   {
     "source": "Consum",
@@ -93145,12 +93214,12 @@
     "carbs": 0.7,
     "fat": 10,
     "calories": 187,
-    "category": "fat",
+    "category": "protein",
     "brand": "Hacendado",
     "id": "off_238f0b11a8",
     "code": "8480000183095",
     "quantity": "180 g (neto, 2 x 90 g), 130 g (escurrido, 2 x 65 g)",
-    "subgroup": "other_oils",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -93163,7 +93232,9 @@
     "usage_es": "Pescado azul en conserva listo para comer. Se toma en ensaladas o tostadas directamente. Consumo en comida o cena. Intercambio con sardinas, atún en conserva o caballa fresca.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "other_oils",
+    "clean_protein": true
   },
   {
     "source": "Carrefour",
@@ -93227,12 +93298,12 @@
     "carbs": 0.3,
     "fat": 10.1,
     "calories": 192,
-    "category": "fat",
+    "category": "protein",
     "brand": "Hacendado",
     "id": "off_fd7c7d85ed",
     "code": "8480000184337",
     "quantity": "42 g",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [
       "hidden"
@@ -93247,7 +93318,9 @@
     "usage_es": "Pescado azul curado en semiconserva listo para comer. Ingrediente para tapas, ensaladas o montaditos. Consumo en comida o cena. Intercambio con sardinas en conserva o boquerones frescos.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Mercadona",
@@ -93256,12 +93329,12 @@
     "carbs": 0.3,
     "fat": 10.1,
     "calories": 192,
-    "category": "fat",
+    "category": "protein",
     "brand": "Hacendado",
     "id": "off_bab7cd21d6",
     "code": "8480000184085",
     "quantity": "120 g",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -93274,7 +93347,9 @@
     "usage_es": "Conserva de pescado azul en aceite. Se consume directamente como tapa, aperitivo o en ensaladas. Intercambio con otras conservas de pescado azul o proteínas magras.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Mercadona",
@@ -93786,12 +93861,12 @@
     "carbs": 0.7,
     "fat": 12,
     "calories": 215,
-    "category": "fat",
+    "category": "protein",
     "brand": "Consum",
     "id": "off_abd2b6f4f2",
     "code": "8414807516886",
     "quantity": "115 g",
-    "subgroup": "other_oils",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -93804,7 +93879,9 @@
     "usage_es": "Conserva grasa de pescado azul. Ingrediente o plato en comidas y cenas. Intercambio con sardinas o atún en conserva.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "other_oils",
+    "clean_protein": true
   },
   {
     "source": "Alcampo",
@@ -93839,12 +93916,12 @@
     "carbs": 0,
     "fat": 15.4,
     "calories": 227,
-    "category": "fat",
+    "category": "protein",
     "brand": "Eroski",
     "id": "off_2a67c0eb3d",
     "code": "8480010158434",
     "quantity": "0,89",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [
       "hidden"
@@ -93859,7 +93936,9 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, tostadas o como plato principal en comidas y cenas. Intercambio con otras conservas de pescado azul como caballa, atún o salmón.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Lidl",
@@ -93868,12 +93947,12 @@
     "carbs": 0.6,
     "fat": 19,
     "calories": 252,
-    "category": "fat",
+    "category": "protein",
     "brand": "Lidl, Nixe",
     "id": "off_4204f5c118",
     "code": "20091675",
     "quantity": "250 g (2 x 125 g) / 180 (2 x 90 g)",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [
       "hidden"
@@ -93888,7 +93967,9 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, tostadas o como ingrediente en comidas y cenas. Intercambio con otras conservas de pescado azul como sardinas, atún o salmón.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Carrefour",
@@ -93897,13 +93978,13 @@
     "carbs": 2.1,
     "fat": 19,
     "calories": 233,
-    "category": "fat",
+    "category": "protein",
     "brand": "Carrefour",
     "id": "off_b2ff98b185",
     "code": "8431876214819",
     "quantity": "",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "seafood",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -93915,7 +93996,9 @@
     "usage_es": "Conserva de molusco. Se consume directamente como tapa, aperitivo o en ensaladas durante comidas y cenas. Intercambio con otros moluscos en conserva como almejas, berberechos o chipirones.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Lidl",
@@ -93924,13 +94007,13 @@
     "carbs": 0,
     "fat": 12,
     "calories": 190,
-    "category": "fat",
+    "category": "protein",
     "brand": "Lidl, Nixe",
     "id": "off_aca138daa7",
     "code": "20461331",
     "quantity": "900 g",
-    "subgroup": "other_oils",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [
       "hidden"
     ],
@@ -93943,7 +94026,9 @@
     "label_reason": "Nombre confuso, probablemente atún en conserva",
     "usage_es": "Conserva de pescado azul crudo en aceite, no preparada. Requiere escurrido para consumirse en ensaladas, bocadillos o platos en comidas y cenas. Intercambio con atún en aceite de oliva u otras conservas de pescado azul.",
     "culinary_role": "staple",
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "other_oils",
+    "clean_protein": true
   },
   {
     "source": "Carrefour",
@@ -93979,12 +94064,12 @@
     "carbs": 0,
     "fat": 13,
     "calories": 210,
-    "category": "fat",
+    "category": "protein",
     "brand": "Carrefour",
     "id": "off_43fe96f231",
     "code": "3560070319930",
     "quantity": "",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [
       "hidden"
@@ -93999,7 +94084,9 @@
     "usage_es": "Conserva de pescado azul ahumado. Se consume directamente en tostadas, ensaladas o como ingrediente en comidas y cenas. Intercambio con salmón fresco, trucha ahumada u otras conservas de pescado azul.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Mercadona",
@@ -94035,13 +94122,13 @@
     "carbs": 0,
     "fat": 12,
     "calories": 200,
-    "category": "fat",
+    "category": "protein",
     "brand": "Hacendado",
     "id": "off_b09b143501",
     "code": "8480000182241",
     "quantity": "117 g x 2",
-    "subgroup": "other_oils",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -94053,7 +94140,9 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, tostadas o como plato principal en comidas y cenas. Intercambio con sardinas en aceite de oliva u otras conservas de pescado azul.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "other_oils",
+    "clean_protein": true
   },
   {
     "source": "Carrefour",
@@ -94062,12 +94151,12 @@
     "carbs": 0,
     "fat": 11,
     "calories": 195,
-    "category": "fat",
+    "category": "protein",
     "brand": "Carrefour",
     "id": "off_346886f117",
     "code": "8431876263220",
     "quantity": "120.0 g",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -94079,7 +94168,9 @@
     "label_reason": "Sardinas en conserva, listas para consumir",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, tostadas o como plato principal en comidas y cenas. Intercambio con otras conservas de pescado azul como caballa, atún o salmón.",
     "culinary_role": "meal_dish",
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Eroski",
@@ -94088,12 +94179,12 @@
     "carbs": 0,
     "fat": 16,
     "calories": 231,
-    "category": "fat",
+    "category": "protein",
     "brand": "Eroski",
     "id": "off_7092c6938f",
     "code": "8480010182002",
     "quantity": "",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [
       "hidden"
@@ -94108,7 +94199,9 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, tostadas o como plato principal en comidas y cenas. Intercambio con otras conservas de pescado azul como caballa, atún o salmón.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Eroski",
@@ -94117,12 +94210,12 @@
     "carbs": 0.4,
     "fat": 12.6,
     "calories": 213,
-    "category": "fat",
+    "category": "protein",
     "brand": "Eroski",
     "id": "off_79c59ccfb0",
     "code": "8480010141610",
     "quantity": "85 g",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -94135,7 +94228,9 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente como ingrediente de ensaladas, tostadas o bocadillos en comida y cena. Intercambio con otras conservas de pescado azul en aceite.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Mercadona",
@@ -94144,12 +94239,12 @@
     "carbs": 4.2,
     "fat": 14,
     "calories": 196,
-    "category": "fat",
+    "category": "protein",
     "brand": "Hacendado",
     "id": "off_963e76cfb8",
     "code": "8480000186027",
     "quantity": "111 g, 8/12",
-    "subgroup": "olive_oil",
+    "subgroup": "seafood",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -94162,7 +94257,9 @@
     "usage_es": "Conserva de molusco. Se toma directamente como tapa o aperitivo en cualquier comida. Intercambio con otros moluscos en conserva o mariscos cocidos.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Alcampo",
@@ -94171,12 +94268,12 @@
     "carbs": 0.6,
     "fat": 14,
     "calories": 212,
-    "category": "fat",
+    "category": "protein",
     "brand": "Auchan",
     "id": "off_ba1fac7bfd",
     "code": "8411555068018",
     "quantity": "88 g (65 g)",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [
       "hidden"
@@ -94191,7 +94288,9 @@
     "usage_es": "Conserva de pescado azul pequeño. Se consume directamente en tostadas, ensaladas o como tapa en comida y cena. Intercambio con sardinas en tomate o caballa en aceite.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Lidl",
@@ -94253,12 +94352,12 @@
     "carbs": 0.6,
     "fat": 11,
     "calories": 213,
-    "category": "fat",
+    "category": "protein",
     "brand": "Dia",
     "id": "off_1fb1bb0e87",
     "code": "8480017141057",
     "quantity": "",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [
       "hidden"
@@ -94273,7 +94372,9 @@
     "usage_es": "Conserva de pescado azul curado. Se consume directamente como ingrediente de ensaladas, pizzas o tostadas en comida y cena. Intercambio con otros pescados azules en conserva.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Carrefour",
@@ -94282,12 +94383,12 @@
     "carbs": 2,
     "fat": 17,
     "calories": 257,
-    "category": "fat",
+    "category": "protein",
     "brand": "Carrefour",
     "id": "off_45aa0f393b",
     "code": "3560070793723",
     "quantity": "3 x 52 g",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -94300,7 +94401,9 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente como ingrediente de ensaladas, bocadillos o platos en comida y cena. Intercambio con otras conservas de pescado azul.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Mercadona",
@@ -94309,12 +94412,12 @@
     "carbs": 0.5,
     "fat": 11,
     "calories": 202,
-    "category": "fat",
+    "category": "protein",
     "brand": "Hacendado",
     "id": "off_cd0c14bc3f",
     "code": "8480000183118",
     "quantity": "90 g",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -94327,7 +94430,9 @@
     "usage_es": "Conserva de pescado azul baja en sal. Se consume directamente como ingrediente de ensaladas o tostadas en comida y cena. Intercambio con caballa u otros pescados en conserva.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Carrefour",
@@ -94336,12 +94441,12 @@
     "carbs": 0,
     "fat": 8.2,
     "calories": 181,
-    "category": "fat",
+    "category": "protein",
     "brand": "Carrefour",
     "id": "off_38286e17d5",
     "code": "3560071085858",
     "quantity": "400 g",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [
       "hidden"
@@ -94356,7 +94461,9 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente como ingrediente de ensaladas, bocadillos o platos en comida y cena. Intercambio con atún claro o otras conservas de pescado azul.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Mercadona",
@@ -94365,12 +94472,12 @@
     "carbs": 1.4,
     "fat": 8.3,
     "calories": 179,
-    "category": "fat",
+    "category": "protein",
     "brand": "Hacendado",
     "id": "off_333dbdf6b3",
     "code": "8480000181077",
     "quantity": "120g",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -94383,7 +94490,9 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente como ingrediente de ensaladas, tostadas o guisos en comida y cena. Intercambio con atún o bonito en conserva.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Consum",
@@ -94445,12 +94554,12 @@
     "carbs": 1,
     "fat": 6.9,
     "calories": 170,
-    "category": "fat",
+    "category": "protein",
     "brand": "Hacendado",
     "id": "off_c7516141e9",
     "code": "8480000180544",
     "quantity": "100 g",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -94462,7 +94571,9 @@
     "label_reason": "Atún en conserva, alimento muy versátil",
     "usage_es": "Conserva de pescado azul en aceite de oliva. Se consume directamente en ensaladas, tostadas o como ingrediente de comidas y cenas. Intercambio con atún en escabeche, sardinas en conserva o bonito.",
     "culinary_role": "meal_dish",
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Consum",
@@ -94579,12 +94690,12 @@
     "carbs": 0.7,
     "fat": 19,
     "calories": 254,
-    "category": "fat",
+    "category": "protein",
     "brand": "Hacendado",
     "id": "off_88f789142d",
     "code": "8480000180346",
     "quantity": "",
-    "subgroup": "other_oils",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -94597,7 +94708,9 @@
     "usage_es": "Conserva de pescado azul en aceite de girasol. Se consume directamente en ensaladas, bocadillos o como ingrediente de comidas y cenas. Intercambio con atún en aceite de oliva, sardinas o caballa en conserva.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "other_oils",
+    "clean_protein": true
   },
   {
     "source": "Alcampo",
@@ -112953,13 +113066,13 @@
     "carbs": 1,
     "fat": 14,
     "calories": 210,
-    "category": "fat",
+    "category": "protein",
     "brand": "El Corte Inglés",
     "id": "off_4b41b63c8b",
     "code": "8433329001137",
     "quantity": "",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_white",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -112971,7 +113084,9 @@
     "usage_es": "Pescado ahumado con grasa añadida. Se consume en frío en la cena. Intercambio con salmón ahumado o bacalao salado.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Bonpreu/Esclat",
@@ -117432,13 +117547,13 @@
     "carbs": 0,
     "fat": 21,
     "calories": 253,
-    "category": "fat",
+    "category": "protein",
     "brand": "El Corte Inglés",
     "id": "off_006a1ce96e",
     "code": "8433329070683",
     "quantity": "111 g",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -117449,7 +117564,9 @@
     "label_reason": "Conserva de atún lista para comer",
     "usage_es": "Conserva de pescado azul graso, consumida como ingrediente en ensaladas, tostadas o bocadillos en la comida. Intercambio clínico con atún en aceite normal o caballa.",
     "culinary_role": "staple",
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "Otros",
@@ -117458,12 +117575,12 @@
     "carbs": 0,
     "fat": 14,
     "calories": 225,
-    "category": "fat",
+    "category": "protein",
     "brand": "Condis",
     "id": "off_bd7c84b5ef",
     "code": "8426765125277",
     "quantity": "3 x 52 g",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [
       "hidden"
@@ -117478,7 +117595,9 @@
     "usage_es": "Conserva de pescado azul. Se consume directo en ensaladas, bocadillos o empanadas. Ingrediente de comida y cena. Intercambio con otras conservas de pescado, salmón ahumado o pechuga de pollo.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -118303,12 +118422,12 @@
     "carbs": 0,
     "fat": 8,
     "calories": 180,
-    "category": "fat",
+    "category": "protein",
     "brand": "Bonpreu",
     "id": "off_ebc643784a",
     "code": "8422410254903",
     "quantity": "190 g",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [
       "hidden"
@@ -118323,7 +118442,9 @@
     "usage_es": "Conserva de pescado azul de calidad. Se consume directo en ensaladas, tostas o pintxos. Ingrediente de comida y cena. Intercambio con atún claro, salmón ahumado o mejillones en escabeche.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "El Corte Inglés",
@@ -118332,12 +118453,12 @@
     "carbs": 0,
     "fat": 7.5,
     "calories": 172,
-    "category": "fat",
+    "category": "protein",
     "brand": "El Corte Inglés",
     "id": "off_976987281c",
     "code": "8433329083805",
     "quantity": "",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -118350,7 +118471,9 @@
     "usage_es": "Conserva de pescado azul baja en sal. Se consume directo en ensaladas, sándwiches o ensaladillas. Ingrediente de comida y cena. Intercambio con atún normal, bonito o caballa en conserva.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -119734,7 +119857,7 @@
     "label_reason": "Plato preparado para calentar",
     "usage_es": "Plato de pasta precocinada con salmón ahumado. Se toma caliente en comida ocasional. Intercambio con espaguetis con marisco o fideos con salsa por su aporte de carbohidratos.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -121216,7 +121339,7 @@
     "label_reason": "Atún en conserva, listo para consumir",
     "usage_es": "Conserva de pescado graso. Ingrediente para ensaladillas, tostas o platos. No es plato único. Intercambio con atún en aceite de oliva, caballa o sardinas en conserva.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -123084,7 +123207,7 @@
     "id": "off_5df91f5b56",
     "code": "40896526",
     "quantity": "2 x 125 g",
-    "subgroup": "other",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [
       "condiment"
@@ -123099,7 +123222,8 @@
     "label_reason": "Conserva lista, consumo en comidas",
     "usage_es": "Conserva de pescado azul en salsa de tomate. Se come frío como plato único en la comida. Intercambio con sardinas en tomate, caballa en escabeche o atún.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true,
+    "subgroup_prev": "other"
   },
   {
     "source": "OpenFoodFacts",
@@ -123339,7 +123463,7 @@
     "label_reason": "Conserva lista, versátil y común",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, tostas o como plato principal. Apto para cualquier comida. Intercambio con otras conservas de pescado o pollo asado.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -123843,7 +123967,7 @@
     "label_reason": "Caballa en escabeche, clásico español",
     "usage_es": "Pescado azul en conserva con vinagreta. Se consume directamente como entrante o ingrediente de ensaladas, en comida. Intercambio con bonito del norte en escabeche, sardinas o atún.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -125802,13 +125926,13 @@
     "carbs": 0,
     "fat": 37,
     "calories": 397,
-    "category": "fat",
+    "category": "protein",
     "brand": "Campos",
     "id": "off_f88b8ab1e1",
     "code": "8410967000197",
     "quantity": "",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -125819,7 +125943,9 @@
     "label_reason": "Conserva lista para consumo, muy habitual",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, tostadas o bocadillos. Uso en comida o cena. Intercambio con atún en agua u otra conserva de pescado.",
     "culinary_role": "meal_dish",
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -125854,13 +125980,13 @@
     "carbs": 1.01,
     "fat": 36.36,
     "calories": 402,
-    "category": "fat",
+    "category": "protein",
     "brand": "Emperatriz",
     "id": "off_01cd38ea61",
     "code": "2000000010925",
     "quantity": "212 ml.",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [
       "hidden"
     ],
@@ -125874,7 +126000,9 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas o tostadas. Uso ocasional en comida o cena. Intercambio con bonito en agua o atún en conserva.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -126071,13 +126199,13 @@
     "carbs": 0,
     "fat": 43,
     "calories": 447,
-    "category": "fat",
+    "category": "protein",
     "brand": "Campos",
     "id": "off_72347c60d0",
     "code": "8410967002566",
     "quantity": "",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -126088,7 +126216,9 @@
     "label_reason": "Conserva lista para consumo, muy habitual",
     "usage_es": "Conserva de pescado en aceite. Ingrediente para ensaladas, tostadas o bocadillos en comida o cena. No es plato único. Intercambio con atún en escabeche o melva.",
     "culinary_role": "staple",
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -126315,13 +126445,13 @@
     "carbs": 0,
     "fat": 31,
     "calories": 355,
-    "category": "fat",
+    "category": "protein",
     "brand": "Campos",
     "id": "off_70b4865979",
     "code": "8410967002856",
     "quantity": "315 g",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [
       "hidden"
     ],
@@ -126334,7 +126464,9 @@
     "label_reason": "Conserva lista para ensaladas o platos",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas o tostadas en la comida. Intercambio con caballa, sardinas o bonito en conserva.",
     "culinary_role": "staple",
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -126369,13 +126501,13 @@
     "carbs": 0,
     "fat": 30,
     "calories": 346,
-    "category": "fat",
+    "category": "protein",
     "brand": "Albo",
     "id": "off_f8c2301bfc",
     "code": "8410032004297",
     "quantity": "85 gr",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [
       "hidden"
     ],
@@ -126389,7 +126521,9 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas o tostadas en la comida. Intercambio con atún, sardinas o bonito en conserva.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -126398,13 +126532,13 @@
     "carbs": 0,
     "fat": 30,
     "calories": 346,
-    "category": "fat",
+    "category": "protein",
     "brand": "Albo",
     "id": "off_bea8845dfa",
     "code": "8410032004280",
     "quantity": "120 g",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [
       "hidden"
     ],
@@ -126418,7 +126552,9 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas o tostadas en la comida. Intercambio con atún, sardinas o bonito en conserva.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -126453,13 +126589,13 @@
     "carbs": 0.6,
     "fat": 30,
     "calories": 355,
-    "category": "fat",
+    "category": "protein",
     "brand": "Escurís",
     "id": "off_b42cccebbb",
     "code": "8410124100715",
     "quantity": "111 g",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [
       "hidden"
     ],
@@ -126472,7 +126608,9 @@
     "label_reason": "Conserva premium, consumo puntual",
     "usage_es": "Conserva de ventresca de atún. Se consume directamente en ensaladas o tostadas, en la comida. Intercambio con atún en conserva, bonito del norte o caballa en aceite.",
     "culinary_role": "staple",
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -126481,13 +126619,13 @@
     "carbs": 0,
     "fat": 33,
     "calories": 377,
-    "category": "fat",
+    "category": "protein",
     "brand": "Albo",
     "id": "off_d48e697fd0",
     "code": "8410032003269",
     "quantity": "3 x 92 g",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -126499,7 +126637,9 @@
     "usage_es": "Conserva de atún claro. Se consume directamente en ensaladas, bocadillos o tortillas, en la comida. Intercambio con atún en aceite, bonito del norte o caballa en conserva.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -126508,13 +126648,13 @@
     "carbs": 0,
     "fat": 32,
     "calories": 368,
-    "category": "fat",
+    "category": "protein",
     "brand": "Albo",
     "id": "off_1fec44d910",
     "code": "8410032002255",
     "quantity": "112 g",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [
       "hidden"
     ],
@@ -126528,7 +126668,9 @@
     "usage_es": "Conserva de bonito del norte. Se consume directamente en ensaladas, pintxos o bocadillos, en la comida. Intercambio con atún en aceite, ventresca o caballa en conserva.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -126643,13 +126785,13 @@
     "carbs": 0,
     "fat": 33,
     "calories": 377,
-    "category": "fat",
+    "category": "protein",
     "brand": "Albo",
     "id": "off_1059744260",
     "code": "8410032003214",
     "quantity": "6 x 80g",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [
       "hidden"
     ],
@@ -126663,7 +126805,9 @@
     "usage_es": "Conserva de atún. Se consume directamente en ensaladas, bocadillos o tortillas, en la comida. Intercambio con atún claro, bonito del norte o caballa en conserva.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -126672,13 +126816,13 @@
     "carbs": 4.57,
     "fat": 37.6,
     "calories": 416.6,
-    "category": "fat",
+    "category": "protein",
     "brand": "Manuel Claros",
     "id": "off_f7b4dd351f",
     "code": "8437002871567",
     "quantity": "peso neto 85 gr.",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -126690,7 +126834,9 @@
     "usage_es": "Conserva de anchoas. Se consume directamente en pizzas, ensaladas o tostadas, en cualquier momento. Intercambio con boquerones en vinagre o sardinas en conserva.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -126835,13 +126981,13 @@
     "carbs": 0.8,
     "fat": 25,
     "calories": 319,
-    "category": "fat",
+    "category": "protein",
     "brand": "marinara",
     "id": "off_d3b424d0d0",
     "code": "8410155024028",
     "quantity": "",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -126853,7 +126999,9 @@
     "usage_es": "Conserva de pescado azul rara en España. Se come en comida como tapa o ingrediente de ensaladas. Intercambio con atún, bonito o sardinas en conserva.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -126888,13 +127036,13 @@
     "carbs": 0,
     "fat": 23,
     "calories": 214,
-    "category": "fat",
+    "category": "protein",
     "brand": "Calvo",
     "id": "off_5d944217ea",
     "code": "8410090051134",
     "quantity": "4 x 70 g",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -126905,7 +127053,9 @@
     "label_reason": "Marca clásica de atún en conserva",
     "usage_es": "Conserva de pescado azul lista para comer. Ingrediente de ensaladas, bocadillos o platos de comida. Intercambio con bonito, melva o sardinas en conserva.",
     "culinary_role": "staple",
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -126997,13 +127147,13 @@
     "carbs": 0,
     "fat": 41,
     "calories": 429,
-    "category": "fat",
+    "category": "protein",
     "brand": "Campos",
     "id": "off_6d76fc22e1",
     "code": "8410967100309",
     "quantity": "",
-    "subgroup": "other_oils",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -127015,7 +127165,9 @@
     "usage_es": "Conserva de pescado en aceite vegetal. Ingrediente habitual en ensaladas, arroces o platos de comida. Intercambio con atún en oliva, bonito o caballa.",
     "culinary_role": "meal_dish",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "other_oils",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -127053,13 +127205,13 @@
     "carbs": 0,
     "fat": 28,
     "calories": 323,
-    "category": "fat",
+    "category": "protein",
     "brand": "Calvo",
     "id": "off_3fe66d6d6e",
     "code": "8410090450128",
     "quantity": "",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -127071,7 +127223,9 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, tostadas o como ingrediente. Uso en comida o cena. Intercambio con atún en conserva, caballa o melva.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -127106,13 +127260,13 @@
     "carbs": 0.8,
     "fat": 28,
     "calories": 339,
-    "category": "fat",
+    "category": "protein",
     "brand": "Tejero",
     "id": "off_59b459d9c4",
     "code": "8411735603107",
     "quantity": "120 g (peso neto), 80 g (peso escurrido)",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -127123,7 +127277,9 @@
     "label_reason": "Melva de almadraba, producto premium",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, tostadas o como ingrediente. Uso en comida o cena. Intercambio con atún en conserva, ventresca o caballa.",
     "culinary_role": "staple",
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -127132,13 +127288,13 @@
     "carbs": 0.2,
     "fat": 29,
     "calories": 350,
-    "category": "fat",
+    "category": "protein",
     "brand": "Dorita",
     "id": "off_c03eb203c2",
     "code": "8412604000478",
     "quantity": "",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -127150,7 +127306,9 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, tostadas o como ingrediente. Uso en comida o cena. Intercambio con atún claro, melva o bonito del norte.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -127159,13 +127317,13 @@
     "carbs": 0.5,
     "fat": 29,
     "calories": 339,
-    "category": "fat",
+    "category": "protein",
     "brand": "Minerva",
     "id": "off_f29d6bc8db",
     "code": "5606677101054",
     "quantity": "120 g",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [
       "hidden"
     ],
@@ -127178,7 +127336,9 @@
     "label_reason": "Sardinas picantes, variante común",
     "usage_es": "Conserva de pescado azul. Se consume directamente en tostadas, ensaladas o como ingrediente. Uso en comida o cena. Intercambio con sardinas, atún claro o caballa en conserva.",
     "culinary_role": "staple",
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -127187,12 +127347,12 @@
     "carbs": 0.5,
     "fat": 18,
     "calories": 223,
-    "category": "fat",
+    "category": "protein",
     "brand": "Anxoves de l'Escala",
     "id": "off_c6a12c0f09",
     "code": "8411909800004",
     "quantity": "",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -127204,7 +127364,9 @@
     "label_reason": "Anchoa de l'Escala, clásico mediterráneo",
     "usage_es": "Conserva de pescado azul. Se consume directamente como tapa, en ensaladas o como ingrediente. Uso en comida o cena. Intercambio con bacalao salado, sardinas o boquerones frescos.",
     "culinary_role": "staple",
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -127239,12 +127401,12 @@
     "carbs": 0.9,
     "fat": 18,
     "calories": 249.6,
-    "category": "fat",
+    "category": "protein",
     "brand": "Rianxeira",
     "id": "off_ab776c81b1",
     "code": "8410131012353",
     "quantity": "",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -127256,7 +127418,9 @@
     "label_reason": "Atún en conserva marca gallega habitual",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, tostadas o como ingrediente. Uso en comida o cena. Intercambio con ventresca, melva o caballa en conserva.",
     "culinary_role": "staple",
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -127373,13 +127537,13 @@
     "carbs": 0,
     "fat": 12,
     "calories": 190,
-    "category": "fat",
+    "category": "protein",
     "brand": "cermar",
     "id": "off_70999fe154",
     "code": "8436558280090",
     "quantity": "",
-    "subgroup": "other_oils",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -127391,7 +127555,9 @@
     "usage_es": "Conserva de pescado azul en aceite. Se consume directamente en ensaladas, bocadillos o platos combinados. Cualquier comida. Intercambio con atún en aceite de oliva u otra conserva de pescado.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "other_oils",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -127417,7 +127583,7 @@
     "label_reason": "Atún claro en lata, básico español",
     "usage_es": "Conserva de pescado azul en aceite. Se consume directamente en ensaladas, bocadillos o platos combinados. Cualquier comida. Intercambio con atún en aceite de oliva u otra conserva de pescado.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -127452,12 +127618,12 @@
     "carbs": 0.1,
     "fat": 20.4,
     "calories": 279.6,
-    "category": "fat",
+    "category": "protein",
     "brand": "Herpac",
     "id": "off_00094e0ab1",
     "code": "8422217001441",
     "quantity": "",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -127470,7 +127636,9 @@
     "usage_es": "Conserva de pescado azul premium. Se consume directamente en tostadas, ensaladas o tapas. Cualquier comida. Intercambio con bonito del norte o atún en aceite de oliva.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -127506,13 +127674,13 @@
     "carbs": 0,
     "fat": 22.4,
     "calories": 277,
-    "category": "fat",
+    "category": "protein",
     "brand": "Galica",
     "id": "off_c12710399e",
     "code": "8437007433920",
     "quantity": "60 gr",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -127524,7 +127692,9 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, tostadas o como tapa. Cualquier comida. Intercambio con sardinillas o caballa en aceite de oliva.",
     "culinary_role": "meal_dish",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -127533,13 +127703,13 @@
     "carbs": 0.58,
     "fat": 22.4,
     "calories": 287,
-    "category": "fat",
+    "category": "protein",
     "brand": "Frinsa",
     "id": "off_a37f8b9fba",
     "code": "8429583013917",
     "quantity": "",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -127550,7 +127720,9 @@
     "label_reason": "Caballa en conserva, pescado azul común",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, tostadas o como tapa. Cualquier comida. Intercambio con sardinas o atún en aceite de oliva.",
     "culinary_role": "meal_dish",
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -127585,13 +127757,13 @@
     "carbs": 1.9,
     "fat": 22,
     "calories": 282,
-    "category": "fat",
+    "category": "protein",
     "brand": "Calvo",
     "id": "off_41d42520a3",
     "code": "8410090374325",
     "quantity": "15 g",
-    "subgroup": "olive_oil",
-    "macro_profile": "fat",
+    "subgroup": "fish_fatty",
+    "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
     "raw_ingredient": false,
@@ -127603,7 +127775,9 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, bocadillos o platos. Uso en comida, cena o snack. Intercambio con otras conservas de pescado, pechuga de pollo o huevo.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -127639,12 +127813,12 @@
     "carbs": 0.1,
     "fat": 14.2,
     "calories": 230,
-    "category": "fat",
+    "category": "protein",
     "brand": "vengarco",
     "id": "off_5d4262ed00",
     "code": "8437007468533",
     "quantity": "",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -127657,7 +127831,9 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, bocadillos o platos. Uso en comida, cena o snack. Intercambio con otras conservas de pescado, pechuga de pollo o huevo.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -127666,12 +127842,12 @@
     "carbs": 0,
     "fat": 22,
     "calories": 277,
-    "category": "fat",
+    "category": "protein",
     "brand": "Ortiz",
     "id": "off_cd3a981ae5",
     "code": "8411320801055",
     "quantity": "140g",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [
       "hidden"
@@ -127686,7 +127862,9 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente en tostas, ensaladas o aperitivos. Uso en comida, cena o snack. Intercambio con otras conservas de pescado azul o caballa.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -127695,12 +127873,12 @@
     "carbs": 0,
     "fat": 22,
     "calories": 277,
-    "category": "fat",
+    "category": "protein",
     "brand": "Ramón Peña",
     "id": "off_11292fda32",
     "code": "8426441160776",
     "quantity": "115 g",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [
       "hidden"
@@ -127715,7 +127893,9 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente en tostas o aperitivos. Uso en comida, cena o snack. Intercambio con otras conservas de pescado azul o sardinas sin picante.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -127724,12 +127904,12 @@
     "carbs": 0,
     "fat": 22,
     "calories": 277,
-    "category": "fat",
+    "category": "protein",
     "brand": "Día",
     "id": "off_c2862a6dd6",
     "code": "8480017501721",
     "quantity": "3x52g (peso neto escurrido)",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [
       "hidden"
@@ -127744,7 +127924,9 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, bocadillos o platos. Uso en comida, cena o snack. Intercambio con otras conservas de pescado, pechuga de pollo o huevo.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -127780,12 +127962,12 @@
     "carbs": 0.5,
     "fat": 16.5,
     "calories": 234,
-    "category": "fat",
+    "category": "protein",
     "brand": "Cabo de Peñas",
     "id": "off_5305fe250f",
     "code": "8411555060685",
     "quantity": "120g",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [
       "hidden"
@@ -127800,7 +127982,9 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente en tostas, ensaladas o aperitivos. Uso en comida, cena o snack. Intercambio con otras conservas de pescado azul o caballa.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -127809,12 +127993,12 @@
     "carbs": 1.1,
     "fat": 17.2,
     "calories": 254,
-    "category": "fat",
+    "category": "protein",
     "brand": "Calvo",
     "id": "off_f10f7bd70f",
     "code": "8410090031563",
     "quantity": "",
-    "subgroup": "olive_oil",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "ready_to_eat": true,
@@ -127827,7 +128011,9 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, bocadillos o platos. Uso en comida, cena o snack. Intercambio con otras conservas de pescado, pechuga de pollo o huevo.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "category_prev": "fat",
+    "subgroup_prev": "olive_oil",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -128253,7 +128439,7 @@
     "usage_es": "Conserva de pescado azul en aceite de oliva. Ingrediente para ensaladas, bocadillos o platos en la comida. Intercambio con atún en aceite, bonito o sardinas.",
     "culinary_role": "meal_dish",
     "oil_added": true,
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -128281,7 +128467,7 @@
     "usage_es": "Conserva de pescado azul en aceite. Ingrediente para ensaladas, bocadillos o platos en la comida. Intercambio con bonito del norte, caballa o sardinas en aceite.",
     "culinary_role": "meal_dish",
     "oil_added": true,
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -128343,12 +128529,12 @@
     "carbs": 0.7,
     "fat": 5,
     "calories": 134,
-    "category": "fat",
+    "category": "protein",
     "brand": "Calvo",
     "id": "off_c5f518f94b",
     "code": "8410090061010",
     "quantity": "",
-    "subgroup": "other_oils",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "category_prev": "protein",
@@ -128362,7 +128548,8 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, bocadillos o platos. Uso en comida, cena o snack. Intercambio con atún en oliva, pechuga de pollo o huevo.",
     "culinary_role": "staple",
     "oil_added": true,
-    "clean_fat": false
+    "subgroup_prev": "other_oils",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -129154,7 +129341,7 @@
     "label_reason": "Atún en escabeche, listo para comer",
     "usage_es": "Conserva de pescado azul en escabeche. Se consume directamente en ensaladas o como ingrediente. Cualquier comida. Intercambio con atún en aceite, caballa en conserva o bonito.",
     "culinary_role": "meal_dish",
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -129242,12 +129429,12 @@
     "carbs": 0,
     "fat": 5.4,
     "calories": 138.9,
-    "category": "fat",
+    "category": "protein",
     "brand": "GREAT VALUE",
     "id": "off_4c271e54da",
     "code": "7501791624442",
     "quantity": "140 G",
-    "subgroup": "fish",
+    "subgroup": "fish_fatty",
     "macro_profile": "protein",
     "flags": [],
     "category_prev": "protein",
@@ -129260,7 +129447,8 @@
     "label_reason": "Atún en lata, listo para consumir",
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, bocadillos o tortillas. Apto para cualquier comida. Intercambio con其他 atunes en conserva, bonito o caballa en aceite.",
     "culinary_role": "meal_dish",
-    "clean_fat": false
+    "subgroup_prev": "fish",
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -130024,7 +130212,7 @@
     "usage_es": "Conserva de pescado azul troceado. Se consume directamente en ensaladas, arroces o bocadillos. Ingrediente de cualquier comida. Intercambio con otros atunes en conserva o bonito.",
     "culinary_role": "meal_dish",
     "oil_added": true,
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -130158,7 +130346,7 @@
     "usage_es": "Conserva de pescado azul en aceite vegetal. Se consume directamente en ensaladas o tapas. Apto para cualquier comida. Intercambio con otros atunes en conserva, caballa o bonito.",
     "culinary_role": "meal_dish",
     "oil_added": true,
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
@@ -130214,7 +130402,7 @@
     "usage_es": "Conserva de pescado azul. Se consume directamente en ensaladas, bocadillos o tortillas. Apto para cualquier comida. Intercambio con otros atunes en conserva, bonito o caballa.",
     "culinary_role": "meal_dish",
     "oil_added": true,
-    "clean_protein": false
+    "clean_protein": true
   },
   {
     "source": "OpenFoodFacts",
