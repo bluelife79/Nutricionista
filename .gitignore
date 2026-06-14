@@ -45,3 +45,10 @@ scripts/review_dairy.csv
 scripts/review_fat.csv
 scripts/review_protein.csv
 scripts/review_pending.csv
+
+# DB backups y artefactos de auditoría (local)
+*.bak
+database.backup*.json
+test_report_data.json
+test_resultados.html
+*.png

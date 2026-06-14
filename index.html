@@ -2104,9 +2104,11 @@
           "corn flakes", "fitness", "special k", "choco krispies",
           // galletas, tortitas, crackers
           "galleta", "tortita", "cracker", "crujiente",
-          // conservas pescado y marisco
-          "atun", "atún", "sardina", "caballa", "bonito", "anchoa",
-          "surimi", "mejillon", "berberecho", "almeja",
+          // NOTA: conservas de pescado/marisco (atún, sardina, caballa,
+          // bonito, anchoa, surimi, mejillón...) se quitaron de aquí a
+          // propósito: el cliente pidió que en conservas de pescado salgan
+          // primero las ALTERNATIVAS RECOMENDADAS (salmón, atún fresco...),
+          // no "otras marcas y formatos" del mismo producto.
           // fiambres y embutidos
           "jamon", "jamón", "chorizo", "salchichon", "salchichón",
           "fuet", "salchicha", "hamburguesa", "bacon", "mortadela",
@@ -2222,7 +2224,7 @@
             <div class="result-brand">${alt.brand || "Sin marca"} · ${alt.source || "Base"}</div>
           </div>
           <div class="match-score">
-            <div class="match-value ${tier}">${alt.matchScore}%</div>
+            <div class="match-value ${tier}">${alt.matchDisplay ?? alt.matchScore}%</div>
             <div class="match-label">Match</div>
           </div>
         </div>

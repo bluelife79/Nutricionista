@@ -486,12 +486,32 @@ function calculateEquivalence(
         original.category === "fat" && alt.category === "fat" &&
         _FAT_CLUSTER_SUBS.has(original.subgroup) &&
         _FAT_CLUSTER_SUBS.has(alt.subgroup);
+      // Hugo audit (Feedback Elena) caso patata — cluster de HIDRATOS base
+      // exento del techo calórico, misma lógica que lean/fat/plant: la porción
+      // equivalente se ajusta por gramaje (patata cruda 71 kcal → 19g de pasta
+      // seca 367 kcal = mismo aporte). Sin esto, un hidrato de baja densidad
+      // (patata/arroz hervido) NO podía ofrecer arroz/pasta/cuscús/quinoa secos
+      // — Hugo: "debe quedarse en tubérculos e hidratos base: patata, boniato,
+      // batata, arroz, pasta, cuscús, quinoa". El junk (galletas/bollería) ya
+      // lo saca el gate clean_carb; el demote de densidad (kcal-ceiling ~2397)
+      // mantiene el orden (misma densidad primero). Solo grains/tubers/legumes
+      // (NO fruit/vegetables, que no son intercambio de gramaje). Reversible.
+      const _carbClusterExempt =
+        window.CARB_CLUSTER_KCAL_EXEMPT === undefined
+          ? true
+          : window.CARB_CLUSTER_KCAL_EXEMPT;
+      const _CARB_CLUSTER_SUBS = new Set(["grains", "tubers", "legumes"]);
+      const isSameCarbCluster =
+        _carbClusterExempt &&
+        original.category === "carbs" && alt.category === "carbs" &&
+        _CARB_CLUSTER_SUBS.has(original.subgroup) &&
+        _CARB_CLUSTER_SUBS.has(alt.subgroup);
       // Hugo audit (Feedback Elena) Bloque 1 — cluster vegetal exento del
       // techo calórico (isSamePlantCluster hoisteado arriba). La densidad
       // calórica varía mucho (tofu 73 kcal vs garbanzo cocido 139 o crudo
       // 330) pero la porción equivalente se ajusta por gramaje — igual que
       // el fat cluster. Sin esto tofu/seitán quedaban con 0 intercambios.
-      if (!isSameLeanCluster && !isSameFatCluster && !isSamePlantCluster) {
+      if (!isSameLeanCluster && !isSameFatCluster && !isSamePlantCluster && !isSameCarbCluster) {
         return null; // hard filter
       }
     }
@@ -539,6 +559,22 @@ function calculateEquivalence(
     Math.round(100 - (penalty / Math.max(totalMacros, 10)) * 100),
   );
 
+  // DISPLAY-ONLY: % anclado a proteína para el fallback vegetal. El matchScore
+  // macro castiga los carbs de la legumbre y cae a ~0%, pero como FUENTE
+  // PROTEICA el intercambio es válido. Mostramos la cercanía de proteína (el
+  // motivo real del swap) para no enseñar "0%" en un item recomendado, sin la
+  // etiqueta confusa "Por familia". NO afecta el ORDEN: el sort usa matchScore,
+  // no matchDisplay — solo cambia el número que ve la usuaria.
+  let matchDisplay = matchScore;
+  if (isSamePlantCluster && anchor === "protein" && matchScore < 55) {
+    const _pClose =
+      100 - Math.min(100, (Math.abs(proteinDiff) / Math.max(originalMacros.protein, 1)) * 100);
+    // Cap 68: el fallback vegetal muestra un % creíble (55-68) pero SIEMPRE
+    // por debajo de los matches reales del cluster (tempeh 70, seitán 77),
+    // para que el orden visible siga siendo coherente con el %.
+    matchDisplay = Math.max(55, Math.min(68, Math.round(_pClose * 0.68)));
+  }
+
   let level = null;
   if (matchScore >= 95 && equivalentAmount <= 300) level = "perfect";
   else if (matchScore >= 75 && equivalentAmount <= 400) level = "good";
@@ -564,6 +600,7 @@ function calculateEquivalence(
     equivalentAmount,
     macros: altMacros,
     matchScore,
+    matchDisplay,
     level,
     diffs: {
       protein: proteinDiff,
@@ -1047,8 +1084,18 @@ function inferProcessingLevel(food) {
 //   ↔ patata cuadra nutricionalmente — pero no debe ir PRIMERO).
 function carbShape(food) {
   if (!food || food.category !== "carbs") return null;
+  // subgroup es dato curado y manda sobre el nombre: "Patata para tortilla"
+  // es tuber aunque el nombre diga "tortilla". Evita falsos positivos del
+  // regex de pan sobre productos de patata/batata.
+  if (food.subgroup === "tubers") return "tuber";
   const n = norm(food.name || "");
-  if (/\b(pan|tostad\w*|biscote|wrap|pita|rega[ñn]\w*|picos|colines|colin|bagel|baguet\w*|chapata|molde|mollete|barrita de pan|cracker|crackers)\b/.test(n)) return "bread";
+  // bread/tostada/wrap — Hugo audit (Feedback Elena, caso pan integral):
+  // ampliado para cubrir nombres descriptivos que el regex viejo perdía y
+  // que el motor clasificaba mal como flakes/grain (panecillo, hogaza,
+  // rústica, tortilla de trigo/maíz=wrap, fajita). Va PRIMERO: un nombre con
+  // keyword de pan gana sobre cereal/trigo/avena que aparezcan en el mismo
+  // nombre (ej. "Hogaza de centeno y avena" → bread, no flakes).
+  if (/\b(pan\w*|tostad\w*|biscote\w*|wrap\w*|pita|rega[ñn]\w*|picos|colines|colin|bagel\w*|baguet\w*|chapat\w*|molde|mollete\w*|hogaza\w*|rustic\w*|tortilla\w*|fajita\w*|cracker\w*)\b/.test(n)) return "bread";
   if (/\b(avena|copos|cereal\w*|salvado|m[üu]esli|granola|porridge|gachas)\b/.test(n)) return "flakes";
   if (/\b(pasta|macarr\w*|espagueti\w*|espagueti|fideo\w*|tallarin\w*|noodle\w*|raviol\w*|penne|fusilli|rigaton\w*|lasa[ñn]\w*|[ñn]oqui\w*|gnocchi|canelon\w*|tortellini|maccaron\w*|spaguetti|spaghetti)\b/.test(n)) return "pasta";
   if (/\b(patata\w*|papa|papas|boniato\w*|batata\w*|yuca|mandioca|[ñn]ame)\b/.test(n)) return "tuber";
@@ -1416,6 +1463,61 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         }
       }
 
+      // Hugo audit (Feedback Elena) Bloque 2 bis — conserva/pescado graso NO trae
+      // carne (HARD filter). Cuando el origen es pescado azul o marisco
+      // (fish_fatty/seafood), la carne (cerdo/ternera/embutido lomo) NO es
+      // intercambio válido: Hugo "conserva grasa debe ofrecer conservas
+      // equivalentes — caballa, sardina, bonito/atún en aceite, melva similar".
+      // El demote suave ×0.15 (línea ~1832) no basta en pools chicos (melva: 22
+      // alts) porque el lomo ibérico/cabecero matchea por macro-grasa y aflora
+      // en el top visible aunque tenga clean_protein:true. Acá lo sacamos del
+      // pool. ASIMÉTRICO: solo fish→meat; el inverso (pollo→atún) sigue válido.
+      // NO toca fish_white (ahí pollo/pavo SÍ es swap magro legítimo).
+      {
+        const _fishMeatHard =
+          window.FISH_ORIGIN_MEAT_HARD === undefined
+            ? true
+            : window.FISH_ORIGIN_MEAT_HARD;
+        const _FISH_FATTY_ORIGIN = new Set(["fish_fatty", "seafood"]);
+        const _MEAT_SUBS = new Set(["meat", "meat_lean", "meat_fatty"]);
+        if (
+          _fishMeatHard &&
+          originalFood.category === "protein" &&
+          _FISH_FATTY_ORIGIN.has(originalFood.subgroup) &&
+          f.category === "protein" &&
+          _MEAT_SUBS.has(f.subgroup)
+        ) {
+          return false;
+        }
+      }
+
+      // Hugo audit (Feedback Elena) Bloque 2 ter — pescado BLANCO/magro NO trae
+      // carne GRASA (HARD ceiling de grasa). Hugo (merluza): "penalizar grasa
+      // excesiva cuando el origen sea pescado blanco/proteína magra". NO es
+      // "sacar toda la carne": pavo/pollo pechuga y lomo magro (3-6g grasa) son
+      // swaps proteico-magros válidos y se MANTIENEN. Solo sale la carne con
+      // grasa excesiva (cerdo graso 23g, costilla/cordero 16-18g). Por eso es
+      // un techo de grasa absoluto, no un filtro por subgrupo. Distinto del
+      // filtro fish_fatty de arriba (ahí el origen ya es graso y NINGUNA carne
+      // pega; acá el origen es magro y la carne magra SÍ pega).
+      {
+        const _fatCeil =
+          window.FISH_WHITE_MEAT_FAT_CEILING === undefined
+            ? 10
+            : window.FISH_WHITE_MEAT_FAT_CEILING;
+        const _MEAT_SUBS_W = new Set(["meat", "meat_lean", "meat_fatty"]);
+        if (
+          _fatCeil > 0 &&
+          originalFood.category === "protein" &&
+          originalFood.subgroup === "fish_white" &&
+          f.category === "protein" &&
+          _MEAT_SUBS_W.has(f.subgroup) &&
+          Number(f.fat) >= _fatCeil
+        ) {
+          return false;
+        }
+      }
+
       // Hugo Regla 3 — Grasos saciantes (HARD FLOOR kcal_ratio ≥ 0.75).
       // Cuando el origen es graso saciante (pescado azul, aguacate, frutos
       // secos, o mixed-macro fat-dominant alto-kcal), excluir del POOL todo
@@ -1479,10 +1581,19 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       // batido"). dairy_subfamily refinado en scripts/refine_dairy_subfamily.js.
       // Hugo acepta "pocas opciones pero coherentes" (caso queso de Burgos).
       {
+        // Hugo audit (Feedback Elena) Bloque 3 — subfamilias lácteas SEPARADAS
+        // (HARD, no demote). Hugo refinó: "separar leche simple, yogur/kéfir/
+        // skyr, queso fresco, queso curado". 4 clusters cerrados, NO mezclar.
+        // Antes yogur_kefir↔queso_fresco era cross-compat ("queso fresco batido")
+        // pero Hugo ahora pide separación: yogur griego traía cuajada/requesón/
+        // Burgos al top. El demote cross-subfamilia (×0.35, ~2455) NO bastaba
+        // (es ranking, lo pisa el rerank/sort del browser); el filtro de pool
+        // (return false acá) SÍ saca el queso del candidato. Cada subfamilia
+        // solo intercambia consigo misma.
         const _DAIRY_COMPAT = {
           leche: ["leche"],
-          yogur_kefir: ["yogur_kefir", "queso_fresco"],
-          queso_fresco: ["queso_fresco", "yogur_kefir"],
+          yogur_kefir: ["yogur_kefir"],
+          queso_fresco: ["queso_fresco"],
           quesos_solidos: ["quesos_solidos"],
           grasa_lactea: ["grasa_lactea"],
           bebida_postre: ["bebida_postre"],
@@ -1495,6 +1606,31 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
           originalFood.category === "dairy" && f.category === "dairy" &&
           oFam && _DAIRY_COMPAT[oFam] &&
           (!cFam || !_DAIRY_COMPAT[oFam].includes(cFam))
+        ) {
+          return false;
+        }
+      }
+
+      // Hugo audit (Feedback Elena) Bloque 3 bis — lácteo natural NO trae
+      // saborizados. Hugo (yogur natural): "no yogures saborizados. No mezclar
+      // yogur natural con bebidas/café/batidos". La subfamilia (yogur_kefir)
+      // NO distingue natural vs saborizado — ambos caen en yogur_kefir y no hay
+      // campo estructurado (sin sugar/flavored flag). Detección por nombre:
+      // cuando el ORIGEN lácteo NO es saborizado, excluir candidatos lácteos
+      // con sabor/fruta en el nombre (arándano, coco, fresa, mango, cacao, café,
+      // miel, cereales, etc.). Si el origen YA es saborizado, no aplica (yogur
+      // de fresa → otros saborizados es válido). Gateado, reversible.
+      {
+        const _dairyFlavorExclude =
+          window.DAIRY_FLAVOR_EXCLUDE === undefined
+            ? true
+            : window.DAIRY_FLAVOR_EXCLUDE;
+        const _FLAVOR_RE = /(arandano|fresa|frambuesa|melocoton|platano|cacao|chocolate|vainilla|vanilla|limon|naranja|mango|pina|coco|caramelo|galleta|cookie|frut[ao]s?|miel|cafe|moka|tiramis|stracc|macedonia|cereza|higo|granada|maracuy|kiwi|sabor|sabores|pomelo|grosella|bosque|toffee|dulce de leche|cereal|cereales|avena con)/;
+        if (
+          _dairyFlavorExclude &&
+          originalFood.category === "dairy" && f.category === "dairy" &&
+          !_FLAVOR_RE.test(norm(originalFood.name || "")) &&
+          _FLAVOR_RE.test(norm(f.name || ""))
         ) {
           return false;
         }
@@ -1671,6 +1807,17 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     const csub = a.subgroup || "";
     const oname = (originalFood.name || "").toLowerCase();
     const cname = (a.name || "").toLowerCase();
+
+    // PLANT CLUSTER ESCAPE HATCH (sort scope) — paralelo al lean protein
+    // cluster. Cuando origen y candidato son ambos del cluster vegetal
+    // (plant_protein/legumbres), los intercambios IDEALES (tofu↔tempeh/
+    // seitán/soja) NO deben hundirse por democión de frecuencia (ocasional/
+    // raro), exotic ni kcal-density. Si no, legumbres "habituales" con 0%
+    // de match macro ganan al swap correcto de misma familia. Hugo bloque 1
+    // pide proteína vegetal real arriba, no legumbre genérica con 0%.
+    const _PLANT_CLUSTER_SORT = new Set(["plant_protein", "legumes"]);
+    const isSamePlantClusterSort =
+      _PLANT_CLUSTER_SORT.has(osub) && _PLANT_CLUSTER_SORT.has(csub);
     const oIsOil       = _OIL_SUBS.has(osub);
     const cIsOil       = _OIL_SUBS.has(csub);
     const oIsDenseFat  = _DENSE_FAT_SUBS.has(osub) || _FAT_BRIDGE_NAME_RE.test(oname);
@@ -1781,7 +1928,9 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         if (window.location.search.includes('?debug=1')) {
           console.debug('[plant-protein-meat] DEMOTED candidate=\'' + a.name + '\' factor=0.15');
         }
-      } else if (a.subgroup === "viscera" || a.exotic === true) {
+      } else if ((a.subgroup === "viscera" || a.exotic === true) && !isSamePlantClusterSort) {
+        // Escape: seitán está flageado exotic pero es plant_protein y ES el
+        // intercambio correcto de tofu. No lo demotamos dentro del cluster.
         demotion *= 0.05;
         if (window.location.search.includes('?debug=1')) {
           console.debug('[plant-protein-exotic] DEMOTED candidate=\'' + a.name + '\' factor=0.05');
@@ -1827,6 +1976,36 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       }
     }
 
+    // Hugo audit (Feedback Elena) Bloque 5 bis — cereal base simple prioriza
+    // sobre cereal de desayuno graso. Hugo (avena): "debería priorizar más
+    // avena/cereal base simple". Cuando el origen es un cereal base magro
+    // (grains, grasa < 9g: avena 6.6, quinoa 5.6, pasta 2, cuscús 3.3, arroz),
+    // demote los cereales grains con grasa excesiva (≥9g: Corazón fundente 12,
+    // P'tit Déj 14, granola/muesli) que NO son base simple. NO eliminatorio
+    // (siguen siendo cereal, no basura): solo bajan en el TOP visible para que
+    // suban pasta/cuscús/arroz/quinoa. Asimétrico: si el origen ya es graso
+    // (granola), no aplica.
+    {
+      const _grainFatCeil =
+        window.GRAIN_BASE_FAT_CEILING === undefined
+          ? 9
+          : window.GRAIN_BASE_FAT_CEILING;
+      const _grainFatDemote =
+        Number(window.GRAIN_BASE_FAT_DEMOTION) || 0.25;
+      if (
+        _grainFatCeil > 0 &&
+        originalFood.subgroup === "grains" &&
+        Number(originalFood.fat) < _grainFatCeil &&
+        a.subgroup === "grains" &&
+        Number(a.fat) >= _grainFatCeil
+      ) {
+        demotion *= _grainFatDemote;
+        if (window.location.search.includes("?debug=1")) {
+          console.debug("[grain-base-fat] DEMOTED candidate='" + a.name + "' fat=" + a.fat);
+        }
+      }
+    }
+
     if (_bulkLabelEnabled) {
       // Meal slot mismatch (origin breakfast → candidate dinner) — demote.
       // "any" del candidato cuando origen tiene slot específico = light demote.
@@ -1849,7 +2028,9 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         }
       }
       // Candidate exotic but origin is not (Pollo → Cangrejo).
-      if (a.exotic === true && originalFood.exotic !== true) {
+      // Escape: dentro del cluster vegetal no penalizamos exotic (seitán es
+      // exotic pero ES el intercambio correcto de tofu).
+      if (a.exotic === true && originalFood.exotic !== true && !isSamePlantClusterSort) {
         demotion *= _demoteExotic;     // default 0.7
         if (window.location.search.includes('?debug=1')) {
           console.debug('[bulk-label] DEMOTED candidate=\'' + a.name + '\' factor=' + _demoteExotic + ' reason=exotic');
@@ -1874,7 +2055,9 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         } else if (oFreq === "ocasional") {
           if (cFreq === "raro") { freqDemote = (_demoteRare + _demoteFreqGap) / 2; freqReason = "ocasional_to_raro"; }
         }
-        if (freqDemote < 1) {
+        // Escape: dentro del cluster vegetal no aplicamos freq-gap. Tempeh/
+        // soja son "ocasional" pero son el swap ideal de tofu.
+        if (freqDemote < 1 && !isSamePlantClusterSort) {
           demotion *= freqDemote;
           if (window.location.search.includes('?debug=1')) {
             console.debug('[bulk-label] DEMOTED candidate=\'' + a.name + '\' factor=' + freqDemote + ' reason=freq_' + freqReason);
@@ -1942,6 +2125,7 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       const _candidateState = getCookingState(a.name);
       if (
         !isSameLeanProteinCluster &&
+        !isSamePlantClusterSort &&
         _originState !== "neutral" &&
         _candidateState !== "neutral" &&
         _originState !== _candidateState
@@ -1997,6 +2181,7 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       const cKcal = a.calories;
       if (
         !isSameLeanProteinCluster &&
+        !isSamePlantClusterSort &&
         oKcal != null && cKcal != null &&
         originalFood.subgroup && a.subgroup &&
         originalFood.subgroup === a.subgroup
@@ -2095,7 +2280,7 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     // avestruz, casquería) y origen NO lo es, demote fuerte. Cliente:
     // "no son alternativas normales para una clienta que quiere cambiar
     // pollo un martes por la noche".
-    if (a.exotic === true && originalFood.exotic !== true) {
+    if (a.exotic === true && originalFood.exotic !== true && !isSamePlantClusterSort) {
       demotion *= _demoteExoticMismatch;
       if (window.location.search.includes('?debug=1')) {
         console.debug('[exotic] DEMOTED candidate=\'' + a.name + '\' factor=' + _demoteExoticMismatch);
@@ -2255,7 +2440,13 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     // Excepción: lean protein cluster (pollo 170 → atún natural 116 → OK
     // ya en su propia regla; pero ternera 250 vs pollo 170 = ratio 1.47
     // y son intercambio válido). Por eso saltamos sameLeanCluster.
+    // Escape cluster vegetal: el techo usa kcal per-100g CRUDO, pero tempeh/
+    // seitán/soja son proteínas vegetales densas que se escalan en gramos
+    // (40g tempeh = 77 kcal ≈ 100g tofu = 73 kcal). Al plato cuadran; el
+    // techo per-100g los hundía injustamente. La equivalencia en gramos ya
+    // controla las calorías reales del intercambio.
     if (!isSameLeanProteinCluster &&
+        !isSamePlantClusterSort &&
         originalFood.calories > 0 && a.calories > 0) {
       const kcalRatio = a.calories / originalFood.calories;
       if (kcalRatio > 1.40) {
