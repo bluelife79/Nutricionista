@@ -2,7 +2,13 @@
   "name": "revolucionat",
   "version": "1.0.0",
   "scripts": {
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "test": "npm run test:data && npm run test:algorithm && npm run test:security",
+    "test:data": "node scripts/validate_release_data.js && python3 scripts/smoke_test_db.py",
+    "test:algorithm": "node scripts/test_algorithm_regression.js",
+    "test:security": "node scripts/test_security.js",
+    "report:algorithm": "node scripts/run_algorithm_cases.js",
+    "e2e:serve": "node scripts/e2e_server.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.105.1",

@@ -143,7 +143,7 @@ const NON_INGREDIENT_TOKENS = new Set([
   // Estado físico/corte
   "lonchas", "loncheado", "fileteado", "rallado", "troceado", "picado",
   "entero", "entera", "enteros", "enteras", "trozos", "trozo",
-  "rodajas", "dado", "dados", "tiras",
+  "rodajas", "dado", "dados", "tiras", "copo", "copos",
   // Calidad/composición
   "magro", "magra", "semigrasa", "grasa", "graso", "integral",
   "blanco", "blanca", "blancos", "blancas", "rojo", "roja",
@@ -332,7 +332,10 @@ function isCookingInput(name) {
   // "en copos" — concentrado deshidratado (puré, patata, etc). No matchea
   // "copos de avena/espelta/cereales" solos (esos son granos para porridge).
   const normalized = norm(name);
-  if (normalized.includes(" en copos") || normalized.endsWith(" en copos")) return true;
+  const isSimpleCerealFlake =
+    /\b(avena|trigo|espelta|cebada|centeno|arroz|maiz|cereal)\b/.test(normalized);
+  if ((normalized.includes(" en copos") || normalized.endsWith(" en copos")) &&
+      !isSimpleCerealFlake) return true;
   return false;
 }
 
@@ -377,6 +380,19 @@ function isNonStapleGrain(name) {
 function getFoodTier(candidate, originalFood) {
   // T3: platos preparados (flag-based — fiable)
   if ((candidate.flags || []).includes("prepared")) return 3;
+
+  // En hidratos sensibles al formato, compartir una palabra del ingrediente
+  // no basta para ser "misma familia": pan de avena no es otro formato de
+  // copos de avena. Se mantiene como intercambio cross-forma.
+  const originalShape = carbShape(originalFood);
+  const candidateShape = carbShape(candidate);
+  if (
+    (originalShape === "flakes" || originalShape === "bread") &&
+    candidateShape &&
+    candidateShape !== originalShape
+  ) {
+    return 2;
+  }
 
   // T1: comparten al menos un ingrediente real.
   //
@@ -1089,18 +1105,114 @@ function carbShape(food) {
   // regex de pan sobre productos de patata/batata.
   if (food.subgroup === "tubers") return "tuber";
   const n = norm(food.name || "");
+  const label = norm(food.label_reason || "");
+  // Algunas referencias comerciales omiten "pan" en el nombre, pero el
+  // etiquetado curado sí confirma su formato. No usamos usage_es aquí porque
+  // puede mencionar alimentos comparadores.
+  if (/\bpan\b|\bpanecill\w*\b|\bhogaza\b|\bbiscot\w*\b/.test(label)) {
+    return "bread";
+  }
   // bread/tostada/wrap — Hugo audit (Feedback Elena, caso pan integral):
   // ampliado para cubrir nombres descriptivos que el regex viejo perdía y
   // que el motor clasificaba mal como flakes/grain (panecillo, hogaza,
   // rústica, tortilla de trigo/maíz=wrap, fajita). Va PRIMERO: un nombre con
   // keyword de pan gana sobre cereal/trigo/avena que aparezcan en el mismo
   // nombre (ej. "Hogaza de centeno y avena" → bread, no flakes).
-  if (/\b(pan\w*|tostad\w*|biscote\w*|wrap\w*|pita|rega[ñn]\w*|picos|colines|colin|bagel\w*|baguet\w*|chapat\w*|molde|mollete\w*|hogaza\w*|rustic\w*|tortilla\w*|fajita\w*|cracker\w*)\b/.test(n)) return "bread";
+  if (/\b(pan\w*|biscote\w*|wrap\w*|pita|rega[ñn]\w*|picos|colines|colin|bagel\w*|baguet\w*|chapat\w*|molde|mollete\w*|hogaza\w*|rustic\w*|tortilla\w*|fajita\w*|cracker\w*)\b/.test(n) ||
+      /^tostad\w*\b/.test(n)) return "bread";
   if (/\b(avena|copos|cereal\w*|salvado|m[üu]esli|granola|porridge|gachas)\b/.test(n)) return "flakes";
   if (/\b(pasta|macarr\w*|espagueti\w*|espagueti|fideo\w*|tallarin\w*|noodle\w*|raviol\w*|penne|fusilli|rigaton\w*|lasa[ñn]\w*|[ñn]oqui\w*|gnocchi|canelon\w*|tortellini|maccaron\w*|spaguetti|spaghetti)\b/.test(n)) return "pasta";
   if (/\b(patata\w*|papa|papas|boniato\w*|batata\w*|yuca|mandioca|[ñn]ame)\b/.test(n)) return "tuber";
   if (/\b(arroz|quinoa|mijo|bulgur|cuscus|cusc[uú]s|s[eé]mola|trigo|cebada|centeno|espelta|sorgo|amaranto|kamut|farro|ma[ií]z|teff|alforf[oó]n|sarraceno)\b/.test(n)) return "grain";
   return null;
+}
+
+// Cereal de caja / instantáneo listo para desayuno. No confundir con copos
+// simples, avena o salvado, que sí son ingredientes base.
+function isIndustrialBreakfastCereal(food) {
+  if (!food || food.category !== "carbs" || food.subgroup !== "grains") {
+    return false;
+  }
+  if (carbShape(food) === "bread") return false;
+  const n = norm(food.name || "");
+  const context = norm(
+    (food.name || "") + " " +
+    (food.label_reason || ""),
+  );
+  const simpleFlake =
+    /\b(avena( en)? copos|copos de avena|salvado de (avena|trigo)|porridge|gachas)\b/.test(n) &&
+    food.ready_to_eat !== true;
+  if (simpleFlake) return false;
+  const cerealSignal =
+    /\b(avena|cereal\w*|copos|bolas|flakes|fibre|hinchad\w*|inflad\w*|muesli|granola)\b/.test(n);
+  const industrialSignal =
+    /\b(cereales? de (caja|desayuno)|desayuno con leche|soluble\w*|infantil\w*|listo\w*|tostad\w*|azucarad\w*|choco\w*|frosties|special k|fitness|corn flakes|barras?|barritas?|galletas?|digestive)\b/.test(context);
+  return cerealSignal &&
+    food.raw_ingredient !== true &&
+    (industrialSignal ||
+      (food.ready_to_eat === true && food.meal_slot === "desayuno"));
+}
+
+function isDryLegume(food) {
+  if (!food || food.subgroup !== "legumes") return false;
+  const context = norm(
+    (food.name || "") + " " +
+    (food.label_reason || "") + " " +
+    (food.usage_es || ""),
+  );
+  return food.raw_ingredient === true ||
+    /\b(sec[oa]s?|crud[oa]s?|en grano|requiere remojo|precisa remojo|coccion prolongada|no comestible (crudo|directamente|sin coccion))\b/.test(context);
+}
+
+function proteinPreparationForm(food) {
+  if (!food || food.category !== "protein") return null;
+  const n = norm(food.name || "");
+  const context = norm(
+    (food.name || "") + " " +
+    (food.label_reason || ""),
+  );
+  if (/\b(picad\w*|carne picada|minced|burgers?|hamburgues\w*)\b/.test(n)) return "minced";
+  if (/\b(fajita\w*|marinad\w*|adobad\w*|sazonad\w*|con salsa|rellen\w*|nugget\w*|rebozad\w*|empanad\w*|pincho\w*)\b/.test(context)) {
+    return "prepared";
+  }
+  if (
+    /\b(fiambre\w*|loncha\w*|lascas?|finissim\w*|brasead\w*|pechuga cocida|pollo cocido|pavo cocido)\b/.test(context) ||
+    /\b(cocid\w*|asad\w*|al horno)\b/.test(n) ||
+    (food.ready_to_eat === true &&
+      /\b(pechuga|pollo|pavo|lomo|jamon|jamon)\b/.test(n))
+  ) {
+    return "deli";
+  }
+  if (/\b(lata|conserva|al natural|en aceite|escabeche)\b/.test(n)) {
+    return "canned";
+  }
+  return "fresh";
+}
+
+function isPreparedFish(food) {
+  if (!food || food.category !== "protein") return false;
+  const n = norm(food.name || "");
+  const context = norm(
+    (food.name || "") + " " +
+    (food.label_reason || "") + " " +
+    (food.usage_es || ""),
+  );
+  return (
+    (food.flags || []).includes("prepared") ||
+    food.clean_protein === false ||
+    /\b(ensalada|nugget\w*|rebozad\w*|empanad\w*|surimi|con salsa|rellen\w*|croqueta\w*|tempura)\b/.test(n) ||
+    /\b(plato preparado|preparacion de pescado)\b/.test(context)
+  );
+}
+
+function isFoodQuarantined(food) {
+  return Boolean(
+    food &&
+    (food.quality_status === "quarantine" ||
+      food.subgroup == null ||
+      food.subgroup === "" ||
+      food.subgroup === "?"),
+  );
 }
 
 // ============================================
@@ -1354,11 +1466,90 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
   const candidates = foodsDatabase.filter(
     (f) => {
       if (f.id === originalFood.id) return false;
+      if (isFoodQuarantined(f)) return false;
       if (!isCompatibleCategory(f, originalFood)) return false;
       if ((f.flags || []).includes("condiment")) return false;
       if ((f.flags || []).includes("sweet")) return false;
       if (_applyDietary && !window.passesDietaryFilters(f, _dietary)) return false;
       if ((f.flags || []).includes("hidden")) return false;
+
+      // Origen proteico fresco: las marinadas, fiambres y conservas pueden
+      // mostrarse como formatos secundarios, pero no como intercambio real.
+      {
+        const originProteinForm = proteinPreparationForm(originalFood);
+        const candidateProteinForm = proteinPreparationForm(f);
+        if (
+          originalFood.category === "protein" &&
+          originalFood.clean_protein === true &&
+          originProteinForm === "fresh" &&
+          ["prepared", "deli", "canned"].includes(candidateProteinForm)
+        ) {
+          return false;
+        }
+      }
+
+      // Legumbre cocida/lista → legumbre cocida/lista. Evita sugerir gramos
+      // en seco sin que la usuaria lo sepa.
+      if (
+        originalFood.subgroup === "legumes" &&
+        !isDryLegume(originalFood) &&
+        isDryLegume(f)
+      ) {
+        return false;
+      }
+
+      // Para un chocolate simple, menos resultados honestos es preferible a
+      // completar el TOP con caramelos, galletas o frutos secos azucarados.
+      if (
+        originalFood.subgroup === "sweets_bakery" &&
+        /\b(chocolate|cacao)\b/.test(norm(originalFood.name || "")) &&
+        f.subgroup === "sweets_bakery" &&
+        !/\b(chocolate|cacao|xocolata)\b/.test(norm(f.name || ""))
+      ) {
+        return false;
+      }
+
+      // La avena/copos simples y el pan no deben abrir con cereales de caja
+      // o solubles aunque compartan macros y horario de desayuno.
+      {
+        const oShape = carbShape(originalFood);
+        const originIsSimpleBreakfastCarb =
+          originalFood.category === "carbs" &&
+          (oShape === "flakes" || oShape === "bread") &&
+          !isIndustrialBreakfastCereal(originalFood);
+        if (originIsSimpleBreakfastCarb && isIndustrialBreakfastCereal(f)) {
+          return false;
+        }
+      }
+
+      // La carne picada conserva su función culinaria. Se permiten otras
+      // carnes frescas, pero no fiambres, tiras preparadas ni conservas.
+      {
+        const originForm = proteinPreparationForm(originalFood);
+        if (originForm === "minced") {
+          const meatSubgroups = new Set(["meat", "meat_lean", "meat_fatty"]);
+          if (f.category !== "protein" || !meatSubgroups.has(f.subgroup)) {
+            return false;
+          }
+          const candidateForm = proteinPreparationForm(f);
+          if (candidateForm === "deli" ||
+              candidateForm === "prepared" ||
+              candidateForm === "canned") {
+            return false;
+          }
+        }
+      }
+
+      // Un pescado blanco simple no se sustituye por ensaladas, rebozados,
+      // nuggets, surimi o platos con salsa.
+      if (
+        originalFood.category === "protein" &&
+        originalFood.subgroup === "fish_white" &&
+        !isPreparedFish(originalFood) &&
+        isPreparedFish(f)
+      ) {
+        return false;
+      }
 
       // Origin is a real plate / staple → exclude basura técnica del pool.
       if (_originIsMealLike) {
@@ -1539,7 +1730,8 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         const originIsFattySatiating =
           oKcal >= 150 && (
             _FATTY_SATIATING_SUBGROUPS.has(originalFood.subgroup) ||
-            (oFat >= 8 && oProt >= 5 && oFatRatio >= 0.4)
+            (originalFood.subgroup !== "plant_protein" &&
+              oFat >= 8 && oProt >= 5 && oFatRatio >= 0.4)
           );
         if (originIsFattySatiating && oKcal > 0 && f.calories > 0) {
           const ratio = f.calories / oKcal;
@@ -1568,6 +1760,20 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
           const isProteinNoise = f.category === "protein" && !isPlant && !isLegume;
           const isDairy = f.category === "dairy";
           if (isProteinNoise || isDairy) return false;
+          if (typeof window.isVegetarian === "function" &&
+              !window.isVegetarian(f)) {
+            return false;
+          }
+          // Legumbres listas/cocinables, no peso en seco sin aclararlo.
+          if (isLegume && isDryLegume(f)) return false;
+          // Los preparados vegetales densos pertenecen al bloque preparado,
+          // no deben desplazar tofu, seitán o edamame del TOP real.
+          if (
+            /\b(burger|hamburgues|falafel|croqueta|empanad|rebozad)\b/.test(norm(f.name || "")) ||
+            (f.flags || []).includes("prepared")
+          ) {
+            return false;
+          }
         }
       }
 
@@ -1867,6 +2073,19 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       oCarbShape && cCarbShape && oCarbShape === cCarbShape
     ) ? (Number(window.CARB_SHAPE_BOOST) || 0.80) : 0;
 
+    const proteinFormBonus = (
+      proteinPreparationForm(originalFood) === "minced" &&
+      proteinPreparationForm(a) === "minced"
+    ) ? (Number(window.PROTEIN_FORM_BOOST) || 0.55) : 0;
+
+    const whiteFishCohortBonus = (
+      originalFood.category === "protein" &&
+      originalFood.subgroup === "fish_white" &&
+      a.category === "protein" &&
+      a.subgroup === "fish_white" &&
+      !isPreparedFish(a)
+    ) ? (Number(window.WHITE_FISH_COHORT_BOOST) || 0.65) : 0;
+
     // CULTURAL PAIRS BOOST: parejas naturales (pollo↔pavo, huevo↔tortilla,
     // leche↔bebida vegetal, etc.). Hugo brief punto 2 explícito.
     const culturalPairBonus =
@@ -1897,6 +2116,15 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     // the additive sourceAffinityBonus. No-op when flags absent (strict equality
     // means undefined !== true / undefined !== "raro" — graceful degradation).
     let demotion = 1;
+
+    if (
+      originalFood.category === "protein" &&
+      originalFood.subgroup === "fish_white" &&
+      a.category === "protein" &&
+      a.subgroup === "fish_fatty"
+    ) {
+      demotion *= Number(window.WHITE_FISH_FATTY_DEMOTION) || 0.35;
+    }
 
     // PLANT PROTEIN demote inverso (Hugo punto 2.E): cuando origen es
     // plant_protein (tofu, tempeh, seitán, soja), los pescados/mariscos/
@@ -1970,7 +2198,15 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     // No eliminatorio: el intercambio cross-forma es válido (cuadra macros),
     // pero la misma forma debe ir primero en el TOP visible.
     if (oCarbShape && cCarbShape && oCarbShape !== cCarbShape) {
-      demotion *= Number(window.CARB_SHAPE_CROSS_DEMOTION) || 0.25;
+      let shapeDemotion = Number(window.CARB_SHAPE_CROSS_DEMOTION) || 0.25;
+      if (oCarbShape === "flakes" && cCarbShape === "bread") {
+        shapeDemotion = 0.65;
+      } else if (oCarbShape === "flakes" && cCarbShape === "grain") {
+        shapeDemotion = 0.45;
+      } else if (oCarbShape === "flakes" && cCarbShape === "pasta") {
+        shapeDemotion = 0.08;
+      }
+      demotion *= shapeDemotion;
       if (window.location.search.includes("?debug=1")) {
         console.debug("[carb-shape] DEMOTED candidate='" + a.name + "' " + oCarbShape + "->" + cCarbShape);
       }
@@ -2632,8 +2868,8 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     return {
       ...a,
       _hybridScore: hybrid,
-      _sortScoreBase: hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus + carbShapeBonus,
-      _sortScore: (hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus + carbShapeBonus) * demotion,
+      _sortScoreBase: hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus + carbShapeBonus + proteinFormBonus + whiteFishCohortBonus,
+      _sortScore: (hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus + carbShapeBonus + proteinFormBonus + whiteFishCohortBonus) * demotion,
     };
   });
 
@@ -2661,6 +2897,11 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         return b._sortScore - a._sortScore;
       });
 
+    // "Misma familia" ya es un bloque de formatos/marcas del mismo
+    // ingrediente. Aplicarle diversidad vuelve a pisar el score y empuja
+    // una segunda avena/leche/huevo detrás de referencias peores.
+    if (t === 1) return sorted;
+
     // Diversidad: primer representante de cada cluster al frente;
     // variantes secundarias al final del mismo tier.
     // clusterIngredientKey() colapsa por primer token + sinónimos.
@@ -2677,53 +2918,12 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       }
     }
 
-    // SOURCE FAMILY SOFT PARTITION: dentro del primary (y secondary)
-    // ya deduped, candidatos de la MISMA familia que el origen van
-    // primero SOLO SI superan un threshold mínimo de _sortScore. Los
-    // que están culinariamente demoteados (cross-subfamily lácteos,
-    // exotic, oil_added, role mismatch) NO suben por venir de BEDCA.
-    //
-    // Caso disparador: "Yogur griego" BEDCA → "Leche de oveja" BEDCA
-    // tenía _sortScore=0.12 (correctamente demoteada por dairy-cross
-    // ×0.35) pero igual surfaceaba pos 2 porque el partition viejo
-    // ponía TODOS los BEDCA al frente, ignorando el sortScore. Hugo
-    // reportó esto: "yogur griego no debería surfacear leche".
-    //
-    // Threshold: 0.30 deja pasar candidatos con matchScore decente y
-    // demociones suaves; bloquea los muy castigados (cross-subfamily
-    // 0.35 deja 0.12; exotic 0.25 deja ~0.08; etc).
-    const oFamily = sourceFamily(originalFood.source);
-    const _SAME_FAMILY_MIN_SORT_SCORE =
-      Number(window.SAME_FAMILY_MIN_SORT_SCORE) || 0.30;
-    // Hugo brief 16/05/2026 punto 4 — partition 3-niveles GLOBAL:
-    //   tier 1: same family que origen (BEDCA si origen=BEDCA) + sortScore OK
-    //   tier 2: es_super (Mercadona, Lidl, Carrefour, Dia, Alcampo, Eroski, Consum…)
-    //   tier 3: international (OpenFoodFacts genérico, marcas extranjeras)
-    //
-    // GLOBAL: aplica sobre [primary, secondary] combinado para que TODOS
-    // los BEDCA y supermercados ES queden ARRIBA de cualquier OpenFoodFacts,
-    // independiente del dedup cluster. Si el dedup mete "Cacahuete tostado
-    // salado" BEDCA en secondary, igual va antes que los OFF.
-    const partition = (list) => {
-      const tier1 = [], tier2 = [], tier3 = [];
-      for (const f of list) {
-        const fFam = sourceFamily(f.source);
-        const sameSrc = fFam === oFamily;
-        const passesThreshold = (f._sortScore ?? 0) >= _SAME_FAMILY_MIN_SORT_SCORE;
-        if (sameSrc && passesThreshold) {
-          tier1.push(f);
-        } else if (fFam === "es_super") {
-          tier2.push(f);
-        } else if (fFam === "international") {
-          tier3.push(f);
-        } else {
-          // Si origen no es generic ni es_super (raro) o fallback
-          tier2.push(f);
-        }
-      }
-      return [...tier1, ...tier2, ...tier3];
-    };
-    return partition([...primary, ...secondary]);
+    // La procedencia ya participa como bonus suave en _sortScore mediante
+    // sourceAffinityBonus(). No debe volver a convertirse aquí en una
+    // partición dura: hacerlo pisa el ranking clínico y coloca productos
+    // mediocres de la misma procedencia delante de opciones simples con un
+    // score mayor (especialmente OpenFoodFacts → OpenFoodFacts).
+    return [...primary, ...secondary];
   };
 
   // ── PROGRESSIVE UI: PARTIAL RESULT ────────────────────────────────────────
@@ -2967,6 +3167,7 @@ async function searchFoods(query) {
   const localResults = foodsDatabase
     .filter((food) => matchesFood(food, query))
     .filter((food) => !(food.flags || []).includes("hidden"))
+    .filter((food) => !isFoodQuarantined(food))
     .sort((a, b) => {
       const tokens = tokenize(query);
       const scoreA = tokenSortScore(norm(a.name || ""), tokens);

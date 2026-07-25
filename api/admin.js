@@ -1,4 +1,5 @@
 const { createClient } = require('@supabase/supabase-js');
+const { safeEqual } = require('./_session');
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -6,15 +7,46 @@ const supabase = createClient(
 );
 
 function isAdmin(req) {
-  return req.headers['x-admin-password'] === process.env.ADMIN_PASSWORD;
+  const configured = String(process.env.ADMIN_PASSWORD || '');
+  if (configured.length < 12) return false;
+  return safeEqual(req.headers['x-admin-password'], configured);
+}
+
+function adminIsConfigured() {
+  return String(process.env.ADMIN_PASSWORD || '').length >= 12;
+}
+
+function validAccessCode(code) {
+  return /^[A-Z0-9_.-]{8,64}$/.test(String(code || '').toUpperCase().trim());
+}
+
+function validIdentity(name, email) {
+  const normalizedName = String(name || '').trim();
+  const normalizedEmail = String(email || '').toLowerCase().trim();
+  return normalizedName.length >= 2 &&
+    normalizedName.length <= 120 &&
+    normalizedEmail.length <= 254 &&
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail);
+}
+
+function publicUser(user) {
+  if (!user) return user;
+  const { code, ...safe } = user;
+  return safe;
 }
 
 module.exports = async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, x-admin-password');
+  res.setHeader('Cache-Control', 'no-store');
   if (req.method === 'OPTIONS') return res.status(200).end();
 
+  if (!adminIsConfigured()) {
+    return res.status(503).json({
+      success: false,
+      error: 'ADMIN_PASSWORD debe tener al menos 12 caracteres antes de habilitar el panel.',
+    });
+  }
   if (!isAdmin(req)) {
     return res.status(401).json({ success: false, error: 'No autorizado.' });
   }
@@ -23,7 +55,7 @@ module.exports = async (req, res) => {
   if (req.method === 'GET') {
     const { data: users, error } = await supabase
       .from('users')
-      .select('name, email, code, active, created_at')
+      .select('name, email, active, created_at')
       .order('created_at', { ascending: false });
 
     if (error) return res.status(500).json({ success: false, error: 'Error al cargar clientas.' });
@@ -39,6 +71,15 @@ module.exports = async (req, res) => {
       if (!name || !email || !code) {
         return res.status(400).json({ success: false, error: 'Nombre, email y código son obligatorios.' });
       }
+      if (!validIdentity(name, email)) {
+        return res.status(400).json({ success: false, error: 'Nombre o email no válidos.' });
+      }
+      if (!validAccessCode(code)) {
+        return res.status(400).json({
+          success: false,
+          error: 'El código debe tener 8–64 caracteres (letras, números, punto, guion o guion bajo).',
+        });
+      }
 
       const { data: user, error } = await supabase
         .from('users')
@@ -48,7 +89,7 @@ module.exports = async (req, res) => {
           code: code.toUpperCase().trim(),
           active: true,
         })
-        .select()
+        .select('name, email, active, created_at')
         .single();
 
       if (error) {
@@ -58,7 +99,7 @@ module.exports = async (req, res) => {
         return res.status(400).json({ success: false, error: msg });
       }
 
-      return res.json({ success: true, user });
+      return res.json({ success: true, user: publicUser(user) });
     }
 
     if (action === 'toggle') {
@@ -80,34 +121,45 @@ module.exports = async (req, res) => {
         .from('users')
         .update({ active: !current.active })
         .eq('email', email.toLowerCase().trim())
-        .select()
+        .select('name, email, active, created_at')
         .single();
 
       if (error) return res.status(500).json({ success: false, error: 'Error al cambiar estado.' });
 
-      return res.json({ success: true, user });
+      return res.json({ success: true, user: publicUser(user) });
     }
 
     if (action === 'update') {
       const { originalEmail } = req.body;
-      if (!originalEmail || !name || !email || !code) {
-        return res.status(400).json({ success: false, error: 'Todos los campos son obligatorios.' });
+      if (!originalEmail || !name || !email) {
+        return res.status(400).json({ success: false, error: 'Nombre y email son obligatorios.' });
       }
+      if (!validIdentity(name, email)) {
+        return res.status(400).json({ success: false, error: 'Nombre o email no válidos.' });
+      }
+      if (code && !validAccessCode(code)) {
+        return res.status(400).json({
+          success: false,
+          error: 'El nuevo código debe tener 8–64 caracteres válidos.',
+        });
+      }
+
+      const updates = {
+        name: name.trim(),
+        email: email.toLowerCase().trim(),
+      };
+      if (code) updates.code = code.toUpperCase().trim();
 
       const { data: user, error } = await supabase
         .from('users')
-        .update({
-          name: name.trim(),
-          email: email.toLowerCase().trim(),
-          code: code.toUpperCase().trim(),
-        })
+        .update(updates)
         .eq('email', originalEmail.toLowerCase().trim())
-        .select()
+        .select('name, email, active, created_at')
         .single();
 
       if (error) return res.status(500).json({ success: false, error: 'Error al actualizar clienta.' });
 
-      return res.json({ success: true, user });
+      return res.json({ success: true, user: publicUser(user) });
     }
 
     return res.status(400).json({ success: false, error: 'Acción desconocida.' });

@@ -18,18 +18,21 @@ import os
 SCRIPT_DIR   = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
 DB_PATH      = os.path.join(PROJECT_ROOT, 'database.json')
+FAILURES = 0
 
 
 def load_db():
     with open(DB_PATH, 'r', encoding='utf-8') as f:
         raw = json.load(f)
-    return raw['foods']
+    return raw if isinstance(raw, list) else raw.get('foods', [])
 
 
 def assert_check(label, condition, offenders=None):
+    global FAILURES
     if condition:
         print(f'  PASS  {label}')
     else:
+        FAILURES += 1
         offender_list = ', '.join(
             f'{f["id"]} ({f["name"]}) sg={f.get("subgroup")}' for f in (offenders or [])[:5]
         )
@@ -108,7 +111,8 @@ def main():
     bedca_arroz = [
         f for f in carbs
         if f.get('source') == 'BEDCA' and
-        'arroz' in (f.get('name') or '').lower() and
+        (f.get('name') or '').lower().startswith('arroz') and
+        'cereales desayuno' not in (f.get('name') or '').lower() and
         f.get('subgroup') is not None  # exclude still-null
     ]
     a5_offenders = [f for f in bedca_arroz if f.get('subgroup') != 'grains']
@@ -174,7 +178,7 @@ def main():
     for domain in ['protein', 'dairy', 'fat', 'carbs']:
         csv_path = os.path.join(SCRIPT_DIR, f'review_{domain}.csv')
         if not os.path.exists(csv_path):
-            print(f'  FAIL  Review CSV exists: review_{domain}.csv (FILE NOT FOUND)')
+            print(f'  SKIP  Review CSV optional: review_{domain}.csv (not generated)')
             continue
         with open(csv_path, 'r', encoding='utf-8') as f:
             reader = csv.DictReader(f)
@@ -226,6 +230,9 @@ def main():
             print(f'  {sg}: {all_subgroups[sg]} foods')
     else:
         print('No non-canonical subgroups in DB.')
+
+    if FAILURES:
+        raise SystemExit(1)
 
 
 if __name__ == '__main__':

@@ -473,7 +473,8 @@
           </div>
           <div class="field" style="margin-bottom:0">
             <label>Código de acceso</label>
-            <input type="text" id="newCode" class="input-neo" placeholder="ANA01" autocomplete="off"
+            <input type="password" id="newCode" class="input-neo" placeholder="Mínimo 8 caracteres" autocomplete="new-password"
+              minlength="8" maxlength="64" pattern="[A-Za-z0-9_.-]{8,64}"
               style="font-family:monospace;letter-spacing:2px;text-transform:uppercase" />
           </div>
         </div>
@@ -501,7 +502,7 @@
             type="text"
             id="searchUsers"
             class="input-search"
-            placeholder="Buscar por nombre, email o código..."
+            placeholder="Buscar por nombre o email..."
             autocomplete="off"
           />
           <button id="searchClear" class="search-clear" type="button" aria-label="Limpiar búsqueda">✕</button>
@@ -523,6 +524,16 @@
         t.textContent = msg;
         t.classList.add('show');
         setTimeout(() => t.classList.remove('show'), duration);
+      }
+
+      function escapeHtml(value) {
+        return String(value == null ? '' : value).replace(/[&<>"']/g, char => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#039;',
+        })[char]);
       }
 
       async function api(method, body, pwd) {
@@ -572,6 +583,7 @@
             sessionStorage.setItem(ADMIN_KEY, pwd);
             showPanel();
           } else {
+            err.textContent = data.error || 'Contraseña incorrecta.';
             err.classList.add('visible');
           }
         } catch {
@@ -614,8 +626,7 @@
         const filtered = query
           ? allUsers.filter(u =>
               normalize(u.name).includes(query) ||
-              normalize(u.email).includes(query) ||
-              normalize(u.code).includes(query)
+              normalize(u.email).includes(query)
             )
           : allUsers;
 
@@ -677,16 +688,17 @@
         const btnClass = u.active ? 'deactivate' : 'activate';
         const btnText = u.active ? 'Desactivar' : 'Activar';
 
+        const safeEmail = escapeHtml(u.email);
         return `
-          <div class="user-card" id="card-${u.email.replace(/[@.]/g, '_')}">
+          <div class="user-card">
             <div class="user-info">
-              <div class="user-name">${u.name}</div>
-              <div class="user-email">${u.email}</div>
-              <div class="user-code">${u.code}</div>
+              <div class="user-name">${escapeHtml(u.name)}</div>
+              <div class="user-email">${safeEmail}</div>
+              <div class="user-code">Código protegido</div>
             </div>
             <span class="badge ${badgeClass}">${badgeText}</span>
-            <button class="btn-edit" data-email="${u.email}">Editar</button>
-            <button class="btn-toggle ${btnClass}" data-email="${u.email}">${btnText}</button>
+            <button class="btn-edit" data-email="${safeEmail}">Editar</button>
+            <button class="btn-toggle ${btnClass}" data-email="${safeEmail}">${btnText}</button>
           </div>
         `;
       }
@@ -723,7 +735,8 @@
         document.getElementById('editOriginalEmail').value = u.email;
         document.getElementById('newName').value = u.name;
         document.getElementById('newEmail').value = u.email;
-        document.getElementById('newCode').value = u.code;
+        document.getElementById('newCode').value = '';
+        document.getElementById('newCode').placeholder = 'Vacío = conservar el código actual';
         document.getElementById('formSectionLabel').textContent = `Editando: ${u.name}`;
         document.getElementById('createBtn').textContent = 'Guardar cambios';
         document.getElementById('cancelEditBtn').style.display = 'block';
@@ -736,6 +749,7 @@
         document.getElementById('newName').value = '';
         document.getElementById('newEmail').value = '';
         document.getElementById('newCode').value = '';
+        document.getElementById('newCode').placeholder = 'Mínimo 8 caracteres';
         document.getElementById('formSectionLabel').textContent = 'Nueva clienta';
         document.getElementById('createBtn').textContent = 'Crear clienta';
         document.getElementById('cancelEditBtn').style.display = 'none';
@@ -755,8 +769,15 @@
 
         err.classList.remove('visible');
 
-        if (!name || !email || !code) {
-          err.textContent = 'Completá todos los campos.';
+        if (!name || !email || (!isEdit && !code)) {
+          err.textContent = isEdit
+            ? 'Nombre y email son obligatorios.'
+            : 'Completá todos los campos.';
+          err.classList.add('visible');
+          return;
+        }
+        if (code && code.length < 8) {
+          err.textContent = 'El código debe tener al menos 8 caracteres.';
           err.classList.add('visible');
           return;
         }

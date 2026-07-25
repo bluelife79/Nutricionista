@@ -36,7 +36,7 @@
 
   // Keywords that signal meat/fish even when category mislabels them
   // (rare but real — e.g. some prepared dishes get category=other).
-  const _MEAT_FISH_NAME_RE = /\b(pollo|pavo|ternera|cerdo|jamon|jamón|chorizo|salchicha|salami|bacon|panceta|lomo|solomillo|cordero|conejo|pescado|merluza|salmon|atun|atún|bonito|sardina|caballa|bacalao|trucha|lubina|dorada|rape|gambas?|langostino|marisco|sepia|pulpo|calamar|nécora|necora|mejillon|mejillón|almeja|chipirones?|carne)\b/i;
+  const _MEAT_FISH_NAME_RE = /\b(pollo|pavo|ternera|cerdo|jamon|jamón|chorizo|salchicha|salami|bacon|panceta|lomo|solomillo|cordero|conejo|pescado|merluza|salmon|atun|atún|bonito|sardina|caballa|bacalao|trucha|lubina|dorada|rape|gambas?|langostino|marisco|sepia|pulpo|calamar|nécora|necora|mejillon|mejillón|almeja|chipirones?|carne|callos|morcilla|mortadela|alb[oó]ndiga|foie|carrillera|casquer[ií]a)\b/i;
 
   function _norm(s) {
     if (!s) return "";
