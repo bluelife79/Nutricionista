@@ -99,6 +99,10 @@ Hay dos decisiones de producto que no deben “corregirse” de nuevo:
 5. La misma versión fue promovida a producción.
 6. El token temporal de Vercel utilizado para el despliegue fue revocado.
 
+### Sincronización pendiente de GitHub
+
+Vercel conserva y ejecuta el snapshot del commit `4aaa2df`, pero la rama local todavía no pudo subirse a GitHub porque este Mac no tenía una sesión de GitHub autorizada. Esto no afecta a la producción activa. Antes del próximo despliegue automático desde Git debe iniciarse sesión en GitHub y publicarse `codex/stabilize-production`, para evitar que una actualización posterior desde `main` vuelva a una versión antigua.
+
 ## Rollback
 
 - Conservar el identificador del despliegue de producción anterior.
