@@ -377,9 +377,50 @@ function isNonStapleGrain(name) {
   return false;
 }
 
+// ============================================
+// CULINARY PRESENTATION — ingrediente simple vs receta / líquido
+// ============================================
+//
+// Los macros por sí solos no distinguen una verdura simple de una receta
+// compuesta. Estas señales conservadoras evitan que "brócoli" abra con una
+// parrillada, que "patata" muestre arroz con verduras como intercambio real
+// o que una zanahoria entera trate un néctar como el mismo formato.
+function isCompositePreparedFood(food) {
+  if (!food) return false;
+  if ((food.flags || []).includes("prepared")) return true;
+  const n = norm(food.name || "");
+  return (
+    /\b(parrillad\w*|menestra\w*|saltead\w*|mix de|mezcla de|trio de|a la riojana|a la jardinera|falafel\w*|hummus\w*|con verduras|con setas|mexican\w*|veloute\w*|lasan\w*|tortelloni\w*|paella\w*|risotto\w*)\b/.test(n) ||
+    /\bpure\w* .*\b(nata|queso|leche)\b/.test(n)
+  );
+}
+
+function culinaryPresentation(food) {
+  if (!food) return "simple";
+  const n = norm(food.name || "");
+  if (isCompositePreparedFood(food)) return "composite";
+  if (/\b(zumo|jugo|nectar|smoothie|batido|licuado)\b/.test(n)) return "liquid";
+  if (/\b(compota|papilla|potito)\b/.test(n)) return "puree";
+  return "simple";
+}
+
 function getFoodTier(candidate, originalFood) {
-  // T3: platos preparados (flag-based — fiable)
-  if ((candidate.flags || []).includes("prepared")) return 3;
+  // T3: platos preparados, tanto por flag como por señales culinarias
+  // conservadoras. El flag sigue mandando; la inferencia cubre huecos de
+  // etiquetado del catálogo.
+  if (isCompositePreparedFood(candidate)) return 3;
+
+  // Fruta/verdura entera y su zumo, néctar, puré o papilla no son el mismo
+  // formato culinario. Se conservan como referencia secundaria.
+  if (
+    originalFood &&
+    candidate.category === originalFood.category &&
+    ["fruits", "vegetables"].includes(originalFood.category) &&
+    culinaryPresentation(candidate) !== culinaryPresentation(originalFood) &&
+    culinaryPresentation(candidate) !== "simple"
+  ) {
+    return 3;
+  }
 
   // En hidratos sensibles al formato, compartir una palabra del ingrediente
   // no basta para ser "misma familia": pan de avena no es otro formato de
@@ -570,10 +611,31 @@ function calculateEquivalence(
 
   const totalMacros =
     originalMacros.protein + originalMacros.carbs + originalMacros.fat;
-  const matchScore = Math.max(
+  let matchScore = Math.max(
     0,
     Math.round(100 - (penalty / Math.max(totalMacros, 10)) * 100),
   );
+
+  // En verduras simples de la misma familia botánica, las diferencias de
+  // proteína/carbohidrato son pequeñas en términos absolutos pero el score
+  // porcentual tradicional las exagera. La energía ya está igualada por el
+  // gramaje equivalente; usamos además la cercanía de la porción para aceptar
+  // intercambios culinarios obvios como brócoli ↔ coliflor.
+  const isSameVegetableContext =
+    original.category === "vegetables" &&
+    alt.category === "vegetables" &&
+    original.subgroup &&
+    original.subgroup === alt.subgroup &&
+    culinaryPresentation(original) === "simple" &&
+    culinaryPresentation(alt) === "simple";
+  if (isSameVegetableContext && matchScore < 60) {
+    const safeRatio = Math.max(0.01, qtyRatio);
+    const contextualScore = Math.max(
+      60,
+      Math.min(92, Math.round(100 - Math.abs(Math.log(safeRatio)) * 60)),
+    );
+    matchScore = contextualScore;
+  }
 
   // DISPLAY-ONLY: % anclado a proteína para el fallback vegetal. El matchScore
   // macro castiga los carbs de la legumbre y cae a ~0%, pero como FUENTE
@@ -1172,7 +1234,7 @@ function proteinPreparationForm(food) {
     (food.label_reason || ""),
   );
   if (/\b(picad\w*|carne picada|minced|burgers?|hamburgues\w*)\b/.test(n)) return "minced";
-  if (/\b(fajita\w*|marinad\w*|adobad\w*|sazonad\w*|con salsa|rellen\w*|nugget\w*|rebozad\w*|empanad\w*|pincho\w*)\b/.test(context)) {
+  if (/\b(preparad\w*|fajita\w*|marinad\w*|adobad\w*|sazonad\w*|con salsa|rellen\w*|nugget\w*|rebozad\w*|empanad\w*|pincho\w*)\b/.test(context)) {
     return "prepared";
   }
   if (
@@ -1472,6 +1534,7 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       if ((f.flags || []).includes("sweet")) return false;
       if (_applyDietary && !window.passesDietaryFilters(f, _dietary)) return false;
       if ((f.flags || []).includes("hidden")) return false;
+      if (/\bdescatalogad\w*\b/.test(norm(f.name || ""))) return false;
 
       // Origen proteico fresco: las marinadas, fiambres y conservas pueden
       // mostrarse como formatos secundarios, pero no como intercambio real.
@@ -1769,8 +1832,8 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
           // Los preparados vegetales densos pertenecen al bloque preparado,
           // no deben desplazar tofu, seitán o edamame del TOP real.
           if (
-            /\b(burger|hamburgues|falafel|croqueta|empanad|rebozad)\b/.test(norm(f.name || "")) ||
-            (f.flags || []).includes("prepared")
+            /\b(burger\w*|hamburgues\w*|falafel\w*|croqueta\w*|empanad\w*|rebozad\w*)\b/.test(norm(f.name || "")) ||
+            isCompositePreparedFood(f)
           ) {
             return false;
           }
@@ -1831,10 +1894,16 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
           window.DAIRY_FLAVOR_EXCLUDE === undefined
             ? true
             : window.DAIRY_FLAVOR_EXCLUDE;
-        const _FLAVOR_RE = /(arandano|fresa|frambuesa|melocoton|platano|cacao|chocolate|vainilla|vanilla|limon|naranja|mango|pina|coco|caramelo|galleta|cookie|frut[ao]s?|miel|cafe|moka|tiramis|stracc|macedonia|cereza|higo|granada|maracuy|kiwi|sabor|sabores|pomelo|grosella|bosque|toffee|dulce de leche|cereal|cereales|avena con)/;
+        const _FLAVOR_RE = /(arandano|blueberr|myrtil|heidelbeer|fresa|strawberr|erdbeer|frambues|raspberr|melocoton|peach|platano|banana|cacao|chocolate|vainilla|vanilla|vanille|limon|lemon|naranja|orange|mango|pina|pineapple|coco|coconut|caramelo|caramel|galleta|cookie|frut[ao]s?|fruit|miel|honey|cafe|coffee|moka|mocha|tiramis|stracc|stratac|macedonia|cereza|cherry|higo|fig|granada|pomegranate|maracuy|passion|kiwi|sabor|sabores|flavou?r|pomelo|grapefruit|grosella|currant|bosque|toffee|tropical|dulce de leche|cereal|cereales|avena con)/;
+        const _originIsDairyLike =
+          originalFood.category === "dairy" ||
+          originalFood.category === "postres_proteicos";
+        const _candidateIsDairyLike =
+          f.category === "dairy" ||
+          f.category === "postres_proteicos";
         if (
           _dairyFlavorExclude &&
-          originalFood.category === "dairy" && f.category === "dairy" &&
+          _originIsDairyLike && _candidateIsDairyLike &&
           !_FLAVOR_RE.test(norm(originalFood.name || "")) &&
           _FLAVOR_RE.test(norm(f.name || ""))
         ) {
@@ -2076,7 +2145,15 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     const proteinFormBonus = (
       proteinPreparationForm(originalFood) === "minced" &&
       proteinPreparationForm(a) === "minced"
-    ) ? (Number(window.PROTEIN_FORM_BOOST) || 0.55) : 0;
+    ) ? (Number(window.PROTEIN_FORM_BOOST) || 0.75) : 0;
+
+    const vegetableContextBonus = (
+      originalFood.category === "vegetables" &&
+      a.category === "vegetables" &&
+      originalFood.subgroup &&
+      originalFood.subgroup === a.subgroup &&
+      culinaryPresentation(originalFood) === culinaryPresentation(a)
+    ) ? (Number(window.VEGETABLE_CONTEXT_BOOST) || 0.35) : 0;
 
     const whiteFishCohortBonus = (
       originalFood.category === "protein" &&
@@ -2868,8 +2945,8 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     return {
       ...a,
       _hybridScore: hybrid,
-      _sortScoreBase: hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus + carbShapeBonus + proteinFormBonus + whiteFishCohortBonus,
-      _sortScore: (hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus + carbShapeBonus + proteinFormBonus + whiteFishCohortBonus) * demotion,
+      _sortScoreBase: hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus + carbShapeBonus + proteinFormBonus + vegetableContextBonus + whiteFishCohortBonus,
+      _sortScore: (hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus + carbShapeBonus + proteinFormBonus + vegetableContextBonus + whiteFishCohortBonus) * demotion,
     };
   });
 

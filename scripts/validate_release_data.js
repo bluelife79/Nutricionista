@@ -59,6 +59,39 @@ if (!Array.isArray(foods)) {
   if (meta.db_hash !== hash) {
     fail(`hash de embeddings no coincide con database.json`);
   }
+
+  const visibleDeprecated = foods.filter((food) =>
+    /\bdescatalogad[oa]\b/i.test(food.name || "") &&
+    !(food.flags || []).includes("hidden"),
+  );
+  if (visibleDeprecated.length > 0) {
+    fail(
+      `hay productos descatalogados visibles: ` +
+        visibleDeprecated.map((food) => food.id).join(","),
+    );
+  }
+
+  const visibleRomanianMilk = foods.filter((food) =>
+    food.category === "dairy" &&
+    /\blapte\b|\bgr[aă]sime\b/i.test(food.name || "") &&
+    !(food.flags || []).includes("hidden"),
+  );
+  if (visibleRomanianMilk.length > 0) {
+    fail(
+      `hay etiquetas de leche no localizadas visibles: ` +
+        visibleRomanianMilk.map((food) => food.id).join(","),
+    );
+  }
+
+  const pear = foods.find((food) => String(food.id) === "bedca_0404");
+  if (!pear || pear.category !== "fruits" || pear.subgroup !== "fruit") {
+    fail("Pera BEDCA debe estar clasificada como fruits/fruit");
+  }
+
+  const firmTofu = foods.find((food) => String(food.id) === "off_873b01b809");
+  if (!firmTofu || firmTofu.dairy_subfamily != null) {
+    fail("Tofu firme no debe tener una subfamilia láctea");
+  }
 }
 
 if (!process.exitCode) {
