@@ -125,6 +125,7 @@ Tras detectar que “Budino Proteico Cioccolato” podía aparecer con Skyr, se 
 - En verduras con muy pocas calorías, igualar energía puede producir raciones grandes; por ejemplo, varios cientos de gramos de pepino. El cálculo es correcto, pero requiere criterio práctico de la nutricionista.
 - Algunos aceites conservan nombres en francés o alemán procedentes de OpenFoodFacts. Son alimentos correctos, pero queda una mejora de localización del catálogo.
 - Mozzarella tiene un intercambio real limitado y concentra la variedad en formatos de la misma familia. Es más honesto que rellenar el TOP con quesos culinariamente distintos.
+- El navegador informa de subgrupos heredados que aún no pertenecen al mapa canónico. No generan errores ni rompieron ninguno de los 60 recorridos, pero señalan una limpieza de taxonomía pendiente.
 - La cobertura aporta alta confianza sobre los patrones principales, no una garantía matemática sobre todas las combinaciones posibles de 5.324 alimentos, cantidades y preferencias personales.
 
 ### Rojo
