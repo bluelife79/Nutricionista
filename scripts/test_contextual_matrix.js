@@ -10,7 +10,9 @@ const {
 const PREPARED_RE =
   /\b(parrillad|menestra|mix de|mezcla de|trio de|riojana|jardinera|falafel|hummus|con verduras|con setas|veloute|lasan|tortelloni|paella|risotto)\b/;
 const FLAVORED_DAIRY_RE =
-  /\b(fresa|strawberr|erdbeer|frambues|raspberr|melocoton|peach|vainilla|vanilla|vanille|arandano|blueberr|myrtil|heidelbeer|stracc|stratac|tropical|maracuya|passion|flavour)\w*/;
+  /\b(fresa|strawberr|erdbeer|frambues|raspberr|melocoton|peach|vainilla|vanilla|vanille|arandano|blueberr|myrtil|heidelbeer|chocolat|cioccolat|stracc|stratac|tropical|maracuya|passion|flavour)\w*/;
+const NON_FERMENTED_PROTEIC_DAIRY_RE =
+  /\b(cottage|queso|quark|requeson|fromage|mousse|natilla|pudin|pudding|flan|budino|gelatina|postre|snack)\b/;
 
 function visible(food) {
   return food &&
@@ -141,6 +143,10 @@ function assertTargeted(testCase, origin, result) {
     assert(
       itemNames.every((name) => !FLAVORED_DAIRY_RE.test(name)),
       `${testCase.id}: lácteo saborizado para origen natural: ${itemNames.join(" | ")}`,
+    );
+    assert(
+      itemNames.every((name) => !NON_FERMENTED_PROTEIC_DAIRY_RE.test(name)),
+      `${testCase.id}: queso fresco o postre de cuchara para un fermentado: ${itemNames.join(" | ")}`,
     );
   }
 

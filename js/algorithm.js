@@ -1894,7 +1894,11 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
           window.DAIRY_FLAVOR_EXCLUDE === undefined
             ? true
             : window.DAIRY_FLAVOR_EXCLUDE;
-        const _FLAVOR_RE = /(arandano|blueberr|myrtil|heidelbeer|fresa|strawberr|erdbeer|frambues|raspberr|melocoton|peach|platano|banana|cacao|chocolate|vainilla|vanilla|vanille|limon|lemon|naranja|orange|mango|pina|pineapple|coco|coconut|caramelo|caramel|galleta|cookie|frut[ao]s?|fruit|miel|honey|cafe|coffee|moka|mocha|tiramis|stracc|stratac|macedonia|cereza|cherry|higo|fig|granada|pomegranate|maracuy|passion|kiwi|sabor|sabores|flavou?r|pomelo|grapefruit|grosella|currant|bosque|toffee|tropical|dulce de leche|cereal|cereales|avena con)/;
+        const _FLAVOR_RE = /(arandano|blueberr|myrtil|heidelbeer|fresa|strawberr|erdbeer|frambues|raspberr|melocoton|peach|platano|banana|cacao|chocolat|cioccolat|vainilla|vanilla|vanille|limon|lemon|naranja|orange|mango|pina|pineapple|coco|coconut|caramelo|caramel|galleta|cookie|frut[ao]s?|fruit|miel|honey|cafe|coffee|moka|mocha|tiramis|stracc|stratac|macedonia|cereza|cherry|higo|fig|granada|pomegranate|maracuy|passion|kiwi|sabor|sabores|flavou?r|pomelo|grapefruit|grosella|currant|bosque|toffee|tropical|dulce de leche|cereal|cereales|avena con)/;
+        const _FERMENTED_DAIRY_RE =
+          /\b(skyr|yogur|yogh|kefir|greek style|estilo griego|high protein natural)\b/;
+        const _DESSERT_OR_CHEESE_RE =
+          /\b(cottage|queso|quark|requeson|fromage|mousse|natilla|pudin|pudding|flan|budino|gelatina|postre|snack)\b/;
         const _originIsDairyLike =
           originalFood.category === "dairy" ||
           originalFood.category === "postres_proteicos";
@@ -1906,6 +1910,29 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
           _originIsDairyLike && _candidateIsDairyLike &&
           !_FLAVOR_RE.test(norm(originalFood.name || "")) &&
           _FLAVOR_RE.test(norm(f.name || ""))
+        ) {
+          return false;
+        }
+
+        // La categoría histórica postres_proteicos contiene formatos culinarios
+        // distintos (Skyr/yogur, cottage/quark, flanes, mousses y puddings).
+        // Cuando el origen es yogur/kéfir/Skyr, sólo permitimos el cruce con
+        // registros que el propio nombre identifica como fermentado natural.
+        // Esto evita que un buen ajuste de macros convierta un Skyr en queso
+        // cottage o postre de cuchara.
+        const _originName = norm(originalFood.name || "");
+        const _candidateName = norm(f.name || "");
+        const _originIsFermentedDairy =
+          originalFood.dairy_subfamily === "yogur_kefir" ||
+          _FERMENTED_DAIRY_RE.test(_originName);
+        if (
+          _originIsFermentedDairy &&
+          f.category === "postres_proteicos" &&
+          (
+            f.subgroup === "fresh_cheese" ||
+            _DESSERT_OR_CHEESE_RE.test(_candidateName) ||
+            !_FERMENTED_DAIRY_RE.test(_candidateName)
+          )
         ) {
           return false;
         }
