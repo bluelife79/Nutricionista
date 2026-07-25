@@ -8,7 +8,7 @@ Rama: `codex/stabilize-production`
 
 No hace falta rehacer la herramienta. El motor, la base y la interfaz actual son recuperables y han quedado estabilizados en esta rama.
 
-El código está preparado para un despliegue de preproducción. No debe promoverse todavía a producción hasta configurar los dos secretos indicados en “Requisitos de despliegue” y repetir el smoke test con una cuenta real.
+La preview y producción fueron desplegadas y validadas el 25 de julio de 2026. El dominio activo es `https://intercambio.entrenatucorazon.es` y el código de producción corresponde al commit `4aaa2df`.
 
 ## Objetivo de producto aplicado
 
@@ -90,14 +90,14 @@ Hay dos decisiones de producto que no deben “corregirse” de nuevo:
 - En avena, el contexto se resuelve mostrando primero el bloque de la misma familia. El bloque de intercambio real puede ser más amplio porque representa sustituciones, no marcas equivalentes.
 - En chocolate 85 %, se prefiere un único chocolate limpio a completar ocho tarjetas con galletas, postres o alimentos que sólo igualan calorías.
 
-## Requisitos obligatorios antes de desplegar
+## Despliegue completado
 
-1. Configurar en Vercel un `SESSION_SECRET` aleatorio de al menos 24 caracteres.
-2. Sustituir el antiguo secreto de administración por un `ADMIN_PASSWORD` nuevo de al menos 12 caracteres. Con el valor antiguo, el nuevo código deshabilita el panel deliberadamente.
-3. Desplegar primero esta rama como preview.
-4. Ejecutar `npm test` sobre el commit desplegado.
-5. Probar login, los cinco casos rojos y el panel con una cuenta real.
-6. Promover el mismo commit a producción; no reconstruirlo desde otra rama.
+1. `SESSION_SECRET` aleatorio configurado en Vercel para Preview y Production.
+2. `ADMIN_PASSWORD` rotado por una clave aleatoria de 36 caracteres y guardado en el llavero de macOS como `RevolucionaT Admin Vercel`.
+3. Preview desplegada y comprobada con una cuenta real.
+4. Login, recarga de sesión, avena y panel administrativo validados sin errores.
+5. La misma versión fue promovida a producción.
+6. El token temporal de Vercel utilizado para el despliegue fue revocado.
 
 ## Rollback
 
@@ -115,4 +115,4 @@ Hay dos decisiones de producto que no deben “corregirse” de nuevo:
 
 ## Criterio de cierre
 
-La estabilización técnica se considera cerrada cuando la preview pase el smoke test real con los dos secretos nuevos. La aprobación clínica final de los intercambios sigue correspondiendo a la nutricionista responsable.
+La estabilización técnica y el despliegue están cerrados. La aprobación clínica final de los intercambios sigue correspondiendo a la nutricionista responsable.
