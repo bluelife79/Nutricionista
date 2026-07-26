@@ -16,7 +16,7 @@
 (function (global) {
   "use strict";
 
-  var VERSION = "premium-v2.2-scope-2";
+  var VERSION = "premium-v2.2-scope-3";
   var STATUS = {
     CORE: "exchange_core",
     REFERENCE: "reference_only",
@@ -102,7 +102,7 @@
   var FAST_READY_MEAL_RE =
     /\b(pizza\w*|lasa[nñ]\w* refrigerad\w*|hamburgues\w* con|burgers?\b|perrito\w*|kebab\w*|fingers?\b|croquet\w*|san jacobo|cordon bleu|empanadill\w*|burrito\w* preparado\w*|sandwich\w*|sanwich\w*|flautas?\b|funroll\b|gyozas?\b)\b/;
   var FLAVOURED_DAIRY_RE =
-    /\b(pudding|mousse|natillas?|postre|tipo actimel|actimel|aromatizad\w*|edulcor\w*|educor\w*|azucarad\w*|con azucar\w*|con nata|frut\w*|sabor (?!natural\b)|manzana\w*|pera\b|naranja\w*|fresa\w*|frambues\w*|mango|vainilla|caramelo|melocoton\w*|platano\w*|pina\b|coco\b|arandano\w*|ciruela\w*|albaricoque\w*|maracuya\w*|macedonia|trocitos? de fruta|proteinas? plus)\b/;
+    /\b(pudding|mousse|natillas?|postre|tipo actimel|actimel|aromatizad\w*|edulcor\w*|educor\w*|azucarad\w*|con azucar\w*|con nata|frut\w*|sabor (?!natural\b)|manzana\w*|pera\b|naranja\w*|fresa\w*|frambues\w*|mango|vainilla|caramelo|melocoton\w*|platano\w*|pina\b|coco\b|arandano\w*|ciruela\w*|albaricoque\w*|maracuya\w*|macedonia|trocitos? de fruta|proteinas? plus|strawberr\w*|blueberr\w*|raspberr\w*|peach\w*|passion fruit|vanilla|fruit flavour\w*)\b/;
   var FLAVOURED_NUT_RE =
     /\b(carameliz\w*|chocolatead\w*|con chocolate|sabor (barbacoa|chili|miel)|frit\w*|salad\w*|punto de sal|aguasal)\b/;
   var SEASONED_PROTEIN_RE =
@@ -461,7 +461,12 @@
       ["fermented_dairy", "milk", "fresh_cheese", "aged_cheese"].includes(
         context,
       ) &&
-      FLAVOURED_DAIRY_RE.test(name)
+      (
+        FLAVOURED_DAIRY_RE.test(name) ||
+        /fermented-dairy-desserts-with-fruits|fruit-kefir-yogurts/.test(
+          evidenceTags,
+        )
+      )
     ) {
       return result(
         STATUS.EXCLUDED,

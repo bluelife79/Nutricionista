@@ -63,10 +63,16 @@ function main() {
     tahini_restored: 0,
     composite_salads_restored: 0,
     instant_products_reclassified: 0,
+    spanish_names_localized: 0,
     applied: apply,
   };
 
   for (const food of foods) {
+    if (/^cottage cheese$/i.test(String(food.name || "").trim())) {
+      food.name = "Queso cottage";
+      addReason(food, "premium_2_2_spanish_name_localized");
+      stats.spanish_names_localized += 1;
+    }
     const name = normalize(food.name);
 
     if (

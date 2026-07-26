@@ -17,10 +17,14 @@ const REQUIRED_EXCLUDED_IDS = [
   "off_a9e65f49ae",
   "off_58eef21385",
   "off_2e6c465bac",
+  "off_5d25be94a2",
+  "off_baa36240dc",
+  "off_b283b94fc6",
+  "off_4b2ce5dffb",
 ];
 
 const CORE_CONTAMINATION_RE =
-  /\b(yatekomo|avecrem|cubitos? de caldo|pastillas? de caldo|gominol\w*|golosin\w*|refresco\w*|bebida energet\w*|salchich\w*|choriz\w*|mortadela\w*|salami\w*|fuet\w*|nugget\w*|donuts?|croissants?|bolleria|galletas?|pudding|mousse|natillas?|sandwich\w*|sanwich\w*|pizza\w*|flautas?\b|conos? de vainilla|plum cake|tiras de maiz|aros de maiz)\b/;
+  /\b(yatekomo|avecrem|cubitos? de caldo|pastillas? de caldo|gominol\w*|golosin\w*|refresco\w*|bebida energet\w*|salchich\w*|choriz\w*|mortadela\w*|salami\w*|fuet\w*|nugget\w*|donuts?|croissants?|bolleria|galletas?|pudding|mousse|natillas?|sandwich\w*|sanwich\w*|pizza\w*|flautas?\b|conos? de vainilla|plum cake|tiras de maiz|aros de maiz|strawberr\w*|blueberr\w*|raspberr\w*|peach\w*|passion fruit|cottage cheese)\b/;
 
 function normalize(value) {
   return String(value || "")

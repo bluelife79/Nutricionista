@@ -26,7 +26,7 @@ const EXPECTED_GROUPS = {
 };
 
 const FOREIGN_LABEL_RE =
-  /\b(lapte|grasime|erdbeer|vanille|vanillae|cioccolat|fromage|joghurt|jogurt|quarkzubereitung|geschmack|aromatizat|emmentaler|im stuck|parmesan|parmigiano|formatge|semi curado queso)\b/;
+  /\b(lapte|grasime|erdbeer|vanille|vanillae|cioccolat|fromage|joghurt|jogurt|quarkzubereitung|geschmack|aromatizat|emmentaler|im stuck|parmesan|parmigiano|formatge|semi curado queso|cottage cheese|greek style yogurt|strawberry|blueberry|peach|passion fruit)\b/;
 
 function visible(food, engine) {
   return Boolean(

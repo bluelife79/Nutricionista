@@ -21,11 +21,11 @@ o compuestos se separan como referencias y el resto queda fuera.
 | Estado | Registros |
 |---|---:|
 | Total trazable | 5.324 |
-| Núcleo de intercambio | 1.203 |
+| Núcleo de intercambio | 1.197 |
 | Referencias ocasionales o compuestas | 238 |
-| Excluidos por política | 2.488 |
+| Excluidos por política | 2.494 |
 | No publicables por calidad | 1.395 |
-| Buscables por la usuaria | 1.441 |
+| Buscables por la usuaria | 1.435 |
 
 Controles del núcleo:
 
@@ -92,11 +92,11 @@ Resultado:
 
 | Control | Resultado |
 |---|---:|
-| Perfiles buscables completos | 1.441 / 1.441 |
-| Alimentos con pregunta validada | 487 |
+| Perfiles buscables completos | 1.435 / 1.435 |
+| Alimentos con pregunta validada | 483 |
 | Familias adaptativas | 9 |
-| Alimentos ambiguos auditados | 657 |
-| Modalidades ejecutadas | 1.426 |
+| Alimentos ambiguos auditados | 655 |
+| Modalidades ejecutadas | 1.422 |
 | Incompatibilidades publicadas | 0 |
 
 Familias: queso, avena, pan, carne, pescado, proteína vegetal, legumbre,
@@ -116,7 +116,7 @@ Resultado de la regresión completa:
 - 60 casos contextuales;
 - filtros vegetariano y sin lactosa;
 - curador OFF España;
-- 1.441/1.441 perfiles culinarios buscables completos;
+- 1.435/1.435 perfiles culinarios buscables completos;
 - gate Premium: 100/100 orígenes;
 - 87/87 casos directos con cobertura;
 - 0 contextos críticos;
