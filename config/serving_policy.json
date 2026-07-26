@@ -1,5 +1,5 @@
 {
-  "version": "premium-v2-product-safety-1",
+  "version": "premium-v2.1-product-safety-1",
   "status": "active_product_safety",
   "purpose": "Límites conservadores de practicidad y claridad de interfaz; no son prescripciones dietéticas ni sustituyen una validación clínica.",
   "defaults": {
@@ -18,6 +18,7 @@
     "fatty_meat": {"review_max_g": 250, "hard_max_g": 400},
     "minced_meat": {"review_max_g": 250, "hard_max_g": 400},
     "processed_meat": {"review_max_g": 100, "hard_max_g": 180},
+    "processed_fish": {"review_max_g": 180, "hard_max_g": 280},
     "egg": {"review_max_g": 220, "hard_max_g": 350},
     "white_fish": {"review_max_g": 300, "hard_max_g": 450},
     "fatty_fish": {"review_max_g": 250, "hard_max_g": 400},
@@ -46,6 +47,19 @@
     "cold_soup": {"review_max_g": 450, "hard_max_g": 600},
     "savory_spread": {"review_max_g": 120, "hard_max_g": 200},
     "prepared_meal": {"review_max_g": 450, "hard_max_g": 600},
+    "fruit_beverage": {"review_max_g": 400, "hard_max_g": 550},
+    "hot_beverage": {"review_max_g": 400, "hard_max_g": 550},
+    "soft_beverage": {"review_max_g": 400, "hard_max_g": 550},
+    "alcoholic_beverage": {"review_max_g": 250, "hard_max_g": 400},
+    "seasoning": {"review_max_g": 30, "hard_max_g": 80},
+    "condiment": {"review_max_g": 40, "hard_max_g": 100},
+    "savory_sauce": {"review_max_g": 120, "hard_max_g": 200},
+    "sweet_bakery": {"review_max_g": 100, "hard_max_g": 180},
+    "sweet_dessert": {"review_max_g": 200, "hard_max_g": 300},
+    "sweet_spread": {"review_max_g": 80, "hard_max_g": 140},
+    "protein_supplement": {"review_max_g": 80, "hard_max_g": 140},
+    "baking_input": {"review_max_g": 150, "hard_max_g": 250},
+    "non_exchangeable": {"review_max_g": 100, "hard_max_g": 200},
     "unknown": {"review_max_g": 300, "hard_max_g": 500}
   }
 }

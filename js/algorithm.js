@@ -1631,6 +1631,19 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
   const _premiumContextEnabled =
     window.PREMIUM_CONTEXT_FILTER_ENABLED !== false &&
     typeof window.getPremiumContextCompatibility === "function";
+  const _originPremiumContext =
+    _premiumContextEnabled &&
+    typeof window.inferPremiumContext === "function"
+      ? window.inferPremiumContext(originalFood)
+      : "unknown";
+  const _originAllowsCondiments =
+    ["seasoning", "condiment", "savory_sauce"].includes(
+      _originPremiumContext,
+    );
+  const _originAllowsSweets =
+    ["sweet_bakery", "sweet_dessert", "chocolate"].includes(
+      _originPremiumContext,
+    );
 
   const candidates = foodsDatabase.filter(
     (f) => {
@@ -1638,8 +1651,12 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       if (isFoodQuarantined(f)) return false;
       if (!isMarketEligibleFood(f)) return false;
       if (!isCompatibleCategory(f, originalFood)) return false;
-      if ((f.flags || []).includes("condiment")) return false;
-      if ((f.flags || []).includes("sweet")) return false;
+      if ((f.flags || []).includes("condiment") && !_originAllowsCondiments) {
+        return false;
+      }
+      if ((f.flags || []).includes("sweet") && !_originAllowsSweets) {
+        return false;
+      }
       if (_applyDietary && !window.passesDietaryFilters(f, _dietary)) return false;
       if ((f.flags || []).includes("hidden")) return false;
       if (/\bdescatalogad\w*\b/.test(norm(f.name || ""))) return false;
@@ -2346,6 +2363,38 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     // the additive sourceAffinityBonus. No-op when flags absent (strict equality
     // means undefined !== true / undefined !== "raro" — graceful degradation).
     let demotion = 1;
+
+    if (
+      opts.usageMode &&
+      opts.usageMode !== "any" &&
+      typeof window.getPremiumUsageCompatibility === "function"
+    ) {
+      const usageCompatibility = window.getPremiumUsageCompatibility(
+        a,
+        opts.usageMode,
+      );
+      if (usageCompatibility.priority > 0) {
+        demotion *= Number(window.PREMIUM_USAGE_SECONDARY_DEMOTION) || 0.55;
+      }
+      if (typeof window.getPremiumIntentProfile === "function") {
+        const originIntent = window.getPremiumIntentProfile(originalFood);
+        const candidateIntent = window.getPremiumIntentProfile(a);
+        const proteinFamilies = new Set([
+          "meat",
+          "fish",
+          "plant_protein",
+          "egg",
+        ]);
+        if (
+          proteinFamilies.has(originIntent.family) &&
+          proteinFamilies.has(candidateIntent.family) &&
+          originIntent.family !== candidateIntent.family
+        ) {
+          demotion *=
+            Number(window.PREMIUM_USAGE_PROTEIN_FAMILY_DEMOTION) || 0.35;
+        }
+      }
+    }
 
     // Una equivalencia exacta puede requerir una ración grande por diferencias
     // de agua o densidad. Se conserva como alternativa secundaria y la interfaz

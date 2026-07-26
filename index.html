@@ -1500,22 +1500,12 @@
         </div>
 
         <div class="card-neo usage-context-card" id="usageContextSection">
-          <label class="label">¿Cómo lo vas a usar?</label>
-          <div class="usage-context-help">
+          <label class="label" id="usageContextLabel">¿Cómo lo vas a usar?</label>
+          <div class="usage-context-help" id="usageContextHelp">
             Es opcional, pero ayuda a que las primeras alternativas tengan
             sentido en esa receta.
           </div>
-          <div class="usage-context-options">
-            <button type="button" class="usage-context-btn" data-usage-mode="cold">
-              🥗 En frío o ensalada
-            </button>
-            <button type="button" class="usage-context-btn" data-usage-mode="melt">
-              🔥 Para fundir o gratinar
-            </button>
-            <button type="button" class="usage-context-btn active" data-usage-mode="any">
-              Me da igual
-            </button>
-          </div>
+          <div class="usage-context-options" id="usageContextOptions"></div>
         </div>
 
         <div
@@ -1624,6 +1614,7 @@
     <script src="js/household_measures.js"></script>
     <script src="js/dietary_filters.js"></script>
     <script src="js/premium_policy.js"></script>
+    <script src="js/culinary_intent.js"></script>
     <script src="js/algorithm.js"></script>
     <script>
       // ============================================
@@ -1791,6 +1782,11 @@
       const usageContextSection = document.getElementById(
         "usageContextSection",
       );
+      const usageContextLabel = document.getElementById("usageContextLabel");
+      const usageContextHelp = document.getElementById("usageContextHelp");
+      const usageContextOptions = document.getElementById(
+        "usageContextOptions",
+      );
       const amountSection = document.getElementById("amountSection");
       const amountInput = document.getElementById("amountInput");
       const calculateBtn = document.getElementById("calculateBtn");
@@ -1938,6 +1934,30 @@
         return (text || "").replace(regex, "<strong>$1</strong>");
       }
 
+      function renderUsagePrompt(food) {
+        const prompt =
+          typeof window.getPremiumUsagePrompt === "function"
+            ? window.getPremiumUsagePrompt(food, foodsDatabase)
+            : null;
+        usageContextSection.classList.toggle("active", Boolean(prompt));
+        usageContextOptions.replaceChildren();
+        selectedUsageMode = "any";
+        if (!prompt) return;
+
+        usageContextLabel.textContent = prompt.question;
+        usageContextHelp.textContent = prompt.help;
+        prompt.options.forEach((option) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className =
+            "usage-context-btn" + (option.id === "any" ? " active" : "");
+          button.dataset.usageMode = option.id;
+          button.textContent =
+            (option.icon ? option.icon + " " : "") + option.label;
+          usageContextOptions.appendChild(button);
+        });
+      }
+
       function selectFood(foodId) {
         selectedFood = foodsDatabase.find(
           (f) => String(f.id) === String(foodId),
@@ -1953,23 +1973,7 @@
           (selectedFood.source || "Base");
 
         selectedFoodDiv.classList.add("active");
-        selectedUsageMode = "any";
-        usageContextSection
-          .querySelectorAll(".usage-context-btn")
-          .forEach((button) => {
-            button.classList.toggle(
-              "active",
-              button.dataset.usageMode === "any",
-            );
-          });
-        const usageOptions =
-          typeof window.getPremiumUsagePromptOptions === "function"
-            ? window.getPremiumUsagePromptOptions(selectedFood)
-            : [];
-        usageContextSection.classList.toggle(
-          "active",
-          usageOptions.length > 0,
-        );
+        renderUsagePrompt(selectedFood);
         dropdown.classList.remove("active");
         searchInput.value = "";
 
@@ -1983,18 +1987,16 @@
 
       // selectAPIFood removed — only local foods supported.
 
-      usageContextSection
-        .querySelectorAll(".usage-context-btn")
-        .forEach((button) => {
-          button.addEventListener("click", () => {
-            selectedUsageMode = button.dataset.usageMode || "any";
-            usageContextSection
-              .querySelectorAll(".usage-context-btn")
-              .forEach((item) => {
-                item.classList.toggle("active", item === button);
-              });
+      usageContextOptions.addEventListener("click", (event) => {
+        const button = event.target.closest(".usage-context-btn");
+        if (!button) return;
+        selectedUsageMode = button.dataset.usageMode || "any";
+        usageContextOptions
+          .querySelectorAll(".usage-context-btn")
+          .forEach((item) => {
+            item.classList.toggle("active", item === button);
           });
-        });
+      });
 
       clearBtn.addEventListener("click", () => {
         selectedFood = null;
