@@ -39,6 +39,7 @@ module.exports = async (req, res) => {
 
   const authUser = authData?.user;
   if (authError || !authUser || authUser.app_metadata?.role !== 'member' ||
+      Number(authUser.app_metadata?.session_version || 1) !== Number(session.version || 1) ||
       profileError || !profile || !profile.active ||
       String(authUser.email || '').toLowerCase() !== String(profile.email || '').toLowerCase()) {
     clearSessionCookie(req, res);

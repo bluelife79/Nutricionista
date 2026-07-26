@@ -4,8 +4,8 @@
   "description": "Encuentra equivalencias nutricionales para tu programa de entrenamiento",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#e8ecf3",
-  "theme_color": "#e8ecf3",
+  "background_color": "#140c18",
+  "theme_color": "#140c18",
   "orientation": "portrait-primary",
   "icons": [
     {

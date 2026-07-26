@@ -2,7 +2,7 @@ const crypto = require('crypto');
 
 const COOKIE_NAME = 'revolucionat_session';
 const ADMIN_COOKIE_NAME = 'revolucionat_admin_session';
-const SESSION_SECONDS = 12 * 60 * 60;
+const SESSION_SECONDS = 365 * 24 * 60 * 60;
 const ADMIN_SESSION_SECONDS = 4 * 60 * 60;
 
 function sessionSecret() {
@@ -22,6 +22,7 @@ function signSession(profile, role, lifetimeSeconds) {
     sub: String(profile.id || profile.sub || '').trim(),
     email: String(profile.email || '').toLowerCase().trim(),
     role,
+    version: Number(profile.sessionVersion || profile.version || 1),
     exp: Math.floor(Date.now() / 1000) + lifetimeSeconds,
   }));
   const signature = crypto

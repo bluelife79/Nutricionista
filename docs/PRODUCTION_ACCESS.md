@@ -18,11 +18,14 @@ la clave de servicio.
 
 ## Sesiones
 
-- Clienta: cookie firmada, `HttpOnly`, `Secure`, `SameSite=Strict`, 12 horas.
+- Clienta: cookie firmada, `HttpOnly`, `Secure`, `SameSite=Strict`, un año.
+  En el mismo navegador sólo vuelve a pedir la contraseña si la clienta
+  cierra sesión, borra sus datos o el equipo revoca su acceso.
 - Administración: cookie diferente con las mismas protecciones y 4 horas.
 - La aplicación vuelve a comprobar en Supabase que la cuenta existe, conserva
-  su rol y sigue activa. Una baja impide continuar con la siguiente petición,
-  aunque todavía exista una cookie anterior.
+  su rol, sigue activa y mantiene la misma versión de sesión. Una baja o un
+  cambio de contraseña revoca las sesiones anteriores aunque todavía exista
+  una cookie en el dispositivo.
 - Ni la contraseña de la clienta ni la del administrador se guardan en
   `localStorage` o `sessionStorage`.
 
@@ -37,6 +40,20 @@ El panel permite:
 
 Una contraseña nueva debe tener entre 12 y 128 caracteres e incluir mayúscula,
 minúscula y número.
+
+## Caché y privacidad
+
+La PWA guarda localmente los archivos de la aplicación y el catálogo para
+cargar más rápido. Durante una sesión abierta mantiene además una memoria
+limitada de los últimos cálculos idénticos para no repetir el trabajo.
+
+Esa memoria:
+
+- sólo existe en la pestaña mientras la aplicación está abierta;
+- no crea un historial visible de alimentos;
+- no se escribe en `localStorage`, Supabase ni ningún sistema analítico;
+- se invalida automáticamente cuando cambia la versión del motor, la cantidad,
+  el contexto culinario o los filtros.
 
 ## Alta inicial
 

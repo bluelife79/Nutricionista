@@ -21,6 +21,9 @@ Diseñada para mujeres +40 años del programa RevolucionaT.
 - ✅ Funciona offline
 - ✅ Acceso individual con Supabase Auth y contraseñas no almacenadas en la tabla de perfiles
 - ✅ Panel de administración con alta, edición, cambio de contraseña y activación/baja inmediata
+- ✅ Sesión recordada durante un año en el mismo dispositivo y revocable desde administración
+- ✅ Caché técnica de cálculos repetidos sin guardar un historial alimentario personal
+- ✅ Experiencia visual alineada con la identidad oficial de RevolucionaT
 
 ## 📁 ESTRUCTURA
 

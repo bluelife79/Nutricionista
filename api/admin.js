@@ -92,7 +92,7 @@ module.exports = async (req, res) => {
         password,
         email_confirm: true,
         user_metadata: { name: name.trim() },
-        app_metadata: { role: 'member' },
+        app_metadata: { role: 'member', session_version: 1 },
       });
       if (authResult.error || !authResult.data.user) {
         return res.status(400).json({ success: false, error: 'No se ha podido crear la cuenta de acceso.' });
@@ -139,6 +139,32 @@ module.exports = async (req, res) => {
         .select('name, email, active, created_at')
         .single();
       if (error) return res.status(500).json({ success: false, error: 'Error al cambiar estado.' });
+
+      if (current.active) {
+        const authUser = await findAuthUserByEmail(supabase, normalizedEmail);
+        if (!authUser) {
+          await supabase.from('users').update({ active: true }).eq('email', normalizedEmail);
+          return res.status(500).json({
+            success: false,
+            error: 'No se ha encontrado la cuenta vinculada. No se aplicó la baja.',
+          });
+        }
+        const version = Number(authUser.app_metadata?.session_version || 1) + 1;
+        const authUpdate = await supabase.auth.admin.updateUserById(authUser.id, {
+          app_metadata: {
+            ...(authUser.app_metadata || {}),
+            role: 'member',
+            session_version: version,
+          },
+        });
+        if (authUpdate.error) {
+          await supabase.from('users').update({ active: true }).eq('email', normalizedEmail);
+          return res.status(500).json({
+            success: false,
+            error: 'No se ha podido revocar la sesión. No se aplicó la baja.',
+          });
+        }
+      }
       return res.json({ success: true, user: publicUser(user) });
     }
 
@@ -171,6 +197,9 @@ module.exports = async (req, res) => {
         app_metadata: {
           ...(authUser.app_metadata || {}),
           role: 'member',
+          session_version: password
+            ? Number(authUser.app_metadata?.session_version || 1) + 1
+            : Number(authUser.app_metadata?.session_version || 1),
         },
       };
       if (password) authUpdates.password = password;

@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <meta name="theme-color" content="#e8ecf3" />
+    <meta name="theme-color" content="#140c18" />
     <meta
       name="description"
       content="Intercambiador de alimentos RevolucionaT - Encuentra equivalencias nutricionales"
@@ -47,7 +47,37 @@
     <meta name="apple-mobile-web-app-title" content="RevolucionaT" />
 
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+      @font-face {
+        font-family: "Bricolage Grotesque";
+        src: url("assets/brand/bricolage-grotesque-latin.woff2") format("woff2");
+        font-weight: 500 800;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Manrope";
+        src: url("assets/brand/manrope-latin.woff2") format("woff2");
+        font-weight: 400 800;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Inter";
+        src: url("assets/brand/manrope-latin.woff2") format("woff2");
+        font-weight: 400 800;
+        font-display: swap;
+      }
+
+      :root {
+        --rt-page: #140c18;
+        --rt-surface: #fffafb;
+        --rt-ink: #251324;
+        --rt-muted: #725f70;
+        --rt-hot: #ee2c82;
+        --rt-brand: #6437e7;
+        --rt-electric: #d7ff39;
+        --rt-cool: #28d7d2;
+      }
 
       * {
         margin: 0;
@@ -58,7 +88,7 @@
 
       body {
         font-family:
-          "Inter",
+          "Manrope",
           -apple-system,
           BlinkMacSystemFont,
           sans-serif;
@@ -1461,11 +1491,392 @@
           transition: none;
         }
       }
+
+      /* ============================================ */
+      /* REVOLUCIONAT BRAND UX */
+      /* ============================================ */
+      #loginScreen {
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 82% 18%, rgba(238, 44, 130, 0.25), transparent 31%),
+          radial-gradient(circle at 12% 82%, rgba(100, 55, 231, 0.28), transparent 35%),
+          var(--rt-page);
+      }
+
+      #loginScreen::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.24;
+        background-image:
+          linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+        background-size: 44px 44px;
+        mask-image: linear-gradient(to bottom, black, transparent 82%);
+      }
+
+      .login-card {
+        position: relative;
+        overflow: hidden;
+        max-width: 460px;
+        padding: 34px 34px 30px;
+        border: 1px solid rgba(255,255,255,.72);
+        border-radius: 28px;
+        background: rgba(255, 250, 251, 0.98);
+        box-shadow: 0 32px 100px rgba(0,0,0,.46);
+      }
+
+      .login-card::after {
+        content: "";
+        position: absolute;
+        left: 34px;
+        right: 34px;
+        top: 0;
+        height: 5px;
+        border-radius: 0 0 999px 999px;
+        background: linear-gradient(90deg, var(--rt-hot), var(--rt-brand), var(--rt-electric));
+      }
+
+      .login-brand-logo {
+        display: block;
+        width: min(245px, 76%);
+        height: auto;
+        margin: 0 auto 22px;
+      }
+
+      .login-eyebrow {
+        margin-bottom: 12px;
+        color: var(--rt-hot);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: .17em;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .login-title {
+        max-width: 360px;
+        margin: 0 auto 10px;
+        color: var(--rt-ink);
+        background: none;
+        -webkit-text-fill-color: currentColor;
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-size: clamp(25px, 5vw, 34px);
+        line-height: .98;
+        letter-spacing: -.04em;
+      }
+
+      .login-subtitle {
+        max-width: 350px;
+        margin: 0 auto 26px;
+        color: var(--rt-muted);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      .login-form {
+        gap: 10px;
+        text-align: left;
+      }
+
+      .login-field-label {
+        margin: 8px 0 0 2px;
+        color: var(--rt-ink);
+        font-size: 11px;
+        font-weight: 800;
+      }
+
+      .login-input {
+        min-height: 54px;
+        border: 1.5px solid #dfd5df;
+        border-radius: 14px;
+        background: #fff;
+        color: var(--rt-ink);
+        box-shadow: none;
+      }
+
+      .login-input:focus {
+        border-color: var(--rt-brand);
+        box-shadow: 0 0 0 4px rgba(100,55,231,.11);
+      }
+
+      .password-field {
+        position: relative;
+      }
+
+      .password-field .login-input {
+        padding-right: 84px;
+      }
+
+      .password-toggle {
+        position: absolute;
+        top: 50%;
+        right: 12px;
+        transform: translateY(-50%);
+        padding: 8px 6px;
+        border: 0;
+        color: var(--rt-brand);
+        background: transparent;
+        font: 800 11px/1 "Manrope", sans-serif;
+        cursor: pointer;
+      }
+
+      .login-remember {
+        display: grid;
+        grid-template-columns: 26px 1fr;
+        gap: 10px;
+        align-items: start;
+        margin: 10px 0 6px;
+        padding: 12px 14px;
+        border: 1px solid rgba(100,55,231,.14);
+        border-radius: 14px;
+        color: var(--rt-muted);
+        background: rgba(100,55,231,.055);
+        font-size: 11px;
+        line-height: 1.4;
+      }
+
+      .login-remember-icon {
+        display: grid;
+        place-items: center;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        color: var(--rt-ink);
+        background: var(--rt-electric);
+        font-weight: 900;
+      }
+
+      .login-remember strong {
+        display: block;
+        margin-bottom: 2px;
+        color: var(--rt-ink);
+        font-size: 11px;
+      }
+
+      .login-button {
+        min-height: 55px;
+        margin-top: 6px;
+        border-radius: 14px;
+        background: linear-gradient(110deg, var(--rt-brand), var(--rt-hot));
+        box-shadow: 0 14px 34px rgba(100,55,231,.24);
+      }
+
+      .login-security {
+        margin-top: 16px;
+        color: #8b7b89;
+        font-size: 10px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      #initialSplash {
+        gap: 14px;
+        background:
+          radial-gradient(circle at 75% 20%, rgba(238,44,130,.22), transparent 32%),
+          var(--rt-page);
+      }
+
+      #initialSplash .spinner {
+        border-color: rgba(255,255,255,.18);
+        border-top-color: var(--rt-electric);
+      }
+
+      #initialSplash .splash-text {
+        color: #fff;
+      }
+
+      .splash-brand-logo {
+        width: min(220px, 62vw);
+        height: auto;
+        margin-bottom: 8px;
+        padding: 8px 12px;
+        border-radius: 14px;
+        background: rgba(255,255,255,.94);
+      }
+
+      .app-header {
+        position: relative;
+        overflow: hidden;
+        margin: 0 0 24px;
+        padding: 18px 20px 20px;
+        border: 1px solid rgba(255,255,255,.12);
+        border-radius: 26px;
+        color: #fff;
+        background:
+          radial-gradient(circle at 94% 8%, rgba(238,44,130,.34), transparent 35%),
+          linear-gradient(135deg, #140c18, #2d1836);
+        box-shadow: 0 18px 45px rgba(45,28,56,.23);
+        text-align: left;
+      }
+
+      .app-header::after {
+        content: "";
+        position: absolute;
+        right: 18px;
+        bottom: 0;
+        width: 118px;
+        height: 4px;
+        border-radius: 999px 999px 0 0;
+        background: var(--rt-electric);
+      }
+
+      .app-brand-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      .app-brand-logo-wrap {
+        display: inline-flex;
+        align-items: center;
+        max-width: 190px;
+        padding: 6px 10px;
+        border-radius: 13px;
+        background: rgba(255,255,255,.95);
+      }
+
+      .app-brand-logo {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .app-logout {
+        flex: 0 0 auto;
+        padding: 8px 0;
+        border: 0;
+        color: rgba(255,255,255,.65);
+        background: transparent;
+        font: 700 10px/1 "Manrope", sans-serif;
+        cursor: pointer;
+      }
+
+      .app-welcome {
+        margin-top: 20px;
+      }
+
+      .app-kicker {
+        margin-bottom: 7px;
+        color: var(--rt-electric);
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+      }
+
+      .app-greeting {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-size: clamp(24px, 6vw, 31px);
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -.035em;
+      }
+
+      .app-promise {
+        margin-top: 8px;
+        color: rgba(255,255,255,.72);
+        font-size: 12px;
+        line-height: 1.45;
+      }
+
+      .app-trust-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-top: 16px;
+      }
+
+      .app-trust-chip {
+        padding: 6px 9px;
+        border: 1px solid rgba(255,255,255,.13);
+        border-radius: 999px;
+        color: rgba(255,255,255,.82);
+        background: rgba(255,255,255,.07);
+        font-size: 9px;
+        font-weight: 750;
+      }
+
+      .card-neo {
+        border: 1px solid rgba(83,75,144,.055);
+      }
+
+      .label {
+        color: var(--rt-brand);
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-size: 13px;
+        letter-spacing: -.01em;
+        text-transform: none;
+      }
+
+      .step-help {
+        display: block;
+        margin: -5px 0 14px;
+        color: #777d8f;
+        font-size: 11px;
+        line-height: 1.4;
+      }
+
+      .btn-neo,
+      .original-food-card {
+        background: linear-gradient(110deg, var(--rt-brand), var(--rt-hot));
+      }
+
+      .results-title,
+      .section-title {
+        font-family: "Bricolage Grotesque", sans-serif;
+      }
+
+      @media (max-width: 480px) {
+        #loginScreen {
+          padding: 14px;
+        }
+
+        .login-card {
+          padding: 28px 22px 24px;
+          border-radius: 23px;
+        }
+
+        .login-card::after {
+          left: 22px;
+          right: 22px;
+        }
+
+        .login-brand-logo {
+          width: min(220px, 78%);
+          margin-bottom: 18px;
+        }
+
+        .login-title {
+          font-size: 27px;
+        }
+
+        body {
+          padding-top: 0;
+        }
+
+        .app-header {
+          margin-inline: -16px;
+          padding-inline: 20px;
+          border-radius: 0 0 24px 24px;
+        }
+
+        .app-brand-logo-wrap {
+          max-width: 170px;
+        }
+      }
     </style>
   </head>
   <body>
     <!-- SPLASH inicial mientras validamos sesión guardada -->
     <div id="initialSplash">
+      <img
+        class="splash-brand-logo"
+        src="assets/brand/logo-revolucionat-cropped.webp"
+        alt="Programa RevolucionaT"
+      />
       <div class="spinner"></div>
       <div class="splash-text">Verificando acceso...</div>
     </div>
@@ -1473,12 +1884,20 @@
     <!-- LOGIN SCREEN -->
     <div id="loginScreen" class="active">
       <div class="login-card">
-        <h1 class="login-title">RevolucionaT</h1>
+        <div class="login-eyebrow">RevolucionaT · Mujeres +40</div>
+        <img
+          class="login-brand-logo"
+          src="assets/brand/logo-revolucionat-cropped.webp"
+          alt="Programa RevolucionaT"
+        />
+        <h1 class="login-title">Cambia alimentos. Mantén tu plan.</h1>
         <p class="login-subtitle">
-          Herramienta Premium de Intercambio Nutricional
+          Busca lo que tienes en tu menú y encuentra alternativas equivalentes,
+          prácticas y con sentido.
         </p>
 
         <form id="loginForm" class="login-form">
+          <label class="login-field-label" for="emailInput">Tu email</label>
           <input
             type="email"
             id="emailInput"
@@ -1489,69 +1908,81 @@
           />
           <div id="emailError" class="login-error">Email inválido</div>
 
-          <input
-            type="password"
-            id="passwordInput"
-            class="login-input"
-            placeholder="Contraseña"
-            required
-            autocomplete="current-password"
-          />
+          <label class="login-field-label" for="passwordInput">Tu contraseña</label>
+          <div class="password-field">
+            <input
+              type="password"
+              id="passwordInput"
+              class="login-input"
+              placeholder="Contraseña"
+              required
+              autocomplete="current-password"
+            />
+            <button
+              type="button"
+              id="passwordToggle"
+              class="password-toggle"
+              aria-pressed="false"
+            >
+              Mostrar
+            </button>
+          </div>
           <div id="passwordError" class="login-error">Contraseña incorrecta</div>
 
+          <div class="login-remember">
+            <span class="login-remember-icon">✓</span>
+            <div>
+              <strong>Sólo tendrás que escribirla esta primera vez</strong>
+              Este dispositivo recordará tu acceso durante un año.
+            </div>
+          </div>
+
           <button type="submit" id="loginButton" class="login-button">
-            Acceder a mi herramienta →
+            Entrar en mi herramienta →
           </button>
         </form>
+        <div class="login-security">Acceso personal y seguro · Tus datos no se comparten</div>
       </div>
     </div>
 
     <div class="container" id="appContainer" style="display: none">
       <!-- HEADER -->
-      <div class="header">
-        <div
-          style="
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            margin-top: 8px;
-          "
-        >
-          <div
-            id="userGreeting"
-            style="font-size: 13px; color: #534b90; font-weight: 700"
-          ></div>
-          <button
-            id="logoutBtn"
-            style="
-              background: none;
-              border: none;
-              font-size: 12px;
-              color: #a0a8b8;
-              font-weight: 600;
-              cursor: pointer;
-              font-family: Inter, sans-serif;
-              text-decoration: underline;
-            "
-          >
+      <header class="header app-header">
+        <div class="app-brand-row">
+          <div class="app-brand-logo-wrap">
+            <img
+              class="app-brand-logo"
+              src="assets/brand/logo-revolucionat-cropped.webp"
+              alt="Programa RevolucionaT"
+            />
+          </div>
+          <button id="logoutBtn" class="app-logout">
             Cerrar sesión
           </button>
         </div>
-        <div class="logo" style="margin-top: 12px">Programa RevolucionaT</div>
-        <div class="subtitle">Intercambiador de alimentos</div>
-      </div>
+        <div class="app-welcome">
+          <div class="app-kicker">Tu intercambiador de alimentos</div>
+          <div id="userGreeting" class="app-greeting"></div>
+          <p class="app-promise">¿Qué alimento quieres cambiar hoy?</p>
+        </div>
+        <div class="app-trust-row" aria-label="Características de la herramienta">
+          <span class="app-trust-chip">✓ Raciones prácticas</span>
+          <span class="app-trust-chip">✓ Contexto culinario</span>
+          <span class="app-trust-chip">✓ Alternativas revisadas</span>
+        </div>
+      </header>
 
       <!-- SEARCH SECTION -->
       <div id="searchSection" class="search-section">
         <div class="card-neo">
-          <label class="label">1. Buscar alimento</label>
+          <label class="label">1. ¿Qué alimento quieres cambiar?</label>
+          <span class="step-help">Escribe el nombre y elige la opción que más se parezca a la tuya.</span>
           <div class="input-wrapper">
             <input
               type="text"
               id="searchInput"
               class="input-neo"
-              placeholder="Escribe para buscar (ej: pollo...)"
+              placeholder="Ej.: pollo, avena, yogur..."
               autocomplete="off"
             />
             <div id="autocompleteDropdown" class="autocomplete-dropdown"></div>
@@ -1580,7 +2011,8 @@
           id="amountSection"
           style="opacity: 0.5; pointer-events: none"
         >
-          <label class="label">2. Cantidad (gramos)</label>
+          <label class="label">2. ¿Qué cantidad tienes?</label>
+          <span class="step-help">Indica los gramos que aparecen en tu menú.</span>
           <input
             type="number"
             id="amountInput"
@@ -1592,7 +2024,7 @@
         </div>
 
         <button id="calculateBtn" class="btn-neo" disabled>
-          Buscar alternativas
+          Ver mis alternativas
         </button>
       </div>
 
@@ -1607,7 +2039,7 @@
         <button class="back-btn" id="backBtn">← Nueva búsqueda</button>
 
         <div class="results-header">
-          <div class="results-title">Alternativas equivalentes</div>
+          <div class="results-title">Alternativas para ti</div>
           <div class="results-subtitle" id="resultsCount"></div>
         </div>
 
@@ -1695,7 +2127,16 @@
       const passwordInput = document.getElementById("passwordInput");
       const emailError = document.getElementById("emailError");
       const passwordError = document.getElementById("passwordError");
+      const passwordToggle = document.getElementById("passwordToggle");
       const loginButton = document.getElementById("loginButton");
+
+      passwordToggle.addEventListener("click", () => {
+        const show = passwordInput.type === "password";
+        passwordInput.type = show ? "text" : "password";
+        passwordToggle.textContent = show ? "Ocultar" : "Mostrar";
+        passwordToggle.setAttribute("aria-pressed", String(show));
+        passwordInput.focus();
+      });
 
       // Quita el splash y deja ver login (o app si ya se mostró)
       function dismissAuthSplash() {
@@ -1798,8 +2239,15 @@
         appContainer.style.display = "block";
 
         if (name) {
+          const firstName = String(name)
+            .trim()
+            .split(/\s+/)[0]
+            .toLocaleLowerCase("es-ES");
+          const displayName =
+            firstName.charAt(0).toLocaleUpperCase("es-ES") +
+            firstName.slice(1);
           document.getElementById("userGreeting").textContent =
-            "Hola, " + name + " 👋";
+            "Hola, " + displayName + " 👋";
         }
 
         loadDatabase();
@@ -1831,6 +2279,9 @@
       let selectedFood = null;
       let selectedUsageMode = "any";
       let searchTimeout = null;
+      const EXCHANGE_RESULT_CACHE_VERSION = "premium-v2.2-ux-1";
+      const EXCHANGE_RESULT_CACHE_LIMIT = 18;
+      const exchangeResultCache = new Map();
 
       // ✅ NUEVO: Control de resultados visibles en el autocomplete
       const AUTOCOMPLETE_INITIAL = 25; // los primeros que enseñas
@@ -2092,17 +2543,63 @@
       // ============================================
       calculateBtn.addEventListener("click", calculateEquivalences);
 
+      function activeDietaryCacheKey() {
+        const filters = window.DIETARY_FILTERS;
+        if (!filters) return "none";
+        const values = filters instanceof Set
+          ? Array.from(filters)
+          : Array.isArray(filters)
+            ? filters
+            : [];
+        return values.map(String).sort().join(",") || "none";
+      }
+
+      function exchangeResultCacheKey(food, amount, usageMode) {
+        return [
+          EXCHANGE_RESULT_CACHE_VERSION,
+          String(food?.id || ""),
+          Number(amount).toFixed(2),
+          String(usageMode || "any"),
+          activeDietaryCacheKey(),
+        ].join("|");
+      }
+
+      function rememberExchangeResult(key, result) {
+        if (exchangeResultCache.has(key)) exchangeResultCache.delete(key);
+        exchangeResultCache.set(key, result);
+        while (exchangeResultCache.size > EXCHANGE_RESULT_CACHE_LIMIT) {
+          const oldestKey = exchangeResultCache.keys().next().value;
+          exchangeResultCache.delete(oldestKey);
+        }
+      }
+
       async function calculateEquivalences() {
         const amount = parseFloat(amountInput.value);
+        const cacheKey = exchangeResultCacheKey(
+          selectedFood,
+          amount,
+          selectedUsageMode,
+        );
 
         searchSection.style.display = "none";
         loading.classList.add("active");
+        const calculationStatus = document.querySelector(".loading-text");
 
-        const results = await calculateAlternatives(selectedFood, amount, {
-          usageMode: selectedUsageMode,
-        });
+        let results = exchangeResultCache.get(cacheKey);
+        if (results) {
+          exchangeResultCache.delete(cacheKey);
+          exchangeResultCache.set(cacheKey, results);
+          calculationStatus.textContent = "Recuperando tus alternativas...";
+        } else {
+          calculationStatus.textContent = "Buscando las mejores alternativas...";
+          results = await calculateAlternatives(selectedFood, amount, {
+            usageMode: selectedUsageMode,
+          });
+          rememberExchangeResult(cacheKey, results);
+        }
         displayResults(selectedFood, amount, results);
         loading.classList.remove("active");
+        calculationStatus.textContent = "Cargando...";
         resultsSection.classList.add("active");
       }
 

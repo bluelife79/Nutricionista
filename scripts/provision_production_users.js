@@ -189,7 +189,7 @@ async function main() {
         password: client.password,
         email_confirm: true,
         user_metadata: { name: client.name },
-        app_metadata: { role: 'member' },
+        app_metadata: { role: 'member', session_version: 1 },
       });
       if (result.error || !result.data.user) {
         client.status = `error-auth:${result.error?.message || 'desconocido'}`;

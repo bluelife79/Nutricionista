@@ -105,6 +105,7 @@ module.exports = async (req, res) => {
   setSessionCookie(req, res, {
     id: signedIn.id,
     email: profile.email,
+    sessionVersion: Number(signedIn.app_metadata?.session_version || 1),
   });
   return res.json({ success: true, name: profile.name, email: profile.email });
 };
