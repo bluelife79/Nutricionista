@@ -1,0 +1,34 @@
+{
+  "version": "premium-v2-product-decisions-1",
+  "scope": "Decisiones de practicidad de producto para equivalencias matemáticamente válidas que requieren una cantidad grande. No son prescripciones ni aprobación clínica.",
+  "decisions": [
+    {
+      "case_id": "pasta",
+      "candidate_id": "bedca_0653",
+      "decision": "accepted_with_visible_notice",
+      "reason": "Un alimento seco se cambia por boniato con más agua; 141 g sigue siendo una ración culinaria razonable.",
+      "notice_type": "dry_to_wet_carb"
+    },
+    {
+      "case_id": "pan_centeno",
+      "candidate_id": "bedca_0222",
+      "decision": "accepted_with_visible_notice",
+      "reason": "El cambio pan-patata exige más gramos por el agua de la patata; 176 g es una ración utilizable, pero debe explicarse.",
+      "notice_type": "dry_to_wet_carb"
+    },
+    {
+      "case_id": "tempeh",
+      "candidate_id": "bedca_0462",
+      "decision": "accepted_with_visible_notice",
+      "reason": "El tofu necesita más cantidad para acercarse a la proteína del tempeh; permanece como opción secundaria y muestra aviso.",
+      "notice_type": "large_plant_protein_portion"
+    },
+    {
+      "case_id": "seitan",
+      "candidate_id": "bedca_0462",
+      "decision": "accepted_with_visible_notice",
+      "reason": "El tofu necesita más cantidad para acercarse a la proteína del seitán; permanece como opción secundaria y muestra aviso.",
+      "notice_type": "large_plant_protein_portion"
+    }
+  ]
+}

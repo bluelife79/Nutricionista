@@ -1,0 +1,42 @@
+name: Actualizar base de datos
+
+# Se ejecuta automáticamente cuando database.json cambia en la rama main.
+# NO se ejecuta cuando el bot hace el commit de vuelta (gracias a [skip ci]).
+on:
+  push:
+    branches: [main]
+    paths:
+      - "database.json"
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar uv
+        run: pip install uv --quiet
+
+      - name: Instalar dependencias del microservicio
+        run: uv sync --directory microservicio
+
+      - name: Paso 1 — Reclasificar categorías
+        run: python3 scripts/fix_categories.py
+
+      - name: Paso 2 — Regenerar embeddings semánticos
+        run: uv run --directory microservicio python3 ../scripts/embed_foods.py
+
+      - name: Guardar cambios en el repositorio
+        run: |
+          git config user.name "RevolucionaT Bot"
+          git config user.email "bot@revolucionat.app"
+          git add database.json microservicio/data/
+          git diff --staged --quiet || git commit -m "chore: actualizar categorías y embeddings [skip ci]"
+          git push

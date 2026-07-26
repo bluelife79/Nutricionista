@@ -1,4 +1,25 @@
 {
   "name": "revolucionat",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "node server.js",
+    "test": "npm run test:data && npm run test:algorithm && npm run test:context && npm run test:off-curator && npm run test:premium && npm run test:security",
+    "test:data": "node scripts/validate_release_data.js && python3 scripts/smoke_test_db.py",
+    "test:algorithm": "node scripts/test_algorithm_regression.js",
+    "test:context": "node scripts/test_contextual_matrix.js",
+    "audit:premium": "node scripts/audit_premium_matrix.js",
+    "audit:catalog": "node scripts/audit_premium_catalog.js",
+    "fix:catalog-premium": "node scripts/apply_premium_catalog_fixes.js",
+    "enrich:off-provenance": "node scripts/enrich_active_off_provenance.js",
+    "test:off-curator": "node scripts/test_off_spain_curator.js",
+    "test:premium": "node scripts/test_premium_release_gate.js",
+    "test:security": "node scripts/test_security.js",
+    "report:algorithm": "node scripts/run_algorithm_cases.js",
+    "e2e:serve": "node scripts/e2e_server.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.105.1",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  }
 }
