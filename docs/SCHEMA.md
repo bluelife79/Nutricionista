@@ -1,10 +1,10 @@
-# Esquema de alimentos — Premium v2
+# Esquema de alimentos — Premium v2.1
 
 `database.json` es un array plano. Contiene la ficha nutricional, las señales
 de uso culinario y la trazabilidad necesaria para decidir si un alimento puede
 buscarse y aparecer como alternativa.
 
-Este documento describe el estado real de la release Premium v2. El contrato
+Este documento describe el estado real de la release Premium v2.1. El contrato
 de producto completo está en `docs/PREMIUM_PRODUCT_CONTRACT.md`.
 
 ## Registro mínimo
@@ -113,23 +113,61 @@ taxonomía, las reglas de compatibilidad, las pruebas y los embeddings.
 
 ```text
 breakfast_cereal, bread, dry_grain, cooked_grain, tuber,
-cooked_tuber, lean_meat, fatty_meat, minced_meat, processed_meat,
-egg, white_fish, fatty_fish, canned_fish, seafood, plant_protein,
+cooked_tuber, baking_input, lean_meat, fatty_meat, minced_meat,
+processed_meat, egg, white_fish, fatty_fish, canned_fish,
+processed_fish, seafood, plant_protein, protein_supplement,
 cooked_legume, milk, plant_drink, fermented_dairy, fresh_cheese,
-aged_cheese, whole_fruit, leafy_vegetable, cruciferous,
-fruiting_vegetable, root_vegetable, stalk_vegetable,
+aged_cheese, whole_fruit, fruit_beverage, leafy_vegetable,
+cruciferous, fruiting_vegetable, root_vegetable, stalk_vegetable,
 other_vegetable, oil, nuts_seeds, avocado, olive, nut_spread,
-chocolate, cold_soup, savory_spread, prepared_meal, unknown
+chocolate, cold_soup, savory_spread, savory_sauce, condiment,
+seasoning, sweet_spread, sweet_dessert, sweet_bakery, hot_beverage,
+soft_beverage, alcoholic_beverage, prepared_meal, non_exchangeable,
+unknown
 ```
 
 La mayoría de registros no necesita guardar ese campo: el navegador lo infiere
-de manera determinista. Si la inferencia da `unknown`, el alimento puede
-encontrarse, pero el motor falla de forma cerrada y no inventa un intercambio
-directo.
+de manera determinista. Los contextos `unknown` y `non_exchangeable` fallan de
+forma cerrada y no inventan un intercambio directo. En la candidata 2.1 no hay
+ningún registro visible en esos dos estados.
 
-La única pregunta opcional activa en esta release distingue el uso de
-mozzarella en frío frente a fundir o gratinar. La respuesta se pasa al motor y
-filtra candidatos incompatibles.
+## Perfil de intención culinaria 2.1
+
+Todos los registros conservan la decisión de intención auditada:
+
+```json
+{
+  "culinary_intent": {
+    "version": "premium-v2.1-intent-5",
+    "family": "cheese",
+    "uses": ["cold", "melt"],
+    "primary_uses": ["cold"],
+    "prompt_id": "cheese_use",
+    "validated_modes": ["cold", "melt"],
+    "validation_status": "release_validated"
+  }
+}
+```
+
+| Campo | Regla |
+|---|---|
+| `version` | Versión exacta del clasificador y del contrato servido. |
+| `family` | Familia culinaria determinista. |
+| `uses` | Usos compatibles conocidos para el alimento. |
+| `primary_uses` | Usos preferentes; siempre es subconjunto de `uses`. |
+| `prompt_id` | Plantilla visible o `null` si no se debe preguntar. |
+| `validated_modes` | Modalidades ejecutadas con éxito por la auditoría exhaustiva. |
+| `validation_status` | `release_validated`, `release_silent` o `not_publishable`. |
+
+El navegador no vuelve a decidir libremente qué pregunta mostrar: sirve las
+modalidades almacenadas que superaron la auditoría. La respuesta se pasa al
+motor, excluye usos incompatibles y da prioridad a los usos principales y a la
+familia proteica adecuada.
+
+En esta release existen plantillas adaptativas para queso, avena, pan, carne,
+pescado, proteína vegetal, legumbre, tubérculo, fermentado lácteo y verdura. La
+pregunta solo se muestra si quedan al menos dos modalidades validadas y el TOP
+cambia materialmente. “Me da igual” conserva el recorrido simple.
 
 ## Visibilidad y calidad
 
@@ -218,6 +256,8 @@ Comandos de control:
 ```text
 npm run audit:catalog
 npm run audit:premium
+npm run audit:intent
+npm run audit:intent:exhaustive
 npm run test:premium
 npm test
 ```

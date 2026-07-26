@@ -101,6 +101,7 @@ function createEngine() {
     "js/exchange_groups.js",
     "js/dietary_filters.js",
     "js/premium_policy.js",
+    "js/culinary_intent.js",
     "js/algorithm.js",
   ]) {
     let source = fs.readFileSync(path.join(ROOT, file), "utf8");

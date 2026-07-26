@@ -1,4 +1,4 @@
-# Contrato de producto — Intercambiador RevolucionaT Premium v2
+# Contrato de producto — Intercambiador RevolucionaT Premium v2.1
 
 Estado: **contrato de release**
 Público principal: mujeres de más de 40 años del programa RevolucionaT en España.
@@ -85,9 +85,21 @@ Reglas de producto:
 - mozzarella distingue, cuando sea necesario, uso en frío de uso para fundir;
 - un plato preparado puede tener referencias próximas, pero no se fuerza como intercambio directo si no existe una equivalencia honesta.
 
-La interfaz solo pregunta por contexto cuando la respuesta puede cambiar materialmente. Por ejemplo:
+La interfaz solo pregunta por contexto cuando se cumplen simultáneamente estas condiciones:
+
+1. el alimento admite al menos dos usos plausibles;
+2. cada respuesta conserva alternativas compatibles;
+3. las respuestas cambian materialmente el conjunto o el orden de resultados;
+4. la combinación alimento–modalidad ha superado la auditoría exhaustiva del motor real.
+
+Las familias adaptativas de esta release son queso, avena, pan, carne, pescado,
+proteína vegetal, legumbre, tubérculo, fermentado lácteo y verdura. Por ejemplo:
 
 > ¿Cómo la vas a usar? En frío/ensalada · Para fundir/gratinar
+
+Siempre existe “Me da igual”. No se pregunta a una manzana, un yogur
+saborizado ni a ningún otro alimento cuando la elección no aportaría una
+diferencia útil.
 
 ## 5. Cálculo y raciones
 
@@ -195,7 +207,7 @@ Producción no se usa como entorno de ensayo. Primero se valida una preview asoc
 
 ## 11. Definición de terminado
 
-“Premium v2 terminada” significa que:
+“Premium v2.1 terminada” significa que:
 
 - la implementación cumple este contrato;
 - los 100 casos se han ejecutado contra el motor y contra la interfaz real;
@@ -205,3 +217,29 @@ Producción no se usa como entorno de ensayo. Primero se valida una preview asoc
 - una mujer puede usarla sin conocer la arquitectura interna y sin encontrarse resultados absurdos en los recorridos validados.
 
 No significa que la base de datos mundial sea perfecta ni que no pueda existir ningún alimento futuro sin revisar.
+
+## 12. Alcance verificable de Premium 2.1
+
+El catálogo conserva 5.324 registros trazables. La candidata de esta release
+publica 3.929 que superan las reglas de visibilidad y calidad; los restantes no
+se borran, sino que quedan ocultos o en cuarentena para poder corregirlos sin
+perder procedencia.
+
+Todos los 5.324 registros tienen un perfil culinario estructurado y versionado.
+En los alimentos visibles, 877 preguntas adaptativas están aprobadas para
+release y 3.052 permanecen deliberadamente silenciosos. Una pregunta no se
+publica por pertenecer a una familia: se publica únicamente después de ejecutar
+sus modalidades contra el algoritmo y comprobar que todas tienen alternativas
+compatibles y que el resultado cambia materialmente.
+
+“No puede faltar ningún alimento” se interpreta como un requisito de cobertura
+del supermercado español habitual, no como una afirmación imposible de
+completitud universal. El control de release exige:
+
+- referencias genéricas españolas para las familias alimentarias habituales;
+- productos controlados de Mercadona, Carrefour, Lidl y Aldi cuando existan
+  datos fiables;
+- búsqueda por denominaciones y formatos reconocibles en España;
+- ausencia de huecos injustificados en los 100 recorridos prioritarios;
+- aislamiento, no invención, cuando un producto carece de datos o clasificación
+  suficientemente fiables.

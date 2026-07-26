@@ -103,18 +103,29 @@ function verifySourceHierarchy(engine) {
   );
 }
 
-async function verifyUnknownContextFailsClosed(engine) {
-  const origin = engine.foods.find(
-    (food) =>
-      visible(food) &&
-      engine.window.inferPremiumContext(food) === "unknown",
+async function verifyUnresolvedContextFailsClosed(engine) {
+  const origin = {
+    id: "__synthetic_unresolved__",
+    name: "Producto ambiguo de prueba",
+    source: "test",
+    category: "other",
+    subgroup: "other",
+    calories: 100,
+    protein: 5,
+    carbs: 10,
+    fat: 5,
+    flags: [],
+  };
+  assert.strictEqual(
+    engine.window.inferPremiumContext(origin),
+    "non_exchangeable",
+    "El caso sintético ambiguo debe quedar fuera de intercambio",
   );
-  assert(origin, "Debe existir un caso no clasificado para probar el cierre seguro");
   const result = await engine.calculate(origin, 100);
   assert.strictEqual(
     result.intercambios.length,
     0,
-    `${origin.name}: un contexto desconocido no debe producir intercambio directo`,
+    `${origin.name}: un contexto no intercambiable no debe producir intercambio directo`,
   );
 }
 
@@ -218,7 +229,7 @@ async function main() {
   verifyServingPolicyMirror(engine);
   verifySourceHierarchy(engine);
   verifyExchangeGroupSchema(engine);
-  await verifyUnknownContextFailsClosed(engine);
+  await verifyUnresolvedContextFailsClosed(engine);
   await verifyOptionalCulinaryUse(engine);
 
   const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
