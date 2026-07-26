@@ -90,13 +90,6 @@ for (const rejected of [
     nova_group: 3,
   }),
   base({
-    code: "8480000000012",
-    product_name_es: "Yogur natural 0%",
-    nova_group: 3,
-    ingredients_analysis_tags: ["en:contains-sweeteners"],
-    additives_tags: ["en:e-955"],
-  }),
-  base({
     code: "8480000000013",
     product_name_es: "Yogur de fresa",
     nova_group: 3,
@@ -136,6 +129,42 @@ for (const rejected of [
   );
 }
 
+const nova4Natural = curateProduct(base({
+  code: "8480000000012",
+  product_name_es: "Yogur natural 0%",
+  nova_group: 4,
+  ingredients_text_es: "Leche desnatada, proteínas de leche, fermentos lácticos",
+}));
+assert.strictEqual(nova4Natural.eligible, true);
+assert.strictEqual(nova4Natural.record.recommended_scope, "manual_review");
+assert(
+  nova4Natural.record.processing.review_reasons.includes("nova_group_4"),
+);
+
+const flavoredWithSweeteners = curateProduct(base({
+  code: "8480000000019",
+  product_name_es: "Yogur proteico sabor fresa",
+  nova_group: 4,
+  ingredients_text_es:
+    "Leche desnatada, fresa, proteínas de leche, sucralosa, fermentos lácticos",
+  ingredients_analysis_tags: ["en:contains-sweeteners"],
+  additives_tags: ["en:e-955"],
+}));
+assert.strictEqual(flavoredWithSweeteners.eligible, true);
+assert.strictEqual(
+  flavoredWithSweeteners.record.recommended_scope,
+  "manual_review",
+);
+assert.strictEqual(
+  flavoredWithSweeteners.record.processing.contains_sweeteners,
+  true,
+);
+assert(
+  flavoredWithSweeteners.record.processing.review_reasons.includes(
+    "flavored_dairy",
+  ),
+);
+
 const unknownProcessing = curateProduct(base({
   code: "8480000000020",
   product_name_es: "Garbanzos cocidos",
@@ -146,5 +175,5 @@ assert.strictEqual(unknownProcessing.eligible, true);
 assert.strictEqual(unknownProcessing.record.recommended_scope, "manual_review");
 
 console.log(
-  "PASS: curador OFF España filtra mercado, idioma real, macros, calidad, NOVA 4, azúcar, edulcorantes y familias industriales",
+  "PASS: curador OFF España filtra azúcar y familias industriales; NOVA 4 y edulcorantes pasan a revisión explicable",
 );

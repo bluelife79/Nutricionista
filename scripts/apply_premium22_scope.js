@@ -26,6 +26,8 @@ function main() {
     statuses: {},
     by_context: {},
     by_reason: {},
+    choice_levels: {},
+    choice_reasons: {},
     evidence_statuses: {},
     examples: {},
     applied: apply,
@@ -41,11 +43,27 @@ function main() {
       context: decision.context,
       evidence_status: decision.evidence_status,
     };
+    const guidance = engine.window.derivePremiumChoiceGuidance(food);
+    food.choice_guidance = {
+      version: guidance.version,
+      level: guidance.level,
+      label: guidance.label,
+      summary: guidance.summary,
+      detail: guidance.detail,
+      reason_codes: Array.from(guidance.reason_codes || []),
+      rank_factor: guidance.rank_factor,
+      no_added_sugar: guidance.no_added_sugar,
+      nova_group: guidance.nova_group ?? null,
+    };
     increment(report.statuses, decision.status);
+    increment(report.choice_levels, guidance.level);
     increment(report.by_context, `${decision.status}:${context}`);
     increment(report.evidence_statuses, decision.evidence_status);
     for (const reason of decision.reason_codes || []) {
       increment(report.by_reason, reason);
+    }
+    for (const reason of guidance.reason_codes || []) {
+      increment(report.choice_reasons, reason);
     }
     if (!report.examples[decision.status]) report.examples[decision.status] = [];
     if (report.examples[decision.status].length < 80) {

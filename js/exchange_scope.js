@@ -16,7 +16,8 @@
 (function (global) {
   "use strict";
 
-  var VERSION = "premium-v2.2-scope-3";
+  var VERSION = "premium-v2.2-scope-4";
+  var CHOICE_VERSION = "premium-v2.2-choice-1";
   var STATUS = {
     CORE: "exchange_core",
     REFERENCE: "reference_only",
@@ -102,7 +103,13 @@
   var FAST_READY_MEAL_RE =
     /\b(pizza\w*|lasa[nñ]\w* refrigerad\w*|hamburgues\w* con|burgers?\b|perrito\w*|kebab\w*|fingers?\b|croquet\w*|san jacobo|cordon bleu|empanadill\w*|burrito\w* preparado\w*|sandwich\w*|sanwich\w*|flautas?\b|funroll\b|gyozas?\b)\b/;
   var FLAVOURED_DAIRY_RE =
-    /\b(pudding|mousse|natillas?|postre|tipo actimel|actimel|aromatizad\w*|edulcor\w*|educor\w*|azucarad\w*|con azucar\w*|con nata|frut\w*|sabor (?!natural\b)|manzana\w*|pera\b|naranja\w*|fresa\w*|frambues\w*|mango|vainilla|caramelo|melocoton\w*|platano\w*|pina\b|coco\b|arandano\w*|ciruela\w*|albaricoque\w*|maracuya\w*|macedonia|trocitos? de fruta|proteinas? plus|strawberr\w*|blueberr\w*|raspberr\w*|peach\w*|passion fruit|vanilla|fruit flavour\w*)\b/;
+    /\b(pudding|mousse|natillas?|postre|tipo actimel|actimel|aromatizad\w*|edulcor\w*|educor\w*|azucarad\w*|con azucar\w*|con nata|frut\w*|sabor (?!natural\b|suave\b)|manzana\w*|pera\b|naranja\w*|fresa\w*|frambues\w*|mango|vainilla|caramelo|melocoton\w*|platano\w*|pina\b|coco\b|arandano\w*|ciruela\w*|albaricoque\w*|maracuya\w*|macedonia|trocitos? de fruta|strawberr\w*|blueberr\w*|raspberr\w*|peach\w*|passion fruit|vanilla|fruit flavour\w*)\b/;
+  var FERMENTED_DAIRY_IDENTITY_RE =
+    /\b(yogur\w*|yogurt|yoghourt|yaourt|iogur|kefir|quefir|skyr|bifidus|l casei)\b/;
+  var NO_ADDED_SUGAR_CLAIM_RE =
+    /\b(sin azucar(?:es)?(?: anadid\w*)?|no added sugar|without added sugar|sans sucres? ajoutes?|ohne zuckerzusatz|senza zuccheri aggiunti|sem acucar(?:es)? adicionado\w*)\b/g;
+  var ADDED_SUGAR_INGREDIENT_RE =
+    /\b(azucar(?:es)?|fructosa|glucosa|dextrosa|sacarosa|miel|panela|zucker|fruktose|glukose|honig|sugar|fructose|glucose|honey|sucre|miel|zucchero|miele|acucar|xarope|sciroppo|jarabe|sirope|sirop)\b|\b(zumo|jugo|juice|saft|succo)\b.{0,30}\b(concentrad\w*|concentrate\w*|konzentrat\w*)\b/;
   var FLAVOURED_NUT_RE =
     /\b(carameliz\w*|chocolatead\w*|con chocolate|sabor (barbacoa|chili|miel)|frit\w*|salad\w*|punto de sal|aguasal)\b/;
   var SEASONED_PROTEIN_RE =
@@ -133,6 +140,41 @@
     /\b(queso fundido|lonchas? queso fundido|triangulo\w* fundente\w*|queso en polvo)\b/;
   var FLAVOURED_STAPLE_RE =
     /\b(arroz|maiz|noodles?|fideos?|pasta|papas?|patatas?)\b.*\bsabor\b/;
+  var NOVA4_CORE_CONTEXTS = new Set([
+    "fermented_dairy",
+    "milk",
+    "plant_drink",
+    "bread",
+    "fresh_cheese",
+    "aged_cheese",
+    "canned_fish",
+    "cooked_legume",
+    "olive",
+    "plant_protein",
+  ]);
+
+  function nova4ContextApproved(food, context, evidenceTags) {
+    if (!NOVA4_CORE_CONTEXTS.has(context)) return false;
+    if (context === "bread") {
+      return food.clean_carb !== false && food.raw_ingredient !== true;
+    }
+    if (context === "canned_fish") {
+      return food.clean_protein === true;
+    }
+    if (context === "cooked_legume") {
+      return food.clean_carb !== false;
+    }
+    if (context === "olive") {
+      return (
+        food.clean_fat !== false &&
+        !/condiments|sauces|tomato-sauces/.test(evidenceTags || "")
+      );
+    }
+    if (context === "plant_protein") {
+      return food.clean_protein !== false;
+    }
+    return true;
+  }
 
   function clearCoreIdentity(food, context, name) {
     var patterns = {
@@ -210,6 +252,53 @@
   var DARK_CHOCOLATE_RE =
     /\bchocolate negro\b.*\b(7[0-9]|8[0-9]|9[0-9]|100)\s*(por ciento|%)?\b|\bchocolate\b.*\b(7[0-9]|8[0-9]|9[0-9]|100)\s*(por ciento|%)?\s*cacao\b/;
 
+  function addedSugarAssessment(food) {
+    var evidence = evidenceFor(food);
+    var name = normalize(food && food.name);
+    var ingredients = normalize(evidence.ingredients_text_es || "");
+    var labelClaim = NO_ADDED_SUGAR_CLAIM_RE.test(name);
+    NO_ADDED_SUGAR_CLAIM_RE.lastIndex = 0;
+
+    if (!ingredients) {
+      return {
+        status: labelClaim ? "not_detected" : "unknown",
+        verified: labelClaim,
+        source: labelClaim ? "label_claim" : "not_available",
+      };
+    }
+
+    var ingredientsWithoutClaims = ingredients.replace(
+      NO_ADDED_SUGAR_CLAIM_RE,
+      " ",
+    );
+    NO_ADDED_SUGAR_CLAIM_RE.lastIndex = 0;
+    var detected = ADDED_SUGAR_INGREDIENT_RE.test(ingredientsWithoutClaims);
+    return {
+      status: detected ? "detected" : "not_detected",
+      verified: true,
+      source: "ingredients",
+    };
+  }
+
+  function isFlavouredDairy(food, context, name, evidenceTags) {
+    if (
+      !["fermented_dairy", "milk", "fresh_cheese", "aged_cheese"].includes(
+        context,
+      )
+    ) {
+      return false;
+    }
+    var cleanName = String(name || "")
+      .replace(/\bsabor (natural|suave)\b/g, " ")
+      .replace(/\bnaturalmente\b/g, " ");
+    return Boolean(
+      FLAVOURED_DAIRY_RE.test(cleanName) ||
+        /fermented-dairy-desserts-with-fruits|fruit-kefir-yogurts/.test(
+          evidenceTags || "",
+        ),
+    );
+  }
+
   function deriveScope(food, explicitContext) {
     var context = contextOf(food, explicitContext);
     var evidence = evidenceFor(food);
@@ -226,25 +315,34 @@
     var subgroup = normalize(food.subgroup).replace(/\s+/g, "_");
     var category = normalize(food.category).replace(/\s+/g, "_");
     var role = normalize(food.culinary_role).replace(/\s+/g, "_");
+    if (
+      category === "postres_proteicos" &&
+      FERMENTED_DAIRY_IDENTITY_RE.test(name)
+    ) {
+      context = "fermented_dairy";
+    }
     var flags = Array.isArray(food.flags) ? food.flags : [];
     var evidenceTags = []
       .concat(evidence.categories_tags || [])
       .concat(evidence.food_groups_tags || [])
       .join(" ")
       .toLowerCase();
-    var ingredientsText = normalize(evidence.ingredients_text_es || "");
-    var ingredientsWithoutNoSugar = ingredientsText.replace(
-      /\bsin azucar(?:es)?(?: anadid\w*)?\b/g,
-      "",
-    );
-    var hasAddedSugar =
-      /\b(azucar(?:es)?|jarabe de glucosa|jarabe de fructosa|sirope de|dextrosa|maltodextrina)\b/
-        .test(ingredientsWithoutNoSugar);
+    var sugarAssessment = addedSugarAssessment(food);
+    var hasAddedSugar = sugarAssessment.status === "detected";
     var reasons = [];
-    var nova = Number(evidence.nova_group);
+    var nova =
+      evidence.nova_group == null || evidence.nova_group === ""
+        ? Number.NaN
+        : Number(evidence.nova_group);
     var hasNova = Number.isFinite(nova) && nova >= 1 && nova <= 4;
     var sweeteners = Number(evidence.sweeteners_n);
     var hasSweeteners = Number.isFinite(sweeteners) && sweeteners > 0;
+    var flavouredDairy = isFlavouredDairy(
+      food,
+      context,
+      name,
+      evidenceTags,
+    );
     var nutrientLevels = evidence.nutrient_levels || {};
     var highRiskNutrient =
       nutrientLevels.sugars === "high" ||
@@ -318,22 +416,6 @@
     ) {
       return result(STATUS.EXCLUDED, ["processed_fish"], context, evidence);
     }
-    if (hasSweeteners) {
-      return result(
-        STATUS.EXCLUDED,
-        ["non_sugar_sweeteners"],
-        context,
-        evidence,
-      );
-    }
-    if (hasNova && nova === 4) {
-      return result(
-        STATUS.EXCLUDED,
-        ["off_nova_group_4"],
-        context,
-        evidence,
-      );
-    }
     if (
       ["white_fish", "fatty_fish", "canned_fish", "seafood"].includes(
         context,
@@ -359,7 +441,10 @@
       );
     }
     if (
-      category === "postres_proteicos" ||
+      (
+        category === "postres_proteicos" &&
+        !FERMENTED_DAIRY_IDENTITY_RE.test(name)
+      ) ||
       ["sweet_bakery", "sweet_dessert", "sweet_spread"].includes(context) ||
       flags.includes("sweet") ||
       CONFECTIONERY_RE.test(name) ||
@@ -458,19 +543,32 @@
       return result(STATUS.EXCLUDED, ["protein_supplement"], context, evidence);
     }
     if (
-      ["fermented_dairy", "milk", "fresh_cheese", "aged_cheese"].includes(
-        context,
-      ) &&
-      (
-        FLAVOURED_DAIRY_RE.test(name) ||
-        /fermented-dairy-desserts-with-fruits|fruit-kefir-yogurts/.test(
-          evidenceTags,
-        )
-      )
+      context === "fermented_dairy" &&
+      flavouredDairy
     ) {
+      if (
+        FERMENTED_DAIRY_IDENTITY_RE.test(name) &&
+        sugarAssessment.status === "not_detected" &&
+        sugarAssessment.verified
+      ) {
+        return result(
+          STATUS.CORE,
+          [
+            "flavoured_dairy_without_added_sugar",
+            hasSweeteners ? "contains_non_sugar_sweeteners" : null,
+            hasNova && nova === 4 ? "off_nova_group_4_information" : null,
+          ],
+          context,
+          evidence,
+        );
+      }
       return result(
         STATUS.EXCLUDED,
-        ["sweetened_or_flavoured_dairy"],
+        [
+          hasAddedSugar
+            ? "added_sugar_in_flavoured_dairy"
+            : "flavoured_dairy_sugar_status_unverified",
+        ],
         context,
         evidence,
       );
@@ -563,6 +661,14 @@
       return result(
         STATUS.EXCLUDED,
         ["sweetened_or_flavoured_plant_drink"],
+        context,
+        evidence,
+      );
+    }
+    if (hasSweeteners) {
+      return result(
+        STATUS.EXCLUDED,
+        ["sweeteners_outside_supported_food_context"],
         context,
         evidence,
       );
@@ -781,6 +887,18 @@
       );
     }
     if (
+      hasNova &&
+      nova === 4 &&
+      !nova4ContextApproved(food, context, evidenceTags)
+    ) {
+      return result(
+        STATUS.EXCLUDED,
+        ["nova4_context_not_approved_for_exchange"],
+        context,
+        evidence,
+      );
+    }
+    if (
       context === "unknown" ||
       context === "non_exchangeable"
     ) {
@@ -806,6 +924,7 @@
         hasNova
           ? "core_food_with_processing_evidence"
           : "core_food_by_identity",
+        hasNova && nova === 4 ? "off_nova_group_4_information" : null,
       ],
       context,
       evidence,
@@ -838,13 +957,122 @@
     );
   }
 
+  function deriveChoiceGuidance(food) {
+    var scope = scopeFor(food);
+    var evidence = evidenceFor(food);
+    var sugarAssessment = addedSugarAssessment(food);
+    var name = normalize(food && food.name);
+    var evidenceTags = []
+      .concat(evidence.categories_tags || [])
+      .concat(evidence.food_groups_tags || [])
+      .join(" ")
+      .toLowerCase();
+    var context = String(scope.context || contextOf(food));
+    var flavoured = isFlavouredDairy(food, context, name, evidenceTags);
+    var nova =
+      evidence.nova_group == null || evidence.nova_group === ""
+        ? Number.NaN
+        : Number(evidence.nova_group);
+    var sweeteners = Number(evidence.sweeteners_n);
+    var hasNova4 = Number.isFinite(nova) && nova === 4;
+    var hasSweeteners = Number.isFinite(sweeteners) && sweeteners > 0;
+    var reasonCodes = [];
+    var level = "preferred";
+
+    if (
+      scope.status === STATUS.EXCLUDED ||
+      scope.status === STATUS.NOT_PUBLISHABLE
+    ) {
+      return {
+        version: CHOICE_VERSION,
+        level: "hidden",
+        label: "No disponible",
+        summary: "",
+        detail: "",
+        reason_codes: Array.from(scope.reason_codes || []),
+        rank_factor: 0,
+        no_added_sugar: sugarAssessment,
+      };
+    }
+
+    if (scope.status === STATUS.REFERENCE) {
+      level = "occasional";
+      reasonCodes.push("reference_only");
+    } else {
+      if (flavoured) reasonCodes.push("flavoured_product");
+      if (hasSweeteners) reasonCodes.push("contains_sweeteners");
+      if (hasNova4) reasonCodes.push("nova_group_4");
+      if (sugarAssessment.status === "detected") {
+        reasonCodes.push("contains_added_sugar");
+      }
+      if (reasonCodes.length > 0) level = "compatible";
+    }
+
+    var copy = {
+      preferred: {
+        label: "Elección prioritaria",
+        summary: "Buena opción para el día a día.",
+        detail:
+          "Encaja nutricionalmente y no presenta señales que hagan necesario rebajar su prioridad.",
+        rankFactor: 1,
+      },
+      compatible: {
+        label: "Alternativa compatible",
+        summary: hasSweeteners
+          ? "Encaja, pero contiene edulcorantes."
+          : sugarAssessment.status === "detected"
+            ? "Encaja, pero contiene azúcar añadido."
+            : "Encaja, aunque tiene un mayor grado de procesamiento.",
+        detail: sugarAssessment.status === "not_detected"
+          ? "Sin azúcares añadidos según los ingredientes disponibles. Criterio RevolucionaT: para el día a día, prioriza opciones con ingredientes más sencillos."
+          : "Puede encajar en cantidad y macros. Criterio RevolucionaT: para el día a día, prioriza opciones con ingredientes más sencillos.",
+        rankFactor: 0.8,
+      },
+      occasional: {
+        label: "Uso ocasional",
+        summary: "Puede encajar, pero no es nuestra primera elección habitual.",
+        detail:
+          "La equivalencia puede ser útil como referencia. Criterio RevolucionaT: prioriza alimentos menos procesados en el día a día.",
+        rankFactor: 0.62,
+      },
+    }[level];
+
+    return {
+      version: CHOICE_VERSION,
+      level: level,
+      label: copy.label,
+      summary: copy.summary,
+      detail: copy.detail,
+      reason_codes: unique(reasonCodes),
+      rank_factor: copy.rankFactor,
+      no_added_sugar: sugarAssessment,
+      nova_group: Number.isFinite(nova) ? nova : null,
+    };
+  }
+
+  function choiceGuidanceFor(food) {
+    if (
+      food &&
+      food.choice_guidance &&
+      food.choice_guidance.version === CHOICE_VERSION &&
+      food.choice_guidance.level
+    ) {
+      return food.choice_guidance;
+    }
+    return deriveChoiceGuidance(food);
+  }
+
   var api = {
     PREMIUM_EXCHANGE_SCOPE_VERSION: VERSION,
+    PREMIUM_CHOICE_GUIDANCE_VERSION: CHOICE_VERSION,
     PREMIUM_EXCHANGE_SCOPE_STATUS: STATUS,
     derivePremiumExchangeScope: deriveScope,
     getPremiumExchangeScope: scopeFor,
     isPremiumExchangeSearchable: searchable,
     isPremiumExchangeCandidateEligible: candidateEligible,
+    getPremiumAddedSugarAssessment: addedSugarAssessment,
+    derivePremiumChoiceGuidance: deriveChoiceGuidance,
+    getPremiumChoiceGuidance: choiceGuidanceFor,
   };
 
   Object.keys(api).forEach(function (key) {

@@ -9,7 +9,8 @@
  *   - Spanish product name;
  *   - complete core macros;
  *   - no OFF data-quality errors or critical nutrition warnings.
- *   - no NOVA 4, sweeteners or clearly ultra-processed product families.
+ *   - clearly industrial families are rejected;
+ *   - NOVA 4 and sweeteners are review signals, never universal vetoes.
  *
  * The output is a review queue, never a direct database.json mutation.
  *
@@ -216,23 +217,10 @@ function processingDecision(product, spanishName) {
     additives.some((tag) => SWEETENER_ADDITIVE_RE.test(tag)) ||
     /\b(?:aspartamo|acesulfamo|sucralosa|sacarina|ciclamato|estevia|stevia|eritritol|xilitol|maltitol|sorbitol)\b/.test(ingredientsText);
 
-  if (nova === 4) {
-    return { eligible: false, reason: "off_nova_group_4", nova_group: nova };
-  }
-  if (containsSweeteners) {
-    return { eligible: false, reason: "off_contains_sweeteners", nova_group: nova };
-  }
   if (INDUSTRIAL_PRODUCT_RE.test(productText)) {
     return {
       eligible: false,
       reason: "industrial_product_out_of_scope",
-      nova_group: nova,
-    };
-  }
-  if (FLAVORED_DAIRY_RE.test(productText)) {
-    return {
-      eligible: false,
-      reason: "flavored_dairy_out_of_scope",
       nova_group: nova,
     };
   }
@@ -253,14 +241,24 @@ function processingDecision(product, spanishName) {
     };
   }
 
+  const reviewReasons = [];
+  if (nova === 4) reviewReasons.push("nova_group_4");
+  if (containsSweeteners) reviewReasons.push("contains_sweeteners");
+  if (FLAVORED_DAIRY_RE.test(productText)) {
+    reviewReasons.push("flavored_dairy");
+  }
+  if (!ingredientsText) reviewReasons.push("ingredients_unavailable");
+
   return {
     eligible: true,
     nova_group: nova,
-    contains_sweeteners: false,
+    contains_sweeteners: containsSweeteners,
     ingredients_available: Boolean(ingredientsText),
-    evidence_status: nova != null || ingredientsText
-      ? "processing_evidence_available"
-      : "manual_processing_review_required",
+    review_required: reviewReasons.length > 0,
+    review_reasons: reviewReasons,
+    evidence_status: reviewReasons.length > 0
+      ? "manual_processing_review_required"
+      : "processing_evidence_available",
   };
 }
 
@@ -307,10 +305,12 @@ function curateProduct(product, options = {}) {
       processing: {
         nova_group: processing.nova_group,
         contains_sweeteners: processing.contains_sweeteners,
+        review_reasons: processing.review_reasons,
         ingredients_available: processing.ingredients_available,
         evidence_status: processing.evidence_status,
       },
       recommended_scope:
+        processing.review_required ||
         processing.evidence_status === "manual_processing_review_required"
           ? "manual_review"
           : "scope_policy_review",
@@ -368,6 +368,9 @@ async function run(options) {
     eligible: 0,
     rejected: {},
     retailers: {},
+    recommended_scopes: {},
+    nova_groups: {},
+    review_reasons: {},
   };
   const input = fs.createReadStream(options.input).pipe(zlib.createGunzip());
   const lines = readline.createInterface({ input, crlfDelay: Infinity });
@@ -414,6 +417,17 @@ async function run(options) {
     stats.eligible += 1;
     const retailer = decision.record.retailer;
     stats.retailers[retailer] = (stats.retailers[retailer] || 0) + 1;
+    const recommendedScope = decision.record.recommended_scope;
+    stats.recommended_scopes[recommendedScope] =
+      (stats.recommended_scopes[recommendedScope] || 0) + 1;
+    const novaKey = decision.record.processing.nova_group == null
+      ? "unknown"
+      : String(decision.record.processing.nova_group);
+    stats.nova_groups[novaKey] = (stats.nova_groups[novaKey] || 0) + 1;
+    for (const reason of decision.record.processing.review_reasons || []) {
+      stats.review_reasons[reason] =
+        (stats.review_reasons[reason] || 0) + 1;
+    }
     if (output) {
       if (!output.write(`${JSON.stringify(decision.record)}\n`)) {
         await new Promise((resolve) => output.once("drain", resolve));

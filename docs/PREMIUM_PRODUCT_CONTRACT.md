@@ -43,10 +43,21 @@ La publicación distingue tres estados:
   búsqueda y mostrarse únicamente como referencia compatible;
 - `excluded`: alimento que no se busca ni se propone.
 
-Quedan fuera del núcleo los productos NOVA 4, edulcorados, bebidas de azúcares
-libres, carnes y pescados procesados, dulces y snacks, cubitos de caldo,
-comidas instantáneas, productos comerciales compuestos y cualquier identidad
-que no pueda demostrarse como alimento real de intercambio.
+NOVA 4 no actúa como una exclusión automática ni como una puntuación
+nutricional. Puede entrar en contextos controlados —por ejemplo, yogur, leche,
+pan, bebida vegetal, queso, legumbre cocida o conserva simple— cuando la
+identidad y los datos son suficientes. En ese caso se identifica como
+alternativa compatible y pierde prioridad frente a una opción más sencilla.
+
+Un yogur saborizado con edulcorantes solo puede entrar si los ingredientes
+disponibles o una declaración explícita permiten comprobar que no contiene
+azúcares añadidos. La lactosa propia de la leche no se confunde con azúcar
+añadido. Si falta evidencia, permanece fuera hasta revisión.
+
+Siguen fuera las bebidas de azúcares libres, carnes y pescados procesados,
+dulces y snacks, cubitos de caldo, comidas instantáneas, productos comerciales
+compuestos sin contexto válido y cualquier identidad que no pueda demostrarse
+como alimento de intercambio.
 
 Cada alimento publicable debe conservar como mínimo:
 
@@ -150,6 +161,18 @@ La interfaz diferencia:
 - **Misma familia o formato**;
 - **Referencias preparadas**;
 - **No hay una alternativa suficientemente fiable**.
+
+Además, cada tarjeta publicable recibe un criterio editorial único:
+
+- **Elección prioritaria**: buena opción cotidiana;
+- **Alternativa compatible**: cuadra, pero contiene edulcorantes, azúcar
+  añadido o presenta mayor procesamiento;
+- **Uso ocasional**: referencia útil que no se prioriza habitualmente.
+
+El color nunca es la única explicación. La tarjeta muestra título y una frase;
+el detalle de compatibles y ocasionales permanece plegado tras “¿Por qué?”.
+No se utilizan expresiones absolutas o peyorativas como “alimento real” para
+describir el resultado.
 
 ## 7. Nombre y procedencia visibles
 

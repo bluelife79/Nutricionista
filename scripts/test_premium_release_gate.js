@@ -227,10 +227,15 @@ async function main() {
   assert.strictEqual(catalog.totals.metadata_contradictions, 0);
   assert.strictEqual(catalog.totals.visible_invalid_core_macros, 0);
   assert.strictEqual(scope.totals.profiled, scope.totals.foods);
-  assert.strictEqual(scope.totals.core_nova_4, 0);
-  assert.strictEqual(scope.totals.core_with_sweeteners, 0);
+  assert(scope.totals.core_nova_4 > 0);
+  assert(scope.totals.core_with_sweeteners > 0);
+  assert.strictEqual(scope.totals.core_nova_4_without_guidance, 0);
+  assert.strictEqual(scope.totals.core_sweeteners_without_guidance, 0);
+  assert.strictEqual(scope.totals.core_added_sugar_without_guidance, 0);
+  assert.strictEqual(scope.totals.core_without_choice_guidance, 0);
   assert.strictEqual(scope.totals.core_name_contaminations, 0);
   assert.strictEqual(scope.totals.excluded_required_missing, 0);
+  assert.strictEqual(scope.totals.compatible_required_missing, 0);
 
   const engine = createEngine();
   verifyServingPolicyMirror(engine);
@@ -249,6 +254,12 @@ async function main() {
     html.includes('id="usageContextSection"') &&
       html.includes("usageMode: selectedUsageMode"),
     "La pregunta opcional de uso debe estar conectada al algoritmo",
+  );
+  assert(
+    html.includes("choice-guidance") &&
+      html.includes("choice-guidance-details") &&
+      html.includes("¿Por qué?"),
+    "La interfaz debe explicar alternativas compatibles y ocasionales",
   );
 
   console.log(

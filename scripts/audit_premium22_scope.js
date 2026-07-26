@@ -12,8 +12,6 @@ const REQUIRED_EXCLUDED_IDS = [
   "bedca_0026",
   "off_64b8ea3507",
   "off_354ba18376",
-  "off_00932d34bc",
-  "off_81bde75776",
   "off_a9e65f49ae",
   "off_58eef21385",
   "off_2e6c465bac",
@@ -23,8 +21,15 @@ const REQUIRED_EXCLUDED_IDS = [
   "off_4b2ce5dffb",
 ];
 
+const REQUIRED_COMPATIBLE_IDS = [
+  "off_81042c6194",
+  "off_a624b1851c",
+  "off_f38f0e96a1",
+  "off_00932d34bc",
+];
+
 const CORE_CONTAMINATION_RE =
-  /\b(yatekomo|avecrem|cubitos? de caldo|pastillas? de caldo|gominol\w*|golosin\w*|refresco\w*|bebida energet\w*|salchich\w*|choriz\w*|mortadela\w*|salami\w*|fuet\w*|nugget\w*|donuts?|croissants?|bolleria|galletas?|pudding|mousse|natillas?|sandwich\w*|sanwich\w*|pizza\w*|flautas?\b|conos? de vainilla|plum cake|tiras de maiz|aros de maiz|strawberr\w*|blueberr\w*|raspberr\w*|peach\w*|passion fruit|cottage cheese)\b/;
+  /\b(yatekomo|avecrem|cubitos? de caldo|pastillas? de caldo|gominol\w*|golosin\w*|refresco\w*|bebida energet\w*|salchich\w*|choriz\w*|mortadela\w*|salami\w*|fuet\w*|nugget\w*|donuts?|croissants?|bolleria|galletas?|pudding|mousse|natillas?|sandwich\w*|sanwich\w*|pizza\w*|flautas?\b|conos? de vainilla|plum cake|tiras de maiz|aros de maiz|cottage cheese)\b/;
 
 function normalize(value) {
   return String(value || "")
@@ -54,21 +59,35 @@ function runScopeAudit() {
       candidate_eligible_for_core: 0,
       core_nova_4: 0,
       core_with_sweeteners: 0,
+      core_nova_4_without_guidance: 0,
+      core_sweeteners_without_guidance: 0,
+      core_with_added_sugar: 0,
+      core_added_sugar_without_guidance: 0,
+      core_without_choice_guidance: 0,
+      compatible_choices: 0,
       core_name_contaminations: 0,
       excluded_required_missing: 0,
+      compatible_required_missing: 0,
     },
     by_context: {},
     by_reason: {},
     findings: {
       core_nova_4: [],
       core_with_sweeteners: [],
+      core_nova_4_without_guidance: [],
+      core_sweeteners_without_guidance: [],
+      core_with_added_sugar: [],
+      core_added_sugar_without_guidance: [],
+      core_without_choice_guidance: [],
       core_name_contaminations: [],
       required_exclusions: [],
+      required_compatible: [],
     },
   };
 
   for (const food of engine.foods) {
     const scope = engine.window.getPremiumExchangeScope(food);
+    const guidance = engine.window.getPremiumChoiceGuidance(food);
     if (
       scope &&
       scope.version === engine.window.PREMIUM_EXCHANGE_SCOPE_VERSION &&
@@ -86,6 +105,9 @@ function runScopeAudit() {
     }
     if (engine.window.isPremiumExchangeSearchable(food)) {
       report.totals.searchable += 1;
+    }
+    if (guidance.level === "compatible") {
+      report.totals.compatible_choices += 1;
     }
     if (
       scope.status === "exchange_core" &&
@@ -109,6 +131,17 @@ function runScopeAudit() {
       if (report.findings.core_nova_4.length < 100) {
         report.findings.core_nova_4.push({ id: food.id, name: food.name });
       }
+      if (
+        guidance.level !== "compatible" ||
+        !(guidance.reason_codes || []).includes("nova_group_4")
+      ) {
+        report.totals.core_nova_4_without_guidance += 1;
+        report.findings.core_nova_4_without_guidance.push({
+          id: food.id,
+          name: food.name,
+          guidance,
+        });
+      }
     }
     if (
       scope.status === "exchange_core" &&
@@ -119,6 +152,51 @@ function runScopeAudit() {
         report.findings.core_with_sweeteners.push({
           id: food.id,
           name: food.name,
+        });
+      }
+      if (
+        guidance.level !== "compatible" ||
+        !(guidance.reason_codes || []).includes("contains_sweeteners")
+      ) {
+        report.totals.core_sweeteners_without_guidance += 1;
+        report.findings.core_sweeteners_without_guidance.push({
+          id: food.id,
+          name: food.name,
+          guidance,
+        });
+      }
+    }
+    if (scope.status === "exchange_core") {
+      const sugar = engine.window.getPremiumAddedSugarAssessment(food);
+      if (sugar.status === "detected") {
+        report.totals.core_with_added_sugar += 1;
+        report.findings.core_with_added_sugar.push({
+          id: food.id,
+          name: food.name,
+          sugar,
+        });
+        if (
+          guidance.level !== "compatible" ||
+          !(guidance.reason_codes || []).includes("contains_added_sugar")
+        ) {
+          report.totals.core_added_sugar_without_guidance += 1;
+          report.findings.core_added_sugar_without_guidance.push({
+            id: food.id,
+            name: food.name,
+            guidance,
+          });
+        }
+      }
+      if (
+        !guidance ||
+        guidance.version !== engine.window.PREMIUM_CHOICE_GUIDANCE_VERSION ||
+        !["preferred", "compatible"].includes(guidance.level)
+      ) {
+        report.totals.core_without_choice_guidance += 1;
+        report.findings.core_without_choice_guidance.push({
+          id: food.id,
+          name: food.name,
+          guidance,
         });
       }
     }
@@ -150,6 +228,27 @@ function runScopeAudit() {
       report.totals.excluded_required_missing += 1;
     }
   }
+  for (const id of REQUIRED_COMPATIBLE_IDS) {
+    const food = engine.foods.find((item) => item.id === id);
+    const scope = food
+      ? engine.window.getPremiumExchangeScope(food)
+      : null;
+    const guidance = food
+      ? engine.window.getPremiumChoiceGuidance(food)
+      : null;
+    report.findings.required_compatible.push({
+      id,
+      name: food?.name || null,
+      status: scope?.status || "missing",
+      level: guidance?.level || "missing",
+    });
+    if (
+      scope?.status !== "exchange_core" ||
+      guidance?.level !== "compatible"
+    ) {
+      report.totals.compatible_required_missing += 1;
+    }
+  }
   return report;
 }
 
@@ -160,11 +259,20 @@ if (require.main === module) {
     report.totals.foods,
     "Todo registro debe tener alcance Premium 2.2",
   );
-  assert.strictEqual(report.totals.core_nova_4, 0);
-  assert.strictEqual(report.totals.core_with_sweeteners, 0);
+  assert(report.totals.core_nova_4 > 0);
+  assert(report.totals.core_with_sweeteners > 0);
+  assert.strictEqual(report.totals.core_nova_4_without_guidance, 0);
+  assert.strictEqual(report.totals.core_sweeteners_without_guidance, 0);
+  assert.strictEqual(report.totals.core_added_sugar_without_guidance, 0);
+  assert.strictEqual(report.totals.core_without_choice_guidance, 0);
   assert.strictEqual(report.totals.core_name_contaminations, 0);
   assert.strictEqual(report.totals.excluded_required_missing, 0);
+  assert.strictEqual(report.totals.compatible_required_missing, 0);
   console.log(JSON.stringify(report, null, 2));
 }
 
-module.exports = { REQUIRED_EXCLUDED_IDS, runScopeAudit };
+module.exports = {
+  REQUIRED_EXCLUDED_IDS,
+  REQUIRED_COMPATIBLE_IDS,
+  runScopeAudit,
+};

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "node server.js",
-    "test": "npm run test:data && npm run test:algorithm && npm run test:context && npm run test:off-curator && npm run test:intent && npm run test:scope && npm run test:premium && npm run test:security",
+    "test": "npm run test:data && npm run test:algorithm && npm run test:context && npm run test:off-curator && npm run test:intent && npm run test:scope && npm run test:choice && npm run test:premium && npm run test:security",
     "test:data": "node scripts/validate_release_data.js && python3 scripts/smoke_test_db.py",
     "test:algorithm": "node scripts/test_algorithm_regression.js",
     "test:context": "node scripts/test_contextual_matrix.js",
@@ -17,6 +17,7 @@
     "audit:intent:exhaustive": "node scripts/audit_premium21_all_intents.js",
     "test:intent": "node scripts/test_culinary_intent.js",
     "test:scope": "node scripts/test_premium22_scope.js",
+    "test:choice": "node scripts/test_choice_guidance.js",
     "audit:scope": "node scripts/audit_premium22_scope.js",
     "enrich:processing": "node scripts/enrich_processing_evidence.js",
     "test:premium": "node scripts/test_premium_release_gate.js",

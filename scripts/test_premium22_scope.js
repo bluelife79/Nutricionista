@@ -5,6 +5,7 @@ const vm = require("vm");
 const { createEngine } = require("./lib/algorithm_harness");
 const {
   REQUIRED_EXCLUDED_IDS,
+  REQUIRED_COMPATIBLE_IDS,
   runScopeAudit,
 } = require("./audit_premium22_scope");
 
@@ -47,10 +48,18 @@ async function main() {
   assert(audit.totals.exchange_core >= 1000, "El núcleo quedó sin cobertura");
   assert(audit.totals.reference_only >= 100, "Faltan referencias controladas");
   assert(audit.totals.excluded >= 2000, "El filtro de exclusión no está activo");
-  assert.strictEqual(audit.totals.core_nova_4, 0);
-  assert.strictEqual(audit.totals.core_with_sweeteners, 0);
+  assert(audit.totals.core_nova_4 > 0, "NOVA 4 sigue actuando como veto total");
+  assert(
+    audit.totals.core_with_sweeteners > 0,
+    "No se recuperaron lácteos compatibles con edulcorantes",
+  );
+  assert.strictEqual(audit.totals.core_nova_4_without_guidance, 0);
+  assert.strictEqual(audit.totals.core_sweeteners_without_guidance, 0);
+  assert.strictEqual(audit.totals.core_added_sugar_without_guidance, 0);
+  assert.strictEqual(audit.totals.core_without_choice_guidance, 0);
   assert.strictEqual(audit.totals.core_name_contaminations, 0);
   assert.strictEqual(audit.totals.excluded_required_missing, 0);
+  assert.strictEqual(audit.totals.compatible_required_missing, 0);
 
   const engine = createEngine();
   const forbiddenIds = new Set(REQUIRED_EXCLUDED_IDS);
@@ -76,13 +85,32 @@ async function main() {
     );
   }
 
+  for (const id of REQUIRED_COMPATIBLE_IDS) {
+    const food = engine.foods.find((item) => item.id === id);
+    assert(food, `Falta alternativa compatible ${id}`);
+    assert.strictEqual(
+      engine.window.getPremiumExchangeScope(food).status,
+      "exchange_core",
+      `${food.name}: debía poder intercambiarse`,
+    );
+    const guidance = engine.window.getPremiumChoiceGuidance(food);
+    assert.strictEqual(
+      guidance.level,
+      "compatible",
+      `${food.name}: debía llevar aviso compatible`,
+    );
+    assert(
+      Number(guidance.rank_factor) < 1,
+      `${food.name}: debía quedar detrás de una elección prioritaria`,
+    );
+  }
+
   for (const query of [
     "yatekomo",
     "avecrem",
     "cubito de caldo",
     "salchichón",
     "lasaña",
-    "yogur fresa",
     "zumo naranja",
     "tortilla de patata",
   ]) {
@@ -99,6 +127,7 @@ async function main() {
     "tofu",
     "leche",
     "pollo",
+    "yogur fresa",
   ]) {
     const results = assertSearchNeverReturns(search, query, forbiddenIds);
     assert(results.length > 0, `${query}: búsqueda saludable vacía`);
@@ -130,24 +159,59 @@ async function main() {
         engine.window.isPremiumExchangeCandidateEligible(candidate, origin),
         `${origin.name}: candidato fuera de alcance (${candidate.name})`,
       );
-      assert.notStrictEqual(
-        Number(candidate.processing_evidence?.nova_group),
-        4,
-        `${origin.name}: apareció NOVA 4 (${candidate.name})`,
-      );
-      assert(
-        Number(candidate.processing_evidence?.sweeteners_n || 0) === 0,
-        `${origin.name}: apareció un producto con edulcorantes (${candidate.name})`,
-      );
+      const guidance = engine.window.getPremiumChoiceGuidance(candidate);
+      if (Number(candidate.processing_evidence?.nova_group) === 4) {
+        assert.strictEqual(
+          guidance.level,
+          "compatible",
+          `${origin.name}: NOVA 4 sin aviso (${candidate.name})`,
+        );
+      }
+      if (Number(candidate.processing_evidence?.sweeteners_n || 0) > 0) {
+        assert.strictEqual(
+          guidance.level,
+          "compatible",
+          `${origin.name}: edulcorantes sin aviso (${candidate.name})`,
+        );
+      }
+      if (
+        engine.window.getPremiumAddedSugarAssessment(candidate).status ===
+        "detected"
+      ) {
+        assert.strictEqual(
+          guidance.level,
+          "compatible",
+          `${origin.name}: azúcar añadido sin aviso (${candidate.name})`,
+        );
+      }
       assert(!forbiddenIds.has(candidate.id));
     }
   }
+
+  const plainYogurt = engine.foods.find((food) => food.id === "bedca_0037");
+  const plainResult = await engine.calculate(plainYogurt, 125);
+  const plainCandidates = [
+    ...plainResult.intercambios,
+    ...plainResult.familia,
+    ...plainResult.preparados,
+  ];
+  assert(
+    plainCandidates.every(
+      (food) =>
+        !(
+          engine.window.getPremiumChoiceGuidance(food).reason_codes || []
+        ).includes(
+          "flavoured_product",
+        ),
+    ),
+    "Un yogur natural recibió lácteos saborizados",
+  );
 
   console.log(
     `PASS Premium 2.2 scope: ${audit.totals.exchange_core} núcleo, ` +
       `${audit.totals.reference_only} referencia, ` +
       `${audit.totals.excluded + audit.totals.not_publishable} fuera; ` +
-      "0 NOVA 4 y 0 edulcorantes en candidatos núcleo",
+      `${audit.totals.compatible_choices} alternativas compatibles explicadas`,
   );
 }
 

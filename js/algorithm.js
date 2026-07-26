@@ -3150,18 +3150,34 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       }
     }
 
-    // CLINICAL: processing level. Alimentos más procesados se demoten
-    // ligeramente para que simples/básicos aparezcan antes. Usa el campo
-    // processing_level de la DB (0-3) o lo infiere del subgroup/nombre.
+    // Criterio RevolucionaT centralizado. La política de catálogo clasifica
+    // cada alimento una sola vez como prioritario, compatible u ocasional.
+    // El ranking consume ese dato estructurado y evita sumar excepciones por
+    // nombre cada vez que el catálogo crece.
+    let choiceGuidance = null;
     {
-      const procLevel = a.processing_level != null
-        ? a.processing_level
-        : inferProcessingLevel(a);
-      if (procLevel > 0) {
-        const procDemotion = 1 - procLevel * 0.12;  // 1→×0.88, 2→×0.76, 3→×0.64
-        demotion *= procDemotion;
-        if (window.location.search.includes('?debug=1') && procLevel > 1) {
-          console.debug('[proc-level] DEMOTED candidate=\'' + a.name + '\' level=' + procLevel + ' factor=' + procDemotion.toFixed(2));
+      if (typeof window.getPremiumChoiceGuidance === "function") {
+        choiceGuidance = window.getPremiumChoiceGuidance(a);
+        const factor = Number(choiceGuidance.rank_factor);
+        if (Number.isFinite(factor) && factor > 0 && factor < 1) {
+          demotion *= factor;
+          if (window.location.search.includes("?debug=1")) {
+            console.debug(
+              "[choice-guidance] DEMOTED candidate='" +
+                a.name +
+                "' level=" +
+                choiceGuidance.level +
+                " factor=" +
+                factor.toFixed(2),
+            );
+          }
+        }
+      } else {
+        const procLevel = a.processing_level != null
+          ? a.processing_level
+          : inferProcessingLevel(a);
+        if (procLevel > 0) {
+          demotion *= 1 - procLevel * 0.12;
         }
       }
     }
@@ -3171,6 +3187,7 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       premiumContext: premiumContext.candidate,
       premiumContextReason: premiumContext.reason,
       premiumContextPriority: premiumContext.priority,
+      premiumChoiceGuidance: choiceGuidance,
       _hybridScore: hybrid,
       _sortScoreBase: hybrid + affinityBonus + provenanceBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus + carbShapeBonus + proteinFormBonus + vegetableContextBonus + whiteFishCohortBonus,
       _sortScore: (hybrid + affinityBonus + provenanceBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus + carbShapeBonus + proteinFormBonus + vegetableContextBonus + whiteFishCohortBonus) * demotion,
@@ -3195,6 +3212,16 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     const sorted = withHybrid
       .filter(a => a.tier === t)
       .sort((a, b) => {
+        const choicePriority = (item) => {
+          const level = item.premiumChoiceGuidance?.level;
+          if (level === "preferred") return 0;
+          if (level === "compatible") return 1;
+          if (level === "occasional") return 2;
+          return 3;
+        };
+        const choiceA = choicePriority(a);
+        const choiceB = choicePriority(b);
+        if (choiceA !== choiceB) return choiceA - choiceB;
         const ra = a._judgeRank ?? 9999;
         const rb = b._judgeRank ?? 9999;
         if (ra !== rb) return ra - rb;

@@ -742,6 +742,78 @@
         font-weight: 700;
       }
 
+      .choice-guidance {
+        display: flex;
+        align-items: flex-start;
+        gap: 9px;
+        margin: -2px 0 14px;
+        padding: 10px 12px;
+        border: 1px solid;
+        border-radius: 12px;
+        line-height: 1.3;
+      }
+
+      .choice-guidance-dot {
+        width: 9px;
+        height: 9px;
+        margin-top: 4px;
+        border-radius: 999px;
+        flex: 0 0 auto;
+        background: currentColor;
+      }
+
+      .choice-guidance-copy {
+        min-width: 0;
+      }
+
+      .choice-guidance-label {
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .choice-guidance-summary {
+        margin-top: 2px;
+        color: #4f5668;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .choice-guidance.preferred {
+        color: #2f7d4d;
+        background: #edf8f1;
+        border-color: #b9dfc7;
+      }
+
+      .choice-guidance.compatible {
+        color: #9a6a12;
+        background: #fff8e8;
+        border-color: #efd38f;
+      }
+
+      .choice-guidance.occasional {
+        color: #9a493f;
+        background: #fff3f0;
+        border-color: #e9bcb6;
+      }
+
+      .choice-guidance-details {
+        margin: -8px 0 16px 30px;
+        color: #596071;
+        font-size: 12px;
+        line-height: 1.45;
+      }
+
+      .choice-guidance-details summary {
+        width: fit-content;
+        color: #534b90;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      .choice-guidance-details p {
+        margin: 7px 0 0;
+      }
+
       .portion-review-note {
         margin: -4px 0 16px;
         padding: 10px 12px;
@@ -2302,6 +2374,39 @@
           contextReasons[alt.premiumContextReason] ||
           "Equivalencia nutricional y culinaria";
 
+        const choiceGuidance =
+          alt.premiumChoiceGuidance ||
+          (typeof window.getPremiumChoiceGuidance === "function"
+            ? window.getPremiumChoiceGuidance(alt)
+            : null);
+        let choiceGuidanceHTML = "";
+        if (
+          choiceGuidance &&
+          ["preferred", "compatible", "occasional"].includes(
+            choiceGuidance.level,
+          )
+        ) {
+          const details =
+            choiceGuidance.level === "preferred"
+              ? ""
+              : `
+                <details class="choice-guidance-details">
+                  <summary>¿Por qué?</summary>
+                  <p>${choiceGuidance.detail}</p>
+                </details>
+              `;
+          choiceGuidanceHTML = `
+            <div class="choice-guidance ${choiceGuidance.level}">
+              <span class="choice-guidance-dot" aria-hidden="true"></span>
+              <div class="choice-guidance-copy">
+                <div class="choice-guidance-label">${choiceGuidance.label}</div>
+                <div class="choice-guidance-summary">${choiceGuidance.summary}</div>
+              </div>
+            </div>
+            ${details}
+          `;
+        }
+
         let portionNotice = "";
         if (alt.premiumPortionStatus === "review") {
           const context = alt.premiumContext || "";
@@ -2346,6 +2451,7 @@
           })()}
         </div>
         <div class="result-fit-reason">✓ ${contextReason}</div>
+        ${choiceGuidanceHTML}
         ${portionNotice}
 
         <div class="result-macros">
