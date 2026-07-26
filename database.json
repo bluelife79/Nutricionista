@@ -55298,7 +55298,7 @@
   },
   {
     "source": "Dia",
-    "name": "Semi Curado Queso",
+    "name": "Queso semicurado",
     "protein": 20,
     "carbs": 2.3,
     "fat": 35,
@@ -55320,7 +55320,10 @@
     "label_reason": "Queso semicurado, versátil y habitual",
     "usage_es": "Queso semicurado de vaca u oveja. Tabla de quesos o tapa en cualquier momento. Intercambio con queso manchego curado o gouda.",
     "culinary_role": "meal_dish",
-    "dairy_subfamily": "quesos_solidos"
+    "dairy_subfamily": "quesos_solidos",
+    "name_original": "Semi Curado Queso",
+    "name_language": "es",
+    "name_review_status": "deterministic_translation"
   },
   {
     "source": "Lidl",
@@ -59664,7 +59667,7 @@
   },
   {
     "source": "Dia",
-    "name": "Escamas de parmigiano reggiano",
+    "name": "Escamas de queso parmesano Reggiano",
     "protein": 32.4,
     "carbs": 0,
     "fat": 29.7,
@@ -59686,11 +59689,14 @@
     "label_reason": "Escamas de queso listas",
     "usage_es": "Queso curado rallado. Ingrediente para espolvorear sobre pasta, ensaladas o risottos en la comida. Alimento exótico en España. Intercambio con queso parmesano rallado.",
     "culinary_role": "meal_dish",
-    "dairy_subfamily": "quesos_solidos"
+    "dairy_subfamily": "quesos_solidos",
+    "name_original": "Escamas de parmigiano reggiano",
+    "name_language": "es",
+    "name_review_status": "deterministic_translation"
   },
   {
     "source": "Carrefour",
-    "name": "Parmigiano reggiano",
+    "name": "Queso parmesano Reggiano",
     "protein": 32,
     "carbs": 0,
     "fat": 30,
@@ -59712,7 +59718,10 @@
     "label_reason": "Queso curado listo para consumir",
     "usage_es": "Queso curado de pasta dura. Ingrediente de cocina para rallar sobre pasta o ensaladas en la comida. Intercambio con queso parmesano, manchego curado o grana padano.",
     "culinary_role": "meal_dish",
-    "dairy_subfamily": "quesos_solidos"
+    "dairy_subfamily": "quesos_solidos",
+    "name_original": "Parmigiano reggiano",
+    "name_language": "es",
+    "name_review_status": "deterministic_translation"
   },
   {
     "source": "Eroski",
@@ -60847,7 +60856,7 @@
   },
   {
     "source": "Dia",
-    "name": "Parmesan",
+    "name": "Queso parmesano",
     "protein": 35,
     "carbs": 0,
     "fat": 29,
@@ -60869,7 +60878,10 @@
     "label_reason": "Queso curado para rallar en pasta",
     "usage_es": "Queso curado de pasta dura. Ingrediente de cocina para rallar sobre pasta o ensaladas en la comida. Intercambio con queso manchego curado, grana padano o pecorino.",
     "culinary_role": "meal_dish",
-    "dairy_subfamily": "quesos_solidos"
+    "dairy_subfamily": "quesos_solidos",
+    "name_original": "Parmesan",
+    "name_language": "es",
+    "name_review_status": "deterministic_translation"
   },
   {
     "source": "Lidl",
@@ -66337,7 +66349,7 @@
   },
   {
     "source": "Dia",
-    "name": "Emmentaler Im Stück 250 gr.",
+    "name": "Queso emmental en pieza, 250 g",
     "protein": 27,
     "carbs": 0.1,
     "fat": 29,
@@ -66359,7 +66371,10 @@
     "label_reason": "Queso versátil etiqueta alemana",
     "usage_es": "Queso curado de pasta dura importado. Se consume en tapas, bocadillos o rallado en comida y cena. Intercambio con queso manchego curado, gouda en bloque o emmental nacional.",
     "culinary_role": "meal_dish",
-    "dairy_subfamily": "quesos_solidos"
+    "dairy_subfamily": "quesos_solidos",
+    "name_original": "Emmentaler Im Stück 250 gr.",
+    "name_language": "es",
+    "name_review_status": "deterministic_translation"
   },
   {
     "source": "Carrefour",
@@ -155789,7 +155804,7 @@
   },
   {
     "source": "Bonpreu/Esclat",
-    "name": "Formatge Maasdam",
+    "name": "Queso maasdam",
     "protein": 26,
     "carbs": 0.5,
     "fat": 27,
@@ -155811,7 +155826,10 @@
     "label_reason": "Queso foráneo ocasional en España",
     "usage_es": "Queso curado de origen holandés, raro en España. Se consume directamente en tapas o ensaladas. Intercambio con queso maasdam, gouda o edam.",
     "culinary_role": "meal_dish",
-    "dairy_subfamily": "quesos_solidos"
+    "dairy_subfamily": "quesos_solidos",
+    "name_original": "Formatge Maasdam",
+    "name_language": "es",
+    "name_review_status": "deterministic_translation"
   },
   {
     "source": "Bonpreu/Esclat",
@@ -155919,7 +155937,7 @@
   },
   {
     "source": "Bonpreu/Esclat",
-    "name": "Formatge Edam",
+    "name": "Queso edam",
     "protein": 26,
     "carbs": 0.5,
     "fat": 23,
@@ -155941,11 +155959,14 @@
     "label_reason": "Queso foráneo consumo ocasional",
     "usage_es": "Queso semicurado holandés, raro en España. Se consume directamente como tapa o en bocadillos. Intercambio con queso gouda, maasdam o queso de bola.",
     "culinary_role": "meal_dish",
-    "dairy_subfamily": "quesos_solidos"
+    "dairy_subfamily": "quesos_solidos",
+    "name_original": "Formatge Edam",
+    "name_language": "es",
+    "name_review_status": "deterministic_translation"
   },
   {
     "source": "Bonpreu/Esclat",
-    "name": "Formatge Mozzarella",
+    "name": "Queso mozzarella",
     "protein": 22,
     "carbs": 1,
     "fat": 21,
@@ -155968,7 +155989,10 @@
     "usage_es": "Queso fresco hilado. Ingrediente habitual para pizzas, ensaladas o caprese, en comida o cena. Intercambio con queso de Burgos o queso fresco batido.",
     "culinary_role": "meal_dish",
     "dairy_subfamily": "queso_fresco",
-    "dairy_subfamily_prev": "frescos_proteicos"
+    "dairy_subfamily_prev": "frescos_proteicos",
+    "name_original": "Formatge Mozzarella",
+    "name_language": "es",
+    "name_review_status": "deterministic_translation"
   },
   {
     "source": "Bonpreu/Esclat",
@@ -156703,7 +156727,7 @@
   },
   {
     "source": "Bonpreu/Esclat",
-    "name": "Formatge fresc",
+    "name": "Queso fresco",
     "protein": 12,
     "carbs": 3.9,
     "fat": 12,
@@ -156724,7 +156748,10 @@
     "label_confidence": 90,
     "label_reason": "Queso fresco versátil y común",
     "usage_es": "Queso fresco de leche de vaca u oveja. Se consume directamente en desayunos o como ingrediente en ensaladas. Intercambio con queso de Burgos, requesón o mató.",
-    "culinary_role": "meal_dish"
+    "culinary_role": "meal_dish",
+    "name_original": "Formatge fresc",
+    "name_language": "es",
+    "name_review_status": "deterministic_translation"
   },
   {
     "source": "Bonpreu/Esclat",

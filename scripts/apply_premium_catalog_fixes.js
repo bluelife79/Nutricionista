@@ -26,6 +26,15 @@ const SPANISH_NAMES = {
   off_689d8d0523: "Skyr Ísey sabor vainilla",
   off_6fa511a7ee: "Zumo de manzana",
   off_d2671423c3: "Atún claro en escabeche",
+  off_592279dd41: "Queso semicurado",
+  off_a3735be02e: "Escamas de queso parmesano Reggiano",
+  off_36d66c5421: "Queso parmesano Reggiano",
+  off_48ad6814ca: "Queso parmesano",
+  off_5e6b2ce156: "Queso emmental en pieza, 250 g",
+  off_17fd2893f9: "Queso maasdam",
+  off_4e4d03c26d: "Queso edam",
+  off_e491b2d181: "Queso mozzarella",
+  off_afd88ef6f1: "Queso fresco",
 };
 
 const PREPARED_IDS = new Set([

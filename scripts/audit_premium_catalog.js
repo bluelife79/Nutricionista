@@ -31,7 +31,7 @@ const SPANISH_RETAILERS = new Set([
 const PREPARED_RE =
   /\b(paella|lasan\w*|tortilla de patata|empanad\w*|pizza|croqueta\w*|risotto|ensalada|chili con carne|pasta\w* rellena\w*)\b/;
 const FOREIGN_RE =
-  /\b(lapte|grasime|erdbeer|vanille|cioccolat|fromage|joghurt|geschmack|aromatizat|green pitted olives|quinoa salad|cream cheese classic|suc de poma)\b/;
+  /\b(lapte|grasime|erdbeer|vanille|cioccolat|fromage|joghurt|geschmack|aromatizat|green pitted olives|quinoa salad|cream cheese classic|suc de poma|emmentaler|im stuck|parmesan|parmigiano|formatge|semi curado queso)\b/;
 const VAGUE_RE =
   /^(light|natural|original|clasica|clasico|premium|energetica|antojos|hoymecuido|cocktail|tropical consum)$/;
 
