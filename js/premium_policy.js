@@ -52,6 +52,7 @@
     }
 
     if (category === "carbs") {
+      if (subgroup === "other_carbs") return "unknown";
       if (subgroup === "tubers") {
         return food.raw_ingredient === true ? "tuber" : "cooked_tuber";
       }
@@ -78,7 +79,13 @@
     if (category === "protein") {
       if (subgroup === "plant_protein") return "plant_protein";
       if (subgroup === "legumes") return "cooked_legume";
-      if (subgroup === "processed_meat") return "processed_meat";
+      if (["processed_meat", "processed_protein"].includes(subgroup)) {
+        return "processed_meat";
+      }
+      if (subgroup === "other_protein") {
+        if (hasAny(name, [/\bcaracol\w*\b/, /\bmolusc\w*\b/])) return "seafood";
+        return "unknown";
+      }
       if (subgroup === "eggs") return "egg";
       if (subgroup === "fish_white") {
         return hasAny(name, [/\b(lata|conserva|aceite|natural)\b/])
@@ -91,6 +98,12 @@
           : "fatty_fish";
       }
       if (subgroup === "seafood") return "seafood";
+      if (subgroup === "fish") {
+        if (hasAny(name, [/\bzamburin\w*\b/, /\bmejillon\w*\b/, /\bmolusc\w*\b/])) {
+          return "seafood";
+        }
+        return Number(food.fat) >= 5 ? "fatty_fish" : "white_fish";
+      }
       if (hasAny(name, [/\bpicad\w*\b/, /\bhamburgues\w*\b/, /\bminced\b/])) {
         return "minced_meat";
       }
@@ -114,8 +127,9 @@
         return "fresh_cheese";
       }
       if (subgroup === "aged_cheese") return "aged_cheese";
+      if (subgroup === "cheese") return "unknown";
       if (
-        hasAny(name, [/\byogur\w*\b/, /\bkefir\b/, /\bskyr\b/, /\bquark\b/]) ||
+        hasAny(name, [/\byogur\w*\b/, /\bkefir\b/, /\bskyr\b/, /\bquark\b/, /\bcuajada\b/]) ||
         ["whole_dairy", "low_fat_dairy", "high_protein_dairy"].includes(subgroup)
       ) {
         return "fermented_dairy";

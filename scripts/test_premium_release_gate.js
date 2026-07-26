@@ -118,6 +118,21 @@ async function verifyUnknownContextFailsClosed(engine) {
   );
 }
 
+function verifyExchangeGroupSchema(engine) {
+  engine.window.initExchangeGroupsOnce(engine.foods);
+  const drift = engine.window.__exchangeGroupsDrift;
+  assert.strictEqual(
+    drift.unknownOrigin.size,
+    0,
+    `Subgrupos de origen sin mapa: ${Array.from(drift.unknownOrigin).join(", ")}`,
+  );
+  assert.strictEqual(
+    drift.unknownAllowedKey.size,
+    0,
+    `Subgrupos visibles sin mapa: ${Array.from(drift.unknownAllowedKey).join(", ")}`,
+  );
+}
+
 async function verifyOptionalCulinaryUse(engine) {
   const mozzarella = engine.foods.find(
     (food) => food.id === "bedca_0070",
@@ -202,6 +217,7 @@ async function main() {
   const engine = createEngine();
   verifyServingPolicyMirror(engine);
   verifySourceHierarchy(engine);
+  verifyExchangeGroupSchema(engine);
   await verifyUnknownContextFailsClosed(engine);
   await verifyOptionalCulinaryUse(engine);
 

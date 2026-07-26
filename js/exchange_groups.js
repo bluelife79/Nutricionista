@@ -158,6 +158,18 @@
     ],
     // Fisterra: pescado azul — 100–125 g. Omega-3 es valor añadido, no restricción.
 
+    // Subgrupos históricos aún presentes en BEDCA y comercios. Se declaran
+    // explícitamente para que nunca caigan por un fail-open silencioso; el
+    // gate Premium de contexto decide después si el alimento concreto es
+    // pescado blanco, azul, marisco o debe fallar de forma cerrada.
+    fish: [
+      'fish', 'fish_white', 'fish_fatty', 'seafood',
+    ],
+
+    seafood: [
+      'seafood', 'fish', 'fish_white', 'fish_fatty',
+    ],
+
     eggs: [
       // T1 STRICT — 2 huevos = 1 ración proteína estándar (Fisterra)
       'eggs',
@@ -191,6 +203,13 @@
       'eggs',
     ],
     // Decisión D2 (bloqueada): plant_protein es subgrupo nuevo introducido en Fase 1.
+
+    // Buckets heredados: solo se aceptan dentro de su propio bucket. La
+    // política Premium marca como unknown los registros ambiguos, por lo que
+    // esta clave evita el fail-open sin convertir café/cacao/suplementos en
+    // sustitutos de carne.
+    other_protein: ['other_protein'],
+    processed_protein: ['processed_protein', 'processed_meat'],
 
     // ── LACTEOS ───────────────────────────────────────────────────────────────
     // Fuente: Fisterra — 1 ración láctea = 200–250 ml leche / 125 g yogur / 30–40 g queso curado.
@@ -240,6 +259,15 @@
       'whole_dairy',
       'low_fat_dairy',
     ],
+
+    // Claves heredadas controladas. El contexto Premium y la subfamilia láctea
+    // aplican el filtro fino; nunca se dejan sin mapa.
+    basic_dairy: [
+      'basic_dairy', 'whole_dairy', 'low_fat_dairy',
+      'high_protein_dairy', 'fresh_cheese',
+    ],
+    cheese: ['cheese', 'aged_cheese', 'fresh_cheese'],
+    other_dairy: ['other_dairy'],
 
     // ── GRASAS ────────────────────────────────────────────────────────────────
     // Fuente: Russolillo — 1 ración grasa = 10 ml aceite / 25–30 g frutos secos.
@@ -321,6 +349,10 @@
       // Fisterra: bollería/dulces no tienen ración de referencia clínica estándar.
     ],
 
+    // Contenedor histórico demasiado amplio. Solo se cruza consigo mismo y el
+    // contexto Premium lo bloquea si no existe una clasificación inequívoca.
+    other_carbs: ['other_carbs'],
+
     // ── FRUTAS (existentes — sin cambios requeridos) ─────────────────────────
     // Russolillo: 100–150 g fruta fresca = 1 ración.
 
@@ -376,8 +408,7 @@
     ],
 
   };
-  // Key count: 12 protein + 5 dairy + 5 fat + 3 carbs + 3 fruit + 7 veg = 35 keys
-  // (verify: Object.keys(ALLOWED_SUBGROUPS).length === 35)
+  // Incluye las claves canónicas y los buckets heredados todavía presentes.
 
   // ── Clinical category gate ──────────────────────────────────────────────────
   // Only categories with a defined clinical subgroup taxonomy are filtered.
@@ -487,7 +518,15 @@
       var seenInDb = new Set();
       for (var i = 0; i < foodsDatabase.length; i++) {
         var f = foodsDatabase[i];
-        if (f && f.subgroup && f.subgroup !== '?' && f.subgroup !== 'other') {
+        if (
+          f &&
+          CLINICAL_CATEGORIES.has(f.category) &&
+          f.quality_status !== 'quarantine' &&
+          !(Array.isArray(f.flags) && f.flags.indexOf('hidden') !== -1) &&
+          f.subgroup &&
+          f.subgroup !== '?' &&
+          f.subgroup !== 'other'
+        ) {
           seenInDb.add(f.subgroup);
         }
       }
