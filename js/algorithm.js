@@ -3398,6 +3398,26 @@ function sourceBoost(food) {
   }
 }
 
+// En búsquedas genéricas cortas ("pollo", "mozzarella", "leche
+// semidesnatada"), una referencia BEDCA que contiene todos los términos debe
+// abrir el listado antes que una marca cuyo nombre coincida de forma literal.
+// No aplica a consultas de marca ni a frases largas y respeta modificadores
+// solicitados por la usuaria.
+function canonicalSpanishGenericPriority(food, queryTokens) {
+  if (
+    !Array.isArray(queryTokens) ||
+    queryTokens.length === 0 ||
+    queryTokens.length > 2 ||
+    sourceMarketClass(food) !== "generic"
+  ) {
+    return 0;
+  }
+  const name = norm(food.name || "");
+  if (!queryTokens.every((token) => name.includes(token))) return 0;
+  if (searchModifierPenalty(name, queryTokens) !== 0) return 0;
+  return 1;
+}
+
 // ============================================
 // SEARCH FOODS (local database)
 // ============================================
@@ -3414,6 +3434,9 @@ async function searchFoods(query) {
     .filter((food) => isMarketEligibleFood(food))
     .sort((a, b) => {
       const tokens = tokenize(query);
+      const canonicalA = canonicalSpanishGenericPriority(a, tokens);
+      const canonicalB = canonicalSpanishGenericPriority(b, tokens);
+      if (canonicalA !== canonicalB) return canonicalB - canonicalA;
       const scoreA = tokenSortScore(norm(a.name || ""), tokens);
       const scoreB = tokenSortScore(norm(b.name || ""), tokens);
       if (scoreA !== scoreB) return scoreB - scoreA;

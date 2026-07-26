@@ -83,6 +83,24 @@ function verifySourceHierarchy(engine) {
     unrelatedOffAffinity <= 0.08,
     "Dos productos OFF no pueden recibir afinidad máxima solo por compartir agregador",
   );
+
+  const genericSearchPriority = vm.runInContext(
+    `({
+      bedca: canonicalSpanishGenericPriority(
+        {source: "BEDCA", name: "Queso mozzarella"},
+        ["mozzarella"]
+      ),
+      branded: canonicalSpanishGenericPriority(
+        {source: "Dia", name: "Mozzarella"},
+        ["mozzarella"]
+      )
+    })`,
+    context,
+  );
+  assert(
+    genericSearchPriority.bedca > genericSearchPriority.branded,
+    "Una búsqueda genérica debe abrir con BEDCA cuando existe",
+  );
 }
 
 async function verifyUnknownContextFailsClosed(engine) {
