@@ -1,24 +1,5 @@
-const { createClient } = require('@supabase/supabase-js');
-const { safeEqual } = require('./_session');
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
-
-function isAdmin(req) {
-  const configured = String(process.env.ADMIN_PASSWORD || '');
-  if (configured.length < 12) return false;
-  return safeEqual(req.headers['x-admin-password'], configured);
-}
-
-function adminIsConfigured() {
-  return String(process.env.ADMIN_PASSWORD || '').length >= 12;
-}
-
-function validAccessCode(code) {
-  return /^[A-Z0-9_.-]{8,64}$/.test(String(code || '').toUpperCase().trim());
-}
+const { findAuthUserByEmail, serviceClient } = require('./_supabase');
+const { readAdminSession } = require('./_session');
 
 function validIdentity(name, email) {
   const normalizedName = String(name || '').trim();
@@ -29,29 +10,51 @@ function validIdentity(name, email) {
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail);
 }
 
+function validPassword(password) {
+  const value = String(password || '');
+  return value.length >= 12 &&
+    value.length <= 128 &&
+    /[a-z]/.test(value) &&
+    /[A-Z]/.test(value) &&
+    /\d/.test(value);
+}
+
+async function authorizedAdmin(req, supabase) {
+  let session;
+  try {
+    session = readAdminSession(req);
+  } catch {
+    return null;
+  }
+  if (!session?.sub) return null;
+  const { data, error } = await supabase.auth.admin.getUserById(session.sub);
+  const user = data?.user;
+  if (error || !user || user.app_metadata?.role !== 'admin') return null;
+  if (String(user.email || '').toLowerCase() !== session.email) return null;
+  return user;
+}
+
 function publicUser(user) {
   if (!user) return user;
-  const { code, ...safe } = user;
-  return safe;
+  return {
+    name: user.name,
+    email: user.email,
+    active: user.active,
+    created_at: user.created_at,
+  };
 }
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, x-admin-password');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   res.setHeader('Cache-Control', 'no-store');
   if (req.method === 'OPTIONS') return res.status(200).end();
 
-  if (!adminIsConfigured()) {
-    return res.status(503).json({
-      success: false,
-      error: 'ADMIN_PASSWORD debe tener al menos 12 caracteres antes de habilitar el panel.',
-    });
-  }
-  if (!isAdmin(req)) {
+  const supabase = serviceClient();
+  if (!await authorizedAdmin(req, supabase)) {
     return res.status(401).json({ success: false, error: 'No autorizado.' });
   }
 
-  // GET — listar todas las usuarias
   if (req.method === 'GET') {
     const { data: users, error } = await supabase
       .from('users')
@@ -59,60 +62,72 @@ module.exports = async (req, res) => {
       .order('created_at', { ascending: false });
 
     if (error) return res.status(500).json({ success: false, error: 'Error al cargar clientas.' });
-
-    return res.json({ success: true, users });
+    return res.json({ success: true, users: users.map(publicUser) });
   }
 
-  // POST — crear o toggle
   if (req.method === 'POST') {
-    const { action, email, name, code } = req.body || {};
+    const { action, email, name, password } = req.body || {};
 
     if (action === 'create') {
-      if (!name || !email || !code) {
-        return res.status(400).json({ success: false, error: 'Nombre, email y código son obligatorios.' });
-      }
-      if (!validIdentity(name, email)) {
-        return res.status(400).json({ success: false, error: 'Nombre o email no válidos.' });
-      }
-      if (!validAccessCode(code)) {
+      if (!validIdentity(name, email) || !validPassword(password)) {
         return res.status(400).json({
           success: false,
-          error: 'El código debe tener 8–64 caracteres (letras, números, punto, guion o guion bajo).',
+          error: 'Revisa nombre, email y contraseña (12 caracteres, mayúscula, minúscula y número).',
         });
       }
 
+      const normalizedEmail = email.toLowerCase().trim();
+      const { data: existingProfile } = await supabase
+        .from('users')
+        .select('email')
+        .eq('email', normalizedEmail)
+        .maybeSingle();
+      const existingAuth = await findAuthUserByEmail(supabase, normalizedEmail);
+      if (existingProfile || existingAuth) {
+        return res.status(409).json({ success: false, error: 'Ya existe una clienta con ese email.' });
+      }
+
+      const authResult = await supabase.auth.admin.createUser({
+        email: normalizedEmail,
+        password,
+        email_confirm: true,
+        user_metadata: { name: name.trim() },
+        app_metadata: { role: 'member' },
+      });
+      if (authResult.error || !authResult.data.user) {
+        return res.status(400).json({ success: false, error: 'No se ha podido crear la cuenta de acceso.' });
+      }
+
+      const authUser = authResult.data.user;
       const { data: user, error } = await supabase
         .from('users')
         .insert({
           name: name.trim(),
-          email: email.toLowerCase().trim(),
-          code: code.toUpperCase().trim(),
+          email: normalizedEmail,
+          code: `AUTH:${authUser.id}`,
           active: true,
         })
         .select('name, email, active, created_at')
         .single();
 
       if (error) {
-        const msg = error.code === '23505'
-          ? 'Ya existe una clienta con ese email.'
-          : 'Error al crear clienta.';
-        return res.status(400).json({ success: false, error: msg });
+        await supabase.auth.admin.deleteUser(authUser.id);
+        return res.status(400).json({ success: false, error: 'No se ha podido crear el perfil de la clienta.' });
       }
-
       return res.json({ success: true, user: publicUser(user) });
     }
 
     if (action === 'toggle') {
-      if (!email) {
+      const normalizedEmail = String(email || '').toLowerCase().trim();
+      if (!normalizedEmail) {
         return res.status(400).json({ success: false, error: 'Email requerido.' });
       }
 
       const { data: current } = await supabase
         .from('users')
         .select('active')
-        .eq('email', email.toLowerCase().trim())
+        .eq('email', normalizedEmail)
         .single();
-
       if (!current) {
         return res.status(404).json({ success: false, error: 'Clienta no encontrada.' });
       }
@@ -120,45 +135,73 @@ module.exports = async (req, res) => {
       const { data: user, error } = await supabase
         .from('users')
         .update({ active: !current.active })
-        .eq('email', email.toLowerCase().trim())
+        .eq('email', normalizedEmail)
         .select('name, email, active, created_at')
         .single();
-
       if (error) return res.status(500).json({ success: false, error: 'Error al cambiar estado.' });
-
       return res.json({ success: true, user: publicUser(user) });
     }
 
     if (action === 'update') {
-      const { originalEmail } = req.body;
-      if (!originalEmail || !name || !email) {
-        return res.status(400).json({ success: false, error: 'Nombre y email son obligatorios.' });
-      }
-      if (!validIdentity(name, email)) {
-        return res.status(400).json({ success: false, error: 'Nombre o email no válidos.' });
-      }
-      if (code && !validAccessCode(code)) {
+      const originalEmail = String(req.body?.originalEmail || '').toLowerCase().trim();
+      const normalizedEmail = String(email || '').toLowerCase().trim();
+      if (!originalEmail || !validIdentity(name, normalizedEmail) ||
+          (password && !validPassword(password))) {
         return res.status(400).json({
           success: false,
-          error: 'El nuevo código debe tener 8–64 caracteres válidos.',
+          error: 'Revisa nombre, email y la nueva contraseña.',
         });
       }
 
-      const updates = {
-        name: name.trim(),
-        email: email.toLowerCase().trim(),
+      const authUser = await findAuthUserByEmail(supabase, originalEmail);
+      if (!authUser) {
+        return res.status(404).json({
+          success: false,
+          error: 'Esta clienta no tiene una cuenta de acceso vinculada.',
+        });
+      }
+
+      const authUpdates = {
+        email: normalizedEmail,
+        email_confirm: true,
+        user_metadata: {
+          ...(authUser.user_metadata || {}),
+          name: name.trim(),
+        },
+        app_metadata: {
+          ...(authUser.app_metadata || {}),
+          role: 'member',
+        },
       };
-      if (code) updates.code = code.toUpperCase().trim();
+      if (password) authUpdates.password = password;
+
+      const authUpdate = await supabase.auth.admin.updateUserById(authUser.id, authUpdates);
+      if (authUpdate.error) {
+        return res.status(400).json({
+          success: false,
+          error: 'No se ha podido actualizar la cuenta de acceso. Comprueba que el email no esté repetido.',
+        });
+      }
 
       const { data: user, error } = await supabase
         .from('users')
-        .update(updates)
-        .eq('email', originalEmail.toLowerCase().trim())
+        .update({
+          name: name.trim(),
+          email: normalizedEmail,
+          code: `AUTH:${authUser.id}`,
+        })
+        .eq('email', originalEmail)
         .select('name, email, active, created_at')
         .single();
 
-      if (error) return res.status(500).json({ success: false, error: 'Error al actualizar clienta.' });
-
+      if (error) {
+        await supabase.auth.admin.updateUserById(authUser.id, {
+          email: originalEmail,
+          email_confirm: true,
+          user_metadata: authUser.user_metadata,
+        });
+        return res.status(500).json({ success: false, error: 'Error al actualizar el perfil.' });
+      }
       return res.json({ success: true, user: publicUser(user) });
     }
 

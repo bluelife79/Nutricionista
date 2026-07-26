@@ -19,6 +19,8 @@ Diseñada para mujeres +40 años del programa RevolucionaT.
 - ✅ Mobile-first responsive
 - ✅ PWA instalable
 - ✅ Funciona offline
+- ✅ Acceso individual con Supabase Auth y contraseñas no almacenadas en la tabla de perfiles
+- ✅ Panel de administración con alta, edición, cambio de contraseña y activación/baja inmediata
 
 ## 📁 ESTRUCTURA
 
@@ -30,6 +32,7 @@ Nutricionista/
 ├── database.json       # Catálogo activo y perfiles culinarios versionados
 ├── config/             # Política de raciones y decisiones auditadas
 ├── scripts/            # Auditorías, regresión y gate de release
+├── api/                # Autenticación y administración del acceso
 ├── manifest.json       # PWA config
 └── service-worker.js   # Offline support
 ```
@@ -60,6 +63,9 @@ npm run audit:intent
 
 El contrato verificable de producto está en
 `docs/PREMIUM_PRODUCT_CONTRACT.md`.
+
+La arquitectura de acceso de producción y su operativa están en
+`docs/PRODUCTION_ACCESS.md`.
 
 ---
 

@@ -1,10 +1,5 @@
-const { createClient } = require('@supabase/supabase-js');
-const { safeEqual, setSessionCookie } = require('./_session');
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
+const { authClient, serviceClient } = require('./_supabase');
+const { setSessionCookie } = require('./_session');
 
 const attempts = new Map();
 const WINDOW_MS = 10 * 60 * 1000;
@@ -39,42 +34,77 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { email, code } = req.body || {};
+  const { email, password, code } = req.body || {};
   const normalizedEmail = String(email || '').toLowerCase().trim();
-  const normalizedCode = String(code || '').toUpperCase().trim();
+  // `code` mantiene compatibilidad con una copia antigua de la PWA durante la actualización.
+  const suppliedPassword = String(password || code || '');
 
-  if (!normalizedEmail || !normalizedCode ||
+  if (!normalizedEmail || !suppliedPassword ||
       !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail) ||
-      normalizedCode.length > 128) {
-    return res.status(400).json({ success: false, error: 'Completá todos los campos.' });
+      suppliedPassword.length > 128) {
+    return res.status(400).json({ success: false, error: 'Completa todos los campos.' });
   }
 
   const key = requestKey(req, normalizedEmail);
   if (isRateLimited(key)) {
     return res.status(429).json({
       success: false,
-      error: 'Demasiados intentos. Esperá unos minutos antes de volver a probar.',
+      error: 'Demasiados intentos. Espera unos minutos antes de volver a probar.',
     });
   }
 
-  const { data: user, error } = await supabase
+  let signedIn;
+  try {
+    const result = await authClient().auth.signInWithPassword({
+      email: normalizedEmail,
+      password: suppliedPassword,
+    });
+    if (result.error || !result.data.user) {
+      return res.status(401).json({
+        success: false,
+        error: 'Email o contraseña incorrectos.',
+      });
+    }
+    signedIn = result.data.user;
+  } catch {
+    return res.status(503).json({
+      success: false,
+      error: 'No hemos podido verificar el acceso. Inténtalo de nuevo.',
+    });
+  }
+
+  if (signedIn.app_metadata?.role !== 'member') {
+    return res.status(403).json({
+      success: false,
+      error: 'Esta cuenta no tiene acceso a la herramienta de clientas.',
+    });
+  }
+
+  const supabase = serviceClient();
+  const { data: profile, error } = await supabase
     .from('users')
-    .select('name, email, code, active')
+    .select('name, email, active')
     .eq('email', normalizedEmail)
     .single();
 
-  if (error || !user || !safeEqual(String(user.code || ''), normalizedCode)) {
-    return res.status(401).json({
+  if (error || !profile) {
+    return res.status(403).json({
       success: false,
-      error: 'Email o código incorrectos.',
+      error: 'Tu cuenta todavía no está activada. Contacta con tu nutricionista.',
     });
   }
 
-  if (!user.active) {
-    return res.status(403).json({ success: false, error: 'Tu acceso fue desactivado. Contactá a tu nutricionista.' });
+  if (!profile.active) {
+    return res.status(403).json({
+      success: false,
+      error: 'Tu acceso está desactivado. Contacta con tu nutricionista.',
+    });
   }
 
   clearAttempts(key);
-  setSessionCookie(req, res, user);
-  return res.json({ success: true, name: user.name, email: user.email });
+  setSessionCookie(req, res, {
+    id: signedIn.id,
+    email: profile.email,
+  });
+  return res.json({ success: true, name: profile.name, email: profile.email });
 };

@@ -1,7 +1,9 @@
 const crypto = require('crypto');
 
 const COOKIE_NAME = 'revolucionat_session';
+const ADMIN_COOKIE_NAME = 'revolucionat_admin_session';
 const SESSION_SECONDS = 12 * 60 * 60;
+const ADMIN_SESSION_SECONDS = 4 * 60 * 60;
 
 function sessionSecret() {
   const raw = process.env.SESSION_SECRET || process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -15,10 +17,12 @@ function encode(value) {
   return Buffer.from(value).toString('base64url');
 }
 
-function signSession(profile) {
+function signSession(profile, role, lifetimeSeconds) {
   const payload = encode(JSON.stringify({
+    sub: String(profile.id || profile.sub || '').trim(),
     email: String(profile.email || '').toLowerCase().trim(),
-    exp: Math.floor(Date.now() / 1000) + SESSION_SECONDS,
+    role,
+    exp: Math.floor(Date.now() / 1000) + lifetimeSeconds,
   }));
   const signature = crypto
     .createHmac('sha256', sessionSecret())
@@ -76,30 +80,66 @@ function isSecure(req) {
     String(req.headers['x-forwarded-proto'] || '').split(',')[0].trim() === 'https';
 }
 
-function setSessionCookie(req, res, profile) {
+function setCookie(req, res, name, token, maxAge) {
   const secure = isSecure(req) ? '; Secure' : '';
-  const token = signSession(profile);
   res.setHeader(
     'Set-Cookie',
-    `${COOKIE_NAME}=${encodeURIComponent(token)}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${SESSION_SECONDS}${secure}`,
+    `${name}=${encodeURIComponent(token)}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${maxAge}${secure}`,
+  );
+}
+
+function clearCookie(req, res, name) {
+  const secure = isSecure(req) ? '; Secure' : '';
+  res.setHeader(
+    'Set-Cookie',
+    `${name}=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0${secure}`,
+  );
+}
+
+function setSessionCookie(req, res, profile) {
+  setCookie(
+    req,
+    res,
+    COOKIE_NAME,
+    signSession(profile, 'member', SESSION_SECONDS),
+    SESSION_SECONDS,
   );
 }
 
 function clearSessionCookie(req, res) {
-  const secure = isSecure(req) ? '; Secure' : '';
-  res.setHeader(
-    'Set-Cookie',
-    `${COOKIE_NAME}=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0${secure}`,
+  clearCookie(req, res, COOKIE_NAME);
+}
+
+function setAdminSessionCookie(req, res, profile) {
+  setCookie(
+    req,
+    res,
+    ADMIN_COOKIE_NAME,
+    signSession(profile, 'admin', ADMIN_SESSION_SECONDS),
+    ADMIN_SESSION_SECONDS,
   );
 }
 
+function clearAdminSessionCookie(req, res) {
+  clearCookie(req, res, ADMIN_COOKIE_NAME);
+}
+
 function readSession(req) {
-  return verifySession(parseCookies(req)[COOKIE_NAME]);
+  const session = verifySession(parseCookies(req)[COOKIE_NAME]);
+  return session && session.role === 'member' ? session : null;
+}
+
+function readAdminSession(req) {
+  const session = verifySession(parseCookies(req)[ADMIN_COOKIE_NAME]);
+  return session && session.role === 'admin' ? session : null;
 }
 
 module.exports = {
+  clearAdminSessionCookie,
   clearSessionCookie,
+  readAdminSession,
   readSession,
   safeEqual,
+  setAdminSessionCookie,
   setSessionCookie,
 };

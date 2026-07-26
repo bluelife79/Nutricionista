@@ -436,6 +436,16 @@
         <div class="login-sub">Panel de Administración</div>
 
         <div class="field">
+          <label>Email de administrador</label>
+          <input
+            type="email"
+            id="adminEmail"
+            class="input-neo"
+            placeholder="admin@entrenatucorazon.es"
+            autocomplete="username"
+          />
+        </div>
+        <div class="field">
           <label>Contraseña</label>
           <input
             type="password"
@@ -472,10 +482,9 @@
             <input type="text" id="newName" class="input-neo" placeholder="Ana García" autocomplete="off" />
           </div>
           <div class="field" style="margin-bottom:0">
-            <label>Código de acceso</label>
-            <input type="password" id="newCode" class="input-neo" placeholder="Mínimo 8 caracteres" autocomplete="new-password"
-              minlength="8" maxlength="64" pattern="[A-Za-z0-9_.-]{8,64}"
-              style="font-family:monospace;letter-spacing:2px;text-transform:uppercase" />
+            <label>Contraseña</label>
+            <input type="password" id="newPassword" class="input-neo" placeholder="Mínimo 12 caracteres" autocomplete="new-password"
+              minlength="12" maxlength="128" />
           </div>
         </div>
 
@@ -515,9 +524,6 @@
     <div id="toast"></div>
 
     <script>
-      const ADMIN_KEY = 'rt_admin_session';
-      let adminPassword = '';
-
       // ── HELPERS ──
       function showToast(msg, duration = 3000) {
         const t = document.getElementById('toast');
@@ -536,13 +542,11 @@
         })[char]);
       }
 
-      async function api(method, body, pwd) {
+      async function api(method, body) {
         const opts = {
           method,
-          headers: {
-            'Content-Type': 'application/json',
-            'x-admin-password': pwd || adminPassword,
-          },
+          credentials: 'same-origin',
+          headers: { 'Content-Type': 'application/json' },
         };
         if (body) opts.body = JSON.stringify(body);
         const res = await fetch('/api/admin', opts);
@@ -550,12 +554,16 @@
       }
 
       // ── SESSION ──
-      function checkSession() {
-        const saved = sessionStorage.getItem(ADMIN_KEY);
-        if (saved) {
-          adminPassword = saved;
-          showPanel();
-        }
+      async function checkSession() {
+        try {
+          const res = await fetch('/api/admin-session', {
+            method: 'GET',
+            credentials: 'same-origin',
+            headers: { 'Accept': 'application/json' },
+          });
+          const data = await res.json();
+          if (data.success) showPanel();
+        } catch {}
       }
 
       function showPanel() {
@@ -566,21 +574,26 @@
 
       // ── LOGIN ──
       document.getElementById('loginBtn').addEventListener('click', async () => {
-        const pwd = document.getElementById('adminPassword').value.trim();
+        const email = document.getElementById('adminEmail').value.trim();
+        const password = document.getElementById('adminPassword').value;
         const btn = document.getElementById('loginBtn');
         const err = document.getElementById('loginError');
 
-        if (!pwd) return;
+        if (!email || !password) return;
 
         btn.disabled = true;
         btn.innerHTML = '<span class="loading-spinner"></span>Verificando...';
         err.classList.remove('visible');
 
         try {
-          const data = await api('GET', null, pwd);
-          if (data.success !== false) {
-            adminPassword = pwd;
-            sessionStorage.setItem(ADMIN_KEY, pwd);
+          const res = await fetch('/api/admin-auth', {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }),
+          });
+          const data = await res.json();
+          if (data.success) {
             showPanel();
           } else {
             err.textContent = data.error || 'Contraseña incorrecta.';
@@ -600,11 +613,16 @@
       });
 
       // ── LOGOUT ──
-      document.getElementById('logoutBtn').addEventListener('click', () => {
-        sessionStorage.removeItem(ADMIN_KEY);
-        adminPassword = '';
+      document.getElementById('logoutBtn').addEventListener('click', async () => {
+        try {
+          await fetch('/api/admin-session', {
+            method: 'DELETE',
+            credentials: 'same-origin',
+          });
+        } catch {}
         document.getElementById('adminPanel').classList.remove('visible');
         document.getElementById('loginScreen').classList.remove('hidden');
+        document.getElementById('adminEmail').value = '';
         document.getElementById('adminPassword').value = '';
       });
 
@@ -694,7 +712,7 @@
             <div class="user-info">
               <div class="user-name">${escapeHtml(u.name)}</div>
               <div class="user-email">${safeEmail}</div>
-              <div class="user-code">Código protegido</div>
+              <div class="user-code">Contraseña protegida</div>
             </div>
             <span class="badge ${badgeClass}">${badgeText}</span>
             <button class="btn-edit" data-email="${safeEmail}">Editar</button>
@@ -725,18 +743,14 @@
       }
 
       // ── CREAR / EDITAR CLIENTA ──
-      document.getElementById('newCode').addEventListener('input', (e) => {
-        e.target.value = e.target.value.toUpperCase();
-      });
-
       function openEditMode(email) {
         const u = allUsers.find(u => u.email === email);
         if (!u) return;
         document.getElementById('editOriginalEmail').value = u.email;
         document.getElementById('newName').value = u.name;
         document.getElementById('newEmail').value = u.email;
-        document.getElementById('newCode').value = '';
-        document.getElementById('newCode').placeholder = 'Vacío = conservar el código actual';
+        document.getElementById('newPassword').value = '';
+        document.getElementById('newPassword').placeholder = 'Vacío = conservar la contraseña';
         document.getElementById('formSectionLabel').textContent = `Editando: ${u.name}`;
         document.getElementById('createBtn').textContent = 'Guardar cambios';
         document.getElementById('cancelEditBtn').style.display = 'block';
@@ -748,8 +762,8 @@
         document.getElementById('editOriginalEmail').value = '';
         document.getElementById('newName').value = '';
         document.getElementById('newEmail').value = '';
-        document.getElementById('newCode').value = '';
-        document.getElementById('newCode').placeholder = 'Mínimo 8 caracteres';
+        document.getElementById('newPassword').value = '';
+        document.getElementById('newPassword').placeholder = 'Mínimo 12 caracteres';
         document.getElementById('formSectionLabel').textContent = 'Nueva clienta';
         document.getElementById('createBtn').textContent = 'Crear clienta';
         document.getElementById('cancelEditBtn').style.display = 'none';
@@ -761,7 +775,7 @@
       document.getElementById('createBtn').addEventListener('click', async () => {
         const name = document.getElementById('newName').value.trim();
         const email = document.getElementById('newEmail').value.trim();
-        const code = document.getElementById('newCode').value.trim();
+        const password = document.getElementById('newPassword').value;
         const originalEmail = document.getElementById('editOriginalEmail').value;
         const btn = document.getElementById('createBtn');
         const err = document.getElementById('createError');
@@ -769,15 +783,15 @@
 
         err.classList.remove('visible');
 
-        if (!name || !email || (!isEdit && !code)) {
+        if (!name || !email || (!isEdit && !password)) {
           err.textContent = isEdit
             ? 'Nombre y email son obligatorios.'
             : 'Completá todos los campos.';
           err.classList.add('visible');
           return;
         }
-        if (code && code.length < 8) {
-          err.textContent = 'El código debe tener al menos 8 caracteres.';
+        if (password && (password.length < 12 || !/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/\d/.test(password))) {
+          err.textContent = 'La contraseña necesita 12 caracteres, mayúscula, minúscula y número.';
           err.classList.add('visible');
           return;
         }
@@ -786,8 +800,8 @@
         btn.innerHTML = `<span class="loading-spinner"></span>${isEdit ? 'Guardando...' : 'Creando...'}`;
 
         const payload = isEdit
-          ? { action: 'update', originalEmail, name, email, code }
-          : { action: 'create', name, email, code };
+          ? { action: 'update', originalEmail, name, email, password }
+          : { action: 'create', name, email, password };
 
         const data = await api('POST', payload).catch(() => ({ success: false }));
 

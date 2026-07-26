@@ -1490,19 +1490,14 @@
           <div id="emailError" class="login-error">Email inválido</div>
 
           <input
-            type="text"
-            id="codeInput"
+            type="password"
+            id="passwordInput"
             class="login-input"
-            placeholder="Código de acceso"
+            placeholder="Contraseña"
             required
-            autocomplete="off"
-            style="
-              font-family: monospace;
-              letter-spacing: 2px;
-              text-transform: uppercase;
-            "
+            autocomplete="current-password"
           />
-          <div id="codeError" class="login-error">Código incorrecto</div>
+          <div id="passwordError" class="login-error">Contraseña incorrecta</div>
 
           <button type="submit" id="loginButton" class="login-button">
             Acceder a mi herramienta →
@@ -1697,14 +1692,10 @@
       const appContainer = document.getElementById("appContainer");
       const loginForm = document.getElementById("loginForm");
       const emailInput = document.getElementById("emailInput");
-      const codeInput = document.getElementById("codeInput");
+      const passwordInput = document.getElementById("passwordInput");
       const emailError = document.getElementById("emailError");
-      const codeError = document.getElementById("codeError");
+      const passwordError = document.getElementById("passwordError");
       const loginButton = document.getElementById("loginButton");
-
-      codeInput.addEventListener("input", (e) => {
-        e.target.value = e.target.value.toUpperCase();
-      });
 
       // Quita el splash y deja ver login (o app si ya se mostró)
       function dismissAuthSplash() {
@@ -1731,8 +1722,8 @@
           }
           localStorage.removeItem("revolucionat_session_hint");
           if (res.status === 403 && data.error) {
-            codeError.textContent = data.error;
-            codeError.classList.add("active");
+            passwordError.textContent = data.error;
+            passwordError.classList.add("active");
           }
         } catch {
           // Fallo cerrado: sin validación del servidor no se abre la app.
@@ -1746,12 +1737,12 @@
         e.preventDefault();
 
         emailInput.classList.remove("error");
-        codeInput.classList.remove("error");
+        passwordInput.classList.remove("error");
         emailError.classList.remove("active");
-        codeError.classList.remove("active");
+        passwordError.classList.remove("active");
 
         const email = emailInput.value.trim();
-        const code = codeInput.value.trim();
+        const password = passwordInput.value;
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!email || !emailRegex.test(email)) {
@@ -1759,9 +1750,9 @@
           emailError.classList.add("active");
           return;
         }
-        if (!code) {
-          codeInput.classList.add("error");
-          codeError.classList.add("active");
+        if (!password) {
+          passwordInput.classList.add("error");
+          passwordError.classList.add("active");
           return;
         }
 
@@ -1777,7 +1768,7 @@
           const res = await fetch("/api/auth", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, code }),
+            body: JSON.stringify({ email, password }),
           });
           const data = await res.json();
 
@@ -1789,16 +1780,16 @@
             localStorage.setItem("revolucionat_session_hint", "1");
             showApp(data.name);
           } else {
-            codeError.textContent = data.error || "Datos incorrectos.";
-            codeError.classList.add("active");
-            codeInput.classList.add("error");
+            passwordError.textContent = data.error || "Datos incorrectos.";
+            passwordError.classList.add("active");
+            passwordInput.classList.add("error");
           }
         } catch {
           loading.classList.remove("active");
           loginButton.disabled = false;
-          codeError.textContent = "Error de conexión. Intentá de nuevo.";
-          codeError.classList.add("active");
-          codeInput.classList.add("error");
+          passwordError.textContent = "Error de conexión. Inténtalo de nuevo.";
+          passwordError.classList.add("active");
+          passwordInput.classList.add("error");
         }
       });
 
@@ -1827,7 +1818,7 @@
         appContainer.style.display = "none";
         loginScreen.classList.add("active");
         emailInput.value = "";
-        codeInput.value = "";
+        passwordInput.value = "";
       });
 
       // ============================================

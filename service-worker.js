@@ -1,6 +1,6 @@
 // IMPORTANTE: subir CACHE_NAME cada vez que cambia algo en la app o en
 // database.json para forzar a los navegadores a descargar la versión nueva.
-const CACHE_NAME = "revolucionat-premium-v2-2-choice-1";
+const CACHE_NAME = "revolucionat-premium-v2-2-auth-1";
 const urlsToCache = [
   "/",
   "/index.html",
@@ -27,14 +27,19 @@ self.addEventListener("install", (event) => {
   );
 });
 
-// Fetch — Network First para database.json, Cache First para el resto.
+// Fetch — Network First para documentos y database.json, Cache First para el resto.
 // Network First en database.json garantiza que la usuaria siempre vea los
-// fixes nuevos (categorías, flags, dedupe) sin esperar al refresh manual.
+// fixes nuevos. Network First en HTML evita conservar una pantalla de acceso
+// antigua cuando cambia la autenticación.
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
   const isDatabase = url.pathname.endsWith("/database.json");
+  const isDocument =
+    event.request.mode === "navigate" ||
+    url.pathname === "/" ||
+    url.pathname.endsWith(".html");
 
-  if (isDatabase) {
+  if (isDatabase || isDocument) {
     event.respondWith(
       fetch(event.request)
         .then((response) => {
@@ -57,14 +62,17 @@ self.addEventListener("fetch", (event) => {
 // Activate
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
-            return caches.delete(cacheName);
-          }
-        }),
-      );
-    }),
+    Promise.all([
+      caches.keys().then((cacheNames) => {
+        return Promise.all(
+          cacheNames.map((cacheName) => {
+            if (cacheName !== CACHE_NAME) {
+              return caches.delete(cacheName);
+            }
+          }),
+        );
+      }),
+      self.clients.claim(),
+    ]),
   );
 });

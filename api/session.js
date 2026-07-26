@@ -1,10 +1,5 @@
-const { createClient } = require('@supabase/supabase-js');
+const { serviceClient } = require('./_supabase');
 const { clearSessionCookie, readSession } = require('./_session');
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY,
-);
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET, DELETE, OPTIONS');
@@ -26,26 +21,35 @@ module.exports = async (req, res) => {
   } catch {
     return res.status(503).json({ success: false, error: 'Sesión no configurada.' });
   }
-  if (!session) {
+  if (!session || !session.sub) {
     clearSessionCookie(req, res);
     return res.status(401).json({ success: false });
   }
 
-  const { data: user, error } = await supabase
-    .from('users')
-    .select('name, email, active')
-    .eq('email', session.email)
-    .single();
+  const supabase = serviceClient();
+  const [{ data: authData, error: authError }, { data: profile, error: profileError }] =
+    await Promise.all([
+      supabase.auth.admin.getUserById(session.sub),
+      supabase
+        .from('users')
+        .select('name, email, active')
+        .eq('email', session.email)
+        .single(),
+    ]);
 
-  if (error || !user || !user.active) {
+  const authUser = authData?.user;
+  if (authError || !authUser || authUser.app_metadata?.role !== 'member' ||
+      profileError || !profile || !profile.active ||
+      String(authUser.email || '').toLowerCase() !== String(profile.email || '').toLowerCase()) {
     clearSessionCookie(req, res);
-    return res.status(user && !user.active ? 403 : 401).json({
+    const inactive = profile && !profile.active;
+    return res.status(inactive ? 403 : 401).json({
       success: false,
-      error: user && !user.active
-        ? 'Tu acceso fue desactivado. Contactá a tu nutricionista.'
+      error: inactive
+        ? 'Tu acceso está desactivado. Contacta con tu nutricionista.'
         : 'Sesión no válida.',
     });
   }
 
-  return res.json({ success: true, name: user.name, email: user.email });
+  return res.json({ success: true, name: profile.name, email: profile.email });
 };

@@ -9,6 +9,8 @@ app.use(express.static(path.join(__dirname)));
 
 app.all("/api/auth", require("./api/auth"));
 app.all("/api/session", require("./api/session"));
+app.all("/api/admin-auth", require("./api/admin-auth"));
+app.all("/api/admin-session", require("./api/admin-session"));
 app.all("/api/admin", require("./api/admin"));
 
 const PORT = process.env.PORT || 3000;
