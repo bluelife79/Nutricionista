@@ -263,6 +263,52 @@
         background: rgba(174, 76, 122, 0.1);
       }
 
+      .usage-context-card {
+        display: none;
+      }
+
+      .usage-context-card.active {
+        display: block;
+      }
+
+      .usage-context-help {
+        margin: -4px 0 12px;
+        color: #6e7485;
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .usage-context-options {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .usage-context-btn {
+        min-height: 48px;
+        padding: 9px 8px;
+        border: 1.5px solid #cbc6e8;
+        border-radius: 12px;
+        background: #fff;
+        color: #534b90;
+        font: inherit;
+        font-size: 12px;
+        font-weight: 750;
+        cursor: pointer;
+      }
+
+      .usage-context-btn.active {
+        border-color: #534b90;
+        background: #eeebff;
+        box-shadow: 0 0 0 2px rgba(83, 75, 144, 0.1);
+      }
+
+      @media (max-width: 520px) {
+        .usage-context-options {
+          grid-template-columns: 1fr;
+        }
+      }
+
       /* BUTTON */
       .btn-neo {
         width: 100%;
@@ -684,6 +730,28 @@
         vertical-align: middle;
         -webkit-text-fill-color: initial;
         background-clip: padding-box;
+      }
+
+      .result-fit-reason {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin: -6px 0 14px;
+        color: #51605a;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .portion-review-note {
+        margin: -4px 0 16px;
+        padding: 10px 12px;
+        border: 1px solid #f1c86b;
+        border-radius: 12px;
+        background: #fff8e8;
+        color: #654c12;
+        font-size: 12px;
+        font-weight: 650;
+        line-height: 1.4;
       }
 
       .result-macros {
@@ -1431,6 +1499,25 @@
           </div>
         </div>
 
+        <div class="card-neo usage-context-card" id="usageContextSection">
+          <label class="label">¿Cómo lo vas a usar?</label>
+          <div class="usage-context-help">
+            Es opcional, pero ayuda a que las primeras alternativas tengan
+            sentido en esa receta.
+          </div>
+          <div class="usage-context-options">
+            <button type="button" class="usage-context-btn" data-usage-mode="cold">
+              🥗 En frío o ensalada
+            </button>
+            <button type="button" class="usage-context-btn" data-usage-mode="melt">
+              🔥 Para fundir o gratinar
+            </button>
+            <button type="button" class="usage-context-btn active" data-usage-mode="any">
+              Me da igual
+            </button>
+          </div>
+        </div>
+
         <div
           class="card-neo"
           id="amountSection"
@@ -1536,6 +1623,7 @@
     <script src="js/exchange_groups.js"></script>
     <script src="js/household_measures.js"></script>
     <script src="js/dietary_filters.js"></script>
+    <script src="js/premium_policy.js"></script>
     <script src="js/algorithm.js"></script>
     <script>
       // ============================================
@@ -1686,6 +1774,7 @@
       window.foodsDatabase = window.foodsDatabase || [];
       var foodsDatabase = window.foodsDatabase;
       let selectedFood = null;
+      let selectedUsageMode = "any";
       let searchTimeout = null;
 
       // ✅ NUEVO: Control de resultados visibles en el autocomplete
@@ -1699,6 +1788,9 @@
       const searchInput = document.getElementById("searchInput");
       const dropdown = document.getElementById("autocompleteDropdown");
       const selectedFoodDiv = document.getElementById("selectedFood");
+      const usageContextSection = document.getElementById(
+        "usageContextSection",
+      );
       const amountSection = document.getElementById("amountSection");
       const amountInput = document.getElementById("amountInput");
       const calculateBtn = document.getElementById("calculateBtn");
@@ -1861,6 +1953,23 @@
           (selectedFood.source || "Base");
 
         selectedFoodDiv.classList.add("active");
+        selectedUsageMode = "any";
+        usageContextSection
+          .querySelectorAll(".usage-context-btn")
+          .forEach((button) => {
+            button.classList.toggle(
+              "active",
+              button.dataset.usageMode === "any",
+            );
+          });
+        const usageOptions =
+          typeof window.getPremiumUsagePromptOptions === "function"
+            ? window.getPremiumUsagePromptOptions(selectedFood)
+            : [];
+        usageContextSection.classList.toggle(
+          "active",
+          usageOptions.length > 0,
+        );
         dropdown.classList.remove("active");
         searchInput.value = "";
 
@@ -1874,9 +1983,24 @@
 
       // selectAPIFood removed — only local foods supported.
 
+      usageContextSection
+        .querySelectorAll(".usage-context-btn")
+        .forEach((button) => {
+          button.addEventListener("click", () => {
+            selectedUsageMode = button.dataset.usageMode || "any";
+            usageContextSection
+              .querySelectorAll(".usage-context-btn")
+              .forEach((item) => {
+                item.classList.toggle("active", item === button);
+              });
+          });
+        });
+
       clearBtn.addEventListener("click", () => {
         selectedFood = null;
+        selectedUsageMode = "any";
         selectedFoodDiv.classList.remove("active");
+        usageContextSection.classList.remove("active");
         amountSection.style.opacity = "0.5";
         amountSection.style.pointerEvents = "none";
         amountInput.disabled = true;
@@ -1908,7 +2032,9 @@
         searchSection.style.display = "none";
         loading.classList.add("active");
 
-        const results = await calculateAlternatives(selectedFood, amount);
+        const results = await calculateAlternatives(selectedFood, amount, {
+          usageMode: selectedUsageMode,
+        });
         displayResults(selectedFood, amount, results);
         loading.classList.remove("active");
         resultsSection.classList.add("active");
@@ -2162,6 +2288,37 @@
           calClass = "cal-up-low";
         else if (alt.diffs.calories > 80) calClass = "cal-up-high";
 
+        const contextReasons = {
+          same_context: "Mismo tipo de alimento y uso",
+          same_cohort: "Encaja en la misma comida",
+          carb_secondary_bridge: "Otra forma práctica de hidratos",
+          milk_family_bridge: "Alternativa para la misma toma",
+          avocado_spread_bridge: "Mismo uso como grasa o untable",
+        };
+        const contextReason =
+          contextReasons[alt.premiumContextReason] ||
+          "Equivalencia nutricional y culinaria";
+
+        let portionNotice = "";
+        if (alt.premiumPortionStatus === "review") {
+          const context = alt.premiumContext || "";
+          let message =
+            "Ración grande: el cálculo es correcto, pero comprueba que esta cantidad te resulte práctica.";
+          if (context === "whole_fruit") {
+            message =
+              "Ración grande: esta fruta aporta menos energía por gramo, por eso hace falta más cantidad.";
+          } else if (["plant_protein", "cooked_legume"].includes(context)) {
+            message =
+              "Ración grande: hace falta más cantidad para acercarse al aporte de proteína.";
+          } else if (
+            ["tuber", "cooked_tuber", "cooked_grain"].includes(context)
+          ) {
+            message =
+              "Ración mayor: cambias un alimento más seco por otro con más agua.";
+          }
+          portionNotice = `<div class="portion-review-note">⚠️ ${message}</div>`;
+        }
+
         return `
       <div class="result-card ${tier}">
         ${badges[tier]}
@@ -2185,6 +2342,8 @@
             return hm ? `<span class="result-household">${hm}</span>` : "";
           })()}
         </div>
+        <div class="result-fit-reason">✓ ${contextReason}</div>
+        ${portionNotice}
 
         <div class="result-macros">
           <div class="result-macro-item">
@@ -2395,7 +2554,9 @@
         searchSection.style.display = "block";
 
         selectedFood = null;
+        selectedUsageMode = "any";
         selectedFoodDiv.classList.remove("active");
+        usageContextSection.classList.remove("active");
         amountSection.style.opacity = "0.5";
         amountSection.style.pointerEvents = "none";
         amountInput.disabled = true;

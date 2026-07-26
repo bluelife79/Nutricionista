@@ -76,6 +76,8 @@ CATEGORY_MAP = {
     "fat": "grasa aceite lípido",
     "dairy": "lácteo leche derivado",
     "postres_proteicos": "postre proteico lácteo dulce",
+    "fruits": "fruta entera fresca",
+    "vegetables": "verdura hortaliza",
     "other": "alimento mixto",
 }
 
@@ -95,6 +97,32 @@ SUBGROUP_MAP = {
     "other_fat": "grasa aceite fuente lipídica",
     "other_carbs": "vegetal carbohidrato energético",
     "processed_protein": "proteína procesada fiambre embutido",
+    "meat_lean": "carne magra ave ternera cerdo plato principal",
+    "meat_fatty": "carne con grasa plato principal",
+    "processed_meat": "embutido fiambre carne procesada consumo ocasional",
+    "fish_white": "pescado blanco magro plato principal",
+    "fish_fatty": "pescado azul graso plato principal",
+    "seafood": "marisco crustáceo molusco",
+    "plant_protein": "proteína vegetal tofu tempeh seitán soja",
+    "whole_dairy": "yogur leche lácteo entero",
+    "low_fat_dairy": "yogur leche lácteo desnatado",
+    "fresh_cheese": "queso fresco requesón ricotta cottage",
+    "aged_cheese": "queso curado semicurado sólido",
+    "olive_oil": "aceite de oliva grasa vegetal",
+    "other_oils": "aceite vegetal grasa de cocina",
+    "avocado": "aguacate grasa vegetal fresca",
+    "butter_margarine": "mantequilla margarina grasa untable",
+    "tropical": "fruta tropical entera",
+    "frutos_bosque": "frutos del bosque fruta entera",
+    "leafy": "verdura de hoja verde",
+    "cruciferous": "verdura crucífera brócoli coliflor",
+    "allium": "verdura aliácea cebolla ajo puerro",
+    "root_veg": "verdura de raíz zanahoria remolacha",
+    "fruiting_veg": "hortaliza tomate pimiento berenjena calabacín pepino",
+    "stalk_veg": "verdura de tallo flor alcachofa apio espárrago",
+    "other_veg": "verdura hortaliza",
+    "cold_soup": "sopa fría gazpacho salmorejo plato preparado",
+    "sweets_bakery": "dulce chocolate bollería consumo ocasional",
     # Additional subgroups found in DB
     "cheese": "queso lácteo curado fresco semicurado",
     "olive_oil": "aceite oliva grasa vegetal monoinsaturada",
@@ -125,6 +153,10 @@ def build_embedding_text(food: dict) -> str:
     parts.append(MACRO_PROFILE_MAP.get(food.get("macro_profile", ""), ""))
     for flag in food.get("flags", []):
         parts.append(FLAGS_MAP.get(flag, ""))
+
+    premium_context = (food.get("premium_context") or "").strip()
+    if premium_context:
+        parts.append(f"contexto culinario {premium_context.replace('_', ' ')}")
 
     # Culinary context tokens — push the embedding away from purely numeric
     # macro similarity and toward "what would a real cook reach for". Mirrors

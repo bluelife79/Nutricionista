@@ -53,3 +53,4 @@ test_report_data.json
 test_resultados.html
 *.png
 .vercel
+supabase/.temp/

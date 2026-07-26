@@ -500,6 +500,22 @@ function calculateEquivalence(
   if (equivalentAmount < 5) return null; // evita 0g / 1g raros
   if (equivalentAmount > 600) return null; // evita monstruos
 
+  const premiumPortion =
+    typeof window.getPremiumPortionDecision === "function" &&
+    window.PREMIUM_PORTION_FILTER_ENABLED !== false
+      ? window.getPremiumPortionDecision(
+          original,
+          alt,
+          originalAmount,
+          equivalentAmount,
+        )
+      : {
+          status: "direct",
+          reason: "premium_portion_filter_disabled",
+          multiplier: equivalentAmount / originalAmount,
+        };
+  if (premiumPortion.status === "reject") return null;
+
   // Hugo PDF Regla 7 HARD FILTER (mail 16/05 + informe operativo):
   // ratio cantidad_sugerida / cantidad_original > 3 → excluir del pool.
   // Excepción legítima ÚNICA: hidratos SECOS (raw_ingredient=true) →
@@ -676,6 +692,9 @@ function calculateEquivalence(
   return {
     ...alt,
     equivalentAmount,
+    premiumPortionStatus: premiumPortion.status,
+    premiumPortionReason: premiumPortion.reason,
+    premiumPortionMultiplier: premiumPortion.multiplier,
     macros: altMacros,
     matchScore,
     matchDisplay,
@@ -994,11 +1013,48 @@ const ES_SUPER_SOURCES = new Set([
   "otros",  // entradas con marca española genérica
 ]);
 
-function sourceFamily(source) {
-  const s = (source || "").toLowerCase();
+function sourceMarketClass(foodOrSource) {
+  const food =
+    foodOrSource && typeof foodOrSource === "object" ? foodOrSource : null;
+  const s = String(food ? food.source : foodOrSource || "").toLowerCase();
   if (GENERIC_SOURCES.has(s)) return "generic";
-  if (ES_SUPER_SOURCES.has(s)) return "es_super";
-  return "international"; // OpenFoodFacts y cualquier otra fuente desconocida
+  if (["mercadona", "carrefour", "lidl", "aldi"].includes(s)) {
+    return "core_es_super";
+  }
+  if (ES_SUPER_SOURCES.has(s)) return "other_es_super";
+  if (s === "openfoodfacts") {
+    const status = food?.market_provenance?.status;
+    if (status === "verified_core_es") return "verified_core_off";
+    if (status === "verified_spain_other") return "verified_es_off";
+  }
+  return "international";
+}
+
+function sourceFamily(foodOrSource) {
+  const marketClass = sourceMarketClass(foodOrSource);
+  if (marketClass === "generic") return "generic";
+  if (
+    marketClass === "core_es_super" ||
+    marketClass === "other_es_super" ||
+    marketClass === "verified_core_off"
+  ) {
+    return "es_super";
+  }
+  if (marketClass === "verified_es_off") return "verified_es";
+  return "international";
+}
+
+// Bonus fijo pequeño de trazabilidad española. La relevancia nutricional y
+// culinaria sigue mandando; este bonus únicamente resuelve resultados cercanos.
+function sourceQualityBonus(food) {
+  switch (sourceMarketClass(food)) {
+    case "generic": return 0.08;
+    case "core_es_super": return 0.06;
+    case "other_es_super": return 0.04;
+    case "verified_core_off": return 0.03;
+    case "verified_es_off": return 0.01;
+    default: return -0.20;
+  }
 }
 
 // Bonus al sortScore según afinidad de fuente con el alimento original.
@@ -1019,19 +1075,54 @@ function sourceAffinityBonus(candidate, original) {
   const genericEsBonus = Number((typeof window !== "undefined" && window.SOURCE_AFFINITY_CROSS_GENERIC_ES)) || 0.25;
   const intlPenalty = Number((typeof window !== "undefined" && window.SOURCE_AFFINITY_INTERNATIONAL_PENALTY)) || -0.20;
 
-  // Misma fuente exacta — máxima afinidad
-  if (cs && os && cs === os) return exactBonus;
+  // Misma fuente exacta — máxima afinidad. OpenFoodFacts es un agregador:
+  // dos productos OFF no son "la misma tienda" por compartir ese rótulo.
+  if (cs && os && cs === os && cs !== "openfoodfacts") return exactBonus;
 
-  const cFam = sourceFamily(cs);
-  const oFam = sourceFamily(os);
+  if (cs === "openfoodfacts" && os === "openfoodfacts") {
+    const candidateRetailer = String(
+      candidate.market_provenance?.retailer || "",
+    ).toLowerCase();
+    const originalRetailer = String(
+      original.market_provenance?.retailer || "",
+    ).toLowerCase();
+    if (
+      candidateRetailer &&
+      originalRetailer &&
+      candidateRetailer === originalRetailer
+    ) {
+      return exactBonus;
+    }
+    const candidateBrand = norm(candidate.brand || "");
+    const originalBrand = norm(original.brand || "");
+    if (candidateBrand && originalBrand && candidateBrand === originalBrand) {
+      return Math.min(exactBonus, 0.30);
+    }
+  }
+
+  const cFam = sourceFamily(candidate);
+  const oFam = sourceFamily(original);
 
   // Misma familia (Mercadona ↔ Lidl, BEDCA ↔ legacy)
-  if (cFam === oFam) return familyBonus;
+  if (cFam === oFam) {
+    if (cFam === "verified_es") return Math.min(familyBonus, 0.08);
+    if (cFam === "international") return intlPenalty;
+    return familyBonus;
+  }
 
   // Cross-family generic ↔ es_super (BEDCA → Mercadona vale más que → OFF)
   if ((oFam === "generic" && cFam === "es_super") ||
       (oFam === "es_super" && cFam === "generic")) {
     return genericEsBonus;
+  }
+
+  // OFF con evidencia española puede completar cobertura, pero nunca gana
+  // por procedencia frente a BEDCA o un supermercado español directo.
+  if (
+    (cFam === "verified_es" && (oFam === "generic" || oFam === "es_super")) ||
+    (oFam === "verified_es" && (cFam === "generic" || cFam === "es_super"))
+  ) {
+    return 0.03;
   }
 
   // Cross-family hacia INTERNATIONAL (Hugo: duplicados internacionales abajo)
@@ -1275,6 +1366,14 @@ function isFoodQuarantined(food) {
       food.subgroup === "" ||
       food.subgroup === "?"),
   );
+}
+
+function isMarketEligibleFood(food) {
+  if (!food) return false;
+  if (norm(food.source || "") !== "openfoodfacts") return true;
+  const status =
+    food.market_provenance && food.market_provenance.status;
+  return status === "verified_core_es" || status === "verified_spain_other";
 }
 
 // ============================================
@@ -1525,16 +1624,38 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     !isCookingInput(originalFood.name) &&
     !isNonStapleGrain(originalFood.name);
 
+  // Premium v2: hard culinary-context gate. Nutritional similarity is only
+  // evaluated after a candidate belongs to a compatible eating/use context.
+  // Kill-switch for safe preview rollback:
+  //   window.PREMIUM_CONTEXT_FILTER_ENABLED = false
+  const _premiumContextEnabled =
+    window.PREMIUM_CONTEXT_FILTER_ENABLED !== false &&
+    typeof window.getPremiumContextCompatibility === "function";
+
   const candidates = foodsDatabase.filter(
     (f) => {
       if (f.id === originalFood.id) return false;
       if (isFoodQuarantined(f)) return false;
+      if (!isMarketEligibleFood(f)) return false;
       if (!isCompatibleCategory(f, originalFood)) return false;
       if ((f.flags || []).includes("condiment")) return false;
       if ((f.flags || []).includes("sweet")) return false;
       if (_applyDietary && !window.passesDietaryFilters(f, _dietary)) return false;
       if ((f.flags || []).includes("hidden")) return false;
       if (/\bdescatalogad\w*\b/.test(norm(f.name || ""))) return false;
+      if (
+        _premiumContextEnabled &&
+        !window.getPremiumContextCompatibility(originalFood, f).compatible
+      ) {
+        return false;
+      }
+      if (
+        opts.usageMode &&
+        typeof window.getPremiumUsageCompatibility === "function" &&
+        !window.getPremiumUsageCompatibility(f, opts.usageMode).compatible
+      ) {
+        return false;
+      }
 
       // Origen proteico fresco: las marinadas, fiambres y conservas pueden
       // mostrarse como formatos secundarios, pero no como intercambio real.
@@ -1793,7 +1914,8 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         const originIsFattySatiating =
           oKcal >= 150 && (
             _FATTY_SATIATING_SUBGROUPS.has(originalFood.subgroup) ||
-            (originalFood.subgroup !== "plant_protein" &&
+            (["protein", "fat"].includes(originalFood.category) &&
+              originalFood.subgroup !== "plant_protein" &&
               oFat >= 8 && oProt >= 5 && oFatRatio >= 0.4)
           );
         if (originIsFattySatiating && oKcal > 0 && f.calories > 0) {
@@ -2069,7 +2191,7 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
   //   _hybridScore = 0.65 × matemática + 0.35 × semántica (rango 0-1)
   //                  Usado en la UI para mostrar el % de match al usuario.
   //
-  //   _sortScore   = _hybridScore + sourceAffinityBonus (rango 0-1.30)
+  //   _sortScore   = _hybridScore + afinidad + calidad de fuente
   //                  Usado para ORDENAR dentro de cada tier. Hace que la
   //                  misma fuente/familia gane cuando el match es razonable,
   //                  pero permite cross-family si la diferencia de match es
@@ -2077,6 +2199,10 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
   const withHybrid = sorted.map(a => {
     const hybrid = 0.65 * (a.matchScore / 100) + 0.35 * (a._semanticScore || 0);
     const affinityBonus = sourceAffinityBonus(a, originalFood);
+    const provenanceBonus = sourceQualityBonus(a);
+    const premiumContext = _premiumContextEnabled
+      ? window.getPremiumContextCompatibility(originalFood, a)
+      : { compatible: true, priority: 0, origin: null, candidate: null, reason: "disabled" };
     // Same-subgroup boost: dentro de la misma category, mismo subgroup gana.
     // Arroz (grains) ↔ Quinoa (grains) > Arroz ↔ Patata (tubers).
     const subgroupBonus = (
@@ -2220,6 +2346,22 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     // the additive sourceAffinityBonus. No-op when flags absent (strict equality
     // means undefined !== true / undefined !== "raro" — graceful degradation).
     let demotion = 1;
+
+    // Una equivalencia exacta puede requerir una ración grande por diferencias
+    // de agua o densidad. Se conserva como alternativa secundaria y la interfaz
+    // lo explica; nunca debe desplazar silenciosamente a una ración práctica.
+    if (a.premiumPortionStatus === "review") {
+      demotion *= Number(window.PREMIUM_PORTION_REVIEW_DEMOTION) || 0.72;
+    }
+
+    // Same culinary context is intentionally neutral. Same-cohort options
+    // remain useful but sit behind the closest form; explicit bridges such
+    // as breakfast cereal↔bread or milk↔plant drink are secondary.
+    if (premiumContext.priority === 1) {
+      demotion *= Number(window.PREMIUM_CONTEXT_COHORT_DEMOTION) || 0.90;
+    } else if (premiumContext.priority >= 2) {
+      demotion *= Number(window.PREMIUM_CONTEXT_BRIDGE_DEMOTION) || 0.55;
+    }
 
     if (
       originalFood.category === "protein" &&
@@ -2971,9 +3113,12 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
 
     return {
       ...a,
+      premiumContext: premiumContext.candidate,
+      premiumContextReason: premiumContext.reason,
+      premiumContextPriority: premiumContext.priority,
       _hybridScore: hybrid,
-      _sortScoreBase: hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus + carbShapeBonus + proteinFormBonus + vegetableContextBonus + whiteFishCohortBonus,
-      _sortScore: (hybrid + affinityBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus + carbShapeBonus + proteinFormBonus + vegetableContextBonus + whiteFishCohortBonus) * demotion,
+      _sortScoreBase: hybrid + affinityBonus + provenanceBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus + carbShapeBonus + proteinFormBonus + vegetableContextBonus + whiteFishCohortBonus,
+      _sortScore: (hybrid + affinityBonus + provenanceBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus + carbShapeBonus + proteinFormBonus + vegetableContextBonus + whiteFishCohortBonus) * demotion,
     };
   });
 
@@ -3238,25 +3383,19 @@ function tokenSortScore(nameNorm, queryTokens) {
 }
 
 // ============================================
-// SOURCE BOOST — preferir BEDCA > OFF completo > Supermercados
+// SOURCE BOOST — preferir BEDCA > supermercados ES > OFF verificado en España
 // Solo se usa como desempate cuando dos alimentos tienen el mismo
 // tokenSortScore. Nunca anula la relevancia textual.
 // ============================================
 function sourceBoost(food) {
-  const src = (food.source || "").toLowerCase();
-  if (src === "bedca") return 100;
-  if (src === "openfoodfacts") {
-    // Solo boost OFF si tiene los 4 macros completos (no null/undefined/0)
-    const macrosOk =
-      food.calories != null && food.calories > 0 &&
-      food.protein != null &&
-      food.carbs != null &&
-      food.fat != null;
-    return macrosOk ? 50 : 10;
+  switch (sourceMarketClass(food)) {
+    case "generic": return 100;
+    case "core_es_super": return 80;
+    case "other_es_super": return 65;
+    case "verified_core_off": return 50;
+    case "verified_es_off": return 35;
+    default: return 0;
   }
-  // Supermercados (Mercadona, Carrefour, Lidl, Dia, Eroski, Alcampo, Aldi,
-  // El Corte Inglés, Consum, Hipercor) y otros: sin boost
-  return 0;
 }
 
 // ============================================
@@ -3272,6 +3411,7 @@ async function searchFoods(query) {
     .filter((food) => matchesFood(food, query))
     .filter((food) => !(food.flags || []).includes("hidden"))
     .filter((food) => !isFoodQuarantined(food))
+    .filter((food) => isMarketEligibleFood(food))
     .sort((a, b) => {
       const tokens = tokenize(query);
       const scoreA = tokenSortScore(norm(a.name || ""), tokens);
@@ -3285,7 +3425,7 @@ async function searchFoods(query) {
       const penA = searchModifierPenalty(norm(a.name || ""), tokens);
       const penB = searchModifierPenalty(norm(b.name || ""), tokens);
       if (penA !== penB) return penA - penB;
-      // 2do desempate: prioridad de fuente — BEDCA primero, después OFF completo
+      // 2do desempate: BEDCA, supermercados españoles y OFF España verificado.
       const boostA = sourceBoost(a);
       const boostB = sourceBoost(b);
       if (boostA !== boostB) return boostB - boostA;

@@ -100,6 +100,7 @@ function createEngine() {
   for (const file of [
     "js/exchange_groups.js",
     "js/dietary_filters.js",
+    "js/premium_policy.js",
     "js/algorithm.js",
   ]) {
     let source = fs.readFileSync(path.join(ROOT, file), "utf8");

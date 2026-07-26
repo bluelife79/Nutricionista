@@ -20,8 +20,9 @@ const ORIGIN_OVERRIDES = {
   avena_copos_40: "off_895cd31059",
   pan_integral_60: "bedca_0586",
   tempeh_100: "manual_tempeh",
-  merluza_150: "off_247403fd11",
-  picada_pavo_120: "off_35c567e083",
+  merluza_150: "bedca_0077",
+  picada_pavo_120: "off_4117abaeca",
+  atun_aceite_80: "bedca_0132",
 };
 
 function top(result, block = "intercambios") {
