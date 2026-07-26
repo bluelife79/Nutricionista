@@ -1,11 +1,19 @@
 // IMPORTANTE: subir CACHE_NAME cada vez que cambia algo en la app o en
 // database.json para forzar a los navegadores a descargar la versión nueva.
-const CACHE_NAME = "revolucionat-v4";
+const CACHE_NAME = "revolucionat-premium-v2-2";
 const urlsToCache = [
   "/",
   "/index.html",
+  "/js/exchange_groups.js",
+  "/js/household_measures.js",
+  "/js/dietary_filters.js",
+  "/js/premium_policy.js",
+  "/js/culinary_intent.js",
+  "/js/exchange_scope.js",
   "/js/algorithm.js",
   "/database.json",
+  "/assets/embeddings.bin",
+  "/assets/embeddings_meta.json",
   "/manifest.json",
 ];
 

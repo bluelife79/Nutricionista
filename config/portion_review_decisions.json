@@ -10,10 +10,31 @@
       "notice_type": "dry_to_wet_carb"
     },
     {
+      "case_id": "pan",
+      "candidate_id": "bedca_0222",
+      "decision": "accepted_with_visible_notice",
+      "reason": "El cambio de pan a patata cocida necesita más gramos por su mayor contenido de agua; 169 g es una guarnición doméstica razonable y se explica en pantalla.",
+      "notice_type": "dry_to_wet_carb"
+    },
+    {
       "case_id": "pan_centeno",
       "candidate_id": "bedca_0222",
       "decision": "accepted_with_visible_notice",
       "reason": "El cambio pan-patata exige más gramos por el agua de la patata; 176 g es una ración utilizable, pero debe explicarse.",
+      "notice_type": "dry_to_wet_carb"
+    },
+    {
+      "case_id": "pan_centeno",
+      "candidate_id": "bedca_0591",
+      "decision": "accepted_with_visible_notice",
+      "reason": "El maíz en conserva aporta menos energía por gramo que el pan; 151 g es una cantidad culinaria utilizable y debe mostrarse con el aviso de cambio seco-húmedo.",
+      "notice_type": "dry_to_wet_carb"
+    },
+    {
+      "case_id": "pan_centeno",
+      "candidate_id": "off_99eb089b18",
+      "decision": "accepted_with_visible_notice",
+      "reason": "La batata fresca tiene mucha más agua que el pan; 163 g sigue siendo una guarnición doméstica razonable y se presenta con el aviso de cambio seco-húmedo.",
       "notice_type": "dry_to_wet_carb"
     },
     {

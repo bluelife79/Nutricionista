@@ -1,5 +1,5 @@
 /**
- * Premium 2.1 — adaptive culinary intent.
+ * Premium 2.2 — adaptive culinary intent.
  *
  * The exchange engine remains nutritional and deterministic. This layer adds
  * a small, structured question only when a food has genuinely different
@@ -14,7 +14,7 @@
 (function (global) {
   "use strict";
 
-  var VERSION = "premium-v2.1-intent-5";
+  var VERSION = "premium-v2.2-intent-3";
   var MIN_CANDIDATES_PER_OPTION = 3;
   var PROFILE_CACHE = typeof WeakMap === "function" ? new WeakMap() : null;
   var CATALOG_USE_INDEX = typeof WeakMap === "function" ? new WeakMap() : null;
@@ -252,7 +252,7 @@
         uses.push("cooking");
       } else if (hasAny(name, [/\bpure\b/, /\bcrema\b/, /\bsopa\b/])) {
         uses.push("soup");
-      } else if (hasAny(name, [/\bensalada\b/, /\bcru[doa]\b/])) {
+      } else if (hasAny(name, [/\bensalada\b/, /\bcrud[oa]\b/])) {
         uses.push("salad");
       } else {
         promptId = "vegetable_use";
@@ -377,7 +377,7 @@
       else primaryUses.push("spoon");
     } else if (family === "vegetable") {
       if (hasAny(name, [/\bpure\b/, /\bcrema\b/, /\bsopa\b/])) primaryUses.push("soup");
-      else if (hasAny(name, [/\bensalada\b/, /\bcru[doa]\b/]) || context === "leafy_vegetable") primaryUses.push("salad");
+      else if (hasAny(name, [/\bensalada\b/, /\bcrud[oa]\b/]) || context === "leafy_vegetable") primaryUses.push("salad");
       else primaryUses.push("cooked_side");
     } else if (family === "bread") {
       if (uses.includes("wrap")) primaryUses.push("wrap");
@@ -550,6 +550,12 @@
         if (candidate.quality_status === "quarantine") return false;
         if ((candidate.flags || []).includes("hidden")) return false;
         if (!candidate.subgroup || candidate.subgroup === "?") return false;
+        if (
+          typeof global.isPremiumExchangeCandidateEligible === "function" &&
+          !global.isPremiumExchangeCandidateEligible(candidate, originFood)
+        ) {
+          return false;
+        }
         if (
           typeof global.getPremiumContextCompatibility === "function" &&
           !global.getPremiumContextCompatibility(originFood, candidate).compatible

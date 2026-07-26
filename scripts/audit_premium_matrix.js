@@ -28,13 +28,17 @@ const EXPECTED_GROUPS = {
 const FOREIGN_LABEL_RE =
   /\b(lapte|grasime|erdbeer|vanille|vanillae|cioccolat|fromage|joghurt|jogurt|quarkzubereitung|geschmack|aromatizat|emmentaler|im stuck|parmesan|parmigiano|formatge|semi curado queso)\b/;
 
-function visible(food) {
+function visible(food, engine) {
   return Boolean(
     food &&
       food.quality_status !== "quarantine" &&
       !(food.flags || []).includes("hidden") &&
       food.subgroup &&
-      food.subgroup !== "?",
+      food.subgroup !== "?" &&
+      (
+        typeof engine.window.isPremiumExchangeSearchable !== "function" ||
+        engine.window.isPremiumExchangeSearchable(food)
+      ),
   );
 }
 
@@ -118,6 +122,7 @@ async function runAudit() {
   const report = {
     contract: "premium-v2",
     context_policy: engine.window.PREMIUM_CONTEXT_VERSION,
+    exchange_scope: engine.window.PREMIUM_EXCHANGE_SCOPE_VERSION,
     serving_policy: servingPolicy.version,
     serving_policy_status: servingPolicy.status,
     totals: {
@@ -143,7 +148,10 @@ async function runAudit() {
   for (const testCase of matrix) {
     const { origin, result } = await calculateCase(engine, testCase);
     assert(origin, `${testCase.id}: origen ausente`);
-    assert(visible(origin), `${testCase.id}: origen no publicable: ${origin.name}`);
+    assert(
+      visible(origin, engine),
+      `${testCase.id}: origen no publicable: ${origin.name}`,
+    );
     report.totals.origins_found += 1;
     if (
       normalize(origin.source) === "openfoodfacts" &&
@@ -168,7 +176,14 @@ async function runAudit() {
     ];
     const seen = new Set();
     for (const candidate of allVisible) {
-      assert(visible(candidate), `${testCase.id}: resultado no publicable: ${candidate.name}`);
+      assert(
+        visible(candidate, engine),
+        `${testCase.id}: resultado no publicable: ${candidate.name}`,
+      );
+      assert(
+        engine.window.isPremiumExchangeCandidateEligible(candidate, origin),
+        `${testCase.id}: resultado fuera del alcance 2.2: ${candidate.name}`,
+      );
       assert(
         Number.isFinite(candidate.equivalentAmount) &&
           candidate.equivalentAmount >= 5 &&

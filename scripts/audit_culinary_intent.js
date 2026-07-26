@@ -2,13 +2,17 @@
 
 const { createEngine } = require("./lib/algorithm_harness");
 
-function visible(food) {
+function visible(food, runtime) {
   return Boolean(
     food &&
       food.quality_status !== "quarantine" &&
       !(food.flags || []).includes("hidden") &&
       food.subgroup &&
-      food.subgroup !== "?",
+      food.subgroup !== "?" &&
+      (
+        typeof runtime.isPremiumExchangeSearchable !== "function" ||
+        runtime.isPremiumExchangeSearchable(food)
+      ),
   );
 }
 
@@ -40,7 +44,7 @@ function runIntentAudit() {
   };
 
   for (const food of engine.foods) {
-    if (!visible(food)) continue;
+    if (!visible(food, engine.window)) continue;
     report.totals.visible_foods += 1;
     const context = engine.window.inferPremiumContext(food);
     const profile = engine.window.getPremiumIntentProfile(food);

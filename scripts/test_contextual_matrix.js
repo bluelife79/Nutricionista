@@ -18,6 +18,7 @@ function visible(food) {
   return food &&
     food.quality_status !== "quarantine" &&
     !(food.flags || []).includes("hidden") &&
+    ["exchange_core", "reference_only"].includes(food.exchange_scope?.status) &&
     food.subgroup != null &&
     food.subgroup !== "" &&
     food.subgroup !== "?";
@@ -101,9 +102,16 @@ function assertTargeted(testCase, origin, result) {
   }
 
   if (testCase.id === "picada_pavo") {
+    const sameFormat = top(result, "familia");
     assert(
-      /\b(picad\w*|burger\w*|hamburg\w*|minced)\b/.test(normalize(items[0]?.name)),
-      `pavo picado: el primer resultado no conserva la preparación: ${itemNames.join(" | ")}`,
+      sameFormat.some((food) => /\bpicad\w*\b/.test(normalize(food.name))),
+      `carne picada: falta una alternativa limpia del mismo formato: ${names(sameFormat).join(" | ")}`,
+    );
+    assert(
+      items.slice(0, 5).every((food) =>
+        ["meat", "meat_lean", "meat_fatty"].includes(food.subgroup),
+      ),
+      `carne picada: alternativas directas fuera de carnes frescas: ${itemNames.join(" | ")}`,
     );
   }
 
@@ -180,10 +188,11 @@ function assertTargeted(testCase, origin, result) {
   }
 
   if (testCase.id === "chocolate") {
+    const chocolateOptions = [...top(result, "familia"), ...items];
     assert(
-      items.length >= 1 &&
-      itemNames.every((name) => /\b(chocolate|cacao|xocolata)\b/.test(name)),
-      `chocolate: alternativa no equivalente: ${itemNames.join(" | ")}`,
+      chocolateOptions.length >= 1 &&
+      names(chocolateOptions).every((name) => /\b(chocolate|cacao|xocolata)\b/.test(name)),
+      `chocolate: alternativa no equivalente: ${names(chocolateOptions).join(" | ")}`,
     );
   }
 

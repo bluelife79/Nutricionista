@@ -4,13 +4,17 @@ const assert = require("assert");
 const { createEngine, findFood } = require("./lib/algorithm_harness");
 const { runIntentAudit } = require("./audit_culinary_intent");
 
-function visible(food) {
+function visible(food, runtime) {
   return Boolean(
     food &&
       food.quality_status !== "quarantine" &&
       !(food.flags || []).includes("hidden") &&
       food.subgroup &&
-      food.subgroup !== "?",
+      food.subgroup !== "?" &&
+      (
+        typeof runtime.isPremiumExchangeSearchable !== "function" ||
+        runtime.isPremiumExchangeSearchable(food)
+      ),
   );
 }
 
@@ -67,23 +71,15 @@ const CASES = [
     amount: 150,
   },
   {
-    name: "tubérculo",
-    query: "Patata cocida",
-    aliases: ["Patata hervida", "Patata"],
-    prompt: "tuber_use",
-    expected: ["side", "stew", "puree"],
-    amount: 200,
-  },
-  {
     name: "lácteo fermentado",
-    query: "Yogur natural",
+    id: "bedca_0037",
     prompt: "fermented_dairy_use",
     expected: ["spoon", "cooking_sauce"],
     amount: 125,
   },
   {
     name: "verdura",
-    query: "Zanahoria",
+    id: "bedca_0028",
     prompt: "vegetable_use",
     expected: ["salad", "cooked_side", "soup"],
     amount: 150,
@@ -97,7 +93,7 @@ async function main() {
   assert.strictEqual(
     allProfiles.length,
     5324,
-    "El catálogo Premium 2.1 debe conservar los 5.324 registros trazables",
+    "El catálogo Premium 2.2 debe conservar los 5.324 registros trazables",
   );
   assert(
     allProfiles.every(
@@ -114,7 +110,7 @@ async function main() {
     ),
     "Todo registro debe conservar un perfil culinario versionado y coherente",
   );
-  const visibleFoods = engine.foods.filter(visible);
+  const visibleFoods = engine.foods.filter((food) => visible(food, engine.window));
   const validatedFoods = visibleFoods.filter(
     (food) =>
       food.culinary_intent.validation_status === "release_validated",
@@ -122,7 +118,9 @@ async function main() {
   const silentFoods = visibleFoods.filter(
     (food) => food.culinary_intent.validation_status === "release_silent",
   );
-  const nonPublishableFoods = engine.foods.filter((food) => !visible(food));
+  const nonPublishableFoods = engine.foods.filter(
+    (food) => !visible(food, engine.window),
+  );
   assert.strictEqual(
     validatedFoods.length,
     audit.totals.prompted_foods,
@@ -164,10 +162,10 @@ async function main() {
   assert.strictEqual(
     audit.totals.unknown_contexts,
     0,
-    "Premium 2.1 no debe dejar contextos técnicamente desconocidos",
+    "Premium 2.2 no debe dejar contextos técnicamente desconocidos",
   );
   assert(
-    audit.totals.prompted_foods >= 800,
+    audit.totals.prompted_foods >= 450,
     `Cobertura adaptativa insuficiente: ${audit.totals.prompted_foods} alimentos`,
   );
 
@@ -176,7 +174,10 @@ async function main() {
       ? engine.foods.find((food) => food.id === testCase.id)
       : findFood(engine.foods, testCase.query, testCase.aliases || []);
     assert(origin, `${testCase.name}: alimento de origen no localizado`);
-    assert(visible(origin), `${testCase.name}: alimento de origen no publicable`);
+    assert(
+      visible(origin, engine.window),
+      `${testCase.name}: alimento de origen no publicable`,
+    );
     const prompt = engine.window.getPremiumUsagePrompt(origin, engine.foods);
     assert(prompt, `${testCase.name}: falta pregunta adaptativa`);
     assert.strictEqual(
@@ -228,7 +229,7 @@ async function main() {
   }
 
   console.log(
-    `PASS Premium 2.1 intent: ${audit.totals.profiled_foods}/${audit.totals.visible_foods} ` +
+    `PASS Premium 2.2 intent: ${audit.totals.profiled_foods}/${audit.totals.visible_foods} ` +
       `perfiles completos, ${audit.totals.prompted_foods} preguntas adaptativas, ` +
       `${CASES.length} familias verificadas`,
   );

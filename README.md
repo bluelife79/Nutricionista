@@ -7,12 +7,13 @@ Diseñada para mujeres +40 años del programa RevolucionaT.
 
 ## 🎨 CARACTERÍSTICAS
 
-- ✅ Catálogo Premium 2.1: 5.324 registros trazables y 3.929 alimentos publicables
+- ✅ Catálogo Premium 2.2: 5.324 registros trazables, 1.203 alimentos núcleo y 238 referencias
 - ✅ Fuentes: BEDCA + mercado español controlado + Open Food Facts curado
 - ✅ Búsqueda inteligente con autocomplete
 - ✅ Intercambios nutricionales con compatibilidad culinaria y raciones prácticas
 - ✅ Preguntas adaptativas solo cuando cambian de verdad las alternativas
-- ✅ 877 alimentos con contexto validado y 3.052 recorridos deliberadamente simples
+- ✅ 487 alimentos con pregunta culinaria validada; el resto evita preguntas que no aportan
+- ✅ NOVA 4, edulcorantes, ultraprocesados y alimentos ambiguos fuera del núcleo
 - ✅ Diseño Neumorphism premium
 - ✅ Mobile-first responsive
 - ✅ PWA instalable
@@ -61,6 +62,6 @@ El contrato verificable de producto está en
 
 ---
 
-**Versión:** Premium 2.1
+**Versión:** Premium 2.2
 **Fecha:** Julio 2026
 **Creado para:** Jonathan - RevolucionaT

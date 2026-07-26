@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * Exhaustive Premium 2.1 culinary-intent release audit.
+ * Exhaustive Premium 2.2 culinary-intent release audit.
  *
  * Every publishable food is profiled. Every mode that would be shown to a
  * user is executed through the real algorithm, not a scoring approximation.
@@ -15,13 +15,17 @@ const { ROOT, createEngine } = require("./lib/algorithm_harness");
 
 const DB_PATH = path.join(ROOT, "database.json");
 
-function visible(food) {
+function visible(food, runtime) {
   return Boolean(
     food &&
       food.quality_status !== "quarantine" &&
       !(food.flags || []).includes("hidden") &&
       food.subgroup &&
-      food.subgroup !== "?",
+      food.subgroup !== "?" &&
+      (
+        typeof runtime.isPremiumExchangeSearchable !== "function" ||
+        runtime.isPremiumExchangeSearchable(food)
+      ),
   );
 }
 
@@ -70,24 +74,29 @@ async function main() {
   };
 
   for (const food of engine.foods) {
-    const foodProfile = engine.window.getPremiumIntentProfile(food);
+    // Always derive the profile from catalogue facts, never from a decision
+    // stored by a previous release. Otherwise a formerly silent food can
+    // never become eligible after catalogue/scope improvements.
+    const profileSource = { ...food };
+    delete profileSource.culinary_intent;
+    const foodProfile = engine.window.getPremiumIntentProfile(profileSource);
     food.culinary_intent = {
       version: engine.window.PREMIUM_INTENT_VERSION,
       family: foodProfile.family,
       uses: Array.from(foodProfile.uses),
       primary_uses: Array.from(foodProfile.primary_uses),
-      prompt_id: null,
+      prompt_id: foodProfile.prompt_id,
       validated_modes: [],
-      validation_status: visible(food)
+      validation_status: visible(food, engine.window)
         ? "release_silent"
         : "not_publishable",
     };
     report.profiled_foods += 1;
-    if (visible(food)) report.visible_foods += 1;
+    if (visible(food, engine.window)) report.visible_foods += 1;
   }
 
   const prompted = engine.foods
-    .filter(visible)
+    .filter((food) => visible(food, engine.window))
     .map((food) => ({
       food,
       prompt: engine.window.getPremiumUsagePrompt(food, engine.foods),
@@ -161,6 +170,8 @@ async function main() {
       report.by_prompt[prompt.id] =
         (report.by_prompt[prompt.id] || 0) + 1;
     } else {
+      food.culinary_intent.prompt_id = null;
+      food.culinary_intent.validated_modes = [];
       food.culinary_intent.validation_status = "release_silent";
       report.intentionally_silent_foods += 1;
       if (validModes.length >= 2 && !materiallyDifferent) {
@@ -178,6 +189,13 @@ async function main() {
 
   report.intentionally_silent_foods +=
     report.visible_foods - report.prompted_foods_before_validation;
+
+  for (const food of engine.foods) {
+    if (food.culinary_intent.validation_status !== "release_validated") {
+      food.culinary_intent.prompt_id = null;
+      food.culinary_intent.validated_modes = [];
+    }
+  }
 
   if (apply) {
     fs.writeFileSync(

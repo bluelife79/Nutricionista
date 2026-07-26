@@ -1650,6 +1650,12 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       if (f.id === originalFood.id) return false;
       if (isFoodQuarantined(f)) return false;
       if (!isMarketEligibleFood(f)) return false;
+      if (
+        typeof window.isPremiumExchangeCandidateEligible === "function" &&
+        !window.isPremiumExchangeCandidateEligible(f, originalFood)
+      ) {
+        return false;
+      }
       if (!isCompatibleCategory(f, originalFood)) return false;
       if ((f.flags || []).includes("condiment") && !_originAllowsCondiments) {
         return false;
@@ -3470,7 +3476,7 @@ function canonicalSpanishGenericPriority(food, queryTokens) {
 // ============================================
 // SEARCH FOODS (local database)
 // ============================================
-async function searchFoods(query) {
+function getLocalSearchResults(query) {
   const qn = norm(query);
 
   // PASO 1: Buscar en database local
@@ -3481,6 +3487,11 @@ async function searchFoods(query) {
     .filter((food) => !(food.flags || []).includes("hidden"))
     .filter((food) => !isFoodQuarantined(food))
     .filter((food) => isMarketEligibleFood(food))
+    .filter(
+      (food) =>
+        typeof window.isPremiumExchangeSearchable !== "function" ||
+        window.isPremiumExchangeSearchable(food),
+    )
     .sort((a, b) => {
       const tokens = tokenize(query);
       const canonicalA = canonicalSpanishGenericPriority(a, tokens);
@@ -3529,6 +3540,11 @@ async function searchFoods(query) {
       return (a.name || "").length - (b.name || "").length;
     });
 
+  return localResults;
+}
+
+async function searchFoods(query) {
+  const localResults = getLocalSearchResults(query);
   // Mostrar resultados locales (única fuente — FatSecret eliminado).
   lastSearchResults = localResults;
   lastQuery = query;

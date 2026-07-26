@@ -90,7 +90,7 @@ function metadataContradictions(food) {
     PREPARED_RE.test(name) &&
     !(food.flags || []).includes("prepared") &&
     !(food.flags || []).includes("condiment") &&
-    !/\b(para ensalada|sazonador ensalada|especial paella)\b/.test(name) &&
+    !/\b(para ensalada|sazonador ensalada|especial paella|para paella)\b/.test(name) &&
     food.subgroup !== "cold_soup"
   ) {
     findings.push("prepared_name_without_flag");

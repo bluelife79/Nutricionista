@@ -10,6 +10,7 @@ const servingPolicy = require("../config/serving_policy.json");
 const reviewDecisions = require("../config/portion_review_decisions.json");
 const { runAudit } = require("./audit_premium_matrix");
 const { runCatalogAudit } = require("./audit_premium_catalog");
+const { runScopeAudit } = require("./audit_premium22_scope");
 
 function visible(food) {
   return Boolean(
@@ -181,6 +182,7 @@ async function main() {
 
   const premium = await runAudit();
   const catalog = runCatalogAudit();
+  const scope = runScopeAudit();
   const directCases = matrix.filter((item) => item.mode === "direct").length;
 
   assert.strictEqual(premium.totals.cases, 100, "La matriz debe tener 100 casos");
@@ -224,6 +226,11 @@ async function main() {
   assert.strictEqual(catalog.totals.foreign_visible_names, 0);
   assert.strictEqual(catalog.totals.metadata_contradictions, 0);
   assert.strictEqual(catalog.totals.visible_invalid_core_macros, 0);
+  assert.strictEqual(scope.totals.profiled, scope.totals.foods);
+  assert.strictEqual(scope.totals.core_nova_4, 0);
+  assert.strictEqual(scope.totals.core_with_sweeteners, 0);
+  assert.strictEqual(scope.totals.core_name_contaminations, 0);
+  assert.strictEqual(scope.totals.excluded_required_missing, 0);
 
   const engine = createEngine();
   verifyServingPolicyMirror(engine);

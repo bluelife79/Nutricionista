@@ -21,7 +21,7 @@ const ORIGIN_OVERRIDES = {
   pan_integral_60: "bedca_0586",
   tempeh_100: "manual_tempeh",
   merluza_150: "bedca_0077",
-  picada_pavo_120: "off_4117abaeca",
+  picada_pavo_120: "bedca_0034",
   atun_aceite_80: "bedca_0132",
 };
 
@@ -43,7 +43,7 @@ function text(food) {
   );
 }
 
-function assertGlobalSafety(testCase, result) {
+function assertGlobalSafety(testCase, origin, result, engine) {
   const visible = [
     ...top(result, "intercambios"),
     ...top(result, "familia"),
@@ -65,6 +65,10 @@ function assertGlobalSafety(testCase, result) {
         food.equivalentAmount >= 5 &&
         food.equivalentAmount <= 600,
       `${testCase.id}: cantidad inválida para ${food.name}: ${food.equivalentAmount}`,
+    );
+    assert(
+      engine.window.isPremiumExchangeCandidateEligible(food, origin),
+      `${testCase.id}: candidato fuera del alcance 2.2: ${food.name}`,
     );
   }
 }
@@ -90,11 +94,18 @@ function assertClinicalContract(id, result) {
       break;
 
     case "pan_integral_60":
+      // La interfaz muestra primero "otras marcas y formatos" para básicos
+      // como el pan cuando hay al menos cinco. El contrato debe auditar ese
+      // primer bloque real, además de las equivalencias entre familias.
+      const breadOptions = [
+        ...top(result, "familia"),
+        ...foods,
+      ];
       assert(
-        count(foods, (food) =>
+        count(breadOptions, (food) =>
           /\b(pan\w*|hogaza|rustic\w*|tostad\w*|biscot\w*|wrap|tortilla\w*|pita|baguet\w*|mollete\w*)\b/.test(text(food)),
         ) >= 5,
-        `pan: faltan formatos de pan: ${topText}`,
+        `pan: faltan formatos de pan: ${names(breadOptions).join(" | ")}`,
       );
       assert(
         foods.every((food) =>
@@ -136,13 +147,18 @@ function assertClinicalContract(id, result) {
       );
       break;
 
-    case "chocolate_85_20":
-      assert(foods.length >= 1, "chocolate: debería conservar al menos un equivalente limpio");
+    case "chocolate_85_20": {
+      const chocolateOptions = [...top(result, "familia"), ...foods];
       assert(
-        foods.every((food) => /\b(chocolate|cacao|xocolata)\b/.test(text(food))),
+        chocolateOptions.length >= 1,
+        "chocolate: debería conservar al menos un equivalente limpio",
+      );
+      assert(
+        chocolateOptions.every((food) => /\b(chocolate|cacao|xocolata)\b/.test(text(food))),
         `chocolate: relleno con dulce no equivalente: ${topText}`,
       );
       break;
+    }
 
     case "manzana_150":
       assert(
@@ -331,7 +347,7 @@ async function main() {
     };
     const output = await calculateCase(engine, executableCase);
     outputs.set(testCase.id, output);
-    assertGlobalSafety(testCase, output.result);
+    assertGlobalSafety(testCase, output.origin, output.result, engine);
     assertClinicalContract(testCase.id, output.result);
   }
 

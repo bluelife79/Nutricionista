@@ -1,4 +1,4 @@
-# Contrato de producto — Intercambiador RevolucionaT Premium v2.1
+# Contrato de producto — Intercambiador RevolucionaT Premium v2.2
 
 Estado: **contrato de release**
 Público principal: mujeres de más de 40 años del programa RevolucionaT en España.
@@ -31,9 +31,22 @@ La procedencia se muestra y se usa en el orden siguiente:
 1. **BEDCA**: referencia canónica para alimentos genéricos y composición por 100 g.
 2. **Producto español controlado**: Mercadona, Carrefour, Lidl y Aldi.
 3. **Otros distribuidores españoles auditados**: solo si aportan cobertura real.
-4. **Open Food Facts curado**: únicamente productos con evidencia de venta en España, nombre comprensible, macros completos y sin incidencias graves de calidad.
+4. **Open Food Facts curado**: únicamente productos con evidencia de venta en España, nombre comprensible, macros completos, evidencia de procesamiento suficiente y sin incidencias graves de calidad.
 
 Open Food Facts no entra directamente en producción por volumen. Todo producto pasa por una extracción reproducible, validación automática, deduplicación y revisión de los casos expuestos.
+
+La publicación distingue tres estados:
+
+- `exchange_core`: alimento que puede originar una búsqueda y competir como
+  intercambio principal;
+- `reference_only`: alimento ocasional o compuesto que puede originar una
+  búsqueda y mostrarse únicamente como referencia compatible;
+- `excluded`: alimento que no se busca ni se propone.
+
+Quedan fuera del núcleo los productos NOVA 4, edulcorados, bebidas de azúcares
+libres, carnes y pescados procesados, dulces y snacks, cubitos de caldo,
+comidas instantáneas, productos comerciales compuestos y cualquier identidad
+que no pueda demostrarse como alimento real de intercambio.
 
 Cada alimento publicable debe conservar como mínimo:
 
@@ -93,7 +106,7 @@ La interfaz solo pregunta por contexto cuando se cumplen simultáneamente estas 
 4. la combinación alimento–modalidad ha superado la auditoría exhaustiva del motor real.
 
 Las familias adaptativas de esta release son queso, avena, pan, carne, pescado,
-proteína vegetal, legumbre, tubérculo, fermentado lácteo y verdura. Por ejemplo:
+proteína vegetal, legumbre, fermentado lácteo y verdura. Por ejemplo:
 
 > ¿Cómo la vas a usar? En frío/ensalada · Para fundir/gratinar
 
@@ -207,7 +220,7 @@ Producción no se usa como entorno de ensayo. Primero se valida una preview asoc
 
 ## 11. Definición de terminado
 
-“Premium v2.1 terminada” significa que:
+“Premium v2.2 terminada” significa que:
 
 - la implementación cumple este contrato;
 - los 100 casos se han ejecutado contra el motor y contra la interfaz real;
