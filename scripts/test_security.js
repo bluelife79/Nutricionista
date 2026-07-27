@@ -93,7 +93,10 @@ const authSource = source('api/auth.js');
 const adminSource = source('api/admin.js');
 const adminHtmlSource = source('admin.html');
 const adminAuthSource = source('api/admin-auth.js');
+const sessionSource = source('api/_session.js');
 const serviceWorkerSource = source('service-worker.js');
+const vercelConfig = JSON.parse(source('vercel.json'));
+const versionManifest = JSON.parse(source('version.json'));
 const brandAssets = [
   'assets/brand/logo-revolucionat-cropped.webp',
   'assets/brand/bricolage-grotesque-latin.woff2',
@@ -114,6 +117,30 @@ assert.match(
   /Mientras formes parte del programa, no tendrás que volver a identificarte/,
 );
 assert.doesNotMatch(indexSource, /text-transform:\s*uppercase[^}]*passwordInput/);
+assert.doesNotMatch(indexSource, /user-scalable\s*=\s*no/);
+assert.doesNotMatch(adminHtmlSource, /user-scalable\s*=\s*no/);
+assert.match(indexSource, /function escapeHtml\(value\)/);
+assert.match(indexSource, /data-food-id="\$\{escapeHtml\(food\.id\)\}"/);
+assert.match(indexSource, /\$\{escapeHtml\(originalFood\.name\)\}/);
+assert.match(indexSource, /\$\{escapeHtml\(alt\.name\)\}/);
+assert.doesNotMatch(indexSource, /\$\{originalFood\.name\}/);
+assert.doesNotMatch(indexSource, /\$\{alt\.name\}/);
+const htmlSafetySource = indexSource.match(
+  /function highlightMatch\(text, query\) \{[\s\S]*?function escapeHtml\(value\) \{[\s\S]*?\n      \}/,
+);
+assert.ok(htmlSafetySource, 'No se pudieron aislar las funciones de salida segura');
+const htmlSafety = new Function(
+  `${htmlSafetySource[0]}; return { escapeHtml, highlightMatch };`,
+)();
+const maliciousName = '<img src=x onerror="globalThis.pwned=true">Pollo';
+assert.strictEqual(
+  htmlSafety.escapeHtml(maliciousName),
+  '&lt;img src=x onerror=&quot;globalThis.pwned=true&quot;&gt;Pollo',
+);
+assert.doesNotMatch(htmlSafety.highlightMatch(maliciousName, 'pollo'), /<img/i);
+assert.match(htmlSafety.highlightMatch(maliciousName, 'pollo'), /<strong>Pollo<\/strong>/);
+assert.doesNotMatch(sessionSource, /SESSION_SECRET\s*\|\|/);
+assert.doesNotMatch(sessionSource, /SUPABASE_SERVICE_ROLE_KEY/);
 assert.doesNotMatch(authSource, /Access-Control-Allow-Origin/);
 assert.match(authSource, /MAX_ATTEMPTS\s*=\s*6/);
 assert.match(authSource, /setSessionCookie/);
@@ -133,6 +160,18 @@ assert.doesNotMatch(adminHtmlSource, /sessionStorage|x-admin-password/);
 assert.match(serviceWorkerSource, /isDocument/);
 assert.match(serviceWorkerSource, /self\.clients\.claim/);
 assert.match(serviceWorkerSource, /revolucionat-premium-v2-3-systemic-1/);
+const globalHeaders = vercelConfig.headers.find((entry) => entry.source === '/(.*)');
+assert.ok(globalHeaders, 'Faltan cabeceras globales');
+const headerMap = Object.fromEntries(
+  globalHeaders.headers.map((header) => [header.key.toLowerCase(), header.value]),
+);
+assert.match(headerMap['content-security-policy'], /frame-ancestors 'none'/);
+assert.strictEqual(headerMap['x-content-type-options'], 'nosniff');
+assert.strictEqual(headerMap['x-frame-options'], 'DENY');
+assert.ok(headerMap['referrer-policy']);
+assert.ok(headerMap['permissions-policy']);
+assert.strictEqual(versionManifest.base_commit, '583013338d701306f7d176c883ca36fe25d0a458');
+assert.strictEqual(versionManifest.catalog_records, 5324);
 brandAssets.forEach((asset) => assert.ok(fs.existsSync(path.join(ROOT, asset)), `${asset} no existe`));
 
-console.log('✅ Seguridad: Supabase Auth, cookies separadas, baja inmediata y panel sin contraseñas expuestas');
+console.log('✅ Seguridad: sesión independiente, salida HTML protegida, zoom disponible y cabeceras defensivas');

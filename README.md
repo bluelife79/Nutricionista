@@ -17,11 +17,10 @@ Diseñada para mujeres +40 años del programa RevolucionaT.
 - ✅ 64 alternativas compatibles con aviso; comida cotidiana priorizada en el ranking
 - ✅ Diseño Neumorphism premium
 - ✅ Mobile-first responsive
-- ✅ PWA instalable
-- ✅ Funciona offline
+- ℹ️ Manifest e iconos disponibles; la instalación PWA y el modo offline no se anuncian hasta registrar y validar el service worker
 - ✅ Acceso individual con Supabase Auth y contraseñas no almacenadas en la tabla de perfiles
 - ✅ Panel de administración con alta, edición, cambio de contraseña y activación/baja inmediata
-- ✅ Sesión recordada durante un año en el mismo dispositivo y revocable desde administración
+- ✅ Acceso recordado mientras la clienta forma parte del programa, con sesión revocable desde administración
 - ✅ Caché técnica de cálculos repetidos sin guardar un historial alimentario personal
 - ✅ Experiencia visual alineada con la identidad oficial de RevolucionaT
 
@@ -36,8 +35,8 @@ Nutricionista/
 ├── config/             # Política de raciones y decisiones auditadas
 ├── scripts/            # Auditorías, regresión y gate de release
 ├── api/                # Autenticación y administración del acceso
-├── manifest.json       # PWA config
-└── service-worker.js   # Offline support
+├── manifest.json       # Metadatos e iconos de aplicación
+└── service-worker.js   # Preparado, todavía no registrado en producción
 ```
 
 ## 🚀 DEPLOYMENT (VERCEL)

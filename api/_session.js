@@ -6,7 +6,7 @@ const SESSION_SECONDS = 365 * 24 * 60 * 60;
 const ADMIN_SESSION_SECONDS = 4 * 60 * 60;
 
 function sessionSecret() {
-  const raw = process.env.SESSION_SECRET || process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const raw = process.env.SESSION_SECRET;
   if (!raw || raw.length < 24) {
     throw new Error('SESSION_SECRET no configurado');
   }

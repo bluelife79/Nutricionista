@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      content="width=device-width, initial-scale=1.0"
     />
     <meta name="theme-color" content="#140c18" />
     <meta
@@ -2400,11 +2400,11 @@
         let html = shown
           .map(
             (food) => `
-        <div class="autocomplete-item local-result" data-food-id="${food.id}" data-is-local="true">
+        <div class="autocomplete-item local-result" data-food-id="${escapeHtml(food.id)}" data-is-local="true">
           <div class="result-badge premium">PREMIUM</div>
           <div class="item-name">${highlightMatch(food.name || "", query)}</div>
-          <div class="item-brand">${food.brand || "Sin marca"} · ${food.source || "Base"}</div>
-          <div class="item-macros">P: ${food.protein || 0}g · C: ${food.carbs || 0}g · G: ${food.fat || 0}g</div>
+          <div class="item-brand">${escapeHtml(food.brand || "Sin marca")} · ${escapeHtml(food.source || "Base")}</div>
+          <div class="item-macros">P: ${escapeHtml(food.protein || 0)}g · C: ${escapeHtml(food.carbs || 0)}g · G: ${escapeHtml(food.fat || 0)}g</div>
         </div>
       `,
           )
@@ -2444,9 +2444,30 @@
       }
 
       function highlightMatch(text, query) {
-        const safe = (query || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-        const regex = new RegExp("(" + safe + ")", "i");
-        return (text || "").replace(regex, "<strong>$1</strong>");
+        const rawText = String(text || "");
+        const rawQuery = String(query || "").trim();
+        if (!rawQuery) return escapeHtml(rawText);
+        const safeQuery = rawQuery.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        const match = new RegExp(safeQuery, "i").exec(rawText);
+        if (!match) return escapeHtml(rawText);
+        const start = match.index;
+        const end = start + match[0].length;
+        return (
+          escapeHtml(rawText.slice(0, start)) +
+          "<strong>" +
+          escapeHtml(rawText.slice(start, end)) +
+          "</strong>" +
+          escapeHtml(rawText.slice(end))
+        );
+      }
+
+      function escapeHtml(value) {
+        return String(value ?? "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
       }
 
       function renderUsagePrompt(food) {
@@ -2620,11 +2641,11 @@
         originalFoodCard.innerHTML = `
       <div class="original-food-header">TIENES EN TU MENÚ</div>
       <div class="original-food-name">
-        ${amount}g ${originalFood.name}${(() => {
+        ${escapeHtml(amount)}g ${escapeHtml(originalFood.name)}${(() => {
           const hm = window.formatHouseholdMeasure
             ? window.formatHouseholdMeasure(originalFood, amount)
             : null;
-          return hm ? `<span class="result-household">${hm}</span>` : "";
+          return hm ? `<span class="result-household">${escapeHtml(hm)}</span>` : "";
         })()}
       </div>
       <div class="original-macros">
@@ -2883,15 +2904,15 @@
               : `
                 <details class="choice-guidance-details">
                   <summary>¿Por qué?</summary>
-                  <p>${choiceGuidance.detail}</p>
+                  <p>${escapeHtml(choiceGuidance.detail)}</p>
                 </details>
               `;
           choiceGuidanceHTML = `
             <div class="choice-guidance ${choiceGuidance.level}">
               <span class="choice-guidance-dot" aria-hidden="true"></span>
               <div class="choice-guidance-copy">
-                <div class="choice-guidance-label">${choiceGuidance.label}</div>
-                <div class="choice-guidance-summary">${choiceGuidance.summary}</div>
+                <div class="choice-guidance-label">${escapeHtml(choiceGuidance.label)}</div>
+                <div class="choice-guidance-summary">${escapeHtml(choiceGuidance.summary)}</div>
               </div>
             </div>
             ${details}
@@ -2924,8 +2945,8 @@
 
         <div class="result-header">
           <div class="result-info">
-            <div class="result-name">${alt.name}</div>
-            <div class="result-brand">${alt.brand || "Sin marca"} · ${alt.source || "Base"}</div>
+            <div class="result-name">${escapeHtml(alt.name)}</div>
+            <div class="result-brand">${escapeHtml(alt.brand || "Sin marca")} · ${escapeHtml(alt.source || "Base")}</div>
           </div>
           <div class="match-score">
             <div class="match-value ${tier}">${alt.matchDisplay ?? alt.matchScore}%</div>
@@ -2934,14 +2955,14 @@
         </div>
 
         <div class="result-amount">
-          ${alt.equivalentAmount}g${(() => {
+          ${escapeHtml(alt.equivalentAmount)}g${(() => {
             const hm = window.formatHouseholdMeasure
               ? window.formatHouseholdMeasure(alt, alt.equivalentAmount)
               : null;
-            return hm ? `<span class="result-household">${hm}</span>` : "";
+            return hm ? `<span class="result-household">${escapeHtml(hm)}</span>` : "";
           })()}
         </div>
-        <div class="result-fit-reason">✓ ${contextReason}</div>
+        <div class="result-fit-reason">✓ ${escapeHtml(contextReason)}</div>
         ${choiceGuidanceHTML}
         ${portionNotice}
 
