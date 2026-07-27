@@ -595,7 +595,11 @@ function calculateEquivalence(
       original.category === "carbs" && alt.category === "carbs" &&
       _HYDRATE_SUBS.has(original.subgroup) && _HYDRATE_SUBS.has(alt.subgroup) &&
       original.raw_ingredient === true && alt.raw_ingredient !== true;
-    if (!isDrySrcWetCand) return null; // hard filter — fuera del pool
+    const isOliveFoodBridge =
+      original.fat_quality === "olive" &&
+      ["olive", "avocado"].includes(alt.fat_quality) &&
+      equivalentAmount <= 120;
+    if (!isDrySrcWetCand && !isOliveFoodBridge) return null;
   }
 
   // Hugo PDF Regla 1 HARD FILTER — TECHO CALÓRICO:
@@ -3429,6 +3433,22 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     const sorted = withHybrid
       .filter(a => a.tier === t)
       .sort((a, b) => {
+        if (
+          t === 2 &&
+          originalFood.fat_quality === "olive"
+        ) {
+          const fatPriority = (item) => {
+            if (item.fat_quality === "avocado") return 0;
+            if (item.fat_quality === "olive") return 1;
+            if (item.fat_quality === "nut_seed_whole") return 2;
+            if (item.fat_quality === "seed_refined") return 4;
+            if (item.fat_quality === "tropical") return 5;
+            return 3;
+          };
+          const fatA = fatPriority(a);
+          const fatB = fatPriority(b);
+          if (fatA !== fatB) return fatA - fatB;
+        }
         const choicePriority = (item) => {
           const level = item.premiumChoiceGuidance?.level;
           if (level === "preferred") return 0;

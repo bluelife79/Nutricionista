@@ -132,7 +132,7 @@ function runScopeAudit() {
         report.findings.core_nova_4.push({ id: food.id, name: food.name });
       }
       if (
-        guidance.level !== "compatible" ||
+        !["compatible", "occasional"].includes(guidance.level) ||
         !(guidance.reason_codes || []).includes("nova_group_4")
       ) {
         report.totals.core_nova_4_without_guidance += 1;
@@ -155,7 +155,7 @@ function runScopeAudit() {
         });
       }
       if (
-        guidance.level !== "compatible" ||
+        !["compatible", "occasional"].includes(guidance.level) ||
         !(guidance.reason_codes || []).includes("contains_sweeteners")
       ) {
         report.totals.core_sweeteners_without_guidance += 1;
@@ -176,7 +176,7 @@ function runScopeAudit() {
           sugar,
         });
         if (
-          guidance.level !== "compatible" ||
+          !["compatible", "occasional"].includes(guidance.level) ||
           !(guidance.reason_codes || []).includes("contains_added_sugar")
         ) {
           report.totals.core_added_sugar_without_guidance += 1;
@@ -190,7 +190,7 @@ function runScopeAudit() {
       if (
         !guidance ||
         guidance.version !== engine.window.PREMIUM_CHOICE_GUIDANCE_VERSION ||
-        !["preferred", "compatible"].includes(guidance.level)
+        !["preferred", "compatible", "occasional"].includes(guidance.level)
       ) {
         report.totals.core_without_choice_guidance += 1;
         report.findings.core_without_choice_guidance.push({
