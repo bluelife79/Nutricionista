@@ -152,25 +152,9 @@ async function verifyOptionalCulinaryUse(engine) {
   assert(mozzarella, "Falta la mozzarella canónica para probar el uso culinario");
   assert.deepStrictEqual(
     Array.from(engine.window.getPremiumUsagePromptOptions(mozzarella)),
-    ["cold", "melt", "any"],
-    "Mozzarella debe ofrecer la pregunta opcional de uso",
+    [],
+    "Mozzarella no debe preguntar hasta que frío/fundido cambien materialmente el TOP",
   );
-  for (const usageMode of ["cold", "melt"]) {
-    const result = await engine.calculate(mozzarella, 60, { usageMode });
-    const all = [
-      ...result.intercambios,
-      ...result.familia,
-      ...result.preparados,
-    ];
-    assert(all.length > 0, `Mozzarella/${usageMode}: no hay opciones`);
-    for (const candidate of all) {
-      assert(
-        engine.window.getPremiumUsageCompatibility(candidate, usageMode)
-          .compatible,
-        `Mozzarella/${usageMode}: uso incompatible ${candidate.name}`,
-      );
-    }
-  }
 }
 
 async function main() {

@@ -172,6 +172,12 @@ function main() {
       ["excluded", "not_publishable"].includes(food.exchange_scope?.status)
     ) {
       choice(food, "hidden", "catalogue_quality_gate");
+      food.culinary_intent = {
+        ...(food.culinary_intent || {}),
+        prompt_id: null,
+        validated_modes: [],
+        validation_status: "not_publishable",
+      };
     }
   }
   fs.writeFileSync(DB_PATH, `${JSON.stringify(foods, null, 2)}\n`);

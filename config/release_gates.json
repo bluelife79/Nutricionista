@@ -30,8 +30,8 @@
   "candidateExpected": {
     "queries": 333,
     "scenarios": 494,
-    "cards": 4497,
-    "preferredCards": 4278,
+    "cards": 4493,
+    "preferredCards": 4274,
     "preferredPercentage": 95.1,
     "noSearch": 86,
     "zeroReal": 52,
@@ -44,13 +44,13 @@
     "seedOil": 0,
     "foreign": 0,
     "uglyName": 0,
-    "calorieDrift": 36,
+    "calorieDrift": 37,
     "lowDiversity": 208
   },
   "intents": {
     "publicOrigins": 1633,
-    "promptedOrigins": 418,
-    "optionScenarios": 911
+    "promptedOrigins": 365,
+    "optionScenarios": 776
   },
   "production_comparison": {
     "rule": "La candidata no puede superar los defectos de producción en ninguna métrica crítica.",

@@ -20,26 +20,12 @@ function visible(food, runtime) {
 
 const CASES = [
   {
-    name: "mozzarella",
-    id: "bedca_0070",
-    prompt: "cheese_use",
-    expected: ["cold", "melt"],
-    amount: 60,
-  },
-  {
     name: "avena",
     query: "Avena en Copos",
     aliases: ["Copos de avena", "Avena"],
     prompt: "oats_use",
     expected: ["breakfast_bowl", "savory"],
     amount: 40,
-  },
-  {
-    name: "pan",
-    query: "Pan integral",
-    prompt: "bread_use",
-    expected: ["toast", "sandwich"],
-    amount: 60,
   },
   {
     name: "proteína vegetal",
@@ -150,7 +136,7 @@ async function main() {
     "Premium 2.2 no debe dejar contextos técnicamente desconocidos",
   );
   assert(
-    audit.totals.prompted_foods >= 400,
+    audit.totals.prompted_foods >= 350,
     `Cobertura adaptativa validada insuficiente: ${audit.totals.prompted_foods} alimentos`,
   );
 
@@ -159,12 +145,16 @@ async function main() {
   for (const silentCase of [
     { name: "pollo", query: "Pechuga de pollo" },
     { name: "pescado", query: "Merluza", aliases: ["Lomos de merluza"] },
+    { name: "pan", query: "Pan integral" },
+    { name: "mozzarella", id: "bedca_0070" },
   ]) {
-    const origin = findFood(
-      engine.foods,
-      silentCase.query,
-      silentCase.aliases || [],
-    );
+    const origin = silentCase.id
+      ? engine.foods.find((food) => food.id === silentCase.id)
+      : findFood(
+          engine.foods,
+          silentCase.query,
+          silentCase.aliases || [],
+        );
     assert(origin, `${silentCase.name}: alimento de origen no localizado`);
     assert.strictEqual(
       engine.window.getPremiumUsagePrompt(origin, engine.foods),
@@ -204,11 +194,28 @@ async function main() {
         ...result.preparados,
       ];
       assert(all.length > 0, `${testCase.name}/${option}: sin alternativas`);
-      for (const candidate of all) {
-        assert(
+      const direct = result.intercambios;
+      assert(
+        direct.length >= 5,
+        `${testCase.name}/${option}: menos de cinco intercambios reales`,
+      );
+      assert(
+        engine.window.getPremiumUsageCompatibility(direct[0], option)
+          .compatible,
+        `${testCase.name}/${option}: la primera alternativa no respeta el uso elegido`,
+      );
+      let foundLessUsual = false;
+      for (const candidate of direct) {
+        const compatible =
           engine.window.getPremiumUsageCompatibility(candidate, option)
-            .compatible,
-          `${testCase.name}/${option}: alternativa incompatible ${candidate.name}`,
+            .compatible;
+        if (!compatible) {
+          foundLessUsual = true;
+          continue;
+        }
+        assert(
+          !foundLessUsual,
+          `${testCase.name}/${option}: una alternativa adecuada quedó detrás de otra menos habitual`,
         );
       }
     }

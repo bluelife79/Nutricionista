@@ -1803,14 +1803,6 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       ) {
         return false;
       }
-      if (
-        opts.usageMode &&
-        typeof window.getPremiumUsageCompatibility === "function" &&
-        !window.getPremiumUsageCompatibility(f, opts.usageMode).compatible
-      ) {
-        return false;
-      }
-
       // Origen proteico fresco: las marinadas, fiambres y conservas pueden
       // mostrarse como formatos secundarios, pero no como intercambio real.
       {
@@ -2552,6 +2544,7 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     // the additive sourceAffinityBonus. No-op when flags absent (strict equality
     // means undefined !== true / undefined !== "raro" — graceful degradation).
     let demotion = 1;
+    let premiumUsageFit = null;
 
     if (typeof window.getPremiumUsageCompatibility === "function") {
       let effectiveUsageMode = opts.usageMode || "any";
@@ -2571,6 +2564,13 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         a,
         effectiveUsageMode,
       );
+      if (effectiveUsageMode !== "any") {
+        premiumUsageFit = usageCompatibility.compatible
+          ? usageCompatibility.priority > 0
+            ? "acceptable"
+            : "ideal"
+          : "less_usual";
+      }
       const isSpoonableFreshDairyBridge =
         premiumContext.reason === "spoonable_dairy_bridge";
       if (
@@ -3409,6 +3409,7 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       premiumContextReason: premiumContext.reason,
       premiumContextPriority: premiumContext.priority,
       premiumChoiceGuidance: choiceGuidance,
+      premiumUsageFit,
       _hybridScore: hybrid,
       _sortScoreBase: hybrid + affinityBonus + provenanceBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus + carbShapeBonus + proteinFormBonus + vegetableContextBonus + whiteFishCohortBonus,
       _sortScore: (hybrid + affinityBonus + provenanceBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus + carbShapeBonus + proteinFormBonus + vegetableContextBonus + whiteFishCohortBonus) * demotion,
@@ -3430,9 +3431,22 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
   // math-only ranking. After applyJudgeVerdict() injects _judgeRank, calling
   // byTier again reflects the LLM-corrected order.
   const byTier = (t) => {
+    const hasRequestedUsage =
+      Boolean(opts.usageMode) && opts.usageMode !== "any";
+    const usagePriority = (item) => {
+      if (item.premiumUsageFit === "ideal") return 0;
+      if (item.premiumUsageFit === "acceptable") return 1;
+      if (item.premiumUsageFit === "less_usual") return 2;
+      return 1;
+    };
     const sorted = withHybrid
       .filter(a => a.tier === t)
       .sort((a, b) => {
+        if (hasRequestedUsage) {
+          const usageA = usagePriority(a);
+          const usageB = usagePriority(b);
+          if (usageA !== usageB) return usageA - usageB;
+        }
         if (
           t === 2 &&
           originalFood.fat_quality === "olive"
@@ -3473,25 +3487,36 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     // Diversidad: primer representante de cada cluster al frente;
     // variantes secundarias al final del mismo tier.
     // clusterIngredientKey() colapsa por primer token + sinónimos.
-    const seen = new Set();
-    const primary = [];
-    const secondary = [];
-    for (const food of sorted) {
-      const key = clusterIngredientKey(food);
-      if (seen.has(key)) {
-        secondary.push(food);
-      } else {
-        seen.add(key);
-        primary.push(food);
+    const diversify = (items) => {
+      const seen = new Set();
+      const primary = [];
+      const secondary = [];
+      for (const food of items) {
+        const key = clusterIngredientKey(food);
+        if (seen.has(key)) {
+          secondary.push(food);
+        } else {
+          seen.add(key);
+          primary.push(food);
+        }
       }
-    }
+      return [...primary, ...secondary];
+    };
 
     // La procedencia ya participa como bonus suave en _sortScore mediante
     // sourceAffinityBonus(). No debe volver a convertirse aquí en una
     // partición dura: hacerlo pisa el ranking clínico y coloca productos
     // mediocres de la misma procedencia delante de opciones simples con un
     // score mayor (especialmente OpenFoodFacts → OpenFoodFacts).
-    return [...primary, ...secondary];
+    if (!hasRequestedUsage) return diversify(sorted);
+
+    // La diversidad nunca puede deshacer la respuesta explícita de la
+    // usuaria. Diversificamos dentro de cada nivel culinario y mantenemos
+    // primero todas las alternativas ideales, después las aceptables y solo
+    // al final las menos habituales.
+    return [0, 1, 2].flatMap((priority) =>
+      diversify(sorted.filter((food) => usagePriority(food) === priority)),
+    );
   };
 
   // ── PROGRESSIVE UI: PARTIAL RESULT ────────────────────────────────────────

@@ -262,12 +262,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -583,7 +584,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -740,7 +744,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -1574,7 +1581,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -1894,7 +1904,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -2448,7 +2461,10 @@
         "spoon",
         "cooking_sauce"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -2527,7 +2543,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -2907,7 +2926,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -3366,7 +3388,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -3518,7 +3543,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -4056,7 +4084,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -4361,7 +4392,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -4744,12 +4778,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "no_material_top_change"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -4900,12 +4935,13 @@
         "cold",
         "melt"
       ],
-      "prompt_id": "cheese_use",
-      "validated_modes": [
-        "cold",
-        "melt"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "cheese_use",
+      "validation_reasons": [
+        "no_material_top_change"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -5221,7 +5257,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -5827,7 +5866,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -6749,7 +6791,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -7273,7 +7318,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -7944,7 +7992,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -8404,7 +8455,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -8561,7 +8615,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -8640,7 +8697,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -9413,7 +9473,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -9491,7 +9554,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -9722,7 +9788,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -9951,7 +10020,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -10488,7 +10560,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -10643,7 +10718,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -10724,7 +10802,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -12726,12 +12807,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "no_material_top_change"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -13263,7 +13345,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -13414,7 +13499,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -13880,7 +13968,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -15180,7 +15271,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -15787,7 +15881,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -15864,7 +15961,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -16102,7 +16202,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -16254,12 +16357,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "no_material_top_change"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -16577,7 +16681,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -16801,7 +16908,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -17736,7 +17846,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -17889,7 +18002,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -17966,7 +18082,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -18125,7 +18244,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -18203,7 +18325,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -18281,7 +18406,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -18913,7 +19041,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -19373,7 +19504,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -19601,7 +19735,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -20203,7 +20340,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -20360,7 +20500,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -21657,7 +21800,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -21736,7 +21882,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -23029,7 +23178,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -23108,7 +23260,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -23185,7 +23340,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -24019,7 +24177,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -24246,7 +24407,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -24323,7 +24487,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -24400,7 +24567,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -24547,7 +24717,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -24624,7 +24797,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -24778,7 +24954,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -25157,12 +25336,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "no_material_top_change"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -25239,12 +25419,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "no_material_top_change"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -25403,7 +25584,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -25859,7 +26043,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -27301,12 +27488,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "no_material_top_change"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -27387,7 +27575,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -27541,7 +27732,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -27996,12 +28190,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "no_material_top_change"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -28313,7 +28508,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -28392,7 +28590,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -28770,7 +28971,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -29006,7 +29210,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -29088,7 +29295,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -29241,7 +29451,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -29546,7 +29759,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -29696,7 +29912,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -29773,7 +29992,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -31281,7 +31503,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -31439,7 +31664,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -31898,7 +32126,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -31976,7 +32207,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -32054,7 +32288,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -32132,7 +32369,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -32363,7 +32603,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -33194,7 +33437,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -33565,7 +33811,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -33950,7 +34199,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -34031,7 +34283,10 @@
         "stew",
         "minced"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -34263,7 +34518,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -34344,7 +34602,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -35283,7 +35544,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -35519,7 +35783,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -36287,7 +36554,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -36839,7 +37109,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -36917,7 +37190,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -36995,7 +37271,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -37072,7 +37351,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -37378,7 +37660,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -37455,7 +37740,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -37532,7 +37820,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -37609,7 +37900,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -37686,7 +37980,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -37763,7 +38060,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -37840,7 +38140,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -38382,7 +38685,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -38613,7 +38919,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -38690,7 +38999,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -38844,7 +39156,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -39225,7 +39540,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -39302,7 +39620,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -39456,7 +39777,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -39533,7 +39857,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -39610,7 +39937,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -39765,7 +40095,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -39846,7 +40179,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -39923,7 +40259,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -41746,7 +42085,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -41975,7 +42317,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -42054,7 +42399,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -42439,12 +42787,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "no_material_top_change"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -43434,7 +43783,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -43739,7 +44091,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -43818,7 +44173,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -43895,7 +44253,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -44282,7 +44643,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -44365,7 +44729,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -44524,7 +44891,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -45043,7 +45413,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -45122,7 +45495,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -45274,7 +45650,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -45721,7 +46100,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -45884,7 +46266,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -46490,7 +46875,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -46876,7 +47264,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -48246,7 +48637,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -49325,7 +49719,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -49629,7 +50026,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -49706,7 +50106,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -50098,7 +50501,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -50175,7 +50581,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -50252,7 +50661,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -50329,7 +50741,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -50552,7 +50967,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -50714,7 +51132,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -50792,7 +51213,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -50870,7 +51294,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -50948,7 +51375,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -51571,7 +52001,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -51732,7 +52165,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -51810,7 +52246,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -51888,7 +52327,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -52045,7 +52487,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -52123,7 +52568,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -52201,7 +52649,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -52279,7 +52730,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -52357,7 +52811,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -52434,7 +52891,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -52511,7 +52971,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -52972,7 +53435,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -53050,7 +53516,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -53128,7 +53597,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -53206,7 +53678,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -53284,7 +53759,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -53593,7 +54071,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -53905,7 +54386,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -55358,7 +55842,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -55439,7 +55926,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -55520,7 +56010,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -55907,7 +56400,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -56214,7 +56710,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -56827,7 +57326,10 @@
         "spoon",
         "cooking_sauce"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -58729,7 +59231,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -58878,14 +59383,13 @@
       "primary_uses": [
         "baking"
       ],
-      "prompt_id": "oats_use",
-      "validated_modes": [
-        "breakfast_bowl",
-        "porridge",
-        "baking",
-        "savory"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
       ],
-      "validation_status": "release_validated"
+      "suppressed_prompt_id": "oats_use"
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -58962,11 +59466,12 @@
       "prompt_id": "oats_use",
       "validated_modes": [
         "breakfast_bowl",
-        "porridge",
-        "baking",
         "savory"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -59045,7 +59550,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -59493,7 +60001,7 @@
       ],
       "prompt_id": null,
       "validated_modes": [],
-      "validation_status": "release_silent"
+      "validation_status": "not_publishable"
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -59577,7 +60085,7 @@
       ],
       "prompt_id": null,
       "validated_modes": [],
-      "validation_status": "release_silent"
+      "validation_status": "not_publishable"
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -60281,7 +60789,7 @@
       ],
       "prompt_id": null,
       "validated_modes": [],
-      "validation_status": "release_silent"
+      "validation_status": "not_publishable"
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -60984,7 +61492,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -61061,7 +61572,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -61139,11 +61653,12 @@
       "prompt_id": "oats_use",
       "validated_modes": [
         "breakfast_bowl",
-        "porridge",
-        "baking",
         "savory"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -63438,7 +63953,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -63592,7 +64110,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -63974,12 +64495,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -64979,7 +65501,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -66507,7 +67032,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -67045,14 +67573,13 @@
       "primary_uses": [
         "baking"
       ],
-      "prompt_id": "oats_use",
-      "validated_modes": [
-        "breakfast_bowl",
-        "porridge",
-        "baking",
-        "savory"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
       ],
-      "validation_status": "release_validated"
+      "suppressed_prompt_id": "oats_use"
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -67910,7 +68437,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -67988,7 +68518,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -68066,7 +68599,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -68144,7 +68680,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -68222,7 +68761,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -68300,7 +68842,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -68378,7 +68923,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -68456,7 +69004,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -68534,7 +69085,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -68612,7 +69166,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -68690,7 +69247,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -68768,7 +69328,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -68841,12 +69404,13 @@
       "primary_uses": [
         "direct"
       ],
-      "prompt_id": "cheese_use",
-      "validated_modes": [
-        "melt",
-        "direct"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "cheese_use",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -69076,7 +69640,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -88619,12 +89186,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "no_material_top_change"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -88823,12 +89391,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "no_material_top_change"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -90003,12 +90572,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "no_material_top_change"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -93127,12 +93697,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "no_material_top_change"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -93732,12 +94303,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "no_material_top_change"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -95614,12 +96186,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "no_material_top_change"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -95819,12 +96392,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "no_material_top_change"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -96211,12 +96785,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "no_material_top_change"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -102526,12 +103101,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "no_material_top_change"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -104760,12 +105336,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "no_material_top_change"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -117714,12 +118291,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -127423,11 +128001,12 @@
       "prompt_id": "oats_use",
       "validated_modes": [
         "breakfast_bowl",
-        "porridge",
-        "baking",
         "savory"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -140745,7 +141324,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -147247,7 +147829,10 @@
         "spoon",
         "cooking_sauce"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -147329,7 +147914,10 @@
         "spoon",
         "cooking_sauce"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -147519,12 +148107,13 @@
       "primary_uses": [
         "spoon"
       ],
-      "prompt_id": "fermented_dairy_use",
-      "validated_modes": [
-        "spoon",
-        "cooking_sauce"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "fermented_dairy_use",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -147942,7 +148531,10 @@
         "spoon",
         "cooking_sauce"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -148174,7 +148766,10 @@
         "spoon",
         "cooking_sauce"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -148561,12 +149156,13 @@
         "spoon",
         "cooking_sauce"
       ],
-      "prompt_id": "fermented_dairy_use",
-      "validated_modes": [
-        "spoon",
-        "cooking_sauce"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "fermented_dairy_use",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -148683,7 +149279,10 @@
         "cold",
         "melt"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -148807,7 +149406,10 @@
         "spoon",
         "cooking_sauce"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -149028,12 +149630,13 @@
       "primary_uses": [
         "spoon"
       ],
-      "prompt_id": "fermented_dairy_use",
-      "validated_modes": [
-        "spoon",
-        "cooking_sauce"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "fermented_dairy_use",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -149147,7 +149750,10 @@
         "spoon",
         "cooking_sauce"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -149220,12 +149826,13 @@
       "primary_uses": [
         "spoon"
       ],
-      "prompt_id": "fermented_dairy_use",
-      "validated_modes": [
-        "spoon",
-        "cooking_sauce"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
       ],
-      "validation_status": "release_validated"
+      "suppressed_prompt_id": "fermented_dairy_use"
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -149516,7 +150123,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -150235,7 +150845,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -150344,7 +150957,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -151321,7 +151937,10 @@
         "spoon",
         "cooking_sauce"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -151548,12 +152167,13 @@
       "primary_uses": [
         "spoon"
       ],
-      "prompt_id": "fermented_dairy_use",
-      "validated_modes": [
-        "spoon",
-        "cooking_sauce"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
       ],
-      "validation_status": "release_validated"
+      "suppressed_prompt_id": "fermented_dairy_use"
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -152401,7 +153021,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -152510,7 +153133,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -152587,7 +153213,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -152664,7 +153293,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -152956,12 +153588,13 @@
       "primary_uses": [
         "direct"
       ],
-      "prompt_id": "cheese_use",
-      "validated_modes": [
-        "melt",
-        "direct"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "cheese_use",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -153991,7 +154624,10 @@
         "spoon",
         "cooking_sauce"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -154106,7 +154742,10 @@
         "spoon",
         "cooking_sauce"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -158651,7 +159290,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -160987,7 +161629,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -161407,7 +162052,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -161525,7 +162173,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -162904,7 +163555,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -162981,7 +163635,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -163058,7 +163715,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -163318,12 +163978,13 @@
       "primary_uses": [
         "melt"
       ],
-      "prompt_id": "cheese_use",
-      "validated_modes": [
-        "melt",
-        "direct"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "cheese_use",
+      "validation_reasons": [
+        "no_material_top_change"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -163400,7 +164061,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -164886,12 +165550,13 @@
       "primary_uses": [
         "melt"
       ],
-      "prompt_id": "cheese_use",
-      "validated_modes": [
-        "melt",
-        "direct"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "cheese_use",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -165075,12 +165740,13 @@
       "primary_uses": [
         "melt"
       ],
-      "prompt_id": "cheese_use",
-      "validated_modes": [
-        "melt",
-        "direct"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "cheese_use",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -165613,7 +166279,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -165894,7 +166563,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -166001,7 +166673,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -166300,7 +166975,10 @@
         "cold",
         "melt"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -166927,7 +167605,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -167114,7 +167795,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -167267,7 +167951,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -167454,7 +168141,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -168248,12 +168938,13 @@
       "primary_uses": [
         "melt"
       ],
-      "prompt_id": "cheese_use",
-      "validated_modes": [
-        "melt",
-        "direct"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "cheese_use",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -169526,7 +170217,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -169933,7 +170627,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -172685,12 +173382,13 @@
       "primary_uses": [
         "direct"
       ],
-      "prompt_id": "cheese_use",
-      "validated_modes": [
-        "melt",
-        "direct"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "cheese_use",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -176156,7 +176854,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -186346,7 +187047,10 @@
         "stew",
         "minced"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -186617,7 +187321,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -186994,7 +187701,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -187104,7 +187814,10 @@
         "spoon",
         "cooking_sauce"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -187225,7 +187938,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -187717,7 +188433,10 @@
         "stew",
         "minced"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -187797,7 +188516,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -189149,7 +189871,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -189380,7 +190105,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -189457,7 +190185,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -191163,7 +191894,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -191602,7 +192336,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -191714,7 +192451,10 @@
         "spoon",
         "cooking_sauce"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -192748,7 +193488,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -193139,12 +193882,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "no_material_top_change"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -193676,12 +194420,13 @@
       "primary_uses": [
         "spoon"
       ],
-      "prompt_id": "fermented_dairy_use",
-      "validated_modes": [
-        "spoon",
-        "cooking_sauce"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
       ],
-      "validation_status": "release_validated"
+      "suppressed_prompt_id": "fermented_dairy_use"
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -193796,12 +194541,13 @@
       "primary_uses": [
         "spoon"
       ],
-      "prompt_id": "fermented_dairy_use",
-      "validated_modes": [
-        "spoon",
-        "cooking_sauce"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "fermented_dairy_use",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -194254,7 +195000,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -194454,12 +195203,13 @@
       "primary_uses": [
         "cold"
       ],
-      "prompt_id": "cheese_use",
-      "validated_modes": [
-        "cold",
-        "melt"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "cheese_use",
+      "validation_reasons": [
+        "no_material_top_change"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -202978,7 +203728,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -203876,7 +204629,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -203986,7 +204742,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -206104,7 +206863,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -207499,7 +208261,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -208151,7 +208916,10 @@
         "cold",
         "melt"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -208235,7 +209003,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -220116,7 +220887,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -220274,7 +221048,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -221710,7 +222487,10 @@
         "cold",
         "melt"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -221791,7 +222571,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -222165,7 +222948,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -226981,7 +227767,7 @@
   },
   {
     "source": "Consum",
-    "name": "Olive verte avec anchois",
+    "name": "Aceituna verde con anchoa",
     "protein": 1.3,
     "carbs": 0,
     "fat": 16.2,
@@ -227029,7 +227815,8 @@
     },
     "premium_context": "olive",
     "quality_reasons": [
-      "premium_2_2_olive_identity_restored"
+      "premium_2_2_olive_identity_restored",
+      "premium_2_4_spanish_display_name"
     ],
     "exchange_scope": {
       "version": "premium-v2.3-scope-1",
@@ -227055,7 +227842,8 @@
       },
       "nova_group": null
     },
-    "fat_quality": "olive"
+    "fat_quality": "olive",
+    "original_name": "Olive verte avec anchois"
   },
   {
     "source": "Mercadona",
@@ -227962,7 +228750,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -228043,7 +228834,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -228229,7 +229023,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -228653,7 +229450,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -228954,7 +229754,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -229071,7 +229874,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -229504,7 +230310,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -229846,7 +230655,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -230296,7 +231108,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -230559,7 +231374,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -230713,7 +231531,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -230823,7 +231644,10 @@
         "cold",
         "melt"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -231480,7 +232304,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -231666,7 +232493,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -232331,7 +233161,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -232752,7 +233585,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -233315,7 +234151,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -234311,7 +235150,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -234836,7 +235678,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -234948,7 +235793,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -235361,7 +236209,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -235630,7 +236481,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -235742,7 +236596,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -235963,7 +236820,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -236337,7 +237197,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -236555,7 +237418,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -238652,7 +239518,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -239400,7 +240269,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -239888,7 +240760,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -240918,7 +241793,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -242176,7 +243054,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -243457,7 +244338,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -244332,7 +245216,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -245234,7 +246121,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -245428,7 +246318,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -245965,7 +246858,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -248644,7 +249540,10 @@
         "spoon",
         "cooking_sauce"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -257800,7 +258699,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -258346,7 +259248,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -258573,7 +259478,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -261865,7 +262773,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -264070,7 +264981,10 @@
         "spoon",
         "cooking_sauce"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -264770,7 +265684,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -266931,7 +267848,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -267483,7 +268403,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -268296,7 +269219,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -268788,7 +269714,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -268865,7 +269794,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -269454,7 +270386,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -270712,7 +271647,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -270895,13 +271833,13 @@
       "primary_uses": [
         "cooked_side"
       ],
-      "prompt_id": "vegetable_use",
-      "validated_modes": [
-        "salad",
-        "cooked_side",
-        "soup"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "vegetable_use",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -271094,7 +272032,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -271524,7 +272465,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -272483,7 +273427,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -273546,7 +274493,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -273834,7 +274784,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -273985,7 +274938,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -276079,7 +277035,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -277607,7 +278566,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -277795,7 +278757,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -278069,7 +279034,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -278179,12 +279147,13 @@
         "stew",
         "salad"
       ],
-      "prompt_id": "legume_use",
-      "validated_modes": [
-        "stew",
-        "salad"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "legume_use",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -280385,7 +281354,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -280808,7 +281780,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -280926,7 +281901,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -281157,7 +282135,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -281510,7 +282491,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -281814,7 +282798,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -282008,7 +282995,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -282237,7 +283227,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -282461,7 +283454,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -288478,7 +289474,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -292136,11 +293135,12 @@
       "prompt_id": "oats_use",
       "validated_modes": [
         "breakfast_bowl",
-        "porridge",
-        "baking",
         "savory"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -292360,11 +293360,12 @@
       "prompt_id": "oats_use",
       "validated_modes": [
         "breakfast_bowl",
-        "porridge",
-        "baking",
         "savory"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -292976,11 +293977,12 @@
       "prompt_id": "oats_use",
       "validated_modes": [
         "breakfast_bowl",
-        "porridge",
-        "baking",
         "savory"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -295834,7 +296836,10 @@
         "breakfast_bowl",
         "savory"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -296310,11 +297315,12 @@
       "prompt_id": "oats_use",
       "validated_modes": [
         "breakfast_bowl",
-        "porridge",
-        "baking",
         "savory"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -296949,11 +297955,12 @@
       "prompt_id": "oats_use",
       "validated_modes": [
         "breakfast_bowl",
-        "porridge",
-        "baking",
         "savory"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -297373,11 +298380,12 @@
       "prompt_id": "oats_use",
       "validated_modes": [
         "breakfast_bowl",
-        "porridge",
-        "baking",
         "savory"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -298973,7 +299981,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -302220,7 +303231,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -302633,7 +303647,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -303796,7 +304813,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -304462,7 +305482,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -304540,7 +305563,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -306458,7 +307484,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -310156,12 +311185,13 @@
       "primary_uses": [
         "direct"
       ],
-      "prompt_id": "cheese_use",
-      "validated_modes": [
-        "melt",
-        "direct"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "cheese_use",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
+      ]
     },
     "name_original": "Dados con ajo y finas hierbas",
     "name_language": "es",
@@ -312501,7 +313531,7 @@
       ],
       "prompt_id": null,
       "validated_modes": [],
-      "validation_status": "release_silent"
+      "validation_status": "not_publishable"
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -316198,11 +317228,12 @@
       "prompt_id": "oats_use",
       "validated_modes": [
         "breakfast_bowl",
-        "porridge",
-        "baking",
         "savory"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -335242,12 +336273,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "no_material_top_change"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -340407,7 +341439,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -367152,7 +368187,10 @@
         "spoon",
         "cooking_sauce"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -367613,12 +368651,13 @@
       "primary_uses": [
         "spoon"
       ],
-      "prompt_id": "fermented_dairy_use",
-      "validated_modes": [
-        "spoon",
-        "cooking_sauce"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "fermented_dairy_use",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -367745,7 +368784,10 @@
         "spoon",
         "cooking_sauce"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -368431,7 +369473,10 @@
         "spoon",
         "cooking_sauce"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -368565,7 +369610,10 @@
         "spoon",
         "cooking_sauce"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -368978,12 +370026,13 @@
         "spoon",
         "cooking_sauce"
       ],
-      "prompt_id": "fermented_dairy_use",
-      "validated_modes": [
-        "spoon",
-        "cooking_sauce"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "fermented_dairy_use",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -369545,12 +370594,13 @@
       "primary_uses": [
         "direct"
       ],
-      "prompt_id": "cheese_use",
-      "validated_modes": [
-        "melt",
-        "direct"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "cheese_use",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -370143,12 +371193,13 @@
       "primary_uses": [
         "spoon"
       ],
-      "prompt_id": "fermented_dairy_use",
-      "validated_modes": [
-        "spoon",
-        "cooking_sauce"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "fermented_dairy_use",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -371471,7 +372522,10 @@
         "spoon",
         "cooking_sauce"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -371912,7 +372966,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -376553,7 +377610,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -377490,11 +378550,12 @@
       "prompt_id": "oats_use",
       "validated_modes": [
         "breakfast_bowl",
-        "porridge",
-        "baking",
         "savory"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -378803,7 +379864,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -393444,12 +394508,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "no_material_top_change"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -397164,12 +398229,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "no_material_top_change"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -397246,12 +398312,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "no_material_top_change"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -417276,12 +418343,13 @@
         "spoon",
         "cooking_sauce"
       ],
-      "prompt_id": "fermented_dairy_use",
-      "validated_modes": [
-        "spoon",
-        "cooking_sauce"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "fermented_dairy_use",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -422375,11 +423443,12 @@
       "prompt_id": "oats_use",
       "validated_modes": [
         "breakfast_bowl",
-        "porridge",
-        "baking",
         "savory"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -425002,7 +426071,10 @@
         "stew",
         "salad"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -431595,7 +432667,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -457082,7 +458157,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -460018,7 +461096,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -496804,7 +497885,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -497260,7 +498344,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -497342,7 +498429,10 @@
         "cold",
         "melt"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -497630,7 +498720,10 @@
         "melt",
         "direct"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -499842,12 +500935,13 @@
         "toast",
         "sandwich"
       ],
-      "prompt_id": "bread_use",
-      "validated_modes": [
-        "toast",
-        "sandwich"
-      ],
-      "validation_status": "release_validated"
+      "prompt_id": null,
+      "validated_modes": [],
+      "validation_status": "release_silent",
+      "suppressed_prompt_id": "bread_use",
+      "validation_reasons": [
+        "fewer_than_two_valid_modes"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -506331,7 +507425,10 @@
         "cooked_side",
         "soup"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -509629,7 +510726,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -512211,7 +513311,10 @@
         "main_piece",
         "stew"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -531550,7 +532653,10 @@
         "spoon",
         "cooking_sauce"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -532301,7 +533407,10 @@
         "spoon",
         "cooking_sauce"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -532770,7 +533879,10 @@
         "spoon",
         "cooking_sauce"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -533050,7 +534162,10 @@
         "spoon",
         "cooking_sauce"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -533795,7 +534910,10 @@
         "spoon",
         "cooking_sauce"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
@@ -535230,7 +536348,10 @@
         "stew",
         "minced"
       ],
-      "validation_status": "release_validated"
+      "validation_status": "release_validated",
+      "validation_reasons": [
+        "premium_2_4_no_collapse_gate"
+      ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",

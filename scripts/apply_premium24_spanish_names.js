@@ -28,6 +28,7 @@ const EXACT_TRANSLATIONS = {
   "Olives farcides d'anxova": "Aceitunas rellenas de anchoa",
   Olives: "Aceitunas",
   "Olives negres sense pinyol": "Aceitunas negras sin hueso",
+  "Olive verte avec anchois": "Aceituna verde con anchoa",
   "Gaspacho suave": "Gazpacho suave",
 };
 

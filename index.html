@@ -2927,6 +2927,10 @@
         const contextReason =
           contextReasons[alt.premiumContextReason] ||
           "Equivalencia nutricional y culinaria";
+        const usageNotice =
+          alt.premiumUsageFit === "less_usual"
+            ? '<div class="portion-review-note">ℹ️ Menos habitual para el uso que has elegido.</div>'
+            : "";
 
         const choiceGuidance =
           alt.premiumChoiceGuidance ||
@@ -3005,6 +3009,7 @@
           })()}
         </div>
         <div class="result-fit-reason">✓ ${escapeHtml(contextReason)}</div>
+        ${usageNotice}
         ${choiceGuidanceHTML}
         ${portionNotice}
 

@@ -599,6 +599,17 @@
   }
 
   function promptFor(food, catalog) {
+    if (
+      food &&
+      food.culinary_intent &&
+      food.culinary_intent.version === VERSION &&
+      [
+        "release_silent",
+        "not_publishable",
+      ].includes(food.culinary_intent.validation_status)
+    ) {
+      return null;
+    }
     var foodProfile = profile(food);
     var template = PROMPTS[foodProfile.prompt_id];
     if (!template) return null;
