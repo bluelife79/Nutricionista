@@ -2353,8 +2353,19 @@
             "Hola, " + displayName + " 👋";
         }
 
-        loadDatabase();
-        searchInput.focus();
+        const readyPlaceholder =
+          searchInput.dataset.readyPlaceholder ||
+          searchInput.getAttribute("placeholder") ||
+          "Escribe un alimento";
+        searchInput.dataset.readyPlaceholder = readyPlaceholder;
+        searchInput.disabled = true;
+        searchInput.setAttribute("placeholder", "Preparando tus alimentos…");
+        loadDatabase().then((loaded) => {
+          if (!loaded) return;
+          searchInput.disabled = false;
+          searchInput.setAttribute("placeholder", readyPlaceholder);
+          searchInput.focus();
+        });
       }
 
       document.getElementById("logoutBtn").addEventListener("click", async () => {
@@ -2450,6 +2461,9 @@
               .then((result) => (result.ok ? result.json() : null))
               .catch(() => null),
           ]);
+          if (!response.ok) {
+            throw new Error(`database.json respondió ${response.status}`);
+          }
           const data = await response.json();
           // database.json is a flat array; `data.foods` fallback kept for
           // legacy {foods:[...]} structure, final `[]` for safety.
@@ -2464,11 +2478,13 @@
             foodsDatabase.length,
             "alimentos",
           );
+          return foodsDatabase.length > 0;
         } catch (error) {
           console.error("❌ Error cargando base de datos:", error);
           alert(
             "Error al cargar la base de datos. Revisa que database.json esté en la misma carpeta que este HTML.",
           );
+          return false;
         }
       }
 
