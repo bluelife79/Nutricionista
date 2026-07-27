@@ -192,6 +192,19 @@ async function main() {
     ),
     "Un untable vegetal no puede recomendar untables cárnicos",
   );
+  assert(
+    hummusNames.every(
+      (name) =>
+        !/\b(crema|mantequilla|pasta) de (almendra|cacahuete|avellana)\b/.test(
+          name,
+        ),
+    ),
+    "El hummus no debe recomendar cremas de frutos secos de perfil dulce",
+  );
+  assert(
+    hummusNames.some((name) => /\b(aguacate|guacamole)\b/.test(name)),
+    "El hummus debe ofrecer aguacate o guacamole como alternativa salada secundaria",
+  );
 
   const foreignOilIds = new Set(["off_09a6a8571e", "off_2bf4da0205"]);
   const oilResults = search("aceite de oliva").slice(0, 10);

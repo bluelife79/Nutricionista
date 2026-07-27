@@ -2068,7 +2068,17 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
               originalFood.subgroup !== "plant_protein" &&
               oFat >= 8 && oProt >= 5 && oFatRatio >= 0.4)
           );
-        if (originIsFattySatiating && oKcal > 0 && f.calories > 0) {
+        const explicitServingBridge =
+          _premiumContextEnabled &&
+          typeof window.getPremiumContextCompatibility === "function" &&
+          window.getPremiumContextCompatibility(originalFood, f).reason ===
+            "plant_spread_bridge";
+        if (
+          originIsFattySatiating &&
+          !explicitServingBridge &&
+          oKcal > 0 &&
+          f.calories > 0
+        ) {
           const ratio = f.calories / oKcal;
           if (ratio < 0.75) return false;
         }
@@ -2248,10 +2258,19 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       // Subgroup filter: only on same-category pairs.
       // Cross-category path (e.g. postres_proteicos <-> dairy/high_protein_dairy)
       // has already been approved by isCompatibleCategory — skip subgroup here.
+      // An explicit culinary bridge is also authoritative: hummus and avocado
+      // live in different legacy fat subgroups, but share a savoury toast/bowl
+      // use. Nut creams are deliberately not part of this bridge.
+      const _explicitContextBridge =
+        _premiumContextEnabled &&
+        typeof window.getPremiumContextCompatibility === "function" &&
+        window.getPremiumContextCompatibility(originalFood, f).reason ===
+          "plant_spread_bridge";
       if (
         _subgroupFilterAvailable &&
         f.category === originalFood.category &&
-        !window.isCompatibleSubgroup(f, originalFood)
+        !window.isCompatibleSubgroup(f, originalFood) &&
+        !_explicitContextBridge
       ) {
         return false;
       }
@@ -2297,7 +2316,6 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       return true;
     },
   );
-
   const withEquivalence = candidates
     .map((alt) => {
       let tier = getFoodTier(alt, originalFood);

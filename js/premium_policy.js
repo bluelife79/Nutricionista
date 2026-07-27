@@ -811,11 +811,11 @@
     var plantSpreadBridge =
       (
         origin === "plant_savory_spread" &&
-        ["avocado", "nut_spread"].includes(candidate)
+        candidate === "avocado"
       ) ||
       (
         candidate === "plant_savory_spread" &&
-        ["avocado", "nut_spread"].includes(origin)
+        origin === "avocado"
       );
     if (plantSpreadBridge) {
       return {
