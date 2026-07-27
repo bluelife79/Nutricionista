@@ -1,0 +1,7138 @@
+{
+ "origenes": 1260,
+ "cambia_top1": {
+  "n": 190,
+  "pct": 15.1
+ },
+ "cambia_top3": {
+  "n": 474,
+  "pct": 37.6
+ },
+ "cambia_top5": {
+  "n": 699,
+  "pct": 55.5
+ },
+ "cambia_top10": {
+  "n": 926,
+  "pct": 73.5
+ },
+ "dispersion_semantica": {
+  "mediana": 0.219,
+  "p90": 0.369,
+  "max": 0.985
+ },
+ "aporte_efectivo_mediano": 0.077,
+ "nota": "peso nominal 0.35; aporte efectivo = 0.35 x dispersion. El % de cambio de TOP es la metrica que importa para la usuaria.",
+ "casos_para_revision_ciega": [
+  {
+   "id": "bedca_0004",
+   "name": "Pan de centeno",
+   "amount": 70,
+   "con": [
+    "Pan tipo baguette",
+    "Pan blanco, de barra",
+    "Pan blanco, tipo \"baguette\""
+   ],
+   "sin": [
+    "Pan blanco, de barra",
+    "Pan blanco, tipo \"baguette\"",
+    "Pan tipo baguette"
+   ]
+  },
+  {
+   "id": "bedca_0009",
+   "name": "Raya, cruda",
+   "amount": 150,
+   "con": [
+    "Rape, a la parrilla",
+    "Bacalao, crudo",
+    "Gallo"
+   ],
+   "sin": [
+    "Bacalao, crudo",
+    "Rape, a la parrilla",
+    "Gallo"
+   ]
+  },
+  {
+   "id": "bedca_0010",
+   "name": "Judía pinta",
+   "amount": 70,
+   "con": [
+    "Lenteja, hervida",
+    "Alubia blanca, en conserva",
+    "Guisante, seco, crudo"
+   ],
+   "sin": [
+    "Lenteja, hervida",
+    "Haba, seca",
+    "Alubia blanca, en conserva"
+   ]
+  },
+  {
+   "id": "bedca_0013",
+   "name": "Repollo",
+   "amount": 200,
+   "con": [
+    "Champiñon",
+    "Seta",
+    "Col lombarda, hervida"
+   ],
+   "sin": [
+    "Seta",
+    "Champiñon",
+    "Esparragos blancos en conserva"
+   ]
+  },
+  {
+   "id": "bedca_0028",
+   "name": "Tomate",
+   "amount": 200,
+   "con": [
+    "Calabaza, hervida",
+    "Calabacín, asado",
+    "Berenjena"
+   ],
+   "sin": [
+    "Calabacín, asado",
+    "Calabaza, hervida",
+    "Berenjena"
+   ]
+  },
+  {
+   "id": "bedca_0035",
+   "name": "Pollo, parte s/e",
+   "amount": 150,
+   "con": [
+    "Pavo, crudo",
+    "Cerdo, lomo, crudo",
+    "Conejo de granja, carne, cruda"
+   ],
+   "sin": [
+    "Pavo, crudo",
+    "Cerdo, lomo, crudo",
+    "Vaca/buey, solomillo, crudo"
+   ]
+  },
+  {
+   "id": "bedca_0040",
+   "name": "Leche de soja",
+   "amount": 150,
+   "con": [
+    "Bebida de soja",
+    "Bebida de soja calcio",
+    "Beguda de soja"
+   ],
+   "sin": [
+    "Bebida de soja",
+    "Bebida de soja calcio",
+    "Bebida soja calcio"
+   ]
+  },
+  {
+   "id": "bedca_0043",
+   "name": "Berenjena",
+   "amount": 200,
+   "con": [
+    "Calabacín",
+    "Calabaza, hervida",
+    "Tomate"
+   ],
+   "sin": [
+    "Calabacín, asado",
+    "Calabaza, hervida",
+    "Tomate"
+   ]
+  },
+  {
+   "id": "bedca_0048",
+   "name": "Panga, cruda",
+   "amount": 150,
+   "con": [
+    "Lenguado",
+    "Dorada, cruda",
+    "Rape, crudo"
+   ],
+   "sin": [
+    "Lenguado",
+    "Lubina",
+    "Dorada, cruda"
+   ]
+  },
+  {
+   "id": "bedca_0050",
+   "name": "Judía blanca",
+   "amount": 70,
+   "con": [
+    "Lenteja, hervida",
+    "Garbanzo, hervido",
+    "Alubia blanca, en conserva"
+   ],
+   "sin": [
+    "Haba, seca",
+    "Lenteja, hervida",
+    "Garbanzo, hervida"
+   ]
+  },
+  {
+   "id": "bedca_0056",
+   "name": "Apio, crudo",
+   "amount": 200,
+   "con": [
+    "Endibia",
+    "Canonigos",
+    "Esparragos blanco, en conserva"
+   ],
+   "sin": [
+    "Endibia",
+    "Esparragos blanco, en conserva",
+    "Canonigos"
+   ]
+  },
+  {
+   "id": "bedca_0060",
+   "name": "Paraguaya",
+   "amount": 150,
+   "con": [
+    "Albaricoque",
+    "Mandarina",
+    "Melocotón"
+   ],
+   "sin": [
+    "Mandarina",
+    "Naranja",
+    "Albaricoque"
+   ]
+  },
+  {
+   "id": "bedca_0064",
+   "name": "Queso fresco de burgos",
+   "amount": 150,
+   "con": [
+    "Queso fresco vaca y cabra",
+    "Queso fresco villalón",
+    "Queso fresco servilleta"
+   ],
+   "sin": [
+    "Queso mozzarella",
+    "Queso fresco vaca y cabra",
+    "Queso fresco villalón"
+   ]
+  },
+  {
+   "id": "bedca_0065",
+   "name": "Pan blanco, integral, de molde, tostado",
+   "amount": 70,
+   "con": [
+    "Pan integral, de molde, tostado",
+    "Pan blanco, integral",
+    "Pan integral"
+   ],
+   "sin": [
+    "Pan integral, sin sal",
+    "Pan blanco, integral",
+    "Pan integral"
+   ]
+  },
+  {
+   "id": "bedca_0076",
+   "name": "Naranja",
+   "amount": 150,
+   "con": [
+    "Mandarina",
+    "Sandia",
+    "Albaricoque"
+   ],
+   "sin": [
+    "Melon",
+    "Sandia",
+    "Mandarina"
+   ]
+  },
+  {
+   "id": "bedca_0079",
+   "name": "Cebolla",
+   "amount": 200,
+   "con": [
+    "Cebollino, crudo",
+    "Puerro, en conserva",
+    "Tomate"
+   ],
+   "sin": [
+    "Cebollino, crudo",
+    "Puerro, en conserva",
+    "Remolacha, en conserva"
+   ]
+  },
+  {
+   "id": "bedca_0081",
+   "name": "Aceite de oliva",
+   "amount": 15,
+   "con": [
+    "Nuez",
+    "Nuez natural",
+    "Noix de macadamia"
+   ],
+   "sin": [
+    "Nuez, cruda, con cáscara",
+    "Nuez natural",
+    "Nueces de macadamia"
+   ]
+  },
+  {
+   "id": "bedca_0082",
+   "name": "Pan blanco, de molde, tostado",
+   "amount": 70,
+   "con": [
+    "Pan de leche",
+    "Pan tostado",
+    "Pan blanco, tostado"
+   ],
+   "sin": [
+    "Pan de leche",
+    "Pan blanco, tostado sin sal",
+    "Pan blanco, tostado"
+   ]
+  },
+  {
+   "id": "bedca_0086",
+   "name": "Uva pasa",
+   "amount": 150,
+   "con": [
+    "Dátil deshuesado",
+    "Datil",
+    "Mango deshidratado"
+   ],
+   "sin": [
+    "Dátil deshuesado",
+    "Datil",
+    "Piña deshidratada"
+   ]
+  },
+  {
+   "id": "bedca_0087",
+   "name": "Uva blanca",
+   "amount": 150,
+   "con": [
+    "Manzana",
+    "Higos y brevas",
+    "Chirimoya"
+   ],
+   "sin": [
+    "Manzana",
+    "Caqui",
+    "Chirimoya"
+   ]
+  },
+  {
+   "id": "bedca_0107",
+   "name": "Caqui",
+   "amount": 150,
+   "con": [
+    "Chirimoya",
+    "Uva negra, cruda",
+    "Ciruela, sin piel"
+   ],
+   "sin": [
+    "Chirimoya",
+    "Uva negra, crudauva negra, cruda",
+    "Ciruela, sin piel"
+   ]
+  },
+  {
+   "id": "bedca_0109",
+   "name": "Granada",
+   "amount": 150,
+   "con": [
+    "Cereza",
+    "Higos y brevas",
+    "Caqui"
+   ],
+   "sin": [
+    "Ciruela, con piel, cruda",
+    "Paraguaya",
+    "Cereza"
+   ]
+  },
+  {
+   "id": "bedca_0120",
+   "name": "Aceite de lino",
+   "amount": 15,
+   "con": [
+    "Noix de macadamia",
+    "Bio nuez pecana",
+    "Nueces de macadamia"
+   ],
+   "sin": [
+    "Noix de macadamia",
+    "Nueces de macadamia",
+    "Bio nuez pecana"
+   ]
+  },
+  {
+   "id": "bedca_0131",
+   "name": "Bonito en aceite vegetal",
+   "amount": 150,
+   "con": [
+    "Atún, plancha",
+    "Ventresca atun claro",
+    "Filetes de anchoa"
+   ],
+   "sin": [
+    "Atún, plancha",
+    "Ventresca atun claro",
+    "Atun El Cortizo RO-240"
+   ]
+  },
+  {
+   "id": "bedca_0133",
+   "name": "Queso azul",
+   "amount": 150,
+   "con": [
+    "Queso lonchas sin lactosa",
+    "Queso brie",
+    "Queso fresco, cabra"
+   ],
+   "sin": [
+    "Queso lonchas sin lactosa",
+    "Queso brie",
+    "Queso Camembert 20-30% MG/ES"
+   ]
+  },
+  {
+   "id": "bedca_0134",
+   "name": "Pollo, frito",
+   "amount": 150,
+   "con": [
+    "Cerdo, lomo, asado",
+    "Vaca/buey, solomillo, a la plancha",
+    "Ternera, solomillo, asado"
+   ],
+   "sin": [
+    "Cerdo, lomo, asado",
+    "Vaca/buey, solomillo, a la plancha",
+    "Pavo, crudo"
+   ]
+  },
+  {
+   "id": "bedca_0138",
+   "name": "Altramuz",
+   "amount": 70,
+   "con": [
+    "Garbanzo, hervido",
+    "Judía blanca",
+    "Alubia negra, seca, remojada, hervida"
+   ],
+   "sin": [
+    "Garbanzo, hervida",
+    "Judía blanca",
+    "Alubia negra, seca, remojada, hervida"
+   ]
+  },
+  {
+   "id": "bedca_0141",
+   "name": "Tomate, asado",
+   "amount": 200,
+   "con": [
+    "Esparragos blancos en conserva",
+    "Lombarda",
+    "Calabaza, hervida"
+   ],
+   "sin": [
+    "Esparragos blancos en conserva",
+    "Lombarda",
+    "Calabacín, asado"
+   ]
+  },
+  {
+   "id": "bedca_0151",
+   "name": "Pulpo, hervido",
+   "amount": 150,
+   "con": [
+    "Mejillón, hervido",
+    "Sepias pequeñas enteras",
+    "Colas de Langostino blanco"
+   ],
+   "sin": [
+    "Mejillón, hervido",
+    "Colas de Langostino blanco",
+    "Sepias pequeñas enteras"
+   ]
+  },
+  {
+   "id": "bedca_0152",
+   "name": "Atún, plancha",
+   "amount": 150,
+   "con": [
+    "Caballa, cruda",
+    "Salmón",
+    "Caballa del sur en filetes, en tomate"
+   ],
+   "sin": [
+    "Caballa, cruda",
+    "Bonito del norte, al vapor",
+    "Salmón"
+   ]
+  },
+  {
+   "id": "bedca_0170",
+   "name": "Lenguado, plancha",
+   "amount": 150,
+   "con": [
+    "Merluza fresca",
+    "Dorada, plancha",
+    "Rape, plancha"
+   ],
+   "sin": [
+    "Merluza fresca",
+    "Dorada, plancha",
+    "Panga, cruda"
+   ]
+  },
+  {
+   "id": "bedca_0171",
+   "name": "Rape, plancha",
+   "amount": 150,
+   "con": [
+    "Merluza fresca",
+    "Lenguado",
+    "Filetes de merluza"
+   ],
+   "sin": [
+    "Merluza fresca",
+    "Filetes de merluza",
+    "Lubina"
+   ]
+  },
+  {
+   "id": "bedca_0177",
+   "name": "Pan integral, sin sal",
+   "amount": 70,
+   "con": [
+    "Pan integral",
+    "Pan blanco, integral",
+    "Pan integral, de molde, tostado"
+   ],
+   "sin": [
+    "Pan blanco, integral, de molde, tostado",
+    "Pan blanco, integral",
+    "Pan integral"
+   ]
+  },
+  {
+   "id": "bedca_0186",
+   "name": "Pollo, pechuga, plancha",
+   "amount": 150,
+   "con": [
+    "Pavo, pechuga, con piel, crudo",
+    "Conejo de granja, carne, cruda",
+    "Cerdo, solomillo, crudo"
+   ],
+   "sin": [
+    "Pavo, pechuga, con piel, crudo",
+    "Conejo de granja, carne, cruda",
+    "Vaca/buey, solomillo, crudo"
+   ]
+  },
+  {
+   "id": "bedca_0191",
+   "name": "Cebolla, hervida",
+   "amount": 200,
+   "con": [
+    "Calabaza, hervida",
+    "Pepino",
+    "Col lombarda, hervida"
+   ],
+   "sin": [
+    "Calabaza, hervida",
+    "Pepino",
+    "Berenjena"
+   ]
+  },
+  {
+   "id": "bedca_0205",
+   "name": "Judías blancas, cocidas",
+   "amount": 70,
+   "con": [
+    "Alubia blanca, en conserva",
+    "Lenteja, hervida",
+    "Garbanzo, hervido"
+   ],
+   "sin": [
+    "Alubia blanca, en conserva",
+    "Lenteja, hervida",
+    "Garbanzo, hervida"
+   ]
+  },
+  {
+   "id": "bedca_0208",
+   "name": "Boquerón, frito",
+   "amount": 150,
+   "con": [
+    "Atún, plancha",
+    "Caballa del sur en filetes, en tomate",
+    "Caballa, cruda"
+   ],
+   "sin": [
+    "Atún, plancha",
+    "Salmón",
+    "Caballa, cruda"
+   ]
+  },
+  {
+   "id": "bedca_0218",
+   "name": "Arandano",
+   "amount": 150,
+   "con": [
+    "Fresa",
+    "Melon",
+    "Sandia"
+   ],
+   "sin": [
+    "Fresa",
+    "Melon",
+    "Naranja"
+   ]
+  },
+  {
+   "id": "bedca_0220",
+   "name": "Pez emperador, plancha",
+   "amount": 150,
+   "con": [
+    "Atún, plancha",
+    "Rape, a la parrilla",
+    "Sardina"
+   ],
+   "sin": [
+    "Atún, plancha",
+    "Sardina",
+    "Rape, a la parrilla"
+   ]
+  },
+  {
+   "id": "bedca_0222",
+   "name": "Patata, hervida",
+   "amount": 70,
+   "con": [
+    "Batata",
+    "Maíz en conserva",
+    "Boniato, crudo"
+   ],
+   "sin": [
+    "Batata",
+    "Maíz en conserva",
+    "Batata, cruda"
+   ]
+  },
+  {
+   "id": "bedca_0225",
+   "name": "Pan de leche",
+   "amount": 70,
+   "con": [
+    "Pan blanco, de molde, tostado",
+    "Pan tostado",
+    "Pan blanco, tostado"
+   ],
+   "sin": [
+    "Pan blanco, de molde, tostado",
+    "Pan blanco, tostado sin sal",
+    "Pan blanco, tostado"
+   ]
+  },
+  {
+   "id": "bedca_0231",
+   "name": "Judia verde, hervida",
+   "amount": 70,
+   "con": [
+    "Edamame",
+    "Lenteja, hervida",
+    "Garbanzo, hervido"
+   ],
+   "sin": [
+    "Edamame",
+    "Lenteja, hervida",
+    "Alubia blanca, en conserva"
+   ]
+  },
+  {
+   "id": "bedca_0244",
+   "name": "Remolacha, en conserva",
+   "amount": 200,
+   "con": [
+    "Col lombarda, hervida",
+    "Berenjena",
+    "Champiñon"
+   ],
+   "sin": [
+    "Col lombarda, hervida",
+    "Berenjena",
+    "Seta"
+   ]
+  },
+  {
+   "id": "bedca_0248",
+   "name": "Sardina, enlatada, en aceite, escurrida",
+   "amount": 150,
+   "con": [
+    "Atún, plancha",
+    "Caballa, cruda",
+    "Salmón"
+   ],
+   "sin": [
+    "Atún, plancha",
+    "Salmón",
+    "Caballa, cruda"
+   ]
+  },
+  {
+   "id": "bedca_0258",
+   "name": "Pollo, pechuga, con piel, crudo",
+   "amount": 150,
+   "con": [
+    "Pavo, crudo",
+    "Conejo de granja, carne, cruda",
+    "Cerdo, solomillo, crudo"
+   ],
+   "sin": [
+    "Pavo, crudo",
+    "Cerdo, solomillo, crudo",
+    "Conejo de granja, carne, cruda"
+   ]
+  },
+  {
+   "id": "bedca_0259",
+   "name": "Pollo, muslo, con piel, crudo",
+   "amount": 150,
+   "con": [
+    "Ternera, costilla, cruda",
+    "Pavo, crudo",
+    "Carne de cerdo de capa blanca, chuleta, partes grasa y magra, cruda"
+   ],
+   "sin": [
+    "Pavo, crudo",
+    "Ternera, costilla, cruda",
+    "Carne de cerdo de capa blanca, chuleta, partes grasa y magra, cruda"
+   ]
+  },
+  {
+   "id": "bedca_0260",
+   "name": "Pollo, entero, con piel, crudo",
+   "amount": 150,
+   "con": [
+    "Pavo, crudo",
+    "Conejo de granja, carne, cruda",
+    "Cerdo, lomo, crudo"
+   ],
+   "sin": [
+    "Pavo, crudo",
+    "Cerdo, lomo, crudo",
+    "Vaca/buey, solomillo, crudo"
+   ]
+  },
+  {
+   "id": "bedca_0266",
+   "name": "Albaricoque",
+   "amount": 150,
+   "con": [
+    "Mandarina",
+    "Naranja",
+    "Melocotón"
+   ],
+   "sin": [
+    "Mandarina",
+    "Paraguaya",
+    "Naranja"
+   ]
+  },
+  {
+   "id": "bedca_0271",
+   "name": "Uva negra, crudauva negra, cruda",
+   "amount": 150,
+   "con": [
+    "Higos y brevas",
+    "Ciruela, sin piel",
+    "Manzana"
+   ],
+   "sin": [
+    "Manzana",
+    "Caqui",
+    "Ciruela, sin piel"
+   ]
+  },
+  {
+   "id": "bedca_0278",
+   "name": "Ternera, lomo, crudo, con grasa separable",
+   "amount": 150,
+   "con": [
+    "Pollo, pechuga, plancha",
+    "Conejo de granja, carne, cruda",
+    "Cerdo, solomillo, crudo"
+   ],
+   "sin": [
+    "Pollo, pechuga, plancha",
+    "Vaca/buey, solomillo, crudo",
+    "Cerdo, solomillo, crudo"
+   ]
+  },
+  {
+   "id": "bedca_0290",
+   "name": "Papaya, sin piel, cruda",
+   "amount": 150,
+   "con": [
+    "Albaricoque",
+    "Melocotón",
+    "Mandarina"
+   ],
+   "sin": [
+    "Melocotón",
+    "Albaricoque",
+    "Sandia"
+   ]
+  },
+  {
+   "id": "bedca_0291",
+   "name": "Pan integral, tostado",
+   "amount": 70,
+   "con": [
+    "Pan tostado integral",
+    "Pan integral, de molde, tostado",
+    "Pan integral"
+   ],
+   "sin": [
+    "Pan tostado integral",
+    "Pan blanco, integral, de molde, tostado",
+    "Pan integral, sin sal"
+   ]
+  },
+  {
+   "id": "bedca_0295",
+   "name": "Garbanzo, seco, crudo",
+   "amount": 70,
+   "con": [
+    "Garbanzo seco",
+    "Garbanzo",
+    "Garbanzo, hervido"
+   ],
+   "sin": [
+    "Garbanzo seco",
+    "Garbanzo",
+    "Garbanzo, hervida"
+   ]
+  },
+  {
+   "id": "bedca_0302",
+   "name": "Palmito, en conserva",
+   "amount": 70,
+   "con": [
+    "Hinojo",
+    "Champiñon",
+    "Seta"
+   ],
+   "sin": [
+    "Hinojo",
+    "Seta",
+    "Champiñon"
+   ]
+  },
+  {
+   "id": "bedca_0311",
+   "name": "Mero, crudo",
+   "amount": 150,
+   "con": [
+    "Gallo",
+    "Congrio",
+    "Rape, a la parrilla"
+   ],
+   "sin": [
+    "Gallo",
+    "Congrio",
+    "Bacalao, crudo"
+   ]
+  },
+  {
+   "id": "bedca_0313",
+   "name": "Lenteja, seca, cruda",
+   "amount": 70,
+   "con": [
+    "Alubia blanca, seca, cruda",
+    "Garbanzo seco",
+    "Alubia pinta"
+   ],
+   "sin": [
+    "Garbanzo seco",
+    "Alubia blanca, seca, cruda",
+    "Alubia pinta"
+   ]
+  },
+  {
+   "id": "bedca_0314",
+   "name": "Lenteja, en conserva",
+   "amount": 70,
+   "con": [
+    "Alubia blanca, en conserva",
+    "Garbanzo, hervido",
+    "Judías blancas, cocidas"
+   ],
+   "sin": [
+    "Alubia blanca, en conserva",
+    "Garbanzo, hervida",
+    "Judías blancas, cocidas"
+   ]
+  },
+  {
+   "id": "bedca_0316",
+   "name": "Lengua, de cerdo, cruda",
+   "amount": 150,
+   "con": [
+    "Lengua, de ternera, cruda",
+    "Pavo, crudo",
+    "Pollo, parte sin especificar"
+   ],
+   "sin": [
+    "Pavo, entero, crudo",
+    "Lengua, de ternera, cruda",
+    "Pollo, parte s/e"
+   ]
+  },
+  {
+   "id": "bedca_0322",
+   "name": "Mango, sin piel, crudo",
+   "amount": 150,
+   "con": [
+    "Kiwi",
+    "Cereza",
+    "Ciruela, sin piel"
+   ],
+   "sin": [
+    "Kiwi",
+    "Cereza",
+    "Caqui"
+   ]
+  },
+  {
+   "id": "bedca_0324",
+   "name": "Lima, cruda",
+   "amount": 70,
+   "con": [
+    "Pomelo",
+    "Sandia",
+    "Melon"
+   ],
+   "sin": [
+    "Sandia",
+    "Melon",
+    "Pomelo"
+   ]
+  },
+  {
+   "id": "bedca_0326",
+   "name": "Pimiento morrón, en conserva",
+   "amount": 200,
+   "con": [
+    "Tomate",
+    "Calabacín, asado",
+    "Berenjena"
+   ],
+   "sin": [
+    "Tomate, asado",
+    "Calabacín, asado",
+    "Berenjena"
+   ]
+  },
+  {
+   "id": "bedca_0329",
+   "name": "Pulmón, de ternera, crudo",
+   "amount": 150,
+   "con": [
+    "Avestruz, solomillo, crudo",
+    "Cerdo, solomillo, crudo, con grasa separable",
+    "Pavo, pechuga, con piel, crudo"
+   ],
+   "sin": [
+    "Cerdo, solomillo, crudo, con grasa separable",
+    "Avestruz, solomillo, crudo",
+    "Pavo, pechuga, con piel, crudo"
+   ]
+  },
+  {
+   "id": "bedca_0330",
+   "name": "Pulmón, de cordero, crudo",
+   "amount": 150,
+   "con": [
+    "Avestruz, solomillo, crudo",
+    "Ternera, solomillo, sin grasa, crudo",
+    "Cerdo, solomillo, crudo, con grasa separable"
+   ],
+   "sin": [
+    "Ternera, solomillo, sin grasa, crudo",
+    "Cerdo, solomillo, crudo, con grasa separable",
+    "Avestruz, solomillo, crudo"
+   ]
+  },
+  {
+   "id": "bedca_0337",
+   "name": "Platija, cruda",
+   "amount": 150,
+   "con": [
+    "Bacaladilla",
+    "Lenguado",
+    "Dorada, cruda"
+   ],
+   "sin": [
+    "Bacaladilla",
+    "Lubina",
+    "Lenguado"
+   ]
+  },
+  {
+   "id": "bedca_0340",
+   "name": "Pan blanco, tostado sin sal",
+   "amount": 70,
+   "con": [
+    "Pan blanco, tostado",
+    "Pan tostado",
+    "Pan blanco, de molde, tostado"
+   ],
+   "sin": [
+    "Pan blanco, tostado",
+    "Pan tostado",
+    "Pan de leche"
+   ]
+  },
+  {
+   "id": "bedca_0342",
+   "name": "Pan blanco, tipo \"baguette\"",
+   "amount": 70,
+   "con": [
+    "Pan tipo baguette",
+    "Pan blanco, de barra",
+    "Pan blanco, tostado"
+   ],
+   "sin": [
+    "Pan tipo baguette",
+    "Pan blanco, de barra",
+    "Pan blanco, tostado sin sal"
+   ]
+  },
+  {
+   "id": "bedca_0343",
+   "name": "Pan blanco, de barra, sin sal",
+   "amount": 70,
+   "con": [
+    "Pan blanco, tipo \"baguette\"",
+    "Pan blanco, de barra",
+    "Pan blanco, tostado sin sal"
+   ],
+   "sin": [
+    "Pan blanco, de barra",
+    "Pan blanco, tipo \"baguette\"",
+    "Pan tipo baguette"
+   ]
+  },
+  {
+   "id": "bedca_0345",
+   "name": "Percebe, crudo",
+   "amount": 150,
+   "con": [
+    "Zamburiñas",
+    "Sepia troceada con agua añadida",
+    "Gambas Salvajes*"
+   ],
+   "sin": [
+    "Zamburiñas",
+    "Sepia con agua añadida",
+    "Gambas Salvajes*"
+   ]
+  },
+  {
+   "id": "bedca_0349",
+   "name": "Níspero, con piel, crudo",
+   "amount": 150,
+   "con": [
+    "Cereza",
+    "Ciruela amarilla, con piel, cruda",
+    "Granada"
+   ],
+   "sin": [
+    "Ciruela amarilla, con piel, cruda",
+    "Caqui",
+    "Cereza"
+   ]
+  },
+  {
+   "id": "bedca_0360",
+   "name": "Melocotón",
+   "amount": 150,
+   "con": [
+    "Albaricoque",
+    "Ciruela, sin piel",
+    "Sandia"
+   ],
+   "sin": [
+    "Ciruela, sin piel",
+    "Albaricoque",
+    "Sandia"
+   ]
+  },
+  {
+   "id": "bedca_0364",
+   "name": "Pan tostado integral",
+   "amount": 70,
+   "con": [
+    "Pan integral, de molde, tostado",
+    "Pan integral",
+    "Pan integral, tostado"
+   ],
+   "sin": [
+    "Pan blanco, integral, de molde, tostado",
+    "Pan integral, sin sal",
+    "Pan blanco, integral"
+   ]
+  },
+  {
+   "id": "bedca_0365",
+   "name": "Pan tostado",
+   "amount": 70,
+   "con": [
+    "Pan blanco, tostado",
+    "Pan blanco, tostado sin sal",
+    "Pan de leche"
+   ],
+   "sin": [
+    "Pan blanco, tostado sin sal",
+    "Pan blanco, tostado",
+    "Pan de leche"
+   ]
+  },
+  {
+   "id": "bedca_0371",
+   "name": "Pan tipo baguette",
+   "amount": 70,
+   "con": [
+    "Pan blanco, tipo \"baguette\"",
+    "Pan blanco, de barra",
+    "Pan tostado"
+   ],
+   "sin": [
+    "Pan blanco, tipo \"baguette\"",
+    "Pan blanco, de barra",
+    "Pan blanco, tostado sin sal"
+   ]
+  },
+  {
+   "id": "bedca_0377",
+   "name": "Kiwi",
+   "amount": 150,
+   "con": [
+    "Mango, sin piel, crudo",
+    "Fresa",
+    "Naranja"
+   ],
+   "sin": [
+    "Mango, sin piel, crudo",
+    "Fresa",
+    "Melon"
+   ]
+  },
+  {
+   "id": "bedca_0378",
+   "name": "Manzana",
+   "amount": 150,
+   "con": [
+    "Uva negra, cruda",
+    "Ciruela, sin piel",
+    "Caqui"
+   ],
+   "sin": [
+    "Uva blanca",
+    "Caqui",
+    "Ciruela, sin piel"
+   ]
+  },
+  {
+   "id": "bedca_0380",
+   "name": "Pan blanco, integral",
+   "amount": 70,
+   "con": [
+    "Pan integral",
+    "Pan blanco, integral, de molde, tostado",
+    "Pan integral, de molde, tostado"
+   ],
+   "sin": [
+    "Pan blanco, integral, de molde, tostado",
+    "Pan integral, sin sal",
+    "Pan integral"
+   ]
+  },
+  {
+   "id": "bedca_0386",
+   "name": "Sardina",
+   "amount": 150,
+   "con": [
+    "Jurel, crudo",
+    "Pez espada, crudo",
+    "Atún, plancha"
+   ],
+   "sin": [
+    "Pez espada, crudo",
+    "Jurel, crudo",
+    "Atún, plancha"
+   ]
+  },
+  {
+   "id": "bedca_0393",
+   "name": "Vieira",
+   "amount": 150,
+   "con": [
+    "Bogavante, hervido",
+    "Cigala",
+    "Gamba, hervido"
+   ],
+   "sin": [
+    "Bogavante, hervido",
+    "Gamba, hervido",
+    "Cigala"
+   ]
+  },
+  {
+   "id": "bedca_0397",
+   "name": "Platano",
+   "amount": 150,
+   "con": [
+    "Chirimoya",
+    "Pera",
+    "Cereza"
+   ],
+   "sin": [
+    "Ciruela, con piel, cruda",
+    "Caqui",
+    "Chirimoya"
+   ]
+  },
+  {
+   "id": "bedca_0398",
+   "name": "Guisantes en conserva",
+   "amount": 70,
+   "con": [
+    "Judía verde plana",
+    "Champiñon",
+    "Seta"
+   ],
+   "sin": [
+    "Judía verde plana",
+    "Seta",
+    "Champiñon"
+   ]
+  },
+  {
+   "id": "bedca_0400",
+   "name": "Garbanzo seco",
+   "amount": 70,
+   "con": [
+    "Garbanzo, hervido",
+    "Garbanzo, hervida",
+    "Garbanzo lechoso"
+   ],
+   "sin": [
+    "Garbanzo, hervida",
+    "Garbanzo, hervido",
+    "Garbanzos cocidos congelados &quot;Carrefour&quot;"
+   ]
+  },
+  {
+   "id": "bedca_0401",
+   "name": "Piña",
+   "amount": 150,
+   "con": [
+    "Mango, crudo",
+    "Pera",
+    "Kiwi"
+   ],
+   "sin": [
+    "Mango, crudo",
+    "Kiwi",
+    "Uva blanca"
+   ]
+  },
+  {
+   "id": "bedca_0403",
+   "name": "Percebe",
+   "amount": 150,
+   "con": [
+    "Zamburiñas",
+    "Pulpo, hervido",
+    "Sepia troceada con agua añadida"
+   ],
+   "sin": [
+    "Zamburiñas",
+    "Pulpo, hervido",
+    "Sepia con agua añadida"
+   ]
+  },
+  {
+   "id": "bedca_0404",
+   "name": "Pera",
+   "amount": 150,
+   "con": [
+    "Manzana",
+    "Ciruela, sin piel",
+    "Albaricoque"
+   ],
+   "sin": [
+    "Manzana",
+    "Ciruela, sin piel",
+    "Melocotón"
+   ]
+  },
+  {
+   "id": "bedca_0407",
+   "name": "Rodaballo",
+   "amount": 150,
+   "con": [
+    "Congrio",
+    "Gallo",
+    "Mero, crudo"
+   ],
+   "sin": [
+    "Congrio",
+    "Mero, crudo",
+    "Gallo"
+   ]
+  },
+  {
+   "id": "bedca_0412",
+   "name": "Congrio",
+   "amount": 150,
+   "con": [
+    "Mero, crudo",
+    "Gallo",
+    "Rape, a la parrilla"
+   ],
+   "sin": [
+    "Mero, crudo",
+    "Gallo",
+    "Bacalao, crudo"
+   ]
+  },
+  {
+   "id": "bedca_0420",
+   "name": "Cereza",
+   "amount": 150,
+   "con": [
+    "Ciruela amarilla, con piel, cruda",
+    "Granada",
+    "Higos y brevas"
+   ],
+   "sin": [
+    "Ciruela, con piel, cruda",
+    "Granada",
+    "Caqui"
+   ]
+  },
+  {
+   "id": "bedca_0423",
+   "name": "Mandarina",
+   "amount": 150,
+   "con": [
+    "Sandia",
+    "Albaricoque",
+    "Naranja"
+   ],
+   "sin": [
+    "Sandia",
+    "Naranja",
+    "Albaricoque"
+   ]
+  },
+  {
+   "id": "bedca_0425",
+   "name": "Boquerón",
+   "amount": 150,
+   "con": [
+    "Jurel, crudo",
+    "Pez espada, crudo",
+    "Sardina"
+   ],
+   "sin": [
+    "Pez espada, crudo",
+    "Jurel, crudo",
+    "Sardina"
+   ]
+  },
+  {
+   "id": "bedca_0426",
+   "name": "Bogavante",
+   "amount": 150,
+   "con": [
+    "Cigala",
+    "Vieira, cruda",
+    "Gamba, hervido"
+   ],
+   "sin": [
+    "Gamba, hervido",
+    "Vieira, cruda",
+    "Cigala"
+   ]
+  },
+  {
+   "id": "bedca_0427",
+   "name": "Besugo",
+   "amount": 150,
+   "con": [
+    "Gallo",
+    "Rape, a la parrilla",
+    "Mero, crudo"
+   ],
+   "sin": [
+    "Bacalao, crudo",
+    "Gallo",
+    "Rape, a la parrilla"
+   ]
+  },
+  {
+   "id": "bedca_0428",
+   "name": "Aceituna",
+   "amount": 15,
+   "con": [
+    "Aceituna negras s/h",
+    "Aceituna verde gazpacha",
+    "Aceituna rellena de anchoa"
+   ],
+   "sin": [
+    "Aceituna verde gazpacha",
+    "Aceituna negras s/h",
+    "Aceituna rellena de anchoa"
+   ]
+  },
+  {
+   "id": "bedca_0440",
+   "name": "Higos y brevas",
+   "amount": 150,
+   "con": [
+    "Granada",
+    "Cereza",
+    "Uva negra, cruda"
+   ],
+   "sin": [
+    "Granada",
+    "Ciruela, con piel, cruda",
+    "Uva blanca"
+   ]
+  },
+  {
+   "id": "bedca_0446",
+   "name": "Lenguado",
+   "amount": 150,
+   "con": [
+    "Dorada, cruda",
+    "Lubina",
+    "Rape, crudo"
+   ],
+   "sin": [
+    "Lubina",
+    "Dorada, cruda",
+    "Rape, crudo"
+   ]
+  },
+  {
+   "id": "bedca_0448",
+   "name": "Gallo",
+   "amount": 150,
+   "con": [
+    "Mero, crudo",
+    "Congrio",
+    "Rape, a la parrilla"
+   ],
+   "sin": [
+    "Mero, crudo",
+    "Bacalao, crudo",
+    "Congrio"
+   ]
+  },
+  {
+   "id": "bedca_0449",
+   "name": "Fresa",
+   "amount": 150,
+   "con": [
+    "Arandano",
+    "Melon",
+    "Sandia"
+   ],
+   "sin": [
+    "Arandano",
+    "Melon",
+    "Paraguaya"
+   ]
+  },
+  {
+   "id": "bedca_0455",
+   "name": "Ciruela, sin piel",
+   "amount": 150,
+   "con": [
+    "Melocotón",
+    "Albaricoque",
+    "Uva negra, cruda"
+   ],
+   "sin": [
+    "Melocotón",
+    "Uva negra, crudauva negra, cruda",
+    "Albaricoque"
+   ]
+  },
+  {
+   "id": "bedca_0456",
+   "name": "Cigala",
+   "amount": 150,
+   "con": [
+    "Pulpo",
+    "Vieira",
+    "Calamar, crudo"
+   ],
+   "sin": [
+    "Bogavante, hervido",
+    "Gamba, hervido",
+    "Calamar, crudo"
+   ]
+  },
+  {
+   "id": "bedca_0475",
+   "name": "Aceite de girasol",
+   "amount": 15,
+   "con": [
+    "Nuez",
+    "Nuez natural",
+    "Noix de macadamia"
+   ],
+   "sin": [
+    "Nuez, cruda, con cáscara",
+    "Nuez natural",
+    "Nueces de macadamia"
+   ]
+  },
+  {
+   "id": "bedca_0500",
+   "name": "Bebida de soja",
+   "amount": 150,
+   "con": [
+    "Leche de soja",
+    "Bebida de soja calcio",
+    "Beguda de soja"
+   ],
+   "sin": [
+    "Leche de soja",
+    "Bebida de soja calcio",
+    "Bebida soja calcio"
+   ]
+  },
+  {
+   "id": "bedca_0511",
+   "name": "Carne de cerdo de capa blanca, chuleta, partes grasa y magra, cruda",
+   "amount": 150,
+   "con": [
+    "Ternera, costilla, cruda",
+    "Pavo, muslo, con piel, crudo",
+    "Vaca/buey, solomillo, crudo"
+   ],
+   "sin": [
+    "Ternera, costilla, cruda",
+    "Pavo, muslo, con piel, crudo",
+    "Pollo, pechuga, plancha"
+   ]
+  },
+  {
+   "id": "bedca_0529",
+   "name": "Centollo, crudo",
+   "amount": 150,
+   "con": [
+    "Necora",
+    "Langostino",
+    "Cangrejo"
+   ],
+   "sin": [
+    "Necora",
+    "Langostino",
+    "Cangrejo de río crudo"
+   ]
+  },
+  {
+   "id": "bedca_0530",
+   "name": "Centeno, crudo",
+   "amount": 70,
+   "con": [
+    "Couscous",
+    "Espirales",
+    "Espirales de lentejas rosa sin gluten"
+   ],
+   "sin": [
+    "Couscous",
+    "Espirales cocción rápida",
+    "Espirales de lentejas rosa sin gluten"
+   ]
+  },
+  {
+   "id": "bedca_0537",
+   "name": "Cordero lechal, costillar, asado",
+   "amount": 150,
+   "con": [
+    "Pato, entero, asado",
+    "Pollo, muslo, con piel, asado",
+    "Cerdo, chuleta, crudo"
+   ],
+   "sin": [
+    "Pollo, muslo, con piel, asado",
+    "Pato, entero, asado",
+    "Cerdo, chuleta, crudo"
+   ]
+  },
+  {
+   "id": "bedca_0539",
+   "name": "Carne de cerdo de capa blanca, cabezada, parte magra, cruda",
+   "amount": 150,
+   "con": [
+    "Pavo, crudo",
+    "Vaca/buey, solomillo, crudo",
+    "Pollo, pechuga, plancha"
+   ],
+   "sin": [
+    "Pavo, entero, crudo",
+    "Pollo, pechuga, plancha",
+    "Vaca/buey, solomillo, crudo"
+   ]
+  },
+  {
+   "id": "bedca_0543",
+   "name": "Calamar, conserva",
+   "amount": 150,
+   "con": [
+    "Almejas en conserva",
+    "Mejillón, hervido",
+    "Pulpo cocido troceado"
+   ],
+   "sin": [
+    "Almejas en conserva",
+    "Mejillón, hervido",
+    "Sepia"
+   ]
+  },
+  {
+   "id": "bedca_0558",
+   "name": "Rape, crudo",
+   "amount": 150,
+   "con": [
+    "Merluza fresca",
+    "Dorada, cruda",
+    "Lenguado"
+   ],
+   "sin": [
+    "Merluza fresca",
+    "Dorada, cruda",
+    "Lubina"
+   ]
+  },
+  {
+   "id": "bedca_0561",
+   "name": "Cerdo, lomo, crudo",
+   "amount": 150,
+   "con": [
+    "Pollo, parte sin especificar",
+    "Ternera, lomo, crudo, con grasa separable",
+    "Conejo de granja, carne, cruda"
+   ],
+   "sin": [
+    "Pollo, parte s/e",
+    "Ternera, lomo, crudo, con grasa separable",
+    "Vaca/buey, solomillo, crudo"
+   ]
+  },
+  {
+   "id": "bedca_0568",
+   "name": "Pollo, parte sin especificar",
+   "amount": 150,
+   "con": [
+    "Pavo, crudo",
+    "Cerdo, lomo, crudo",
+    "Conejo de granja, carne, cruda"
+   ],
+   "sin": [
+    "Pavo, crudo",
+    "Cerdo, lomo, crudo",
+    "Vaca/buey, solomillo, crudo"
+   ]
+  },
+  {
+   "id": "bedca_0577",
+   "name": "Cerdo, chuleta, crudo",
+   "amount": 150,
+   "con": [
+    "Pollo, muslo, con piel, crudo",
+    "Alas de pollo congeladas",
+    "Cordero ligero, espalda, cruda"
+   ],
+   "sin": [
+    "Pollo, muslo, con piel, crudo",
+    "Cordero lechal, costillar, crudo",
+    "Alas de pollo congeladas"
+   ]
+  },
+  {
+   "id": "bedca_0584",
+   "name": "Cacahuete, crudo, con cáscara",
+   "amount": 15,
+   "con": [
+    "Almendra, cruda",
+    "Pistacho",
+    "Avellana"
+   ],
+   "sin": [
+    "Almendra, cruda",
+    "Frutos secos",
+    "Pistacho"
+   ]
+  },
+  {
+   "id": "bedca_0585",
+   "name": "Avellana, cruda, con cáscara",
+   "amount": 15,
+   "con": [
+    "Almendra, cruda",
+    "Nuez",
+    "Pistacho"
+   ],
+   "sin": [
+    "Nuez",
+    "Almendra, cruda",
+    "Pistacho"
+   ]
+  },
+  {
+   "id": "bedca_0586",
+   "name": "Pan integral",
+   "amount": 70,
+   "con": [
+    "Pan blanco, integral",
+    "Pan integral, sin sal",
+    "Pan integral, de molde, tostado"
+   ],
+   "sin": [
+    "Pan blanco, integral, de molde, tostado",
+    "Pan integral, sin sal",
+    "Pan blanco, integral"
+   ]
+  },
+  {
+   "id": "bedca_0588",
+   "name": "Pan integral, de molde, tostado",
+   "amount": 70,
+   "con": [
+    "Pan integral",
+    "Pan blanco, integral, de molde, tostado",
+    "Pan tostado integral"
+   ],
+   "sin": [
+    "Pan blanco, integral, de molde, tostado",
+    "Pan integral, sin sal",
+    "Pan blanco, integral"
+   ]
+  },
+  {
+   "id": "bedca_0602",
+   "name": "Col blanca, cruda",
+   "amount": 200,
+   "con": [
+    "Alcachofa, cruda",
+    "Canónigos",
+    "Espinaca Hoja en Porciones"
+   ],
+   "sin": [
+    "Alcachofa, cruda",
+    "Espinaca Hoja en Porciones",
+    "Canónigos"
+   ]
+  },
+  {
+   "id": "bedca_0608",
+   "name": "Gamba, hervida",
+   "amount": 150,
+   "con": [
+    "Mejillón, hervido",
+    "Sepia",
+    "Langostino"
+   ],
+   "sin": [
+    "Mejillón, hervido",
+    "Sepia",
+    "Pulpo"
+   ]
+  },
+  {
+   "id": "bedca_0614",
+   "name": "Calamar, crudo",
+   "amount": 150,
+   "con": [
+    "Colas de langostino blanco CRUDAS",
+    "Sepia troceada con agua añadida",
+    "Gambòn crudo"
+   ],
+   "sin": [
+    "Colas de langostino blanco CRUDAS",
+    "Sepia con agua añadida",
+    "Gambòn crudo"
+   ]
+  },
+  {
+   "id": "bedca_0615",
+   "name": "Alubia negra, seca, remojada, hervida",
+   "amount": 70,
+   "con": [
+    "Lenteja, en conserva",
+    "Garbanzo, hervido",
+    "Lenteja pardina cocida"
+   ],
+   "sin": [
+    "Lenteja, en conserva",
+    "Garbanzo, hervida",
+    "Lenteja pardina cocida"
+   ]
+  },
+  {
+   "id": "bedca_0617",
+   "name": "Tomate, pelado y triturado, enlatado",
+   "amount": 200,
+   "con": [
+    "Calabaza, hervida",
+    "Calabacín, asado",
+    "Berenjena"
+   ],
+   "sin": [
+    "Calabacín, asado",
+    "Calabaza, hervida",
+    "Berenjena"
+   ]
+  },
+  {
+   "id": "bedca_0619",
+   "name": "Cebollino, crudo",
+   "amount": 200,
+   "con": [
+    "Puerro, en conserva",
+    "Canonigos",
+    "Escarola"
+   ],
+   "sin": [
+    "Puerro, en conserva",
+    "Canonigos",
+    "Espárrago, verde"
+   ]
+  },
+  {
+   "id": "bedca_0624",
+   "name": "Queso cebreiro",
+   "amount": 150,
+   "con": [
+    "Queso tetilla",
+    "Queso serrat",
+    "Queso Castellano"
+   ],
+   "sin": [
+    "Queso Castellano",
+    "Queso Zamorano",
+    "Queso manchego, en aceite"
+   ]
+  },
+  {
+   "id": "bedca_0625",
+   "name": "Alubia blanca, en conserva",
+   "amount": 70,
+   "con": [
+    "Lenteja, hervida",
+    "Garbanzo, hervido",
+    "Judías blancas, cocidas"
+   ],
+   "sin": [
+    "Lenteja, hervida",
+    "Garbanzo, hervida",
+    "Judías blancas, cocidas"
+   ]
+  },
+  {
+   "id": "bedca_0626",
+   "name": "Alubia blanca, seca, cruda",
+   "amount": 70,
+   "con": [
+    "Lenteja, seca, cruda",
+    "Garbanzo, hervido",
+    "Lenteja rápida"
+   ],
+   "sin": [
+    "Lenteja, hervida",
+    "Garbanzo, hervida",
+    "Lenteja tipo Lanzarote"
+   ]
+  },
+  {
+   "id": "bedca_0627",
+   "name": "Lengua, de ternera, cruda",
+   "amount": 150,
+   "con": [
+    "Pavo, crudo",
+    "Pollo, pechuga, con piel, crudo",
+    "Cerdo, solomillo, crudo"
+   ],
+   "sin": [
+    "Pavo, entero, crudo",
+    "Pollo, pechuga, con piel, crudo",
+    "Conejo de granja, carne, cruda"
+   ]
+  },
+  {
+   "id": "bedca_0632",
+   "name": "Quinoa, cruda",
+   "amount": 70,
+   "con": [
+    "Arroz integral, crudo",
+    "Arroz para ensaladas y guarnición",
+    "Arroz Blanco Variedad Carnaroli - Gallo - 500 G"
+   ],
+   "sin": [
+    "Arroz integral, crudo",
+    "Arroz para ensaladas y guarnición",
+    "Arroz thai jasmin"
+   ]
+  },
+  {
+   "id": "bedca_0635",
+   "name": "Haba, seca, remojada, hervida",
+   "amount": 70,
+   "con": [
+    "Lenteja, en conserva",
+    "Garbanzo, hervido",
+    "Alubia blanca, en conserva"
+   ],
+   "sin": [
+    "Lenteja, en conserva",
+    "Garbanzo, hervida",
+    "Alubia blanca, en conserva"
+   ]
+  },
+  {
+   "id": "bedca_0645",
+   "name": "Queso fresco, cabra",
+   "amount": 150,
+   "con": [
+    "Queso fresco vaca y cabra",
+    "Queso mozzarella fresca",
+    "Queso fresco de vaca y cabra"
+   ],
+   "sin": [
+    "Queso mozzarella fresca",
+    "Queso fresco vaca y cabra",
+    "Queso fresco de vaca y cabra"
+   ]
+  },
+  {
+   "id": "bedca_0647",
+   "name": "Arroz hinchado, para el desayuno, enriquecido",
+   "amount": 70,
+   "con": [
+    "Espirales",
+    "8 Tortillas Trigo y maíz",
+    "Pan ácimo"
+   ],
+   "sin": [
+    "Espirales cocción rápida",
+    "8 Tortillas Trigo y maíz",
+    "Pan ácimo"
+   ]
+  },
+  {
+   "id": "bedca_0659",
+   "name": "Membrillo, crudo",
+   "amount": 150,
+   "con": [
+    "Melocotón",
+    "Papaya, sin piel, cruda",
+    "Sandia"
+   ],
+   "sin": [
+    "Papaya, sin piel, cruda",
+    "Melocotón",
+    "Naranja"
+   ]
+  },
+  {
+   "id": "bedca_0663",
+   "name": "Papaya, cruda",
+   "amount": 150,
+   "con": [
+    "Melocotón",
+    "Albaricoque",
+    "Mandarina"
+   ],
+   "sin": [
+    "Melocotón",
+    "Albaricoque",
+    "Sandia"
+   ]
+  },
+  {
+   "id": "bedca_0664",
+   "name": "Uva negra, cruda",
+   "amount": 150,
+   "con": [
+    "Manzana",
+    "Ciruela, sin piel",
+    "Higos y brevas"
+   ],
+   "sin": [
+    "Manzana",
+    "Caqui",
+    "Ciruela, sin piel"
+   ]
+  },
+  {
+   "id": "bedca_0665",
+   "name": "Aceite de grano de uva",
+   "amount": 15,
+   "con": [
+    "Nuez",
+    "Noix de macadamia",
+    "Bio nuez pecana"
+   ],
+   "sin": [
+    "Nuez, cruda, con cáscara",
+    "Nueces de macadamia",
+    "Noix de macadamia"
+   ]
+  },
+  {
+   "id": "bedca_0666",
+   "name": "Aceite de nuez",
+   "amount": 15,
+   "con": [
+    "Noix de macadamia",
+    "Nueces de macadamia",
+    "Bio nuez pecana"
+   ],
+   "sin": [
+    "Nueces de macadamia",
+    "Noix de macadamia",
+    "Bio nuez pecana"
+   ]
+  },
+  {
+   "id": "bedca_0667",
+   "name": "Aceite de colza",
+   "amount": 15,
+   "con": [
+    "Nuez, cruda, con cáscara",
+    "Nuez natural",
+    "Noix de macadamia"
+   ],
+   "sin": [
+    "Nuez, cruda, con cáscara",
+    "Nuez natural",
+    "Nueces de macadamia"
+   ]
+  },
+  {
+   "id": "bedca_0669",
+   "name": "Ciruela, con piel, cruda",
+   "amount": 150,
+   "con": [
+    "Melocotón",
+    "Cereza",
+    "Albaricoque"
+   ],
+   "sin": [
+    "Melocotón",
+    "Granada",
+    "Cereza"
+   ]
+  },
+  {
+   "id": "bedca_0670",
+   "name": "Mango, crudo",
+   "amount": 150,
+   "con": [
+    "Kiwi",
+    "Uva negra, cruda",
+    "Ciruela, sin piel"
+   ],
+   "sin": [
+    "Kiwi",
+    "Caqui",
+    "Uva blanca"
+   ]
+  },
+  {
+   "id": "bedca_0673",
+   "name": "Maíz, en mazorca, crudo",
+   "amount": 70,
+   "con": [
+    "Arroz blanco precocido",
+    "Quinoa congelada",
+    "Arroz integral, hervido"
+   ],
+   "sin": [
+    "Quinoa congelada",
+    "Arroz blanco precocido",
+    "Arroz integral, hervido"
+   ]
+  },
+  {
+   "id": "bedca_0680",
+   "name": "Aceite de cacahuete",
+   "amount": 15,
+   "con": [
+    "Bio nuez pecana",
+    "Noix de macadamia",
+    "Nueces de macadamia"
+   ],
+   "sin": [
+    "Nueces de macadamia",
+    "Bio nuez pecana",
+    "Noix de macadamia"
+   ]
+  },
+  {
+   "id": "bedca_0684",
+   "name": "Conejo, entero, estofado",
+   "amount": 150,
+   "con": [
+    "Vaca/buey, solomillo, a la plancha",
+    "Pavo, crudo",
+    "Pollo, pechuga, con piel, crudo"
+   ],
+   "sin": [
+    "Vaca/buey, solomillo, a la plancha",
+    "Pavo, crudo",
+    "Carne de cerdo de capa blanca, chuleta, partes grasa y magra, cruda"
+   ]
+  },
+  {
+   "id": "bedca_0686",
+   "name": "Cerdo, solomillo, crudo",
+   "amount": 150,
+   "con": [
+    "Vaca/buey, solomillo, a la plancha",
+    "Conejo de granja, carne, cruda",
+    "Ternera, solomillo, sin grasa, crudo"
+   ],
+   "sin": [
+    "Vaca/buey, solomillo, crudo",
+    "Conejo de granja, carne, cruda",
+    "Ternera, solomillo, sin grasa, crudo"
+   ]
+  },
+  {
+   "id": "bedca_0688",
+   "name": "Sémola de trigo, cruda",
+   "amount": 70,
+   "con": [
+    "Harina de centeno",
+    "Arroz",
+    "Almidón de arroz"
+   ],
+   "sin": [
+    "Harina de centeno",
+    "Arroz integral, crudo",
+    "Almidón de arroz"
+   ]
+  },
+  {
+   "id": "bedca_0699",
+   "name": "Ternera, costilla, cruda",
+   "amount": 150,
+   "con": [
+    "Carne de cerdo de capa blanca, chuleta, partes grasa y magra, cruda",
+    "Pavo, muslo, con piel, crudo",
+    "Pollo, muslo, con piel, crudo"
+   ],
+   "sin": [
+    "Carne de cerdo de capa blanca, chuleta, partes grasa y magra, cruda",
+    "Pavo, muslo, con piel, crudo",
+    "Pollo, pechuga, plancha"
+   ]
+  },
+  {
+   "id": "bedca_0700",
+   "name": "Frambuesa, cruda",
+   "amount": 150,
+   "con": [
+    "Fresa",
+    "Arandano",
+    "Paraguaya"
+   ],
+   "sin": [
+    "Fresa",
+    "Arandano",
+    "Kiwi"
+   ]
+  },
+  {
+   "id": "bedca_0702",
+   "name": "Soja, fresca",
+   "amount": 70,
+   "con": [
+    "Edamame",
+    "Tempeh",
+    "Tofu"
+   ],
+   "sin": [
+    "Tempeh",
+    "Edamame",
+    "Tofu"
+   ]
+  },
+  {
+   "id": "bedca_0703",
+   "name": "Leche de cabra",
+   "amount": 150,
+   "con": [
+    "Leche de vaca, entera",
+    "Leche, semidesnatada, pasteurizada",
+    "Leche, vaca, omega 3"
+   ],
+   "sin": [
+    "Leche de vaca, entera",
+    "Leche, vaca, omega 3",
+    "Leche, semidesnatada, pasteurizada"
+   ]
+  },
+  {
+   "id": "bedca_0721",
+   "name": "Pollo, entero, con piel, asado",
+   "amount": 150,
+   "con": [
+    "Cerdo, lomo, asado",
+    "Ternera, parte s/e, asada",
+    "Cordero, pierna, con grasa, asada"
+   ],
+   "sin": [
+    "Cerdo, lomo, asado",
+    "Ternera, parte s/e, asada",
+    "Cordero lechal, costillar, asado"
+   ]
+  },
+  {
+   "id": "bedca_0736",
+   "name": "Queso Camembert 60% MG/ES",
+   "amount": 150,
+   "con": [
+    "Queso brie",
+    "Queso tierno",
+    "Queso de cabra maestro"
+   ],
+   "sin": [
+    "Queso brie",
+    "Queso tierno",
+    "Queso de oveja tierno"
+   ]
+  },
+  {
+   "id": "bedca_0745",
+   "name": "Cangrejo, en conserva",
+   "amount": 150,
+   "con": [
+    "Calamar, asado",
+    "Almejas en conserva",
+    "Gamba, hervida"
+   ],
+   "sin": [
+    "Calamar, asado",
+    "Gamba, hervido",
+    "Bogavante, hervido"
+   ]
+  },
+  {
+   "id": "bedca_0769",
+   "name": "Pasta alimenticia, con huevo, hervida",
+   "amount": 70,
+   "con": [
+    "Arroz integral, hervido",
+    "Arroz cocido integral",
+    "Maíz grano"
+   ],
+   "sin": [
+    "Arroz integral, hervido",
+    "Arroz cocido integral",
+    "Trigo & lentejas Quinoa, arroz salvaje & cebada"
+   ]
+  },
+  {
+   "id": "bedca_0779",
+   "name": "Rape, a la parrilla",
+   "amount": 150,
+   "con": [
+    "Medallones Merluza del Cabo",
+    "Bacalao, crudo",
+    "Gallo"
+   ],
+   "sin": [
+    "Bacalao, crudo",
+    "Medallones Merluza del Cabo",
+    "Faneca, cruda"
+   ]
+  },
+  {
+   "id": "bedca_0784",
+   "name": "Cabracho o rascacio, crudo",
+   "amount": 150,
+   "con": [
+    "Lenguado",
+    "Dorada, cruda",
+    "Lubina"
+   ],
+   "sin": [
+    "Lenguado",
+    "Lubina",
+    "Besugo"
+   ]
+  },
+  {
+   "id": "bedca_0807",
+   "name": "Harina de cebada",
+   "amount": 70,
+   "con": [
+    "Mijo",
+    "Sémola de trigo, cruda",
+    "Arroz"
+   ],
+   "sin": [
+    "Sémola de trigo, cruda",
+    "Mijo",
+    "Arroz integral, crudo"
+   ]
+  },
+  {
+   "id": "bedca_0821",
+   "name": "Harina de avena",
+   "amount": 70,
+   "con": [
+    "Avena Molida",
+    "Avena, cruda",
+    "Salvado de avena"
+   ],
+   "sin": [
+    "Avena Molida",
+    "Avena, cruda",
+    "Copos de avena suaves"
+   ]
+  },
+  {
+   "id": "bedca_0822",
+   "name": "Haba, seca",
+   "amount": 70,
+   "con": [
+    "Lenteja, hervida",
+    "Judía pinta",
+    "Guisante, seco, crudo"
+   ],
+   "sin": [
+    "Judía pinta",
+    "Lenteja, hervida",
+    "Guisante, seco, crudo"
+   ]
+  },
+  {
+   "id": "bedca_0823",
+   "name": "Grosella roja, cruda",
+   "amount": 150,
+   "con": [
+    "Paraguaya",
+    "Mandarina",
+    "Albaricoque"
+   ],
+   "sin": [
+    "Paraguaya",
+    "Melon",
+    "Naranja"
+   ]
+  },
+  {
+   "id": "bedca_0826",
+   "name": "Ciruela amarilla, con piel, cruda",
+   "amount": 150,
+   "con": [
+    "Cereza",
+    "Albaricoque",
+    "Higos y brevas"
+   ],
+   "sin": [
+    "Cereza",
+    "Caqui",
+    "Granada"
+   ]
+  },
+  {
+   "id": "bedca_0829",
+   "name": "Aceite de sésamo",
+   "amount": 15,
+   "con": [
+    "Noix de macadamia",
+    "Bio nuez pecana",
+    "Nueces de macadamia"
+   ],
+   "sin": [
+    "Noix de macadamia",
+    "Nueces de macadamia",
+    "Bio nuez pecana"
+   ]
+  },
+  {
+   "id": "bedca_0831",
+   "name": "Aceite de germen de trigo",
+   "amount": 15,
+   "con": [
+    "Nuez, cruda, con cáscara",
+    "Noix de macadamia",
+    "Bio nuez pecana"
+   ],
+   "sin": [
+    "Nuez, cruda, con cáscara",
+    "Nueces de macadamia",
+    "Noix de macadamia"
+   ]
+  },
+  {
+   "id": "bedca_0837",
+   "name": "Cebada, cruda",
+   "amount": 70,
+   "con": [
+    "Mijo",
+    "Trigo, entero, crudo",
+    "Quinoa, cruda"
+   ],
+   "sin": [
+    "Trigo, entero, crudo",
+    "Mijo",
+    "Arroz integral, crudo"
+   ]
+  },
+  {
+   "id": "bedca_0841",
+   "name": "Aceite de algodón",
+   "amount": 15,
+   "con": [
+    "Nuez, cruda, con cáscara",
+    "Noix de macadamia",
+    "Bio nuez pecana"
+   ],
+   "sin": [
+    "Nuez, cruda, con cáscara",
+    "Noix de macadamia",
+    "Nueces de macadamia"
+   ]
+  },
+  {
+   "id": "bedca_0852",
+   "name": "Bacaladilla, cruda",
+   "amount": 150,
+   "con": [
+    "Vieja, cruda",
+    "Bacalao, crudo",
+    "Rape, a la parrilla"
+   ],
+   "sin": [
+    "Vieja, cruda",
+    "Rape, a la parrilla",
+    "Bacalao, crudo"
+   ]
+  },
+  {
+   "id": "bedca_0891",
+   "name": "Pan de avena",
+   "amount": 70,
+   "con": [
+    "Pan de leche",
+    "Pan blanco, de molde, tostado",
+    "Pan tostado"
+   ],
+   "sin": [
+    "Pan de leche",
+    "Pan blanco, de molde, tostado",
+    "Pan blanco, de barra"
+   ]
+  },
+  {
+   "id": "bedca_0899",
+   "name": "Melocotón, desecado",
+   "amount": 150,
+   "con": [
+    "Datil",
+    "Uva pasa",
+    "Dátil deshuesado"
+   ],
+   "sin": [
+    "Datil",
+    "Uva pasa",
+    "Piña deshidratada"
+   ]
+  },
+  {
+   "id": "bedca_0904",
+   "name": "Pato, entero, crudo",
+   "amount": 150,
+   "con": [
+    "Ternera, costilla, cruda",
+    "Carne de cerdo de capa blanca, chuleta, partes grasa y magra, cruda",
+    "Pavo, muslo, con piel, crudo"
+   ],
+   "sin": [
+    "Carne de cerdo de capa blanca, chuleta, partes grasa y magra, cruda",
+    "Ternera, costilla, cruda",
+    "Pavo, muslo, con piel, crudo"
+   ]
+  },
+  {
+   "id": "bedca_0908",
+   "name": "Pasta alimenticia, integral, cruda",
+   "amount": 70,
+   "con": [
+    "Macarrón Fino",
+    "Couscous",
+    "Espirales de lentejas rosa sin gluten"
+   ],
+   "sin": [
+    "Macarrón",
+    "Couscous Con especias",
+    "Espirales de lentejas rosa sin gluten"
+   ]
+  },
+  {
+   "id": "bedca_0911",
+   "name": "Pan de cebada",
+   "amount": 70,
+   "con": [
+    "Pan de centeno",
+    "Pan blanco, de barra, sin sal",
+    "Pan tipo baguette"
+   ],
+   "sin": [
+    "Pan blanco, de barra, sin sal",
+    "Pan de centeno",
+    "Pan blanco, de barra"
+   ]
+  },
+  {
+   "id": "bedca_0915",
+   "name": "Pasta alimenticia, integral, hervida",
+   "amount": 70,
+   "con": [
+    "Arroz integral, hervido",
+    "Arroz cocido integral",
+    "Maiz dulce en grano"
+   ],
+   "sin": [
+    "Arroz integral, hervido",
+    "Arroz cocido integral",
+    "Trigo & lentejas Quinoa, arroz salvaje & cebada"
+   ]
+  },
+  {
+   "id": "bedca_0926",
+   "name": "Conejo de granja, carne, cruda",
+   "amount": 150,
+   "con": [
+    "Cerdo, solomillo, crudo",
+    "Vaca/buey, solomillo, crudo",
+    "Pollo, pechuga, plancha"
+   ],
+   "sin": [
+    "Vaca/buey, solomillo, crudo",
+    "Cerdo, solomillo, crudo",
+    "Pollo, pechuga, plancha"
+   ]
+  },
+  {
+   "id": "off_164c238c18",
+   "name": "Manzana cereza",
+   "amount": 150,
+   "con": [
+    "Ciruela, sin piel",
+    "Mango, crudo",
+    "Piña natural a rodajas"
+   ],
+   "sin": [
+    "Mango, crudo",
+    "Ciruela, sin piel",
+    "Piña natural a rodajas"
+   ]
+  },
+  {
+   "id": "off_0e8d3f64ee",
+   "name": "Melocotón manzana uva",
+   "amount": 150,
+   "con": [
+    "Caqui",
+    "Cereza",
+    "Piña trozos"
+   ],
+   "sin": [
+    "Mango, sin piel, crudo",
+    "Piña trozos",
+    "Cereza"
+   ]
+  },
+  {
+   "id": "off_06774637ef",
+   "name": "Bebida de arroz y coco",
+   "amount": 150,
+   "con": [
+    "Bebida de arroz",
+    "Bebida de Arroz con Calcio",
+    "Bebida de avena"
+   ],
+   "sin": [
+    "Bebida de arroz",
+    "Bebida de Arroz con Calcio",
+    "Bebida De Avena 100% Vegetal"
+   ]
+  },
+  {
+   "id": "off_e9e0604234",
+   "name": "8 Tortillas Trigo y maíz",
+   "amount": 70,
+   "con": [
+    "Espirales",
+    "Arroz redondo vaporizado",
+    "Obleas de arroz"
+   ],
+   "sin": [
+    "Espirales cocción rápida",
+    "Arroz redondo vaporizado",
+    "Obleas de arroz"
+   ]
+  },
+  {
+   "id": "off_1dd22a7565",
+   "name": "Bebida de Soja UHT",
+   "amount": 150,
+   "con": [
+    "Bebida soja classic",
+    "Bebida soja enriquecida calcio",
+    "Bebida de soja calcio"
+   ],
+   "sin": [
+    "Bebida soja enriquecida calcio",
+    "Bebida soja classic",
+    "Bebida de soja calcio"
+   ]
+  },
+  {
+   "id": "off_e1cab09f44",
+   "name": "Queso de untar",
+   "amount": 150,
+   "con": [
+    "Queso Crema Sin Lactosa",
+    "Queso Blanco Pasteurizado Sin Lactosa",
+    "Queso Untable de Cabra"
+   ],
+   "sin": [
+    "Queso Crema Sin Lactosa",
+    "Queso Blanco Pasteurizado Sin Lactosa",
+    "Queso Untable Sin Lactosa"
+   ]
+  },
+  {
+   "id": "off_8af43ad66a",
+   "name": "Copos de trigo espelta integral 0%",
+   "amount": 70,
+   "con": [
+    "Avena, cruda",
+    "Copos de avena integral",
+    "Salvado de avena"
+   ],
+   "sin": [
+    "Avena, cruda",
+    "Copos de avena",
+    "Salvado de avena"
+   ]
+  },
+  {
+   "id": "off_951f2f5bb1",
+   "name": "Maiz crudo",
+   "amount": 70,
+   "con": [
+    "Mijo",
+    "Quinoa, cruda",
+    "CUSCÚS Grano mediano"
+   ],
+   "sin": [
+    "Mijo",
+    "CUSCÚS Grano mediano",
+    "Quinoa, cruda"
+   ]
+  },
+  {
+   "id": "off_5da88c97a6",
+   "name": "Fideo integral",
+   "amount": 70,
+   "con": [
+    "Espirales integrales",
+    "Pasta alimenticia, integral, hervida",
+    "Arroz redondo vaporizado"
+   ],
+   "sin": [
+    "Espirales cocción rápida",
+    "Pasta alimenticia, con huevo, hervida",
+    "Arroz redondo vaporizado"
+   ]
+  },
+  {
+   "id": "off_9384cb8cd7",
+   "name": "Bulgur",
+   "amount": 70,
+   "con": [
+    "Arroz para ensaladas y guarnición",
+    "Quinoa BIO",
+    "Arroz integral, crudo"
+   ],
+   "sin": [
+    "Arroz para ensaladas y guarnición",
+    "Arroz integral, crudo",
+    "Quinoa BIO"
+   ]
+  },
+  {
+   "id": "off_41ea3cd98f",
+   "name": "Pan de molde cereales y semillas",
+   "amount": 70,
+   "con": [
+    "Pan integral, tostado",
+    "Pan de molde 12 semillas y cereales",
+    "Pan tostado integral"
+   ],
+   "sin": [
+    "Pan integral, tostado",
+    "Pan de molde 12 semillas y cereales",
+    "Pan Multicereales"
+   ]
+  },
+  {
+   "id": "off_d79af1bc2e",
+   "name": "Pan de molde multicereales Auchan",
+   "amount": 70,
+   "con": [
+    "Pan de molde 100% integral de trigo",
+    "Pan de molde integral de trigo",
+    "Pan tipo baguette"
+   ],
+   "sin": [
+    "Pan de molde 100% integral de trigo",
+    "Pan de leche",
+    "Pan blanco, tipo \"baguette\""
+   ]
+  },
+  {
+   "id": "off_4f7fbe5d1e",
+   "name": "Pan de molde 12 cereales y semillas",
+   "amount": 70,
+   "con": [
+    "Pan de molde integral 15 cereales y semillas",
+    "Pan de molde 12 semillas y cereales",
+    "Pan tostado integral"
+   ],
+   "sin": [
+    "Pan tostado integral",
+    "Pan blanco, integral, de molde, tostado",
+    "Pan integral, sin sal"
+   ]
+  },
+  {
+   "id": "off_a02cc36c0d",
+   "name": "Pan con cereales y semillas",
+   "amount": 70,
+   "con": [
+    "Pan ácimo",
+    "Pan integral",
+    "Pan de molde integral 15 cereales y semillas"
+   ],
+   "sin": [
+    "Pan ácimo",
+    "Pan de molde 12 semillas y cereales",
+    "Pan de molde integral 15 cereales y semillas"
+   ]
+  },
+  {
+   "id": "off_99a1a160a3",
+   "name": "Pan de molde 12 semillas y cereales",
+   "amount": 70,
+   "con": [
+    "Pan de molde integral de trigo",
+    "Pan de molde 14 cereales y semillas",
+    "Pan blanco, integral, de molde, tostado"
+   ],
+   "sin": [
+    "Pan de molde integral de trigo",
+    "Pan integral, tostado",
+    "Pan blanco, integral, de molde, tostado"
+   ]
+  },
+  {
+   "id": "off_da353f1cf9",
+   "name": "Pan de molde 100% integral de trigo",
+   "amount": 70,
+   "con": [
+    "Pan de molde multicereales Auchan",
+    "Pan integral, de molde, tostado",
+    "Pan integral"
+   ],
+   "sin": [
+    "Pan de molde multicereales Auchan",
+    "Pan blanco, integral, de molde, tostado",
+    "Pan integral, sin sal"
+   ]
+  },
+  {
+   "id": "off_5a712ccfe9",
+   "name": "Pan de molde integral de trigo",
+   "amount": 70,
+   "con": [
+    "Pan de molde 12 semillas y cereales",
+    "Pan tostado",
+    "Pan de leche"
+   ],
+   "sin": [
+    "Pan de molde 12 semillas y cereales",
+    "Pan de leche",
+    "Pan blanco, de barra"
+   ]
+  },
+  {
+   "id": "off_85b8b045be",
+   "name": "Naranja mandarina",
+   "amount": 150,
+   "con": [
+    "Melón En bolitas",
+    "Albaricoque",
+    "Melocotón manzana uva"
+   ],
+   "sin": [
+    "Melón En bolitas",
+    "Manzana cereza",
+    "Melocotón manzana uva"
+   ]
+  },
+  {
+   "id": "off_2889d595ba",
+   "name": "Pan 6 cereales",
+   "amount": 70,
+   "con": [
+    "Pan de molde 12 cereales y semillas",
+    "Pan de molde integral 15 cereales y semillas",
+    "Pan de molde 14 cereales y semillas"
+   ],
+   "sin": [
+    "Pan de molde integral 15 cereales y semillas",
+    "Pan de molde 12 semillas y cereales",
+    "Pan de molde 12 cereales y semillas"
+   ]
+  },
+  {
+   "id": "off_52d1d0d809",
+   "name": "Pan de trigo espelta 100%",
+   "amount": 70,
+   "con": [
+    "Pan de molde 12 cereales y semillas",
+    "Pan tipo baguette",
+    "Pan tostado"
+   ],
+   "sin": [
+    "Pan de molde 12 cereales y semillas",
+    "Pan blanco, de barra",
+    "Pan integral, tostado"
+   ]
+  },
+  {
+   "id": "off_599ef077d1",
+   "name": "Macarrón grande",
+   "amount": 70,
+   "con": [
+    "Pasta alimenticia, cruda",
+    "Fideos",
+    "Couscous Con especias"
+   ],
+   "sin": [
+    "Pasta alimenticia, cruda",
+    "Fideo cabello de angel",
+    "Pasta de trigo sarraceno"
+   ]
+  },
+  {
+   "id": "off_52e92eaf34",
+   "name": "Fideo grueso",
+   "amount": 70,
+   "con": [
+    "Espirales",
+    "Pasta alimenticia, integral, hervida",
+    "Arroz redondo vaporizado"
+   ],
+   "sin": [
+    "Espirales cocción rápida",
+    "Pasta alimenticia, integral, hervida",
+    "Arroz redondo vaporizado"
+   ]
+  },
+  {
+   "id": "off_cad6d0c0c7",
+   "name": "Harina de Maíz Blanco Precocida",
+   "amount": 70,
+   "con": [
+    "Arroz aromático jazmín",
+    "Arroz",
+    "Sémola de trigo, cruda"
+   ],
+   "sin": [
+    "Arroz aromático jazmín",
+    "Arroz integral, crudo",
+    "CUSCÚS Grano mediano"
+   ]
+  },
+  {
+   "id": "off_ed93d44e73",
+   "name": "Queso Blanco Pasteurizado Sin Lactosa",
+   "amount": 150,
+   "con": [
+    "Queso Untable Sin Lactosa",
+    "Queso Untable de Cabra",
+    "Queso Camembert 60% MG/ES"
+   ],
+   "sin": [
+    "Queso Untable de Cabra",
+    "Queso Untable Sin Lactosa",
+    "Queso Camembert 60% MG/ES"
+   ]
+  },
+  {
+   "id": "off_12759cff72",
+   "name": "Queso de cabra maestro",
+   "amount": 150,
+   "con": [
+    "Queso de oveja tierno",
+    "Queso tierno",
+    "rulo de queso de cabra"
+   ],
+   "sin": [
+    "Queso de oveja tierno",
+    "Queso tierno",
+    "Queso Camembert 20-30% MG/ES"
+   ]
+  },
+  {
+   "id": "off_3b3e0c15da",
+   "name": "Arroz cocido integral",
+   "amount": 70,
+   "con": [
+    "Maíz grano",
+    "Quinoa congelada",
+    "Bulgur & lentejas"
+   ],
+   "sin": [
+    "Quinoa congelada",
+    "Maíz grano",
+    "Bulgur & lentejas"
+   ]
+  },
+  {
+   "id": "off_8ea7d5f5e3",
+   "name": "Harina fina de maíz",
+   "amount": 70,
+   "con": [
+    "Arroz redondo J Sendra",
+    "Almidón de arroz",
+    "Arroz"
+   ],
+   "sin": [
+    "Arroz redondo J Sendra",
+    "Almidón de trigo",
+    "Arroz"
+   ]
+  },
+  {
+   "id": "off_3ba10eb8c6",
+   "name": "Fideos",
+   "amount": 70,
+   "con": [
+    "Macarrones tricolor",
+    "Pasta alimenticia, cruda",
+    "Couscous Con especias"
+   ],
+   "sin": [
+    "Macarrones tricolor",
+    "Pasta alimenticia, integral, cruda",
+    "Couscous Con especias"
+   ]
+  },
+  {
+   "id": "off_221a66d88b",
+   "name": "Fideo cabellín",
+   "amount": 70,
+   "con": [
+    "Espirales",
+    "Pasta alimenticia, integral, hervida",
+    "Arroz largo vaporizado"
+   ],
+   "sin": [
+    "Espirales cocción rápida",
+    "Pasta alimenticia, integral, hervida",
+    "Arroz redondo vaporizado"
+   ]
+  },
+  {
+   "id": "off_38e46ed307",
+   "name": "Arroz precocido congelado",
+   "amount": 70,
+   "con": [
+    "Quinoa congelada",
+    "Bulgur & lentejas",
+    "Mix trigo sarrace, lentejas coral, quinoa roja, semillas de calabaza"
+   ],
+   "sin": [
+    "Bulgur & lentejas",
+    "Quinoa congelada",
+    "Mix trigo sarrace, lentejas coral, quinoa roja, semillas de calabaza"
+   ]
+  },
+  {
+   "id": "off_6727bcf919",
+   "name": "Fideo Entrefino",
+   "amount": 70,
+   "con": [
+    "Espirales cocción rápida",
+    "Pasta alimenticia, integral, hervida",
+    "Arroz largo vaporizado"
+   ],
+   "sin": [
+    "Espirales cocción rápida",
+    "Pasta alimenticia, integral, hervida",
+    "Arroz redondo vaporizado"
+   ]
+  },
+  {
+   "id": "off_313872639c",
+   "name": "Tallarín",
+   "amount": 70,
+   "con": [
+    "Fideos",
+    "Pasta alimenticia, cruda",
+    "Couscous Con especias"
+   ],
+   "sin": [
+    "Fideos",
+    "Pasta alimenticia, integral, cruda",
+    "Couscous Con especias"
+   ]
+  },
+  {
+   "id": "off_d8c05e4bf2",
+   "name": "Macarrones",
+   "amount": 70,
+   "con": [
+    "Tallarines",
+    "Pasta alimenticia, cruda",
+    "Couscous Con especias"
+   ],
+   "sin": [
+    "Tallarines",
+    "Pasta alimenticia, integral, cruda",
+    "Pasta de trigo sarraceno"
+   ]
+  },
+  {
+   "id": "off_40bdc91eb5",
+   "name": "Couscous Con especias",
+   "amount": 70,
+   "con": [
+    "Fideos",
+    "CUSCÚS Grano mediano",
+    "Bulgur"
+   ],
+   "sin": [
+    "Cuscús fino",
+    "Fideos",
+    "Bulgur"
+   ]
+  },
+  {
+   "id": "off_00bfb5deec",
+   "name": "Fideo gordo",
+   "amount": 70,
+   "con": [
+    "Espirales integrales",
+    "Pasta alimenticia, integral, hervida",
+    "Arroz largo vaporizado"
+   ],
+   "sin": [
+    "Espirales integrales",
+    "Pasta alimenticia, integral, hervida",
+    "Arroz redondo vaporizado"
+   ]
+  },
+  {
+   "id": "off_1ea11d67d3",
+   "name": "Fideos cabellin",
+   "amount": 70,
+   "con": [
+    "Macarrón",
+    "Pasta alimenticia, cruda",
+    "Couscous Con especias"
+   ],
+   "sin": [
+    "Pasta alimenticia, integral, cruda",
+    "Macarrón",
+    "Pasta de trigo sarraceno"
+   ]
+  },
+  {
+   "id": "off_968655590c",
+   "name": "Couscous",
+   "amount": 70,
+   "con": [
+    "CUSCÚS Grano mediano",
+    "Arroz para ensaladas y guarnición",
+    "Fideos"
+   ],
+   "sin": [
+    "CUSCÚS Grano mediano",
+    "Macarrones tricolor",
+    "Arroz para ensaladas y guarnición"
+   ]
+  },
+  {
+   "id": "off_e0d31a613b",
+   "name": "Fideos soba",
+   "amount": 70,
+   "con": [
+    "Macarrón Rayado",
+    "Pasta alimenticia, integral, cruda",
+    "Pasta de trigo sarraceno"
+   ],
+   "sin": [
+    "Macarrón",
+    "Pasta alimenticia, integral, cruda",
+    "Pasta de trigo sarraceno"
+   ]
+  },
+  {
+   "id": "off_3170be03c8",
+   "name": "Cuscús fino",
+   "amount": 70,
+   "con": [
+    "Arroz para ensaladas y guarnición",
+    "Arroz integral, crudo",
+    "Bulgur"
+   ],
+   "sin": [
+    "Arroz para ensaladas y guarnición",
+    "Arroz integral, crudo",
+    "Arroz thai jasmin"
+   ]
+  },
+  {
+   "id": "off_461f725be4",
+   "name": "Sémola de trigo duro para migas",
+   "amount": 70,
+   "con": [
+    "Arroz redondo",
+    "Arroz",
+    "Arroz Blanco Variedad Carnaroli - Gallo - 500 G"
+   ],
+   "sin": [
+    "Arroz redondo J Sendra",
+    "Arroz",
+    "Arroz Blanco Variedad Carnaroli - Gallo - 500 G"
+   ]
+  },
+  {
+   "id": "off_0a25d7d0e4",
+   "name": "Espirales con vegetales",
+   "amount": 70,
+   "con": [
+    "Fideo mediano",
+    "Arroz largo vaporizado",
+    "8 Tortillas Trigo y maíz"
+   ],
+   "sin": [
+    "Fideo Entrefino",
+    "Arroz largo vaporizado",
+    "8 Tortillas Trigo y maíz"
+   ]
+  },
+  {
+   "id": "off_1384396242",
+   "name": "Fideo cabellin ecológico",
+   "amount": 70,
+   "con": [
+    "Espirales",
+    "Pasta alimenticia, integral, hervida",
+    "Arroz redondo vaporizado"
+   ],
+   "sin": [
+    "Espirales cocción rápida",
+    "Pasta alimenticia, integral, hervida",
+    "Arroz redondo vaporizado"
+   ]
+  },
+  {
+   "id": "off_5ab41c347a",
+   "name": "Fideo cabellin",
+   "amount": 70,
+   "con": [
+    "Espirales cocción rápida",
+    "Pasta alimenticia, integral, hervida",
+    "Arroz largo vaporizado"
+   ],
+   "sin": [
+    "Espirales cocción rápida",
+    "Pasta alimenticia, integral, hervida",
+    "Arroz redondo vaporizado"
+   ]
+  },
+  {
+   "id": "off_69292078fc",
+   "name": "Espagueti",
+   "amount": 70,
+   "con": [
+    "Macarrón",
+    "Pasta alimenticia, cruda",
+    "Couscous Con especias"
+   ],
+   "sin": [
+    "Pasta alimenticia, integral, cruda",
+    "Macarrón",
+    "Pasta de trigo sarraceno"
+   ]
+  },
+  {
+   "id": "off_8e43e9ba28",
+   "name": "Tallarines",
+   "amount": 70,
+   "con": [
+    "Macarrones",
+    "Pasta alimenticia, cruda",
+    "Couscous Con especias"
+   ],
+   "sin": [
+    "Macarrones",
+    "Pasta alimenticia, integral, cruda",
+    "Pasta de trigo sarraceno"
+   ]
+  },
+  {
+   "id": "off_97c749d3f8",
+   "name": "Macarrón",
+   "amount": 70,
+   "con": [
+    "Fideos",
+    "Pasta alimenticia, cruda",
+    "Couscous Con especias"
+   ],
+   "sin": [
+    "Pasta alimenticia, integral, cruda",
+    "Fideos",
+    "Pasta de trigo sarraceno"
+   ]
+  },
+  {
+   "id": "off_eec4bcc373",
+   "name": "Espirales cocción rápida",
+   "amount": 70,
+   "con": [
+    "Fideo Entrefino",
+    "Arroz largo vaporizado",
+    "8 Tortillas Trigo y maíz"
+   ],
+   "sin": [
+    "Fideo Entrefino",
+    "Arroz redondo vaporizado",
+    "8 Tortillas Trigo y maíz"
+   ]
+  },
+  {
+   "id": "off_95d3083903",
+   "name": "Espirales",
+   "amount": 70,
+   "con": [
+    "Fideo Entrefino",
+    "Arroz largo vaporizado",
+    "8 Tortillas Trigo y maíz"
+   ],
+   "sin": [
+    "Fideo Entrefino",
+    "Arroz redondo vaporizado",
+    "8 Tortillas Trigo y maíz"
+   ]
+  },
+  {
+   "id": "off_fc00bab5ec",
+   "name": "3 min espirales",
+   "amount": 70,
+   "con": [
+    "Fideo Entrefino",
+    "Arroz largo vaporizado",
+    "8 Tortillas Trigo y maíz"
+   ],
+   "sin": [
+    "Fideo Entrefino",
+    "Arroz redondo vaporizado",
+    "8 Tortillas Trigo y maíz"
+   ]
+  },
+  {
+   "id": "off_ab5d1e801a",
+   "name": "Fideo cabello de ángel",
+   "amount": 70,
+   "con": [
+    "Espirales",
+    "Pasta alimenticia, integral, hervida",
+    "Arroz largo vaporizado"
+   ],
+   "sin": [
+    "Espirales cocción rápida",
+    "Pasta alimenticia, integral, hervida",
+    "Arroz largo vaporizado"
+   ]
+  },
+  {
+   "id": "off_586ac9542b",
+   "name": "Macarrón Fino",
+   "amount": 70,
+   "con": [
+    "Pasta alimenticia, integral, cruda",
+    "Fideos",
+    "Couscous Con especias"
+   ],
+   "sin": [
+    "Pasta alimenticia, integral, cruda",
+    "Fideo grueso",
+    "Pasta de trigo sarraceno"
+   ]
+  },
+  {
+   "id": "off_2cc633fd28",
+   "name": "Dátil deshuesado",
+   "amount": 150,
+   "con": [
+    "Uva pasa",
+    "Mango deshidratado",
+    "Manzana Deshidratada"
+   ],
+   "sin": [
+    "Uva pasa",
+    "Mango deshidratado",
+    "Piña deshidratada"
+   ]
+  },
+  {
+   "id": "off_e0df9accd1",
+   "name": "Harina de trigo integral",
+   "amount": 70,
+   "con": [
+    "Arroz para ensaladas y guarnición",
+    "CUSCÚS Grano mediano",
+    "Arroz integral, crudo"
+   ],
+   "sin": [
+    "CUSCÚS Grano mediano",
+    "Arroz para ensaladas y guarnición",
+    "Arroz integral, crudo"
+   ]
+  },
+  {
+   "id": "off_97af8e0cc6",
+   "name": "Harina integral trigo",
+   "amount": 70,
+   "con": [
+    "Arroz para ensaladas y guarnición",
+    "CUSCÚS Grano mediano",
+    "Bulgur"
+   ],
+   "sin": [
+    "CUSCÚS Grano mediano",
+    "Arroz para ensaladas y guarnición",
+    "Bulgur"
+   ]
+  },
+  {
+   "id": "off_bf237b9615",
+   "name": "Harina maiz",
+   "amount": 70,
+   "con": [
+    "Arroz carnaroli",
+    "CUSCÚS Grano mediano",
+    "Bulgur"
+   ],
+   "sin": [
+    "Arroz de CAMBOYA",
+    "CUSCÚS Grano mediano",
+    "Bulgur"
+   ]
+  },
+  {
+   "id": "off_d26b91398e",
+   "name": "Macarrones Penne Rigate N.73",
+   "amount": 70,
+   "con": [
+    "Fideos",
+    "Pasta alimenticia, integral, cruda",
+    "Couscous Con especias"
+   ],
+   "sin": [
+    "Pasta alimenticia, integral, cruda",
+    "Fideos",
+    "Pasta de trigo sarraceno"
+   ]
+  },
+  {
+   "id": "off_2148d628a0",
+   "name": "Macarrón Rayado",
+   "amount": 70,
+   "con": [
+    "Fideos",
+    "Pasta alimenticia, integral, cruda",
+    "Couscous Con especias"
+   ],
+   "sin": [
+    "Pasta alimenticia, integral, cruda",
+    "Fideos",
+    "Pasta de trigo sarraceno"
+   ]
+  },
+  {
+   "id": "off_317648409f",
+   "name": "Espaguetis",
+   "amount": 70,
+   "con": [
+    "Macarrón Rayado",
+    "Pasta alimenticia, cruda",
+    "Couscous Con especias"
+   ],
+   "sin": [
+    "Pasta alimenticia, cruda",
+    "Macarrón grande",
+    "Pasta de trigo sarraceno"
+   ]
+  },
+  {
+   "id": "off_5efd35e3a6",
+   "name": "Espirales tricolor",
+   "amount": 70,
+   "con": [
+    "Fideo cabellin",
+    "Arroz largo vaporizado",
+    "8 Tortillas Trigo y maíz"
+   ],
+   "sin": [
+    "Fideo cabellin ecológico",
+    "Arroz redondo vaporizado",
+    "8 Tortillas Trigo y maíz"
+   ]
+  },
+  {
+   "id": "off_330427ee45",
+   "name": "Leche Semi Sin Lactosa",
+   "amount": 150,
+   "con": [
+    "leche semidesnata",
+    "Leche, semidesnatada, pasteurizada",
+    "Leche, vaca, omega 3"
+   ],
+   "sin": [
+    "leche semidesnata",
+    "Leche, vaca, omega 3",
+    "Leche, semidesnatada, pasteurizada"
+   ]
+  },
+  {
+   "id": "off_95c3cfa796",
+   "name": "Yogur cabra bio",
+   "amount": 150,
+   "con": [
+    "Yogur Natural Sin Lactosa",
+    "Yogur BIO leche de vaca 420G",
+    "Yogur natural cabra oveja"
+   ],
+   "sin": [
+    "Yogur Natural Sin Lactosa",
+    "Yogur BIO leche de vaca 420G",
+    "Bio - Yogur natural ecológico"
+   ]
+  },
+  {
+   "id": "off_1f7a9248ba",
+   "name": "Leche Calcio",
+   "amount": 150,
+   "con": [
+    "Leche Milbona Omega 3",
+    "Leche semidesnatada enriquecida con calcio 100% natural",
+    "Leche enriquecida con calcio 100% natural semidesnatada"
+   ],
+   "sin": [
+    "Leche Milbona Omega 3",
+    "Leche, vaca, omega 3",
+    "Leche semidesnatada enriquecida con calcio 100% natural"
+   ]
+  },
+  {
+   "id": "off_81a9913f85",
+   "name": "Yogur natural desnatado 0%",
+   "amount": 150,
+   "con": [
+    "Yogur bifidus natural 0%",
+    "Yogur natural desnatado de pastoreo",
+    "Yogur bio natural 0%"
+   ],
+   "sin": [
+    "Yogur bifidus natural 0%",
+    "Yogur bífidus natural",
+    "Yogur natural desnatado de pastoreo"
+   ]
+  },
+  {
+   "id": "off_d76317577f",
+   "name": "Yogur estilo griego natural",
+   "amount": 150,
+   "con": [
+    "Yogur griego natural",
+    "Yogur Natural Griego",
+    "Yogur griego"
+   ],
+   "sin": [
+    "Yogur griego natural",
+    "Yogur griego",
+    "Yogur Natural Griego"
+   ]
+  },
+  {
+   "id": "off_7af1ccb872",
+   "name": "Yogur Natural Griego",
+   "amount": 150,
+   "con": [
+    "Yogur natural al estilo griego",
+    "Yogur griego natural",
+    "Yogur estilo griego natural"
+   ],
+   "sin": [
+    "Yogur griego natural",
+    "Yogur natural al estilo griego",
+    "Yogur estilo griego natural"
+   ]
+  },
+  {
+   "id": "off_b392fc7154",
+   "name": "Mozzarella con leche pasteurizada de vaca",
+   "amount": 150,
+   "con": [
+    "Queso mozzarella en lonchas",
+    "Queso mozzarella",
+    "Queso rallado mozzarella"
+   ],
+   "sin": [
+    "Queso mozzarella en lonchas",
+    "Queso rallado mozzarella",
+    "Queso mozzarella"
+   ]
+  },
+  {
+   "id": "off_44b284c358",
+   "name": "Natural Yogur",
+   "amount": 150,
+   "con": [
+    "Yogur cremoso natural",
+    "Yogur, búlgaro",
+    "Bio - Yogur natural ecológico"
+   ],
+   "sin": [
+    "Yogur, búlgaro",
+    "Yogur cremoso natural",
+    "Bio - Yogur natural ecológico"
+   ]
+  },
+  {
+   "id": "off_13d778e842",
+   "name": "Queso de cabra tierno",
+   "amount": 150,
+   "con": [
+    "rulo de queso de cabra",
+    "Queso feta",
+    "Queso de cabra"
+   ],
+   "sin": [
+    "Queso feta",
+    "rulo de queso de cabra",
+    "Queso de cabra"
+   ]
+  },
+  {
+   "id": "off_1e164dbe93",
+   "name": "Yogur de Cabra Natural",
+   "amount": 150,
+   "con": [
+    "Yogur, enriquecido, natural",
+    "Yogur natural cabra oveja",
+    "Yogur Natural Sin Lactosa"
+   ],
+   "sin": [
+    "Yogur, enriquecido, natural",
+    "Yogur Natural Sin Lactosa",
+    "Yogur natural cabra oveja"
+   ]
+  },
+  {
+   "id": "off_ad1bec99fb",
+   "name": "Queso fresco",
+   "amount": 150,
+   "con": [
+    "Queso fresco de burgos",
+    "Queso fresco villalón",
+    "Queso fresco tipo Burgos"
+   ],
+   "sin": [
+    "Queso fresco de burgos",
+    "Queso fresco Burgos Bajo en Sal",
+    "Queso fresco villalón"
+   ]
+  },
+  {
+   "id": "off_4f8355af89",
+   "name": "Queso fresco batido desnatado",
+   "amount": 150,
+   "con": [
+    "Queso fresco batido 0%",
+    "Queso fresco batido",
+    "Queso fresco batido Quark"
+   ],
+   "sin": [
+    "Queso fresco batido 0%",
+    "Queso fresco batido",
+    "Queso fresco batido proteína plus"
+   ]
+  },
+  {
+   "id": "off_9725c3eb72",
+   "name": "Queso fresco batido 0%",
+   "amount": 150,
+   "con": [
+    "Queso fresco batido desnatado",
+    "Queso fresco batido",
+    "Queso Fresco Batido 0% M.G."
+   ],
+   "sin": [
+    "Queso fresco batido desnatado",
+    "Queso fresco batido",
+    "Queso fresco batido proteína plus"
+   ]
+  },
+  {
+   "id": "off_7fe8cb3115",
+   "name": "Queso fresco batido",
+   "amount": 150,
+   "con": [
+    "Queso fresco batido 0%",
+    "Queso fresco batido desnatado",
+    "Queso Fresco Batido 0% M.G."
+   ],
+   "sin": [
+    "Queso fresco batido 0%",
+    "Queso fresco batido desnatado",
+    "Queso fresco batido"
+   ]
+  },
+  {
+   "id": "off_0a1cbd16c7",
+   "name": "Skyr to go Erdbeere",
+   "amount": 150,
+   "con": [
+    "Skyr to go Heidelbeere",
+    "Skyr Natural",
+    "Skyr High Protein"
+   ],
+   "sin": [
+    "Skyr to go Heidelbeere",
+    "Skyr Natural",
+    "Skyr + protein"
+   ]
+  },
+  {
+   "id": "off_8742857643",
+   "name": "Skyr Natural",
+   "amount": 150,
+   "con": [
+    "Skyr",
+    "Skyr High Protein",
+    "Skyr + protein"
+   ],
+   "sin": [
+    "Skyr + protein",
+    "Skyr",
+    "Skyr High Protein"
+   ]
+  },
+  {
+   "id": "off_09e62e754c",
+   "name": "Kéfir cabra bio",
+   "amount": 150,
+   "con": [
+    "Kefir natural",
+    "Kefir de cabra",
+    "Kefir"
+   ],
+   "sin": [
+    "Kefir natural",
+    "Kefir",
+    "Kefir de cabra"
+   ]
+  },
+  {
+   "id": "off_28e0394057",
+   "name": "Skyr to go Heidelbeere",
+   "amount": 150,
+   "con": [
+    "Skyr to go Erdbeere",
+    "Skyr Natural",
+    "Skyr High Protein"
+   ],
+   "sin": [
+    "Skyr to go Erdbeere",
+    "Skyr Natural",
+    "Skyr + protein"
+   ]
+  },
+  {
+   "id": "off_622467f7e8",
+   "name": "Queso fresco tradicional de vaca y cabra",
+   "amount": 150,
+   "con": [
+    "Queso fresco tradicional servilleta",
+    "Queso fresco servilleta",
+    "Queso fresco de burgos"
+   ],
+   "sin": [
+    "Queso fresco tradicional servilleta",
+    "Queso fresco de burgos",
+    "Queso fresco servilleta"
+   ]
+  },
+  {
+   "id": "off_2f870e5102",
+   "name": "Queso fresco vaca y cabra",
+   "amount": 150,
+   "con": [
+    "Queso fresco servilleta",
+    "Queso fresco de cabra",
+    "Queso fresco tradicional servilleta"
+   ],
+   "sin": [
+    "Queso fresco tradicional servilleta",
+    "Queso fresco servilleta",
+    "Queso fresco de cabra"
+   ]
+  },
+  {
+   "id": "off_c9c4f91635",
+   "name": "Queso fresco Burgos 0% M.G.",
+   "amount": 150,
+   "con": [
+    "Queso fresco 0% m.g",
+    "Queso burgos carrefour 0%",
+    "Queso fresco 0%"
+   ],
+   "sin": [
+    "Queso burgos carrefour 0%",
+    "Queso fresco 0% m.g",
+    "Queso fresco 0%"
+   ]
+  },
+  {
+   "id": "off_a6a718dc64",
+   "name": "Queso fresco vaca",
+   "amount": 150,
+   "con": [
+    "Queso fresco de burgos",
+    "Queso Fresco Natural",
+    "Queso fresco tradicional de vaca y cabra"
+   ],
+   "sin": [
+    "Queso fresco de burgos",
+    "Queso fresco tradicional servilleta",
+    "Queso Fresco Natural"
+   ]
+  },
+  {
+   "id": "off_3773eda785",
+   "name": "Queso fresco batido Quark",
+   "amount": 150,
+   "con": [
+    "Queso Fresco Batido 0% M.G.",
+    "Queso fresco batido",
+    "Queso fresco batido desnatado"
+   ],
+   "sin": [
+    "Queso fresco batido",
+    "Queso Fresco Batido",
+    "Queso Fresco Batido 0% M.G."
+   ]
+  },
+  {
+   "id": "off_d83b0c4699",
+   "name": "Queso fresco Burgos Bajo en Sal",
+   "amount": 150,
+   "con": [
+    "Queso fresco villalón",
+    "Queso fresco Burgos natural",
+    "Queso fresco tradicional servilleta"
+   ],
+   "sin": [
+    "Queso fresco villalón",
+    "Queso fresco tradicional servilleta",
+    "Queso fresco Burgos natural"
+   ]
+  },
+  {
+   "id": "off_60916bb3b1",
+   "name": "Queso fresco 0%",
+   "amount": 150,
+   "con": [
+    "Queso fresco 0% m.g",
+    "Queso fresco Burgos 0% M.G.",
+    "Queso burgos carrefour 0%"
+   ],
+   "sin": [
+    "Queso fresco Burgos 0% M.G.",
+    "Queso fresco 0% m.g",
+    "Queso burgos carrefour 0%"
+   ]
+  },
+  {
+   "id": "off_2bd59c7570",
+   "name": "Queso fresco batido semidesnatado",
+   "amount": 150,
+   "con": [
+    "Queso fresco batido Quark",
+    "Queso fresco batido proteína plus",
+    "Queso fresco batido desnatado"
+   ],
+   "sin": [
+    "Queso fresco batido proteína plus",
+    "Queso fresco batido Quark",
+    "Queso fresco batido desnatado"
+   ]
+  },
+  {
+   "id": "off_7272963a63",
+   "name": "Queso Fresco Batido 0% M.G.",
+   "amount": 150,
+   "con": [
+    "Queso fresco batido",
+    "Queso fresco batido 0%",
+    "Queso fresco batido Quark"
+   ],
+   "sin": [
+    "Queso fresco batido",
+    "Queso Fresco Batido",
+    "Queso fresco batido"
+   ]
+  },
+  {
+   "id": "off_02cb39f33e",
+   "name": "Queso fresco Burgos natural",
+   "amount": 150,
+   "con": [
+    "Queso fresco villalón",
+    "Queso fresco Burgos Bajo en Sal",
+    "Queso fresco sin lactosa"
+   ],
+   "sin": [
+    "Queso fresco Burgos Bajo en Sal",
+    "Queso fresco villalón",
+    "Queso fresco sin lactosa"
+   ]
+  },
+  {
+   "id": "off_8170c07245",
+   "name": "Queso fresco servilleta",
+   "amount": 150,
+   "con": [
+    "Queso fresco vaca y cabra",
+    "Queso fresco tradicional servilleta",
+    "Queso fresco de burgos"
+   ],
+   "sin": [
+    "Queso fresco tradicional servilleta",
+    "Queso fresco vaca y cabra",
+    "Queso fresco de burgos"
+   ]
+  },
+  {
+   "id": "off_cc1f1c1cbd",
+   "name": "Corazones de alcachofa congelados",
+   "amount": 200,
+   "con": [
+    "Esparragos blancos en conserva",
+    "Espinaca Hoja en Porciones",
+    "Brócoli en floretes"
+   ],
+   "sin": [
+    "Esparragos blancos en conserva",
+    "Espinaca Hoja en Porciones",
+    "Coliflor, hervida"
+   ]
+  },
+  {
+   "id": "off_33eaaf88fd",
+   "name": "Queso mozzarella en lonchas",
+   "amount": 150,
+   "con": [
+    "Mozzarella",
+    "Mozzarella rallado",
+    "Queso mozzarella"
+   ],
+   "sin": [
+    "Mozzarella rallado",
+    "Mozzarella",
+    "Queso mozzarella"
+   ]
+  },
+  {
+   "id": "off_4de0de606a",
+   "name": "Piña y coco",
+   "amount": 150,
+   "con": [
+    "Mango, crudo",
+    "Kiwi",
+    "Pera"
+   ],
+   "sin": [
+    "Mango, crudo",
+    "Kiwi",
+    "Manzana"
+   ]
+  },
+  {
+   "id": "off_55cd5ec65e",
+   "name": "Mezcla de brotes de judía, bambú, col, castañas y zanahoria",
+   "amount": 200,
+   "con": [
+    "Calabacín",
+    "Esparragos blanco, en conserva",
+    "Calabaza, hervida"
+   ],
+   "sin": [
+    "Calabacín, asado",
+    "Esparragos blanco, en conserva",
+    "Calabaza, hervida"
+   ]
+  },
+  {
+   "id": "off_adf029a9ee",
+   "name": "Bebida de soja con calcio",
+   "amount": 150,
+   "con": [
+    "Bebida soja enriquecida calcio",
+    "Bebida de Soja UHT",
+    "Bebida soja classic"
+   ],
+   "sin": [
+    "Bebida soja enriquecida calcio",
+    "Bebida de Soja UHT",
+    "Bebida de soja calcio"
+   ]
+  },
+  {
+   "id": "off_012f4cf1c3",
+   "name": "Aceite de Oliva Virgen Extra. Atributo Frutado. Origen España",
+   "amount": 15,
+   "con": [
+    "Aceite de oliva",
+    "Aceite de oliva",
+    "Aceite de oliva virgen extra"
+   ],
+   "sin": [
+    "Aceite de oliva",
+    "Aceite de oliva virgen extra origen España",
+    "Aceite de oliva virgen extra"
+   ]
+  },
+  {
+   "id": "off_e4abd3045b",
+   "name": "Melón En bolitas",
+   "amount": 150,
+   "con": [
+    "Naranja mandarina",
+    "Mandarina",
+    "Albaricoque"
+   ],
+   "sin": [
+    "Naranja mandarina",
+    "Melocotón manzana uva",
+    "Manzana cereza"
+   ]
+  },
+  {
+   "id": "off_099a2522b4",
+   "name": "Bebida soja calcio",
+   "amount": 150,
+   "con": [
+    "Bebida de soja calcio",
+    "Beguda de soja",
+    "Bebida de soja"
+   ],
+   "sin": [
+    "Bebida de soja calcio",
+    "Beguda de soja",
+    "Leche de soja"
+   ]
+  },
+  {
+   "id": "off_0f8d36f630",
+   "name": "Maiz",
+   "amount": 70,
+   "con": [
+    "Pasta alimenticia, rellena con carne, hervida",
+    "Arroz cocido integral",
+    "Arroz integral, hervido"
+   ],
+   "sin": [
+    "Pasta alimenticia, rellena con carne, hervida",
+    "Arroz integral, hervido",
+    "Arroz cocido integral"
+   ]
+  },
+  {
+   "id": "off_23f0380d39",
+   "name": "Mango congelado",
+   "amount": 150,
+   "con": [
+    "Melocotón manzana uva",
+    "Naranja mandarina",
+    "Manzana cereza"
+   ],
+   "sin": [
+    "Melocotón manzana uva",
+    "Manzana cereza",
+    "Naranja mandarina"
+   ]
+  },
+  {
+   "id": "off_61d95aafe5",
+   "name": "Queso de cabra",
+   "amount": 150,
+   "con": [
+    "Queso para Ensalada",
+    "Queso feta",
+    "Queso Camembert 20-30% MG/ES"
+   ],
+   "sin": [
+    "Queso para Ensalada",
+    "Queso Camembert 20-30% MG/ES",
+    "Queso feta"
+   ]
+  },
+  {
+   "id": "off_47903c9e4d",
+   "name": "Queso feta",
+   "amount": 150,
+   "con": [
+    "Queso para Ensalada",
+    "Queso de cabra",
+    "rulo de queso de cabra"
+   ],
+   "sin": [
+    "Queso para Ensalada",
+    "Queso de cabra",
+    "Queso Camembert 20-30% MG/ES"
+   ]
+  },
+  {
+   "id": "off_83103244b2",
+   "name": "Rulo queso de cabra",
+   "amount": 150,
+   "con": [
+    "Queso brie",
+    "Queso tierno",
+    "rulo de queso de cabra"
+   ],
+   "sin": [
+    "Queso brie",
+    "Queso feta",
+    "Queso Camembert 60% MG/ES"
+   ]
+  },
+  {
+   "id": "off_36db85b8a1",
+   "name": "Crema suave de queso",
+   "amount": 150,
+   "con": [
+    "Queso gaztazarra",
+    "Dados queso",
+    "Queso ibérico semicurado"
+   ],
+   "sin": [
+    "Queso gaztazarra",
+    "Dados queso",
+    "Queso de Castilla-La Mancha, oveja, vaca y cabra"
+   ]
+  },
+  {
+   "id": "off_c723a927b6",
+   "name": "Mato",
+   "amount": 150,
+   "con": [
+    "Queso fresco villalón",
+    "Queso fresco de burgos",
+    "Ricotta"
+   ],
+   "sin": [
+    "Queso fresco Burgos Bajo en Sal",
+    "Queso fresco de burgos",
+    "Ricotta"
+   ]
+  },
+  {
+   "id": "off_9f2c2695a8",
+   "name": "Queso tipo Burgos",
+   "amount": 150,
+   "con": [
+    "Queso fresco Burgos natural",
+    "Queso fresco",
+    "Queso fresco villalón"
+   ],
+   "sin": [
+    "Queso fresco Burgos natural",
+    "Queso fresco",
+    "Queso Fresco Natural"
+   ]
+  },
+  {
+   "id": "off_7cb596d136",
+   "name": "Queso burgos carrefour 0%",
+   "amount": 150,
+   "con": [
+    "Queso fresco 0% m.g",
+    "Queso fresco Burgos 0% M.G.",
+    "Queso fresco 0%"
+   ],
+   "sin": [
+    "Queso fresco Burgos 0% M.G.",
+    "Queso fresco 0% m.g",
+    "Queso fresco 0%"
+   ]
+  },
+  {
+   "id": "off_f9713c4d21",
+   "name": "Queso feta ecológico",
+   "amount": 150,
+   "con": [
+    "rulo de queso de cabra",
+    "Queso brie",
+    "Queso de oveja tierno"
+   ],
+   "sin": [
+    "rulo de queso de cabra",
+    "Queso brie",
+    "Queso de cabra"
+   ]
+  },
+  {
+   "id": "off_6d057df927",
+   "name": "rulo de queso de cabra",
+   "amount": 150,
+   "con": [
+    "Queso Untable de Cabra",
+    "Queso Untable Sin Lactosa",
+    "Queso feta"
+   ],
+   "sin": [
+    "Queso Untable Sin Lactosa",
+    "Queso Untable de Cabra",
+    "Queso feta"
+   ]
+  },
+  {
+   "id": "off_762ebb56ab",
+   "name": "Leche enriquecida con calcio 100% natural",
+   "amount": 150,
+   "con": [
+    "Leche enriquecida con calcio 100% natural semidesnatada",
+    "Leche semidesnatada enriquecida con calcio 100% natural",
+    "Leche, desnatada, pasteurizada"
+   ],
+   "sin": [
+    "Leche semidesnatada enriquecida con calcio 100% natural",
+    "Leche enriquecida con calcio 100% natural semidesnatada",
+    "Leche, desnatada, pasteurizada"
+   ]
+  },
+  {
+   "id": "off_e67efa4f93",
+   "name": "Queso quark",
+   "amount": 150,
+   "con": [
+    "Queso fresco batido Quark",
+    "Queso fresco batido semidesnatado",
+    "Queso fresco batido desnatado"
+   ],
+   "sin": [
+    "Queso fresco batido Quark",
+    "Queso fresco batido semidesnatado",
+    "Queso fresco batido proteína plus"
+   ]
+  },
+  {
+   "id": "off_ee4492acee",
+   "name": "Edamame",
+   "amount": 70,
+   "con": [
+    "Soja, fresca",
+    "Seitan",
+    "Lenteja pardina cocida"
+   ],
+   "sin": [
+    "Soja, fresca",
+    "Lenteja pardina cocida",
+    "Seitan"
+   ]
+  },
+  {
+   "id": "off_2af4bb4660",
+   "name": "Pan",
+   "amount": 70,
+   "con": [
+    "Pan de molde cereales y semillas",
+    "Pan blanco, de barra",
+    "Pan blanco, tostado"
+   ],
+   "sin": [
+    "Pan de molde cereales y semillas",
+    "Pan blanco, de barra",
+    "Pan blanco, tostado sin sal"
+   ]
+  },
+  {
+   "id": "off_bcbbafa4a9",
+   "name": "Queso mozzarella fresca",
+   "amount": 150,
+   "con": [
+    "Mozzarella",
+    "Queso fresco, cabra",
+    "Queso mozzarella"
+   ],
+   "sin": [
+    "Mozzarella",
+    "Queso fresco, cabra",
+    "Queso fresco vaca y cabra"
+   ]
+  },
+  {
+   "id": "off_2b6b55827b",
+   "name": "Filetes de salmón sin piel",
+   "amount": 150,
+   "con": [
+    "Atún, plancha",
+    "Caballa, cruda",
+    "Filetes de caballa del sur"
+   ],
+   "sin": [
+    "Atún, plancha",
+    "Filetes de caballa del sur",
+    "Caballa, cruda"
+   ]
+  },
+  {
+   "id": "off_62fb799126",
+   "name": "Queso fresco",
+   "amount": 150,
+   "con": [
+    "Queso burgos carrefour 0%",
+    "Queso tipo burgos 0%",
+    "Queso fresco 0%"
+   ],
+   "sin": [
+    "Queso burgos carrefour 0%",
+    "Queso tipo burgos 0%",
+    "Queso fresco Burgos 0% M.G."
+   ]
+  },
+  {
+   "id": "off_82334feb67",
+   "name": "Queso de Cabra Caliente listo para dorar",
+   "amount": 150,
+   "con": [
+    "Queso feta",
+    "Queso brie",
+    "Queso tierno"
+   ],
+   "sin": [
+    "Queso feta",
+    "Queso brie",
+    "rulo de queso de cabra"
+   ]
+  },
+  {
+   "id": "off_511f8362e8",
+   "name": "Aceituna negras s/h",
+   "amount": 15,
+   "con": [
+    "Aceituna verde c/h",
+    "Aceituna manzanilla sin hueso",
+    "Aceituna"
+   ],
+   "sin": [
+    "Aceituna manzanilla sin hueso",
+    "Aceituna verde c/h",
+    "Aceituna"
+   ]
+  },
+  {
+   "id": "off_f25ead8a2f",
+   "name": "Filetes de Bonito del Norte",
+   "amount": 150,
+   "con": [
+    "Pez espada, crudo",
+    "Filetes de caballa",
+    "Rape, a la parrilla"
+   ],
+   "sin": [
+    "Pez espada, crudo",
+    "Rape, a la parrilla",
+    "Filetes de caballa"
+   ]
+  },
+  {
+   "id": "off_e6af19735b",
+   "name": "Pechuga de pavo Lidl",
+   "amount": 150,
+   "con": [
+    "Pechuga de pollo",
+    "Filete de pechuga corte fino",
+    "Carne de cerdo de capa blanca, lomo, parte magra, crudo"
+   ],
+   "sin": [
+    "Pechuga de pollo",
+    "Carne de cerdo de capa blanca, lomo, parte magra, crudo",
+    "Filete de pechuga corte fino"
+   ]
+  },
+  {
+   "id": "off_225e11a31c",
+   "name": "Bio organic carne picada de vacuno",
+   "amount": 150,
+   "con": [
+    "Alas de pollo congeladas",
+    "Pollo, parte sin especificar",
+    "Cerdo, chuleta, crudo"
+   ],
+   "sin": [
+    "Alas de pollo congeladas",
+    "Pollo, parte s/e",
+    "Cerdo, chuleta, crudo"
+   ]
+  },
+  {
+   "id": "off_202d2b65b6",
+   "name": "Cintas nido al huevo",
+   "amount": 150,
+   "con": [
+    "Espirales al huevo",
+    "Farfalle al huevo",
+    "Macarrones al huevo"
+   ],
+   "sin": [
+    "Plumas ralladas al huevo",
+    "Espirales al huevo",
+    "Farfalle al huevo"
+   ]
+  },
+  {
+   "id": "off_e0cba96ad3",
+   "name": "Nidos al Huevo",
+   "amount": 150,
+   "con": [
+    "Fideo al huevo",
+    "Macarrón al huevo",
+    "Espirales al huevo"
+   ],
+   "sin": [
+    "Fideo al huevo",
+    "Macarrón al huevo",
+    "Plumas ralladas al huevo"
+   ]
+  },
+  {
+   "id": "off_c91f8a0005",
+   "name": "Espirales al huevo",
+   "amount": 150,
+   "con": [
+    "Cintas nido al huevo",
+    "Farfalle al huevo",
+    "Macarrones al huevo"
+   ],
+   "sin": [
+    "Plumas ralladas al huevo",
+    "Cintas nido al huevo",
+    "Farfalle al huevo"
+   ]
+  },
+  {
+   "id": "off_48c3579c29",
+   "name": "Farfalle al huevo",
+   "amount": 150,
+   "con": [
+    "Espirales al huevo",
+    "Cintas nido al huevo",
+    "Macarrones al huevo"
+   ],
+   "sin": [
+    "Plumas ralladas al huevo",
+    "Cintas nido al huevo",
+    "Espirales al huevo"
+   ]
+  },
+  {
+   "id": "off_4e3dc9bd84",
+   "name": "Macarrones al huevo",
+   "amount": 150,
+   "con": [
+    "Espirales al huevo",
+    "Cintas nido al huevo",
+    "Farfalle al huevo"
+   ],
+   "sin": [
+    "Plumas ralladas al huevo",
+    "Cintas nido al huevo",
+    "Espirales al huevo"
+   ]
+  },
+  {
+   "id": "off_b4c44f6ebc",
+   "name": "Spaghetti al huevo",
+   "amount": 150,
+   "con": [
+    "Cintas nido al huevo",
+    "Espirales al huevo",
+    "Tallarines al huevo"
+   ],
+   "sin": [
+    "Plumas ralladas al huevo",
+    "Cintas nido al huevo",
+    "Espirales al huevo"
+   ]
+  },
+  {
+   "id": "off_a1728a1d1e",
+   "name": "Noodles con huevo",
+   "amount": 150,
+   "con": [
+    "Spaghetti al huevo",
+    "Cintas nido al huevo",
+    "Espirales al huevo"
+   ],
+   "sin": [
+    "Plumas ralladas al huevo",
+    "Cintas nido al huevo",
+    "Espirales al huevo"
+   ]
+  },
+  {
+   "id": "off_50ba8feacd",
+   "name": "Fideo al huevo",
+   "amount": 150,
+   "con": [
+    "Macarrón al huevo",
+    "Nidos al Huevo",
+    "Espirales al huevo"
+   ],
+   "sin": [
+    "Macarrón al huevo",
+    "Nidos al Huevo",
+    "Noodles con huevo"
+   ]
+  },
+  {
+   "id": "off_e7b5eacdd1",
+   "name": "Tallarines al huevo",
+   "amount": 150,
+   "con": [
+    "Cintas nido al huevo",
+    "Espirales al huevo",
+    "Farfalle al huevo"
+   ],
+   "sin": [
+    "Plumas ralladas al huevo",
+    "Cintas nido al huevo",
+    "Espirales al huevo"
+   ]
+  },
+  {
+   "id": "off_ded2017304",
+   "name": "Tumaca ajo",
+   "amount": 200,
+   "con": [
+    "Seta, plancha",
+    "Tomate para untar con aceite de oliva",
+    "Pimiento, frito"
+   ],
+   "sin": [
+    "Tomate para untar con aceite de oliva",
+    "Seta, plancha",
+    "Pimiento, frito"
+   ]
+  },
+  {
+   "id": "off_704bb6e3b8",
+   "name": "Tagliatelle al huevo",
+   "amount": 150,
+   "con": [
+    "Tallarines al huevo",
+    "Cintas nido al huevo",
+    "Espirales al huevo"
+   ],
+   "sin": [
+    "Plumas ralladas al huevo",
+    "Cintas nido al huevo",
+    "Espirales al huevo"
+   ]
+  },
+  {
+   "id": "off_62f03ea40f",
+   "name": "Macarrón al huevo",
+   "amount": 150,
+   "con": [
+    "Fideo al huevo",
+    "Nidos al Huevo",
+    "Cintas nido al huevo"
+   ],
+   "sin": [
+    "Fideo al huevo",
+    "Nidos al Huevo",
+    "Noodles con huevo"
+   ]
+  },
+  {
+   "id": "off_815e4acc14",
+   "name": "Maíz dulce ecológico",
+   "amount": 70,
+   "con": [
+    "Arroz integral, hervido",
+    "Arroz cocido integral",
+    "Pasta alimenticia, rellena con carne, hervida"
+   ],
+   "sin": [
+    "Arroz integral, hervido",
+    "Arroz cocido integral",
+    "Bulgur & lentejas"
+   ]
+  },
+  {
+   "id": "off_fb39fd0a8b",
+   "name": "Aceituna negra con hueso",
+   "amount": 15,
+   "con": [
+    "Aceituna negras s/h",
+    "Aceituna manzanilla sin hueso",
+    "Aceituna relleno pimiento"
+   ],
+   "sin": [
+    "Aceituna negras s/h",
+    "Aceituna relleno pimiento",
+    "Aceituna"
+   ]
+  },
+  {
+   "id": "off_d527d22688",
+   "name": "Aceituna relleno pimiento",
+   "amount": 15,
+   "con": [
+    "Aceituna rellena anchoa baja en sal -25%",
+    "Aceituna negras s/h",
+    "Aceituna manzanilla sin hueso"
+   ],
+   "sin": [
+    "Aceituna rellena anchoa baja en sal -25%",
+    "Aceituna negras s/h",
+    "Aceituna verde c/h"
+   ]
+  },
+  {
+   "id": "off_bb55a80be4",
+   "name": "Olives vertes dénoyautées",
+   "amount": 15,
+   "con": [
+    "Aceituna manzanilla sin hueso",
+    "Aguacate",
+    "Aguacate Hass"
+   ],
+   "sin": [
+    "Aceituna verde c/h",
+    "Aguacate",
+    "Aguacate Hass"
+   ]
+  },
+  {
+   "id": "off_821afc5b9d",
+   "name": "Aguacate Hass",
+   "amount": 15,
+   "con": [
+    "Aceituna manzanilla sin hueso",
+    "Olive verte avec anchois",
+    "Aceituna negra, con hueso"
+   ],
+   "sin": [
+    "Aceituna negra de Aragón",
+    "Olive verte avec anchois",
+    "Aceituna negra, con hueso"
+   ]
+  },
+  {
+   "id": "off_44e24c0e15",
+   "name": "Aceituna negra de Aragón",
+   "amount": 15,
+   "con": [
+    "Aceituna Ecologica verde entera",
+    "Aceituna negras s/h",
+    "Aceituna manzanilla sin hueso"
+   ],
+   "sin": [
+    "Aceituna Ecologica verde entera",
+    "Aceituna manzanilla sin hueso",
+    "Aceituna negras s/h"
+   ]
+  },
+  {
+   "id": "off_f51d168802",
+   "name": "Aceituna Ecologica verde entera",
+   "amount": 15,
+   "con": [
+    "Aceituna negra de Aragón",
+    "Aceituna negras s/h",
+    "Aceituna verde c/h"
+   ],
+   "sin": [
+    "Aceituna negra de Aragón",
+    "Aceituna manzanilla sin hueso",
+    "Aceituna negras s/h"
+   ]
+  },
+  {
+   "id": "off_d02941cda0",
+   "name": "Bebida vegetal de avena ligera",
+   "amount": 150,
+   "con": [
+    "Bebida de avena",
+    "Bebida De Avena 100% Vegetal",
+    "Bio bebida de avena"
+   ],
+   "sin": [
+    "Bebida De Avena 100% Vegetal",
+    "Bebida de avena",
+    "Bio bebida de avena"
+   ]
+  },
+  {
+   "id": "off_f212b46664",
+   "name": "Olive verte avec anchois",
+   "amount": 15,
+   "con": [
+    "Aceituna verde gazpacha",
+    "Aguacate",
+    "Aguacate Hass"
+   ],
+   "sin": [
+    "Aceituna negras s/h",
+    "Aguacate",
+    "Aguacate Hass"
+   ]
+  },
+  {
+   "id": "off_2e42af3329",
+   "name": "Aceituna manzanilla sin hueso",
+   "amount": 15,
+   "con": [
+    "Aceituna negras s/h",
+    "Aceituna verde c/h",
+    "Olives sense pinyol manzanilla"
+   ],
+   "sin": [
+    "Aceituna negras s/h",
+    "Aceituna verde c/h",
+    "Aceituna negra de Aragón"
+   ]
+  },
+  {
+   "id": "off_adc5eb215d",
+   "name": "Cigalas Mar del Norte",
+   "amount": 150,
+   "con": [
+    "Colas de langostino blanco CRUDAS",
+    "Sepias pequeñas enteras",
+    "Vieira"
+   ],
+   "sin": [
+    "Colas de langostino blanco CRUDAS",
+    "Sepias pequeñas enteras",
+    "Vieira, cruda"
+   ]
+  },
+  {
+   "id": "off_caae36d481",
+   "name": "Pipa Calabaza Natural",
+   "amount": 15,
+   "con": [
+    "Almendra sin piel",
+    "Pistacho tostado",
+    "Cacahuete tostado 0% sal añadida"
+   ],
+   "sin": [
+    "Almendra Marcona",
+    "Pistacho tostado",
+    "Cacahuete tostado 0% sal añadida"
+   ]
+  },
+  {
+   "id": "off_f245010bbc",
+   "name": "Gambòn crudo",
+   "amount": 150,
+   "con": [
+    "Calamar, crudo",
+    "Colas de langostino blanco CRUDAS",
+    "Sepia troceada con agua añadida"
+   ],
+   "sin": [
+    "Calamar, crudo",
+    "Colas de langostino blanco CRUDAS",
+    "Sepia con agua añadida"
+   ]
+  },
+  {
+   "id": "off_6d1cce470f",
+   "name": "Langostino recien cocido",
+   "amount": 150,
+   "con": [
+    "Gamba, hervido",
+    "Pulpo",
+    "Pulpo cocido troceado"
+   ],
+   "sin": [
+    "Gamba, hervido",
+    "Pulpo cocido troceado",
+    "Pulpo"
+   ]
+  },
+  {
+   "id": "off_11845711d1",
+   "name": "Pulpo cocido troceado",
+   "amount": 150,
+   "con": [
+    "Calamar, asado",
+    "Almejas en conserva",
+    "Mejillón, hervido"
+   ],
+   "sin": [
+    "Calamar, asado",
+    "Almejas en conserva",
+    "Sepia"
+   ]
+  },
+  {
+   "id": "off_0b37e031d5",
+   "name": "Langostino cocido",
+   "amount": 150,
+   "con": [
+    "Calamar, asado",
+    "Almejas en conserva",
+    "Sepia troceada con agua añadida"
+   ],
+   "sin": [
+    "Sepia con agua añadida",
+    "Calamar, asado",
+    "Almejas en conserva"
+   ]
+  },
+  {
+   "id": "off_e05fea2cf6",
+   "name": "Calamares rellenos",
+   "amount": 150,
+   "con": [
+    "Mejillones",
+    "Tacos de pota al ajillo",
+    "Jurel, crudo"
+   ],
+   "sin": [
+    "Mejillones",
+    "Tacos de pota al ajillo",
+    "Sardina"
+   ]
+  },
+  {
+   "id": "off_8c18e1c0a9",
+   "name": "Atún",
+   "amount": 150,
+   "con": [
+    "Filetes de Bonito del Norte",
+    "Filetes de merluza",
+    "Rape, a la parrilla"
+   ],
+   "sin": [
+    "Filetes de Bonito del Norte",
+    "Filetes de merluza",
+    "Rape, crudo"
+   ]
+  },
+  {
+   "id": "off_589bffd6ef",
+   "name": "Alas de pollo congeladas",
+   "amount": 150,
+   "con": [
+    "Vaca/buey, solomillo, a la plancha",
+    "Cerdo, chuleta, crudo",
+    "Lomo bajo de ternera"
+   ],
+   "sin": [
+    "Vaca/buey, solomillo, a la plancha",
+    "Cerdo, chuleta, crudo",
+    "Lomo"
+   ]
+  },
+  {
+   "id": "off_e9a5298a20",
+   "name": "Pechuga de pavo al ajillo",
+   "amount": 150,
+   "con": [
+    "Pechuga de pollo",
+    "Solomillo de pollo a la parrilla",
+    "Pincho de pollo"
+   ],
+   "sin": [
+    "Pechuga de pollo",
+    "Pincho de pollo",
+    "Solomillo de pollo a la parrilla"
+   ]
+  },
+  {
+   "id": "off_28a24fc521",
+   "name": "Varitas de merluza",
+   "amount": 150,
+   "con": [
+    "Nidos al Huevo",
+    "Tallarines al huevo",
+    "Macarrones al huevo"
+   ],
+   "sin": [
+    "Nidos al Huevo",
+    "Plumas ralladas al huevo",
+    "Cintas nido al huevo"
+   ]
+  },
+  {
+   "id": "off_79a4815c75",
+   "name": "Filetes de caballa del sur",
+   "amount": 150,
+   "con": [
+    "Atún, plancha",
+    "Salmón",
+    "Salmón noruego"
+   ],
+   "sin": [
+    "Atún, plancha",
+    "Salmón",
+    "Ventresca atun claro"
+   ]
+  },
+  {
+   "id": "off_7148147fdc",
+   "name": "Bífidus natural 0%",
+   "amount": 150,
+   "con": [
+    "Bifidus 0%0% Natura",
+    "Yogures desnatado bifidus",
+    "Bifidus 0,0"
+   ],
+   "sin": [
+    "Yogures desnatado bifidus",
+    "Bifidus 0%0% Natura",
+    "Bifidus 0,0"
+   ]
+  },
+  {
+   "id": "off_d84450f81e",
+   "name": "Brocoli",
+   "amount": 200,
+   "con": [
+    "Coliflor, hervida",
+    "Remolacha, en conserva",
+    "Champiñon"
+   ],
+   "sin": [
+    "Coliflor, hervida",
+    "Remolacha, en conserva",
+    "Seta"
+   ]
+  },
+  {
+   "id": "off_9b14074aae",
+   "name": "Filetes de merluza",
+   "amount": 150,
+   "con": [
+    "Lomo de bacalao",
+    "Rape, plancha",
+    "Lenguado"
+   ],
+   "sin": [
+    "Lomo de bacalao",
+    "Rape, plancha",
+    "Panga, cruda"
+   ]
+  },
+  {
+   "id": "off_357bfb08b8",
+   "name": "Caballa del sur en tomate",
+   "amount": 150,
+   "con": [
+    "Filetes de Bonito del Norte",
+    "Pez espada, crudo",
+    "Atun En Agua Jumbo"
+   ],
+   "sin": [
+    "Filetes de Bonito del Norte",
+    "Pez espada, crudo",
+    "Dorada, plancha"
+   ]
+  },
+  {
+   "id": "off_10fb1d3094",
+   "name": "Lomo de bacalao",
+   "amount": 150,
+   "con": [
+    "Filetes de merluza",
+    "Merluza fresca",
+    "Rape, plancha"
+   ],
+   "sin": [
+    "Filetes de merluza",
+    "Merluza fresca",
+    "Panga, cruda"
+   ]
+  },
+  {
+   "id": "off_8db88dcafa",
+   "name": "Lomos de SALMÓN keta",
+   "amount": 150,
+   "con": [
+    "Lenguado, plancha",
+    "Filetes de anchoa",
+    "Boquerón"
+   ],
+   "sin": [
+    "Lenguado, plancha",
+    "Boquerón",
+    "Filetes de anchoa"
+   ]
+  },
+  {
+   "id": "off_cf72a09071",
+   "name": "Bifidus ciruelas pasas",
+   "amount": 150,
+   "con": [
+    "Yogur bifidus natural 0%",
+    "Bifidus 0%0% Natura",
+    "Yogures desnatado bifidus"
+   ],
+   "sin": [
+    "Yogur bifidus natural 0%",
+    "Yogures desnatado bifidus",
+    "Bifidus 0%0% Natura"
+   ]
+  },
+  {
+   "id": "off_27bd5ce01d",
+   "name": "Bebida de trigo espelta",
+   "amount": 150,
+   "con": [
+    "Bebida de avena",
+    "Bebida De Avena 100% Vegetal",
+    "Bebida de espelta"
+   ],
+   "sin": [
+    "Bebida De Avena 100% Vegetal",
+    "Bebida de avena",
+    "Bebida de espelta"
+   ]
+  },
+  {
+   "id": "off_f37fd4728a",
+   "name": "Yaourt limon 0%",
+   "amount": 150,
+   "con": [
+    "Yogures desnatado bifidus",
+    "Yogur bifidus natural 0%",
+    "Bifidus 0%0% Natura"
+   ],
+   "sin": [
+    "Yogures desnatado bifidus",
+    "Yogur bifidus natural 0%",
+    "Yogur, desnatado, sabor natural"
+   ]
+  },
+  {
+   "id": "off_e66e2899eb",
+   "name": "Bebida de espelta",
+   "amount": 150,
+   "con": [
+    "Bebida de trigo espelta",
+    "Bebida de Arroz con Calcio",
+    "Bebida de avena"
+   ],
+   "sin": [
+    "Bebida de trigo espelta",
+    "Bebida de arroz",
+    "Bebida de Arroz con Calcio"
+   ]
+  },
+  {
+   "id": "off_4913a331e5",
+   "name": "Aceituna gordal",
+   "amount": 15,
+   "con": [
+    "Aceituna",
+    "Aceituna negras s/h",
+    "Aceituna verde gazpacha"
+   ],
+   "sin": [
+    "Aceituna",
+    "Aceituna verde gazpacha",
+    "Aceituna negras s/h"
+   ]
+  },
+  {
+   "id": "off_e6cb7e6439",
+   "name": "Bifidus 0,0",
+   "amount": 150,
+   "con": [
+    "Bifidus 0%0% Natura",
+    "Yogures desnatado bifidus",
+    "Yogur bifidus natural 0%"
+   ],
+   "sin": [
+    "Yogures desnatado bifidus",
+    "Bifidus 0%0% Natura",
+    "Yogur bifidus natural 0%"
+   ]
+  },
+  {
+   "id": "off_e4ecae61db",
+   "name": "Bifidus Natural 0%",
+   "amount": 150,
+   "con": [
+    "Bifidus 0%0% Natura",
+    "Yogures desnatado bifidus",
+    "Bifidus 0,0"
+   ],
+   "sin": [
+    "Yogures desnatado bifidus",
+    "Bifidus 0%0% Natura",
+    "Bifidus 0,0"
+   ]
+  },
+  {
+   "id": "off_dd16398cbb",
+   "name": "Chuletas de cerdo Sajonia",
+   "amount": 150,
+   "con": [
+    "Ternera, costilla, cruda",
+    "Pato, entero, crudo",
+    "Pavo, muslo, con piel, crudo"
+   ],
+   "sin": [
+    "Ternera, costilla, cruda",
+    "Pato, entero, crudo",
+    "Filete de pechuga de pollo rural"
+   ]
+  },
+  {
+   "id": "off_4a46c65b42",
+   "name": "Bifidus edulcorado 0%",
+   "amount": 150,
+   "con": [
+    "Bifidus 0,0",
+    "Bifidus 0%0% Natura",
+    "Yogures desnatado bifidus"
+   ],
+   "sin": [
+    "Bifidus 0,0",
+    "Yogures desnatado bifidus",
+    "Bifidus 0%0% Natura"
+   ]
+  },
+  {
+   "id": "off_6b33a48b47",
+   "name": "Filete de lomo cerdo tierno",
+   "amount": 150,
+   "con": [
+    "Pechuga de pollo fileteado",
+    "Vaca/buey, solomillo, crudo",
+    "Conejo de granja, carne, cruda"
+   ],
+   "sin": [
+    "Pechuga de pollo fileteado",
+    "Pollo, pechuga, plancha",
+    "Vaca/buey, solomillo, crudo"
+   ]
+  },
+  {
+   "id": "off_19edbbf1fe",
+   "name": "Maxi lomo",
+   "amount": 150,
+   "con": [
+    "Brocheta de pavo",
+    "Vaca/buey, solomillo, a la plancha",
+    "Ternera, solomillo, asado"
+   ],
+   "sin": [
+    "Brocheta de pavo",
+    "Pincho de pollo",
+    "Vaca/buey, solomillo, a la plancha"
+   ]
+  },
+  {
+   "id": "off_af64dddc1d",
+   "name": "Burget meat pollo",
+   "amount": 150,
+   "con": [
+    "Brocheta de pavo",
+    "Pavo, crudo",
+    "Pechuga de pavo Lidl"
+   ],
+   "sin": [
+    "Brocheta de pavo",
+    "Pechuga de pavo Lidl",
+    "Pavo, crudo"
+   ]
+  },
+  {
+   "id": "off_3e2f716dbe",
+   "name": "Medallones solomillo",
+   "amount": 150,
+   "con": [
+    "Filete de pechuga",
+    "Pechuga de pollo",
+    "Filete de pechuga corte fino"
+   ],
+   "sin": [
+    "Filete de pechuga",
+    "Pechuga de pollo",
+    "Filetes de pechuga de pavo"
+   ]
+  },
+  {
+   "id": "off_6ea7485603",
+   "name": "Codillo de cerdo a la parrilla",
+   "amount": 150,
+   "con": [
+    "Cordero lechal, espalda, cruda",
+    "Pollo, muslo, con piel, crudo",
+    "Brochetas de pollo"
+   ],
+   "sin": [
+    "Cordero lechal, pierna, cruda",
+    "Pollo, muslo, con piel, crudo",
+    "Brochetas de pollo"
+   ]
+  },
+  {
+   "id": "off_a70c527252",
+   "name": "Lentejas cocidas",
+   "amount": 70,
+   "con": [
+    "Alubias rojas cocidas",
+    "Alubia blanca, en conserva",
+    "Garbanzo, hervido"
+   ],
+   "sin": [
+    "Alubia granja",
+    "Alubia blanca, en conserva",
+    "Garbanzo, hervida"
+   ]
+  },
+  {
+   "id": "off_47bf8d16e5",
+   "name": "Garbanzos con trufa",
+   "amount": 70,
+   "con": [
+    "Garbanzos pedrosillano",
+    "Garbanzo, en conserva",
+    "Garbanzo, hervido"
+   ],
+   "sin": [
+    "Garbanzos pedrosillano",
+    "Garbanzo, en conserva",
+    "Garbanzo, hervida"
+   ]
+  },
+  {
+   "id": "off_7fa77026e9",
+   "name": "Aceituna verde c/h",
+   "amount": 15,
+   "con": [
+    "Aceituna negras s/h",
+    "Aceituna manzanilla sin hueso",
+    "Aceituna negra de Aragón"
+   ],
+   "sin": [
+    "Aceituna manzanilla sin hueso",
+    "Aceituna negras s/h",
+    "Aceituna negra de Aragón"
+   ]
+  },
+  {
+   "id": "off_d5c5ad2abf",
+   "name": "Garbanzos congelados",
+   "amount": 70,
+   "con": [
+    "Garbanzo seco",
+    "Garbanzos",
+    "Garbanzo, hervido"
+   ],
+   "sin": [
+    "Garbanzo seco",
+    "Garbanzos",
+    "Garbanzo, hervida"
+   ]
+  },
+  {
+   "id": "off_c160d4bf26",
+   "name": "Lenteja pelada",
+   "amount": 70,
+   "con": [
+    "Alubia pinta",
+    "Garbanzo, seco, crudo",
+    "Alubia blanca, seca, cruda"
+   ],
+   "sin": [
+    "Alubia pinta",
+    "Garbanzo seco",
+    "Alubia blanca, seca, cruda"
+   ]
+  },
+  {
+   "id": "off_92de8c2611",
+   "name": "Garbanzos tostados",
+   "amount": 70,
+   "con": [
+    "Judías blancas, cocidas",
+    "Lenteja, hervida",
+    "Garbanzo, hervido"
+   ],
+   "sin": [
+    "Judías blancas, cocidas",
+    "Lenteja, hervida",
+    "Garbanzo, hervida"
+   ]
+  },
+  {
+   "id": "off_60296afa77",
+   "name": "Sésamo",
+   "amount": 15,
+   "con": [
+    "Almendra sin piel",
+    "Nuez natural",
+    "Pistacho natural"
+   ],
+   "sin": [
+    "Almendra sin piel",
+    "Nuez natural",
+    "Pistacho tostado"
+   ]
+  },
+  {
+   "id": "off_e766bac5f8",
+   "name": "Cacahuete repelado sin sal",
+   "amount": 15,
+   "con": [
+    "Anacardo",
+    "Almendra, tostada",
+    "Almendra sin piel"
+   ],
+   "sin": [
+    "Anacardo",
+    "Almendra, tostada",
+    "Almendra Marcona"
+   ]
+  },
+  {
+   "id": "off_3a948ea227",
+   "name": "Alubias",
+   "amount": 70,
+   "con": [
+    "Garbanzos congelados",
+    "Lenteja, hervida",
+    "Lentejas"
+   ],
+   "sin": [
+    "Garbanzos congelados",
+    "Lenteja, hervida",
+    "Lenteja Pardina"
+   ]
+  },
+  {
+   "id": "off_9804cab427",
+   "name": "Alubias cocidas sin sal añadida",
+   "amount": 70,
+   "con": [
+    "Garbanzos cocidos congelados &quot;Carrefour&quot;",
+    "Lenteja, en conserva",
+    "Garbanzo, hervido"
+   ],
+   "sin": [
+    "Garbanzos cocidos congelados &quot;Carrefour&quot;",
+    "Lenteja, en conserva",
+    "Garbanzo, hervida"
+   ]
+  },
+  {
+   "id": "off_db9b1b900d",
+   "name": "Garbanzos a la jardinera",
+   "amount": 70,
+   "con": [
+    "Garbanzo, hervida",
+    "Garbanzo, en conserva",
+    "Garbanzo, hervido"
+   ],
+   "sin": [
+    "Garbanzo, en conserva",
+    "Garbanzo, hervida",
+    "Garbanzo, hervido"
+   ]
+  },
+  {
+   "id": "off_ba921aefba",
+   "name": "Alubias blancas cocidas en conserva",
+   "amount": 70,
+   "con": [
+    "Lenteja, hervida",
+    "Garbanzo, hervido",
+    "Garbanzos cocidos congelados &quot;Carrefour&quot;"
+   ],
+   "sin": [
+    "Lenteja, hervida",
+    "Garbanzo, hervida",
+    "Garbanzos cocidos congelados &quot;Carrefour&quot;"
+   ]
+  },
+  {
+   "id": "off_46f5eca13c",
+   "name": "Kiwi Sungold",
+   "amount": 150,
+   "con": [
+    "Ciruela, con piel, cruda",
+    "Cereza",
+    "Melocotón"
+   ],
+   "sin": [
+    "Ciruela, con piel, cruda",
+    "Granada",
+    "Caqui"
+   ]
+  },
+  {
+   "id": "off_92a3825d03",
+   "name": "Muesli con Frutas y frutos secos",
+   "amount": 70,
+   "con": [
+    "Muesli Frutas",
+    "Muesli cereales",
+    "MUESLI de copos 5 cereales natural"
+   ],
+   "sin": [
+    "Muesli cereales",
+    "Muesli Frutas",
+    "MUESLI de copos 5 cereales natural"
+   ]
+  },
+  {
+   "id": "off_d49631f335",
+   "name": "Copos de trigo integral con frutas",
+   "amount": 70,
+   "con": [
+    "Copos DE MAÍZ",
+    "Digestive avena",
+    "Pan Pão de trigo"
+   ],
+   "sin": [
+    "Bio copos de maíz tostados",
+    "Digestive avena",
+    "Pan Pão de trigo"
+   ]
+  },
+  {
+   "id": "off_dc58611c2e",
+   "name": "Uva verdes sin semilla",
+   "amount": 150,
+   "con": [
+    "Manzana y plátano",
+    "Piña Natural Rodajas",
+    "Cereza"
+   ],
+   "sin": [
+    "Piña trozos",
+    "Manzana y plátano",
+    "Caqui"
+   ]
+  },
+  {
+   "id": "off_cd67f595c2",
+   "name": "Muesli Frutas",
+   "amount": 70,
+   "con": [
+    "Copos de trigo integral con frutas",
+    "Muesli cereales",
+    "MUESLI de copos 5 cereales natural"
+   ],
+   "sin": [
+    "Copos de trigo integral con frutas",
+    "Muesli cereales",
+    "Muesli con Frutas y frutos secos"
+   ]
+  },
+  {
+   "id": "off_5a7470714b",
+   "name": "Patatas enteras",
+   "amount": 70,
+   "con": [
+    "Maíz",
+    "150 G-maíz Dulce En Grano",
+    "Batata"
+   ],
+   "sin": [
+    "Maíz",
+    "Batata, cruda",
+    "Batata"
+   ]
+  },
+  {
+   "id": "off_02c23cf8b6",
+   "name": "Garbanzos tostados y salados",
+   "amount": 70,
+   "con": [
+    "Garbanzos tostados",
+    "Garbanzo seco",
+    "Garbanzo, hervido"
+   ],
+   "sin": [
+    "Garbanzos tostados",
+    "Garbanzo seco",
+    "Garbanzos cocidos congelados &quot;Carrefour&quot;"
+   ]
+  },
+  {
+   "id": "off_60added852",
+   "name": "Almendra cruda",
+   "amount": 15,
+   "con": [
+    "Nuez California",
+    "Pistacho",
+    "Cacahuete, crudo, con cáscara"
+   ],
+   "sin": [
+    "Nuez California",
+    "Avellana, cruda, con cáscara",
+    "Cacahuete, crudo, con cáscara"
+   ]
+  },
+  {
+   "id": "off_895cd31059",
+   "name": "Avena en Copos",
+   "amount": 70,
+   "con": [
+    "Avena",
+    "Copos de avena",
+    "Avena, cruda"
+   ],
+   "sin": [
+    "Avena, cruda",
+    "Copos de avena",
+    "Avena"
+   ]
+  },
+  {
+   "id": "off_f0a5a30a7a",
+   "name": "Copos de avena",
+   "amount": 70,
+   "con": [
+    "Avena",
+    "Avena, cruda",
+    "Avena en Copos"
+   ],
+   "sin": [
+    "Avena, cruda",
+    "Avena",
+    "Avena Molida"
+   ]
+  },
+  {
+   "id": "off_a92a8088f3",
+   "name": "Arroz aromático jazmín",
+   "amount": 70,
+   "con": [
+    "CUSCÚS Grano mediano",
+    "Bulgur",
+    "Quinoa"
+   ],
+   "sin": [
+    "CUSCÚS Grano mediano",
+    "Bulgur",
+    "Quinoa BIO"
+   ]
+  },
+  {
+   "id": "off_0a5267a773",
+   "name": "Arroz redondo",
+   "amount": 70,
+   "con": [
+    "CUSCÚS Grano mediano",
+    "Bulgur",
+    "Quinoa"
+   ],
+   "sin": [
+    "CUSCÚS Grano mediano",
+    "Bulgur",
+    "Quinoa BIO"
+   ]
+  },
+  {
+   "id": "off_1608ff4414",
+   "name": "Arroz bomba",
+   "amount": 70,
+   "con": [
+    "CUSCÚS Grano mediano",
+    "Bulgur",
+    "Quinoa"
+   ],
+   "sin": [
+    "CUSCÚS Grano mediano",
+    "Bulgur",
+    "Quinoa BIO"
+   ]
+  },
+  {
+   "id": "off_7d5399b24b",
+   "name": "Salvado De Avena - Hacendado - 500 G",
+   "amount": 70,
+   "con": [
+    "Salvado de avena",
+    "Avena Molida",
+    "Avena, cruda"
+   ],
+   "sin": [
+    "Avena Molida",
+    "Salvado de avena",
+    "Avena, cruda"
+   ]
+  },
+  {
+   "id": "off_53ff645758",
+   "name": "Copos de avena integral",
+   "amount": 70,
+   "con": [
+    "Avena",
+    "Copos de avena suaves",
+    "Avena, cruda"
+   ],
+   "sin": [
+    "Avena",
+    "Avena, cruda",
+    "Avena Molida"
+   ]
+  },
+  {
+   "id": "off_99b068c0ba",
+   "name": "Judías troceadas",
+   "amount": 70,
+   "con": [
+    "Garbanzos cocidos congelados &quot;Carrefour&quot;",
+    "Alubias cocidas sin sal añadida",
+    "Garbanzo, hervido"
+   ],
+   "sin": [
+    "Garbanzos cocidos congelados &quot;Carrefour&quot;",
+    "Alubias cocidas sin sal añadida",
+    "Garbanzo, hervida"
+   ]
+  },
+  {
+   "id": "off_db4676c8a8",
+   "name": "Alubia granja",
+   "amount": 70,
+   "con": [
+    "Lentejas",
+    "Garbanzo lechoso",
+    "Lenteja, en conserva"
+   ],
+   "sin": [
+    "Lenteja Pardina",
+    "Garbanzo lechoso",
+    "Lenteja, en conserva"
+   ]
+  },
+  {
+   "id": "off_785abe178c",
+   "name": "Garbanzo",
+   "amount": 70,
+   "con": [
+    "Garbanzo, hervido",
+    "Garbanzo, hervida",
+    "Garbanzo lechoso"
+   ],
+   "sin": [
+    "Garbanzo, hervida",
+    "Garbanzo, hervido",
+    "Garbanzos cocidos congelados &quot;Carrefour&quot;"
+   ]
+  },
+  {
+   "id": "off_6e362aa1ca",
+   "name": "Alubia blanca ecológica",
+   "amount": 70,
+   "con": [
+    "Garbanzo Ecológico Extra",
+    "Lenteja, hervida",
+    "Lentejas Rubias"
+   ],
+   "sin": [
+    "Garbanzo Ecológico Extra",
+    "Lenteja, hervida",
+    "Lenteja Pardina"
+   ]
+  },
+  {
+   "id": "off_8fde10ffe7",
+   "name": "Alubias blancas cocidas",
+   "amount": 70,
+   "con": [
+    "Lenteja, en conserva",
+    "Garbanzo, hervido",
+    "Lenteja pardina cocida"
+   ],
+   "sin": [
+    "Lenteja, en conserva",
+    "Garbanzo, hervida",
+    "Lentejas Rubias"
+   ]
+  },
+  {
+   "id": "off_8c90c4e957",
+   "name": "Lenteja tipo Lanzarote",
+   "amount": 70,
+   "con": [
+    "Alubia Roja",
+    "Alubia blanca, seca, cruda",
+    "Garbanzo"
+   ],
+   "sin": [
+    "Alubia negra",
+    "Alubia blanca, seca, cruda",
+    "Garbanzo seco"
+   ]
+  },
+  {
+   "id": "off_36e02d1ea6",
+   "name": "Alubia mungo",
+   "amount": 70,
+   "con": [
+    "Lenteja rápida",
+    "Garbanzo lechoso",
+    "Lenteja, seca, cruda"
+   ],
+   "sin": [
+    "Lenteja tipo Lanzarote",
+    "Garbanzo lechoso",
+    "Lenteja, hervida"
+   ]
+  },
+  {
+   "id": "off_61912305c2",
+   "name": "Lenteja rápida",
+   "amount": 70,
+   "con": [
+    "Alubia negra",
+    "Alubia blanca, seca, cruda",
+    "Garbanzo"
+   ],
+   "sin": [
+    "Alubia negra",
+    "Alubia blanca, seca, cruda",
+    "Garbanzo seco"
+   ]
+  },
+  {
+   "id": "off_ea3ec1fc73",
+   "name": "Alubia pinta",
+   "amount": 70,
+   "con": [
+    "Lentejas",
+    "Garbanzo lechoso",
+    "Lenteja, hervida"
+   ],
+   "sin": [
+    "Lenteja Pardina",
+    "Garbanzo lechoso",
+    "Lenteja, hervida"
+   ]
+  },
+  {
+   "id": "off_4aad1f3a08",
+   "name": "Lenteja pardina cocida",
+   "amount": 70,
+   "con": [
+    "Garbanzo, hervido",
+    "Alubia blanca, en conserva",
+    "Alubias cocidas sin sal añadida"
+   ],
+   "sin": [
+    "Garbanzo, hervida",
+    "Alubia blanca, en conserva",
+    "Alubias cocidas sin sal añadida"
+   ]
+  },
+  {
+   "id": "off_1c9cdcb043",
+   "name": "Arroz redondo vaporizado",
+   "amount": 70,
+   "con": [
+    "Espirales",
+    "8 Tortillas Trigo y maíz",
+    "Pasta alimenticia, integral, hervida"
+   ],
+   "sin": [
+    "Espirales cocción rápida",
+    "8 Tortillas Trigo y maíz",
+    "Pasta alimenticia, integral, hervida"
+   ]
+  },
+  {
+   "id": "off_39a9508070",
+   "name": "Arroz vaporizado",
+   "amount": 70,
+   "con": [
+    "Bio trigo espelta hinchado",
+    "Espirales",
+    "Bulgur & lentejas"
+   ],
+   "sin": [
+    "Bio trigo espelta hinchado",
+    "Espirales cocción rápida",
+    "Bulgur & lentejas"
+   ]
+  },
+  {
+   "id": "off_4926ffb6b7",
+   "name": "Alubia blanca",
+   "amount": 70,
+   "con": [
+    "Lentejas",
+    "Garbanzo lechoso",
+    "Lenteja, hervida"
+   ],
+   "sin": [
+    "Lenteja Pardina",
+    "Garbanzo lechoso",
+    "Lenteja, hervida"
+   ]
+  },
+  {
+   "id": "off_5f80cdca43",
+   "name": "Alubia plancheta",
+   "amount": 70,
+   "con": [
+    "Garbanzos pedrosillano",
+    "Lenteja, en conserva",
+    "Garbanzo, hervido"
+   ],
+   "sin": [
+    "Garbanzos pedrosillano",
+    "Lenteja, en conserva",
+    "Garbanzo, hervida"
+   ]
+  },
+  {
+   "id": "off_3ac7ea858f",
+   "name": "Obleas de arroz",
+   "amount": 70,
+   "con": [
+    "Bio trigo espelta hinchado",
+    "Espirales",
+    "8 Tortillas Trigo y maíz"
+   ],
+   "sin": [
+    "Bio trigo espelta hinchado",
+    "Espirales cocción rápida",
+    "8 Tortillas Trigo y maíz"
+   ]
+  },
+  {
+   "id": "off_bfbd845bed",
+   "name": "Semillas de Lino Dorado",
+   "amount": 15,
+   "con": [
+    "Anacardo natural",
+    "Pistacho natural",
+    "Cacahuete tostado 0% sal añadida"
+   ],
+   "sin": [
+    "Anacardo natural",
+    "Cacahuete tostado 0% sal añadida",
+    "Pistacho tostado"
+   ]
+  },
+  {
+   "id": "off_b7a666606f",
+   "name": "Semillas lino dorado",
+   "amount": 15,
+   "con": [
+    "Pistacho natural",
+    "Sésamo",
+    "Almendra Marcona"
+   ],
+   "sin": [
+    "Pistacho natural",
+    "Almendra Marcona",
+    "Cacahuete tostado 0% sal añadida"
+   ]
+  },
+  {
+   "id": "off_aef70b4ad9",
+   "name": "Pan de leche con aceite girasol",
+   "amount": 70,
+   "con": [
+    "Pan de leche tiernos y deliciosos",
+    "Pan 6 cereales",
+    "Pan de molde integral 15 cereales y semillas"
+   ],
+   "sin": [
+    "Pan 6 cereales",
+    "Pan de leche tiernos y deliciosos",
+    "Pan de molde integral 15 cereales y semillas"
+   ]
+  },
+  {
+   "id": "off_c2d0ec1106",
+   "name": "Aceite para freír",
+   "amount": 15,
+   "con": [
+    "Nuez natural pelada",
+    "Nuez, cruda, con cáscara",
+    "Noix de macadamia"
+   ],
+   "sin": [
+    "Nuez natural pelada",
+    "Nuez, cruda, con cáscara",
+    "Nueces de macadamia"
+   ]
+  },
+  {
+   "id": "off_ac002cbd7b",
+   "name": "Palitos de pan con aceite de oliva virgen extra 10g*",
+   "amount": 70,
+   "con": [
+    "Pan blanco, frito",
+    "Pan de leche con aceite girasol",
+    "3 barras de pan aceite de oliva"
+   ],
+   "sin": [
+    "Pan de leche con aceite girasol",
+    "Pan blanco, frito",
+    "3 barras de pan aceite de oliva"
+   ]
+  },
+  {
+   "id": "off_09a6a8571e",
+   "name": "Aceite de oliva virgen extra",
+   "amount": 15,
+   "con": [
+    "Nuez natural pelada",
+    "Nuez",
+    "Nueces de macadamia"
+   ],
+   "sin": [
+    "Nuez natural pelada",
+    "Nuez, cruda, con cáscara",
+    "Nueces de macadamia"
+   ]
+  },
+  {
+   "id": "off_2bf4da0205",
+   "name": "Aceite de oliva",
+   "amount": 15,
+   "con": [
+    "Nuez natural pelada",
+    "Nuez",
+    "Nueces de macadamia"
+   ],
+   "sin": [
+    "Nuez natural pelada",
+    "Nuez, cruda, con cáscara",
+    "Nueces de macadamia"
+   ]
+  },
+  {
+   "id": "off_896cde2507",
+   "name": "Bebida De Avena 100% Vegetal",
+   "amount": 150,
+   "con": [
+    "Bebida de avena",
+    "Bebida de avena coviran",
+    "Bebida de Arroz con Calcio"
+   ],
+   "sin": [
+    "Bebida de avena",
+    "Bebida de avena coviran",
+    "Bebida de arroz"
+   ]
+  },
+  {
+   "id": "off_7fcb63a4e7",
+   "name": "Bebida de avena con calcio",
+   "amount": 150,
+   "con": [
+    "Bebida de avena",
+    "Bebida De Avena 100% Vegetal",
+    "Bebida de Arroz con Calcio"
+   ],
+   "sin": [
+    "Bebida De Avena 100% Vegetal",
+    "Bebida de avena",
+    "Bebida de arroz"
+   ]
+  },
+  {
+   "id": "off_a7e2a48590",
+   "name": "Bebida de arroz auchan",
+   "amount": 150,
+   "con": [
+    "Bebida de arroz",
+    "Bebida de Arroz con Calcio",
+    "Bebida de avena"
+   ],
+   "sin": [
+    "Bebida de arroz",
+    "Bebida de Arroz con Calcio",
+    "Bebida De Avena 100% Vegetal"
+   ]
+  },
+  {
+   "id": "off_1361c466b8",
+   "name": "Bifidus 00% quinoa y avena",
+   "amount": 70,
+   "con": [
+    "150 G-maíz Dulce En Grano",
+    "Maíz",
+    "Pan integral"
+   ],
+   "sin": [
+    "150 G-maíz Dulce En Grano",
+    "Maíz",
+    "Pan de molde 12 cereales y semillas"
+   ]
+  },
+  {
+   "id": "off_c2083350f8",
+   "name": "Bebida de avena",
+   "amount": 150,
+   "con": [
+    "Bebida De Avena 100% Vegetal",
+    "Bebida de avena coviran",
+    "Bebida de Arroz con Calcio"
+   ],
+   "sin": [
+    "Bebida De Avena 100% Vegetal",
+    "Bebida de avena coviran",
+    "Bebida de arroz"
+   ]
+  },
+  {
+   "id": "off_e3bfc43735",
+   "name": "Bebida de arroz",
+   "amount": 150,
+   "con": [
+    "Bebida de Arroz con Calcio",
+    "Bebida de avena",
+    "Bebida De Avena 100% Vegetal"
+   ],
+   "sin": [
+    "Bebida de Arroz con Calcio",
+    "Bebida De Avena 100% Vegetal",
+    "Bebida de avena"
+   ]
+  },
+  {
+   "id": "off_0f47e02077",
+   "name": "Aceituna verde gordal aliñada",
+   "amount": 15,
+   "con": [
+    "Aceituna negra de Aragón",
+    "Aceituna Ecologica verde entera",
+    "Aceituna verde c/h"
+   ],
+   "sin": [
+    "Aceituna negra de Aragón",
+    "Aceituna Ecologica verde entera",
+    "Aceituna manzanilla sin hueso"
+   ]
+  },
+  {
+   "id": "off_b24dd411aa",
+   "name": "Sardinilla aceite oliva reducido en sal rr-90",
+   "amount": 150,
+   "con": [
+    "Filetes de anchoa",
+    "Ventresca atun claro",
+    "Bonito del Norte"
+   ],
+   "sin": [
+    "Filetes de anchoa",
+    "Bonito del Norte",
+    "Ventresca atun claro"
+   ]
+  },
+  {
+   "id": "off_c3b4225160",
+   "name": "Pistacho tostado",
+   "amount": 15,
+   "con": [
+    "Cacahuete tostado 0% sal añadida",
+    "Anacardo natural",
+    "Almendra sin piel"
+   ],
+   "sin": [
+    "Cacahuete tostado 0% sal añadida",
+    "Anacardo natural",
+    "Almendra Marcona"
+   ]
+  },
+  {
+   "id": "off_3bd43bc4b5",
+   "name": "Pistacho crudo natural",
+   "amount": 15,
+   "con": [
+    "Crema de cacahuete",
+    "Almendra, cruda",
+    "Almendra cruda"
+   ],
+   "sin": [
+    "Crema de cacahuete",
+    "Almendra, cruda, con cáscara",
+    "Almendra cruda sin piel"
+   ]
+  },
+  {
+   "id": "off_bdbbe347c6",
+   "name": "Cacahuete tostado 0% sal añadida",
+   "amount": 15,
+   "con": [
+    "Pistacho tostado",
+    "Anacardo natural",
+    "Almendra sin piel"
+   ],
+   "sin": [
+    "Pistacho tostado",
+    "Anacardo natural",
+    "Almendra Marcona"
+   ]
+  },
+  {
+   "id": "off_fa00f30b9e",
+   "name": "Pistacho natural",
+   "amount": 15,
+   "con": [
+    "Cacahuete tostado 0% sal añadida",
+    "Anacardo natural",
+    "Almendra Marcona"
+   ],
+   "sin": [
+    "Cacahuete tostado 0% sal añadida",
+    "Almendra Marcona",
+    "Anacardo natural"
+   ]
+  },
+  {
+   "id": "off_86a4d5a045",
+   "name": "Anacardo natural",
+   "amount": 15,
+   "con": [
+    "Cacahuete tostado 0% sal añadida",
+    "Pistacho tostado",
+    "Almendra sin piel"
+   ],
+   "sin": [
+    "Cacahuete tostado 0% sal añadida",
+    "Pistacho tostado",
+    "Almendra Marcona"
+   ]
+  },
+  {
+   "id": "off_112e69832d",
+   "name": "Almendra cruda sin piel",
+   "amount": 15,
+   "con": [
+    "Nuez California",
+    "Crema de cacahuete",
+    "Pistacho natural"
+   ],
+   "sin": [
+    "Nuez California",
+    "Crema de cacahuete",
+    "Cacahuete repelado sin sal"
+   ]
+  },
+  {
+   "id": "off_3e1429a464",
+   "name": "Manzana Deshidratada",
+   "amount": 150,
+   "con": [
+    "Mango deshidratado",
+    "Piña deshidratada",
+    "Dátil deshuesado"
+   ],
+   "sin": [
+    "Piña deshidratada",
+    "Mango deshidratado",
+    "Uva pasa"
+   ]
+  },
+  {
+   "id": "off_346886f117",
+   "name": "Sardina aceite oliva rr-125",
+   "amount": 150,
+   "con": [
+    "Filetes de anchoa",
+    "Ventresca atun claro",
+    "Bonito del Norte"
+   ],
+   "sin": [
+    "Filetes de anchoa",
+    "Bonito del Norte",
+    "Ventresca atun claro"
+   ]
+  },
+  {
+   "id": "off_10bcda4945",
+   "name": "Leche con calcio desnatada",
+   "amount": 150,
+   "con": [
+    "Leche desnatada calcio",
+    "Leche de vaca, desnatada, pasteurizada",
+    "Leche, desnatada, pasteurizada"
+   ],
+   "sin": [
+    "Leche de vaca, desnatada, pasteurizada",
+    "Leche, desnatada, pasteurizada",
+    "Leche desnatada calcio"
+   ]
+  },
+  {
+   "id": "off_fc67edd2bc",
+   "name": "Leche Sin Lactosa semi Asturiana",
+   "amount": 150,
+   "con": [
+    "Leche, semidesnatada, pasteurizada",
+    "Leche Campo Nuestro",
+    "Leche Semi President"
+   ],
+   "sin": [
+    "Leche, vaca, omega 3",
+    "Leche, semidesnatada, pasteurizada",
+    "Leche Campo Nuestro"
+   ]
+  },
+  {
+   "id": "off_615d62a539",
+   "name": "Leche de vaca clásica",
+   "amount": 150,
+   "con": [
+    "Leche de vaca, entera",
+    "Leche de Galicia",
+    "Leche Lacturale"
+   ],
+   "sin": [
+    "Leche de vaca, entera",
+    "Leche, vaca, omega 3",
+    "Leche Lacturale"
+   ]
+  },
+  {
+   "id": "off_80fa4687a3",
+   "name": "Leche Campo Nuestro",
+   "amount": 150,
+   "con": [
+    "Leche, semidesnatada, pasteurizada",
+    "Leche Sin Lactosa semi Asturiana",
+    "Leche, vaca, omega 3"
+   ],
+   "sin": [
+    "Leche, vaca, omega 3",
+    "Leche, semidesnatada, pasteurizada",
+    "Leche Sin Lactosa semi Asturiana"
+   ]
+  },
+  {
+   "id": "off_2ee3f03699",
+   "name": "Leche Lacturale",
+   "amount": 150,
+   "con": [
+    "Leche de vaca, entera",
+    "Leche fresca pastoreo",
+    "Leche de Galicia"
+   ],
+   "sin": [
+    "Leche de vaca, entera",
+    "Leche de Galicia",
+    "Leche fresca pastoreo"
+   ]
+  },
+  {
+   "id": "off_5cd648cfba",
+   "name": "Kéfir de oveja natural desnatado ecológico tarro",
+   "amount": 150,
+   "con": [
+    "Queso fresco batido",
+    "Yogur rico en proteínas natural",
+    "Queso fresco batido"
+   ],
+   "sin": [
+    "Queso fresco batido",
+    "Queso fresco batido",
+    "Yogur rico en proteínas natural"
+   ]
+  },
+  {
+   "id": "off_44d1d08fa3",
+   "name": "Skyr",
+   "amount": 150,
+   "con": [
+    "Skyr Natural",
+    "Skyr High Protein",
+    "Skyr + protein"
+   ],
+   "sin": [
+    "Skyr High Protein",
+    "Skyr Natural",
+    "Skyr + protein"
+   ]
+  },
+  {
+   "id": "off_533d15532c",
+   "name": "Kefir naturalny",
+   "amount": 150,
+   "con": [
+    "Yogur bio natural 0%",
+    "Yogur natural desnatado 0%",
+    "Yogurt"
+   ],
+   "sin": [
+    "Yogur natural desnatado 0%",
+    "Yogur natural 8x130 gr.",
+    "Yogurt"
+   ]
+  },
+  {
+   "id": "off_a60c00dc4b",
+   "name": "Leche fibra natural",
+   "amount": 150,
+   "con": [
+    "Leche de producción sostenible",
+    "Leche Semi President",
+    "Leche"
+   ],
+   "sin": [
+    "Leche de producción sostenible",
+    "Leche Semi President",
+    "Leche, vaca, omega 3"
+   ]
+  },
+  {
+   "id": "off_17edc1ca04",
+   "name": "Queso fresco tipo Burgos",
+   "amount": 150,
+   "con": [
+    "Queso fresco villalón",
+    "Queso fresco Burgos Bajo en Sal",
+    "Queso fresco"
+   ],
+   "sin": [
+    "Queso fresco Burgos Bajo en Sal",
+    "Queso fresco villalón",
+    "Queso fresco"
+   ]
+  },
+  {
+   "id": "off_4ce0192618",
+   "name": "Yogur natural 8x130 gr.",
+   "amount": 150,
+   "con": [
+    "Yogur, búlgaro",
+    "Yogur de granja natural",
+    "Yogur \"tipo bio\", natural"
+   ],
+   "sin": [
+    "Yogur, búlgaro",
+    "Yogur \"tipo bio\", natural",
+    "Yogur de granja natural"
+   ]
+  },
+  {
+   "id": "off_8e16b04417",
+   "name": "Queso rallado para fundir",
+   "amount": 150,
+   "con": [
+    "Queso rallado mozzarella",
+    "Queso mozzarella",
+    "Queso mozzarella en lonchas"
+   ],
+   "sin": [
+    "Queso mozzarella",
+    "Queso rallado mozzarella",
+    "Queso mozzarella en lonchas"
+   ]
+  },
+  {
+   "id": "off_e5feaef61f",
+   "name": "Queso rallado - quatro quesos",
+   "amount": 150,
+   "con": [
+    "Queso rallado para fundir",
+    "Queso rallado sin lactosa",
+    "Queso rallado, genérico"
+   ],
+   "sin": [
+    "Queso rallado sin lactosa",
+    "Queso rallado para fundir",
+    "Queso rallado, genérico"
+   ]
+  },
+  {
+   "id": "off_db04cdc123",
+   "name": "Yogur desnatado natural magro 0% mg",
+   "amount": 150,
+   "con": [
+    "Yogur natural desnatado 0%",
+    "Yogur bifidus natural 0%",
+    "Yogur Natural 0% materia grasa"
+   ],
+   "sin": [
+    "Yogur natural desnatado 0%",
+    "Yogur bifidus natural 0%",
+    "Yogur bífidus natural"
+   ]
+  },
+  {
+   "id": "off_4a30daa308",
+   "name": "Espirales de lentejas rosa sin gluten",
+   "amount": 70,
+   "con": [
+    "Pasta alimenticia, cruda",
+    "Macarrón Rayado",
+    "Cuscús fino"
+   ],
+   "sin": [
+    "Pasta alimenticia, integral, cruda",
+    "Macarrón grande",
+    "CUSCÚS Grano mediano"
+   ]
+  },
+  {
+   "id": "off_4e52874df3",
+   "name": "Queso Blanco Pasteurizado Natural",
+   "amount": 150,
+   "con": [
+    "Queso fresco",
+    "Queso Fresco Natural",
+    "Queso fresco"
+   ],
+   "sin": [
+    "Queso fresco",
+    "Queso fresco",
+    "Queso Fresco Natural"
+   ]
+  },
+  {
+   "id": "off_86afab9173",
+   "name": "Pure de patatas",
+   "amount": 70,
+   "con": [
+    "Batata",
+    "Batata, cruda",
+    "Boniato, crudo"
+   ],
+   "sin": [
+    "Batata",
+    "Boniato, crudo",
+    "Batata, cruda"
+   ]
+  },
+  {
+   "id": "off_9f80339152",
+   "name": "Pasta de trigo sarraceno",
+   "amount": 70,
+   "con": [
+    "Macarrón grande",
+    "Couscous Con especias",
+    "Espirales de lentejas rosa sin gluten"
+   ],
+   "sin": [
+    "Macarrón grande",
+    "Couscous",
+    "Espirales de lentejas rosa sin gluten"
+   ]
+  },
+  {
+   "id": "off_f6dae03cf9",
+   "name": "Bio couscous de arroz",
+   "amount": 70,
+   "con": [
+    "CUSCÚS Grano mediano",
+    "Bulgur",
+    "Quinoa"
+   ],
+   "sin": [
+    "CUSCÚS Grano mediano",
+    "Quinoa, cruda",
+    "Bulgur"
+   ]
+  },
+  {
+   "id": "off_251cfbf6f5",
+   "name": "Llet semidesnatada bonpreu",
+   "amount": 150,
+   "con": [
+    "Leche, semidesnatada, pasteurizada",
+    "Leche desatada calcio",
+    "Leche Semi President"
+   ],
+   "sin": [
+    "Leche desatada calcio",
+    "Leche, vaca, omega 3",
+    "Leche Sin Lactosa semi Asturiana"
+   ]
+  },
+  {
+   "id": "off_60661d74d2",
+   "name": "Llet sense lactosa",
+   "amount": 150,
+   "con": [
+    "Leche Semi Sin Lactosa",
+    "Leche, semidesnatada, pasteurizada",
+    "Leche Semi President"
+   ],
+   "sin": [
+    "Leche desatada calcio",
+    "Leche, vaca, omega 3",
+    "Leche Semi President"
+   ]
+  },
+  {
+   "id": "off_618387c6d4",
+   "name": "Llet uht semidesnatada",
+   "amount": 150,
+   "con": [
+    "Leche, semidesnatada, pasteurizada",
+    "leche semidesnata",
+    "Leche Semi President"
+   ],
+   "sin": [
+    "Leche desatada calcio",
+    "Leche, semidesnatada, pasteurizada",
+    "Leche Sin Lactosa semi Asturiana"
+   ]
+  },
+  {
+   "id": "off_a8339ef663",
+   "name": "Pan 15 Cereales y Semillas",
+   "amount": 70,
+   "con": [
+    "Pan de molde 12 semillas y cereales",
+    "Pan integral, tostado",
+    "Pan de molde 14 cereales y semillas"
+   ],
+   "sin": [
+    "Pan de leche",
+    "Pan integral, tostado",
+    "Pan de molde 12 semillas y cereales"
+   ]
+  },
+  {
+   "id": "off_9ed0abde61",
+   "name": "Macarrons vegetals",
+   "amount": 70,
+   "con": [
+    "Pasta alimenticia, cruda",
+    "Tallarín",
+    "Couscous Con especias"
+   ],
+   "sin": [
+    "Pasta alimenticia, integral, cruda",
+    "Tallarín",
+    "Pasta de trigo sarraceno"
+   ]
+  },
+  {
+   "id": "off_dcb624070f",
+   "name": "Espirals vegetals",
+   "amount": 70,
+   "con": [
+    "Macarrons eco",
+    "Pasta alimenticia, cruda",
+    "Couscous Con especias"
+   ],
+   "sin": [
+    "Macarrons eco",
+    "Pasta alimenticia, integral, cruda",
+    "Cuscús fino"
+   ]
+  },
+  {
+   "id": "off_e4c57dcbda",
+   "name": "Pan de molde 14 cereales y semillas",
+   "amount": 70,
+   "con": [
+    "Pan de molde 12 semillas y cereales",
+    "Pan integral, tostado",
+    "Pan de molde integral 15 cereales y semillas"
+   ],
+   "sin": [
+    "Pan de molde 12 semillas y cereales",
+    "Pan integral, tostado",
+    "Pan De Molde Multicereales"
+   ]
+  },
+  {
+   "id": "off_9586b44c08",
+   "name": "Pan Multicereales",
+   "amount": 70,
+   "con": [
+    "Pan integral, tostado",
+    "Pan integral",
+    "Pan blanco, integral"
+   ],
+   "sin": [
+    "Pan integral, tostado",
+    "Pan de molde 12 semillas y cereales",
+    "Pan blanco, integral, de molde, tostado"
+   ]
+  },
+  {
+   "id": "off_dd11a209cb",
+   "name": "Queso mascarpone",
+   "amount": 150,
+   "con": [
+    "Queso fresco batido semidesnatado",
+    "Queso fresco batido",
+    "Queso fresco batido Quark"
+   ],
+   "sin": [
+    "Queso fresco batido",
+    "Queso fresco batido semidesnatado",
+    "Queso Fresco Batido"
+   ]
+  },
+  {
+   "id": "off_1fafa93efd",
+   "name": "Macarrons eco",
+   "amount": 70,
+   "con": [
+    "Macarrones Penne Rigate N.73",
+    "Pasta alimenticia, cruda",
+    "Couscous Con especias"
+   ],
+   "sin": [
+    "Pasta alimenticia, integral, cruda",
+    "Fideos",
+    "Pasta de trigo sarraceno"
+   ]
+  },
+  {
+   "id": "off_a961c77ca3",
+   "name": "Queso fresco de burgos línea",
+   "amount": 150,
+   "con": [
+    "Queso fresco Burgos 0% M.G.",
+    "Queso burgos carrefour 0%",
+    "Queso fresco 0%"
+   ],
+   "sin": [
+    "Queso burgos carrefour 0%",
+    "Queso fresco Burgos 0% M.G.",
+    "Queso fresco 0% m.g"
+   ]
+  },
+  {
+   "id": "off_0d82233249",
+   "name": "Queso fresco Vega e Hijos",
+   "amount": 150,
+   "con": [
+    "Queso fresco de vaca y cabra",
+    "Queso fresco 250 sin sal",
+    "Queso fresco de burgos"
+   ],
+   "sin": [
+    "Queso fresco 250 sin sal",
+    "Queso fresco de vaca y cabra",
+    "Queso fresco de burgos"
+   ]
+  },
+  {
+   "id": "off_2e153bdb53",
+   "name": "Queso fresco de vaca y cabra",
+   "amount": 150,
+   "con": [
+    "Queso fresco vaca y cabra",
+    "Queso fresco Vega e Hijos",
+    "Queso fresco, cabra"
+   ],
+   "sin": [
+    "Queso fresco vaca y cabra",
+    "Queso fresco Vega e Hijos",
+    "Queso fresco 250 sin sal"
+   ]
+  },
+  {
+   "id": "off_f1f86caaf7",
+   "name": "Queso fresco cabra y vaca",
+   "amount": 150,
+   "con": [
+    "Queso fresco de burgos",
+    "Queso fresco vaca y cabra",
+    "Queso fresco de cabra"
+   ],
+   "sin": [
+    "Queso fresco de burgos",
+    "Queso fresco vaca y cabra",
+    "Queso fresco Vega e Hijos"
+   ]
+  },
+  {
+   "id": "off_9b45d6bd3c",
+   "name": "Leche Santa Clara light",
+   "amount": 150,
+   "con": [
+    "Leche fibra natural",
+    "Leche Semi President",
+    "Leche de producción sostenible"
+   ],
+   "sin": [
+    "Leche fibra natural",
+    "Leche, vaca, omega 3",
+    "Leche Semi President"
+   ]
+  },
+  {
+   "id": "off_6f7b9a2f47",
+   "name": "Leche de producción sostenible",
+   "amount": 150,
+   "con": [
+    "Leche Semi President",
+    "Leche fibra natural",
+    "Leche, vaca, omega 3"
+   ],
+   "sin": [
+    "Leche Semi President",
+    "Leche, vaca, omega 3",
+    "Leche fibra natural"
+   ]
+  },
+  {
+   "id": "off_ffc34b38fb",
+   "name": "Leche descremada sin lactosa",
+   "amount": 150,
+   "con": [
+    "Leche",
+    "Leche fibra natural",
+    "Leche de producción sostenible"
+   ],
+   "sin": [
+    "Leche fibra natural",
+    "Leche",
+    "Leche Semi President"
+   ]
+  },
+  {
+   "id": "off_0bdadc97d7",
+   "name": "Arroz largo vaporizado",
+   "amount": 70,
+   "con": [
+    "Espirales",
+    "Bulgur & lentejas",
+    "8 Tortillas Trigo y maíz"
+   ],
+   "sin": [
+    "Espirales cocción rápida",
+    "Bulgur & lentejas",
+    "8 Tortillas Trigo y maíz"
+   ]
+  },
+  {
+   "id": "off_15eaf6f928",
+   "name": "Copos de avena finos",
+   "amount": 70,
+   "con": [
+    "Copos de avena integral",
+    "Copos de avena suaves",
+    "Avena, cruda"
+   ],
+   "sin": [
+    "Copos de avena integral",
+    "Avena, cruda",
+    "Avena Molida"
+   ]
+  },
+  {
+   "id": "off_43929e5052",
+   "name": "Sésamo tostado",
+   "amount": 15,
+   "con": [
+    "Pistacho",
+    "Avellana",
+    "Crema de cacahuete"
+   ],
+   "sin": [
+    "Pistacho",
+    "Avellana",
+    "Almendra, tostada"
+   ]
+  },
+  {
+   "id": "off_260db3a34d",
+   "name": "Almendra al natural laminada",
+   "amount": 15,
+   "con": [
+    "Sésamo",
+    "Cacahuete repelado sin sal",
+    "Pistacho natural"
+   ],
+   "sin": [
+    "Sésamo",
+    "Cacahuete repelado sin sal",
+    "Nuez, cruda, con cáscara"
+   ]
+  },
+  {
+   "id": "off_59f55f47a6",
+   "name": "Almendra sin piel cruda molida",
+   "amount": 15,
+   "con": [
+    "Sésamo",
+    "GOMASIO Sésamo y sal",
+    "Semilla de Amapola"
+   ],
+   "sin": [
+    "GOMASIO Sésamo y sal",
+    "Sésamo",
+    "Semilla de Amapola"
+   ]
+  },
+  {
+   "id": "off_e5d2d5a02a",
+   "name": "Tahin crema de sesamo",
+   "amount": 15,
+   "con": [
+    "Pasta de sésamo tahini",
+    "Pasta de sésamo",
+    "Sésamo"
+   ],
+   "sin": [
+    "Pasta de sésamo tahini",
+    "Pasta de sésamo",
+    "GOMASIO Sésamo y sal"
+   ]
+  },
+  {
+   "id": "off_f058c80303",
+   "name": "Semillas de Sésamo Crudo de cultivo ecológico",
+   "amount": 15,
+   "con": [
+    "Almendra, cruda",
+    "Pistacho",
+    "Crema de cacahuete"
+   ],
+   "sin": [
+    "Pistacho",
+    "Frutos secos",
+    "Almendra, cruda"
+   ]
+  },
+  {
+   "id": "off_e61b53c346",
+   "name": "Sésamo natural",
+   "amount": 15,
+   "con": [
+    "Crema de cacahuete",
+    "Almendra cruda sin piel",
+    "Almendra, cruda, con cáscara"
+   ],
+   "sin": [
+    "Almendra, tostada",
+    "Crema de cacahuete",
+    "Pistacho tostado"
+   ]
+  },
+  {
+   "id": "off_f40c8c40da",
+   "name": "Semillas de sésamo negro",
+   "amount": 15,
+   "con": [
+    "Frutos secos",
+    "Anacardo",
+    "Pistacho"
+   ],
+   "sin": [
+    "Anacardo",
+    "Frutos secos",
+    "Pistacho"
+   ]
+  },
+  {
+   "id": "off_7c0b7b526e",
+   "name": "Semilla de Amapola",
+   "amount": 15,
+   "con": [
+    "Almendra, tostada",
+    "Cacahuete repelado sin sal",
+    "Crema de cacahuete"
+   ],
+   "sin": [
+    "Almendra, tostada",
+    "Cacahuete repelado sin sal",
+    "Almendra Marcona"
+   ]
+  },
+  {
+   "id": "off_df28c18fb8",
+   "name": "Tagliatelli al huevo",
+   "amount": 150,
+   "con": [
+    "Noodles con huevo",
+    "Tallarines al huevo",
+    "Macarrones al huevo"
+   ],
+   "sin": [
+    "Noodles con huevo",
+    "Nidos al Huevo",
+    "Plumas ralladas al huevo"
+   ]
+  },
+  {
+   "id": "off_784fb895ab",
+   "name": "Lomo bajo de ternera",
+   "amount": 150,
+   "con": [
+    "Pollo, pechuga, con piel, crudo",
+    "Conejo de granja, carne, cruda",
+    "Cerdo, solomillo, crudo"
+   ],
+   "sin": [
+    "Pollo, pechuga, con piel, crudo",
+    "Filete de pechuga de pollo rural",
+    "Vaca/buey, solomillo, crudo"
+   ]
+  },
+  {
+   "id": "off_c63dbc1dd7",
+   "name": "Semillas de lino",
+   "amount": 15,
+   "con": [
+    "Cacahuete, crudo, con cáscara",
+    "Cacahuete repelado sin sal",
+    "Pistacho natural"
+   ],
+   "sin": [
+    "Cacahuete, crudo, con cáscara",
+    "Cacahuete repelado sin sal",
+    "Almendra, tostada"
+   ]
+  },
+  {
+   "id": "off_d9bdc0fc00",
+   "name": "Sardina En Tomate RR 3",
+   "amount": 150,
+   "con": [
+    "Atún, plancha",
+    "Caballa de Andalucia",
+    "Caballa, cruda"
+   ],
+   "sin": [
+    "Atún, plancha",
+    "Caballa de Andalucia",
+    "Salmón"
+   ]
+  },
+  {
+   "id": "off_247403fd11",
+   "name": "Lomos de merluza",
+   "amount": 150,
+   "con": [
+    "Filetes de Bacalao",
+    "Rape, a la parrilla",
+    "Bacalao, crudo"
+   ],
+   "sin": [
+    "Filetes de Bacalao",
+    "Bacalao, crudo",
+    "Rape, a la parrilla"
+   ]
+  },
+  {
+   "id": "off_b02059780c",
+   "name": "Filetes de merluza sin piel",
+   "amount": 150,
+   "con": [
+    "Rape, a la parrilla",
+    "Bacalao, crudo",
+    "Filetes de Bacalao"
+   ],
+   "sin": [
+    "Bacalao, crudo",
+    "Rape, a la parrilla",
+    "Filetes de Bacalao"
+   ]
+  },
+  {
+   "id": "off_ab47d40ca6",
+   "name": "Medallones de Merluza",
+   "amount": 150,
+   "con": [
+    "Rape, a la parrilla",
+    "Bacalao, crudo",
+    "Filetes de Bacalao"
+   ],
+   "sin": [
+    "Bacalao, crudo",
+    "Rape, a la parrilla",
+    "Filetes de Bacalao"
+   ]
+  },
+  {
+   "id": "off_e53b0e68b7",
+   "name": "Medallones merluza",
+   "amount": 150,
+   "con": [
+    "Rape, a la parrilla",
+    "Bacalao, crudo",
+    "Bacalao desmigado desalado"
+   ],
+   "sin": [
+    "Bacalao, crudo",
+    "Rape, a la parrilla",
+    "Bacalao desmigado desalado"
+   ]
+  },
+  {
+   "id": "off_31ff78956d",
+   "name": "Lomos Salmón",
+   "amount": 150,
+   "con": [
+    "Atún, plancha",
+    "Filetes de anchoa",
+    "Ventresca atun claro"
+   ],
+   "sin": [
+    "Atún, plancha",
+    "Filetes de anchoa",
+    "Bonito del Norte"
+   ]
+  },
+  {
+   "id": "off_dcb6fa61a7",
+   "name": "Bebida de avena coviran",
+   "amount": 150,
+   "con": [
+    "Bebida de avena",
+    "Bebida De Avena 100% Vegetal",
+    "Bebida de Arroz con Calcio"
+   ],
+   "sin": [
+    "Bebida De Avena 100% Vegetal",
+    "Bebida de avena",
+    "Bebida de arroz"
+   ]
+  },
+  {
+   "id": "off_3d4ca8bbed",
+   "name": "Salmón salvaje",
+   "amount": 150,
+   "con": [
+    "Rape, plancha",
+    "Lenguado",
+    "Filetes de lubina"
+   ],
+   "sin": [
+    "Rape, plancha",
+    "Lubina",
+    "Lenguado"
+   ]
+  },
+  {
+   "id": "off_cfb36244c6",
+   "name": "Bio bebida de avena",
+   "amount": 150,
+   "con": [
+    "Bebida de avena",
+    "Bebida de avena coviran",
+    "Bebida De Avena 100% Vegetal"
+   ],
+   "sin": [
+    "Bebida De Avena 100% Vegetal",
+    "Bebida de avena",
+    "Bebida de avena coviran"
+   ]
+  },
+  {
+   "id": "off_c51408bc44",
+   "name": "Bebida de avena ecologica",
+   "amount": 150,
+   "con": [
+    "Bebida de avena coviran",
+    "Bebida de avena",
+    "Bebida De Avena 100% Vegetal"
+   ],
+   "sin": [
+    "Bebida de avena coviran",
+    "Bebida De Avena 100% Vegetal",
+    "Bebida de avena"
+   ]
+  },
+  {
+   "id": "off_1876ab24f8",
+   "name": "Bebida de Arroz con Calcio",
+   "amount": 150,
+   "con": [
+    "Bebida de arroz",
+    "Bebida de avena",
+    "Bebida De Avena 100% Vegetal"
+   ],
+   "sin": [
+    "Bebida de arroz",
+    "Bebida De Avena 100% Vegetal",
+    "Bebida de avena"
+   ]
+  },
+  {
+   "id": "off_3519ee3f7b",
+   "name": "Atun",
+   "amount": 150,
+   "con": [
+    "Bonito del Norte",
+    "Filetes de anchoa",
+    "Filetes de caballa de Andalucía"
+   ],
+   "sin": [
+    "Bonito del Norte",
+    "Filetes de anchoa",
+    "Bonito del norte, al vapor"
+   ]
+  },
+  {
+   "id": "off_4e11acbcca",
+   "name": "Olives sense pinyol manzanilla",
+   "amount": 15,
+   "con": [
+    "Aceituna verde gazpacha",
+    "Aguacate",
+    "Aguacate Hass"
+   ],
+   "sin": [
+    "Aceituna negras s/h",
+    "Aguacate",
+    "Aguacate Hass"
+   ]
+  },
+  {
+   "id": "off_3527636e21",
+   "name": "Salmón noruego",
+   "amount": 150,
+   "con": [
+    "Atún, plancha",
+    "Filetes de caballa",
+    "Filetes de caballa de Andalucía"
+   ],
+   "sin": [
+    "Atún, plancha",
+    "Filetes de caballa de Andalucía",
+    "Filetes de caballa"
+   ]
+  },
+  {
+   "id": "off_9a95726dc0",
+   "name": "Olives negres sense pinyol",
+   "amount": 15,
+   "con": [
+    "Aceituna negras s/h",
+    "Aceituna",
+    "Aguacate"
+   ],
+   "sin": [
+    "Aceituna",
+    "Aceituna negras s/h",
+    "Aguacate"
+   ]
+  },
+  {
+   "id": "off_8f03ad3c5b",
+   "name": "Clara de huevo",
+   "amount": 150,
+   "con": [
+    "Dados de pavo",
+    "Faneca, cruda",
+    "Pavo, pechuga, con piel, crudo"
+   ],
+   "sin": [
+    "Faneca, cruda",
+    "Dados de pavo",
+    "Pavo, pechuga, con piel, crudo"
+   ]
+  },
+  {
+   "id": "off_8699ed70d9",
+   "name": "Tonyina clara al natural",
+   "amount": 150,
+   "con": [
+    "Pavo, pechuga, sin piel, a la plancha",
+    "Atún, al natural",
+    "Rape, a la parrilla"
+   ],
+   "sin": [
+    "Bacalao, fresco, al horno",
+    "Atún, al natural",
+    "Pavo, pechuga, sin piel, a la plancha"
+   ]
+  },
+  {
+   "id": "off_4223ef2852",
+   "name": "Claras de huevos",
+   "amount": 150,
+   "con": [
+    "Dados de pavo",
+    "Atun En Agua Jumbo",
+    "Pavo, pechuga, con piel, crudo"
+   ],
+   "sin": [
+    "Atun En Agua Jumbo",
+    "Dados de pavo",
+    "Faneca, cruda"
+   ]
+  },
+  {
+   "id": "off_935a804f5a",
+   "name": "Lomo sajonia",
+   "amount": 150,
+   "con": [
+    "Cuida-t+ pechuga de pavo",
+    "Pavo, pechuga, sin piel, a la plancha",
+    "Cerdo, solomillo, asado"
+   ],
+   "sin": [
+    "Cuida-t+ pechuga de pavo",
+    "Pechuga de pavo al ajillo",
+    "Maxi pavo Dia"
+   ]
+  }
+ ]
+}

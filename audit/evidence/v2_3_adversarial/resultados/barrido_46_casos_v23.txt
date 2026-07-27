@@ -1,0 +1,663 @@
+###### LOCAL v2.3 ######
+
+== avena (60g)
+   ORIGEN: Avena, cruda | Marca Blanca | BEDCA | P15 C66.3 G6.9 387.3kcal
+   busq: Avena, cruda [BEDCA] || Harina de avena [BEDCA] || Harina de avena, cocida en agua [BEDCA]
+   familia-primero=true  n(int/fam/prep)=166/9/3
+   1. [familia] Avena Molida (Hacendado/Mercadona) 68g P9.2 C39.9 G4.8 254kcal m=97% preferred
+   2. [familia] Copos de avena suaves (LIDL/Lidl) 68g P9.2 C39.9 G4.8 253kcal m=97% preferred
+   3. [familia] Copos de avena integral (Carrefour/Carrefour) 67g P9.4 C39.5 G4.7 249kcal m=96% preferred
+   4. [familia] Copos de avena (Aldi, Holden Bridge/Aldi) 66g P7.9 C39.6 G4.6 240kcal m=95% preferred
+   5. [familia] Avena en Copos (Eroski/Eroski) 64g P7.7 C39.7 G4.2 240kcal m=96% preferred
+   6. [familia] Avena (Carrefour BIO/Carrefour) 69g P7.6 C40.0 G4.8 255kcal m=93% preferred
+   7. [familia] Copos de avena finos (Bonpreu/Bonpreu/Esclat) 67g P9.4 C39.5 G4.7 249kcal m=96% preferred
+   8. [familia] Salvado de avena (Hacendado/Mercadona) 72g P9.4 C39.6 G3.6 238kcal m=97% preferred
+   9. [intercambio] Copos de trigo espelta integral 0% (Hacendado/Mercadona) 60g P8.8 C39.6 G1.6 218kcal m=93% preferred
+   10. [intercambio] Copos de espelta (Hacendado/Mercadona) 60g P8.8 C39.6 G1.6 218kcal m=93% preferred
+
+== pan integral (60g)
+   ORIGEN: Pan integral | Marca Blanca | BEDCA | P10.9 C44 G3 249.6kcal
+   busq: Pan integral [BEDCA] || Pan tostado integral [BEDCA] || Pan blanco, integral [BEDCA]
+   familia-primero=true  n(int/fam/prep)=46/46/2
+   1. [familia] Pan blanco, integral (Marca Blanca/BEDCA) 60g P6.5 C26.4 G1.8 148kcal m=100% preferred
+   2. [familia] Pan integral, sin sal (Marca Blanca/BEDCA) 60g P6.5 C26.4 G1.8 148kcal m=100% preferred
+   3. [familia] Pan integral, de molde, tostado (Marca Blanca/BEDCA) 60g P6.5 C26.4 G1.8 150kcal m=100% preferred
+   4. [familia] Pan blanco, integral, de molde, tostado (Marca Blanca/BEDCA) 60g P6.5 C26.4 G1.8 148kcal m=100% preferred
+   5. [familia] Pan tostado integral (Marca Blanca/BEDCA) 59g P6.4 C26.3 G1.7 146kcal m=98% preferred
+   6. [familia] Pan integral, tostado (Marca Blanca/BEDCA) 54g P5.8 C26.3 G1.6 143kcal m=95% preferred
+   7. [familia] Pan de leche (Marca Blanca/BEDCA) 53g P4.8 C26.5 G2.1 146kcal m=90% preferred
+   8. [familia] Pan tipo baguette (Marca Blanca/BEDCA) 52g P5.0 C26.3 G0.6 130kcal m=88% preferred
+   9. [intercambio] Hogaza de centeno y avena (Dia/Dia) 51g P4.2 C26.5 G1.7 143kcal m=89% preferred
+   10. [intercambio] Patata, hervida (Marca Blanca/BEDCA) 169g P4.0 C26.4 G0.3 125kcal m=84% preferred
+
+== arroz (70g)
+   ORIGEN: Arroz | Marca Blanca | BEDCA | P7 C86 G0.9 360kcal
+   busq: Arroz [BEDCA] || Arroz integral, crudo [BEDCA] || Arroz, hervido [BEDCA]
+   familia-primero=false  n(int/fam/prep)=123/47/3
+   1. [intercambio] CUSCÚS Grano mediano (Carrefour BIO/Carrefour) 86g P9.5 C60.2 G1.7 299kcal m=88% preferred
+   2. [intercambio] Bulgur (Carrefour BIO, Carrefour/Carrefour) 96g P14.4 C60.5 G2.3 334kcal m=74% preferred
+   3. [intercambio] Quinoa (Auchan/Alcampo) 100g P12.0 C60.0 G7.0 366kcal m=71% preferred
+   4. [intercambio] Quinoa, cruda (Marca Blanca/BEDCA) 94g P13.0 C60.3 G5.2 340kcal m=73% preferred
+   5. [intercambio] Couscous (Carrefour BIO, Carrefour/Carrefour) 86g P9.5 C60.2 G1.7 299kcal m=88% preferred
+   6. [intercambio] Espirales (Carrefour/Carrefour) 89g P10.7 C60.5 G1.8 306kcal m=83% preferred
+   7. [intercambio] Mijo (Marca Blanca/BEDCA) 93g P10.2 C59.9 G3.9 316kcal m=80% preferred
+   8. [intercambio] Espirales de lentejas rosa sin gluten (Pasta Natura/OpenFoodFacts) 82g P9.8 C59.9 G1.1 295kcal m=86% preferred
+   9. [intercambio] Maiz crudo (Eroski/Eroski) 102g P9.5 C60.2 G4.9 347kcal m=82% preferred
+   10. [intercambio] Pasta alimenticia, cruda (Marca Blanca/BEDCA) 79g P9.5 C59.9 G1.4 290kcal m=87% preferred
+
+== pasta (70g)
+   ORIGEN: Pasta alimenticia, cruda | Marca Blanca | BEDCA | P12 C75.8 G1.8 367.4kcal
+   busq: Pasta alimenticia, cruda [BEDCA] || Pasta alimenticia, integral, cruda [BEDCA] || Pasta alimenticia, con huevo, cruda [BEDCA]
+   familia-primero=false  n(int/fam/prep)=171/5/3
+   1. [intercambio] Macarrón grande (Hacendado/Mercadona) 72g P8.6 C53.3 G1.1 264kcal m=98% preferred
+   2. [intercambio] Couscous (Carrefour BIO, Carrefour/Carrefour) 76g P8.4 C53.2 G1.5 264kcal m=99% preferred
+   3. [intercambio] Espirales de lentejas rosa sin gluten (Pasta Natura/OpenFoodFacts) 73g P8.8 C53.3 G1.0 263kcal m=98% preferred
+   4. [intercambio] Arroz (Marca Blanca/BEDCA) 62g P4.3 C53.3 G0.6 223kcal m=88% preferred
+   5. [intercambio] Arroz para ensaladas y guarnición (Carrefour, Carrefour sensation/Carrefour) 71g P6.5 C53.3 G1.1 251kcal m=94% preferred
+   6. [intercambio] Arroz thai jasmin (Golden Sun/OpenFoodFacts) 69g P5.2 C53.3 G0.8 243kcal m=90% preferred
+   7. [intercambio] CUSCÚS Grano mediano (Carrefour BIO/Carrefour) 76g P8.4 C53.2 G1.5 264kcal m=99% preferred
+   8. [intercambio] Bulgur (Carrefour BIO, Carrefour/Carrefour) 84g P12.6 C52.9 G2.0 292kcal m=88% preferred
+   9. [intercambio] Quinoa (Auchan/Alcampo) 88g P10.6 C52.8 G6.2 322kcal m=84% preferred
+   10. [intercambio] Quinoa, cruda (Marca Blanca/BEDCA) 83g P11.5 C53.3 G4.6 300kcal m=85% preferred
+
+== patata (200g)
+   ORIGEN: Patata, cruda | Marca Blanca | BEDCA | P2.2 C15.2 G0.2 71.4kcal
+   busq: Patata, cruda [BEDCA] || Patata, asada [BEDCA] || Patata, hervida [BEDCA]
+   familia-primero=false  n(int/fam/prep)=99/6/2
+   1. [intercambio] Batata (Hacendado/Mercadona) 180g P2.9 C30.4 G0.9 133kcal m=92% preferred
+   2. [intercambio] Boniato, crudo (Marca Blanca/BEDCA) 132g P1.6 C30.4 G0.4 131kcal m=88% preferred
+   3. [intercambio] Batata, cruda (Marca Blanca/BEDCA) 141g P1.7 C30.3 G0.8 136kcal m=86% preferred
+   4. [intercambio] Maíz en conserva (Marca Blanca/BEDCA) 167g P5.5 C30.4 G2.1 163kcal m=89% preferred
+   5. [intercambio] Maiz (Freshona,Lidl/Lidl) 217g P5.4 C30.4 G3.0 178kcal m=86% preferred
+   6. [intercambio] Espirales (Carrefour/Carrefour) 45g P5.4 C30.6 G0.9 155kcal m=92% preferred
+   7. [intercambio] Arroz blanco precocido (Carrefour/Carrefour) 117g P3.4 C30.4 G0.5 142kcal m=95% preferred
+   8. [intercambio] Quinoa congelada (Hacendado/Mercadona) 152g P6.7 C30.4 G3.2 184kcal m=81% preferred
+   9. [intercambio] Arroz hinchado, para el desayuno, enriquecido (Marca Blanca/BEDCA) 35g P2.2 C30.7 G0.2 133kcal m=87% preferred
+   10. [intercambio] Pan blanco, de barra, sin sal (Marca Blanca/BEDCA) 52g P4.1 C30.2 G0.5 142kcal m=96% preferred
+
+== boniato (200g)
+   ORIGEN: Boniato, crudo | Marca Blanca | BEDCA | P1.2 C23 G0.3 99.5kcal
+   busq: Boniato, crudo [BEDCA]
+   familia-primero=false  n(int/fam/prep)=93/0/1
+   1. [intercambio] Batata, cruda (Marca Blanca/BEDCA) 214g P2.6 C46.0 G1.3 206kcal m=98% preferred
+   2. [intercambio] Pure de patatas (Alipende/OpenFoodFacts) 242g P4.8 C46.0 G0.2 206kcal m=92% preferred
+   3. [intercambio] Puré Natural De Patatas (Sin Reconstituir) (Auchan/Alcampo) 329g P8.2 C46.1 G2.3 250kcal m=78% preferred
+   4. [intercambio] Batata (Hacendado/Mercadona) 272g P4.4 C46.0 G1.4 201kcal m=92% preferred
+   5. [intercambio] Patata, asada (Marca Blanca/BEDCA) 219g P4.6 C46.0 G0.2 204kcal m=92% preferred
+   6. [intercambio] Arroz Precocido (Hacendado/Mercadona) 164g P4.4 C46.1 G0.5 207kcal m=93% preferred
+   7. [intercambio] Maiz (Freshona,Lidl/Lidl) 329g P8.2 C46.1 G4.6 270kcal m=72% preferred
+   8. [intercambio] Maíz en conserva (Marca Blanca/BEDCA) 253g P8.4 C46.0 G3.2 247kcal m=75% preferred
+   9. [intercambio] Quinoa congelada (Hacendado/Mercadona) 230g P10.1 C46.0 G4.8 278kcal m=66% preferred
+   10. [intercambio] Espirales (Carrefour/Carrefour) 68g P8.2 C46.2 G1.4 234kcal m=79% preferred
+
+== quinoa (60g)
+   ORIGEN: Quinoa, cruda | Marca Blanca | BEDCA | P13.8 C64.16 G5.56 361.8kcal
+   busq: Quinoa, cruda [BEDCA] || Quinoa [Alcampo] || Quinoa BIO [Carrefour]
+   familia-primero=false  n(int/fam/prep)=176/5/3
+   1. [intercambio] Arroz integral, crudo (Marca Blanca/BEDCA) 52g P3.9 C38.4 G1.4 182kcal m=82% preferred
+   2. [intercambio] Arroz para ensaladas y guarnición (Carrefour, Carrefour sensation/Carrefour) 51g P4.7 C38.3 G0.8 180kcal m=82% preferred
+   3. [intercambio] Arroz Blanco Variedad Carnaroli - Gallo - 500 G (Gallo/OpenFoodFacts) 50g P3.5 C38.6 G0.5 174kcal m=78% preferred
+   4. [intercambio] Bulgur (Carrefour BIO, Carrefour/Carrefour) 61g P9.2 C38.4 G1.5 212kcal m=93% preferred
+   5. [intercambio] CUSCÚS Grano mediano (Carrefour BIO/Carrefour) 55g P6.0 C38.5 G1.1 191kcal m=88% preferred
+   6. [intercambio] Bio couscous de arroz (Natursoy/OpenFoodFacts) 49g P3.5 C38.2 G0.0 169kcal m=76% preferred
+   7. [intercambio] Mijo (Marca Blanca/BEDCA) 60g P6.6 C38.6 G2.5 204kcal m=92% preferred
+   8. [intercambio] Couscous Con especias (Carrefour/Carrefour) 55g P6.6 C38.5 G1.6 200kcal m=91% preferred
+   9. [intercambio] Espirales (Carrefour/Carrefour) 57g P6.8 C38.8 G1.1 196kcal m=89% preferred
+   10. [intercambio] Espirales de lentejas rosa sin gluten (Pasta Natura/OpenFoodFacts) 53g P6.4 C38.7 G0.7 191kcal m=87% preferred
+
+== pollo (150g)
+   ORIGEN: Pollo, entero, con piel, crudo | Marca Blanca | BEDCA | P20.85 C0 G9.25 166.7kcal
+   busq: Pollo, entero, con piel, crudo [BEDCA] || Pollo, entero, con piel, asado [BEDCA] || Pollo, frito [BEDCA]
+   familia-primero=false  n(int/fam/prep)=55/7/0
+   1. [intercambio] Pavo, crudo (Marca Blanca/BEDCA) 155g P31.3 C0.0 G13.2 244kcal m=99% preferred
+   2. [intercambio] Conejo de granja, carne, cruda (Marca Blanca/BEDCA) 151g P31.3 C0.0 G8.0 198kcal m=89% preferred
+   3. [intercambio] Cerdo, lomo, crudo (Marca Blanca/BEDCA) 174g P31.3 C0.0 G15.5 264kcal m=91% preferred
+   4. [intercambio] Vaca/buey, solomillo, crudo (Marca Blanca/BEDCA) 156g P31.2 C0.0 G7.8 204kcal m=89% preferred
+   5. [intercambio] Carne de cerdo de capa blanca, chuleta, partes grasa y magra, cruda (Marca Blanca/BEDCA) 136g P31.2 C0.0 G10.1 216kcal m=93% preferred
+   6. [intercambio] Ternera, costilla, cruda (Marca Blanca/BEDCA) 156g P31.2 C0.0 G10.3 218kcal m=93% preferred
+   7. [intercambio] Lomo bajo de ternera (Alimento Fresco/OpenFoodFacts) 150g P31.4 C0.8 G12.4 242kcal m=94% preferred
+   8. [intercambio] Pato, entero, crudo (Marca Blanca/BEDCA) 159g P31.3 C0.0 G10.3 218kcal m=93% preferred
+   9. [intercambio] Lomo (Hacendado/Mercadona) 82g P31.2 C0.4 G4.1 163kcal m=81% preferred
+   10. [intercambio] Cordero ligero, pierna, cruda (Marca Blanca/BEDCA) 165g P31.3 C0.0 G19.9 303kcal m=66% preferred
+
+== pechuga de pollo (150g)
+   ORIGEN: Pollo, pechuga, plancha | Marca Blanca | BEDCA | P22.2 C0 G6.2 144.6kcal
+   busq: Pollo, pechuga, plancha [BEDCA] || Pollo, pechuga, con piel, crudo [BEDCA] || Pechuga de pollo [Mercadona]
+   familia-primero=false  n(int/fam/prep)=103/8/0
+   1. [intercambio] Pavo, pechuga, con piel, crudo (Marca Blanca/BEDCA) 138g P33.3 C0.0 G1.4 145kcal m=85% preferred
+   2. [intercambio] Conejo de granja, carne, cruda (Marca Blanca/BEDCA) 161g P33.3 C0.0 G8.5 211kcal m=98% preferred
+   3. [intercambio] Cerdo, solomillo, crudo (Marca Blanca/BEDCA) 159g P33.4 C0.0 G8.1 207kcal m=97% preferred
+   4. [intercambio] Vaca/buey, solomillo, crudo (Marca Blanca/BEDCA) 166g P33.2 C0.0 G8.3 217kcal m=97% preferred
+   5. [intercambio] Pechuga de pavo pieza (Carrefour/Carrefour) 145g P33.4 C0.0 G1.4 145kcal m=85% preferred
+   6. [intercambio] Ternera, solomillo, sin grasa, crudo (Marca Blanca/BEDCA) 165g P33.3 C0.0 G5.0 179kcal m=92% preferred
+   7. [intercambio] Carne de cerdo de capa blanca, lomo, parte magra, crudo (Marca Blanca/BEDCA) 134g P33.4 C0.0 G3.4 165kcal m=88% preferred
+   8. [intercambio] Brocheta de pavo (mercadona/Mercadona) 223g P33.2 C5.8 G6.9 219kcal m=75% preferred
+   9. [intercambio] Filete de pechuga (mercadona/Mercadona) 151g P33.2 C0.8 G2.7 163kcal m=84% preferred
+   10. [intercambio] Filete de pechuga corte fino (Hacendado/Mercadona) 166g P33.2 C0.8 G0.3 156kcal m=80% preferred
+
+== pavo (150g)
+   ORIGEN: Pavo, crudo | Marca Blanca | BEDCA | P20.18 C0 G8.5 157.2kcal
+   busq: Pavo, crudo [BEDCA] || Pavo, entero, crudo [BEDCA] || Pavo, muslo, con piel, crudo [BEDCA]
+   familia-primero=false  n(int/fam/prep)=62/1/0
+   1. [intercambio] Pollo, pechuga, con piel, crudo (Marca Blanca/BEDCA) 144g P30.2 C0.0 G13.0 245kcal m=99% preferred
+   2. [intercambio] Ternera, lomo, crudo, con grasa separable (Marca Blanca/BEDCA) 182g P30.2 C0.0 G10.9 219kcal m=96% preferred
+   3. [intercambio] Filete de pechuga de pollo rural (mercadona/Mercadona) 151g P30.2 C0.8 G8.5 200kcal m=89% preferred
+   4. [intercambio] Cerdo, solomillo, crudo (Marca Blanca/BEDCA) 144g P30.2 C0.0 G7.3 187kcal m=90% preferred
+   5. [intercambio] Conejo de granja, carne, cruda (Marca Blanca/BEDCA) 146g P30.2 C0.0 G7.7 191kcal m=90% preferred
+   6. [intercambio] Vaca/buey, solomillo, crudo (Marca Blanca/BEDCA) 151g P30.2 C0.0 G7.5 198kcal m=90% preferred
+   7. [intercambio] Carne de cerdo de capa blanca, lomo, parte magra, crudo (Marca Blanca/BEDCA) 122g P30.4 C0.0 G3.0 150kcal m=81% preferred
+   8. [intercambio] Burget meat pollo (mercadona/Mercadona) 189g P30.2 C8.1 G14.2 280kcal m=63% preferred
+   9. [intercambio] Lomo bajo de ternera (Alimento Fresco/OpenFoodFacts) 145g P30.3 C0.7 G12.0 233kcal m=96% preferred
+   10. [intercambio] Pato, entero, crudo (Marca Blanca/BEDCA) 154g P30.3 C0.0 G10.0 211kcal m=94% preferred
+
+== huevo (120g)
+   ORIGEN: Huevo de gallina fresco | Marca Blanca | BEDCA | P12.5 C0 G11.1 149.9kcal
+   busq: Huevo de gallina fresco [BEDCA] || Huevo de gallina, frito [BEDCA] || Huevo de gallina, escalfado [BEDCA]
+   familia-primero=true  n(int/fam/prep)=113/14/0
+   1. [familia] Huevo de gallina, escalfado (Marca Blanca/BEDCA) 119g P15.0 C0.4 G12.6 175kcal m=96% preferred
+   2. [familia] Huevos (Lidl/Lidl) 118g P15.0 C0.6 G12.7 175kcal m=95% preferred
+   3. [familia] Huevos frescos M (Lidl/Lidl) 118g P15.0 C0.6 G12.7 175kcal m=95% preferred
+   4. [familia] Huevos frescos de gallinas criadas en el suelo (Eroski/Eroski) 115g P14.9 C0.8 G13.8 187kcal m=91% preferred
+   5. [familia] Huevos frescos (Criadas en suelo) (Eroski/Eroski) 115g P14.9 C0.8 G13.8 162kcal m=91% preferred
+   6. [familia] Huevos frescos grandes (El Corte Inglés/El Corte Inglés) 120g P15.0 C0.8 G11.4 166kcal m=90% preferred
+   7. [familia] Huevos XL (Dia/Dia) 118g P15.0 C0.8 G11.4 166kcal m=90% preferred
+   8. [familia] Huevos frescos de gallinas criadas en suelo (El Corte Inglés/El Corte Inglés) 115g P14.9 C0.8 G10.9 159kcal m=88% preferred
+   9. [intercambio] Tortilla, a la francesa (Marca Blanca/BEDCA) 103g P15.0 C0.4 G12.7 176kcal m=96% preferred
+   10. [intercambio] Caballa, cruda (Marca Blanca/BEDCA) 80g P14.9 C0.0 G9.5 145kcal m=89% preferred
+
+== ternera (150g)
+   ORIGEN: Ternera. parte s/e | Marca Blanca | BEDCA | P16.7 C0 G21 255.8kcal
+   busq: Ternera. parte s/e [BEDCA] || Ternera, costilla, cruda [BEDCA] || Ternera, parte s/e, asada [BEDCA]
+   familia-primero=false  n(int/fam/prep)=20/2/0
+   1. [intercambio] Cerdo, parte sin especificar (Marca Blanca/BEDCA) 137g P22.7 C0.0 G31.5 371kcal m=95% preferred
+   2. [intercambio] Pollo, ala, con piel, cruda (Marca Blanca/BEDCA) 197g P36.1 C0.0 G31.5 428kcal m=76% preferred
+   3. [intercambio] Alas de pollo congeladas (mercadona/Mercadona) 210g P39.9 C2.1 G31.5 445kcal m=64% preferred
+   4. [intercambio] Cordero, costilla, crudo (Marca Blanca/BEDCA) 157g P24.5 C0.0 G31.6 379kcal m=99% preferred
+   5. [intercambio] Muslos de pato confitados (Aldi/Aldi) 117g P21.1 C0.0 G31.6 386kcal m=91% preferred
+   6. [intercambio] Carne de cerdo de capa blanca, cabezada, partes grasa y magra, crudo (Marca Blanca/BEDCA) 162g P32.4 C0.0 G31.4 410kcal m=84% preferred
+   7. [intercambio] Filetes de caballa (Isabel/OpenFoodFacts) 117g P21.1 C0.0 G31.6 366kcal m=91% preferred
+   8. [intercambio] Lomos Salmón (Ocean sea/OpenFoodFacts) 185g P37.0 C0.0 G31.4 429kcal m=74% preferred
+   9. [intercambio] Ventresca Atun (Eliges/OpenFoodFacts) 150g P22.5 C0.0 G31.5 380kcal m=95% preferred
+   10. [intercambio] Bio organic carne picada de vacuno (Lidl/Lidl) 210g P42.4 C1.7 G31.5 458kcal m=60% preferred
+
+== carne picada (150g)
+   ORIGEN: Carne picada | Marca Blanca | BEDCA | P22 C0 G16.2 233.8kcal
+   busq: Carne picada [BEDCA] || Bio organic carne picada de vacuno [Lidl]
+   familia-primero=false  n(int/fam/prep)=14/2/0
+   1. [intercambio] Conejo, entero, estofado (Marca Blanca/BEDCA) 114g P33.1 C0.0 G9.9 221kcal m=80% preferred
+   2. [intercambio] Cerdo, chuleta, crudo (Marca Blanca/BEDCA) 174g P33.1 C0.0 G26.1 365kcal m=92% preferred
+   3. [intercambio] Pollo, muslo, con piel, crudo (Marca Blanca/BEDCA) 160g P33.0 C0.0 G17.9 293kcal m=91% preferred
+   4. [intercambio] Alas de pollo congeladas (mercadona/Mercadona) 174g P33.1 C1.7 G26.1 369kcal m=87% preferred
+   5. [intercambio] Cordero lechal, costillar, crudo (Marca Blanca/BEDCA) 179g P33.0 C0.0 G23.5 342kcal m=99% preferred
+   6. [intercambio] Codillo de cerdo a la parrilla (La Cocina de Aldi/Aldi) 165g P33.0 C0.8 G21.4 328kcal m=94% preferred
+   7. [intercambio] Lomo (Hacendado/Mercadona) 87g P33.1 C0.4 G4.3 173kcal m=71% preferred
+   8. [intercambio] Pollo, ala, con piel, cruda (Marca Blanca/BEDCA) 180g P33.0 C0.0 G28.7 391kcal m=81% preferred
+   9. [intercambio] Cerdo, pierna, cruda, con grasa separable (Marca Blanca/BEDCA) 174g P33.1 C0.0 G26.4 370kcal m=90% preferred
+   10. [intercambio] Cordero lechal, pierna, cruda (Marca Blanca/BEDCA) 172g P33.0 C0.0 G21.2 321kcal m=96% preferred
+
+== merluza (150g)
+   ORIGEN: Merluza fresca | Marca Blanca | BEDCA | P11.93 C0 G1.8 63.9kcal
+   busq: Merluza fresca [BEDCA] || Merluza rebozada [Dia] || Varitas de merluza [Mercadona]
+   familia-primero=false  n(int/fam/prep)=70/7/0
+   1. [intercambio] Rape, plancha (Marca Blanca/BEDCA) 105g P17.9 C0.0 G2.1 90kcal m=97% preferred
+   2. [intercambio] Dorada, plancha (Marca Blanca/BEDCA) 105g P17.9 C0.0 G2.8 97kcal m=98% preferred
+   3. [intercambio] Lenguado (Marca Blanca/BEDCA) 108g P17.8 C0.0 G1.4 84kcal m=94% preferred
+   4. [intercambio] Lomo de bacalao (Carrefour/Carrefour) 158g P17.9 C1.3 G2.4 98kcal m=89% preferred
+   5. [intercambio] Lubina (Marca Blanca/BEDCA) 99g P17.8 C0.0 G1.3 83kcal m=93% preferred
+   6. [intercambio] Panga, cruda (Marca Blanca/BEDCA) 134g P18.0 C0.4 G1.6 88kcal m=92% preferred
+   7. [intercambio] Filetes de lubina (Hacendado/Mercadona) 99g P17.8 C0.0 G2.0 96kcal m=96% preferred
+   8. [intercambio] Salmonete (Marca Blanca/BEDCA) 127g P17.9 C0.0 G4.7 114kcal m=76% preferred
+   9. [intercambio] Cabracho o rascacio, crudo (Marca Blanca/BEDCA) 94g P17.9 C0.0 G1.6 86kcal m=95% preferred
+   10. [intercambio] Bacalao, crudo (Marca Blanca/BEDCA) 98g P17.8 C0.0 G1.0 81kcal m=92% preferred
+
+== bacalao (150g)
+   ORIGEN: Bacalao, crudo | Marca Blanca | BEDCA | P18.2 C0 G1 82.8kcal
+   busq: Bacalao, crudo [BEDCA] || Bacalao, frito [BEDCA] || Bacalao, salado, crudo [BEDCA]
+   familia-primero=false  n(int/fam/prep)=54/6/0
+   1. [intercambio] Rape, a la parrilla (Marca Blanca/BEDCA) 124g P27.3 C0.0 G0.7 116kcal m=98% preferred
+   2. [intercambio] Medallones Merluza del Cabo (ocean sea/OpenFoodFacts) 163g P27.4 C0.8 G1.1 124kcal m=94% preferred
+   3. [intercambio] Faneca, cruda (Marca Blanca/BEDCA) 177g P27.3 C1.8 G1.8 132kcal m=88% preferred
+   4. [intercambio] Gallo (Marca Blanca/BEDCA) 173g P27.3 C0.0 G3.3 139kcal m=84% preferred
+   5. [intercambio] Mero, crudo (Marca Blanca/BEDCA) 153g P27.2 C0.0 G3.5 141kcal m=82% preferred
+   6. [intercambio] Congrio (Marca Blanca/BEDCA) 144g P27.4 C0.0 G4.0 146kcal m=77% preferred
+   7. [intercambio] Filetes de merluza sin piel (Antonio y Ricardo/OpenFoodFacts) 171g P27.4 C0.0 G2.7 133kcal m=89% preferred
+   8. [intercambio] Besugo (Marca Blanca/BEDCA) 151g P27.4 C0.0 G2.7 134kcal m=89% preferred
+   9. [intercambio] Cabracho o rascacio, crudo (Marca Blanca/BEDCA) 144g P27.4 C0.0 G2.4 131kcal m=91% preferred
+   10. [intercambio] Merluza fresca (Marca Blanca/BEDCA) 229g P27.3 C0.0 G4.1 146kcal m=77% preferred
+
+== salmón (130g)
+   ORIGEN: Salmón | Marca Blanca | BEDCA | P18.4 C0 G12 181.6kcal
+   busq: Salmón [BEDCA] || Salmón ahumado [BEDCA] || Salmón escoces [Carrefour]
+   familia-primero=false  n(int/fam/prep)=34/6/0
+   1. [intercambio] Caballa, cruda (Marca Blanca/BEDCA) 128g P23.9 C0.0 G15.2 233kcal m=99% preferred
+   2. [intercambio] Atún, plancha (Marca Blanca/BEDCA) 104g P23.9 C0.0 G12.5 208kcal m=94% preferred
+   3. [intercambio] Sardina (Marca Blanca/BEDCA) 132g P23.9 C0.0 G9.9 185kcal m=88% preferred
+   4. [intercambio] Pez espada, emperador, plancha (Marca Blanca/BEDCA) 149g P23.9 C1.9 G13.0 219kcal m=87% preferred
+   5. [intercambio] Filetes de caballa del sur (Dia/Dia) 108g P24.0 C0.0 G14.3 225kcal m=97% preferred
+   6. [intercambio] Caballa de Andalucia (Tejero/OpenFoodFacts) 120g P24.0 C0.0 G14.4 199kcal m=97% preferred
+   7. [intercambio] Bonito del norte, al vapor (Marca Blanca/BEDCA) 80g P24.0 C0.0 G3.8 130kcal m=75% preferred
+   8. [intercambio] Filetes de anchoa (Hacendado/Mercadona) 96g P24.0 C0.3 G9.7 187kcal m=86% preferred
+   9. [intercambio] Bonito del Norte (Consum/Consum) 104g P23.9 C0.0 G10.4 193kcal m=89% preferred
+   10. [intercambio] Ventresca atun claro (Dia/Dia) 96g P24.0 C0.0 G9.6 184kcal m=87% preferred
+
+== atún (80g)
+   ORIGEN: Atún, al natural | Marca Blanca | BEDCA | P23.5 C0 G0.6 100.8kcal
+   busq: Atún, al natural [BEDCA] || Atún, crudo [BEDCA] || Atún en aceite de oliva isabel [BEDCA]
+   familia-primero=false  n(int/fam/prep)=42/7/0
+   1. [intercambio] Berberechos en conserva (Marca Blanca/BEDCA) 176g P18.8 C0.0 G0.9 83kcal m=94% preferred
+   2. [intercambio] Rape, a la parrilla (Marca Blanca/BEDCA) 85g P18.7 C0.0 G0.5 79kcal m=98% preferred
+   3. [intercambio] Bacalao, fresco, al horno (Marca Blanca/BEDCA) 85g P18.8 C0.0 G0.9 83kcal m=94% preferred
+   4. [intercambio] Filetes de Bonito del Norte (dia/Dia) 78g P18.7 C0.0 G3.4 106kcal m=61% preferred
+   5. [intercambio] Faneca, cruda (Marca Blanca/BEDCA) 122g P18.8 C1.2 G1.2 91kcal m=81% preferred
+   6. [intercambio] Bonito del norte, al vapor (Marca Blanca/BEDCA) 63g P18.9 C0.0 G3.0 102kcal m=66% preferred
+   7. [intercambio] Gallo (Marca Blanca/BEDCA) 119g P18.8 C0.0 G2.3 96kcal m=77% preferred
+   8. [intercambio] Mero, crudo (Marca Blanca/BEDCA) 106g P18.9 C0.0 G2.4 97kcal m=74% preferred
+   9. [intercambio] Congrio (Marca Blanca/BEDCA) 99g P18.8 C0.0 G2.8 100kcal m=70% preferred
+   10. [intercambio] Medallones Merluza del Cabo (ocean sea/OpenFoodFacts) 112g P18.8 C0.6 G0.8 85kcal m=91% preferred
+
+== gambas (120g)
+   ORIGEN: Gamba, hervido | Marca Blanca | BEDCA | P19.78 C0 G1.71 94.5kcal
+   busq: Gamba, hervido [BEDCA] || Gamba, hervida [BEDCA] || Gamba roja, cruda [BEDCA]
+   familia-primero=false  n(int/fam/prep)=76/3/0
+   1. [intercambio] Mejillón, hervido (Marca Blanca/BEDCA) 170g P23.8 C5.1 G1.7 136kcal m=68% preferred
+   2. [intercambio] Pulpo (Marca Blanca/BEDCA) 133g P23.8 C1.9 G1.9 119kcal m=88% preferred
+   3. [intercambio] Langostino (Marca Blanca/BEDCA) 98g P23.8 C1.5 G0.8 108kcal m=87% preferred
+   4. [intercambio] Sepia troceada con agua añadida (Hacendado/Mercadona) 132g P23.8 C1.1 G0.7 103kcal m=89% preferred
+   5. [intercambio] Colas de Langostino blanco (Carrefour/Carrefour) 125g P23.8 C2.5 G1.1 103kcal m=82% preferred
+   6. [intercambio] Camarón (Marca Blanca/BEDCA) 135g P23.8 C2.0 G0.8 110kcal m=84% preferred
+   7. [intercambio] Zamburiñas (Marca Blanca/BEDCA) 154g P23.7 C2.3 G1.5 118kcal m=85% preferred
+   8. [intercambio] Rape, a la parrilla (Marca Blanca/BEDCA) 108g P23.8 C0.0 G0.6 101kcal m=95% preferred
+   9. [intercambio] Besugo (Marca Blanca/BEDCA) 131g P23.7 C0.0 G2.4 116kcal m=97% preferred
+   10. [intercambio] Bacalao vizcaína (Lidl/Lidl) 167g P23.7 C0.8 G2.0 145kcal m=95% preferred
+
+== tofu (150g)
+   ORIGEN: Tofu | Marca Blanca | BEDCA | P8.1 C0.7 G4.2 73kcal
+   busq: Tofu [BEDCA] || Tofu firme [Mercadona] || Tofu Silken [Alcampo]
+   familia-primero=false  n(int/fam/prep)=19/2/0
+   1. [intercambio] Seitan (Marca Blanca/BEDCA) 51g P12.2 C1.0 G1.0 62kcal m=77% preferred
+   2. [intercambio] Tempeh (Marca Blanca/BEDCA) 60g P12.2 C4.6 G6.5 115kcal m=70% preferred
+   3. [intercambio] Soja texturizada (Marca Blanca/BEDCA) 23g P12.0 C6.9 G0.3 78kcal m=67% preferred
+   4. [intercambio] Garbanzo, hervido (Marca Blanca/BEDCA) 137g P12.2 C25.6 G3.4 182kcal m=68% preferred
+   5. [intercambio] Lenteja, en conserva (Marca Blanca/BEDCA) 193g P12.2 C22.0 G0.4 140kcal m=68% preferred
+   6. [intercambio] Lenteja pardina cocida (Hacendado/Mercadona) 148g P12.1 C15.8 G0.6 132kcal m=68% preferred
+   7. [intercambio] Garbanzos cocidos congelados &quot;Carrefour&quot; (Carrefour/Carrefour) 135g P12.2 C25.6 G3.4 182kcal m=68% preferred
+   8. [intercambio] Judías blancas, cocidas (Marca Blanca/BEDCA) 152g P12.2 C31.9 G0.8 182kcal m=68% preferred
+   9. [intercambio] Alubia blanca, en conserva (Marca Blanca/BEDCA) 181g P12.1 C28.4 G0.4 166kcal m=68% preferred
+   10. [intercambio] Haba, fresca (Marca Blanca/BEDCA) 264g P12.1 C22.7 G1.1 151kcal m=68% preferred
+
+== tempeh (120g)
+   ORIGEN: Tempeh | Marca Blanca | BEDCA | P20.3 C7.6 G10.8 192kcal
+   busq: Tempeh [BEDCA]
+   familia-primero=false  n(int/fam/prep)=16/0/0
+   1. [intercambio] Tofu firme (Hacendado,Frias/Mercadona) 219g P24.3 C2.0 G15.1 241kcal m=65% preferred
+   2. [intercambio] Seitan (Marca Blanca/BEDCA) 102g P24.5 C2.0 G2.0 124kcal m=58% preferred
+   3. [intercambio] Tofu (Marca Blanca/BEDCA) 301g P24.4 C2.1 G12.6 220kcal m=77% preferred
+   4. [intercambio] Soja texturizada (Marca Blanca/BEDCA) 47g P24.4 C14.1 G0.7 160kcal m=62% preferred
+   5. [intercambio] Garbanzo, hervido (Marca Blanca/BEDCA) 274g P24.4 C51.2 G6.8 364kcal m=68% preferred
+   6. [intercambio] Lenteja, hervida (Marca Blanca/BEDCA) 271g P24.4 C54.2 G1.1 312kcal m=68% preferred
+   7. [intercambio] Lenteja pardina cocida (Hacendado/Mercadona) 297g P24.4 C31.8 G1.2 264kcal m=68% preferred
+   8. [intercambio] Garbanzos cocidos congelados &quot;Carrefour&quot; (Carrefour/Carrefour) 271g P24.4 C51.5 G6.8 366kcal m=68% preferred
+   9. [intercambio] Judías blancas, cocidas (Marca Blanca/BEDCA) 305g P24.4 C64.0 G1.5 366kcal m=68% preferred
+   10. [intercambio] Edamame (Hacendado/Mercadona) 221g P24.3 C22.1 G8.8 287kcal m=68% preferred
+
+== seitán (120g)
+   ORIGEN: Seitan | Marca Blanca | BEDCA | P24 C2 G2 122kcal
+   busq: Seitan [BEDCA] || Seitán a la piastra [Mercadona] || Seitán casero con verduras [Carrefour]
+   familia-primero=false  n(int/fam/prep)=13/1/0
+   1. [intercambio] Tempeh (Marca Blanca/BEDCA) 142g P28.8 C10.8 G15.3 273kcal m=68% preferred
+   2. [intercambio] Tofu firme (Hacendado,Frias/Mercadona) 259g P28.7 C2.3 G17.9 285kcal m=68% preferred
+   3. [intercambio] Tofu (Marca Blanca/BEDCA) 356g P28.8 C2.5 G15.0 260kcal m=68% preferred
+   4. [intercambio] Soja texturizada (Marca Blanca/BEDCA) 55g P28.6 C16.5 G0.8 187kcal m=68% preferred
+   5. [intercambio] Edamame (Hacendado/Mercadona) 262g P28.8 C26.2 G10.5 341kcal m=68% preferred
+   6. [intercambio] Garbanzos tostados (Consum/Consum) 131g P28.8 C66.8 G7.3 485kcal m=68% preferred
+   7. [intercambio] Judías blancas, cocidas (Marca Blanca/BEDCA) 360g P28.8 C75.6 G1.8 432kcal m=68% preferred
+   8. [intercambio] Garbanzo, hervido (Marca Blanca/BEDCA) 324g P28.8 C60.6 G8.1 431kcal m=68% preferred
+   9. [intercambio] Lenteja, hervida (Marca Blanca/BEDCA) 320g P28.8 C64.0 G1.3 368kcal m=68% preferred
+   10. [intercambio] Lenteja pardina cocida (Hacendado/Mercadona) 351g P28.8 C37.6 G1.4 312kcal m=68% preferred
+
+== garbanzos (150g)
+   ORIGEN: Garbanzo, hervida | Marca Blanca | BEDCA | P8.9 C18.7 G2.5 135kcal
+   busq: Garbanzo, hervida [BEDCA] || Garbanzo, hervido [BEDCA] || Garbanzo, seco, crudo [BEDCA]
+   familia-primero=false  n(int/fam/prep)=8/4/2
+   1. [intercambio] Lenteja, hervida (Marca Blanca/BEDCA) 140g P12.6 C28.0 G0.6 161kcal m=89% preferred
+   2. [intercambio] Alubia blanca, en conserva (Marca Blanca/BEDCA) 179g P12.0 C28.1 G0.4 164kcal m=86% preferred
+   3. [intercambio] Judías blancas, cocidas (Marca Blanca/BEDCA) 134g P10.7 C28.1 G0.7 161kcal m=82% preferred
+   4. [intercambio] Lenteja pardina cocida (Hacendado/Mercadona) 262g P21.5 C28.0 G1.0 233kcal m=66% preferred
+   5. [intercambio] Alubias cocidas sin sal añadida (Carrefour/Carrefour) 255g P16.3 C28.1 G0.0 209kcal m=80% preferred
+   6. [intercambio] Haba, fresca (Marca Blanca/BEDCA) 326g P15.0 C28.0 G1.3 186kcal m=88% preferred
+   7. [intercambio] Lenteja, en conserva (Marca Blanca/BEDCA) 246g P15.5 C28.0 G0.5 179kcal m=84% preferred
+   8. [intercambio] Alubias blancas cocidas en conserva (Dia/Dia) 270g P13.0 C28.1 G1.6 216kcal m=93% compatible
+   9. [familia] Garbanzo, hervido (Marca Blanca/BEDCA) 150g P13.3 C28.1 G3.8 199kcal m=100% preferred
+   10. [familia] Garbanzo, en conserva (Marca Blanca/BEDCA) 199g P14.3 C28.1 G5.8 222kcal m=91% preferred
+
+== lentejas (150g)
+   ORIGEN: Lenteja, hervida | Marca Blanca | BEDCA | P9 C20 G0.4 115kcal
+   busq: Lenteja, hervida [BEDCA] || Lenteja, seca, cruda [BEDCA] || Lenteja, en conserva [BEDCA]
+   familia-primero=false  n(int/fam/prep)=10/2/2
+   1. [intercambio] Alubia blanca, en conserva (Marca Blanca/BEDCA) 191g P12.8 C30.0 G0.5 175kcal m=97% preferred
+   2. [intercambio] Garbanzo, hervida (Marca Blanca/BEDCA) 160g P14.2 C29.9 G4.0 216kcal m=88% preferred
+   3. [intercambio] Judías blancas, cocidas (Marca Blanca/BEDCA) 143g P11.4 C30.0 G0.7 172kcal m=92% preferred
+   4. [intercambio] Alubias cocidas sin sal añadida (Carrefour/Carrefour) 273g P17.5 C30.0 G0.0 224kcal m=85% preferred
+   5. [intercambio] Garbanzos cocidos congelados &quot;Carrefour&quot; (Carrefour/Carrefour) 158g P14.2 C30.0 G4.0 213kcal m=88% preferred
+   6. [intercambio] Haba, fresca (Marca Blanca/BEDCA) 349g P16.1 C30.0 G1.4 200kcal m=89% preferred
+   7. [intercambio] Garbanzo, hervido (Marca Blanca/BEDCA) 160g P14.2 C29.9 G4.0 213kcal m=88% preferred
+   8. [intercambio] Garbanzo, en conserva (Marca Blanca/BEDCA) 212g P15.3 C29.9 G6.1 236kcal m=78% preferred
+   9. [intercambio] Garbanzos tostados (Consum/Consum) 59g P13.0 C30.1 G3.3 218kcal m=90% preferred
+   10. [intercambio] Alubias blancas cocidas en conserva (Dia/Dia) 288g P13.8 C30.0 G1.7 230kcal m=96% compatible
+
+== leche (250g)
+   ORIGEN: Leche de soja | Marca Blanca | BEDCA | P3.2 C5.76 G1.84 52.4kcal
+   busq: Leche de soja [BEDCA] || Leche, vaca, omega 3 [BEDCA] || Leche de vaca, entera [BEDCA]
+   familia-primero=false  n(int/fam/prep)=0/4/0
+   1. [familia] Bebida de soja (Marca Blanca/BEDCA) 250g P8.0 C14.4 G4.6 132kcal m=100% preferred
+   2. [familia] Bebida de soja calcio (Carrefour/Carrefour) 389g P12.1 C14.4 G6.6 167kcal m=68% preferred
+   3. [familia] Beguda de soja (bonpreu/Bonpreu/Esclat) 389g P12.1 C14.4 G6.6 167kcal m=68% preferred
+   4. [familia] Bebida soja calcio (Eroski/Eroski) 389g P12.1 C14.4 G6.6 167kcal m=68% preferred
+
+== yogur natural (125g)
+   ORIGEN: Yogur "tipo bio", natural | Marca Blanca | BEDCA | P3.6 C4.4 G3.4 62.6kcal
+   busq: Yogur "tipo bio", natural [BEDCA] || Yogur, enriquecido, natural [BEDCA] || Yogur natural [Lidl]
+   familia-primero=true  n(int/fam/prep)=20/22/0
+   1. [familia] Yogur, enriquecido, natural (Marca Blanca/BEDCA) 141g P4.5 C5.5 G5.5 90kcal m=89% preferred
+   2. [familia] Yogur, búlgaro (Marca Blanca/BEDCA) 95g P4.8 C5.5 G3.2 70kcal m=89% preferred
+   3. [familia] Yogur BIO leche de vaca 420G (Carrefour BIO, Carrefour/Carrefour) 128g P4.0 C5.5 G4.2 76kcal m=94% preferred
+   4. [familia] Bio - Yogur natural ecológico (Carrefour BIO, Carrefour/Carrefour) 134g P5.2 C5.5 G4.6 84kcal m=90% preferred
+   5. [familia] Yogur Natural Sin Lactosa (Carrefour/Carrefour) 153g P5.0 C5.5 G5.4 90kcal m=85% preferred
+   6. [familia] Natural Yogur (Bio Organic,Lidl,Milbona/Lidl) 117g P5.8 C5.5 G4.4 88kcal m=84% preferred
+   7. [familia] Yogur cremoso natural (Consum/Consum) 153g P6.9 C5.5 G5.5 99kcal m=64% preferred
+   8. [familia] Yogur natural 8x130 gr. (Larsa,Capsa Food/OpenFoodFacts) 115g P4.6 C5.5 G2.9 67kcal m=87% preferred
+   9. [intercambio] Bífidus (Carrefour/Carrefour) 125g P4.4 C5.5 G4.4 79kcal m=98% preferred
+   10. [intercambio] Yogurt (auchan/Alcampo) 112g P4.4 C5.5 G2.9 66kcal m=87% preferred
+
+== kéfir (200g)
+   ORIGEN: Kefir | Marca Blanca | BEDCA | P3.3 C4.8 G3.5 63.9kcal
+   busq: Kefir [BEDCA] || Kefir natural [Mercadona] || Kéfir natural [Dia]
+   familia-primero=true  n(int/fam/prep)=31/8/0
+   1. [familia] Kefir natural (Hacendado/Mercadona) 188g P7.3 C9.6 G7.9 139kcal m=90% preferred
+   2. [familia] Kéfir natural (Dia/Dia) 234g P7.3 C9.6 G7.7 136kcal m=92% preferred
+   3. [familia] Kéfir mild (Cremos/OpenFoodFacts) 202g P7.1 C9.6 G6.5 125kcal m=94% preferred
+   4. [familia] Edición 1919 kéfir natural (Danone/OpenFoodFacts) 246g P7.9 C9.6 G6.2 133kcal m=87% preferred
+   5. [familia] Kéfir cabra bio (Carrefour BIO, Carrefour/Carrefour) 204g P6.9 C9.6 G10.4 161kcal m=80% preferred
+   6. [familia] Kefir de cabra (Vraí/OpenFoodFacts) 209g P8.4 C9.6 G11.5 176kcal m=65% preferred
+   7. [familia] Kéfir de cabra ecológico (GutBio/OpenFoodFacts) 240g P9.1 C9.6 G10.8 178kcal m=64% preferred
+   8. [familia] Kefir naturalny (jana/OpenFoodFacts) 204g P6.7 C9.6 G3.1 94kcal m=79% preferred
+   9. [intercambio] Yogur "tipo bio", natural (Marca Blanca/BEDCA) 218g P7.8 C9.6 G7.4 136kcal m=90% preferred
+   10. [intercambio] Yogur BIO leche de vaca 420G (Carrefour BIO, Carrefour/Carrefour) 223g P6.9 C9.6 G7.4 132kcal m=96% preferred
+
+== queso fresco batido (200g)
+   ORIGEN: Queso fresco batido | Granja Rinya | legacy | P7.5 C4.05 G0 46kcal
+   busq: Queso fresco batido [legacy] || Queso Fresco Batido [legacy] || Queso fresco batido [Eroski]
+   familia-primero=true  n(int/fam/prep)=17/7/0
+   1. [familia] Queso Fresco Batido (Milsani/legacy) 200g P15.0 C8.1 G0.0 92kcal m=100% preferred
+   2. [familia] Queso fresco batido proteína plus (Sensations/legacy) 150g P15.0 C6.0 G0.8 86kcal m=78% preferred
+   3. [familia] Queso Fresco Batido 0% M.G. (Carrefour Classic/Carrefour) 200g P15.0 C8.0 G0.0 92kcal m=99% preferred
+   4. [familia] Queso fresco batido (Eroski/Eroski) 200g P15.0 C8.1 G0.0 92kcal m=100% preferred
+   5. [familia] Queso fresco batido 0% (Hacendado/Mercadona) 188g P15.0 C6.6 G0.2 86kcal m=88% preferred
+   6. [familia] Queso fresco batido Quark (Milbona/Lidl) 176g P15.0 C8.6 G0.9 95kcal m=87% preferred
+   7. [familia] Queso fresco batido desnatado (Hacendado/Mercadona) 188g P15.0 C6.6 G0.9 86kcal m=79% preferred
+   8. [intercambio] Skyr + protein (Auchan/legacy) 188g P15.0 C7.7 G0.4 94kcal m=93% preferred
+   9. [intercambio] Skyr Natural (Milbona/Lidl) 136g P15.0 C5.4 G0.3 84kcal m=79% preferred
+   10. [intercambio] Yogur natural proteínas 0% (Hacendado/Mercadona) 150g P15.0 C4.7 G0.8 78kcal m=69% preferred
+
+== queso de Burgos (100g)
+   ORIGEN: Queso fresco de burgos | Marca Blanca | BEDCA | P12.4 C2.5 G15.4 198.2kcal
+   busq: Queso fresco de burgos [BEDCA] || Queso burgos [Carrefour] || Queso burgos carrefour 0% [Carrefour]
+   familia-primero=true  n(int/fam/prep)=17/28/0
+   1. [familia] Queso fresco vaca y cabra (Hacendado/Mercadona) 81g P12.2 C2.1 G15.4 195kcal m=98% preferred
+   2. [familia] Queso fresco villalón (Hacendado/Mercadona) 110g P12.1 C3.6 G15.4 201kcal m=94% preferred
+   3. [familia] Queso fresco (Carrefour/Carrefour) 128g P12.8 C3.8 G15.4 205kcal m=93% preferred
+   4. [familia] Queso mozzarella (Marca Blanca/BEDCA) 96g P18.7 C0.0 G15.5 214kcal m=65% preferred
+   5. [familia] Queso fresco servilleta (Hacendado/Mercadona) 86g P14.1 C3.1 G15.5 208kcal m=90% preferred
+   6. [familia] Queso fresco tipo Burgos (Spar/Spar) 110g P12.1 C3.9 G15.4 202kcal m=93% preferred
+   7. [familia] Queso fresco Burgos Bajo en Sal (Hacendado/Mercadona) 110g P12.0 C3.9 G15.4 202kcal m=93% preferred
+   8. [familia] Queso fresco tradicional de vaca y cabra (Consum/Consum) 89g P13.6 C1.6 G15.4 199kcal m=92% preferred
+   9. [intercambio] Mini mozzarella (Dia/Dia) 96g P17.3 C0.0 G15.4 209kcal m=70% preferred
+   10. [intercambio] Mozzarella con leche pasteurizada de vaca (Carrefour BIO, Carrefour/Carrefour) 81g P14.6 C0.8 G15.4 200kcal m=85% preferred
+
+== mozzarella (80g)
+   ORIGEN: Queso mozzarella | Marca Blanca | BEDCA | P19.5 C0 G16.1 222.9kcal
+   busq: Queso mozzarella [BEDCA] || Mozzarella [Dia] || Mozzarella rallado [Carrefour]
+   familia-primero=true  n(int/fam/prep)=11/11/0
+   1. [familia] Mini mozzarella (Dia/Dia) 87g P15.7 C0.0 G13.9 190kcal m=90% preferred
+   2. [familia] Mozzarella con leche pasteurizada de vaca (Carrefour BIO, Carrefour/Carrefour) 87g P15.7 C0.9 G16.5 215kcal m=63% preferred
+   3. [familia] Queso mozzarella en lonchas (Carrefour/Carrefour) 62g P15.5 C0.6 G13.0 182kcal m=94% preferred
+   4. [familia] Mozzarella (Dia/Dia) 64g P15.7 C1.4 G13.7 191kcal m=85% preferred
+   5. [familia] Queso mozzarella (Bonpreu/Bonpreu/Esclat) 71g P15.6 C0.7 G14.9 200kcal m=78% preferred
+   6. [familia] Queso mozzarella rallado (Consum/Consum) 62g P15.5 C1.2 G13.0 185kcal m=92% preferred
+   7. [familia] Queso fresco sin lactosa (Hacendado/Mercadona) 124g P15.6 C6.9 G12.3 200kcal m=61% preferred
+   8. [familia] Queso burgos (Carrefour/Carrefour) 142g P15.6 C5.7 G9.2 169kcal m=60% preferred
+   9. [intercambio] Mozzarela (Milbona/Lidl) 71g P15.6 C1.4 G14.2 199kcal m=81% preferred
+   10. [intercambio] Queso quark (Milbona/Lidl) 151g P15.6 C5.6 G6.5 146kcal m=72% preferred
+
+== queso manchego (40g)
+   ORIGEN: Queso manchego | Marca Blanca | BEDCA | P28.77 C0.5 G30.4 390.7kcal
+   busq: Queso manchego [BEDCA] || Queso manchego, en aceite [BEDCA]
+   familia-primero=true  n(int/fam/prep)=20/97/0
+   1. [familia] Queso semicurado, genérico (Marca Blanca/BEDCA) 40g P11.6 C0.2 G12.2 157kcal m=100% preferred
+   2. [familia] Queso emmental (Marca Blanca/BEDCA) 42g P11.5 C0.0 G12.1 154kcal m=98% preferred
+   3. [familia] Queso gouda (Marca Blanca/BEDCA) 48g P12.2 C0.0 G12.2 159kcal m=95% preferred
+   4. [familia] Queso gruyere (Marca Blanca/BEDCA) 39g P11.3 C0.6 G12.1 156kcal m=96% preferred
+   5. [familia] Queso Mahón (Marca Blanca/BEDCA) 36g P9.7 C0.0 G12.1 148kcal m=89% preferred
+   6. [familia] Queso edam (Marca Blanca/BEDCA) 43g P8.9 C0.0 G12.2 144kcal m=86% preferred
+   7. [familia] Queso cheddar (Marca Blanca/BEDCA) 38g P9.7 C0.1 G12.2 149kcal m=89% preferred
+   8. [familia] Queso de bola (Marca Blanca/BEDCA) 43g P8.9 C0.0 G12.2 144kcal m=86% preferred
+   9. [intercambio] Emmental Bloque (Carrefour/Carrefour) 42g P11.3 C0.8 G12.2 155kcal m=96% preferred
+   10. [intercambio] Gouda Holland Viejo (Carrefour/Carrefour) 37g P10.0 C0.0 G12.2 150kcal m=91% preferred
+
+== aceite de oliva (10g)
+   ORIGEN: Aceite de oliva | Marca Blanca | BEDCA | P0 C0 G99.9 899.1kcal
+   busq: Aceite de oliva [BEDCA] || Atún en aceite de oliva isabel [BEDCA] || Aceite de oliva [Mercadona]
+   familia-primero=false  n(int/fam/prep)=8/18/0
+   1. [intercambio] Nuez (Marca Blanca/BEDCA) 17g P2.4 C0.6 G10.0 102kcal m=64% preferred
+   2. [intercambio] Nuez natural (Hacendado/Mercadona) 14g P2.4 C0.3 G9.8 100kcal m=62% preferred
+   3. [intercambio] Nueces de macadamia (Hacendado/Mercadona) 13g P1.1 C0.8 G10.0 99kcal m=77% preferred
+   4. [intercambio] Noix de macadamia (Bonpreu/Bonpreu/Esclat) 13g P1.0 C0.7 G9.9 98kcal m=76% preferred
+   5. [intercambio] Nuez, cruda, con cáscara (Marca Blanca/BEDCA) 17g P2.4 C0.6 G10.0 102kcal m=64% preferred
+   6. [intercambio] Nuez natural pelada (Hacendado/Mercadona) 14g P2.4 C0.3 G9.7 100kcal m=60% preferred
+   7. [intercambio] Nuez California (Eroski/Eroski) 17g P2.4 C0.6 G10.0 104kcal m=64% preferred
+   8. [intercambio] Bio nuez pecana (El Corte Inglés/El Corte Inglés) 14g P1.1 C0.7 G10.2 102kcal m=71% preferred
+   9. [familia] Aceite de colza (Marca Blanca/BEDCA) 10g P0.0 C0.0 G10.0 90kcal m=100% preferred
+   10. [familia] Aceite de girasol (Marca Blanca/BEDCA) 10g P0.0 C0.0 G10.0 88kcal m=100% preferred
+
+== aguacate (100g)
+   ORIGEN: Aguacate | Marca Blanca | BEDCA | P1.5 C5.9 G12 137.6kcal
+   busq: Aguacate [BEDCA] || Aguacate Hass [Lidl] || Hummus de aguacate [Mercadona]
+   familia-primero=false  n(int/fam/prep)=26/1/2
+   1. [intercambio] Aceituna (Marca Blanca/BEDCA) 96g P1.2 C1.0 G12.0 117kcal m=68% preferred
+   2. [intercambio] Aceituna Ecologica verde entera (Auchan/Alcampo) 71g P0.9 C3.6 G11.9 129kcal m=81% preferred
+   3. [intercambio] Olives amb pinyol Gaspatxes (Bonpreu/Bonpreu/Esclat) 80g P0.7 C0.4 G12.0 119kcal m=61% preferred
+   4. [intercambio] Crema de almendras (Marca Blanca/BEDCA) 22g P4.6 C4.2 G11.9 135kcal m=68% preferred
+   5. [intercambio] Frutos secos (Marca Blanca/BEDCA) 24g P4.3 C4.8 G12.0 137kcal m=76% preferred
+   6. [intercambio] Avellana (Marca Blanca/BEDCA) 19g P2.3 C2.0 G12.1 126kcal m=70% preferred
+   7. [intercambio] Pistacho (Marca Blanca/BEDCA) 23g P4.0 C3.6 G11.9 137kcal m=68% preferred
+   8. [intercambio] Vitality* Sésamo (Carrefour/Carrefour) 24g P4.3 C5.5 G12.0 138kcal m=80% preferred
+   9. [intercambio] Anacardo (Carrefour, Produits Blancs/Carrefour) 26g P5.5 C5.7 G12.2 155kcal m=71% preferred
+   10. [intercambio] Coco, fresco (Marca Blanca/BEDCA) 36g P1.2 C5.5 G12.1 135kcal m=94% preferred
+
+== nueces (30g)
+   ORIGEN: Nuez | Marca Blanca | BEDCA | P14 C3.3 G59 600.2kcal
+   busq: Nuez [BEDCA] || Nuez, cruda, con cáscara [BEDCA] || Aceite de nuez [BEDCA]
+   familia-primero=false  n(int/fam/prep)=16/7/0
+   1. [intercambio] Avellana (Marca Blanca/BEDCA) 28g P3.4 C2.9 G17.8 185kcal m=84% preferred
+   2. [intercambio] Almendra, cruda (Marca Blanca/BEDCA) 32g P6.1 C2.0 G17.5 190kcal m=82% preferred
+   3. [intercambio] Pistacho (Marca Blanca/BEDCA) 34g P6.0 C5.3 G17.5 203kcal m=66% preferred
+   4. [intercambio] Almendra sin piel (Hacendado/Mercadona) 30g P6.9 C1.2 G18.0 193kcal m=81% preferred
+   5. [intercambio] Cacahuete repelado sin sal (Carrefour/Carrefour) 34g P9.5 C2.0 G17.9 213kcal m=65% preferred
+   6. [intercambio] Pistacho tostado (Hacendado/Mercadona) 35g P8.8 C3.5 G17.9 216kcal m=61% preferred
+   7. [intercambio] Semilla de Amapola (NaturGreen/OpenFoodFacts) 42g P8.5 C1.8 G17.7 218kcal m=73% preferred
+   8. [intercambio] Nueces de macadamia (Hacendado/Mercadona) 23g P2.0 C1.3 G17.7 174kcal m=86% preferred
+   9. [intercambio] Noix de macadamia (Bonpreu/Bonpreu/Esclat) 23g P1.8 C1.2 G17.5 173kcal m=83% preferred
+   10. [intercambio] Avellana, cruda, con cáscara (Marca Blanca/BEDCA) 29g P3.5 C3.0 G17.9 184kcal m=83% preferred
+
+== tahini (20g)
+   ORIGEN: Pasta de sésamo tahini | Hacendado | Mercadona | P24.9 C3.2 G65.6 710kcal
+   busq: Pasta de sésamo tahini [Mercadona]
+   familia-primero=true  n(int/fam/prep)=40/10/0
+   1. [familia] Pasta de sésamo (Marca Blanca/BEDCA) 23g P4.2 C0.2 G13.3 136kcal m=89% preferred
+   2. [familia] Tahin crema de sesamo (Sol Natural/OpenFoodFacts) 24g P5.1 C1.1 G13.3 150kcal m=93% preferred
+   3. [familia] Sésamo (Hacendado/Mercadona) 23g P5.3 C0.4 G12.9 144kcal m=92% preferred
+   4. [familia] GOMASIO Sésamo y sal (Carrefour BIO, Carrefour/Carrefour) 27g P5.9 C0.8 G13.2 152kcal m=91% preferred
+   5. [familia] Sésamo natural (Vitasia/OpenFoodFacts) 26g P5.4 C2.7 G13.1 156kcal m=84% preferred
+   6. [familia] Sésamo tostado (Vitasia/OpenFoodFacts) 24g P4.6 C2.2 G13.2 151kcal m=86% preferred
+   7. [familia] Vitality* Sésamo (Carrefour/Carrefour) 26g P4.7 C6.0 G13.0 149kcal m=62% preferred
+   8. [familia] Semillas de Sésamo Crudo de cultivo ecológico (El Granero Integral/OpenFoodFacts) 26g P4.6 C3.0 G12.9 149kcal m=79% preferred
+   9. [intercambio] Crema de almendras (Marca Blanca/BEDCA) 24g P5.0 C4.6 G13.0 147kcal m=72% preferred
+   10. [intercambio] Almendra sin piel (Hacendado/Mercadona) 22g P5.1 C0.9 G13.2 141kcal m=97% preferred
+
+== hummus (60g)
+   ORIGEN: hummus clasico | chef select | Lidl | P5.2 C11.8 G22.5 273kcal
+   busq: hummus clasico [Lidl] || Hummus classic [Mercadona] || Hummus con olivas de kalamata [Mercadona]
+   familia-primero=false  n(int/fam/prep)=2/0/4
+   1. [intercambio] Houmous (Carrefour/Carrefour) 51g P3.4 C4.3 G14.3 165kcal m=77% preferred
+   2. [intercambio] Aguacate (Marca Blanca/BEDCA) 119g P1.8 C7.0 G14.3 164kcal m=89% preferred
+   3. [preparado] Hummus con aceitunas de Kalamata (Chef Select/Lidl) 61g P3.1 C6.8 G13.7 163kcal m=97% preferred
+   4. [preparado] Hummus de garbanzos receta clásica (Hacendado/Mercadona) 53g P3.2 C5.9 G13.7 165kcal m=90% preferred
+   5. [preparado] Hummus con pimiento del piquillo asado (Hacendado/Mercadona) 52g P3.0 C5.6 G13.5 163kcal m=89% preferred
+   6. [preparado] Hummus classic (Hacendado/Mercadona) 55g P3.5 C4.8 G14.0 165kcal m=81% preferred
+
+== chocolate negro (25g)
+   ORIGEN: Chocolate negro 70% cacao | Marca Blanca | BEDCA | P7.2 C47 G35 540kcal
+   busq: Chocolate negro 70% cacao [BEDCA] || Chocolate negro 85% cacao [BEDCA] || Chocolate negro 99% cacao [BEDCA]
+   familia-primero=false  n(int/fam/prep)=0/4/0
+   1. [familia] Hacendado Chocolate Negro 70% Cacao (Hacendado/Hacendado) 29g P2.0 C11.9 G10.4 157kcal m=87% occasional
+   2. [familia] Carrefour Chocolate Negro 72% Cacao (Carrefour/Carrefour) 31g P2.5 C11.8 G11.8 171kcal m=79% occasional
+   3. [familia] Torras Chocolate Negro 70% sin azúcar añadido (Torras/Torras) 30g P2.4 C11.7 G10.5 153kcal m=86% occasional
+   4. [familia] Valor Chocolate Negro 70% Cacao (Valor/Valor) 31g P2.3 C11.8 G11.8 169kcal m=80% occasional
+
+== manzana (150g)
+   ORIGEN: Manzana | Marca Blanca | BEDCA | P0.3 C12 G0 49.2kcal
+   busq: Manzana [BEDCA] || Manzana cereza [Carrefour] || Manzana y plátano [Mercadona]
+   familia-primero=false  n(int/fam/prep)=54/4/0
+   1. [intercambio] Uva negra, cruda (Marca Blanca/BEDCA) 116g P0.7 C18.0 G0.0 75kcal m=98% preferred
+   2. [intercambio] Ciruela, sin piel (Marca Blanca/BEDCA) 164g P1.0 C18.0 G0.0 76kcal m=95% preferred
+   3. [intercambio] Caqui (Marca Blanca/BEDCA) 118g P0.8 C18.1 G0.2 78kcal m=95% preferred
+   4. [intercambio] Albaricoque (Marca Blanca/BEDCA) 189g P1.5 C18.0 G0.0 78kcal m=91% preferred
+   5. [intercambio] Melocotón (Marca Blanca/BEDCA) 200g P1.2 C18.0 G0.0 77kcal m=94% preferred
+   6. [intercambio] Mandarina (Marca Blanca/BEDCA) 200g P1.6 C18.0 G0.0 78kcal m=91% preferred
+   7. [intercambio] Higos y brevas (Marca Blanca/BEDCA) 113g P1.4 C18.1 G0.0 78kcal m=91% preferred
+   8. [intercambio] Naranja (Marca Blanca/BEDCA) 209g P1.7 C18.0 G0.0 79kcal m=90% preferred
+   9. [intercambio] Granada (Marca Blanca/BEDCA) 131g P1.3 C17.9 G0.4 81kcal m=90% preferred
+   10. [intercambio] Cereza (Marca Blanca/BEDCA) 133g P1.1 C18.0 G0.7 82kcal m=90% preferred
+
+== plátano (120g)
+   ORIGEN: Platano | Marca Blanca | BEDCA | P1.2 C20 G0.3 87.5kcal
+   busq: Platano [BEDCA] || Platano, mandarina y pera [Mercadona] || Manzana y plátano [Mercadona]
+   familia-primero=false  n(int/fam/prep)=49/2/0
+   1. [intercambio] Chirimoya (Marca Blanca/BEDCA) 120g P1.2 C24.0 G0.2 103kcal m=98% preferred
+   2. [intercambio] Pera (Marca Blanca/BEDCA) 226g P0.9 C24.0 G0.0 99kcal m=95% preferred
+   3. [intercambio] Cereza (Marca Blanca/BEDCA) 178g P1.4 C24.0 G0.9 110kcal m=97% preferred
+   4. [intercambio] Caqui (Marca Blanca/BEDCA) 157g P1.1 C24.0 G0.3 103kcal m=98% preferred
+   5. [intercambio] Granada (Marca Blanca/BEDCA) 175g P1.8 C24.0 G0.5 108kcal m=97% preferred
+   6. [intercambio] Higos y brevas (Marca Blanca/BEDCA) 150g P1.8 C24.0 G0.0 103kcal m=96% preferred
+   7. [intercambio] Melocotón (Marca Blanca/BEDCA) 267g P1.6 C24.0 G0.0 103kcal m=97% preferred
+   8. [intercambio] Ciruela, con piel, cruda (Marca Blanca/BEDCA) 200g P1.5 C24.0 G0.4 106kcal m=99% preferred
+   9. [intercambio] Mandarina (Marca Blanca/BEDCA) 267g P2.1 C24.0 G0.0 105kcal m=94% preferred
+   10. [intercambio] Albaricoque (Marca Blanca/BEDCA) 253g P2.0 C24.0 G0.0 104kcal m=95% preferred
+
+== brócoli (200g)
+   ORIGEN: Brocoli | Carrefour | Carrefour | P2 C7.2 G0.4 40.4kcal
+   busq: Brocoli [Carrefour] || Brócoli en floretes [Carrefour] || Puré de Brócoli Nata fresca [Carrefour]
+   familia-primero=false  n(int/fam/prep)=31/1/1
+   1. [intercambio] Coliflor, hervida (Marca Blanca/BEDCA) 299g P8.3 C6.1 G2.6 81kcal m=76% preferred
+   2. [intercambio] Remolacha, en conserva (Marca Blanca/BEDCA) 279g P3.3 C15.6 G0.6 81kcal m=86% preferred
+   3. [intercambio] Champiñon (Marca Blanca/BEDCA) 312g P5.6 C12.5 G0.9 81kcal m=77% preferred
+   4. [intercambio] Seta (Marca Blanca/BEDCA) 312g P5.6 C12.5 G0.9 81kcal m=77% preferred
+   5. [intercambio] Coles de Bruselas (Carrefour/Carrefour) 192g P6.0 C9.2 G1.0 81kcal m=92% preferred
+   6. [intercambio] Pimiento morrón, en conserva (Marca Blanca/BEDCA) 277g P3.3 C14.4 G1.1 81kcal m=93% preferred
+   7. [intercambio] Pimiento piquillo entero (Consum/Consum) 172g P2.2 C14.3 G0.9 81kcal m=88% preferred
+   8. [intercambio] Remolacha en rodajas (Dia/Dia) 207g P3.7 C16.1 G0.2 81kcal m=83% preferred
+   9. [intercambio] Lombarda (Marca Blanca/BEDCA) 369g P4.1 C13.7 G1.1 81kcal m=93% preferred
+   10. [intercambio] Repollo (Marca Blanca/BEDCA) 316g P5.7 C11.7 G1.3 81kcal m=69% preferred
+
+== gazpacho (250g)
+   ORIGEN: Gazpacho | Marca Blanca | BEDCA | P1.5 C5 G2.5 40kcal
+   busq: Gazpacho [BEDCA] || Gazpacho blanco de almendras [Mercadona] || Gazpacho suave [Mercadona]
+   familia-primero=false  n(int/fam/prep)=0/0/4
+   1. [preparado] Gazpacho tradicional (Hacendado/Mercadona) 260g P2.1 C9.4 G6.2 114kcal m=74% occasional
+   2. [preparado] Gazpacho suave (Hacendado/Mercadona) 250g P2.0 C8.8 G6.3 108kcal m=71% occasional
+   3. [preparado] Gazpacho pack 3 unidades (Dia/Dia) 272g P2.2 C9.8 G6.3 114kcal m=77% occasional
+   4. [preparado] Gazpacho Andaluz (Hacendado/Mercadona) 216g P1.7 C7.6 G6.3 99kcal m=63% occasional
+
+== salmorejo (200g)
+   ORIGEN: Salmorejo | Carrefour BIO, Carrefour | Carrefour | P0.7 C5 G5 71kcal
+   busq: Salmorejo [Carrefour] || Salmorejo natural [Eroski] || Salmorejo Tradicional [Lidl]
+   familia-primero=false  n(int/fam/prep)=0/0/4
+   1. [preparado] Salmorejo natural (Eroski/Eroski) 196g P1.8 C10.0 G9.0 133kcal m=92% occasional
+   2. [preparado] Gaspacho suave (Auchan/Alcampo) 385g P1.9 C10.0 G6.9 110kcal m=79% occasional
+   3. [preparado] Salmorejo 100% natural (Consum/Consum) 196g P2.2 C10.0 G12.2 165kcal m=83% occasional
+   4. [preparado] Salmorejo Tradicional (Chef Select/Lidl) 105g P1.6 C10.0 G10.5 141kcal m=96% occasional
+
+== skyr (150g)
+   ORIGEN: Skyr Natural | Auchan | legacy | P11 C4 G0.2 62kcal
+   busq: Skyr Natural [legacy] || Skyr Natural 00% [legacy] || Skyr + protein [legacy]
+   familia-primero=true  n(int/fam/prep)=9/5/0
+   1. [familia] Skyr + protein (Auchan/legacy) 206g P16.5 C8.4 G0.4 103kcal m=82% preferred
+   2. [familia] Skyr Natural 00% (Carrefour/legacy) 206g P16.5 C8.4 G1.0 103kcal m=76% preferred
+   3. [familia] Skyr Natural (Milbona/Lidl) 150g P16.5 C6.0 G0.3 93kcal m=100% preferred
+   4. [familia] Skyr (Danone/OpenFoodFacts) 165g P16.5 C6.4 G0.3 94kcal m=97% preferred
+   5. [familia] Skyr High Protein (Ehrmann/OpenFoodFacts) 177g P16.5 C6.7 G0.4 97kcal m=94% preferred
+   6. [intercambio] Yogur proteínas (Lidl/legacy) 165g P16.5 C9.9 G0.5 107kcal m=72% preferred
+   7. [intercambio] Queso fresco batido proteína plus (Sensations/legacy) 165g P16.5 C6.6 G0.8 94kcal m=90% preferred
+   8. [intercambio] Queso fresco batido 0% (Hacendado/Mercadona) 206g P16.5 C7.2 G0.2 95kcal m=91% preferred
+   9. [intercambio] Queso fresco batido (Granja Rinya/legacy) 220g P16.5 C8.9 G0.0 101kcal m=80% preferred
+   10. [intercambio] Queso Fresco Batido (Milsani/legacy) 220g P16.5 C8.9 G0.0 101kcal m=80% preferred
+
+== requesón (100g)
+   ORIGEN: Requesón | Marca Blanca | BEDCA | P12.31 C3.3 G4.3 101.1kcal
+   busq: Requesón [BEDCA] || Requesón tipo cottage light* [Lidl] || Requesón ricotta [OpenFoodFacts]
+   familia-primero=false  n(int/fam/prep)=20/2/0
+   1. [intercambio] Queso fresco light (Hacendado/Mercadona) 95g P12.3 C3.6 G5.4 111kcal m=83% preferred
+   2. [intercambio] Queso fresco de burgos línea (Garcia Baquero/OpenFoodFacts) 126g P12.3 C2.4 G0.6 64kcal m=78% preferred
+   3. [intercambio] Queso fresco batido proteína plus (Sensations/legacy) 123g P12.3 C4.9 G0.6 70kcal m=73% preferred
+   4. [intercambio] Queso fresco 0% m.g (Dia/Dia) 118g P12.3 C4.6 G0.4 71kcal m=74% preferred
+   5. [intercambio] Queso fresco 0% (Auchan/Alcampo) 123g P12.3 C4.8 G0.6 74kcal m=74% preferred
+   6. [intercambio] Queso fresco Burgos 0% M.G. (Milbona/Lidl) 112g P12.3 C4.5 G0.3 71kcal m=75% preferred
+   7. [intercambio] Queso burgos carrefour 0% (Carrefour/Carrefour) 103g P12.4 C4.1 G0.0 71kcal m=76% preferred
+   8. [intercambio] Queso tipo burgos 0% (Consum/Consum) 123g P12.3 C5.7 G0.6 77kcal m=67% preferred
+   9. [intercambio] Queso cottage (Milbona/Lidl) 107g P12.3 C3.0 G4.8 105kcal m=91% preferred
+   10. [intercambio] Queso quark (Milbona/Lidl) 120g P12.4 C4.4 G5.2 116kcal m=80% preferred
+
+== sardinas (80g)
+   ORIGEN: Sardina | Marca Blanca | BEDCA | P18.1 C0 G7.5 139.9kcal
+   busq: Sardina [BEDCA] || Sardina, asada [BEDCA] || Sardina, enlatada, en escabeche [BEDCA]
+   familia-primero=false  n(int/fam/prep)=72/1/0
+   1. [intercambio] Jurel, crudo (Marca Blanca/BEDCA) 94g P14.5 C0.8 G4.9 105kcal m=90% preferred
+   2. [intercambio] Pez espada, crudo (Marca Blanca/BEDCA) 85g P14.4 C0.0 G3.7 91kcal m=90% preferred
+   3. [intercambio] Atún, plancha (Marca Blanca/BEDCA) 63g P14.5 C0.0 G7.6 126kcal m=81% preferred
+   4. [intercambio] Filetes de caballa (Carrefour/Carrefour) 54g P14.6 C0.3 G3.7 91kcal m=88% preferred
+   5. [intercambio] Filetes de Bonito del Norte (dia/Dia) 60g P14.4 C0.0 G2.6 82kcal m=85% preferred
+   6. [intercambio] Congrio (Marca Blanca/BEDCA) 76g P14.4 C0.0 G2.1 77kcal m=84% preferred
+   7. [intercambio] Mero, crudo (Marca Blanca/BEDCA) 81g P14.4 C0.0 G1.9 74kcal m=83% preferred
+   8. [intercambio] Gallo (Marca Blanca/BEDCA) 92g P14.5 C0.0 G1.7 74kcal m=83% preferred
+   9. [intercambio] Rape, a la parrilla (Marca Blanca/BEDCA) 66g P14.5 C0.0 G0.4 62kcal m=78% preferred
+   10. [intercambio] Bacalao, crudo (Marca Blanca/BEDCA) 80g P14.6 C0.0 G0.8 66kcal m=79% preferred
+
+== lomo de cerdo (150g)
+   ORIGEN: Cerdo, lomo, crudo | Marca Blanca | BEDCA | P18 C0 G8.9 151.8kcal
+   busq: Cerdo, lomo, crudo [BEDCA] || Cerdo, lomo, asado [BEDCA] || Carne de cerdo de capa blanca, lomo, parte magra, crudo [BEDCA]
+   familia-primero=false  n(int/fam/prep)=64/12/0
+   1. [intercambio] Pollo, parte sin especificar (Marca Blanca/BEDCA) 136g P27.1 C0.0 G13.1 225kcal m=99% preferred
+   2. [intercambio] Ternera, lomo, crudo, con grasa separable (Marca Blanca/BEDCA) 162g P26.9 C0.0 G9.7 195kcal m=92% preferred
+   3. [intercambio] Conejo de granja, carne, cruda (Marca Blanca/BEDCA) 130g P26.9 C0.0 G6.9 170kcal m=87% preferred
+   4. [intercambio] Vaca/buey, solomillo, crudo (Marca Blanca/BEDCA) 135g P27.0 C0.0 G6.8 177kcal m=87% preferred
+   5. [intercambio] Pavo, crudo (Marca Blanca/BEDCA) 134g P27.0 C0.0 G11.4 211kcal m=96% preferred
+   6. [intercambio] Filete de pechuga de pollo rural (mercadona/Mercadona) 135g P27.0 C0.7 G7.6 179kcal m=86% preferred
+   7. [intercambio] Burget meat pollo (mercadona/Mercadona) 169g P27.0 C7.3 G12.7 250kcal m=71% preferred
+   8. [intercambio] Brochetas de pollo (Mercadona/Mercadona) 176g P26.9 C0.9 G18.1 271kcal m=67% preferred
+   9. [intercambio] Lomo bajo de ternera (Alimento Fresco/OpenFoodFacts) 129g P27.0 C0.6 G10.7 208kcal m=92% preferred
+   10. [intercambio] Pato, entero, crudo (Marca Blanca/BEDCA) 137g P27.0 C0.0 G8.9 188kcal m=91% preferred
+
+== cuscús (60g)
+   ORIGEN: Cuscús | Carrefour | Carrefour | P13 C70 G1.9 356kcal
+   busq: Cuscús [Carrefour] || Cuscús fino [Carrefour] || CUSCÚS Grano mediano [Carrefour]
+   familia-primero=false  n(int/fam/prep)=193/3/4
+   1. [intercambio] Arroz para ensaladas y guarnición (Carrefour, Carrefour sensation/Carrefour) 56g P5.2 C42.0 G0.8 198kcal m=91% preferred
+   2. [intercambio] Arroz (Marca Blanca/BEDCA) 49g P3.4 C42.1 G0.4 176kcal m=85% preferred
+   3. [intercambio] Bulgur (Carrefour BIO, Carrefour/Carrefour) 67g P10.1 C42.2 G1.6 233kcal m=91% preferred
+   4. [intercambio] Arroz thai jasmin (Golden Sun/OpenFoodFacts) 54g P4.1 C41.7 G0.6 190kcal m=86% preferred
+   5. [intercambio] Quinoa BIO (Carrefour BIO, Carrefour/Carrefour) 74g P10.4 C42.2 G4.4 272kcal m=84% preferred
+   6. [intercambio] Couscous (Carrefour BIO, Carrefour/Carrefour) 60g P6.6 C42.0 G1.2 209kcal m=96% preferred
+   7. [intercambio] Bio couscous de arroz (Natursoy/OpenFoodFacts) 54g P3.9 C42.1 G0.0 186kcal m=85% preferred
+   8. [intercambio] Quinoa, cruda (Marca Blanca/BEDCA) 65g P9.0 C41.7 G3.6 235kcal m=89% preferred
+   9. [intercambio] Espirales (Carrefour/Carrefour) 62g P7.4 C42.2 G1.2 213kcal m=98% preferred
+   10. [intercambio] Mijo (Marca Blanca/BEDCA) 65g P7.2 C41.9 G2.7 221kcal m=94% preferred

@@ -12,14 +12,8 @@
       content="Intercambiador de alimentos RevolucionaT - Encuentra equivalencias nutricionales"
     />
 
-    <!-- Motor determinista: embeddings locales sí; microservicio/LLM no.
-         El orden visible debe ser reproducible y no mostrar estados de IA
-         cuando no existe un juez remoto operativo. -->
-    <script>
-      window.SEMANTIC_EMBEDDINGS_ENABLED = true;
-      window.RERANK_ENABLED = false;
-      window.LLM_JUDGE_ENABLED = false;
-    </script>
+    <!-- Configuración única compartida por navegador y arnés de validación. -->
+    <script src="js/runtime_config.js"></script>
 
     <title>RevolucionaT - Intercambiador de Alimentos</title>
 
@@ -2116,6 +2110,7 @@
     <script src="js/culinary_intent.js"></script>
     <script src="js/exchange_scope.js"></script>
     <script src="js/algorithm.js"></script>
+    <script src="js/presentation_policy.js"></script>
     <script>
       // ============================================
       // LOGIN SYSTEM
@@ -2716,99 +2711,21 @@
           preparadosSection, preparadosContainer, preparadosCount,
         );
 
-        // PUNTO 9 Hugo brief 16/05/2026 + extensión nutricionista clínica:
-        // El flip "familia primero, intercambios después" se aplica cuando
-        // la clienta está en intención de COMPRA (elegir marca/formato de
-        // un alimento envasado con variabilidad real entre marcas), NO
-        // cuando está resolviendo una comida sin tener el alimento en casa.
-        //
-        // Heurística combinada (3 capas + whitelist Hugo explícita):
-        //   1) culinary_role: snack, dessert → siempre comerciales
-        //   2) category dairy → todos los lácteos envasados varían mucho
-        //   3) subgroup: processed_meat, sweets_bakery → fiambres, bollería
-        //   4) name tokens: panes, cereales, galletas, conservas pescado,
-        //                   embutidos, untables (hummus, tahin, mermelada),
-        //                   bebidas, leches
-        //   + whitelist Hugo: pan, yogur, skyr, atún, garbanzo
-        //
-        // EXCLUYE explícitamente: pollo, arroz, aceite, huevo, aguacate,
-        // pescado fresco, verduras, frutas, legumbres secas — para esos
-        // gana el orden default (intercambios primero).
-        const _norm = (s) => (s || "")
-          .toLowerCase()
-          .normalize("NFD").replace(/[̀-ͯ]/g, "");
-        const _origNameN = _norm(originalFood.name);
-        const _oRole = originalFood.culinary_role || "meal_dish";
-        const _oCat  = originalFood.category;
-        const _oSub  = originalFood.subgroup;
-
-        // Capa 1+2+3: role/category/subgroup
-        const _ROLE_FAMILY_FIRST    = new Set(["snack", "dessert"]);
-        const _SUBGRP_FAMILY_FIRST  = new Set(["processed_meat", "sweets_bakery"]);
-        const _byClassification =
-          _ROLE_FAMILY_FIRST.has(_oRole) ||
-          _oCat === "dairy" ||
-          _SUBGRP_FAMILY_FIRST.has(_oSub);
-
-        // Capa 4: tokens del nombre (cubre conservas, embutidos, panes,
-        // cereales, untables, bebidas — todos comerciales con marcas)
-        const _TOKEN_FAMILY_FIRST = [
-          // panes y derivados de panadería envasada
-          "pan", "tostada", "biscote", "pico", "colin",
-          // cereales de desayuno y barritas
-          "avena", "copos", "cereales", "muesli", "granola", "barrita", "all-bran", "all bran",
-          "corn flakes", "fitness", "special k", "choco krispies",
-          // galletas, tortitas, crackers
-          "galleta", "tortita", "cracker", "crujiente",
-          // NOTA: conservas de pescado/marisco (atún, sardina, caballa,
-          // bonito, anchoa, surimi, mejillón...) se quitaron de aquí a
-          // propósito: el cliente pidió que en conservas de pescado salgan
-          // primero las ALTERNATIVAS RECOMENDADAS (salmón, atún fresco...),
-          // no "otras marcas y formatos" del mismo producto.
-          // fiambres y embutidos
-          "jamon", "jamón", "chorizo", "salchichon", "salchichón",
-          "fuet", "salchicha", "hamburguesa", "bacon", "mortadela",
-          "pavo cocido", "pollo cocido", "fiambre",
-          // untables / pastas saladas
-          "hummus", "tahin", "tahini", "pate", "paté",
-          // mermeladas y compotas
-          "mermelada", "confitura", "compota", "jalea",
-          // bebidas (zumos, vegetales, leches)
-          "zumo", "bebida vegetal", "leche", "horchata",
-          // lácteos específicos (refuerza category dairy)
-          "yogur", "yogurt", "yoghurt", "skyr", "fage", "quark",
-          "kefir", "kéfir",
-          // huevo: las formas de huevo son más útiles que abrir con pescado
-          "huevo",
-          // proteína vegetal — Hugo punto 2.E: tofu prioriza tofus/seitanes
-          "tofu", "tempeh", "seitan", "seitán", "soja texturizada", "heura",
-          // legumbres en conserva (no las secas crudas)
-          "garbanzo", "alubia cocida", "lenteja cocida",
-          "judia cocida", "judía cocida",
-          // aceitunas / encurtidos
-          "aceitun", "encurtido", "pepinillo",
-          // chocolate envasado
-          "chocolate", "tableta",
-        ];
-        const _byToken = _TOKEN_FAMILY_FIRST.some((t) => _origNameN.includes(t));
-
-        const isBasicoFamiliaFirst = _byClassification || _byToken;
-
-        // Umbral mínimo: aunque sea básico, si familia < 5 no merece flip
-        // (poca variedad → mejor mostrar intercambios reales arriba)
-        const familyDominant =
-          isBasicoFamiliaFirst && alternatives.familia.length >= 5;
         const parent = intercambiosSection.parentNode;
-        if (familyDominant) {
-          // Familia primero (solo básicos: pan/yogur/skyr/atún/garbanzos)
-          parent.insertBefore(familiaSection, intercambiosSection);
-        } else {
-          // Default: intercambios primero, familia después
-          parent.insertBefore(intercambiosSection, familiaSection);
-        }
+        const sections = {
+          intercambios: intercambiosSection,
+          familia: familiaSection,
+          preparados: preparadosSection,
+        };
+        const blockOrder =
+          typeof window.getResultBlockOrder === "function"
+            ? window.getResultBlockOrder(originalFood, alternatives)
+            : ["intercambios", "familia", "preparados"];
+        blockOrder.forEach((block) => parent.appendChild(sections[block]));
       }
 
-      const FAMILIA_VISIBLE_DEFAULT = 8;
+      const FAMILIA_VISIBLE_DEFAULT =
+        Number(window.REVOLUCIONAT_RUNTIME_CONFIG?.secondaryVisibleLimit) || 8;
 
       function renderCollapsibleBlock(items, tier, section, container, countEl) {
         if (!items || items.length === 0) {
@@ -3000,7 +2917,8 @@
         intercambiosSection.style.display = "block";
         intercambiosCount.textContent = items.length;
 
-        const BATCH = 8;
+        const BATCH =
+          Number(window.REVOLUCIONAT_RUNTIME_CONFIG?.resultBatchSize) || 8;
         const visible = items.slice(0, BATCH);
         const hidden = items.slice(BATCH);
 

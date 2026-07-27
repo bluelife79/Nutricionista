@@ -170,7 +170,7 @@ assert.strictEqual(headerMap['x-content-type-options'], 'nosniff');
 assert.strictEqual(headerMap['x-frame-options'], 'DENY');
 assert.ok(headerMap['referrer-policy']);
 assert.ok(headerMap['permissions-policy']);
-assert.strictEqual(versionManifest.base_commit, '583013338d701306f7d176c883ca36fe25d0a458');
+assert.strictEqual(versionManifest.base_commit, 'd8ddbea434c9a9bc62a4257f28ec13d76dd4943c');
 assert.strictEqual(versionManifest.catalog_records, 5324);
 brandAssets.forEach((asset) => assert.ok(fs.existsSync(path.join(ROOT, asset)), `${asset} no existe`));
 

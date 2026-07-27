@@ -1,0 +1,39 @@
+{
+  "contract": "premium-v2.4-c13-1",
+  "baseline_commit": "d8ddbea434c9a9bc62a4257f28ec13d76dd4943c",
+  "runtime": {
+    "semanticEmbeddingsEnabled": true,
+    "remoteRerankEnabled": false,
+    "llmJudgeEnabled": false,
+    "familyFirstEnabled": true
+  },
+  "baseline": {
+    "queries": 333,
+    "scenarios": 474,
+    "cards": 4284,
+    "preferredCards": 4059,
+    "preferredPercentage": 94.7,
+    "noSearch": 96,
+    "zeroReal": 56,
+    "familyFirst": 73,
+    "percentageInversion": 376,
+    "rawCooked": 64,
+    "cookedOrigin": 19,
+    "adjacentMacroDuplicate": 41,
+    "largePortion": 44,
+    "seedOil": 8,
+    "foreign": 22,
+    "uglyName": 4,
+    "calorieDrift": 39,
+    "lowDiversity": 256
+  },
+  "intents": {
+    "publicOrigins": 1636,
+    "promptedOrigins": 418,
+    "optionScenarios": 911
+  },
+  "production_comparison": {
+    "rule": "La candidata no puede superar los defectos de producción en ninguna métrica crítica.",
+    "production_commit": "583013338d701306f7d176c883ca36fe25d0a458"
+  }
+}

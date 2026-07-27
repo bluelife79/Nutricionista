@@ -46,7 +46,7 @@ function localFetch(resource) {
   });
 }
 
-function createEngine() {
+function createEngine(options = {}) {
   const foods = loadJson("database.json");
   if (!Array.isArray(foods)) {
     throw new Error("database.json debe ser un array plano de alimentos");
@@ -61,11 +61,9 @@ function createEngine() {
   };
   const window = {
     foodsDatabase: foods,
-    SEMANTIC_EMBEDDINGS_ENABLED: true,
-    RERANK_ENABLED: false,
-    LLM_JUDGE_ENABLED: false,
     DIETARY_FILTERS: new Set(),
     location: { search: "" },
+    REVOLUCIONAT_RUNTIME_OVERRIDES: options.runtimeOverrides || {},
   };
   const context = {
     window,
@@ -98,12 +96,14 @@ function createEngine() {
   vm.createContext(context);
 
   for (const file of [
+    "js/runtime_config.js",
     "js/exchange_groups.js",
     "js/dietary_filters.js",
     "js/premium_policy.js",
     "js/culinary_intent.js",
     "js/exchange_scope.js",
     "js/algorithm.js",
+    "js/presentation_policy.js",
   ]) {
     let source = fs.readFileSync(path.join(ROOT, file), "utf8");
     if (file === "js/algorithm.js") {

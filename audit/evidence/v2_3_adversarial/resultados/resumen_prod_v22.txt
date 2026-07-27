@@ -1,0 +1,20 @@
+=== BARRIDO v22prod — 333 consultas, 418 escenarios (2 cantidades/alimento) ===
+
+    124  Consultas sin ningún resultado
+     85  Escenarios con 0 intercambios reales
+     61  Marcas antes que intercambio real
+    330  Inversión de % visible (>4 pts) en TOP10
+     44  Cruce crudo↔cocinado en TOP5
+     17  Origen cocinado elegido por defecto
+     60  Duplicados macro adyacentes en TOP5
+     42  Porciones ≥350 g en TOP5
+     12  Aceites de semilla/tropical en TOP5
+     17  Nombres no castellanos en TOP5
+      3  Nombres ilegibles (s/e) en TOP5
+     43  Deriva calórica >+35% en TOP5
+    199  TOP5 sin diversidad (un solo tipo)
+
+  Tarjetas TOP10 analizadas: 3440 | con etiqueta 'Elección prioritaria': 3128 (90.9%)
+
+───── CONSULTAS SIN RESULTADO (124) ─────
+  biscotes

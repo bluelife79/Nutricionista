@@ -1,9 +1,9 @@
 {
-  "release": "production-v2.2-security-hotfix-1",
-  "base_commit": "583013338d701306f7d176c883ca36fe25d0a458",
+  "release": "premium-v2.4-candidate-1",
+  "base_commit": "d8ddbea434c9a9bc62a4257f28ec13d76dd4943c",
   "catalog_records": 5324,
-  "exchange_core": 1267,
-  "reference_only": 315,
-  "scope_version": "premium-v2.2-scope-4",
-  "intent_version": "premium-v2.2-intent-3"
+  "exchange_core": 1294,
+  "reference_only": 342,
+  "scope_version": "premium-v2.3-scope-1",
+  "intent_version": "premium-v2.3-intent-1"
 }

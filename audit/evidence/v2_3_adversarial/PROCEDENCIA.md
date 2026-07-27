@@ -1,0 +1,35 @@
+# Procedencia exacta de la evidencia
+
+Generado: 2026-07-27 21:29 CEST
+
+## Commit y rama auditados (local v2.3)
+```
+d8ddbeae13648aa452b9b5f8dcf0fdb81503a7fe
+codex/premium-exchange-v2-3
+```
+
+## Hashes SHA-256 — LOCAL v2.3
+```
+dc3b1f5f90a59b861d7ae39923a8bd754ec72315db1841d7dbd9c640d882a370  index.html
+df3207c8402245d17bca7b991ee0186dfba1c4e2031f6519d2dc521a25114fb7  database.json
+076269144ae35341ff74274b71234b0e02393b5b8966ecce763d2285cb07ff35  js/algorithm.js
+8be03d3414a8287c8b764039f80e130779039e9a60a5a4ffa4444fb8013d036c  js/culinary_intent.js
+2fad28328911efb1d4ac8f1a91121a9bb8a898de888f0364c1334ef493065c47  js/dietary_filters.js
+2c73d80636f786f4c89d4a289398702728714051a871f9b69a07b507909f1c4b  js/exchange_groups.js
+155f88ce98ac376c9bc2d408e8a5ce936a07af4ff7d7543f1dfc5194aaa0bcdd  js/exchange_scope.js
+167d42e7b9acbfe1b21e856fdb306bebfebc74094483790e3e7053d5f95f9c89  js/household_measures.js
+182246d74734d02bb8ba6f6cb148221343d4fbc2f99a03968f8e78a73645fa8a  js/premium_policy.js
+```
+
+## Hashes SHA-256 — PRODUCCION (descargado de intercambio.entrenatucorazon.es)
+```
+8f35fffaa836e8cd83ad95c6505320818a12aea585d7fa5eaf85fa990d400920  prod_index.html
+1ea54715e9e8b4cbe5ed7c14e9aab800967232dc99d483b5258fab1755e4ecf1  prod_database.json
+d5de589654ba630f53d508c340208795907a4a87a06cdb3f14fcc52ec4d8af1e  prod_js_algorithm.js
+4ab84a38fa7fd1c516aa62f2d7505d6f5c653a0709a11722ead455cd7aa57ec1  prod_js_culinary_intent.js
+2fad28328911efb1d4ac8f1a91121a9bb8a898de888f0364c1334ef493065c47  prod_js_dietary_filters.js
+2c73d80636f786f4c89d4a289398702728714051a871f9b69a07b507909f1c4b  prod_js_exchange_groups.js
+753785c70d798c6679f6c80d18b5997625275dc1fd9d4fcde57bc9562b812d76  prod_js_exchange_scope.js
+167d42e7b9acbfe1b21e856fdb306bebfebc74094483790e3e7053d5f95f9c89  prod_js_household_measures.js
+cb5e743ca98cce0951cf24067a878829b3b429e196338b0bbb74aba3ebcbfafd  prod_js_premium_policy.js
+```
