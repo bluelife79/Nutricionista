@@ -779,7 +779,7 @@
   },
   {
     "source": "BEDCA",
-    "name": "Cerdo, parte s/e",
+    "name": "Cerdo, corte no especificado",
     "protein": 16.6,
     "carbs": 0,
     "fat": 23,
@@ -849,7 +849,11 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Cerdo, parte s/e",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "BEDCA",
@@ -2327,7 +2331,7 @@
   },
   {
     "source": "BEDCA",
-    "name": "Pollo, parte s/e",
+    "name": "Pollo, corte no especificado",
     "protein": 19.9,
     "carbs": 0,
     "fat": 9.6,
@@ -2397,7 +2401,11 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Pollo, parte s/e",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "BEDCA",
@@ -4010,7 +4018,7 @@
   },
   {
     "source": "BEDCA",
-    "name": "Ternera. parte s/e",
+    "name": "Ternera. corte no especificado",
     "protein": 16.7,
     "carbs": 0,
     "fat": 21,
@@ -4083,7 +4091,11 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Ternera. parte s/e",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "BEDCA",
@@ -21376,7 +21388,7 @@
   },
   {
     "source": "BEDCA",
-    "name": "Ternera, parte s/e, cruda, con grasa separable",
+    "name": "Ternera, corte no especificado, cruda, con grasa separable",
     "protein": 16.7,
     "carbs": 0,
     "fat": 21,
@@ -21450,7 +21462,11 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Ternera, parte s/e, cruda, con grasa separable",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "BEDCA",
@@ -34054,7 +34070,7 @@
   },
   {
     "source": "BEDCA",
-    "name": "Cordero, parte s/e",
+    "name": "Cordero, corte no especificado",
     "protein": 15.6,
     "carbs": 0,
     "fat": 32.7,
@@ -34124,7 +34140,11 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Cordero, parte s/e",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "BEDCA",
@@ -38162,7 +38182,7 @@
   },
   {
     "source": "BEDCA",
-    "name": "Cabrito, parte s/e, crudo, con grasa separable",
+    "name": "Cabrito, corte no especificado, crudo, con grasa separable",
     "protein": 19.3,
     "carbs": 0,
     "fat": 4,
@@ -38235,7 +38255,11 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Cabrito, parte s/e, crudo, con grasa separable",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "BEDCA",
@@ -40921,7 +40945,7 @@
   },
   {
     "source": "BEDCA",
-    "name": "Cerdo, parte sin especificar",
+    "name": "Cerdo, corte no especificado",
     "protein": 16.6,
     "carbs": 0,
     "fat": 23,
@@ -40991,7 +41015,11 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Cerdo, parte sin especificar",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "BEDCA",
@@ -41297,7 +41325,7 @@
   },
   {
     "source": "BEDCA",
-    "name": "Pollo, parte sin especificar",
+    "name": "Pollo, corte no especificado",
     "protein": 19.9,
     "carbs": 0,
     "fat": 9.6,
@@ -41367,7 +41395,11 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Pollo, parte sin especificar",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "BEDCA",
@@ -43587,7 +43619,7 @@
   },
   {
     "source": "BEDCA",
-    "name": "Ternera, parte sin especificar, cruda, con grasa separable",
+    "name": "Ternera, corte no especificado, cruda, con grasa separable",
     "protein": 16.7,
     "carbs": 0,
     "fat": 21,
@@ -43661,7 +43693,11 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Ternera, parte sin especificar, cruda, con grasa separable",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "BEDCA",
@@ -44054,7 +44090,7 @@
   },
   {
     "source": "BEDCA",
-    "name": "Cordero, parte sin especificar",
+    "name": "Cordero, corte no especificado",
     "protein": 15.6,
     "carbs": 0,
     "fat": 32.7,
@@ -44124,7 +44160,11 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Cordero, parte sin especificar",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "BEDCA",
@@ -45643,7 +45683,7 @@
   },
   {
     "source": "BEDCA",
-    "name": "Ternera, parte s/e, asada",
+    "name": "Ternera, corte no especificado, asada",
     "protein": 29.5,
     "carbs": 0,
     "fat": 11.44,
@@ -45716,11 +45756,15 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Ternera, parte s/e, asada",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "BEDCA",
-    "name": "Vaca/buey, parte s/e, estofado",
+    "name": "Vaca/buey, corte no especificado, estofado",
     "protein": 30,
     "carbs": 0,
     "fat": 8.33,
@@ -45792,7 +45836,11 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Vaca/buey, parte s/e, estofado",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "BEDCA",
@@ -49010,7 +49058,7 @@
   },
   {
     "source": "BEDCA",
-    "name": "Vaca/buey, parte s/e, asado",
+    "name": "Vaca/buey, corte no especificado, asado",
     "protein": 31,
     "carbs": 0,
     "fat": 11.73,
@@ -49083,7 +49131,11 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Vaca/buey, parte s/e, asado",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "BEDCA",
@@ -59881,7 +59933,7 @@
   },
   {
     "source": "BEDCA",
-    "name": "Ciervo, parte s/e, crudo, con grasa separable",
+    "name": "Ciervo, corte no especificado, crudo, con grasa separable",
     "protein": 22.2,
     "carbs": 0,
     "fat": 1.6,
@@ -59954,7 +60006,11 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Ciervo, parte s/e, crudo, con grasa separable",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "BEDCA",
@@ -89133,7 +89189,7 @@
   },
   {
     "source": "Dia",
-    "name": "Aros de maíz &quot;Dia&quot;",
+    "name": "Aros de maíz \"Dia\"",
     "protein": 5.6,
     "carbs": 62.8,
     "fat": 26,
@@ -89205,7 +89261,11 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Aros de maíz &quot;Dia&quot;",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "Eroski",
@@ -98812,7 +98872,7 @@
   },
   {
     "source": "Dia",
-    "name": "Zumo de naranja exprimida refrigerado con pulpa &quot;Dia&quot;",
+    "name": "Zumo de naranja exprimida refrigerado con pulpa \"Dia\"",
     "protein": 0.6,
     "carbs": 10,
     "fat": 0,
@@ -98883,7 +98943,11 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Zumo de naranja exprimida refrigerado con pulpa &quot;Dia&quot;",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "Mercadona",
@@ -101855,7 +101919,7 @@
   },
   {
     "source": "Carrefour",
-    "name": "Zumo de melocotón y uva ecológico &quot;Carrefour Bio&quot;",
+    "name": "Zumo de melocotón y uva ecológico \"Carrefour Bio\"",
     "protein": 0.4,
     "carbs": 8.8,
     "fat": 0.2,
@@ -101964,7 +102028,11 @@
         "source": "ingredients"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Zumo de melocotón y uva ecológico &quot;Carrefour Bio&quot;",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "Carrefour",
@@ -119106,7 +119174,7 @@
   },
   {
     "source": "Dia",
-    "name": "Aceite de oliva virgen extra &quot;Dia&quot;",
+    "name": "Aceite de oliva virgen extra \"Dia\"",
     "protein": 0,
     "carbs": 0,
     "fat": 100,
@@ -119158,7 +119226,8 @@
     },
     "premium_context": "oil",
     "quality_reasons": [
-      "premium_2_2_plain_oil_not_condiment"
+      "premium_2_2_plain_oil_not_condiment",
+      "premium_2_4_spanish_display_name"
     ],
     "exchange_scope": {
       "version": "premium-v2.3-scope-1",
@@ -119186,7 +119255,8 @@
       },
       "nova_group": null
     },
-    "fat_quality": "olive"
+    "fat_quality": "olive",
+    "original_name": "Aceite de oliva virgen extra &quot;Dia&quot;"
   },
   {
     "source": "Dia",
@@ -147138,7 +147208,7 @@
   },
   {
     "source": "Consum",
-    "name": "Yogurt natural",
+    "name": "Yogur natural",
     "protein": 3.9,
     "carbs": 4.9,
     "fat": 2.6,
@@ -147212,7 +147282,11 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Yogurt natural",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "Eroski",
@@ -171850,7 +171924,7 @@
   },
   {
     "source": "Carrefour",
-    "name": "Mezcla de frutas del bosque congeladas &quot;Carrefour&quot;",
+    "name": "Mezcla de frutas del bosque congeladas \"Carrefour\"",
     "protein": 1.4,
     "carbs": 7.5,
     "fat": 0.1,
@@ -171962,7 +172036,11 @@
         "source": "ingredients"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Mezcla de frutas del bosque congeladas &quot;Carrefour&quot;",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "Lidl",
@@ -175161,7 +175239,7 @@
   },
   {
     "source": "Carrefour",
-    "name": "Brotes de judía mungo en conserva ecológicas &quot;Carrefour Bio&quot; A los tres pimientos",
+    "name": "Brotes de judía mungo en conserva ecológicas \"Carrefour Bio\" A los tres pimientos",
     "protein": 1.5,
     "carbs": 4.5,
     "fat": 0,
@@ -175234,7 +175312,11 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Brotes de judía mungo en conserva ecológicas &quot;Carrefour Bio&quot; A los tres pimientos",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "Dia",
@@ -176441,7 +176523,7 @@
   },
   {
     "source": "Carrefour",
-    "name": "Brotes de judía mungo en conserva ecológicas &quot;Carrefour Bio&quot;",
+    "name": "Brotes de judía mungo en conserva ecológicas \"Carrefour Bio\"",
     "protein": 1.9,
     "carbs": 2.6,
     "fat": 0.2,
@@ -176555,7 +176637,11 @@
         "source": "ingredients"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Brotes de judía mungo en conserva ecológicas &quot;Carrefour Bio&quot;",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "Mercadona",
@@ -193556,7 +193642,7 @@
   },
   {
     "source": "Lidl",
-    "name": "Yogurt Natural Linea 0%",
+    "name": "Yogur natural línea 0%",
     "protein": 4.2,
     "carbs": 5.5,
     "fat": 0.1,
@@ -193668,7 +193754,11 @@
         "source": "ingredients"
       },
       "nova_group": 4
-    }
+    },
+    "original_name": "Yogurt Natural Linea 0%",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "Alcampo",
@@ -195955,7 +196045,7 @@
   },
   {
     "source": "Carrefour",
-    "name": "Salsa de mostaza ecológica &quot;Carrefour Bio&quot; A la antigua",
+    "name": "Salsa de mostaza ecológica \"Carrefour Bio\" A la antigua",
     "protein": 6.9,
     "carbs": 4,
     "fat": 12,
@@ -195983,7 +196073,8 @@
     "premium_context": "savory_sauce",
     "premium_review_status": "premium_2_1_deterministic_identity",
     "quality_reasons": [
-      "sauce_or_condiment_name"
+      "sauce_or_condiment_name",
+      "premium_2_4_spanish_display_name"
     ],
     "culinary_intent": {
       "version": "premium-v2.3-intent-1",
@@ -196067,7 +196158,8 @@
         "source": "ingredients"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Salsa de mostaza ecológica &quot;Carrefour Bio&quot; A la antigua"
   },
   {
     "source": "Eroski",
@@ -197576,7 +197668,7 @@
   },
   {
     "source": "Carrefour",
-    "name": "Salsa de mostaza &quot;Carrefour&quot;",
+    "name": "Salsa de mostaza \"Carrefour\"",
     "protein": 4.1,
     "carbs": 4.8,
     "fat": 2.9,
@@ -197604,7 +197696,8 @@
     "premium_context": "savory_sauce",
     "premium_review_status": "premium_2_1_deterministic_identity",
     "quality_reasons": [
-      "sauce_or_condiment_name"
+      "sauce_or_condiment_name",
+      "premium_2_4_spanish_display_name"
     ],
     "culinary_intent": {
       "version": "premium-v2.3-intent-1",
@@ -197689,7 +197782,8 @@
         "source": "ingredients"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Salsa de mostaza &quot;Carrefour&quot;"
   },
   {
     "source": "Dia",
@@ -203322,7 +203416,7 @@
   },
   {
     "source": "Carrefour",
-    "name": "Aceituna negras s/h",
+    "name": "Aceituna negras sin hueso",
     "protein": 0.6,
     "carbs": 0,
     "fat": 16,
@@ -203415,7 +203509,8 @@
     },
     "premium_context": "olive",
     "quality_reasons": [
-      "premium_2_2_olive_identity_restored"
+      "premium_2_2_olive_identity_restored",
+      "premium_2_4_spanish_display_name"
     ],
     "exchange_scope": {
       "version": "premium-v2.3-scope-1",
@@ -203441,7 +203536,8 @@
       },
       "nova_group": 3
     },
-    "fat_quality": "olive"
+    "fat_quality": "olive",
+    "original_name": "Aceituna negras s/h"
   },
   {
     "source": "Dia",
@@ -210116,7 +210212,7 @@
   },
   {
     "source": "Alcampo",
-    "name": "Gaspacho suave",
+    "name": "Gazpacho suave",
     "protein": 0.5,
     "carbs": 2.6,
     "fat": 1.8,
@@ -210225,7 +210321,11 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Gaspacho suave",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "Aldi",
@@ -221218,7 +221318,7 @@
   },
   {
     "source": "Dia",
-    "name": "Olives vertes dénoyautées",
+    "name": "Aceitunas verdes sin hueso",
     "protein": 1,
     "carbs": 0,
     "fat": 17.7,
@@ -221307,7 +221407,8 @@
     },
     "premium_context": "olive",
     "quality_reasons": [
-      "premium_2_2_olive_identity_restored"
+      "premium_2_2_olive_identity_restored",
+      "premium_2_4_spanish_display_name"
     ],
     "exchange_scope": {
       "version": "premium-v2.3-scope-1",
@@ -221333,7 +221434,8 @@
       },
       "nova_group": 3
     },
-    "fat_quality": "olive"
+    "fat_quality": "olive",
+    "original_name": "Olives vertes dénoyautées"
   },
   {
     "source": "Carrefour",
@@ -222530,7 +222632,7 @@
   },
   {
     "source": "Alcampo",
-    "name": "Olives avec noyau",
+    "name": "Aceitunas con hueso",
     "protein": 0.5,
     "carbs": 0.1,
     "fat": 16.5,
@@ -222619,7 +222721,8 @@
     },
     "premium_context": "olive",
     "quality_reasons": [
-      "premium_2_2_olive_identity_restored"
+      "premium_2_2_olive_identity_restored",
+      "premium_2_4_spanish_display_name"
     ],
     "exchange_scope": {
       "version": "premium-v2.3-scope-1",
@@ -222648,7 +222751,8 @@
       },
       "nova_group": 4
     },
-    "fat_quality": "olive"
+    "fat_quality": "olive",
+    "original_name": "Olives avec noyau"
   },
   {
     "source": "Consum",
@@ -223810,7 +223914,7 @@
   },
   {
     "source": "Dia",
-    "name": "Aceitunas verdes enteras &quot;Dia&quot; Variedad Manzanilla",
+    "name": "Aceitunas verdes enteras \"Dia\" Variedad Manzanilla",
     "protein": 1.4,
     "carbs": 0.1,
     "fat": 15,
@@ -223858,7 +223962,8 @@
     },
     "premium_context": "olive",
     "quality_reasons": [
-      "premium_2_2_olive_identity_restored"
+      "premium_2_2_olive_identity_restored",
+      "premium_2_4_spanish_display_name"
     ],
     "exchange_scope": {
       "version": "premium-v2.3-scope-1",
@@ -223887,7 +223992,8 @@
       },
       "nova_group": null
     },
-    "fat_quality": "olive"
+    "fat_quality": "olive",
+    "original_name": "Aceitunas verdes enteras &quot;Dia&quot; Variedad Manzanilla"
   },
   {
     "source": "Mercadona",
@@ -224914,7 +225020,7 @@
   },
   {
     "source": "Dia",
-    "name": "Aceitunas verdes partidas aliñadas a la gazpacha &quot;Dia&quot; Variedad Manzanilla",
+    "name": "Aceitunas verdes partidas aliñadas a la gazpacha \"Dia\" Variedad Manzanilla",
     "protein": 1.2,
     "carbs": 3.7,
     "fat": 17.4,
@@ -225008,7 +225114,8 @@
     },
     "premium_context": "olive",
     "quality_reasons": [
-      "premium_2_2_olive_identity_restored"
+      "premium_2_2_olive_identity_restored",
+      "premium_2_4_spanish_display_name"
     ],
     "exchange_scope": {
       "version": "premium-v2.3-scope-1",
@@ -225037,7 +225144,8 @@
       },
       "nova_group": null
     },
-    "fat_quality": "olive"
+    "fat_quality": "olive",
+    "original_name": "Aceitunas verdes partidas aliñadas a la gazpacha &quot;Dia&quot; Variedad Manzanilla"
   },
   {
     "source": "Dia",
@@ -288103,7 +288211,7 @@
   },
   {
     "source": "Carrefour",
-    "name": "Garbanzos cocidos congelados &quot;Carrefour&quot;",
+    "name": "Garbanzos cocidos congelados \"Carrefour\"",
     "protein": 9,
     "carbs": 19,
     "fat": 2.5,
@@ -288212,7 +288320,11 @@
         "source": "ingredients"
       },
       "nova_group": 1
-    }
+    },
+    "original_name": "Garbanzos cocidos congelados &quot;Carrefour&quot;",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "Carrefour",
@@ -301762,7 +301874,7 @@
   },
   {
     "source": "Dia",
-    "name": "Judías verdes planas troceadas congeladas &quot;Dia&quot;",
+    "name": "Judías verdes planas troceadas congeladas \"Dia\"",
     "protein": 1.9,
     "carbs": 4.2,
     "fat": 0.2,
@@ -301878,7 +301990,11 @@
         "source": "ingredients"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Judías verdes planas troceadas congeladas &quot;Dia&quot;",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "Eroski",
@@ -318369,7 +318485,7 @@
   },
   {
     "source": "Carrefour",
-    "name": "Aceitunas verdes rellenas de pasta de limón &quot;Carrefour&quot;",
+    "name": "Aceitunas verdes rellenas de pasta de limón \"Carrefour\"",
     "protein": 1,
     "carbs": 0,
     "fat": 15,
@@ -318397,7 +318513,8 @@
     "premium_review_status": "premium_2_1_deterministic_identity",
     "quality_reasons": [
       "plain_pasta_name",
-      "premium_2_2_olive_identity_restored"
+      "premium_2_2_olive_identity_restored",
+      "premium_2_4_spanish_display_name"
     ],
     "culinary_intent": {
       "version": "premium-v2.3-intent-1",
@@ -318449,7 +318566,8 @@
       },
       "nova_group": null
     },
-    "fat_quality": "olive"
+    "fat_quality": "olive",
+    "original_name": "Aceitunas verdes rellenas de pasta de limón &quot;Carrefour&quot;"
   },
   {
     "source": "Mercadona",
@@ -323846,7 +323964,7 @@
   },
   {
     "source": "Carrefour",
-    "name": "Houmous",
+    "name": "Hummus",
     "protein": 6.7,
     "carbs": 8.5,
     "fat": 28,
@@ -323874,7 +323992,8 @@
     "quality_reasons": [
       "sauce_or_condiment_name",
       "premium_2_2_savory_spread_identity_restored",
-      "premium_2_3_plant_savory_spread"
+      "premium_2_3_plant_savory_spread",
+      "premium_2_4_spanish_display_name"
     ],
     "culinary_intent": {
       "version": "premium-v2.3-intent-1",
@@ -323922,7 +324041,8 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Houmous"
   },
   {
     "source": "Dia",
@@ -361548,7 +361668,7 @@
   },
   {
     "source": "OpenFoodFacts",
-    "name": "Kefir naturalny",
+    "name": "Kéfir natural",
     "protein": 3.3,
     "carbs": 4.7,
     "fat": 1.5,
@@ -361668,7 +361788,11 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Kefir naturalny",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "OpenFoodFacts",
@@ -366971,7 +367095,7 @@
   },
   {
     "source": "OpenFoodFacts",
-    "name": "Yogurt Natural Sin Lactosa",
+    "name": "Yogur natural sin lactosa",
     "protein": 4.1,
     "carbs": 5,
     "fat": 3.8,
@@ -367101,7 +367225,11 @@
         "source": "ingredients"
       },
       "nova_group": 1
-    }
+    },
+    "original_name": "Yogurt Natural Sin Lactosa",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "OpenFoodFacts",
@@ -376286,7 +376414,7 @@
   },
   {
     "source": "Bonpreu/Esclat",
-    "name": "Quefir natural",
+    "name": "Kéfir natural",
     "protein": 3.3,
     "carbs": 4.8,
     "fat": 3.5,
@@ -376312,7 +376440,8 @@
     "premium_context": "fermented_dairy",
     "premium_review_status": "premium_2_1_deterministic_identity",
     "quality_reasons": [
-      "fermented_dairy_name"
+      "fermented_dairy_name",
+      "premium_2_4_spanish_display_name"
     ],
     "culinary_intent": {
       "version": "premium-v2.3-intent-1",
@@ -376381,7 +376510,8 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Quefir natural"
   },
   {
     "source": "Spar",
@@ -389085,7 +389215,7 @@
   },
   {
     "source": "Bonpreu/Esclat",
-    "name": "Quefir d'ovella amb nabius ecologic",
+    "name": "Kéfir ecológico de oveja con arándanos",
     "protein": 4.1,
     "carbs": 8.8,
     "fat": 5.5,
@@ -389111,7 +389241,8 @@
     "premium_context": "fermented_dairy",
     "premium_review_status": "premium_2_1_deterministic_identity",
     "quality_reasons": [
-      "fermented_dairy_name"
+      "fermented_dairy_name",
+      "premium_2_4_spanish_display_name"
     ],
     "culinary_intent": {
       "version": "premium-v2.3-intent-1",
@@ -389191,7 +389322,8 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Quefir d'ovella amb nabius ecologic"
   },
   {
     "source": "Bonpreu/Esclat",
@@ -393195,7 +393327,7 @@
   },
   {
     "source": "Bonpreu/Esclat",
-    "name": "Beguda de soja",
+    "name": "Bebida de soja",
     "protein": 3.1,
     "carbs": 3.7,
     "fat": 1.7,
@@ -393247,7 +393379,8 @@
     "dairy_subfamily": "bebida_vegetal",
     "premium_context": "plant_drink",
     "quality_reasons": [
-      "premium_2_2_plain_soy_drink_restored"
+      "premium_2_2_plain_soy_drink_restored",
+      "premium_2_4_spanish_display_name"
     ],
     "exchange_scope": {
       "version": "premium-v2.3-scope-1",
@@ -393272,7 +393405,8 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Beguda de soja"
   },
   {
     "source": "Otros",
@@ -395736,7 +395870,7 @@
   },
   {
     "source": "Bonpreu/Esclat",
-    "name": "Macarrons vegetals",
+    "name": "Macarrones vegetales",
     "protein": 12,
     "carbs": 67,
     "fat": 2,
@@ -395762,7 +395896,8 @@
     "premium_context": "dry_grain",
     "premium_review_status": "premium_2_1_deterministic_identity",
     "quality_reasons": [
-      "plain_pasta_name"
+      "plain_pasta_name",
+      "premium_2_4_spanish_display_name"
     ],
     "culinary_intent": {
       "version": "premium-v2.3-intent-1",
@@ -395810,11 +395945,12 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Macarrons vegetals"
   },
   {
     "source": "Bonpreu/Esclat",
-    "name": "Espirals vegetals",
+    "name": "Espirales vegetales",
     "protein": 12,
     "carbs": 67,
     "fat": 2,
@@ -395840,7 +395976,8 @@
     "premium_context": "dry_grain",
     "premium_review_status": "premium_2_1_deterministic_identity",
     "quality_reasons": [
-      "plain_pasta_name"
+      "plain_pasta_name",
+      "premium_2_4_spanish_display_name"
     ],
     "culinary_intent": {
       "version": "premium-v2.3-intent-1",
@@ -395924,7 +396061,8 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Espirals vegetals"
   },
   {
     "source": "Otros",
@@ -400001,7 +400139,7 @@
   },
   {
     "source": "Bonpreu/Esclat",
-    "name": "Macarrons eco",
+    "name": "Macarrones ecológicos",
     "protein": 12,
     "carbs": 70,
     "fat": 1.5,
@@ -400027,7 +400165,8 @@
     "premium_context": "dry_grain",
     "premium_review_status": "premium_2_1_deterministic_identity",
     "quality_reasons": [
-      "plain_pasta_name"
+      "plain_pasta_name",
+      "premium_2_4_spanish_display_name"
     ],
     "culinary_intent": {
       "version": "premium-v2.3-intent-1",
@@ -400075,7 +400214,8 @@
         "source": "not_available"
       },
       "nova_group": null
-    }
+    },
+    "original_name": "Macarrons eco"
   },
   {
     "source": "OpenFoodFacts",
@@ -458644,7 +458784,7 @@
   },
   {
     "source": "Bonpreu/Esclat",
-    "name": "Noix de macadamia",
+    "name": "Nueces de macadamia",
     "protein": 7.9,
     "carbs": 5.4,
     "fat": 76,
@@ -458736,7 +458876,11 @@
       },
       "nova_group": null
     },
-    "fat_quality": "nut_seed_whole"
+    "fat_quality": "nut_seed_whole",
+    "original_name": "Noix de macadamia",
+    "quality_reasons": [
+      "premium_2_4_spanish_display_name"
+    ]
   },
   {
     "source": "OpenFoodFacts",
@@ -463473,7 +463617,7 @@
   },
   {
     "source": "Bonpreu/Esclat",
-    "name": "Olives amb pinyol àlora",
+    "name": "Aceitunas estilo Álora con hueso",
     "protein": 1.1,
     "carbs": 0,
     "fat": 23,
@@ -463556,7 +463700,8 @@
     },
     "premium_context": "olive",
     "quality_reasons": [
-      "premium_2_2_olive_identity_restored"
+      "premium_2_2_olive_identity_restored",
+      "premium_2_4_spanish_display_name"
     ],
     "exchange_scope": {
       "version": "premium-v2.3-scope-1",
@@ -463582,7 +463727,8 @@
       },
       "nova_group": null
     },
-    "fat_quality": "olive"
+    "fat_quality": "olive",
+    "original_name": "Olives amb pinyol àlora"
   },
   {
     "source": "El Corte Inglés",
@@ -473250,7 +473396,7 @@
   },
   {
     "source": "OpenFoodFacts",
-    "name": "Aceite de oliva virgen extra &quot;Esencia Andalusí&quot;",
+    "name": "Aceite de oliva virgen extra \"Esencia Andalusí\"",
     "protein": 0,
     "carbs": 0,
     "fat": 100,
@@ -473287,7 +473433,8 @@
     "quality_status": "quarantine",
     "quality_reasons": [
       "off_market_gate:raw_record_not_found",
-      "premium_2_2_plain_oil_not_condiment"
+      "premium_2_2_plain_oil_not_condiment",
+      "premium_2_4_spanish_display_name"
     ],
     "premium_review_status": "blocked",
     "culinary_intent": {
@@ -473342,7 +473489,8 @@
       },
       "nova_group": null
     },
-    "fat_quality": "olive"
+    "fat_quality": "olive",
+    "original_name": "Aceite de oliva virgen extra &quot;Esencia Andalusí&quot;"
   },
   {
     "source": "OpenFoodFacts",
@@ -473725,7 +473873,7 @@
   },
   {
     "source": "OpenFoodFacts",
-    "name": "Aceite de oliva virgen extra ecológico &quot;Oli Sone&quot;",
+    "name": "Aceite de oliva virgen extra ecológico \"Oli Sone\"",
     "protein": 0,
     "carbs": 0,
     "fat": 91.6,
@@ -473762,7 +473910,8 @@
     "quality_status": "quarantine",
     "quality_reasons": [
       "off_market_gate:raw_record_not_found",
-      "premium_2_2_plain_oil_not_condiment"
+      "premium_2_2_plain_oil_not_condiment",
+      "premium_2_4_spanish_display_name"
     ],
     "premium_review_status": "blocked",
     "culinary_intent": {
@@ -473817,11 +473966,12 @@
       },
       "nova_group": null
     },
-    "fat_quality": "olive"
+    "fat_quality": "olive",
+    "original_name": "Aceite de oliva virgen extra ecológico &quot;Oli Sone&quot;"
   },
   {
     "source": "OpenFoodFacts",
-    "name": "Aceite de oliva virgen extra &quot;Oli Sone&quot;",
+    "name": "Aceite de oliva virgen extra \"Oli Sone\"",
     "protein": 0,
     "carbs": 0,
     "fat": 91.6,
@@ -473858,7 +474008,8 @@
     "quality_status": "quarantine",
     "quality_reasons": [
       "off_market_gate:raw_record_not_found",
-      "premium_2_2_plain_oil_not_condiment"
+      "premium_2_2_plain_oil_not_condiment",
+      "premium_2_4_spanish_display_name"
     ],
     "premium_review_status": "blocked",
     "culinary_intent": {
@@ -473913,7 +474064,8 @@
       },
       "nova_group": null
     },
-    "fat_quality": "olive"
+    "fat_quality": "olive",
+    "original_name": "Aceite de oliva virgen extra &quot;Oli Sone&quot;"
   },
   {
     "source": "OpenFoodFacts",
@@ -490709,7 +490861,7 @@
   },
   {
     "source": "Bonpreu/Esclat",
-    "name": "Olives amb pinyol adobades",
+    "name": "Aceitunas aliñadas con hueso",
     "protein": 1,
     "carbs": 0.5,
     "fat": 18,
@@ -490757,7 +490909,8 @@
     },
     "premium_context": "olive",
     "quality_reasons": [
-      "premium_2_2_olive_identity_restored"
+      "premium_2_2_olive_identity_restored",
+      "premium_2_4_spanish_display_name"
     ],
     "exchange_scope": {
       "version": "premium-v2.3-scope-1",
@@ -490783,7 +490936,8 @@
       },
       "nova_group": null
     },
-    "fat_quality": "olive"
+    "fat_quality": "olive",
+    "original_name": "Olives amb pinyol adobades"
   },
   {
     "source": "OpenFoodFacts",
@@ -492770,7 +492924,7 @@
   },
   {
     "source": "Bonpreu/Esclat",
-    "name": "Olives sense pinyol manzanilla",
+    "name": "Aceitunas manzanilla sin hueso",
     "protein": 1,
     "carbs": 0,
     "fat": 18,
@@ -492851,7 +493005,8 @@
     },
     "premium_context": "olive",
     "quality_reasons": [
-      "premium_2_2_olive_identity_restored"
+      "premium_2_2_olive_identity_restored",
+      "premium_2_4_spanish_display_name"
     ],
     "exchange_scope": {
       "version": "premium-v2.3-scope-1",
@@ -492877,7 +493032,8 @@
       },
       "nova_group": null
     },
-    "fat_quality": "olive"
+    "fat_quality": "olive",
+    "original_name": "Olives sense pinyol manzanilla"
   },
   {
     "source": "Spar",
@@ -494018,7 +494174,7 @@
   },
   {
     "source": "Bonpreu/Esclat",
-    "name": "Olives amb pinyol Gaspatxes",
+    "name": "Aceitunas gazpachas con hueso",
     "protein": 0.9,
     "carbs": 0.5,
     "fat": 15,
@@ -494097,7 +494253,8 @@
     },
     "premium_context": "olive",
     "quality_reasons": [
-      "premium_2_2_olive_identity_restored"
+      "premium_2_2_olive_identity_restored",
+      "premium_2_4_spanish_display_name"
     ],
     "exchange_scope": {
       "version": "premium-v2.3-scope-1",
@@ -494123,7 +494280,8 @@
       },
       "nova_group": null
     },
-    "fat_quality": "olive"
+    "fat_quality": "olive",
+    "original_name": "Olives amb pinyol Gaspatxes"
   },
   {
     "source": "Bonpreu/Esclat",
@@ -494977,7 +495135,7 @@
   },
   {
     "source": "Bonpreu/Esclat",
-    "name": "Olives farcides d'anxova",
+    "name": "Aceitunas rellenas de anchoa",
     "protein": 1.3,
     "carbs": 0,
     "fat": 16,
@@ -495025,7 +495183,8 @@
     },
     "premium_context": "olive",
     "quality_reasons": [
-      "premium_2_2_olive_identity_restored"
+      "premium_2_2_olive_identity_restored",
+      "premium_2_4_spanish_display_name"
     ],
     "exchange_scope": {
       "version": "premium-v2.3-scope-1",
@@ -495051,11 +495210,12 @@
       },
       "nova_group": null
     },
-    "fat_quality": "olive"
+    "fat_quality": "olive",
+    "original_name": "Olives farcides d'anxova"
   },
   {
     "source": "Bonpreu/Esclat",
-    "name": "Olives",
+    "name": "Aceitunas",
     "protein": 1.3,
     "carbs": 0,
     "fat": 16,
@@ -495146,7 +495306,8 @@
     },
     "premium_context": "olive",
     "quality_reasons": [
-      "premium_2_2_olive_identity_restored"
+      "premium_2_2_olive_identity_restored",
+      "premium_2_4_spanish_display_name"
     ],
     "exchange_scope": {
       "version": "premium-v2.3-scope-1",
@@ -495175,7 +495336,8 @@
       },
       "nova_group": 4
     },
-    "fat_quality": "olive"
+    "fat_quality": "olive",
+    "original_name": "Olives"
   },
   {
     "source": "OpenFoodFacts",
@@ -496420,7 +496582,7 @@
   },
   {
     "source": "Bonpreu/Esclat",
-    "name": "Olives negres sense pinyol",
+    "name": "Aceitunas negras sin hueso",
     "protein": 0.5,
     "carbs": 0.5,
     "fat": 14,
@@ -496488,7 +496650,8 @@
     },
     "premium_context": "olive",
     "quality_reasons": [
-      "premium_2_2_olive_identity_restored"
+      "premium_2_2_olive_identity_restored",
+      "premium_2_4_spanish_display_name"
     ],
     "exchange_scope": {
       "version": "premium-v2.3-scope-1",
@@ -496514,7 +496677,8 @@
       },
       "nova_group": null
     },
-    "fat_quality": "olive"
+    "fat_quality": "olive",
+    "original_name": "Olives negres sense pinyol"
   },
   {
     "source": "El Corte Inglés",
