@@ -6,13 +6,39 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <meta name="theme-color" content="#e8ecf3" />
+    <meta name="theme-color" content="#140c18" />
     <meta
       name="description"
       content="Intercambiador de alimentos RevolucionaT - Encuentra equivalencias nutricionales"
     />
 
+    <!-- Motor determinista: embeddings locales sí; microservicio/LLM no.
+         El orden visible debe ser reproducible y no mostrar estados de IA
+         cuando no existe un juez remoto operativo. -->
+    <script>
+      window.SEMANTIC_EMBEDDINGS_ENABLED = true;
+      window.RERANK_ENABLED = false;
+      window.LLM_JUDGE_ENABLED = false;
+    </script>
+
     <title>RevolucionaT - Intercambiador de Alimentos</title>
+
+    <!-- Pre-paint auth check: evita el flash del login si ya hay sesión guardada -->
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem("revolucionat_session_hint") ||
+              localStorage.getItem("revolucionat_user")) {
+            document.documentElement.classList.add("checking-auth");
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico" sizes="32x32" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" sizes="16x16" />
+    <link rel="shortcut icon" href="favicon.ico" />
 
     <!-- PWA -->
     <link rel="manifest" href="manifest.json" />
@@ -21,7 +47,37 @@
     <meta name="apple-mobile-web-app-title" content="RevolucionaT" />
 
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+      @font-face {
+        font-family: "Bricolage Grotesque";
+        src: url("assets/brand/bricolage-grotesque-latin.woff2") format("woff2");
+        font-weight: 500 800;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Manrope";
+        src: url("assets/brand/manrope-latin.woff2") format("woff2");
+        font-weight: 400 800;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Inter";
+        src: url("assets/brand/manrope-latin.woff2") format("woff2");
+        font-weight: 400 800;
+        font-display: swap;
+      }
+
+      :root {
+        --rt-page: #140c18;
+        --rt-surface: #fffafb;
+        --rt-ink: #251324;
+        --rt-muted: #725f70;
+        --rt-hot: #ee2c82;
+        --rt-brand: #6437e7;
+        --rt-electric: #d7ff39;
+        --rt-cool: #28d7d2;
+      }
 
       * {
         margin: 0;
@@ -32,7 +88,7 @@
 
       body {
         font-family:
-          "Inter",
+          "Manrope",
           -apple-system,
           BlinkMacSystemFont,
           sans-serif;
@@ -237,6 +293,52 @@
         background: rgba(174, 76, 122, 0.1);
       }
 
+      .usage-context-card {
+        display: none;
+      }
+
+      .usage-context-card.active {
+        display: block;
+      }
+
+      .usage-context-help {
+        margin: -4px 0 12px;
+        color: #6e7485;
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .usage-context-options {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .usage-context-btn {
+        min-height: 48px;
+        padding: 9px 8px;
+        border: 1.5px solid #cbc6e8;
+        border-radius: 12px;
+        background: #fff;
+        color: #534b90;
+        font: inherit;
+        font-size: 12px;
+        font-weight: 750;
+        cursor: pointer;
+      }
+
+      .usage-context-btn.active {
+        border-color: #534b90;
+        background: #eeebff;
+        box-shadow: 0 0 0 2px rgba(83, 75, 144, 0.1);
+      }
+
+      @media (max-width: 520px) {
+        .usage-context-options {
+          grid-template-columns: 1fr;
+        }
+      }
+
       /* BUTTON */
       .btn-neo {
         width: 100%;
@@ -281,6 +383,52 @@
 
       .results-section.active {
         display: block;
+      }
+
+      /* Progressive UI badges:
+         - .refining → "Refinando con IA…" mientras el judge piensa
+         - .refined  → "✓ Refinado por IA" cuando termina (1.8s, después fade) */
+      .results-section.refining .results-header::after,
+      .results-section.refined  .results-header::after {
+        display: inline-block;
+        margin-left: 10px;
+        padding: 4px 12px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+        border-radius: 999px;
+        vertical-align: middle;
+      }
+
+      .results-section.refining .results-header::after {
+        content: "Refinando con IA…";
+        color: #6c5ce7;
+        background: #ece9ff;
+        animation: pulse-refine 1.4s ease-in-out infinite;
+      }
+
+      .results-section.refined .results-header::after {
+        content: "✓ Refinado por IA";
+        color: #1e7d4a;
+        background: #d8f3df;
+        animation: refined-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+                   refined-fade-out 0.4s ease-out 1.4s forwards;
+      }
+
+      @keyframes pulse-refine {
+        0%, 100% { opacity: 0.55; }
+        50%      { opacity: 1; }
+      }
+
+      @keyframes refined-pop {
+        0%   { opacity: 0; transform: scale(0.7); }
+        60%  { opacity: 1; transform: scale(1.08); }
+        100% { opacity: 1; transform: scale(1); }
+      }
+
+      @keyframes refined-fade-out {
+        from { opacity: 1; }
+        to   { opacity: 0; }
       }
 
       .results-header {
@@ -364,16 +512,16 @@
         border-bottom: 3px solid;
       }
 
-      .section-header.perfect {
+      .section-header.intercambios {
         border-bottom-color: #4caf50;
       }
 
-      .section-header.good {
-        border-bottom-color: #ff9800;
+      .section-header.familia {
+        border-bottom-color: #7c6fcf;
       }
 
-      .section-header.advanced {
-        border-bottom-color: #f44336;
+      .section-header.preparados {
+        border-bottom-color: #9e9e9e;
       }
 
       .section-title {
@@ -400,6 +548,39 @@
           -8px -8px 16px #ffffff;
         transition: all 0.3s;
         border: 2px solid transparent;
+        /* Fade-in on creation. Triggers automatically whenever innerHTML
+           is reassigned (partial render + post-judge re-render), so the
+           order change after "Refinando con IA…" feels like a smooth
+           transition instead of a brusque flash. */
+        animation: card-fade-in 0.28s ease-out both;
+      }
+
+      /* Stagger: each card entra con un pequeño delay que la siguiente.
+         Da la sensación de que la IA las está colocando una a una.
+         Cubrimos hasta 12 posiciones — cards adicionales caen en el
+         último delay sin que el efecto se rompa. */
+      .result-card:nth-child(1)  { animation-delay: 0ms;   }
+      .result-card:nth-child(2)  { animation-delay: 50ms;  }
+      .result-card:nth-child(3)  { animation-delay: 100ms; }
+      .result-card:nth-child(4)  { animation-delay: 150ms; }
+      .result-card:nth-child(5)  { animation-delay: 200ms; }
+      .result-card:nth-child(6)  { animation-delay: 250ms; }
+      .result-card:nth-child(7)  { animation-delay: 300ms; }
+      .result-card:nth-child(8)  { animation-delay: 350ms; }
+      .result-card:nth-child(9)  { animation-delay: 400ms; }
+      .result-card:nth-child(10) { animation-delay: 450ms; }
+      .result-card:nth-child(n+11) { animation-delay: 500ms; }
+
+      @keyframes card-fade-in {
+        from { opacity: 0; transform: translateY(8px); }
+        to   { opacity: 1; transform: translateY(0);   }
+      }
+
+      /* Respetar prefers-reduced-motion: usuarios con sensibilidad al
+         movimiento no ven animaciones. */
+      @media (prefers-reduced-motion: reduce) {
+        .result-card { animation: none; }
+        .result-card:nth-child(n) { animation-delay: 0ms; }
       }
 
       .result-card:hover {
@@ -409,19 +590,19 @@
           -12px -12px 24px #ffffff;
       }
 
-      .result-card.perfect {
+      .result-card.intercambios {
         border-color: #4caf50;
         background: #f1f8f4;
       }
 
-      .result-card.good {
-        border-color: #ff9800;
-        background: #fff8f0;
+      .result-card.familia {
+        border-color: #7c6fcf;
+        background: #f4f2fc;
       }
 
-      .result-card.advanced {
-        border-color: #f44336;
-        background: #fff5f5;
+      .result-card.preparados {
+        border-color: #9e9e9e;
+        background: #f5f5f5;
       }
 
       /* LEVEL BADGE */
@@ -438,19 +619,19 @@
         letter-spacing: 0.5px;
       }
 
-      .level-badge.perfect {
+      .level-badge.intercambios {
         background: #e8f5e9;
         color: #2e7d32;
       }
 
-      .level-badge.good {
-        background: #fff3e0;
-        color: #e65100;
+      .level-badge.familia {
+        background: #ede7f6;
+        color: #4527a0;
       }
 
-      .level-badge.advanced {
-        background: #ffebee;
-        color: #c62828;
+      .level-badge.preparados {
+        background: #f5f5f5;
+        color: #616161;
       }
 
       .result-header {
@@ -487,14 +668,14 @@
         line-height: 1;
       }
 
-      .match-value.perfect {
+      .match-value.intercambios {
         color: #4caf50;
       }
-      .match-value.good {
-        color: #ff9800;
+      .match-value.familia {
+        color: #7c6fcf;
       }
-      .match-value.advanced {
-        color: #f44336;
+      .match-value.preparados {
+        color: #9e9e9e;
       }
 
       .match-label {
@@ -511,6 +692,168 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         margin-bottom: 16px;
+      }
+
+      /* Empty-state amable cuando no hay intercambios equivalentes
+         (judge marcó insufficient o literalmente 0 candidatos). */
+      .empty-state {
+        text-align: center;
+        padding: 40px 24px;
+        background: #f8f7fc;
+        border: 2px dashed #d8d4ee;
+        border-radius: 20px;
+        margin: 16px 0;
+      }
+      .empty-state-icon {
+        font-size: 42px;
+        margin-bottom: 14px;
+      }
+      .empty-state-title {
+        font-size: 17px;
+        font-weight: 800;
+        color: #1a1a2e;
+        margin-bottom: 10px;
+        line-height: 1.35;
+      }
+      .empty-state-text {
+        font-size: 14px;
+        color: #555;
+        line-height: 1.5;
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      /* "Ver más" toggle for collapsible secondary blocks (familia, preparados).
+         Cliente: "para básicos no necesitamos 30 versiones casi iguales". */
+      .ver-mas-wrap {
+        text-align: center;
+        margin: 8px 0 16px;
+      }
+      .ver-mas-btn {
+        appearance: none;
+        border: 1.5px dashed #b8b0e8;
+        background: transparent;
+        color: #534b90;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 8px 18px;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
+      .ver-mas-btn:hover {
+        background: #f1eeff;
+        border-style: solid;
+      }
+
+      /* Household measure badge (e.g. "≈ 1 cucharada sopera") shown next
+         to the gram amount. Subtle so it doesn't compete with the macro. */
+      .result-household {
+        display: inline-block;
+        margin-left: 10px;
+        padding: 4px 10px;
+        font-size: 13px;
+        font-weight: 600;
+        color: #6c5ce7;
+        background: #f1eeff;
+        border-radius: 999px;
+        vertical-align: middle;
+        -webkit-text-fill-color: initial;
+        background-clip: padding-box;
+      }
+
+      .result-fit-reason {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin: -6px 0 14px;
+        color: #51605a;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .choice-guidance {
+        display: flex;
+        align-items: flex-start;
+        gap: 9px;
+        margin: -2px 0 14px;
+        padding: 10px 12px;
+        border: 1px solid;
+        border-radius: 12px;
+        line-height: 1.3;
+      }
+
+      .choice-guidance-dot {
+        width: 9px;
+        height: 9px;
+        margin-top: 4px;
+        border-radius: 999px;
+        flex: 0 0 auto;
+        background: currentColor;
+      }
+
+      .choice-guidance-copy {
+        min-width: 0;
+      }
+
+      .choice-guidance-label {
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .choice-guidance-summary {
+        margin-top: 2px;
+        color: #4f5668;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .choice-guidance.preferred {
+        color: #2f7d4d;
+        background: #edf8f1;
+        border-color: #b9dfc7;
+      }
+
+      .choice-guidance.compatible {
+        color: #9a6a12;
+        background: #fff8e8;
+        border-color: #efd38f;
+      }
+
+      .choice-guidance.occasional {
+        color: #9a493f;
+        background: #fff3f0;
+        border-color: #e9bcb6;
+      }
+
+      .choice-guidance-details {
+        margin: -8px 0 16px 30px;
+        color: #596071;
+        font-size: 12px;
+        line-height: 1.45;
+      }
+
+      .choice-guidance-details summary {
+        width: fit-content;
+        color: #534b90;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      .choice-guidance-details p {
+        margin: 7px 0 0;
+      }
+
+      .portion-review-note {
+        margin: -4px 0 16px;
+        padding: 10px 12px;
+        border: 1px solid #f1c86b;
+        border-radius: 12px;
+        background: #fff8e8;
+        color: #654c12;
+        font-size: 12px;
+        font-weight: 650;
+        line-height: 1.4;
       }
 
       .result-macros {
@@ -571,22 +914,54 @@
       /* LOADING */
       .loading {
         text-align: center;
-        padding: 40px 20px;
+        padding: 60px 20px;
         display: none;
+        position: relative;
+        z-index: 10;
       }
 
       .loading.active {
         display: block;
       }
 
+      /* SPLASH inicial: visible solo cuando hay sesión guardada y estamos validándola */
+      #initialSplash {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: #e8ecf3;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+      }
+
+      #initialSplash .splash-text {
+        font-family: "Inter", sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        color: #534b90;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      html.checking-auth #loginScreen {
+        display: none !important;
+      }
+
+      html.checking-auth #initialSplash {
+        display: flex;
+      }
+
       .spinner {
         display: inline-block;
-        width: 40px;
-        height: 40px;
-        border: 4px solid rgba(83, 75, 144, 0.2);
+        width: 50px;
+        height: 50px;
+        border: 5px solid rgba(83, 75, 144, 0.15);
         border-top-color: #534b90;
         border-radius: 50%;
-        animation: spin 0.8s linear infinite;
+        animation: spin 0.9s linear infinite;
       }
 
       @keyframes spin {
@@ -596,8 +971,8 @@
       }
 
       .loading-text {
-        margin-top: 16px;
-        font-size: 14px;
+        margin-top: 24px;
+        font-size: 15px;
         color: #8b92a8;
         font-weight: 600;
       }
@@ -883,74 +1258,731 @@
         color: #999;
         text-transform: uppercase;
       }
+
+      /* ============================================
+         SCORE GROUPS — intercambios accordion
+         ============================================ */
+      .score-group {
+        background: #e8ecf3;
+        border-radius: 20px;
+        margin-bottom: 14px;
+        box-shadow:
+          8px 8px 16px #c5c9d1,
+          -8px -8px 16px #ffffff;
+        overflow: hidden;
+        transition: box-shadow 0.24s ease;
+      }
+      .score-group[open] {
+        box-shadow:
+          4px 4px 8px #c5c9d1,
+          -4px -4px 8px #ffffff;
+      }
+      .score-group__summary {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 18px 20px;
+        cursor: pointer;
+        min-height: 64px;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        user-select: none;
+        outline: none;
+      }
+      .score-group__summary::-webkit-details-marker {
+        display: none;
+      }
+      .score-group__summary::before {
+        display: none;
+      }
+      .score-group__indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        box-shadow:
+          2px 2px 4px #c5c9d1,
+          -2px -2px 4px #ffffff;
+      }
+      .score-group--excellent .score-group__indicator {
+        background: #4caf50;
+      }
+      .score-group--good .score-group__indicator {
+        background: #f9a825;
+      }
+      .score-group--acceptable .score-group__indicator {
+        background: #ff7043;
+      }
+      .score-group__label {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 0;
+      }
+      .score-group__title {
+        font-family: "Inter", sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+        color: #1a1a2e;
+        letter-spacing: -0.01em;
+      }
+      .score-group__range {
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 12px;
+        color: #8b92a8;
+      }
+      .score-group__count {
+        font-family: "Inter", sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+        color: #1a1a2e;
+        padding: 6px 12px;
+        border-radius: 12px;
+        min-width: 36px;
+        text-align: center;
+        box-shadow:
+          inset 4px 4px 8px #c5c9d1,
+          inset -4px -4px 8px #ffffff;
+        flex-shrink: 0;
+      }
+      .score-group__chevron {
+        width: 20px;
+        height: 20px;
+        color: #8b92a8;
+        flex-shrink: 0;
+        transition:
+          transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+          color 0.2s;
+      }
+      .score-group[open] .score-group__chevron {
+        transform: rotate(180deg);
+        color: #534b90;
+      }
+      .score-group__content {
+        padding: 4px 14px 18px;
+        animation: sgExpand 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      @keyframes sgExpand {
+        from {
+          opacity: 0;
+          transform: translateY(-6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .score-cards-list {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      /* Load more actions */
+      .sgp-actions {
+        margin-top: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .btn-load-more {
+        width: 100%;
+        min-height: 52px;
+        padding: 14px 20px;
+        border: none;
+        border-radius: 16px;
+        background: #e8ecf3;
+        box-shadow:
+          6px 6px 12px #c5c9d1,
+          -6px -6px 12px #ffffff;
+        font-family: "Inter", sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+        color: #534b90;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: all 0.18s ease;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        user-select: none;
+      }
+      .btn-load-more:active {
+        box-shadow:
+          inset 5px 5px 10px #c5c9d1,
+          inset -5px -5px 10px #ffffff;
+        transform: scale(0.98);
+      }
+      .btn-load-more__count {
+        font-weight: 500;
+        font-size: 12px;
+        color: #8b92a8;
+        padding: 3px 8px;
+        border-radius: 8px;
+        background: linear-gradient(
+          135deg,
+          rgba(83, 75, 144, 0.08),
+          rgba(174, 76, 122, 0.08)
+        );
+      }
+      .btn-load-more__icon {
+        width: 16px;
+        height: 16px;
+        transition: transform 0.2s;
+      }
+      .btn-load-more:hover .btn-load-more__icon {
+        transform: translateY(2px);
+      }
+      .btn-show-all {
+        background: none;
+        border: none;
+        width: 100%;
+        min-height: 44px;
+        padding: 10px;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        font-size: 13px;
+        color: #8b92a8;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        transition: color 0.18s;
+      }
+      .btn-show-all:active {
+        color: #534b90;
+      }
+      .sgp-complete {
+        text-align: center;
+        padding: 14px;
+        font-family: "Inter", sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        color: #8b92a8;
+        border-radius: 14px;
+        box-shadow:
+          inset 4px 4px 8px #c5c9d1,
+          inset -4px -4px 8px #ffffff;
+      }
+      @keyframes neuCardIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .score-cards-list .result-card {
+        animation: neuCardIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .score-group__content,
+        .score-group__chevron,
+        .btn-load-more,
+        .btn-load-more__icon,
+        .score-cards-list .result-card {
+          animation: none;
+          transition: none;
+        }
+      }
+
+      /* ============================================ */
+      /* REVOLUCIONAT BRAND UX */
+      /* ============================================ */
+      #loginScreen {
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 82% 18%, rgba(238, 44, 130, 0.25), transparent 31%),
+          radial-gradient(circle at 12% 82%, rgba(100, 55, 231, 0.28), transparent 35%),
+          var(--rt-page);
+      }
+
+      #loginScreen::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.24;
+        background-image:
+          linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+        background-size: 44px 44px;
+        mask-image: linear-gradient(to bottom, black, transparent 82%);
+      }
+
+      .login-card {
+        position: relative;
+        overflow: hidden;
+        max-width: 460px;
+        padding: 34px 34px 30px;
+        border: 1px solid rgba(255,255,255,.72);
+        border-radius: 28px;
+        background: rgba(255, 250, 251, 0.98);
+        box-shadow: 0 32px 100px rgba(0,0,0,.46);
+      }
+
+      .login-card::after {
+        content: "";
+        position: absolute;
+        left: 34px;
+        right: 34px;
+        top: 0;
+        height: 5px;
+        border-radius: 0 0 999px 999px;
+        background: linear-gradient(90deg, var(--rt-hot), var(--rt-brand), var(--rt-electric));
+      }
+
+      .login-brand-logo {
+        display: block;
+        width: min(245px, 76%);
+        height: auto;
+        margin: 0 auto 22px;
+      }
+
+      .login-eyebrow {
+        margin-bottom: 12px;
+        color: var(--rt-hot);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: .17em;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .login-title {
+        max-width: 360px;
+        margin: 0 auto 10px;
+        color: var(--rt-ink);
+        background: none;
+        -webkit-text-fill-color: currentColor;
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-size: clamp(25px, 5vw, 34px);
+        line-height: .98;
+        letter-spacing: -.04em;
+      }
+
+      .login-subtitle {
+        max-width: 350px;
+        margin: 0 auto 26px;
+        color: var(--rt-muted);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      .login-form {
+        gap: 10px;
+        text-align: left;
+      }
+
+      .login-field-label {
+        margin: 8px 0 0 2px;
+        color: var(--rt-ink);
+        font-size: 11px;
+        font-weight: 800;
+      }
+
+      .login-input {
+        min-height: 54px;
+        border: 1.5px solid #dfd5df;
+        border-radius: 14px;
+        background: #fff;
+        color: var(--rt-ink);
+        box-shadow: none;
+      }
+
+      .login-input:focus {
+        border-color: var(--rt-brand);
+        box-shadow: 0 0 0 4px rgba(100,55,231,.11);
+      }
+
+      .password-field {
+        position: relative;
+      }
+
+      .password-field .login-input {
+        padding-right: 84px;
+      }
+
+      .password-toggle {
+        position: absolute;
+        top: 50%;
+        right: 12px;
+        transform: translateY(-50%);
+        padding: 8px 6px;
+        border: 0;
+        color: var(--rt-brand);
+        background: transparent;
+        font: 800 11px/1 "Manrope", sans-serif;
+        cursor: pointer;
+      }
+
+      .login-remember {
+        display: grid;
+        grid-template-columns: 26px 1fr;
+        gap: 10px;
+        align-items: start;
+        margin: 10px 0 6px;
+        padding: 12px 14px;
+        border: 1px solid rgba(100,55,231,.14);
+        border-radius: 14px;
+        color: var(--rt-muted);
+        background: rgba(100,55,231,.055);
+        font-size: 11px;
+        line-height: 1.4;
+      }
+
+      .login-remember-icon {
+        display: grid;
+        place-items: center;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        color: var(--rt-ink);
+        background: var(--rt-electric);
+        font-weight: 900;
+      }
+
+      .login-remember strong {
+        display: block;
+        margin-bottom: 2px;
+        color: var(--rt-ink);
+        font-size: 11px;
+      }
+
+      .login-button {
+        min-height: 55px;
+        margin-top: 6px;
+        border-radius: 14px;
+        background: linear-gradient(110deg, var(--rt-brand), var(--rt-hot));
+        box-shadow: 0 14px 34px rgba(100,55,231,.24);
+      }
+
+      .login-security {
+        margin-top: 16px;
+        color: #8b7b89;
+        font-size: 10px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      #initialSplash {
+        gap: 14px;
+        background:
+          radial-gradient(circle at 75% 20%, rgba(238,44,130,.22), transparent 32%),
+          var(--rt-page);
+      }
+
+      #initialSplash .spinner {
+        border-color: rgba(255,255,255,.18);
+        border-top-color: var(--rt-electric);
+      }
+
+      #initialSplash .splash-text {
+        color: #fff;
+      }
+
+      .splash-brand-logo {
+        width: min(220px, 62vw);
+        height: auto;
+        margin-bottom: 8px;
+        padding: 8px 12px;
+        border-radius: 14px;
+        background: rgba(255,255,255,.94);
+      }
+
+      .app-header {
+        position: relative;
+        overflow: hidden;
+        margin: 0 0 24px;
+        padding: 18px 20px 20px;
+        border: 1px solid rgba(255,255,255,.12);
+        border-radius: 26px;
+        color: #fff;
+        background:
+          radial-gradient(circle at 94% 8%, rgba(238,44,130,.34), transparent 35%),
+          linear-gradient(135deg, #140c18, #2d1836);
+        box-shadow: 0 18px 45px rgba(45,28,56,.23);
+        text-align: left;
+      }
+
+      .app-header::after {
+        content: "";
+        position: absolute;
+        right: 18px;
+        bottom: 0;
+        width: 118px;
+        height: 4px;
+        border-radius: 999px 999px 0 0;
+        background: var(--rt-electric);
+      }
+
+      .app-brand-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      .app-brand-logo-wrap {
+        display: inline-flex;
+        align-items: center;
+        max-width: 190px;
+        padding: 6px 10px;
+        border-radius: 13px;
+        background: rgba(255,255,255,.95);
+      }
+
+      .app-brand-logo {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .app-logout {
+        flex: 0 0 auto;
+        padding: 8px 0;
+        border: 0;
+        color: rgba(255,255,255,.65);
+        background: transparent;
+        font: 700 10px/1 "Manrope", sans-serif;
+        cursor: pointer;
+      }
+
+      .app-welcome {
+        margin-top: 20px;
+      }
+
+      .app-kicker {
+        margin-bottom: 7px;
+        color: var(--rt-electric);
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+      }
+
+      .app-greeting {
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-size: clamp(24px, 6vw, 31px);
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -.035em;
+      }
+
+      .app-promise {
+        margin-top: 8px;
+        color: rgba(255,255,255,.72);
+        font-size: 12px;
+        line-height: 1.45;
+      }
+
+      .app-trust-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-top: 16px;
+      }
+
+      .app-trust-chip {
+        padding: 6px 9px;
+        border: 1px solid rgba(255,255,255,.13);
+        border-radius: 999px;
+        color: rgba(255,255,255,.82);
+        background: rgba(255,255,255,.07);
+        font-size: 9px;
+        font-weight: 750;
+      }
+
+      .card-neo {
+        border: 1px solid rgba(83,75,144,.055);
+      }
+
+      .label {
+        color: var(--rt-brand);
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-size: 13px;
+        letter-spacing: -.01em;
+        text-transform: none;
+      }
+
+      .step-help {
+        display: block;
+        margin: -5px 0 14px;
+        color: #777d8f;
+        font-size: 11px;
+        line-height: 1.4;
+      }
+
+      .btn-neo,
+      .original-food-card {
+        background: linear-gradient(110deg, var(--rt-brand), var(--rt-hot));
+      }
+
+      .results-title,
+      .section-title {
+        font-family: "Bricolage Grotesque", sans-serif;
+      }
+
+      @media (max-width: 480px) {
+        #loginScreen {
+          padding: 14px;
+        }
+
+        .login-card {
+          padding: 28px 22px 24px;
+          border-radius: 23px;
+        }
+
+        .login-card::after {
+          left: 22px;
+          right: 22px;
+        }
+
+        .login-brand-logo {
+          width: min(220px, 78%);
+          margin-bottom: 18px;
+        }
+
+        .login-title {
+          font-size: 27px;
+        }
+
+        body {
+          padding-top: 0;
+        }
+
+        .app-header {
+          margin-inline: -16px;
+          padding-inline: 20px;
+          border-radius: 0 0 24px 24px;
+        }
+
+        .app-brand-logo-wrap {
+          max-width: 170px;
+        }
+      }
     </style>
   </head>
   <body>
+    <!-- SPLASH inicial mientras validamos sesión guardada -->
+    <div id="initialSplash">
+      <img
+        class="splash-brand-logo"
+        src="assets/brand/logo-revolucionat-cropped.webp"
+        alt="Programa RevolucionaT"
+      />
+      <div class="spinner"></div>
+      <div class="splash-text">Verificando acceso...</div>
+    </div>
+
     <!-- LOGIN SCREEN -->
     <div id="loginScreen" class="active">
       <div class="login-card">
-        <h1 class="login-title">RevolucionaT</h1>
+        <div class="login-eyebrow">RevolucionaT · Mujeres +40</div>
+        <img
+          class="login-brand-logo"
+          src="assets/brand/logo-revolucionat-cropped.webp"
+          alt="Programa RevolucionaT"
+        />
+        <h1 class="login-title">Cambia alimentos. Mantén tu plan.</h1>
         <p class="login-subtitle">
-          Herramienta Premium de Intercambio Nutricional
+          Busca lo que tienes en tu menú y encuentra alternativas equivalentes,
+          prácticas y con sentido.
         </p>
 
         <form id="loginForm" class="login-form">
-          <input
-            type="text"
-            id="nameInput"
-            class="login-input"
-            placeholder="Tu nombre"
-            required
-          />
-          <div id="nameError" class="login-error">Campo obligatorio</div>
-
+          <label class="login-field-label" for="emailInput">Tu email</label>
           <input
             type="email"
             id="emailInput"
             class="login-input"
             placeholder="tu@email.com"
             required
+            autocomplete="email"
           />
           <div id="emailError" class="login-error">Email inválido</div>
 
-          <input
-            type="text"
-            id="codeInput"
-            class="login-input"
-            placeholder="Código de acceso"
-            required
-            style="
-              font-family: monospace;
-              letter-spacing: 2px;
-              text-transform: uppercase;
-            "
-          />
-          <div id="codeError" class="login-error">Código incorrecto</div>
+          <label class="login-field-label" for="passwordInput">Tu contraseña</label>
+          <div class="password-field">
+            <input
+              type="password"
+              id="passwordInput"
+              class="login-input"
+              placeholder="Contraseña"
+              required
+              autocomplete="current-password"
+            />
+            <button
+              type="button"
+              id="passwordToggle"
+              class="password-toggle"
+              aria-pressed="false"
+            >
+              Mostrar
+            </button>
+          </div>
+          <div id="passwordError" class="login-error">Contraseña incorrecta</div>
+
+          <div class="login-remember">
+            <span class="login-remember-icon">✓</span>
+            <div>
+              <strong>Solo tendrás que escribirla esta primera vez</strong>
+              Mientras formes parte del programa, no tendrás que volver a identificarte
+            </div>
+          </div>
 
           <button type="submit" id="loginButton" class="login-button">
-            Acceder a mi herramienta →
+            Entrar en mi herramienta →
           </button>
         </form>
+        <div class="login-security">Acceso personal y seguro · Tus datos no se comparten</div>
       </div>
     </div>
 
     <div class="container" id="appContainer" style="display: none">
       <!-- HEADER -->
-      <div class="header">
-        <div class="logo">Programa RevolucionaT</div>
-        <div class="subtitle">Intercambiador de alimentos</div>
-      </div>
+      <header class="header app-header">
+        <div class="app-brand-row">
+          <div class="app-brand-logo-wrap">
+            <img
+              class="app-brand-logo"
+              src="assets/brand/logo-revolucionat-cropped.webp"
+              alt="Programa RevolucionaT"
+            />
+          </div>
+          <button id="logoutBtn" class="app-logout">
+            Cerrar sesión
+          </button>
+        </div>
+        <div class="app-welcome">
+          <div class="app-kicker">Tu intercambiador de alimentos</div>
+          <div id="userGreeting" class="app-greeting"></div>
+          <p class="app-promise">¿Qué alimento quieres cambiar hoy?</p>
+        </div>
+        <div class="app-trust-row" aria-label="Características de la herramienta">
+          <span class="app-trust-chip">✓ Raciones prácticas</span>
+          <span class="app-trust-chip">✓ Contexto culinario</span>
+          <span class="app-trust-chip">✓ Alternativas revisadas</span>
+        </div>
+      </header>
 
       <!-- SEARCH SECTION -->
       <div id="searchSection" class="search-section">
         <div class="card-neo">
-          <label class="label">1. Buscar alimento</label>
+          <label class="label">1. ¿Qué alimento quieres cambiar?</label>
+          <span class="step-help">Escribe el nombre y elige la opción que más se parezca a la tuya.</span>
           <div class="input-wrapper">
             <input
               type="text"
               id="searchInput"
               class="input-neo"
-              placeholder="Escribe para buscar (ej: pollo...)"
+              placeholder="Ej.: pollo, avena, yogur..."
               autocomplete="off"
             />
             <div id="autocompleteDropdown" class="autocomplete-dropdown"></div>
@@ -965,12 +1997,22 @@
           </div>
         </div>
 
+        <div class="card-neo usage-context-card" id="usageContextSection">
+          <label class="label" id="usageContextLabel">¿Cómo lo vas a usar?</label>
+          <div class="usage-context-help" id="usageContextHelp">
+            Es opcional, pero ayuda a que las primeras alternativas tengan
+            sentido en esa receta.
+          </div>
+          <div class="usage-context-options" id="usageContextOptions"></div>
+        </div>
+
         <div
           class="card-neo"
           id="amountSection"
           style="opacity: 0.5; pointer-events: none"
         >
-          <label class="label">2. Cantidad (gramos)</label>
+          <label class="label">2. ¿Qué cantidad tienes?</label>
+          <span class="step-help">Indica los gramos que aparecen en tu menú.</span>
           <input
             type="number"
             id="amountInput"
@@ -982,14 +2024,14 @@
         </div>
 
         <button id="calculateBtn" class="btn-neo" disabled>
-          Buscar alternativas
+          Ver mis alternativas
         </button>
       </div>
 
       <!-- LOADING -->
       <div id="loading" class="loading">
         <div class="spinner"></div>
-        <div class="loading-text">Calculando equivalencias...</div>
+        <div class="loading-text">Cargando...</div>
       </div>
 
       <!-- RESULTS SECTION -->
@@ -997,160 +2039,249 @@
         <button class="back-btn" id="backBtn">← Nueva búsqueda</button>
 
         <div class="results-header">
-          <div class="results-title">Alternativas equivalentes</div>
+          <div class="results-title">Alternativas para ti</div>
           <div class="results-subtitle" id="resultsCount"></div>
         </div>
 
         <div id="originalFoodCard" class="original-food-card"></div>
 
-        <!-- PERFECTAS -->
-        <div id="perfectSection" style="display: none">
-          <div class="section-header perfect">
+        <!-- INTERCAMBIOS REALES -->
+        <div id="intercambiosSection" style="display: none">
+          <div class="section-header intercambios">
             <div class="section-title">
-              ✓ EQUIVALENCIAS PERFECTAS (<span id="perfectCount">0</span>)
+              🔄 ALTERNATIVAS RECOMENDADAS (<span id="intercambiosCount">0</span>)
             </div>
             <div class="section-subtitle">
-              Intercambia sin cambiar tu menú - Mismo perfil calórico
+              Lo que comerías en lugar de este alimento
             </div>
           </div>
-          <div id="perfectContainer"></div>
+          <div id="intercambiosGroups"></div>
         </div>
 
-        <!-- VÁLIDAS -->
-        <div id="goodSection" style="display: none">
-          <div class="section-header good">
-            <div class="section-title">
-              ⚠️ ALTERNATIVAS VÁLIDAS (<span id="goodCount">0</span>)
+        <!-- MISMA FAMILIA -->
+        <div id="familiaSection" class="advanced-section" style="display: none">
+          <details>
+            <summary>
+              📦 OTRAS MARCAS Y FORMATOS SIMILARES (<span id="familiaCount">0</span>)
+            </summary>
+            <div
+              class="warning-box"
+              style="
+                margin-top: 16px;
+                border-color: #7c6fcf;
+                background: #f4f2fc;
+              "
+            >
+              <div class="warning-title" style="color: #4527a0">
+                ℹ️ MISMO INGREDIENTE BASE
+              </div>
+              <div class="warning-text">
+                Son presentaciones distintas del mismo ingrediente. Útiles para
+                variedad en la preparación, no como intercambio nutricional.
+              </div>
             </div>
-            <div class="section-subtitle">
-              Pequeñas diferencias - Revisa los avisos
-            </div>
-          </div>
-          <div id="goodContainer"></div>
+            <div id="familiaContainer" style="margin-top: 8px"></div>
+          </details>
         </div>
 
-        <!-- AVANZADAS -->
+        <!-- PLATOS PREPARADOS -->
         <div
-          id="advancedSection"
+          id="preparadosSection"
           class="advanced-section"
           style="display: none"
         >
           <details>
             <summary>
-              Ver más opciones (<span id="advancedCount">0</span>) ⓘ
+              🍽️ PLATOS PREPARADOS (<span id="preparadosCount">0</span>)
             </summary>
-
-            <div class="warning-box">
-              <div class="warning-title">⚠️ OPCIONES AVANZADAS</div>
+            <div class="warning-box" style="margin-top: 16px">
+              <div class="warning-title">
+                ⚠️ ULTRAPROCESADOS Y PLATOS COMPUESTOS
+              </div>
               <div class="warning-text">
-                Estas opciones cambian significativamente las calorías o macros
-                de tu menú. Úsalas solo si entiendes el impacto en tu día
-                completo.
+                Contienen el ingrediente pero con aditivos, grasas o salsas
+                añadidas. Revisá el impacto en el día completo antes de usarlos.
               </div>
             </div>
-
-            <div id="advancedContainer"></div>
+            <div id="preparadosContainer"></div>
           </details>
         </div>
       </div>
     </div>
 
+    <script src="js/exchange_groups.js"></script>
+    <script src="js/household_measures.js"></script>
+    <script src="js/dietary_filters.js"></script>
+    <script src="js/premium_policy.js"></script>
+    <script src="js/culinary_intent.js"></script>
+    <script src="js/exchange_scope.js"></script>
+    <script src="js/algorithm.js"></script>
     <script>
       // ============================================
       // LOGIN SYSTEM
       // ============================================
-      const ACCESS_CODE = "REVOLUCIONAT2026";
       const loginScreen = document.getElementById("loginScreen");
       const appContainer = document.getElementById("appContainer");
       const loginForm = document.getElementById("loginForm");
-      const nameInput = document.getElementById("nameInput");
       const emailInput = document.getElementById("emailInput");
-      const codeInput = document.getElementById("codeInput");
-      const nameError = document.getElementById("nameError");
+      const passwordInput = document.getElementById("passwordInput");
       const emailError = document.getElementById("emailError");
-      const codeError = document.getElementById("codeError");
+      const passwordError = document.getElementById("passwordError");
+      const passwordToggle = document.getElementById("passwordToggle");
+      const loginButton = document.getElementById("loginButton");
 
-      // Auto-uppercase code
-      codeInput.addEventListener("input", (e) => {
-        e.target.value = e.target.value.toUpperCase();
+      passwordToggle.addEventListener("click", () => {
+        const show = passwordInput.type === "password";
+        passwordInput.type = show ? "text" : "password";
+        passwordToggle.textContent = show ? "Ocultar" : "Mostrar";
+        passwordToggle.setAttribute("aria-pressed", String(show));
+        passwordInput.focus();
       });
 
-      // Check if already logged in
-      function checkAuth() {
-        const user = localStorage.getItem("revolucionat_user");
-        if (user) {
-          try {
-            const profile = JSON.parse(user);
-            if (profile.access_verified) {
-              showApp();
-              return true;
-            }
-          } catch (e) {}
+      // Quita el splash y deja ver login (o app si ya se mostró)
+      function dismissAuthSplash() {
+        document.documentElement.classList.remove("checking-auth");
+      }
+
+      // Re-valida contra el servidor en cada carga
+      async function checkAuth() {
+        try {
+          // Limpia el formato antiguo, que guardaba el código de acceso.
+          localStorage.removeItem("revolucionat_user");
+          const res = await fetch("/api/session", {
+            method: "GET",
+            credentials: "same-origin",
+            headers: { "Accept": "application/json" },
+          });
+          const data = await res.json();
+
+          if (data.success) {
+            localStorage.setItem("revolucionat_session_hint", "1");
+            showApp(data.name);
+            dismissAuthSplash();
+            return true;
+          }
+          localStorage.removeItem("revolucionat_session_hint");
+          if (res.status === 403 && data.error) {
+            passwordError.textContent = data.error;
+            passwordError.classList.add("active");
+          }
+        } catch {
+          // Fallo cerrado: sin validación del servidor no se abre la app.
+          localStorage.removeItem("revolucionat_session_hint");
         }
+        dismissAuthSplash();
         return false;
       }
 
-      // Login form submit
-      loginForm.addEventListener("submit", (e) => {
+      loginForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        // Clear errors
-        nameInput.classList.remove("error");
         emailInput.classList.remove("error");
-        codeInput.classList.remove("error");
-        nameError.classList.remove("active");
+        passwordInput.classList.remove("error");
         emailError.classList.remove("active");
-        codeError.classList.remove("active");
+        passwordError.classList.remove("active");
 
-        let hasError = false;
-
-        // Validate
-        if (!nameInput.value.trim() || nameInput.value.trim().length < 2) {
-          nameInput.classList.add("error");
-          nameError.classList.add("active");
-          hasError = true;
-        }
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailInput.value.trim() || !emailRegex.test(emailInput.value)) {
+        if (!email || !emailRegex.test(email)) {
           emailInput.classList.add("error");
           emailError.classList.add("active");
-          hasError = true;
+          return;
+        }
+        if (!password) {
+          passwordInput.classList.add("error");
+          passwordError.classList.add("active");
+          return;
         }
 
-        if (codeInput.value.trim().toUpperCase() !== ACCESS_CODE) {
-          codeInput.classList.add("error");
-          codeError.classList.add("active");
-          hasError = true;
+        loginButton.disabled = true;
+
+        // 🔄 Mostrar spinner de carga
+        const loading = document.getElementById("loading");
+        const loadingText = document.querySelector(".loading-text");
+        loadingText.textContent = "Verificando acceso...";
+        loading.classList.add("active");
+
+        try {
+          const res = await fetch("/api/auth", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+          });
+          const data = await res.json();
+
+          loading.classList.remove("active");
+          loginButton.disabled = false;
+
+          if (data.success) {
+            localStorage.removeItem("revolucionat_user");
+            localStorage.setItem("revolucionat_session_hint", "1");
+            showApp(data.name);
+          } else {
+            passwordError.textContent = data.error || "Datos incorrectos.";
+            passwordError.classList.add("active");
+            passwordInput.classList.add("error");
+          }
+        } catch {
+          loading.classList.remove("active");
+          loginButton.disabled = false;
+          passwordError.textContent = "Error de conexión. Inténtalo de nuevo.";
+          passwordError.classList.add("active");
+          passwordInput.classList.add("error");
         }
-
-        if (hasError) return;
-
-        // Save to localStorage
-        const userProfile = {
-          name: nameInput.value.trim(),
-          email: emailInput.value.trim(),
-          registered_at: new Date().toISOString(),
-          access_verified: true,
-        };
-
-        localStorage.setItem("revolucionat_user", JSON.stringify(userProfile));
-        showApp();
       });
 
-      function showApp() {
+      function showApp(name) {
         loginScreen.classList.remove("active");
         appContainer.style.display = "block";
+
+        if (name) {
+          const firstName = String(name)
+            .trim()
+            .split(/\s+/)[0]
+            .toLocaleLowerCase("es-ES");
+          const displayName =
+            firstName.charAt(0).toLocaleUpperCase("es-ES") +
+            firstName.slice(1);
+          document.getElementById("userGreeting").textContent =
+            "Hola, " + displayName + " 👋";
+        }
+
         loadDatabase();
         searchInput.focus();
       }
 
+      document.getElementById("logoutBtn").addEventListener("click", async () => {
+        try {
+          await fetch("/api/session", {
+            method: "DELETE",
+            credentials: "same-origin",
+          });
+        } catch {}
+        localStorage.removeItem("revolucionat_user");
+        localStorage.removeItem("revolucionat_session_hint");
+        appContainer.style.display = "none";
+        loginScreen.classList.add("active");
+        emailInput.value = "";
+        passwordInput.value = "";
+      });
+
       // ============================================
       // DATABASE & STATE
       // ============================================
-      let foodsDatabase = [];
+      // Exposed on window so js/algorithm.js (loaded before this inline block)
+      // can read it via window.foodsDatabase. `let` would NOT expose it.
+      window.foodsDatabase = window.foodsDatabase || [];
+      var foodsDatabase = window.foodsDatabase;
       let selectedFood = null;
+      let selectedUsageMode = "any";
       let searchTimeout = null;
+      const EXCHANGE_RESULT_CACHE_VERSION = "premium-v2.2-ux-1";
+      const EXCHANGE_RESULT_CACHE_LIMIT = 18;
+      const exchangeResultCache = new Map();
 
       // ✅ NUEVO: Control de resultados visibles en el autocomplete
       const AUTOCOMPLETE_INITIAL = 25; // los primeros que enseñas
@@ -1163,6 +2294,14 @@
       const searchInput = document.getElementById("searchInput");
       const dropdown = document.getElementById("autocompleteDropdown");
       const selectedFoodDiv = document.getElementById("selectedFood");
+      const usageContextSection = document.getElementById(
+        "usageContextSection",
+      );
+      const usageContextLabel = document.getElementById("usageContextLabel");
+      const usageContextHelp = document.getElementById("usageContextHelp");
+      const usageContextOptions = document.getElementById(
+        "usageContextOptions",
+      );
       const amountSection = document.getElementById("amountSection");
       const amountInput = document.getElementById("amountInput");
       const calculateBtn = document.getElementById("calculateBtn");
@@ -1175,26 +2314,35 @@
       const resultsCount = document.getElementById("resultsCount");
 
       // Containers
-      const perfectSection = document.getElementById("perfectSection");
-      const perfectContainer = document.getElementById("perfectContainer");
-      const perfectCount = document.getElementById("perfectCount");
+      const intercambiosSection = document.getElementById(
+        "intercambiosSection",
+      );
+      const intercambiosGroups = document.getElementById("intercambiosGroups");
+      const intercambiosCount = document.getElementById("intercambiosCount");
 
-      const goodSection = document.getElementById("goodSection");
-      const goodContainer = document.getElementById("goodContainer");
-      const goodCount = document.getElementById("goodCount");
+      const familiaSection = document.getElementById("familiaSection");
+      const familiaContainer = document.getElementById("familiaContainer");
+      const familiaCount = document.getElementById("familiaCount");
 
-      const advancedSection = document.getElementById("advancedSection");
-      const advancedContainer = document.getElementById("advancedContainer");
-      const advancedCount = document.getElementById("advancedCount");
+      const preparadosSection = document.getElementById("preparadosSection");
+      const preparadosContainer = document.getElementById(
+        "preparadosContainer",
+      );
+      const preparadosCount = document.getElementById("preparadosCount");
 
       // ============================================
       // LOAD DATABASE
       // ============================================
       async function loadDatabase() {
         try {
+          // Single source of truth: database.json (Vercel sirve con gzip
+          // automático ~250KB transferidos para 2MB raw).
           const response = await fetch("database.json");
           const data = await response.json();
-          foodsDatabase = data.foods || [];
+          // database.json is a flat array; `data.foods` fallback kept for
+          // legacy {foods:[...]} structure, final `[]` for safety.
+          window.foodsDatabase = Array.isArray(data) ? data : (data.foods || []);
+          foodsDatabase = window.foodsDatabase;
           console.log(
             "✅ Base de datos cargada:",
             foodsDatabase.length,
@@ -1208,35 +2356,9 @@
         }
       }
 
-      // ============================================
-      // SEARCH HELPERS (busca bien aunque haya tildes)
-      // ============================================
-      function norm(str) {
-        return (str || "")
-          .toLowerCase()
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "")
-          .replace(/[^a-z0-9]+/g, " ")
-          .trim();
-      }
-
-      function matchesFood(food, query) {
-        const q = norm(query);
-        if (!q) return true;
-
-        const terms = q.split(/\s+/).filter(Boolean);
-        const hay = norm(
-          (food.name || "") +
-            " " +
-            (food.brand || "") +
-            " " +
-            (food.source || "") +
-            " " +
-            (food.category || ""),
-        );
-
-        return terms.every((t) => hay.includes(t));
-      }
+      // norm, matchesFood, searchFoods, getAnchorMacro, calculateEquivalence,
+      // calculateAlternatives, getFoodTier, tokenSortScore
+      // \u2192 moved to js/algorithm.js (loaded before this script)
 
       // ============================================
       // AUTOCOMPLETE SEARCH
@@ -1260,108 +2382,12 @@
         }, 300);
       });
 
-      async function searchFoods(query) {
-        const qn = norm(query);
+      // searchFoods → moved to js/algorithm.js
 
-        // PASO 1: Buscar en database local
-        const localResults = foodsDatabase
-          .filter((food) => matchesFood(food, query))
-          .sort((a, b) => {
-            const aname = norm(a.name || "");
-            const bname = norm(b.name || "");
-            const an = norm(
-              (a.name || "") + " " + (a.brand || "") + " " + (a.source || ""),
-            );
-            const bn = norm(
-              (b.name || "") + " " + (b.brand || "") + " " + (b.source || ""),
-            );
+      // FatSecret integration removed — single source of truth is database.json.
 
-            const terms = norm(query).split(/\s+/).filter(Boolean);
-            const q = terms.join(" ");
-
-            // 1) Si es 1 palabra: "pollo" exacto primero
-            if (terms.length === 1) {
-              const aExact = aname === q ? 1 : 0;
-              const bExact = bname === q ? 1 : 0;
-              if (aExact !== bExact) return bExact - aExact;
-
-              // 2) Luego los que empiezan por "pollo " (con espacio)
-              const aStartsWord = aname.startsWith(q + " ") ? 1 : 0;
-              const bStartsWord = bname.startsWith(q + " ") ? 1 : 0;
-              if (aStartsWord !== bStartsWord) return bStartsWord - aStartsWord;
-            }
-
-            // 3) Luego los que empiezan por la query en el texto completo
-            const aStarts = an.startsWith(q) ? 1 : 0;
-            const bStarts = bn.startsWith(q) ? 1 : 0;
-            if (aStarts !== bStarts) return bStarts - aStarts;
-
-            // 4) Desempate: nombre más corto arriba
-            return aname.length - bname.length;
-          });
-
-        // PASO 2: Si tenemos ≥10 resultados locales, mostrar solo esos
-        if (localResults.length >= 10) {
-          lastSearchResults = localResults;
-          lastQuery = query;
-          renderAutocomplete(lastSearchResults, lastQuery, false);
-          return;
-        }
-
-        // PASO 3: Si <10 resultados, buscar en FatSecret API
-        console.log(
-          `⚠️ Solo ${localResults.length} resultados locales. Consultando FatSecret...`,
-        );
-
-        try {
-          const apiResults = await searchFatSecretAPI(query);
-
-          // Combinar resultados: local primero, luego API
-          lastSearchResults = localResults;
-          lastQuery = query;
-          renderAutocomplete(localResults, query, true, apiResults);
-        } catch (error) {
-          console.error("Error buscando en FatSecret:", error);
-          // Si falla API, mostrar solo resultados locales
-          lastSearchResults = localResults;
-          lastQuery = query;
-          renderAutocomplete(localResults, query, false);
-        }
-      }
-
-      // ============================================
-      // BUSCAR EN FATSECRET API
-      // ============================================
-      async function searchFatSecretAPI(query) {
-        try {
-          const response = await fetch(
-            `/api/fatsecret?query=${encodeURIComponent(query)}`,
-          );
-
-          if (!response.ok) {
-            throw new Error("API request failed");
-          }
-
-          const data = await response.json();
-
-          if (!data.success || !data.foods) {
-            return [];
-          }
-
-          return data.foods;
-        } catch (error) {
-          console.error("FatSecret API Error:", error);
-          return [];
-        }
-      }
-
-      function renderAutocomplete(
-        results,
-        query,
-        hasAPIResults = false,
-        apiResults = [],
-      ) {
-        if (results.length === 0 && apiResults.length === 0) {
+      function renderAutocomplete(results, query) {
+        if (results.length === 0) {
           dropdown.innerHTML =
             '<div class="empty-state"><div class="empty-state-text">No se encontraron alimentos</div></div>';
           dropdown.classList.add("active");
@@ -1391,29 +2417,6 @@
                </div>`;
         }
 
-        // Divider + resultados API si los hay
-        if (hasAPIResults && apiResults.length > 0) {
-          html += `
-        <div class="api-divider">
-          <span>Resultados complementarios (verificados)</span>
-        </div>
-      `;
-
-          html += apiResults
-            .slice(0, 10)
-            .map(
-              (food) => `
-        <div class="autocomplete-item api-result" data-food-json='${JSON.stringify(food)}' data-is-api="true">
-          <div class="result-badge complementary">COMPLEMENTARIO</div>
-          <div class="item-name">${highlightMatch(food.name || "", query)}</div>
-          <div class="item-brand">${food.brand || "Genérico"} · FatSecret</div>
-          <div class="item-macros">P: ${food.protein || 0}g · C: ${food.carbs || 0}g · G: ${food.fat || 0}g</div>
-        </div>
-      `,
-            )
-            .join("");
-        }
-
         dropdown.innerHTML = html;
         dropdown.classList.add("active");
 
@@ -1427,25 +2430,14 @@
                 lastSearchResults.length,
               );
               dropdown.classList.add("active");
-              renderAutocomplete(
-                lastSearchResults,
-                lastQuery,
-                hasAPIResults,
-                apiResults,
-              );
+              renderAutocomplete(lastSearchResults, lastQuery);
               return;
             }
 
-            // Si es una comida local:
+            // Selección de comida local (única fuente).
             if (item.dataset.isLocal === "true") {
               const foodId = item.dataset.foodId;
               selectFood(foodId);
-            }
-
-            // Si es una comida de API:
-            if (item.dataset.isApi === "true") {
-              const foodData = JSON.parse(item.dataset.foodJson);
-              selectAPIFood(foodData);
             }
           });
         });
@@ -1455,6 +2447,30 @@
         const safe = (query || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
         const regex = new RegExp("(" + safe + ")", "i");
         return (text || "").replace(regex, "<strong>$1</strong>");
+      }
+
+      function renderUsagePrompt(food) {
+        const prompt =
+          typeof window.getPremiumUsagePrompt === "function"
+            ? window.getPremiumUsagePrompt(food, foodsDatabase)
+            : null;
+        usageContextSection.classList.toggle("active", Boolean(prompt));
+        usageContextOptions.replaceChildren();
+        selectedUsageMode = "any";
+        if (!prompt) return;
+
+        usageContextLabel.textContent = prompt.question;
+        usageContextHelp.textContent = prompt.help;
+        prompt.options.forEach((option) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className =
+            "usage-context-btn" + (option.id === "any" ? " active" : "");
+          button.dataset.usageMode = option.id;
+          button.textContent =
+            (option.icon ? option.icon + " " : "") + option.label;
+          usageContextOptions.appendChild(button);
+        });
       }
 
       function selectFood(foodId) {
@@ -1472,6 +2488,7 @@
           (selectedFood.source || "Base");
 
         selectedFoodDiv.classList.add("active");
+        renderUsagePrompt(selectedFood);
         dropdown.classList.remove("active");
         searchInput.value = "";
 
@@ -1483,40 +2500,24 @@
         checkFormComplete();
       }
 
-      function selectAPIFood(foodData) {
-        // Crear objeto compatible con la estructura local
-        selectedFood = {
-          id: foodData.id,
-          name: foodData.name,
-          brand: foodData.brand || "Genérico",
-          source: "FatSecret",
-          protein: foodData.protein || 0,
-          carbs: foodData.carbs || 0,
-          fat: foodData.fat || 0,
-          calories: foodData.calories || 0,
-          category: foodData.category || "other",
-          is_api_result: true,
-        };
+      // selectAPIFood removed — only local foods supported.
 
-        document.getElementById("selectedName").textContent = selectedFood.name;
-        document.getElementById("selectedBrand").textContent =
-          selectedFood.brand + " · FatSecret";
-
-        selectedFoodDiv.classList.add("active");
-        dropdown.classList.remove("active");
-        searchInput.value = "";
-
-        amountSection.style.opacity = "1";
-        amountSection.style.pointerEvents = "auto";
-        amountInput.disabled = false;
-        amountInput.focus();
-
-        checkFormComplete();
-      }
+      usageContextOptions.addEventListener("click", (event) => {
+        const button = event.target.closest(".usage-context-btn");
+        if (!button) return;
+        selectedUsageMode = button.dataset.usageMode || "any";
+        usageContextOptions
+          .querySelectorAll(".usage-context-btn")
+          .forEach((item) => {
+            item.classList.toggle("active", item === button);
+          });
+      });
 
       clearBtn.addEventListener("click", () => {
         selectedFood = null;
+        selectedUsageMode = "any";
         selectedFoodDiv.classList.remove("active");
+        usageContextSection.classList.remove("active");
         amountSection.style.opacity = "0.5";
         amountSection.style.pointerEvents = "none";
         amountInput.disabled = true;
@@ -1542,141 +2543,68 @@
       // ============================================
       calculateBtn.addEventListener("click", calculateEquivalences);
 
-      function calculateEquivalences() {
+      function activeDietaryCacheKey() {
+        const filters = window.DIETARY_FILTERS;
+        if (!filters) return "none";
+        const values = filters instanceof Set
+          ? Array.from(filters)
+          : Array.isArray(filters)
+            ? filters
+            : [];
+        return values.map(String).sort().join(",") || "none";
+      }
+
+      function exchangeResultCacheKey(food, amount, usageMode) {
+        return [
+          EXCHANGE_RESULT_CACHE_VERSION,
+          String(food?.id || ""),
+          Number(amount).toFixed(2),
+          String(usageMode || "any"),
+          activeDietaryCacheKey(),
+        ].join("|");
+      }
+
+      function rememberExchangeResult(key, result) {
+        if (exchangeResultCache.has(key)) exchangeResultCache.delete(key);
+        exchangeResultCache.set(key, result);
+        while (exchangeResultCache.size > EXCHANGE_RESULT_CACHE_LIMIT) {
+          const oldestKey = exchangeResultCache.keys().next().value;
+          exchangeResultCache.delete(oldestKey);
+        }
+      }
+
+      async function calculateEquivalences() {
         const amount = parseFloat(amountInput.value);
+        const cacheKey = exchangeResultCacheKey(
+          selectedFood,
+          amount,
+          selectedUsageMode,
+        );
 
         searchSection.style.display = "none";
         loading.classList.add("active");
+        const calculationStatus = document.querySelector(".loading-text");
 
-        setTimeout(() => {
-          const results = calculateAlternatives(selectedFood, amount);
-          displayResults(selectedFood, amount, results);
-
-          loading.classList.remove("active");
-          resultsSection.classList.add("active");
-        }, 300);
-      }
-
-      function calculateAlternatives(originalFood, amount) {
-        const originalMacros = {
-          protein: (originalFood.protein * amount) / 100,
-          carbs: (originalFood.carbs * amount) / 100,
-          fat: (originalFood.fat * amount) / 100,
-          calories: (originalFood.calories * amount) / 100,
-        };
-
-        const candidates = foodsDatabase.filter(
-          (f) =>
-            f.id !== originalFood.id &&
-            f.category === originalFood.category &&
-            !(f.flags || []).includes("condiment") &&
-            !(f.flags || []).includes("prepared"),
-        );
-
-        const alternatives = candidates
-          .map((alt) =>
-            calculateEquivalence(alt, originalFood, amount, originalMacros),
-          )
-          .filter((alt) => alt !== null);
-
-        const perfect = alternatives.filter((alt) => alt.level === "perfect");
-        const good = alternatives.filter((alt) => alt.level === "good");
-        const advanced = alternatives.filter((alt) => alt.level === "advanced");
-
-        return {
-          perfect: perfect.sort((a, b) => b.matchScore - a.matchScore),
-          good: good.sort((a, b) => b.matchScore - a.matchScore),
-          advanced: advanced.sort((a, b) => b.matchScore - a.matchScore),
-        };
-      }
-      function getAnchorMacro(food) {
-        const cat = (food.category || "").toLowerCase();
-        if (cat === "protein") return "protein";
-        if (cat === "carbs") return "carbs";
-        if (cat === "fat") return "fat";
-        if (cat === "dairy") return "protein"; // puedes cambiarlo a 'carbs' si lo prefieres
-        return "calories"; // other
-      }
-      function calculateEquivalence(
-        alt,
-        original,
-        originalAmount,
-        originalMacros,
-      ) {
-        const anchor = getAnchorMacro(original);
-
-        // Si el alimento “original” no tiene el macro ancla, no se puede calcular bien
-        if (!original[anchor] || original[anchor] <= 0) return null;
-        if (!alt[anchor] || alt[anchor] <= 0) return null;
-
-        const ratio = original[anchor] / alt[anchor];
-        const equivalentAmount = Math.round(originalAmount * ratio);
-
-        if (equivalentAmount < 5) return null; // evita 0g / 1g raros
-        if (equivalentAmount > 600) return null; // evita monstruos
-
-        const altMacros = {
-          protein: (alt.protein * equivalentAmount) / 100,
-          carbs: (alt.carbs * equivalentAmount) / 100,
-          fat: (alt.fat * equivalentAmount) / 100,
-          calories: (alt.calories * equivalentAmount) / 100,
-        };
-
-        const proteinDiff = altMacros.protein - originalMacros.protein;
-        const carbsDiff = altMacros.carbs - originalMacros.carbs;
-        const fatDiff = altMacros.fat - originalMacros.fat;
-        const caloriesDiff = altMacros.calories - originalMacros.calories;
-
-        // Penalización: prioriza el macro “ancla”
-        let penalty = 0;
-
-        if (anchor === "protein") {
-          penalty += Math.abs(proteinDiff) * 3;
-          penalty += Math.abs(carbsDiff) * 1.5;
-          penalty += fatDiff > 0 ? fatDiff * 2.5 : Math.abs(fatDiff) * 0.8;
-        } else if (anchor === "carbs") {
-          penalty += Math.abs(carbsDiff) * 3;
-          penalty += Math.abs(proteinDiff) * 1.5;
-          penalty += Math.abs(fatDiff) * 1.2;
-        } else if (anchor === "fat") {
-          penalty += Math.abs(fatDiff) * 3;
-          penalty += Math.abs(carbsDiff) * 1.2;
-          penalty += Math.abs(proteinDiff) * 1.2;
+        let results = exchangeResultCache.get(cacheKey);
+        if (results) {
+          exchangeResultCache.delete(cacheKey);
+          exchangeResultCache.set(cacheKey, results);
+          calculationStatus.textContent = "Recuperando tus alternativas...";
         } else {
-          // calories
-          penalty += Math.abs(caloriesDiff) * 0.6;
-          penalty += Math.abs(proteinDiff) * 1.2;
-          penalty += Math.abs(carbsDiff) * 1.2;
-          penalty += Math.abs(fatDiff) * 1.2;
+          calculationStatus.textContent = "Buscando las mejores alternativas...";
+          results = await calculateAlternatives(selectedFood, amount, {
+            usageMode: selectedUsageMode,
+          });
+          rememberExchangeResult(cacheKey, results);
         }
-
-        const totalMacros =
-          originalMacros.protein + originalMacros.carbs + originalMacros.fat;
-        const matchScore = Math.max(
-          0,
-          Math.round(100 - (penalty / Math.max(totalMacros, 10)) * 100),
-        );
-
-        let level = null;
-        if (matchScore >= 95 && equivalentAmount <= 300) level = "perfect";
-        else if (matchScore >= 75 && equivalentAmount <= 400) level = "good";
-        else if (matchScore >= 60) level = "advanced";
-        else return null;
-
-        return {
-          ...alt,
-          equivalentAmount,
-          macros: altMacros,
-          matchScore,
-          level,
-          diffs: {
-            protein: proteinDiff,
-            carbs: carbsDiff,
-            fat: fatDiff,
-            calories: caloriesDiff,
-          },
-        };
+        displayResults(selectedFood, amount, results);
+        loading.classList.remove("active");
+        calculationStatus.textContent = "Cargando...";
+        resultsSection.classList.add("active");
       }
+
+      // calculateAlternatives, getAnchorMacro, calculateEquivalence
+      // → moved to js/algorithm.js
 
       // ============================================
       // DISPLAY RESULTS
@@ -1691,7 +2619,14 @@
 
         originalFoodCard.innerHTML = `
       <div class="original-food-header">TIENES EN TU MENÚ</div>
-      <div class="original-food-name">${amount}g ${originalFood.name}</div>
+      <div class="original-food-name">
+        ${amount}g ${originalFood.name}${(() => {
+          const hm = window.formatHouseholdMeasure
+            ? window.formatHouseholdMeasure(originalFood, amount)
+            : null;
+          return hm ? `<span class="result-household">${hm}</span>` : "";
+        })()}
+      </div>
       <div class="original-macros">
         <div class="original-macro-item">
           <div class="original-macro-label">Proteína</div>
@@ -1713,49 +2648,201 @@
     `;
 
         const totalCount =
-          alternatives.perfect.length +
-          alternatives.good.length +
-          alternatives.advanced.length;
-        resultsCount.textContent = totalCount + " alternativas encontradas";
+          alternatives.intercambios.length +
+          alternatives.familia.length +
+          alternatives.preparados.length;
+        resultsCount.textContent =
+          totalCount === 0
+            ? "Sin intercambios disponibles"
+            : "Alternativas recomendadas";
 
-        if (alternatives.perfect.length > 0) {
-          perfectSection.style.display = "block";
-          perfectCount.textContent = alternatives.perfect.length;
-          perfectContainer.innerHTML = alternatives.perfect
-            .map((alt) => renderResultCard(alt, "perfect"))
-            .join("");
+        // Empty-state amable. Cliente: "no quiero '0 alternativas
+        // encontradas' frío — prefiero un mensaje honesto."
+        // Cubre dos casos: judge dijo insufficient O literalmente 0 candidates.
+        const noResults = alternatives.intercambios.length === 0;
+        if (noResults || alternatives.noMatch) {
+          const hasAnyFamily =
+            alternatives.familia.length + alternatives.preparados.length > 0;
+          intercambiosSection.style.display = "block";
+          intercambiosCount.textContent = "0";
+          intercambiosGroups.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-state-icon">🤔</div>
+              <div class="empty-state-title">
+                No encontramos un intercambio equivalente para este alimento
+              </div>
+              <div class="empty-state-text">
+                ${hasAnyFamily
+                  ? "Abajo te mostramos opciones de la misma familia que pueden servirte como referencia, pero ninguna es un sustituto exacto sin descuadrar el menú."
+                  : "Prueba con un alimento similar o consúltalo con el equipo. No todo tiene un intercambio clínico equivalente."
+                }
+              </div>
+            </div>
+          `;
         } else {
-          perfectSection.style.display = "none";
+          renderIntercambiosGroups(alternatives.intercambios);
         }
 
-        if (alternatives.good.length > 0) {
-          goodSection.style.display = "block";
-          goodCount.textContent = alternatives.good.length;
-          goodContainer.innerHTML = alternatives.good
-            .map((alt) => renderResultCard(alt, "good"))
-            .join("");
-        } else {
-          goodSection.style.display = "none";
-        }
+        // Cliente: "para básicos no necesitamos 30 versiones casi iguales".
+        // Cap visible a 8 por bloque secundario + botón "Ver más" que
+        // expande el resto. El total real sigue en el counter.
+        renderCollapsibleBlock(
+          alternatives.familia, "familia",
+          familiaSection, familiaContainer, familiaCount,
+        );
+        renderCollapsibleBlock(
+          alternatives.preparados, "preparados",
+          preparadosSection, preparadosContainer, preparadosCount,
+        );
 
-        if (alternatives.advanced.length > 0) {
-          advancedSection.style.display = "block";
-          advancedCount.textContent = alternatives.advanced.length;
-          advancedContainer.innerHTML = alternatives.advanced
-            .map((alt) => renderResultCard(alt, "advanced"))
-            .join("");
+        // PUNTO 9 Hugo brief 16/05/2026 + extensión nutricionista clínica:
+        // El flip "familia primero, intercambios después" se aplica cuando
+        // la clienta está en intención de COMPRA (elegir marca/formato de
+        // un alimento envasado con variabilidad real entre marcas), NO
+        // cuando está resolviendo una comida sin tener el alimento en casa.
+        //
+        // Heurística combinada (3 capas + whitelist Hugo explícita):
+        //   1) culinary_role: snack, dessert → siempre comerciales
+        //   2) category dairy → todos los lácteos envasados varían mucho
+        //   3) subgroup: processed_meat, sweets_bakery → fiambres, bollería
+        //   4) name tokens: panes, cereales, galletas, conservas pescado,
+        //                   embutidos, untables (hummus, tahin, mermelada),
+        //                   bebidas, leches
+        //   + whitelist Hugo: pan, yogur, skyr, atún, garbanzo
+        //
+        // EXCLUYE explícitamente: pollo, arroz, aceite, huevo, aguacate,
+        // pescado fresco, verduras, frutas, legumbres secas — para esos
+        // gana el orden default (intercambios primero).
+        const _norm = (s) => (s || "")
+          .toLowerCase()
+          .normalize("NFD").replace(/[̀-ͯ]/g, "");
+        const _origNameN = _norm(originalFood.name);
+        const _oRole = originalFood.culinary_role || "meal_dish";
+        const _oCat  = originalFood.category;
+        const _oSub  = originalFood.subgroup;
+
+        // Capa 1+2+3: role/category/subgroup
+        const _ROLE_FAMILY_FIRST    = new Set(["snack", "dessert"]);
+        const _SUBGRP_FAMILY_FIRST  = new Set(["processed_meat", "sweets_bakery"]);
+        const _byClassification =
+          _ROLE_FAMILY_FIRST.has(_oRole) ||
+          _oCat === "dairy" ||
+          _SUBGRP_FAMILY_FIRST.has(_oSub);
+
+        // Capa 4: tokens del nombre (cubre conservas, embutidos, panes,
+        // cereales, untables, bebidas — todos comerciales con marcas)
+        const _TOKEN_FAMILY_FIRST = [
+          // panes y derivados de panadería envasada
+          "pan", "tostada", "biscote", "pico", "colin",
+          // cereales de desayuno y barritas
+          "avena", "copos", "cereales", "muesli", "granola", "barrita", "all-bran", "all bran",
+          "corn flakes", "fitness", "special k", "choco krispies",
+          // galletas, tortitas, crackers
+          "galleta", "tortita", "cracker", "crujiente",
+          // NOTA: conservas de pescado/marisco (atún, sardina, caballa,
+          // bonito, anchoa, surimi, mejillón...) se quitaron de aquí a
+          // propósito: el cliente pidió que en conservas de pescado salgan
+          // primero las ALTERNATIVAS RECOMENDADAS (salmón, atún fresco...),
+          // no "otras marcas y formatos" del mismo producto.
+          // fiambres y embutidos
+          "jamon", "jamón", "chorizo", "salchichon", "salchichón",
+          "fuet", "salchicha", "hamburguesa", "bacon", "mortadela",
+          "pavo cocido", "pollo cocido", "fiambre",
+          // untables / pastas saladas
+          "hummus", "tahin", "tahini", "pate", "paté",
+          // mermeladas y compotas
+          "mermelada", "confitura", "compota", "jalea",
+          // bebidas (zumos, vegetales, leches)
+          "zumo", "bebida vegetal", "leche", "horchata",
+          // lácteos específicos (refuerza category dairy)
+          "yogur", "yogurt", "yoghurt", "skyr", "fage", "quark",
+          "kefir", "kéfir",
+          // huevo: las formas de huevo son más útiles que abrir con pescado
+          "huevo",
+          // proteína vegetal — Hugo punto 2.E: tofu prioriza tofus/seitanes
+          "tofu", "tempeh", "seitan", "seitán", "soja texturizada", "heura",
+          // legumbres en conserva (no las secas crudas)
+          "garbanzo", "alubia cocida", "lenteja cocida",
+          "judia cocida", "judía cocida",
+          // aceitunas / encurtidos
+          "aceitun", "encurtido", "pepinillo",
+          // chocolate envasado
+          "chocolate", "tableta",
+        ];
+        const _byToken = _TOKEN_FAMILY_FIRST.some((t) => _origNameN.includes(t));
+
+        const isBasicoFamiliaFirst = _byClassification || _byToken;
+
+        // Umbral mínimo: aunque sea básico, si familia < 5 no merece flip
+        // (poca variedad → mejor mostrar intercambios reales arriba)
+        const familyDominant =
+          isBasicoFamiliaFirst && alternatives.familia.length >= 5;
+        const parent = intercambiosSection.parentNode;
+        if (familyDominant) {
+          // Familia primero (solo básicos: pan/yogur/skyr/atún/garbanzos)
+          parent.insertBefore(familiaSection, intercambiosSection);
         } else {
-          advancedSection.style.display = "none";
+          // Default: intercambios primero, familia después
+          parent.insertBefore(intercambiosSection, familiaSection);
         }
       }
 
-      function renderResultCard(alt, level) {
+      const FAMILIA_VISIBLE_DEFAULT = 8;
+
+      function renderCollapsibleBlock(items, tier, section, container, countEl) {
+        if (!items || items.length === 0) {
+          section.style.display = "none";
+          return;
+        }
+        section.style.display = "block";
+        countEl.textContent = items.length;
+
+        // Cliente: en pan/skyr/yogur/atún la familia tiene mucho contenido
+        // útil — abrir el <details> por defecto para que la clienta no
+        // tenga que clickear. Solo aplica al bloque familia y solo cuando
+        // hay 5+ elementos. Preparados sigue cerrado por default.
+        const details = section.querySelector("details");
+        if (details) {
+          details.open = (tier === "familia" && items.length >= 5);
+        }
+
+        const visible = items.slice(0, FAMILIA_VISIBLE_DEFAULT);
+        const hidden  = items.slice(FAMILIA_VISIBLE_DEFAULT);
+
+        let html = visible.map((alt) => renderResultCard(alt, tier)).join("");
+        if (hidden.length > 0) {
+          html += `
+            <div class="ver-mas-wrap" data-tier="${tier}">
+              <button type="button" class="ver-mas-btn">
+                Ver ${hidden.length} más ▾
+              </button>
+            </div>
+            <div class="ver-mas-hidden" hidden>
+              ${hidden.map((alt) => renderResultCard(alt, tier)).join("")}
+            </div>
+          `;
+        }
+        container.innerHTML = html;
+
+        const btn = container.querySelector(".ver-mas-btn");
+        if (btn) {
+          btn.addEventListener("click", () => {
+            const hiddenBlock = container.querySelector(".ver-mas-hidden");
+            const wrap        = container.querySelector(".ver-mas-wrap");
+            if (hiddenBlock) hiddenBlock.hidden = false;
+            if (wrap)        wrap.remove();
+          });
+        }
+      }
+
+      function renderResultCard(alt, tier) {
         const badges = {
-          perfect:
-            '<div class="level-badge perfect"><span>✓</span> Equivalencia perfecta</div>',
-          good: '<div class="level-badge good"><span>⚠️</span> Alternativa válida</div>',
-          advanced:
-            '<div class="level-badge advanced"><span>🔴</span> Opción avanzada</div>',
+          intercambios:
+            '<div class="level-badge intercambios"><span>🔄</span> Intercambio real</div>',
+          familia:
+            '<div class="level-badge familia"><span>📦</span> Misma familia</div>',
+          preparados:
+            '<div class="level-badge preparados"><span>🍽️</span> Plato preparado</div>',
         };
 
         let calClass = "";
@@ -1764,9 +2851,73 @@
           calClass = "cal-up-low";
         else if (alt.diffs.calories > 80) calClass = "cal-up-high";
 
+        const contextReasons = {
+          same_context: "Mismo tipo de alimento y uso",
+          same_cohort: "Encaja en la misma comida",
+          carb_secondary_bridge: "Otra forma práctica de hidratos",
+          milk_family_bridge: "Alternativa para la misma toma",
+          avocado_spread_bridge: "Mismo uso como grasa o untable",
+        };
+        const contextReason =
+          contextReasons[alt.premiumContextReason] ||
+          "Equivalencia nutricional y culinaria";
+
+        const choiceGuidance =
+          alt.premiumChoiceGuidance ||
+          (typeof window.getPremiumChoiceGuidance === "function"
+            ? window.getPremiumChoiceGuidance(alt)
+            : null);
+        let choiceGuidanceHTML = "";
+        if (
+          choiceGuidance &&
+          ["preferred", "compatible", "occasional"].includes(
+            choiceGuidance.level,
+          )
+        ) {
+          const details =
+            choiceGuidance.level === "preferred"
+              ? ""
+              : `
+                <details class="choice-guidance-details">
+                  <summary>¿Por qué?</summary>
+                  <p>${choiceGuidance.detail}</p>
+                </details>
+              `;
+          choiceGuidanceHTML = `
+            <div class="choice-guidance ${choiceGuidance.level}">
+              <span class="choice-guidance-dot" aria-hidden="true"></span>
+              <div class="choice-guidance-copy">
+                <div class="choice-guidance-label">${choiceGuidance.label}</div>
+                <div class="choice-guidance-summary">${choiceGuidance.summary}</div>
+              </div>
+            </div>
+            ${details}
+          `;
+        }
+
+        let portionNotice = "";
+        if (alt.premiumPortionStatus === "review") {
+          const context = alt.premiumContext || "";
+          let message =
+            "Ración grande: el cálculo es correcto, pero comprueba que esta cantidad te resulte práctica.";
+          if (context === "whole_fruit") {
+            message =
+              "Ración grande: esta fruta aporta menos energía por gramo, por eso hace falta más cantidad.";
+          } else if (["plant_protein", "cooked_legume"].includes(context)) {
+            message =
+              "Ración grande: hace falta más cantidad para acercarse al aporte de proteína.";
+          } else if (
+            ["tuber", "cooked_tuber", "cooked_grain"].includes(context)
+          ) {
+            message =
+              "Ración mayor: cambias un alimento más seco por otro con más agua.";
+          }
+          portionNotice = `<div class="portion-review-note">⚠️ ${message}</div>`;
+        }
+
         return `
-      <div class="result-card ${level}">
-        ${badges[level]}
+      <div class="result-card ${tier}">
+        ${badges[tier]}
 
         <div class="result-header">
           <div class="result-info">
@@ -1774,12 +2925,22 @@
             <div class="result-brand">${alt.brand || "Sin marca"} · ${alt.source || "Base"}</div>
           </div>
           <div class="match-score">
-            <div class="match-value ${level}">${alt.matchScore}%</div>
+            <div class="match-value ${tier}">${alt.matchDisplay ?? alt.matchScore}%</div>
             <div class="match-label">Match</div>
           </div>
         </div>
 
-        <div class="result-amount">${alt.equivalentAmount}g</div>
+        <div class="result-amount">
+          ${alt.equivalentAmount}g${(() => {
+            const hm = window.formatHouseholdMeasure
+              ? window.formatHouseholdMeasure(alt, alt.equivalentAmount)
+              : null;
+            return hm ? `<span class="result-household">${hm}</span>` : "";
+          })()}
+        </div>
+        <div class="result-fit-reason">✓ ${contextReason}</div>
+        ${choiceGuidanceHTML}
+        ${portionNotice}
 
         <div class="result-macros">
           <div class="result-macro-item">
@@ -1807,6 +2968,164 @@
     `;
       }
 
+      function renderIntercambiosGroups(items) {
+        if (items.length === 0) {
+          intercambiosSection.style.display = "none";
+          return;
+        }
+        intercambiosSection.style.display = "block";
+        intercambiosCount.textContent = items.length;
+
+        const BATCH = 8;
+        const visible = items.slice(0, BATCH);
+        const hidden = items.slice(BATCH);
+
+        const cardsHTML = [
+          ...visible.map((alt) => renderResultCard(alt, "intercambios")),
+          ...hidden.map(
+            (alt) =>
+              `<div data-hidden-wrapper data-group="intercambios" style="display:none">${renderResultCard(alt, "intercambios")}</div>`,
+          ),
+        ].join("");
+
+        const actionsHTML =
+          hidden.length > 0
+            ? `<div class="sgp-actions" id="actions-intercambios">
+                <button class="btn-load-more" data-action="load-more" data-group="intercambios">
+                  Ver más
+                  <span class="btn-load-more__count" id="more-count-intercambios">+${Math.min(BATCH, hidden.length)} de ${hidden.length}</span>
+                  <svg class="btn-load-more__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <button class="btn-show-all" data-action="show-all" data-group="intercambios">
+                  Mostrar todos los ${items.length}
+                </button>
+                <div class="sgp-complete" id="complete-intercambios" style="display:none">
+                  ✓ Mostrando todos los resultados
+                </div>
+              </div>`
+            : "";
+
+        intercambiosGroups.innerHTML = `
+          <div class="score-cards-list" id="list-intercambios">
+            ${cardsHTML}
+          </div>
+          ${actionsHTML}
+        `;
+      }
+
+      function renderScoreGroup(
+        groupId,
+        title,
+        range,
+        colorClass,
+        items,
+        isOpen,
+      ) {
+        if (items.length === 0) return "";
+
+        const BATCH = 6;
+        const visibleItems = items.slice(0, BATCH);
+        const hiddenItems = items.slice(BATCH);
+
+        const cardsHTML = [
+          ...visibleItems.map((alt) => renderResultCard(alt, "intercambios")),
+          ...hiddenItems.map((alt) => {
+            return `<div data-hidden-wrapper data-group="${groupId}" style="display:none">${renderResultCard(alt, "intercambios")}</div>`;
+          }),
+        ].join("");
+
+        const actionsHTML =
+          hiddenItems.length > 0
+            ? `
+          <div class="sgp-actions" id="actions-${groupId}">
+            <button class="btn-load-more" data-action="load-more" data-group="${groupId}">
+              Ver más
+              <span class="btn-load-more__count" id="more-count-${groupId}">+${Math.min(BATCH, hiddenItems.length)} de ${hiddenItems.length}</span>
+              <svg class="btn-load-more__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <button class="btn-show-all" data-action="show-all" data-group="${groupId}">
+              Mostrar todos los ${items.length}
+            </button>
+            <div class="sgp-complete" id="complete-${groupId}" style="display:none">
+              ✓ Mostrando todos los resultados
+            </div>
+          </div>
+        `
+            : "";
+
+        const chevronSVG = `<svg class="score-group__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
+
+        return `
+          <details class="score-group score-group--${colorClass}" ${isOpen ? "open" : ""} id="sg-${groupId}">
+            <summary class="score-group__summary">
+              <span class="score-group__indicator"></span>
+              <span class="score-group__label">
+                <span class="score-group__title">${title}</span>
+                <span class="score-group__range">Match ${range}</span>
+              </span>
+              <span class="score-group__count">${items.length}</span>
+              ${chevronSVG}
+            </summary>
+            <div class="score-group__content">
+              <div class="score-cards-list" id="list-${groupId}">
+                ${cardsHTML}
+              </div>
+              ${actionsHTML}
+            </div>
+          </details>
+        `;
+      }
+
+      function initLoadMore() {
+        const BATCH = 6;
+        intercambiosSection.addEventListener("click", function (e) {
+          const btnMore = e.target.closest('[data-action="load-more"]');
+          const btnAll = e.target.closest('[data-action="show-all"]');
+          if (!btnMore && !btnAll) return;
+
+          const groupId = (btnMore || btnAll).dataset.group;
+          const list = document.getElementById("list-" + groupId);
+          const hidden = Array.from(
+            list.querySelectorAll("[data-hidden-wrapper]"),
+          );
+
+          const toReveal = btnMore ? hidden.slice(0, BATCH) : hidden;
+          toReveal.forEach((wrapper) => {
+            wrapper.style.display = "";
+            wrapper.removeAttribute("data-hidden-wrapper");
+            const card = wrapper.firstElementChild;
+            if (card) {
+              card.style.animation = "none";
+              card.offsetHeight;
+              card.style.animation = "";
+            }
+          });
+
+          const remaining = list.querySelectorAll(
+            "[data-hidden-wrapper]",
+          ).length;
+          const actionsEl = document.getElementById("actions-" + groupId);
+          const countEl = document.getElementById("more-count-" + groupId);
+          const completeEl = document.getElementById("complete-" + groupId);
+
+          if (remaining === 0) {
+            if (actionsEl) {
+              actionsEl
+                .querySelectorAll(".btn-load-more, .btn-show-all")
+                .forEach((b) => (b.style.display = "none"));
+              if (completeEl) completeEl.style.display = "block";
+            }
+          } else if (countEl) {
+            countEl.textContent =
+              "+" + Math.min(BATCH, remaining) + " de " + remaining;
+          }
+        });
+      }
+
       function getDiffClass(diff) {
         const abs = Math.abs(diff);
         if (abs < 0.5) return "diff-perfect";
@@ -1832,7 +3151,9 @@
         searchSection.style.display = "block";
 
         selectedFood = null;
+        selectedUsageMode = "any";
         selectedFoodDiv.classList.remove("active");
+        usageContextSection.classList.remove("active");
         amountSection.style.opacity = "0.5";
         amountSection.style.pointerEvents = "none";
         amountInput.disabled = true;
@@ -1866,11 +3187,11 @@
       // ============================================
       // INIT
       // ============================================
-      // Verificar si ya está logueado
-      if (!checkAuth()) {
-        // Si no está logueado, mostrar pantalla login
-        loginScreen.classList.add("active");
-      }
+      // Arrancamos la validación primero — el splash ya está pintado
+      checkAuth();
+      // Salvaguardia: si algo falla, después de 5s ocultamos el splash igual
+      setTimeout(dismissAuthSplash, 5000);
+      initLoadMore();
     </script>
   </body>
 </html>

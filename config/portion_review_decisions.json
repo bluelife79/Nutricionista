@@ -1,0 +1,55 @@
+{
+  "version": "premium-v2-product-decisions-1",
+  "scope": "Decisiones de practicidad de producto para equivalencias matemáticamente válidas que requieren una cantidad grande. No son prescripciones ni aprobación clínica.",
+  "decisions": [
+    {
+      "case_id": "pasta",
+      "candidate_id": "bedca_0653",
+      "decision": "accepted_with_visible_notice",
+      "reason": "Un alimento seco se cambia por boniato con más agua; 141 g sigue siendo una ración culinaria razonable.",
+      "notice_type": "dry_to_wet_carb"
+    },
+    {
+      "case_id": "pan",
+      "candidate_id": "bedca_0222",
+      "decision": "accepted_with_visible_notice",
+      "reason": "El cambio de pan a patata cocida necesita más gramos por su mayor contenido de agua; 169 g es una guarnición doméstica razonable y se explica en pantalla.",
+      "notice_type": "dry_to_wet_carb"
+    },
+    {
+      "case_id": "pan_centeno",
+      "candidate_id": "bedca_0222",
+      "decision": "accepted_with_visible_notice",
+      "reason": "El cambio pan-patata exige más gramos por el agua de la patata; 176 g es una ración utilizable, pero debe explicarse.",
+      "notice_type": "dry_to_wet_carb"
+    },
+    {
+      "case_id": "pan_centeno",
+      "candidate_id": "bedca_0591",
+      "decision": "accepted_with_visible_notice",
+      "reason": "El maíz en conserva aporta menos energía por gramo que el pan; 151 g es una cantidad culinaria utilizable y debe mostrarse con el aviso de cambio seco-húmedo.",
+      "notice_type": "dry_to_wet_carb"
+    },
+    {
+      "case_id": "pan_centeno",
+      "candidate_id": "off_99eb089b18",
+      "decision": "accepted_with_visible_notice",
+      "reason": "La batata fresca tiene mucha más agua que el pan; 163 g sigue siendo una guarnición doméstica razonable y se presenta con el aviso de cambio seco-húmedo.",
+      "notice_type": "dry_to_wet_carb"
+    },
+    {
+      "case_id": "tempeh",
+      "candidate_id": "bedca_0462",
+      "decision": "accepted_with_visible_notice",
+      "reason": "El tofu necesita más cantidad para acercarse a la proteína del tempeh; permanece como opción secundaria y muestra aviso.",
+      "notice_type": "large_plant_protein_portion"
+    },
+    {
+      "case_id": "seitan",
+      "candidate_id": "bedca_0462",
+      "decision": "accepted_with_visible_notice",
+      "reason": "El tofu necesita más cantidad para acercarse a la proteína del seitán; permanece como opción secundaria y muestra aviso.",
+      "notice_type": "large_plant_protein_portion"
+    }
+  ]
+}

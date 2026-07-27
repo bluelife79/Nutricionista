@@ -1,0 +1,775 @@
+id,name,category,subgroup_before,subgroup_after,changed,confidence,reason
+bedca_0003,Melocotón en almíbar,carbs,,fruit,True,85,"Melocotón en conserva, sigue siendo fruta"
+bedca_0005,Zumo de piña,carbs,,fruit,True,95,Zumo de fruta 100%
+bedca_0006,Salsa agridulce,other,,other,True,80,"Salsa procesada, no encaja claro"
+bedca_0007,Empanadilla,other,,other,True,85,Producto ultraprocesado mixto
+bedca_0010,Judía pinta,carbs,,legumes,True,99,Legumbre clásica española
+bedca_0011,"Cerdo, parte s/e",protein,,meat,True,99,Carne de cerdo
+bedca_0013,Repollo,carbs,,vegetables,True,99,Verdura de hoja
+bedca_0017,Cubito de caldo,other,,other,True,90,"Ultra procesado, no es alimento base"
+bedca_0018,Albahaca,other,,vegetables,True,75,"Hierba aromática, se asocia a verduras"
+bedca_0020,"Chicle, sin azucar",other,,other,True,90,Producto no alimentario significativo
+bedca_0025,Foie gras,fat,,other_fat,True,85,"Grasa animal procesada, no encaja"
+bedca_0026,Lasaña,dairy,,other_dairy,True,80,Plato preparado con lácteos
+bedca_0027,Gofio,carbs,,grains,True,95,Harina de cereales tostada
+bedca_0029,Mostaza,other,,other,True,85,Condimento procesado
+bedca_0030,Salsa de soja,carbs,,other_carbs,True,70,"Salsa, no es cereal base"
+bedca_0032,Gusanito,carbs,,sweets_bakery,True,80,Snack ultraprocesado salado
+bedca_0034,Carne picada,protein,,meat,True,99,Carne picada de animal
+bedca_0044,"Pijota, cruda",dairy,,fresh_cheese,True,85,Queso fresco magro típico
+bedca_0050,Judía blanca,carbs,,legumes,True,99,Legumbre clásica española
+bedca_0057,Caracol,protein,,other_protein,True,85,Proteína de origen animal atípico
+bedca_0059,Ternera. parte s/e,protein,,meat,True,99,Carne de ternera
+bedca_0066,"Soja, germinada, en conserva",carbs,,vegetables,True,75,Brotes consumidos como verdura
+bedca_0078,Ajo,other,,vegetables,True,95,Hortaliza bulbosa clásica
+bedca_0084,Agua de la red,other,,other,True,95,"Agua, no es alimento"
+bedca_0085,Zumo de naranja,carbs,,fruit,True,95,Zumo de fruta natural
+bedca_0089,"Cereales, en polvo, solubles (eko)",carbs,,grains,True,75,"Cereal soluble, deriva de granos"
+bedca_0091,Sesamo molido,protein,,other_protein,True,55,Semilla grasa sin opción adecuada
+bedca_0092,"Ajo, en polvo",carbs,,vegetables,True,72,Especia derivada de hortaliza
+bedca_0093,Cilantro,other,,vegetables,True,90,Hierba aromática fresca
+bedca_0095,Canelones,dairy,,other_dairy,True,45,"Plato preparado, no es lácteo"
+bedca_0096,"Agua mineral, mineralización debil",other,,other,True,95,Agua sin valor calórico
+bedca_0099,Limonada,other,,other,True,80,Bebida azucarada no fruta
+bedca_0100,Alcaparra,other,,other,True,70,"Condimento encurtido, no hortaliza"
+bedca_0102,Tocino,dairy,,other_dairy,True,40,"Carne procesada, sin opción válida"
+bedca_0110,Eneldo,carbs,,vegetables,True,90,Hierba aromática fresca
+bedca_0111,Romero,carbs,,vegetables,True,88,Especia de planta aromática
+bedca_0112,Comino,carbs,,vegetables,True,88,Especia de planta aromática
+bedca_0113,Tomillo,carbs,,vegetables,True,88,Especia de planta aromática
+bedca_0118,Sopa de sobre maravilla,carbs,,other_carbs,True,78,Ultra procesado de fideos
+bedca_0119,Semilla de lino,protein,,other_protein,True,55,Semilla sin opción correcta
+bedca_0123,"Lenteja, hervida",carbs,,legumes,True,100,Legumbre cocida clásica
+bedca_0125,Sal yodada,other,,other,True,95,Condimento sin macros
+bedca_0126,Tabasco,other,,other,True,85,Salsa picante procesada
+bedca_0130,Miso,other,,other,True,75,Pasta de soja fermentada
+bedca_0135,"Garbanzo, hervida",carbs,,legumes,True,100,Legumbre cocida clásica
+bedca_0138,Altramuz,carbs,,legumes,True,100,Leguminosa de alto proteinas
+bedca_0142,"Haba, frita",carbs,,legumes,True,75,"Legumbre frita, snack"
+bedca_0143,Pastas de te,carbs,,grains,True,72,Pasta derivada de cereales
+bedca_0144,Complejo vitaminico,protein,,other_protein,True,55,"Suplemento, no alimento real"
+bedca_0153,"Café, infusión, descafeinado",other,,other,True,90,Infusión sin valor calórico
+bedca_0154,"Café, infusión",other,,other,True,50,"Infusión sin calorías, no es alimento"
+bedca_0156,Torta de aceite,fat,,sweets_bakery,True,95,Boll repostero tradicional andaluz
+bedca_0160,Chanquete,dairy,,other_dairy,True,50,"Es pescado, mal categorizado como lácteo"
+bedca_0161,Bocadillo,other,,other_carbs,True,75,Preparación mixta con pan como base
+bedca_0164,Mojo picon,fat,,other_fat,True,80,Salsa grasa canaria con aceite
+bedca_0165,Rollito de primavera,other,,other_carbs,True,75,Preparación mixta con pasta frita
+bedca_0167,Lecitina de soja,carbs,,other_carbs,True,50,Suplemento graso mal categorizado como carboidrato
+bedca_0168,Flamenquín,protein,,processed_protein,True,85,"Carne procesada y frita, típico cordobés"
+bedca_0169,Ensaladilla rusa,other,,other,True,70,"Plato compuesto, no encaja claro"
+bedca_0172,Baileys,other,,other,True,55,Bebida alcohólica licor de crema
+bedca_0173,Cubata,other,,other,True,55,Bebida alcohólica mezclada
+bedca_0175,Ensalada,other,,vegetables,True,95,Base vegetal de hortalizas frescas
+bedca_0178,Curry,carbs,,other_carbs,True,60,Plato compuesto con especia
+bedca_0181,Crema catalana,other,,sweets_bakery,True,95,Postre dulce lácteo clásico
+bedca_0183,Corteza de trigo,carbs,,grains,True,75,Producto derivado del trigo
+bedca_0187,Gazpacho,other,,vegetables,True,95,Sopa fría de hortalizas
+bedca_0190,Albondigas en conserva,dairy,,other_dairy,True,50,"Carne procesada, mal categorizada lácteo"
+bedca_0194,Empanada de carne,protein,,meat,True,80,Masa con relleno de carne
+bedca_0195,"Castaña, cruda",other,,other_carbs,True,70,Fruto seco rico en almidón
+bedca_0196,Jamón asado,protein,,meat,True,95,Carne de cerdo cocinada
+bedca_0197,Hojaldre,carbs,,sweets_bakery,True,95,Masa de repostería alta en grasa
+bedca_0198,Batido de soja,carbs,,other_carbs,True,55,"Bebida vegetal, mal categorizada carboidrato"
+bedca_0200,Piña en almíbar,carbs,,fruit,True,80,Fruta en conserva con azúcar
+bedca_0202,Pepinillos en vinagre,other,,vegetables,True,95,Hortaliza fermentada en vinagre
+bedca_0203,"Sopa de sobre, sin reconstituir",carbs,,other_carbs,True,75,Producto ultraprocesado con harina
+bedca_0204,"Ajo, frito",other,,vegetables,True,75,"Ajo es hortaliza, aunque frito cambia macros"
+bedca_0205,"Judías blancas, cocidas",carbs,,legumes,True,98,Legumbre clásica en dieta española
+bedca_0206,"Soja, frita",carbs,,legumes,True,90,La soja es legumbre aunque esté frita
+bedca_0209,"Pescado, genérico",protein,,fish,True,97,Nombre genérico de pescado
+bedca_0211,Horchata,other,,other,True,55,"Bebida vegetal, no encaja bien"
+bedca_0213,Salvado de trigo,protein,,other_protein,True,60,"Derivado cereal, no encaja en opciones"
+bedca_0215,Clavo,carbs,,other_carbs,True,70,"Especia, no es cereal ni legumbre"
+bedca_0216,Jengibre,other,,other,True,65,"Especia/raíz, no es verdura típica"
+bedca_0220,"Pez emperador, plancha",protein,,fish,True,99,Pescado azul a la plancha
+bedca_0221,"Mejillón, en escabeche",dairy,,other_dairy,True,50,"Mejillón no es lácteo, error categoría"
+bedca_0224,"Perdiz, cruda",protein,,meat,True,95,"Carne de caza, ave"
+bedca_0228,Fabada,dairy,,other_dairy,True,50,"Fabada no es lácteo, error categoría"
+bedca_0231,"Judia verde, hervida",carbs,,vegetables,True,95,"Verdura de vaina, baja en carbohidratos"
+bedca_0233,Hinojo,other,,vegetables,True,95,Hortaliza de consumo común
+bedca_0236,Salsa carbonara,other,,other,True,80,"Salsa elaborada, no es base vegetal"
+bedca_0237,Salsa boloñesa,other,,other,True,80,"Salsa con carne, no encaja en opciones"
+bedca_0238,"Soja, seca, cruda",carbs,,legumes,True,95,Soja en estado seco es legumbre
+bedca_0239,"Soja, harina",carbs,,legumes,True,90,Harina derivada de legumbre
+bedca_0240,Sofrito,fat,,other_fat,True,85,"Preparación con aceite, no aceite puro"
+bedca_0246,"Sargo, crudo",protein,,fish,True,99,Pescado blanco crudo
+bedca_0247,Trucha,protein,,fish,True,99,Pescado de agua dulce
+bedca_0248,"Sardina, enlatada, en aceite, escurrida",fat,,fish,True,85,"Sardina en conserva, base pescado"
+bedca_0253,Salsa bechamel,other,,other,True,80,"Salsa láctea, no encaja en opciones"
+bedca_0254,Salsa barbacoa,other,,other,True,75,"Salsa azucarada, no es dulce ni verdura"
+bedca_0255,Salsa al roquefort,other,,other,True,80,"Salsa con queso, no encaja bien"
+bedca_0256,Salsa al curry,other,,other,True,55,Salsa no encaja en opciones permitidas
+bedca_0257,Pudding de pasas,carbs,,sweets_bakery,True,85,Pudding es dulce repostero típico
+bedca_0261,"Macedonia de frutas, conserva en su jugo",other,,fruit,True,95,Mezcla de frutas en conserva
+bedca_0264,Almeja,other,,other,True,50,Marisco sin opción adecuada
+bedca_0269,Vainilla,other,,other,True,55,Especia sin opción válida
+bedca_0273,"Anacardo, crudo",protein,,other_protein,True,75,Fruto seco sin opción específica
+bedca_0274,Zumo de uva y melocotón,carbs,,fruit,True,95,Zumo de frutas natural
+bedca_0275,Zumo de pomelo,carbs,,fruit,True,95,Zumo de pomelo
+bedca_0284,Soda,other,,other,True,55,Bebida refrescante sin opción adecuada
+bedca_0285,Sobao,carbs,,sweets_bakery,True,92,Bollería tradicional española
+bedca_0292,"Ternera, parte s/e, cruda, con grasa separable",protein,,meat,True,98,Carne de ternera cruda
+bedca_0294,Germen de trigo,protein,,other_protein,True,65,Cereal sin opción específica adecuada
+bedca_0295,"Garbanzo, seco, crudo",carbs,,legumes,True,98,Legumbre seca cruda
+bedca_0296,"Garbanzo, en conserva",carbs,,legumes,True,95,Garbanzo en conserva
+bedca_0297,"Mermelada de fresa, baja en calorías",carbs,,sweets_bakery,True,80,Mermelada como dulce untable
+bedca_0298,Mermelada de fresa,carbs,,sweets_bakery,True,80,Mermelada como dulce untable
+bedca_0299,Mermelada de frambuesa,carbs,,sweets_bakery,True,80,Mermelada como dulce untable
+bedca_0300,Mermelada de ciruela,carbs,,sweets_bakery,True,80,Mermelada como dulce untable
+bedca_0302,"Palmito, en conserva",other,,vegetables,True,90,Verdura en conserva
+bedca_0303,"Ostra, cruda",dairy,,fruit,True,50,Marisco sin opción adecuada
+bedca_0304,"Orégano, seco",other,,other,True,55,Especia sin categoría válida
+bedca_0305,Margarina de maíz,carbs,,other_carbs,True,65,Grasa sin opción específica adecuada
+bedca_0308,"Maíz, crudo",carbs,,vegetables,True,75,Maíz fresco como hortaliza
+bedca_0310,"Mújol, crudo",protein,,fish,True,98,Pescado crudo
+bedca_0312,Mermelada de naranja,carbs,,sweets_bakery,True,80,Mermelada como dulce untable
+bedca_0313,"Lenteja, seca, cruda",carbs,,legumes,True,99,Lenteja cruda es legumbre por excelencia
+bedca_0314,"Lenteja, en conserva",carbs,,legumes,True,95,"Lenteja en conserva, sigue siendo legumbre"
+bedca_0316,"Lengua, de cerdo, cruda",protein,,meat,True,90,"Lengua de cerdo, víscera cárnica"
+bedca_0317,"Mermelada de albaricoque y melocotón, baja en calorías",carbs,,sweets_bakery,True,85,"Mermelada ligera, tipo dulce/bollería"
+bedca_0318,Mermelada de albaricoque y melocotón,carbs,,sweets_bakery,True,90,"Mermelada convencional, alto azúcar"
+bedca_0319,"Menta, fresca",other,,vegetables,True,80,"Hierba aromática, se clasifica como verdura"
+bedca_0323,"Liebre, entera, cruda",protein,,meat,True,95,Liebre es carne de caza
+bedca_0324,"Lima, cruda",other,,fruit,True,99,Lima es fruta cítrica
+bedca_0327,"Pimentón, en polvo",protein,,other_protein,True,55,Especia mal clasificada como proteína
+bedca_0329,"Pulmón, de ternera, crudo",protein,,meat,True,92,"Pulmón de ternera, víscera cárnica"
+bedca_0331,"Pulmón, de cerdo, crudo",protein,,meat,True,92,"Pulmón de cerdo, víscera cárnica"
+bedca_0334,"Pavo, entero, crudo",protein,,meat,True,99,"Pavo es ave, carne por definición"
+bedca_0337,"Platija, cruda",protein,,fish,True,99,Platija es pescado blanco
+bedca_0338,"Pipas de girasol, peladas, con sal",protein,,other_protein,True,50,Semilla mal clasificada en proteínas
+bedca_0339,"Piñón, crudo, con cáscara",protein,,other_protein,True,50,Fruto seco mal clasificado en proteínas
+bedca_0344,"Perejil, fresco",other,,vegetables,True,80,"Hierba aromática, se asimila a verdura"
+bedca_0346,"Pera, conserva en almíbar",carbs,,fruit,True,85,"Pera en conserva, sigue siendo fruta"
+bedca_0352,Paella,protein,,other_protein,True,65,"Plato preparado mixto, no encaja claro"
+bedca_0354,Nectarina,other,,fruit,True,99,Nectarina es fruta de hueso
+bedca_0356,Pipa de girasol,protein,,other_protein,True,50,Semilla mal clasificada en proteínas
+bedca_0357,Pipa de calabaza,protein,,other_protein,True,50,Semilla mal clasificada en proteínas
+bedca_0358,Piñon,protein,,other_protein,True,50,Fruto seco mal clasificado en proteínas
+bedca_0361,Mejillon,dairy,,other_dairy,True,35,"Mejillón es marisco, no lácteo"
+bedca_0372,Bacaladilla,protein,,fish,True,99,Bacaladilla es pescado azul
+bedca_0381,Tomate frito,carbs,,vegetables,True,75,"Salsa de tomate, deriva de verdura"
+bedca_0390,Zamburiñas,protein,,fish,True,85,"Marisco, se clasifica como pescado por defecto"
+bedca_0391,Vinagre de manzana,carbs,,other_carbs,True,92,"Condimento acético, no encaja en otros grupos"
+bedca_0392,Vinagre balsamico,other,,other_carbs,True,88,"Condimento con azúcares, mejor que sweets_bakery"
+bedca_0395,Paella marinera,other,,other_carbs,True,82,Plato preparado con arroz como base
+bedca_0398,Guisantes en conserva,other,,vegetables,True,90,"Guisante, leguminosa verde como verdura"
+bedca_0400,Garbanzo seco,carbs,,legumes,True,98,Legumbre seca clásica española
+bedca_0402,Pez emperador,protein,,fish,True,99,Pescado azul muy consumido en España
+bedca_0409,Cremoso san millan,dairy,,cheese,True,95,Queso cremoso graso
+bedca_0413,Berberecho,other,,other,True,55,Marisco sin categoría adecuada disponible
+bedca_0414,Berberechos en conserva,other,,other,True,55,Marisco en conserva sin categoría adecuada
+bedca_0415,Bebida isotónica aquarius,other,,other,True,92,"Bebida deportiva, no es alimento base"
+bedca_0416,Batido de fresa,carbs,,other_carbs,True,78,"Bebida láctea azucarada, no encaja bien"
+bedca_0428,Aceituna,fat,,other_fat,True,85,"Fruta oleaginosa, no es aceite ni fruto seco"
+bedca_0439,Maíz frito,carbs,,sweets_bakery,True,75,Snack frito ultraprocesado
+bedca_0453,Cuajada,dairy,,basic_dairy,True,88,Lácteo fermentado tradicional español
+bedca_0457,Chirla,other,,other,True,55,Marisco sin opción adecuada en lista
+bedca_0458,Choped pork,protein,,processed_protein,True,90,Carne procesada tipo fiambre
+bedca_0462,Tofu,dairy,,other_dairy,True,88,Tofu no es lácteo real pero está aquí
+bedca_0471,"Canela, en polvo",carbs,,other_carbs,True,90,"Especia, no encaja en otros subgrupos"
+bedca_0485,"Tomillo, seco",carbs,,other_carbs,True,90,"Hierba aromática seca, condimento"
+bedca_0486,Suplemento proteico,protein,,other_protein,True,95,"Suplemento, no es alimento natural"
+bedca_0488,Azafrán,carbs,,other_carbs,True,90,"Especia, no encaja en subgrupos base"
+bedca_0489,Sangría,other,,other,True,92,Bebida alcohólica mezclada
+bedca_0491,"Café, en polvo, soluble",protein,,other_protein,True,88,"Infusión, no es fuente proteica real"
+bedca_0492,Bebida isotónica,other,,other,True,92,"Bebida deportiva, no alimento base"
+bedca_0493,Zumo de manzana,carbs,,fruit,True,95,Zumo derivado directamente de manzana
+bedca_0495,Batido fermentado de soja,carbs,,legumes,True,88,Producto fermentado derivado de soja
+bedca_0498,Preparado lácteo con omega 3,dairy,,other_dairy,True,80,"Preparado lácteo modificado, no lácteo básico"
+bedca_0500,Bebida de soja,carbs,,other_carbs,True,85,"Bebida vegetal de soja, no es legumbre entera"
+bedca_0506,"Eneldo, seco",carbs,,vegetables,True,90,Hierba aromática utilizada como condimento vegetal
+bedca_0507,"Cabrito lechal, espalda, cruda",protein,,meat,True,98,Carne de cabrito lechal cruda
+bedca_0508,"Cabrito lechal, costillar, crudo",protein,,meat,True,98,Carne de cabrito lechal cruda
+bedca_0509,"Carne de cerdo de capa blanca, jamón, partes grasa y magra, crudo",protein,,meat,True,98,"Carne de cerdo cruda, corte de jamón"
+bedca_0516,"Cabrito lechal, pierna, cruda",protein,,meat,True,98,Carne de cabrito lechal cruda
+bedca_0517,Jalea real,carbs,,other_carbs,True,55,"Suplemento apícola, no encaja bien"
+bedca_0520,"Café, en grano o molido, descafeinado",other,,other,True,95,Bebida sin valor calórico significativo
+bedca_0521,"Café, en grano o molido",other,,other,True,95,Bebida sin valor calórico significativo
+bedca_0522,"Cabrito, parte s/e, crudo, con grasa separable",protein,,meat,True,98,Carne de cabrito cruda
+bedca_0526,"Carpa, cruda",protein,,fish,True,98,Pescado de agua dulce crudo
+bedca_0527,Caviar,protein,,fish,True,92,"Huevas de pescado, derivado ictícola"
+bedca_0528,"Cerdo, pierna, cruda, con grasa separable",protein,,meat,True,98,Carne de cerdo cruda
+bedca_0532,"Batido lácteo de cacao, bajo en calorías",dairy,,low_fat_dairy,True,82,Batido lácteo bajo en calorías
+bedca_0533,"Batido de almendras, en polvo",carbs,,other_carbs,True,75,"Polvo para batido, alto en carbohidratos"
+bedca_0538,"Cabrito lechal, costillar, asado",protein,,meat,True,98,Carne de cabrito lechal asada
+bedca_0539,"Carne de cerdo de capa blanca, cabezada, parte magra, cruda",protein,,meat,True,98,Carne de cerdo cruda
+bedca_0540,"Carne de cerdo de capa blanca, cabezada, partes grasa y magra, crudo",protein,,meat,True,98,Carne de cerdo cruda
+bedca_0541,"Carne de cerdo de capa blanca, jamón, parte magra, crudo",protein,,meat,True,98,"Carne de cerdo cruda, magra"
+bedca_0542,Caldo vegetal,other,,vegetables,True,85,Caldo elaborado con extractos de verduras
+bedca_0546,"Batido lácteo, de fresa",carbs,,basic_dairy,True,78,Batido lácteo con sabor a fruta
+bedca_0550,"Guindilla, en polvo",protein,,other_protein,True,80,Especia vegetal mal categorizada como proteína
+bedca_0552,"Pimienta, blanca",carbs,,other_carbs,True,55,"Especia, no encaja en subgrupos dados"
+bedca_0553,"Pimienta, negra",other,,other,True,55,Especia sin categoría adecuada
+bedca_0554,"Laurel, hoja",carbs,,sweets_bakery,True,75,Snack ultraprocesado de maíz frito
+bedca_0556,Gomasio,other,,other,True,55,Condimento de sésamo sin encaje claro
+bedca_0559,Miel,carbs,,sweets_bakery,True,72,"Azúcar natural, similar a dulce"
+bedca_0560,"Cerdo, parte sin especificar",protein,,meat,True,92,Carne de cerdo sin especificar
+bedca_0567,"Aceituna negra, con hueso",fat,,other_fat,True,85,"Fruta grasa, no es aceite puro"
+bedca_0580,"Haba, fresca",carbs,,vegetables,True,78,"Haba fresca, se consume como verdura"
+bedca_0581,"Garbanzo, hervido",carbs,,legumes,True,95,"Garbanzo hervido, legumbre típica"
+bedca_0589,Crema de almendras,carbs,,nuts_seeds,True,92,Crema hecha de almendras
+bedca_0591,Maíz en conserva,carbs,,vegetables,True,72,"Maíz en conserva, se usa como verdura"
+bedca_0592,"Panceta, frita",dairy,,other_dairy,True,55,Panceta mal clasificada como lácteo
+bedca_0593,Berberechos,other,,other,True,55,Marisco sin opción adecuada
+bedca_0596,Infusión,other,,other,True,85,"Bebida sin calorías, sin encaje"
+bedca_0597,"Café, sucedáneo, soluble",carbs,,other_carbs,True,70,"Sucedáneo de café, producto procesado"
+bedca_0599,"Puré de patatas y champiñones, en copos",carbs,,tubers,True,75,"Puré de patatas, base tubérculo"
+bedca_0605,"Ternera, parte sin especificar, cruda, con grasa separable",protein,,meat,True,95,Carne de ternera cruda
+bedca_0606,"Pavo, crudo",protein,,meat,True,95,Carne de pavo cruda
+bedca_0613,"Masa de hojaldre, cruda",fat,,sweets_bakery,True,90,"Masa de repostería, alta en grasa"
+bedca_0615,"Alubia negra, seca, remojada, hervida",carbs,,legumes,True,95,"Alubia negra hervida, legumbre"
+bedca_0620,"Patata, salteada con aceite girasol",fat,,other_fat,True,68,"Patata salteada, clasificada como grasa"
+bedca_0621,"Patata, frita con aceite s/e, sin sal",fat,,other_fat,True,68,"Patata frita, clasificada como grasa"
+bedca_0625,"Alubia blanca, en conserva",carbs,,legumes,True,95,"Alubia blanca en conserva, legumbre"
+bedca_0626,"Alubia blanca, seca, cruda",carbs,,legumes,True,95,"Alubia blanca seca, legumbre"
+bedca_0627,"Lengua, de ternera, cruda",protein,,meat,True,95,Lengua de ternera es carne de vacuno
+bedca_0629,Zumo de lima,other,,fruit,True,85,"Zumo de lima, derivado de fruta"
+bedca_0633,"Ternera, parte s/e, asada",protein,,meat,True,98,"Ternera asada, carne obvia"
+bedca_0634,"Vaca/buey, parte s/e, estofado",protein,,meat,True,98,"Vaca estofada, carne obvia"
+bedca_0635,"Haba, seca, remojada, hervida",carbs,,legumes,True,98,"Haba seca hervida, legumbre típica"
+bedca_0641,"Crema de almendras, envasada, sin reconstituir",carbs,,nuts_seeds,True,95,"Crema de almendras, derivado fruto seco"
+bedca_0643,"Néctar de mango, envasado",other,,fruit,True,85,"Néctar de mango, derivado de fruta"
+bedca_0650,"Soja, seca, remojada, hervida",carbs,,legumes,True,98,"Soja hervida, legumbre por excelencia"
+bedca_0654,"Chufa, cruda",carbs,,nuts_seeds,True,75,"Chufa, tubérculo pero similar a fruto seco"
+bedca_0655,"Tapioca, hervida",other,,other,True,55,Tapioca no encaja bien en opciones
+bedca_0657,"Cereales para el desayuno, ricos en fibra, tipo ""All-Bran""",carbs,,grains,True,90,"Cereales desayuno, derivados de grano"
+bedca_0658,"Guayaba, enlatada en almíbar",other,,fruit,True,80,"Guayaba enlatada, fruta procesada"
+bedca_0665,Aceite de grano de uva,fat,,other_oils,True,98,"Aceite de uva, no es oliva"
+bedca_0668,"Limón, zumo, fresco",other,,fruit,True,92,"Zumo de limón, derivado de fruta"
+bedca_0672,"Pera, enlatada en almíbar",carbs,,fruit,True,85,"Pera enlatada, fruta procesada"
+bedca_0673,"Maíz, en mazorca, crudo",carbs,,grains,True,90,"Maíz en mazorca, cereal"
+bedca_0674,"Palomitas de maíz, sin aceite, sin sal",fat,,sweets_bakery,True,55,"Palomitas sin aceite, snack procesado"
+bedca_0678,Sal de mar,other,,other,True,95,"Sal, no es alimento con macros"
+bedca_0679,Aceite de hígado de bacalao,fat,,other_oils,True,92,"Aceite de bacalao, no es oliva"
+bedca_0683,"Vaca/buey, parte s/e, asado",protein,,meat,True,98,"Vaca asada, carne obvia"
+bedca_0684,"Conejo, entero, estofado",protein,,meat,True,98,"Conejo estofado, carne obvia"
+bedca_0687,"Sémola de trigo, hervida",other,,other,True,55,"Sémola hervida, no encaja claro"
+bedca_0689,Harina de soja,carbs,,legumes,True,98,"Harina de soja, derivado legumbre"
+bedca_0702,"Soja, fresca",carbs,,legumes,True,98,"Soja fresca, legumbre verde"
+bedca_0714,Pudin de pasas,carbs,,sweets_bakery,True,92,"Pudin, postre dulce típico"
+bedca_0715,Crema inglesa,dairy,,sweets_bakery,True,85,"Postre lácteo azucarado, similar a flan"
+bedca_0717,"Tortilla, a la francesa",protein,,eggs,True,95,Tortilla francesa es básicamente huevo
+bedca_0719,Alioli,fat,,other_fat,True,80,"Salsa alta en grasa, no es aceite puro"
+bedca_0732,"Pichón, sin piel, asado",protein,,meat,True,95,"Pichón es ave de caza, carne"
+bedca_0735,"Bacón, ahumado, a la parrilla",protein,,processed_protein,True,90,Bacón ahumado es carne procesada
+bedca_0742,"Batido lácteo, de fresa, bajo en calorías",carbs,,sweets_bakery,True,75,"Batido azucarado, tipo refresco lácteo"
+bedca_0743,"Bacon, crudo, con grasa separable",dairy,,other_dairy,True,45,"Bacon no es lácteo, error de categoría"
+bedca_0744,"Bonito, enlatado en aceite, escurrido",fat,,fish,True,92,Bonito es pescado azul enlatado
+bedca_0746,"Perca, al horno",protein,,fish,True,98,Perca es pescado blanco
+bedca_0747,"Lucio, al horno",protein,,fish,True,98,Lucio es pescado de río
+bedca_0748,"Carpa, al horno",protein,,fish,True,98,Carpa es pescado de río
+bedca_0749,"Platija, al vapor",protein,,fish,True,98,Platija es pescado blanco plano
+bedca_0752,"Mújol, al horno",protein,,fish,True,98,Mújol es pescado azul
+bedca_0758,"Sésamo, semilla",protein,,other_protein,True,82,"Semilla, no carne ni huevo"
+bedca_0759,"Castaña, tostada",other,,other_carbs,True,75,Fruto seco rico en hidratos
+bedca_0763,"Caballa, enlatada en aceite, escurrida",fat,,fish,True,92,Caballa es pescado azul enlatado
+bedca_0766,"Oca, sin piel, asada",protein,,meat,True,90,"Oca es ave, clasificada como carne"
+bedca_0768,"Anís, seco",other,,other,True,80,"Especia, no fruta ni verdura"
+bedca_0774,"Néctar de albaricoque, envasado",other,,fruit,True,75,Néctar de fruta con azúcar
+bedca_0775,"Néctar de pera, envasado",carbs,,fruit,True,75,"Néctar de pera, derivado fruta"
+bedca_0776,"Néctar de naranja, envasado",carbs,,fruit,True,75,"Néctar de naranja, derivado fruta"
+bedca_0785,"Bígaro, hervido",protein,,other_protein,True,72,"Marisco, no es carne ni pescado"
+bedca_0786,Zumo de grosella negra,other,,fruit,True,78,Zumo de fruta natural
+bedca_0787,"Galllina, entera, cruda",protein,,meat,True,95,"Gallina es ave, carne"
+bedca_0800,Cereales desayuno base de trigo y miel,carbs,,sweets_bakery,True,72,"Cereales azucarados, ultraprocesados"
+bedca_0801,Cereales desayuno base de trigo y frutas,carbs,,grains,True,82,"Base de trigo, cereal de desayuno"
+bedca_0805,"Lija, cruda",protein,,fish,True,95,Lija es un pescado
+bedca_0808,Cereales desayuno base de trigo integral,carbs,,grains,True,88,Cereal de trigo integral
+bedca_0810,Cereales desayuno base de maíz y trigo,carbs,,grains,True,85,Cereales de maíz y trigo
+bedca_0811,Cereales desayuno base de maíz y miel,carbs,,sweets_bakery,True,72,Alto azúcar por la miel añadida
+bedca_0812,"Guisante, seco, crudo",carbs,,legumes,True,98,Guisante seco es legumbre
+bedca_0814,Zumo de mango,other,,fruit,True,90,Zumo derivado de fruta
+bedca_0822,"Haba, seca",carbs,,legumes,True,98,Haba seca es legumbre
+bedca_0824,"Coco, fresco",fat,,nuts_seeds,True,80,Coco fresco como fruto seco graso
+bedca_0825,"Coco, desecado",dairy,,other_dairy,True,55,"No es lácteo, error de categoría"
+bedca_0831,Aceite de germen de trigo,fat,,other_oils,True,95,Aceite no oliva
+bedca_0836,"Ciervo, parte s/e, crudo, con grasa separable",protein,,meat,True,95,Ciervo es carne de caza
+bedca_0841,Aceite de algodón,fat,,other_oils,True,95,Aceite vegetal no oliva
+bedca_0852,"Bacaladilla, cruda",protein,,fish,True,95,Bacaladilla es pescado blanco
+bedca_0858,Anís,other,,other,True,60,"Especia, no encaja bien"
+bedca_0859,"Angula, cruda",protein,,fish,True,95,Angula es alevín de pescado
+bedca_0860,Almidón de trigo,carbs,,grains,True,75,Derivado del trigo
+bedca_0861,Almidón de maíz,carbs,,grains,True,75,Derivado del maíz
+bedca_0866,Néctar de piña,carbs,,fruit,True,85,Néctar de piña es fruta
+bedca_0867,Néctar de pera,carbs,,fruit,True,85,Néctar de pera es fruta
+bedca_0868,Néctar de naranja,carbs,,fruit,True,85,Néctar de naranja es fruta
+bedca_0869,Néctar de melocotón,carbs,,fruit,True,85,Néctar de melocotón es fruta
+bedca_0875,"Salchicha, tipo viena",dairy,,sweets_bakery,True,55,"Salchicha no es lácteo, error categoría"
+bedca_0876,"Petit suisse, líquido, sabor fresa",carbs,,basic_dairy,True,78,Lácteo azucarado tipo petit suisse
+bedca_0877,"Petit suisse, fresa",carbs,,basic_dairy,True,80,Lácteo azucarado tipo petit suisse
+bedca_0880,"Trufa, cruda",other,,vegetables,True,75,"Hongo comestible, clasificado como verdura en España"
+bedca_0881,"Agua, con gas, embotellada",other,,other,True,55,"Bebida sin calorías, no es alimento"
+bedca_0883,"Tenca, cruda",protein,,fish,True,95,Pescado de agua dulce español
+bedca_0884,"Salema, cruda",protein,,fish,True,95,Pescado azul común en España
+bedca_0885,"Volador, crudo",protein,,fish,True,95,"Pescado, alto en proteína sin grasa"
+bedca_0886,"Vieja, cruda",protein,,fish,True,95,Pescado blanco típico canario
+bedca_0887,"Trucha, ahumada",other,,other,True,55,Pescado procesado sin opción adecuada
+bedca_0888,"Trigo, entero, crudo",carbs,,grains,True,95,"Cereal entero, fuente de carbohidratos"
+bedca_0889,"Tomate, maduro, puré",carbs,,vegetables,True,95,"Derivado de tomate, hortaliza"
+bedca_0890,"Salsa siciliana, picante",other,,other,True,55,"Sasa elaborada, sin opción clara"
+bedca_0892,Mermelada de albaricoque,carbs,,sweets_bakery,True,85,"Alto azúcar, clasificación como dulce"
+bedca_0893,Crema de coco,other,,other,True,55,Producto graso vegetal sin encaje claro
+bedca_0897,"Lengua, de buey, cruda",protein,,meat,True,95,"Carne de buey, víscera"
+bedca_0905,Paté de pimienta,dairy,,other_dairy,True,70,"Paté no es lácteo real, pero categorizado así"
+bedca_0910,"Petit suïsse, cereales y fruta",other,,other,True,55,Lácteo modificado sin opción adecuada
+bedca_0912,Néctar de pomelo,carbs,,fruit,True,90,"Zumo de pomelo, derivado de fruta"
+bedca_0916,Néctar de ciruela,other,,fruit,True,90,Néctar derivado de ciruela
+bedca_0917,Néctar de albaricoque,other,,fruit,True,90,Néctar derivado de albaricoque
+bedca_0919,"Perca, cruda",protein,,fish,True,95,Pescado de agua dulce
+bedca_0922,"Café, en polvo, sin reconstituir",protein,,other_protein,True,75,"Bebida estimulante, no proteína convencional"
+bedca_0923,"Néctar de maracuyá, envasado",other,,fruit,True,90,"Néctar de maracuyá, fruta tropical"
+bedca_0924,Zumo de grosella roja,other,,fruit,True,90,"Zumo de grosella, fruta"
+bedca_0925,"Zumo de lima, envasado",other,,fruit,True,90,"Zumo de lima, cítrico"
+bedca_0931,"Néctar de frutas exóticas, envasado",other,,fruit,True,90,Néctar de frutas variadas
+bedca_0932,"Zumo de pomelo, envasado",carbs,,fruit,True,90,"Zumo de pomelo, derivado frutal"
+bedca_0934,Zumo de piña y uva,carbs,,fruit,True,85,"Zumo de frutas, alto en carbohidratos simples"
+bedca_0937,"Castaña,  asada",other,,other,True,75,"Fruto seco con macros atípicas, no encaja bien"
+bedca_0938,"Café, descafeinado, en polvo, soluble",carbs,,other_carbs,True,80,"Bebida sin calorías reales, no es cereal"
+bedca_0943,"Alioli, aceite s/e",fat,,other_fat,True,90,"Salsa alta en grasa, no es aceite puro"
+bedca_0946,"Batido lácteo, s/e",dairy,,whole_dairy,True,75,"Lácteo con grasa moderada, sin azúcar añadido"
+bedca_0947,Mermelada de mora,carbs,,sweets_bakery,True,90,"Alto azúcar añadido, se clasifica como dulce"
+bedca_0948,Mermelada de grosella roja,carbs,,sweets_bakery,True,90,"Alto azúcar añadido, se clasifica como dulce"
+bedca_0962,"Gallina, entera, cruda",protein,,meat,True,95,"Ave entera cruda, claramente carne"
+bedca_0963,"Zumo de limón, fresco",other,,fruit,True,95,Zumo de cítrico fresco natural
+bedca_0966,"Petit líquido, sabor fresa",carbs,,sweets_bakery,True,70,Postre lácteo azucarado saborizado
+off_0552fa7364,3 vegetales,other,other,other,False,55,"Nombre genérico, contenido impreciso"
+off_0f844a0c32,Polpa di pomodoro all’arrabiata,other,other,vegetables,True,80,"Salsa de tomato picante, base vegetal"
+off_27fd346443,Zumo Recién Exprimido,other,other,fruit,True,75,"Zumo exprimido, probablemente de fruta"
+off_d6ed37d705,Salteado de espinacas y gambas,other,other,other,False,55,"Plato mixto, no es solo verdura"
+off_eebe9347a8,Avoine Bio,other,other,other,False,50,Avena sin opciones de cereal disponibles
+off_558354207e,Exótico,other,other,other,False,40,"Nombre vago, imposible clasificar"
+off_e9e8215274,Gazpacho pack 3 unidades,other,other,vegetables,True,90,"Gazpacho tradicional, base de hortalizas"
+off_5720e38db4,"Smoothie pêche,carottes,pomme,ananas,potiron",other,other,fruit,True,80,Smoothie de frutas con algo de verdura
+off_028aace54c,Banderillas picantes en vinagre,other,other,vegetables,True,75,Encurtido de verduras con aceite
+off_acbee15c5a,Biactive desnatado natural,other,other,other,False,55,Lácteo sin opciones adecuadas disponibles
+off_190fdf36c7,Lait écrémé UHT 0.1% de matière grasse,other,other,other,False,55,Leche desnatada sin opciones de lácteo
+off_19fb058b60,Zumo tropical,other,other,fruit,True,90,Zumo de frutas tropicales
+off_3776bff574,"Salteado Ajetes, gambas y espárragos verdes",other,other,other,False,55,Plato mixto con verdura y marisco
+off_bebc10ea44,100% zumo natural 4 cítricos,other,other,fruit,True,95,Zumo natural de cítricos 100%
+off_04af6d775f,Jus de Pomme à base de concentré,other,other,fruit,True,90,Jugo de manzana de concentrado
+off_10c1e76e19,Gazpacho suave,other,other,vegetables,True,82,Sopa fría de hortalizas típica española
+off_511f8362e8,Aceituna negras s/h,fat,other,other_fat,True,88,"Fruto oleaginoso, no es aceite puro"
+off_11b7c5a0a2,Aceitunas verdes rellenas de jalapeño,other,other,other,False,55,"Aceituna rellena, no encaja bien"
+off_df6d0b79fe,Cóctel aceitunas con pepinillos y cebollitas,other,other,other,False,55,Mezcla de encurtidos variados
+off_fc294edbb1,Guisantes muy tiernos ultracongelados,other,other,vegetables,True,92,Legumbre fresca consumida como verdura
+off_0c129517f1,Ganxet,other,other,vegetables,True,80,"Judía verde plana, se usa como verdura"
+off_67c63ebe7c,Aceitunas rellenas de anchoa,other,other,other,False,55,"Aceituna rellena, no encaja claro"
+off_740ba944bc,Cóctel de aceitunas verdes sin hueso y variantes,other,other,other,False,55,"Aceitunas sin hueso, no encaja claro"
+off_5580107290,Menestra,other,other,vegetables,True,85,Mezcla de verduras variadas
+off_af1acea90e,Salsa setas,other,other,vegetables,True,72,Salsa base de setas
+off_9faa683792,Salsa de Setas 180g,other,other,vegetables,True,72,Salsa elaborada con setas
+off_76641d4023,Aceituna verde gazpacha,fat,other,other_fat,True,88,"Aceituna entera, grasa no aceitera"
+off_3d16bc20c9,Salsa fresca setas,other,other,vegetables,True,72,Salsa de setas frescas
+off_68128aeb58,Aceitunas suaves rellenas anchoa,other,other,other,False,55,"Aceituna rellena, no encaja claro"
+off_cbc829106a,Aceituna rellena de anchoa,fat,other,other_fat,True,88,"Aceituna, grasa no aceitera"
+off_1f1048ef8a,Gaspacho suave,other,other,vegetables,True,82,Sopa fría de hortalizas
+off_7d4db8e77e,Green Pitted Olives,other,other,other,False,55,"Aceitunas verdes, sin encajar claro"
+off_00228074b1,Cream Cheese Classic,other,other,other,False,55,Queso crema sin grupo lácteo
+off_e2b262e772,Aceitunas verdes gordal sin hueso,other,other,other,False,55,"Aceituna gordal, no encaja claro"
+off_e307c5e6cf,Aceitunas Rodajas,other,other,other,False,55,"Aceitunas rodajas, sin encajar claro"
+off_df1620dd2b,Salmorejo fresco,other,other,vegetables,True,80,Crema fría de tomate y verduras
+off_4d6a4d1dc9,Cebolla frita,carbs,other,vegetables,True,68,"Cebolla frita, verdura cocinada"
+off_b95a30c5be,Aceitunas manzanilla sin hueso,other,other,other,False,55,"Aceitunas manzanilla, sin encajar"
+off_14c2b2af2e,Caffé latte +proteinas,other,other,other,False,50,Bebida láctea proteica sin grupo
+off_2c9c185117,Salmorejo Tradicional,other,other,vegetables,True,80,Crema fría de tomate típica
+off_6f2da2eb68,Gambas Salvajes*,other,other,other,False,55,Marisco sin categoría adecuada en opciones
+off_908b23dca5,Proteindrink,other,other,other,False,55,Bebida proteica sin categoría válida
+off_31e8fef4c5,Habas finas,other,other,vegetables,True,92,Leguminosa verde consumida como verdura
+off_c3f5292435,Salmorejo natural,other,other,vegetables,True,75,"Sopa fría de tomate, base vegetal"
+off_230c6514a4,Ensaladilla congelada,other,other,other,False,55,Plato elaborado sin categoría válida
+off_361fa6adbc,Bidifus con trozos,other,other,other,False,55,Lácteo fermentado sin categoría válida
+off_d5c0daa51c,L. Casei Natural,other,other,other,False,55,Lácteo probiótico sin categoría válida
+off_190be70e10,Albahaca y orégano,other,other,vegetables,True,85,Hierbas aromáticas clasificadas como verduras
+off_f1574c12b6,Aceitunas rellenas de pimiento,carbs,other,vegetables,True,90,"Fruto del olivo, verdura en dieta española"
+off_00bead7605,guisantes extrafinos,other,other,vegetables,True,95,Leguminosa verde consumida como verdura
+off_78bafbc235,Ensalada primavera,other,other,vegetables,True,98,Mezcla de hortalizas frescas
+off_223c7c345f,Salsa / Molho,other,other,other,False,55,Salsa genérica sin categoría válida
+off_d1041f49d0,Cafe latte espresso,other,other,other,False,55,"Bebida con café y leche, sin categoría"
+off_61b09ba2b8,Concombres,other,other,vegetables,True,99,"Hortaliza clásica, alto agua, bajo kcal"
+off_ffc1f62b9f,Crema de setas,other,other,vegetables,True,72,Crema con base de setas
+off_102cc97524,Gambas SALVAJES,other,other,other,False,55,Marisco sin categoría adecuada en opciones
+off_897027ddc0,L casei,other,other,other,False,55,Lácteo fermentado sin categoría válida
+off_dfab79280a,Ensalada de wakame,other,other,vegetables,True,80,"Alga marina, tipo verdura"
+off_936546aeb6,Corazones de alcachofa,other,other,vegetables,True,98,Parte comestible de la alcachofa
+off_a8613e52a9,Salmorejo,other,other,vegetables,True,75,"Sopa fría de tomate, base vegetal"
+off_90df7c71f5,Gazpacho fresco,other,other,vegetables,True,85,Sopa fría de hortalizas
+off_5af92f0f27,Cocktail,other,other,other,False,50,"Nombre ambiguo, macros parecen aceitunas"
+off_7dda9f9da2,Soja Frutos Silvestres,carbs,other,other_carbs,True,72,Bebida de soja dulce con otros carbohidratos
+off_d1e1bee2a0,Maíz,carbs,other,vegetables,True,80,Maíz tierno consumido como verdura
+off_7a102a1ae0,Bifidus avec Muesli et fibres,other,other,other_carbs,True,65,"Yogur con cereales, mezcla de categorías"
+off_6e432d758f,Aceitunas gordales con guindilla extra en vinagre,other,other,other,False,55,"Aceituna aderezada, no encaja como verdura fresca"
+off_0177eadb6f,Relleno Fajita,other,other,other,False,50,"Mezcla procesada, composición incierta"
+off_a6c8d5b054,Fritada pisto,other,other,vegetables,True,85,Pisto es base de hortalizas cocinadas
+off_cbdd87be3c,Guisantes finos,other,other,vegetables,True,95,"Guisantes son legumbre verde, tipo hortaliza"
+off_d6e5c2992e,Aceituna gordal con guindilla,fat,other,other_fat,True,75,"Aceituna es grasa, pero no está en opciones claras"
+off_3c0a5eee05,Guisantes extrafinos al natural,other,other,vegetables,True,95,"Guisantes frescos, hortaliza clásica"
+off_72c31ca7a8,Noodles Sabor Gambas,other,other,other_carbs,True,78,Noodle es carbohidrato procesado
+off_cae259f986,Salmorejo 100% natural,other,other,other,False,55,"Salsa con tomate y aceite, no es verdura"
+off_d7e98b4793,Fritada,other,other,vegetables,True,82,Fritada de hortalizas típica española
+off_ea099837a5,Habas baby,other,other,vegetables,True,90,Habas baby son hortaliza verde tierna
+off_4238444936,Noodles sabor curry,other,other,other_carbs,True,78,Noodle es carbohidrato procesado
+off_4ab4188cca,Noodles Sabor Hortalizas,other,other,other_carbs,True,78,Noodle es carbohidrato procesado
+off_43504095e6,Berberechos Al Natural,other,other,other,False,50,Marisco sin opción adecuada disponible
+off_9b9f9a4765,Habitas muy tiernas,other,other,vegetables,True,88,Habitas tiernas son hortaliza verde
+off_ea9fb60e8b,Salsa de soja sin gluten,carbs,other,other_carbs,True,55,"Condimento salado, sin opción clara"
+off_8ffa04d298,Habas babys ultracongeladod,other,other,vegetables,True,90,"Habas baby congeladas, hortaliza verde"
+off_171e83e863,Aceitunas con Variantes,other,other,other,False,55,Aceitunas aderezadas sin opción grasa
+off_53dc5c3bc3,Salsa piamontesa,other,other,other,False,55,"Salsa mixta, no encaja en opciones"
+off_815e4acc14,Maíz dulce ecológico,carbs,other,vegetables,True,80,Maíz dulce se consume como hortaliza
+off_3f8a900301,Salsa de tomate al Barolo,carbs,other,other_carbs,True,55,Salsa de tomate sin opción clara
+off_dfb1a0937f,Verdura para paella,other,other,vegetables,True,92,Mezcla de verduras para paella
+off_1cf02fecee,Salteado campestre,other,other,vegetables,True,85,Salteado de hortalizas variadas
+off_424f6a31fc,"Salteado a la Vasca Tomates, pimientos, cebollas y aceitunas verdes.",other,other,vegetables,True,85,"Salteado de tomate, pimiento y cebolla"
+off_ea8b3db6b4,Salteado estilo oriental,other,other,vegetables,True,82,Salteado oriental de hortalizas
+off_67461bcb55,Escalivada,other,other,vegetables,True,90,Escalivada es hortaliza asada clásica
+off_0ca8fd46be,Salsa de tomate troceado al estilo concassé,carbs,other,vegetables,True,72,"Base de tomate, se clasifica como hortaliza"
+off_5c7b855691,Aceitunas gordales con pepinillo,other,other,other,False,55,"Mezcla de aceituna y pepinillo, no encaja"
+off_a63cfc740d,Aceitunas gordales con pepinillos en vinagre,other,other,other,False,55,"Mezcla en vinagre, sin subgroup claro"
+off_3c30f296e6,Salsa con setas,other,other,vegetables,True,68,"Salsa base setas, hortaliza procesada"
+off_fbe11e6ee4,Aceitunas negras en rodajas,other,other,other,False,55,"Alto en grasa, no encaja bien aquí"
+off_7be91b632e,Aceitunas partidas aliñadas estilo chupadedos,other,other,other,False,55,"Alto en grasa, sin encaje claro"
+off_fb39fd0a8b,Aceituna negra con hueso,fat,other,other_fat,True,65,"Fruto graso, no es aceite puro"
+off_b568fc4c03,Aceitunas verdes SIN HUESO,other,other,other,False,55,"Alto en grasa, no encaja en opciones"
+off_03dd4ec988,Aceitunas r/anchoa,other,other,other,False,55,"Aceituna con anchoa, sin subgroup claro"
+off_d5cb5a2a4b,Aceituna rellena anchoa baja en sal -25%,fat,other,other_fat,True,65,"Fruto graso, no es aceite puro"
+off_140107980c,Tomate seco,carbs,other,vegetables,True,78,"Tomate deshidratado, hortaliza conservada"
+off_286daedebf,Coconut Milk Light Vitasia,other,other,other,False,50,"Bebida vegetal grasa, sin encaje claro"
+off_d527d22688,Aceituna relleno pimiento,fat,other,other_fat,True,65,"Aceituna rellena, fruto graso"
+off_42c835e945,Crema soja,carbs,other,other_carbs,True,60,"Salsa vegetal procesada, sin encaje exacto"
+off_043724fc71,Aceitunas sin hueso manzanilla,other,other,other,False,55,"Muy grasa, no encaja en opciones"
+off_c110c1be15,Aceitunas manzanilla con hueso sabor anchoa,other,other,other,False,55,"Alto en grasa, sin subgroup claro"
+off_5f1cc7b5cc,Aceitunas rellenas de limón,other,other,other,False,55,"Relleno modifica perfil, sin encaje"
+off_ab8967c74f,Aceitunas rellenas de anchoa suaves,other,other,other,False,55,"Aceituna rellena, sin encaje claro"
+off_e0f099006f,Aceitunas negras sin hueso,other,other,other,False,55,"Alto en grasa, sin encaje evidente"
+off_6e10e13449,Sin hueso Aceitunas verdes manzanilla,other,other,other,False,55,"Alto en grasa, opciones no adecuadas"
+off_d8892714e8,Aceitunas con sabor anchoa,other,other,other,False,55,"Aceituna saborizada, sin encaje claro"
+off_bb55a80be4,Olives vertes dénoyautées,other,other,other,False,55,"Aceitunas, opciones no contemplan grasas"
+off_3ea6615611,Aceitunas verdes ENTERAS,other,other,other,False,55,"Alto en grasa, sin encaje en opciones"
+off_88b92e2302,Vitalcol,other,other,other,False,40,Nombre genérico sin identificar claramente
+off_0910260778,Aceitunas verdes rellenas de anchoa,other,other,other,False,55,"Relleno de anchoa, sin encaje claro"
+off_98d04c1207,Aceitunas negras,other,other,other,False,55,"Grasa alta, no encaja bien en opciones"
+off_813175da11,Olives avec noyau,other,other,other,False,55,"Aceituna, alta en grasa, sin opción adecuada"
+off_898ebe5529,Aceitunas sin hueso cacereñas,other,other,other,False,55,"Aceituna, alta en grasa, sin opción adecuada"
+off_7a0b2a50bc,Aceitunas con hueso,other,other,other,False,55,"Aceituna, alta en grasa, sin opción adecuada"
+off_c53f3fe841,Aceitunas rellenas anchoa,other,other,other,False,55,"Aceituna rellena, alta en grasa"
+off_b1cfea4a8d,Aceituna rellena d anchoa,fat,other,other_fat,True,75,"Aceituna, grasa predominante, no es aceite"
+off_e208270ed9,Ensalada americana,other,other,other,False,55,"Plato mixto, no encaja en opciones"
+off_12888c5772,Alcachofas,other,other,vegetables,True,95,Hortaliza clásica española
+off_695308375e,Aceitunas verdes,other,other,other,False,55,"Aceituna verde, alta en grasa"
+off_d9225fa067,Aceitunas verdes rellenas de pimiento asado,carbs,other,other_carbs,True,55,"Aceituna, sin opción grasa válida"
+off_5952c52c9e,Aceitunas manzanilla rellenas de jalapeño,other,other,other,False,55,"Aceituna rellena, alta en grasa"
+off_d1c789ee0f,Aceitunas verdes rellenas de anchoa suaves,other,other,other,False,55,"Aceituna rellena, alta en grasa"
+off_79e0ac0865,Bebida de almendras,other,other,other,False,50,"Bebida vegetal, sin opción adecuada"
+off_ad95a8da08,Aceitunas verdes enteras &quot;Dia&quot; Variedad Manzanilla,other,other,other,False,55,"Aceituna verde, alta en grasa"
+off_bd3ae99a3c,Preparado Culinario Uht A Base De Grasa Vegetal (18% Materia Grasa),other,other,other,False,50,"Ultra procesado graso, sin categoría clara"
+off_709d676772,Aceitunas verdes deshuesadas,other,other,other,False,55,"Aceituna verde, alta en grasa"
+off_821afc5b9d,Hoss Avocado,other,other,other,False,55,"Aguacate, alta grasa, sin opción válida"
+off_9e15915313,Margarina tres cuartos,other,other,other,False,50,"Margarina, sin opción grasa disponible"
+off_6a76186172,Aceitunas negras con hueso,other,other,other,False,55,"Aceituna negra, alta en grasa"
+off_67a652e7af,"Aceitunas verdes rellenas de anchoa, reducida en sal",other,other,other,False,55,"Aceituna rellena, alta en grasa"
+off_712e9c4490,Aceitunas Partidas Aliñadas Estilo Casero,other,other,other,False,55,"Aceituna aliñada, alta en grasa"
+off_749e24fad2,Aceitunas verdes partidas aliñadas a la gazpacha &quot;Dia&quot; Variedad Manzanilla,other,other,other,False,55,"Aceituna aliñada, alta en grasa"
+off_76346df412,Crema De Pimiento Del Piquillo,carbs,other,vegetables,True,75,"Crema de hortaliza, base pimiento"
+off_c31b02e575,Jugo de coco,other,other,fruit,True,70,Jugo de fruta tropical
+off_7e5e176bc1,Ensaladilla americana,other,other,other,False,50,"Plato mixto, sin opción adecuada"
+off_44e24c0e15,Aceituna negra de Aragón,fat,other,other_fat,True,80,"Fruto graso, no es aceite puro"
+off_c91711ce02,Aceitunas gordal con hueso,other,other,other,False,55,Aceituna no encaja en opciones dadas
+off_f51d168802,Aceituna Ecologica verde entera,fat,other,other_fat,True,80,"Fruto graso, no es aceite puro"
+off_872582f2bf,Aceitunas verdes con hueso sabor a anchoa,other,other,other,False,55,Aceituna no encaja en opciones dadas
+off_6c8290c05a,Aceitunas Verdes Con Hueso,other,other,other,False,55,Aceituna no encaja en opciones dadas
+off_c93e889e11,Aceitunas verdes partidas aliñadas,other,other,other,False,55,Aceituna no encaja en opciones dadas
+off_8c716382b3,Aceitunas aliñadas,other,other,other,False,55,Aceituna no encaja en opciones dadas
+off_f881f6e3c3,Aceitunas gazpacha,other,other,other,False,55,Aceituna no encaja en opciones dadas
+off_0aba323a23,Guacamole,other,other,other,False,55,Preparación grasa sin opción adecuada
+off_2be99ef6c2,Deluxe aceitunas rellenas de anchoa lata 150 g,other,other,other,False,55,Aceituna no encaja en opciones dadas
+off_c8d6e1d1d3,Cold pressed,other,other,other,False,50,Nombre ambiguo sin categoría clara
+off_622ca2f5cb,Aceitunas con hueso cacereñas,other,other,other,False,55,Aceituna no encaja en opciones dadas
+off_d02941cda0,Bebida vegetal de avena ligera,carbs,other,other_carbs,True,75,Bebida vegetal con hidratos como principal
+off_f212b46664,Olive verte avec anchois,other,other,other,False,55,Aceituna no encaja en opciones dadas
+off_bb4a6f218e,Aceitunas sin hueso,other,other,other,False,55,Aceituna no encaja en opciones dadas
+off_8bfcfa6b17,Aceitunas verdes rellenas anchoas (reducida en sal),other,other,other,False,55,Aceituna no encaja en opciones dadas
+off_81f99fb22f,Aceitunas Kalamón in hueso,other,other,other,False,55,Aceituna no encaja en opciones dadas
+off_2e42af3329,Aceituna manzanilla sin hueso,fat,other,other_fat,True,80,"Fruto graso, no es aceite puro"
+off_fe16b60c79,Aceitunas con hueso sabor anchoa,other,other,other,False,55,Aceituna no encaja en opciones dadas
+off_19ef7b6558,Aceitunas negras enteras barril,other,other,other,False,55,Aceituna no encaja en opciones dadas
+off_4e24a3f818,Trüffel & Pilz Pesto,other,other,other,False,60,Salsa grasa sin opción adecuada
+off_c7fa2759c4,Pesto alla Trapanese,other,other,other,False,60,Salsa grasa sin opción adecuada
+off_152b8df983,Aceitunas Cacereñas Negras Rodajas,other,other,other,False,55,Aceituna no encaja en opciones dadas
+off_d157fb4f76,Aceitunas sin hueso aliñadas,other,other,other,False,55,Aceituna no encaja en opciones dadas
+off_073e19195e,Caponata de Berenjena,carbs,other,vegetables,True,70,Preparación de hortalizas típica mediterránea
+off_e618ef5c7d,Aceitunas con hueso grandes,other,other,other,False,55,"Fruto graso, no encaja en opciones"
+off_eae0c0335a,Zumo con aloe vera,other,other,other,False,55,"Bebida con aloe, no es fruta pura"
+off_a7a4aa3b5c,Bifidus desnatado natural edulcorado,other,other,other,False,55,Lácteo sin opción adecuada
+off_7148147fdc,Bífidus natural 0%,other,other,other,False,55,Lácteo sin opción adecuada
+off_d482c3133a,Tropical consum,other,other,fruit,True,80,Zumo de frutas tropical
+off_e136249b45,Gazpacho fresco selectia,other,other,vegetables,True,85,Sopa de hortalizas tradicional
+off_81986a6c40,Mermelada diet melocotón,carbs,other,sweets_bakery,True,75,Mermelada es dulce procesado
+off_267d239df4,Néctar melocotón,carbs,other,fruit,True,70,Néctar de melocotón con azúcar
+off_cc8df1734f,cherry tomaten saus,other,other,vegetables,True,75,Salsa base tomate cherry
+off_d559197d94,Gazpacho tradicional,other,other,vegetables,True,85,Sopa fría de hortalizas
+off_2bbef10b69,Salsa hot,other,other,other,False,55,"Salsa picante, no es vegetal puro"
+off_53caa3ab9e,Jus d’Orange,other,other,fruit,True,90,Zumo de naranja 100%
+off_cde1b75c4e,Salsa fajita,other,other,other,False,55,Salsa mixta procesada
+off_e4f4a8ac71,Cebollitas agridulces,other,other,vegetables,True,65,Cebolla en conserva agridulce
+off_cafeefaec0,Matin Douceur 100% Pur Jus Multifruits,other,other,fruit,True,90,Zumo multifrutas 100%
+off_6f6600f0da,Anti oxidante,other,other,fruit,True,70,Zumo de frutas antioxidante
+off_bfd18dfdb0,Mazorquitas de maíz en vinagre,carbs,other,vegetables,True,65,Maíz en vinagre como conserva
+off_62f84a6416,Ensaladilla,other,other,other,False,55,Plato preparado mixto sin categoría
+off_cf72a09071,Bifidus ciruelas pasas,other,other,other,False,55,"Lácteo con ciruela, sin opción clara"
+off_f6fe427651,Bifidus 0% muesli cereales,other,other,other,False,55,"Lácteo con cereales, sin opción clara"
+off_29ddf07474,broclli,other,other,vegetables,True,95,Brócoli fresco
+off_83b1e67bdc,Bifidus edulcorado,other,other,other,False,55,Lácteo sin opción adecuada
+off_cdd2f77d40,Arrabiata tomato sauce,other,other,vegetables,True,80,Salsa de tomate italiana
+off_93898ded13,Perejil,other,other,vegetables,True,95,Hierba aromática fresca
+off_3a61fe720e,Poêlée italienne,other,other,vegetables,True,75,Mezcla de verduras salteadas
+off_8c1210b1d3,Bebida láctea con omega 3,other,other,other,False,50,Lácteo sin categoría adecuada disponible
+off_0a7c76233e,Dragon Fruit Zumo Exótico,other,other,fruit,True,95,Zumo de fruta exótica
+off_50ffe330ef,Latte macchiato light,other,other,other,False,50,Bebida láctea sin opción adecuada
+off_6b6307a9f1,Fajita Salsa,other,other,other,False,55,Salsa sin categoría específica
+off_a438988845,Salsa mexicana,other,other,vegetables,True,75,Salsa de tomate y verduras
+off_5b6335bf78,Smoothie Dragon Fruit,other,other,fruit,True,95,Smoothie de fruta
+off_b87fc39927,Vinagre de cava,other,other,other,False,55,Condimento sin categoría válida
+off_507e06b4be,Surtido de encurtidos Dia,other,other,vegetables,True,85,Encurtidos de verduras
+off_27bd5ce01d,Bebida de trigo espelta,other,other,other_carbs,True,70,Bebida de cereal con hidratos
+off_84bf4d1939,Cremoso limon,other,other,other,False,50,Producto no clasificable claro
+off_68942ef3e5,Bebida de Aveia,other,other,other_carbs,True,70,"Bebida de avena, hidratos"
+off_6253f08dc4,Banderillas picantes,other,other,vegetables,True,80,Encurtido de verduras picantes
+off_98d15c98d2,Mazorquitas,other,other,vegetables,True,65,"Producto de maíz, verdura"
+off_3443ddd2c3,"Salteado de gambas, ajetes y espárragos verdes",other,other,vegetables,True,60,Preparado con verduras
+off_d7e4665adc,Especial,other,other,other,False,30,Nombre genérico sin identificar
+off_f37fd4728a,Yaourt limon 0%,other,other,other,False,50,Yogur sin opción láctea
+off_4f0dbd5c75,Linea sabores sin trozos 0%,other,other,other,False,50,Yogur sin opción láctea
+off_37d68a5414,Gelatina proteínas sabor frutos rojos,other,other,other,False,50,Suplemento proteico sin categoría
+off_35f1ff92ab,Zumo FRESH,other,other,fruit,True,90,Zumo de frutas
+off_9c07ab2fa4,Zumo con semillas de chía,other,other,fruit,True,90,Zumo de frutas con chía
+off_7ff21627f2,Salsa picante extra,other,other,other,False,55,Salsa picante sin categoría
+off_7bc61af5c8,Yellow family smoothie,other,other,fruit,True,95,Smoothie de frutas
+off_8d34f127be,Bifidus Melocotón - Maracuyá,carbs,other,basic_dairy,True,85,"Yogur bifidus, lácteo básico"
+off_f3db5249a6,Perejil fresco troceado,other,other,vegetables,True,95,Hierba aromática fresca
+off_fd7e9a335a,Salsa Tomate- Albahaca,carbs,other,vegetables,True,85,Salsa base tomate y albahaca
+off_15c1bc32af,Crecimiento a partir de 1 año,other,other,other,False,55,"Leche de crecimiento, no encaja en opciones"
+off_68ac827838,+Proteínas,other,other,other,False,55,"Suplemento proteico, no encaja en opciones"
+off_51595ca880,Salteado Meridional,other,other,vegetables,True,75,Salteado de verduras típico español
+off_db957eae37,Cóctel de encurtidos,other,other,vegetables,True,70,Encurtidos son hortalizas conservadas
+off_6c11669dfd,Batido al cacao,other,other,other,False,58,"Batido lácteo con cacao, sin opción adecuada"
+off_17becd3578,Batido cacao,other,other,other,False,58,"Batido lácteo con cacao, sin opción adecuada"
+off_42ad196a07,Tumaca con ajo,other,other,vegetables,True,78,"Salsa de tomate con ajo, base vegetal"
+off_d0c9eafd46,Batido sabor vainilla,other,other,other,False,55,"Batido lácteo vainilla, sin opción adecuada"
+off_bb5032a6e2,"Bífidus cremoso con semillas, cereales y avellanas 0%",other,other,other,False,55,"Yogur bífidus, sin opción láctea disponible"
+off_c5bb10e4f6,Arrabbiata,other,other,vegetables,True,78,"Salsa de tomate picante, base vegetal"
+off_d9580385a8,Bifidus con muesli o cereales,other,other,other,False,55,"Yogur bífidus, sin opción láctea disponible"
+off_5ecf74590c,Sugo Alle Olive,other,other,vegetables,True,75,Salsa de tomate con aceitunas
+off_aec2370899,Salteado,other,other,vegetables,True,75,"Salteado de verduras, macros coinciden"
+off_2e523da54e,Salsa de tomate a la provenzal,carbs,other,vegetables,True,80,"Salsa de tomate, base vegetal clara"
+off_081537ba3b,Bifidus Desnatado Natural Edulcorado Cremoso,other,other,other,False,55,"Yogur bífidus desnatado, sin categoría láctea"
+off_b4f816b51a,Café cold brew - Café latte,other,other,other,False,55,"Bebida de café con leche, sin opción"
+off_e66e2899eb,Bebida de espelta,other,other,other,False,55,"Bebida vegetal de espelta, sin opción"
+off_5ed25f19ca,Bifidus con trozos de ciruela 0%,other,other,other,False,55,"Yogur bífidus con fruta, sin opción"
+off_c772968d92,Salteado Estilo Asiatico,other,other,vegetables,True,75,Salteado de verduras estilo asiático
+off_4913a331e5,Aceituna gordal,fat,other,other_fat,True,80,"Aceituna entera, grasa no aceitera"
+off_734d4ba9ff,Carrefour Bio Yaourt Nature Maigre,other,other,other,False,55,"Yogur natural, sin opción láctea"
+off_14456dfeb2,Almond Dessert,other,other,other,False,55,"Postre lácteo, sin opción adecuada"
+off_41907fda91,Biactive con arándanos y lino,other,other,other,False,55,"Yogur bífidus con fruta, sin opción"
+off_e6cb7e6439,"Bifidus 0,0",other,other,other,False,55,"Yogur bífidus, sin opción láctea"
+off_0aa4767c1e,Parrillada con gambas,other,other,vegetables,True,65,Parrillada de verduras con gambas
+off_e4ecae61db,Bifidus Natural 0%,other,other,other,False,55,Lácteo no disponible en opciones
+off_c16b20543b,Habas,other,other,vegetables,True,85,"Leguminosa verde, se clasifica como verdura"
+off_4a46c65b42,Bifidus edulcorado 0%,other,other,other,False,55,Lácteo no disponible en opciones
+off_b2a9899df7,100% ZUMO NATURAL Clementina,other,other,fruit,True,90,Zumo de clementina 100% natural
+off_dcf50c6da5,Banderillas dulces,other,other,other,False,55,Composición mixta sin categoría clara
+off_8fdc903394,Bífidus edulcorado 0% 0%,other,other,other,False,55,Lácteo no disponible en opciones
+off_54dd697a11,Bifidus 0%0% Natura,other,other,other,False,55,Lácteo no disponible en opciones
+off_a2d0889dcb,Salsa Media Sabores de México,other,other,vegetables,True,75,"Salsa base tomate, se asimila a verdura"
+off_8cda6667c8,Café latte light sin lactosa,other,other,other,False,55,Bebida láctea no disponible en opciones
+off_471364857b,Cappuccino Vanilata,other,other,other,False,55,Bebida de café sin categoría clara
+off_cba215bd9e,Jus d'orange en briquette,other,other,fruit,True,90,Zumo de naranja
+off_4097c186ba,Vida soja melocotón,carbs,other,other_carbs,True,75,"Bebida vegetal, sin categoría exacta"
+off_a86bba25ef,Sauce Arrabiata,other,other,vegetables,True,80,"Salsa de tomate, base vegetal"
+off_c001b2477c,Ensalada de la casa,other,other,vegetables,True,90,"Ensalada, principalmente hortalizas"
+off_fdc301ecce,Yogourt desnatado melocoton,carbs,other,other_carbs,True,55,"Lácteo no disponible, macros tipo bebida"
+off_21bb129acf,Gazpacho Andaluz,other,other,vegetables,True,90,Sopa fría de hortalizas
+off_13698b6f1d,Pepinillos pequeñis agridulces,other,other,vegetables,True,85,"Pepinillo, hortaliza en conserva"
+off_4588df5f1b,Antioxidant Juice,other,other,fruit,True,80,Zumo de frutas antioxidante
+off_1e5491b809,Nectar manga,other,other,fruit,True,90,Néctar de mango
+off_7fa77026e9,Aceituna verde c/h,fat,other,other_fat,True,85,"Aceituna, grasa no considerada aceite"
+off_896cde2507,Bebida De Avena 100% Vegetal,carbs,other,other_carbs,True,75,"Bebida vegetal, no es grano entero"
+off_7fcb63a4e7,Bebida de avena con calcio,carbs,other,other_carbs,True,75,"Bebida vegetal, no es grano entero"
+off_a7e2a48590,Bebida de arroz auchan,carbs,other,other_carbs,True,75,"Bebida vegetal, no es grano entero"
+off_d26073e6da,Bebida avena calcio,carbs,other,other_carbs,True,75,"Bebida vegetal, no es grano entero"
+off_426e957bf8,Avena,carbs,other,grains,True,95,Cereal en grano clásico
+off_53bf318378,Bífidus 0% desnatado nueces cereales,other,other,other,False,55,"Lácteo con cereales, sin opción adecuada"
+off_bc1d42450b,Aceitunas sabor anchoa manzanilla,other,other,other,False,55,"Aceituna es fruto graso, sin opción adecuada"
+off_1361c466b8,Bifidus 00% quinoa y avena,carbs,other,other_carbs,True,55,"Lácteo con cereales, no encaja en opciones"
+off_1046ab8d63,Aceitunas verdes rellenas de pasta de limón &quot;Carrefour&quot;,carbs,other,other_carbs,True,50,"Aceituna grasa, sin opción adecuada"
+off_1351d923a9,Aceitunas verdes rellenas de pasta de pimiento asado,carbs,other,other_carbs,True,50,"Aceituna grasa, sin opción adecuada"
+off_5f6c0b54ab,Gazpacho blanco de almendras,other,other,other,False,55,"Sopa líquida con almendras, sin opción adecuada"
+off_9f901d6998,Pastasauce alla Siciliana,other,other,other,False,55,"Salsa para pasta, sin categoría adecuada"
+off_29a6b7ef0f,Bebida avena,carbs,other,other_carbs,True,58,"Bebida vegetal, no es grano entero"
+off_4d5f5c2f15,Tomato & Basil Pasta Sauce,carbs,other,vegetables,True,72,"Salsa de tomate, base vegetal"
+off_7976850269,Bífidus nueces y cereales,other,other,other,False,55,"Lácteo con cereales, sin opción adecuada"
+off_c2083350f8,Bebida de avena,carbs,other,other_carbs,True,58,"Bebida vegetal, no es grano entero"
+off_cf0e52e5e0,Bifidus con quinoa y semillas de calabaza,carbs,other,other_carbs,True,55,"Lácteo con cereales, no encaja bien"
+off_9468f8c87b,Bífidus con quinoa y semillas de calabaza,carbs,other,other_carbs,True,55,"Lácteo con cereales, no encaja bien"
+off_e3bfc43735,Bebida de arroz,carbs,other,other_carbs,True,58,"Bebida vegetal, no es grano entero"
+off_ba4606e466,Pasta Sauce Basil,carbs,other,vegetables,True,72,Salsa de tomate y albahaca
+off_947797acd3,Bebida arroz calcio,carbs,other,other_carbs,True,58,"Bebida vegetal, no es grano entero"
+off_275f7b9f97,Suc Poma,other,other,fruit,True,85,Zumo de manzana puro
+off_af6079fdd1,Energetica Coviran,other,other,sweets_bakery,True,55,"Bebida energética, azucarada sin opción ideal"
+off_dcb6fa61a7,Bebida de avena coviran,carbs,other,other_carbs,True,58,"Bebida vegetal, no es grano entero"
+off_cfb36244c6,Bio bebida de avena,carbs,other,other_carbs,True,58,"Bebida vegetal, no es grano entero"
+off_66f6426d2d,Bebida de almendras bio,other,other,other,False,55,"Bebida de almendras, sin opción adecuada"
+off_8af53413eb,"Miel de flores, tapon antigoteo.500g",other,other,sweets_bakery,True,60,"Miel es azúcar simple, similar a dulce"
+off_c51408bc44,Bebida de avena ecologica,carbs,other,other_carbs,True,58,"Bebida vegetal, no es grano entero"
+off_1876ab24f8,Bebida de Arroz con Calcio,carbs,other,other_carbs,True,58,"Bebida vegetal, no es grano entero"
+off_8abbd9c5e9,Bebida de almendras UHT,other,other,other,False,55,"Bebida de almendras, sin opción adecuada"
+off_efcedf6d30,Olives amb pinyol adobades,other,other,other,False,55,"Aceituna adobada, no encaja como verdura fresca"
+off_4e11acbcca,Olives sense pinyol manzanilla,other,other,other,False,55,"Aceituna, no encaja en opciones disponibles"
+off_c8cb22060f,3X120 G-aceitunas Rellenas,other,other,other,False,55,"Aceituna rellena, sin opción adecuada"
+off_0538ad1d91,Olives amb pinyol Gaspatxes,other,other,other,False,55,"Aceituna, alta en grasa, no es verdura típica"
+off_6a4e791b24,Olives farcides d'anxova,other,other,other,False,55,"Aceituna rellena, sin opción clara"
+off_db5687d3b5,Olives,other,other,other,False,55,"Aceitunas, sin categoría adecuada"
+off_16f49aee09,Aceitunas enteras gordal,other,other,other,False,55,"Aceituna gordal, no encaja bien"
+off_9a95726dc0,Olives negres sense pinyol,other,other,other,False,55,"Aceitunas negras, sin opción válida"
+off_51b0427ad0,Aceitunas negras deshuesadas,other,other,other,False,55,"Aceitunas negras, sin categoría clara"
+off_a08831a7c7,Mostarda Spar Top Down,other,other,other,False,55,"Condimento, sin opción de salsas"
+off_afd88ef6f1,Formatge fresc,other,other,other,False,55,Queso sin opción de lácteos disponible
+off_945746acf2,Tomaquet fregit,other,other,vegetables,True,85,"Tomate frito, base vegetal"
+off_c13aa2407c,Salmorejo de hortalizas frescas,other,other,vegetables,True,80,Salmorejo base tomate y hortalizas
+off_ca25d7302c,Yughi spar,other,other,other,False,55,Yogur sin opción láctea disponible
+off_7980041282,Guisantes al natural muy finos,other,other,vegetables,True,90,"Guisantes, verdura clásica española"
+off_29a6c6846f,Salsa de tomate con albahaca,carbs,other,vegetables,True,75,"Salsa tomate, base vegetal"
+off_eb0bf13b6a,Spanish tomato sauce,other,other,vegetables,True,75,"Salsa de tomate, base hortaliza"
+off_ab7aca84bf,150 G-maíz Dulce En Grano,carbs,other,vegetables,True,70,"Maíz dulce, se consume como verdura"
+off_b63b8e4715,Pimientos del piquillo enteros asados,other,other,vegetables,True,90,"Pimiento asado, verdura clara"
+off_17f20ebca1,Batido de cacao,other,other,sweets_bakery,True,60,"Batido cacao, similar a dulce lácteo"
+off_4491cd441d,batido de chacolate,other,other,sweets_bakery,True,60,"Batido chocolate, perfil dulce"
+off_0dfe80cfc6,Salade russe 750g,other,other,other,False,55,"Plato preparado, sin opción mixta"
+off_bd5e594aba,Carxofes amanides,other,other,vegetables,True,90,"Alcachofas, verdura típica"
+off_d0bf18b505,Iogurt ovella natural desnatat,other,other,other,False,55,Yogur sin opción de lácteos
+off_ea37808ea2,Suc de taronja,other,other,fruit,True,95,"Zumo de naranja, fruta clara"
+off_1660cdbab2,Gaspatxo fresc,other,other,other,False,50,"Mezcla de hortalizas y aceite, dudoso"
+off_16a565b3ed,Zumo de melocotón,carbs,other,fruit,True,85,"Zumo de fruta, sin azúcar añadido"
+off_f81e88e713,Beguda d'arrós,other,other,other,False,55,"Bebida de arroz con azúcar, dudoso"
+off_bca68b0b51,Guindillas en vinagre,other,other,vegetables,True,90,"Verdura en conserva, guindillas"
+off_6fa511a7ee,Suc de poma,other,other,fruit,True,90,Zumo de manzana puro
+tortita_4068263008160,Tortitas de almendra,protein,,other_protein,True,70,"Dulce con almendra, no es proteína pura"
+tortita_24045087,Tortitas de sal,carbs,,sweets_bakery,True,75,Snack salado ultraprocesado
+tortita_8422424100074,Tortitas De Trigo Auchan 8,carbs,,grains,True,80,"Tortita de trigo, base cereal"
+tortita_8410376040456,Tortitas de Maíz,carbs,,grains,True,85,"Tortita de maíz, cereal puro"
+tortita_8422424100166,Tortitas de trigo,carbs,,grains,True,80,"Tortita de trigo, base cereal"
+tortita_4068263002908,Tortitas de maiz,carbs,,grains,True,85,"Tortita de maíz, cereal puro"
+tortita_8431876280036,Mini tortitas de maiz con nata agria & cebolla,carbs,,grains,True,80,Base maíz con aditivos
+tortita_8431876280029,Mini tortitas de maiz con queso cheddar,carbs,,grains,True,80,Base maíz con queso
+tortita_3560071014193,Tortitas de maíz ecológicas,carbs,,grains,True,85,Tortita de maíz ecológica
+tortita_8431876276220,Tortitas arroz con amaranto,carbs,,grains,True,85,Tortita de arroz y amaranto
+tortita_8431876276237,Tortitas arroz con quinoa,carbs,,grains,True,85,Tortita de arroz y quinoa
+tortita_8431876276244,Tortitas maiz multicereales,carbs,,grains,True,85,Tortita multicereales
+tortita_8431876186994,Tortitas,other,,other_carbs,True,65,"Tortita genérica, sin detalle"
+tortita_8414807549303,Tortitas maiz,carbs,,grains,True,80,Tortita de maíz con grasa
+tortita_8480017198815,Mini tortitas de maíz,carbs,,grains,True,85,Mini tortitas de maíz
+tortita_8433329079662,Bio tortitas de espelta,protein,,other_protein,True,60,"Cereal alto en proteína, dudoso"
+tortita_8433329135016,Tortitas de trigo espelta,protein,,other_protein,True,60,"Cereal alto en proteína, dudoso"
+tortita_8480010193107,Mini tortitas de maiz sabor sour cream and onion,carbs,,grains,True,80,Base maíz con saborizante
+tortita_8480010193114,Mini tortitas de maiz,carbs,,grains,True,85,Mini tortitas de maíz
+tortita_8480010193121,Minitortitas de maiz,carbs,,grains,True,80,Mini tortitas de maíz
+tortita_8480010195699,"Tortitas de arroz integral, trigo sarraceno, quinoa y lino",protein,,other_protein,True,75,"Cereales con algo de proteína, no es legumbre pura"
+tortita_8480010193091,Tortitas de maiz sabor barbacoa,carbs,,grains,True,72,"Base de maíz, snack salado de cereales"
+tortita_8480010193084,Tortitas de maíz sabor sour cream & onion,carbs,,grains,True,72,"Base de maíz, snack salado de cereales"
+tortita_8480010193060,Tortitas de maíz sin gluten,carbs,,grains,True,85,"Tortita de maíz sin gluten, alto en hidratos"
+tortita_8480000864833,Tortitas de arroz y legumbres,protein,,legumes,True,85,"Contiene legumbres, alta proteína vegetal"
+tortita_8402001010187,Tortitas de maíz sabor jamón serrano,carbs,,grains,True,80,"Base de maíz con sabor, snack de cereales"
+tortita_8402001039263,Tortitas Milho Campestre,carbs,,grains,True,80,"Tortita de maíz, snack de cereales"
+100001,Queso fresco cottage,postres_proteicos,,fresh_cheese,True,95,"Queso fresco cottage, lácteo fresco"
+100002,Cottage Cheese,postres_proteicos,,fresh_cheese,True,95,Cottage cheese es queso fresco
+100003,Queso Fresco Quark,postres_proteicos,,fresh_cheese,True,95,Quark es queso fresco lácteo
+100004,Mousse Salmón,postres_proteicos,,high_protein_dairy,True,65,"Mousse salmón, no encaja bien aquí"
+100005,Mousse Chocolate Proteínas,postres_proteicos,,high_protein_dairy,True,90,"Mousse proteica, base láctea alta proteína"
+100006,Mousse vainilla,postres_proteicos,,high_protein_dairy,True,90,"Mousse proteica vainilla, alta proteína"
+100007,Natillas Proteínas  Sabor Vainilla,postres_proteicos,,high_protein_dairy,True,90,"Natillas proteicas, postre lácteo alto proteína"
+100008,Pudding Sabor Caramelo Proteínas,postres_proteicos,,high_protein_dairy,True,90,"Pudding proteico, postre lácteo alto proteína"
+100009,Flan de huevo proteínas 0%,postres_proteicos,,high_protein_dairy,True,90,"Flan proteico, postre lácteo alto proteína"
+100010,Mousse protéica con sabor a chocolate,postres_proteicos,,high_protein_dairy,True,90,"Mousse proteica chocolate, alta proteína"
+100011,High Protein Chocolate Pudding,postres_proteicos,,high_protein_dairy,True,90,"Pudding proteico, postre lácteo alto proteína"
+100012,Yogur proteínas stracciatella 0%,postres_proteicos,,high_protein_dairy,True,90,"Yogur proteico 0%, alto en proteína"
+100013,Requesón,postres_proteicos,,fresh_cheese,True,95,Requesón es queso fresco lácteo
+100014,Postre de chocolate proteínas,postres_proteicos,,high_protein_dairy,True,90,"Postre proteico chocolate, alta proteína"
+100015,Proteinas Limón,postres_proteicos,,high_protein_dairy,True,88,"Postre proteico limón, alta proteína"
+100016,Kéfir Coco,postres_proteicos,,basic_dairy,True,70,"Kéfir de coco, bajo en proteína"
+100017,Proteínas Sabor Tropical,postres_proteicos,,high_protein_dairy,True,85,"Postre proteico tropical, alta proteína"
+100018,Skyrella,postres_proteicos,,high_protein_dairy,True,95,"Skyrella, lácteo muy alto en proteína"
+100019,Queso fresco batido melocotón y maracuyá,postres_proteicos,,fresh_cheese,True,90,"Queso fresco batido, base láctea fresca"
+100020,Chocolate & Topping with Protein,postres_proteicos,,high_protein_dairy,True,85,"Postre proteico lácteo, no es queso ni yogur"
+100021,Greek style yoghurt low-fat,postres_proteicos,,high_protein_dairy,True,85,Yogur griego bajo en grasa con 10% proteína
+100022,Yogur proteínas,postres_proteicos,,high_protein_dairy,True,95,"Yogur proteico, alto en proteína"
+100023,Pudding proteínas vainilla,postres_proteicos,,high_protein_dairy,True,90,Pudding proteico lácteo
+100024,High Protein Sour Cherry,postres_proteicos,,high_protein_dairy,True,90,Postre lácteo high protein
+100025,Budino Proteico Cioccolato XXL,postres_proteicos,,high_protein_dairy,True,90,Budino proteico lácteo
+100026,High Protein Pudding Kokos,postres_proteicos,,high_protein_dairy,True,90,Pudding proteico alto en proteína
+100027,High protein mousse vainilla,postres_proteicos,,high_protein_dairy,True,90,Mousse proteica láctea
+100028,High Protein Flan,postres_proteicos,,high_protein_dairy,True,90,Flan proteico lácteo
+100029,Postre gelaficado con gelatina. Frutos rojos,postres_proteicos,,high_protein_dairy,True,75,"Gelatina proteica sin lácteos, 10% proteína"
+100030,Caramel Pudding,postres_proteicos,,high_protein_dairy,True,90,Pudding caramelo proteico lácteo
+100031,High Protein Mousse Chocolate,postres_proteicos,,high_protein_dairy,True,90,Mousse chocolate proteica láctea
+100032,High Protein Natillas Chocolate,postres_proteicos,,low_fat_dairy,True,75,"Natillas bajo en grasa, poca proteína"
+100033,High Protein Strataciella,postres_proteicos,,high_protein_dairy,True,90,Postre proteico lácteo italiano
+100034,Bio Skyr vanilla,postres_proteicos,,high_protein_dairy,True,85,Skyr con buena proteína
+100035,"Banana, Mango & Cereals Strained Yogurt Dessert",postres_proteicos,,low_fat_dairy,True,75,Yogur azucarado bajo en grasa
+100036,Light Greek Style Yogurt,postres_proteicos,,low_fat_dairy,True,90,"Yogur griego light, bajo en grasa"
+100037,Skyr rutinario y frambuesa,postres_proteicos,,high_protein_dairy,True,80,Skyr con buena cantidad proteica
+100038,Yogur Fresa,postres_proteicos,,basic_dairy,True,85,Yogur de fresa estándar
+100039,Falafel,postres_proteicos,,sweets_bakery,True,50,"Falafel no encaja, sin opción other"
+100040,Skyr de Frambuesa,postres_proteicos,,high_protein_dairy,True,75,Skyr con proteína notable
+100041,Nescafé Classic,postres_proteicos,,sweets_bakery,True,50,"Café soluble, sin opción adecuada"
+100042,Pudin de Bonito del Norte,postres_proteicos,,high_protein_dairy,True,90,Pudin pescado con alta proteína
+100043,Quark con Frambues,postres_proteicos,,high_protein_dairy,True,90,"Quark alto en proteína, bajo grasa"
+100044,Quark con Fresa,postres_proteicos,,high_protein_dairy,True,95,"Quark alto en proteína, bajo en grasa"
+100045,Queso Cottage proteico,postres_proteicos,,fresh_cheese,True,88,"Cottage es queso fresco, muy bajo grasa"
+100046,Requesón,postres_proteicos,,fresh_cheese,True,92,Requesón es queso fresco por definición
+100047,Requesón,postres_proteicos,,fresh_cheese,True,92,Requesón es queso fresco por definición
+100048,Profeel Protein Mousse Chocolate,postres_proteicos,,high_protein_dairy,True,95,Producto proteico lácteo procesado
+100049,Mousse de cabracho,postres_proteicos,,high_protein_dairy,True,75,"Mousse pescado, alto en proteína"
+100050,Requesón,postres_proteicos,,fresh_cheese,True,92,Requesón es queso fresco por definición
+100051,Bebida láctea 00% vainilla proteína plus,postres_proteicos,,high_protein_dairy,True,95,Bebida láctea con proteína añadida
+100052,Natillas sabor vainilla high protein,postres_proteicos,,high_protein_dairy,True,95,"Natillas high protein, 10.5g proteína"
+100053,Natillas Sabor A Vainilla PROteína Plus,postres_proteicos,,high_protein_dairy,True,95,"Natillas proteína plus, 10.4g proteína"
+100054,Protein Pudding Caramel Flavour,postres_proteicos,,high_protein_dairy,True,95,"Pudding proteico, 10.1g proteína"
+100055,Natillas Sabor Vainilla Protein +,postres_proteicos,,high_protein_dairy,True,95,"Natillas Protein+, 10g proteína"
+100056,Pudding sabor cacahuete PROteína,postres_proteicos,,high_protein_dairy,True,95,"Pudding PROteína, 10g proteína"
+100057,Pudding Sabor Caramelo Salado PROteína Plus,postres_proteicos,,high_protein_dairy,True,95,"Pudding PROteína Plus, 10g proteína"
+100058,Postre 0% azucares añadidos chocolate proteina plus,postres_proteicos,,high_protein_dairy,True,95,"Postre proteína plus, 10g proteína"
+100059,Proteínas Plus Chocolate,postres_proteicos,,high_protein_dairy,True,95,"Proteínas Plus, 10g proteína"
+100060,Natillas con caramelo altas en proteínas,postres_proteicos,,high_protein_dairy,True,95,"Natillas altas en proteínas, 10g"
+100061,Flan De Clara De Huevo,postres_proteicos,,high_protein_dairy,True,85,"Flan claro, 8.5g proteína"
+100062,Natillas Con chocolate,postres_proteicos,,sweets_bakery,True,80,"Natillas normales, baja proteína, 514kcal"
+100063,"Natillas, Chicolate, High Protein",postres_proteicos,,high_protein_dairy,True,95,"High Protein, 10g proteína"
+100064,Mousse de cacao alta en proteínas,postres_proteicos,,high_protein_dairy,True,95,"Mousse alta proteínas, 10g"
+100065,Pudding sabor chocolate,postres_proteicos,,high_protein_dairy,True,92,"Pudding proteico, 10g proteína"
+100066,High Protein Mousse Chocolate,postres_proteicos,,high_protein_dairy,True,95,"High Protein Mousse, 10g proteína"
+100067,Queso fresco batido proteína plus,postres_proteicos,,fresh_cheese,True,80,"Queso fresco batido, bajo en grasa"
+100068,ProFeel Protein Snack Mango & Vanilla,postres_proteicos,,high_protein_dairy,True,95,"Snack proteico lácteo, 10g proteína"
+100069,Yogur High Protein Stracciatella,postres_proteicos,,high_protein_dairy,True,95,Yogur con alta proteína explicita
+100070,High protein natural,postres_proteicos,,high_protein_dairy,True,95,Alta proteína en nombre y macros
+100071,Mousse 4 Quesos,postres_proteicos,,high_protein_dairy,True,75,"Mousse quesos, proteína alta, grasa elevada"
+100072,Requesón tradicional,postres_proteicos,,fresh_cheese,True,90,Requesón es queso fresco clásico
+100073,Bocaditos en gelatina,postres_proteicos,,high_protein_dairy,True,55,"Gelatina proteica, 0 kcal dudoso"
+100074,Yogur colado receta griega,postres_proteicos,,high_protein_dairy,True,85,"Yogur griego colado, alta proteína"
+100075,Queso fresco batido,postres_proteicos,,fresh_cheese,True,92,Queso fresco batido 0% grasa
+100076,Yogur Frutos del Bosque + Proteína,postres_proteicos,,high_protein_dairy,True,95,Yogur con proteína añadida
+100077,Postre proteína 0% fresa,postres_proteicos,,high_protein_dairy,True,95,Postre proteína 0% fresa
+100078,Postre proteína 0% arándanos,postres_proteicos,,high_protein_dairy,True,95,Postre proteína 0% arándanos
+100079,Skyr + protein,postres_proteicos,,high_protein_dairy,True,92,Skyr con proteína añadida
+100080,Skyr Natural,postres_proteicos,,high_protein_dairy,True,90,"Skyr natural, 11g proteína"
+100081,Flan De Huevo Proteina,postres_proteicos,,high_protein_dairy,True,85,Flan proteico de huevo
+100082,Flan proteina de clara de huevo 0%,postres_proteicos,,high_protein_dairy,True,85,Flan proteico de clara
+100083,Skyr Natural 00%,postres_proteicos,,high_protein_dairy,True,90,"Skyr natural 0%, alta proteína"
+100084,Mousse De Salmón Con Queso De Cabra,postres_proteicos,,fresh_cheese,True,60,"Mousse salmón, no encaja bien"
+100085,Skyr,postres_proteicos,,high_protein_dairy,True,88,Skyr con 10g proteína
+100086,Yogur Protein Plátano,postres_proteicos,,high_protein_dairy,True,95,Yogur proteína plátano
+100087,Yogur líquido sabor tropical,postres_proteicos,,high_protein_dairy,True,92,Yogur líquido tropical proteína
+100088,Yogur líquido sabor plátano proteína,postres_proteicos,,high_protein_dairy,True,95,Yogur líquido plátano proteína
+100089,Yogur líquido sabor fresa proteína,postres_proteicos,,high_protein_dairy,True,95,Yogur líquido fresa proteína
+100090,Yogur sabor tropical,postres_proteicos,,high_protein_dairy,True,88,"Yogur tropical, macros proteicos"
+100091,Queso Fresco Batido,postres_proteicos,,fresh_cheese,True,92,Queso fresco batido 0% grasa
+100092,Skyr Fresa 0%Mg,postres_proteicos,,high_protein_dairy,True,85,"Skyr fresa, buena proteína"
+100093,Fromages frais aux fruits,postres_proteicos,,fresh_cheese,True,80,Fromage frais es queso fresco

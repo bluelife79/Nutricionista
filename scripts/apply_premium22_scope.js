@@ -1,0 +1,91 @@
+"use strict";
+
+/**
+ * Materialise Premium 2.2 exchange scope for every catalogue row.
+ *
+ * The stored decision makes the browser serve the exact policy that was
+ * audited. Run without --apply for a read-only report.
+ */
+
+const fs = require("fs");
+const path = require("path");
+const { ROOT, createEngine } = require("./lib/algorithm_harness");
+
+const DB_PATH = path.join(ROOT, "database.json");
+
+function increment(target, key) {
+  target[key] = (target[key] || 0) + 1;
+}
+
+function main() {
+  const apply = process.argv.includes("--apply");
+  const engine = createEngine();
+  const report = {
+    version: engine.window.PREMIUM_EXCHANGE_SCOPE_VERSION,
+    total_foods: engine.foods.length,
+    statuses: {},
+    by_context: {},
+    by_reason: {},
+    choice_levels: {},
+    choice_reasons: {},
+    evidence_statuses: {},
+    examples: {},
+    applied: apply,
+  };
+
+  for (const food of engine.foods) {
+    const context = engine.window.inferPremiumContext(food);
+    const decision = engine.window.derivePremiumExchangeScope(food, context);
+    food.exchange_scope = {
+      version: decision.version,
+      status: decision.status,
+      reason_codes: Array.from(decision.reason_codes || []),
+      context: decision.context,
+      evidence_status: decision.evidence_status,
+    };
+    const guidance = engine.window.derivePremiumChoiceGuidance(food);
+    food.choice_guidance = {
+      version: guidance.version,
+      level: guidance.level,
+      label: guidance.label,
+      summary: guidance.summary,
+      detail: guidance.detail,
+      reason_codes: Array.from(guidance.reason_codes || []),
+      rank_factor: guidance.rank_factor,
+      no_added_sugar: guidance.no_added_sugar,
+      nova_group: guidance.nova_group ?? null,
+    };
+    increment(report.statuses, decision.status);
+    increment(report.choice_levels, guidance.level);
+    increment(report.by_context, `${decision.status}:${context}`);
+    increment(report.evidence_statuses, decision.evidence_status);
+    for (const reason of decision.reason_codes || []) {
+      increment(report.by_reason, reason);
+    }
+    for (const reason of guidance.reason_codes || []) {
+      increment(report.choice_reasons, reason);
+    }
+    if (!report.examples[decision.status]) report.examples[decision.status] = [];
+    if (report.examples[decision.status].length < 80) {
+      report.examples[decision.status].push({
+        id: food.id,
+        name: food.name,
+        source: food.source,
+        context,
+        reasons: decision.reason_codes,
+        nova_group: food.processing_evidence?.nova_group ?? null,
+      });
+    }
+  }
+
+  if (apply) {
+    fs.writeFileSync(
+      DB_PATH,
+      `${JSON.stringify(engine.foods, null, 2)}\n`,
+      "utf8",
+    );
+  }
+  console.log(JSON.stringify(report, null, 2));
+}
+
+main();

@@ -1,0 +1,57 @@
+node_modules/
+dist/
+build/
+.DS_Store
+.env
+.private/
+
+# Claude Code session data — local only
+.claude/
+
+# Microservicio Python venv & cache
+microservicio/__pycache__/
+microservicio/.venv/
+microservicio/*.pyc
+microservicio/*.pyo
+
+# Data pipeline intermediates — no commitear
+database_v2.json
+database_v3.json
+database_v4.json
+database.min.json
+scripts/audit_report.json
+scripts/categories_changelog.json
+scripts/subgroups_changelog.json
+scripts/subgroups_review.json
+scripts/flags_changelog.json
+scripts/edge_cases_review.json
+scripts/__pycache__/
+
+# Compressed database snapshots (generated locally, not source of truth)
+database.json.zip
+database.json.gz
+
+# Local DB backups created by fix/audit scripts (regenerable, ~3MB each)
+database.json.bak.*
+
+# Audit and review CSVs (regenerable artifacts, not source of truth)
+scripts/audit_macros_report.csv
+scripts/audit_macros_summary.csv
+scripts/audit_condiments_report.csv
+scripts/bulk_label_report.csv
+scripts/bulk_label_report.pilot.csv
+scripts/bulk_label_failures.csv
+scripts/review_carbs.csv
+scripts/review_dairy.csv
+scripts/review_fat.csv
+scripts/review_protein.csv
+scripts/review_pending.csv
+
+# DB backups y artefactos de auditoría (local)
+*.bak
+database.backup*.json
+test_report_data.json
+test_resultados.html
+*.png
+.vercel
+supabase/.temp/
