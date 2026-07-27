@@ -145,6 +145,8 @@ async function main() {
   for (const text of [
     "¿Por qué?",
     "choice-guidance-details",
+    "origin-guidance",
+    "Opción compatible",
   ]) {
     assert(html.includes(text), `La interfaz no contiene: ${text}`);
   }

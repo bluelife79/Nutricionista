@@ -2879,6 +2879,35 @@
           fat: (originalFood.fat * amount) / 100,
           calories: (originalFood.calories * amount) / 100,
         };
+        const originalChoiceGuidance =
+          typeof window.getPremiumChoiceGuidance === "function"
+            ? window.getPremiumChoiceGuidance(originalFood)
+            : null;
+        const originalChoiceGuidanceHTML =
+          originalChoiceGuidance &&
+          ["compatible", "unverified", "occasional"].includes(
+            originalChoiceGuidance.level,
+          )
+            ? `
+              <div class="choice-guidance ${escapeHtml(originalChoiceGuidance.level)} origin-guidance">
+                <span class="choice-guidance-dot" aria-hidden="true"></span>
+                <div class="choice-guidance-copy">
+                  <div class="choice-guidance-label">${escapeHtml(
+                    originalChoiceGuidance.level === "compatible"
+                      ? "Opción compatible"
+                      : originalChoiceGuidance.level === "unverified"
+                        ? "Etiqueta pendiente"
+                        : "Mejor para ocasiones",
+                  )}</div>
+                  <div class="choice-guidance-summary">${escapeHtml(originalChoiceGuidance.summary)}</div>
+                </div>
+              </div>
+              <details class="choice-guidance-details origin-guidance-details">
+                <summary>¿Por qué?</summary>
+                <p>${escapeHtml(originalChoiceGuidance.detail)}</p>
+              </details>
+            `
+            : "";
 
         originalFoodCard.innerHTML = `
       <div class="original-food-header">TIENES EN TU MENÚ</div>
@@ -2897,6 +2926,7 @@
             : "";
         })()}
       </div>
+      ${originalChoiceGuidanceHTML}
       <div class="original-macros">
         <div class="original-macro-item">
           <div class="original-macro-label">Proteína</div>
