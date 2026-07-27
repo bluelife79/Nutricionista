@@ -6,9 +6,10 @@
     semanticEmbeddingsEnabled: true,
     remoteRerankEnabled: false,
     llmJudgeEnabled: false,
-    familyFirstEnabled: true,
+    familyFirstEnabled: false,
     resultBatchSize: 8,
-    secondaryVisibleLimit: 8,
+    familyVisibleLimit: 6,
+    preparedVisibleLimit: 8,
   });
 
   const overrides =

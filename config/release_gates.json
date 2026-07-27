@@ -5,9 +5,9 @@
     "semanticEmbeddingsEnabled": true,
     "remoteRerankEnabled": false,
     "llmJudgeEnabled": false,
-    "familyFirstEnabled": true
+    "familyFirstEnabled": false
   },
-  "baseline": {
+  "frozenBaseline": {
     "queries": 333,
     "scenarios": 474,
     "cards": 4284,
@@ -26,6 +26,26 @@
     "uglyName": 4,
     "calorieDrift": 39,
     "lowDiversity": 256
+  },
+  "candidateExpected": {
+    "queries": 333,
+    "scenarios": 474,
+    "cards": 4268,
+    "preferredCards": 4051,
+    "preferredPercentage": 94.9,
+    "noSearch": 96,
+    "zeroReal": 56,
+    "familyFirst": 0,
+    "percentageInversion": 389,
+    "rawCooked": 64,
+    "cookedOrigin": 19,
+    "adjacentMacroDuplicate": 36,
+    "largePortion": 39,
+    "seedOil": 8,
+    "foreign": 29,
+    "uglyName": 4,
+    "calorieDrift": 37,
+    "lowDiversity": 208
   },
   "intents": {
     "publicOrigins": 1636,

@@ -110,17 +110,18 @@
   function getResultBlockOrder(originalFood, alternatives) {
     return shouldShowFamilyFirst(originalFood, alternatives)
       ? ["familia", "intercambios", "preparados"]
-      : ["intercambios", "familia", "preparados"];
+      : ["intercambios", "preparados", "familia"];
   }
 
   function getInitiallyVisibleResults(originalFood, alternatives) {
     const runtime = global.REVOLUCIONAT_RUNTIME_CONFIG || {};
     const directLimit = Number(runtime.resultBatchSize) || 8;
-    const secondaryLimit = Number(runtime.secondaryVisibleLimit) || 8;
+    const familyLimit = Number(runtime.familyVisibleLimit) || 6;
+    const preparedLimit = Number(runtime.preparedVisibleLimit) || 8;
     const sources = {
       intercambios: (alternatives?.intercambios || []).slice(0, directLimit),
-      familia: (alternatives?.familia || []).slice(0, secondaryLimit),
-      preparados: (alternatives?.preparados || []).slice(0, secondaryLimit),
+      familia: (alternatives?.familia || []).slice(0, familyLimit),
+      preparados: (alternatives?.preparados || []).slice(0, preparedLimit),
     };
     return getResultBlockOrder(originalFood, alternatives).flatMap((block) =>
       sources[block].map((food) => ({ ...food, _block: block })),
@@ -129,11 +130,12 @@
 
   function getExpandableScrollOrder(originalFood, alternatives) {
     const runtime = global.REVOLUCIONAT_RUNTIME_CONFIG || {};
-    const secondaryLimit = Number(runtime.secondaryVisibleLimit) || 8;
+    const familyLimit = Number(runtime.familyVisibleLimit) || 6;
+    const preparedLimit = Number(runtime.preparedVisibleLimit) || 8;
     const sources = {
       intercambios: alternatives?.intercambios || [],
-      familia: (alternatives?.familia || []).slice(0, secondaryLimit),
-      preparados: (alternatives?.preparados || []).slice(0, secondaryLimit),
+      familia: (alternatives?.familia || []).slice(0, familyLimit),
+      preparados: (alternatives?.preparados || []).slice(0, preparedLimit),
     };
     return getResultBlockOrder(originalFood, alternatives).flatMap((block) =>
       sources[block].map((food) => ({ ...food, _block: block })),

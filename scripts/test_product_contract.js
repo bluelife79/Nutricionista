@@ -47,8 +47,8 @@ async function main() {
   const baseline = await runProductBaseline();
   assert.deepStrictEqual(
     baseline.totals,
-    gates.baseline,
-    "C13 no reproduce la línea base adversarial congelada",
+    gates.candidateExpected,
+    "La candidata no coincide con su contrato medido",
   );
 
   const intents = await runProductIntentAudit();

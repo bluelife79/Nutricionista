@@ -2056,7 +2056,7 @@
         <div id="familiaSection" class="advanced-section" style="display: none">
           <details>
             <summary>
-              📦 OTRAS MARCAS Y FORMATOS SIMILARES (<span id="familiaCount">0</span>)
+              📦 OTRAS MARCAS DEL MISMO ALIMENTO (<span id="familiaCount">0</span>)
             </summary>
             <div
               class="warning-box"
@@ -2724,9 +2724,6 @@
         blockOrder.forEach((block) => parent.appendChild(sections[block]));
       }
 
-      const FAMILIA_VISIBLE_DEFAULT =
-        Number(window.REVOLUCIONAT_RUNTIME_CONFIG?.secondaryVisibleLimit) || 8;
-
       function renderCollapsibleBlock(items, tier, section, container, countEl) {
         if (!items || items.length === 0) {
           section.style.display = "none";
@@ -2735,17 +2732,17 @@
         section.style.display = "block";
         countEl.textContent = items.length;
 
-        // Cliente: en pan/skyr/yogur/atún la familia tiene mucho contenido
-        // útil — abrir el <details> por defecto para que la clienta no
-        // tenga que clickear. Solo aplica al bloque familia y solo cuando
-        // hay 5+ elementos. Preparados sigue cerrado por default.
+        // Los bloques secundarios no compiten con la respuesta principal:
+        // se muestran después de los intercambios y siempre cerrados.
         const details = section.querySelector("details");
-        if (details) {
-          details.open = (tier === "familia" && items.length >= 5);
-        }
+        if (details) details.open = false;
 
-        const visible = items.slice(0, FAMILIA_VISIBLE_DEFAULT);
-        const hidden  = items.slice(FAMILIA_VISIBLE_DEFAULT);
+        const visibleLimit =
+          tier === "familia"
+            ? Number(window.REVOLUCIONAT_RUNTIME_CONFIG?.familyVisibleLimit) || 6
+            : Number(window.REVOLUCIONAT_RUNTIME_CONFIG?.preparedVisibleLimit) || 8;
+        const visible = items.slice(0, visibleLimit);
+        const hidden  = items.slice(visibleLimit);
 
         let html = visible.map((alt) => renderResultCard(alt, tier)).join("");
         if (hidden.length > 0) {
