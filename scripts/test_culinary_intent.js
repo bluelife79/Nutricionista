@@ -220,6 +220,13 @@ async function main() {
           .compatible,
         `${testCase.name}/${option}: la primera alternativa no respeta el uso elegido`,
       );
+      assert(
+        direct.filter((candidate) =>
+          engine.window.getPremiumUsageCompatibility(candidate, option)
+            .compatible,
+        ).length >= 3,
+        `${testCase.name}/${option}: debe mostrar al menos tres alternativas adecuadas antes de las menos habituales`,
+      );
       let foundLessUsual = false;
       for (const candidate of direct) {
         const compatible =

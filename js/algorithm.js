@@ -3769,7 +3769,49 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
 
   // Final result: byTier now consumes _judgeRank fields injected by
   // applyJudgeVerdict() above, so the ordering reflects LLM correction.
-  const intercambios = byTier(2);
+  let intercambios = byTier(2);
+  let familia = byTier(1);
+
+  // Una selección culinaria explícita también debe respetarse entre bloques.
+  // Los formatos/marcas del mismo ingrediente viven normalmente en "familia"
+  // para no llenar la primera pantalla de duplicados. Sin embargo, cuando esa
+  // es precisamente la respuesta útil (p. ej. mozzarella rallada para fundir),
+  // esconderla debajo de alternativas marcadas como "menos habituales" cuenta
+  // una historia equivocada. Promovemos solo las necesarias para completar
+  // tres opciones adecuadas; el resto continúa agrupado y la búsqueda neutra
+  // conserva el comportamiento habitual.
+  if (opts.usageMode && opts.usageMode !== "any") {
+    const isSuitableForSelectedUse = (food) =>
+      food.premiumUsageFit === "ideal" ||
+      food.premiumUsageFit === "acceptable";
+    const suitableDirect = intercambios.filter(isSuitableForSelectedUse);
+    const lessUsualDirect = intercambios.filter(
+      (food) => !isSuitableForSelectedUse(food),
+    );
+    const needed = Math.max(0, 3 - suitableDirect.length);
+    if (needed > 0) {
+      const promoted = familia
+        .filter(isSuitableForSelectedUse)
+        .slice(0, needed)
+        .map((food) => ({
+          ...food,
+          premiumUsagePromotedFromFamily: true,
+        }));
+      if (promoted.length > 0) {
+        const promotedIds = new Set(
+          promoted.map((food) => String(food.id)),
+        );
+        intercambios = capPresentationScores([
+          ...suitableDirect,
+          ...promoted,
+          ...lessUsualDirect,
+        ]);
+        familia = familia.filter(
+          (food) => !promotedIds.has(String(food.id)),
+        );
+      }
+    }
+  }
 
   // noMatch: true cuando el judge confirma que hay <3 intercambios
   // culinariamente válidos. El frontend puede mostrar un mensaje honesto
@@ -3802,7 +3844,7 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
 
   return {
     intercambios,
-    familia:   byTier(1),
+    familia,
     preparados: byTier(3),
     noMatch,
   };
