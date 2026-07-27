@@ -1,9 +1,7 @@
 {
   "model": "paraphrase-multilingual-MiniLM-L12-v2",
-  "db_hash": "1ea54715e9e8b4cbe5ed7c14e9aab800967232dc99d483b5258fab1755e4ecf1",
-  "generated_at": "2026-07-26T16:20:12.154234+00:00",
+  "db_hash": "df3207c8402245d17bca7b991ee0186dfba1c4e2031f6519d2dc521a25114fb7",
+  "generated_at": "2026-07-27T10:33:56.170705+00:00",
   "dim": 384,
-  "n_foods": 5324,
-  "derived_ids": [],
-  "derivation": "normalized centroid of same-model equivalent foods"
+  "n_foods": 5324
 }

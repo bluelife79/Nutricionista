@@ -45,12 +45,29 @@ function amountFor(promptId) {
   }[promptId] || 100;
 }
 
-function signature(result) {
-  return [
-    ...result.intercambios.slice(0, 5),
-    ...result.familia.slice(0, 5),
-    ...result.preparados.slice(0, 5),
-  ].map((candidate) => String(candidate.id)).join(",");
+function visibleTop(food, result, limit = 8) {
+  const familyFirst =
+    food.category === "dairy" &&
+    result.familia.length >= 5;
+  const ordered = familyFirst
+    ? [...result.familia, ...result.intercambios, ...result.preparados]
+    : [...result.intercambios, ...result.familia, ...result.preparados];
+  return ordered.slice(0, limit).map((candidate) => String(candidate.id));
+}
+
+function modesDiffer(left, right) {
+  const length = Math.min(left.length, right.length);
+  if (length < 3) return false;
+  const rightSet = new Set(right);
+  const overlap = left.filter((id) => rightSet.has(id)).length;
+  const samePosition = left
+    .slice(0, length)
+    .filter((id, index) => id === right[index]).length;
+  // A question is useful only if the client sees a genuinely different first
+  // screen: at least three foods change in an eight-card view, or the order is
+  // substantially reorganised. A one-card tail difference is not enough.
+  return overlap <= Math.max(1, length - 3) ||
+    samePosition <= Math.floor(length / 2);
 }
 
 async function main() {
@@ -158,10 +175,18 @@ async function main() {
         continue;
       }
       validModes.push(mode.id);
-      signatures.push(signature(result));
+      signatures.push(visibleTop(food, result));
     }
 
-    const materiallyDifferent = new Set(signatures).size >= 2;
+    let materiallyDifferent = false;
+    for (let left = 0; left < signatures.length && !materiallyDifferent; left += 1) {
+      for (let right = left + 1; right < signatures.length; right += 1) {
+        if (modesDiffer(signatures[left], signatures[right])) {
+          materiallyDifferent = true;
+          break;
+        }
+      }
+    }
     if (validModes.length >= 2 && materiallyDifferent) {
       food.culinary_intent.prompt_id = prompt.id;
       food.culinary_intent.validated_modes = validModes;

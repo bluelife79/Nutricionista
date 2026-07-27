@@ -10,7 +10,7 @@
 (function (global) {
   "use strict";
 
-  var VERSION = "premium-v2.1-context-1";
+  var VERSION = "premium-v2.3-context-1";
 
   function normalize(value) {
     return String(value || "")
@@ -29,11 +29,49 @@
 
   function inferContext(food) {
     if (!food) return "unknown";
-    if (food.premium_context) return String(food.premium_context);
     var name = normalize(food.name);
     var subgroup = String(food.subgroup || "").toLowerCase();
     var category = String(food.category || "").toLowerCase();
     var flags = Array.isArray(food.flags) ? food.flags : [];
+
+    // Identidades de seguridad y colisiones históricas: estas señales
+    // inequívocas prevalecen sobre un premium_context antiguo mal materializado.
+    if (hasAny(name, [/\bsangre\b/])) return "non_exchangeable";
+    if (hasAny(name, [/\bzurrapa\b/, /\bsobrasad\w*\b/, /\bpate\b/, /\bfoie\b/])) {
+      return "animal_savory_spread";
+    }
+    if (hasAny(name, [
+      /^higado\b/, /\bhigado de\b/, /^corazon\b/, /\bcorazon de\b/,
+      /^rinon\w*\b/, /\brinon\w* de\b/, /\bcallos\b/, /\bmolleja\w*\b/,
+    ])) {
+      return "organ_meat";
+    }
+    if (hasAny(name, [/\byema\b.*\bdesecad\w*\b/])) return "baking_input";
+    if (hasAny(name, [/\ben su tinta\b/])) return "prepared_meal";
+    if (hasAny(name, [/\balino para ensalad\w*\b/])) return "savory_sauce";
+    if (
+      hasAny(name, [
+        /\bagujas?\b/, /\bsardina\w*\b/, /\bsardinilla\w*\b/,
+        /\batun\b/, /\bbonito\b/, /\bcaballa\b/, /\bsalmon\b/,
+        /\banchoa\w*\b/, /\bmejillon\w*\b/, /\bberberech\w*\b/,
+      ]) &&
+      hasAny(name, [/\baceite\b/, /\blata\b/, /\bconserva\b/, /\bescabeche\b/])
+    ) {
+      return "canned_fish";
+    }
+    if (hasAny(name, [
+      /\bpan de molde\b/, /\bpan integral\b/, /\bpan de\b/,
+      /\bhogaza\b/, /\bbaguette\b/, /\bmollete\b/,
+      /\bpanecill\w*\b/, /\bpico\w*\b/, /\bcolin\w*\b/, /\bbiscot\w*\b/,
+    ])) {
+      return "bread";
+    }
+    if (
+      /^(ajo|ajo crudo|nuez moscada|cebolla frita)$/.test(name)
+    ) {
+      return "seasoning";
+    }
+    if (food.premium_context) return String(food.premium_context);
 
     if (subgroup === "cold_soup" || food.cold_soup === true) return "cold_soup";
     if (hasAny(name, [/\bpijota\b/])) return "white_fish";
@@ -52,7 +90,11 @@
       return "alcoholic_beverage";
     }
     if (hasAny(name, [/\bchocolate\b/, /\bcacao\b/, /\bxocolata\b/])) return "chocolate";
-    if (hasAny(name, [/\bguacamole\b/, /\bhummus\b/])) return "savory_spread";
+    if (hasAny(name, [/\bqueso fresco batido\b/])) return "spoonable_fresh_dairy";
+    if (hasAny(name, [/\btahin\w*\b/, /\bpasta de sesamo\b/])) return "nut_spread";
+    if (hasAny(name, [/\bguacamole\b/, /\bhummus\b/, /\bhoumous\b/])) {
+      return "plant_savory_spread";
+    }
     if (hasAny(name, [/\bzumo\b/, /\bnectar\b/, /\bsmoothie\b/, /\blimonada\b/, /\bjugo\b/])) {
       return "fruit_beverage";
     }
@@ -62,7 +104,12 @@
     if (hasAny(name, [/\bisotonic\w*\b/, /\brefresco\b/, /\bgaseosa\b/, /\bcola\b/, /\bhorchata\b/])) {
       return "soft_beverage";
     }
-    if (hasAny(name, [/\bbatido\b/])) return "soft_beverage";
+    if (
+      hasAny(name, [/\bbatido\b/]) &&
+      !["dairy", "postres_proteicos"].includes(category)
+    ) {
+      return "soft_beverage";
+    }
     if (
       flags.includes("condiment") ||
       hasAny(name, [
@@ -98,7 +145,7 @@
         /\bpaella\b/, /\blasan\w*\b/, /\btortilla de patata\b/,
         /\bempanad\w*\b/, /\bpizza\b/, /\bcroqueta\w*\b/,
         /\bensalada\b/, /\brisotto\b/, /\bchili con carne\b/,
-        /\bpasta\w* rellena\w*\b/, /\barroz marinera\b/,
+        /\bpasta\w* rellena\w*\b/, /\barroz marinera\b/, /\ben su tinta\b/,
       ])
     ) {
       return "prepared_meal";
@@ -187,6 +234,7 @@
     if (category === "protein") {
       if (subgroup === "plant_protein") return "plant_protein";
       if (subgroup === "legumes") return "cooked_legume";
+      if (subgroup === "viscera") return "organ_meat";
       if (["processed_meat", "processed_protein"].includes(subgroup)) {
         return "processed_meat";
       }
@@ -199,6 +247,16 @@
         return "non_exchangeable";
       }
       if (subgroup === "eggs") return "egg";
+      if (hasAny(name, [
+        /\bcamaron\w*\b/, /\bgamba\w*\b/, /\bgambon\w*\b/,
+        /\blangostin\w*\b/, /\bmejillon\w*\b/, /\balmeja\w*\b/,
+        /\bberberech\w*\b/, /\bpulpo\w*\b/, /\bpota\b/, /\bcalamar\w*\b/,
+        /\bsepia\w*\b/, /\bvieira\w*\b/, /\bzamburin\w*\b/,
+        /\bcangrej\w*\b/, /\bbogavante\w*\b/, /\bcigala\w*\b/,
+        /\bcentoll\w*\b/, /\bnecora\w*\b/, /\bpercebe\w*\b/,
+      ])) {
+        return "seafood";
+      }
       if (subgroup === "fish_white") {
         return hasAny(name, [/\b(lata|conserva|aceite|natural)\b/])
           ? "canned_fish"
@@ -228,6 +286,19 @@
         hasAny(name, [/\bbebida de (soja|avena|almendra|arroz)\b/])
       ) {
         return "plant_drink";
+      }
+      if (
+        hasAny(name, [/\bqueso fresco batido\b/, /\bquark\b/])
+      ) {
+        return "spoonable_fresh_dairy";
+      }
+      if (
+        hasAny(name, [
+          /\bqueso (?:para )?untar\b/, /\bqueso crema\b/,
+          /\bcrema de queso\b/, /\bfrischkase\b/,
+        ])
+      ) {
+        return "spreadable_cheese";
       }
       if (
         subgroup === "fresh_cheese" ||
@@ -314,8 +385,10 @@
       if (hasAny(name, [/\baceitun\w*\b/, /\boliva\w*\b/, /\bolives?\b/])) return "olive";
       if (hasAny(name, [/\bcrema\b/, /\bmantequilla de\b/])) return "nut_spread";
       if (subgroup === "other_fat") {
-        if (hasAny(name, [/\bmascarpone\b/])) return "fresh_cheese";
-        if (hasAny(name, [/\bfoie\b/, /\bpate\b/, /\bsobrasad\w*\b/])) return "savory_spread";
+        if (hasAny(name, [/\bmascarpone\b/])) return "spreadable_cheese";
+        if (hasAny(name, [/\bfoie\b/, /\bpate\b/, /\bsobrasad\w*\b/, /\bzurrapa\b/])) {
+          return "animal_savory_spread";
+        }
         if (hasAny(name, [/\bmargarina\b/, /\bmantequilla\b/])) return "oil";
         if (hasAny(name, [
           /\bcalve\b/, /\bcesar\b/, /\bmayonnaise\b/, /\bvinagreta\b/,
@@ -331,7 +404,9 @@
           return "fresh_cheese";
         }
         if (hasAny(name, [/\bchicharron\b/])) return "processed_meat";
-        if (hasAny(name, [/\bhoumous\b/, /\bhummus\b/])) return "savory_spread";
+        if (hasAny(name, [/\bhoumous\b/, /\bhummus\b/])) {
+          return "plant_savory_spread";
+        }
         return "non_exchangeable";
       }
     }
@@ -468,6 +543,8 @@
     plant_drink: "plant_drink",
     fermented_dairy: "fermented_dairy",
     fresh_cheese: "fresh_cheese",
+    spoonable_fresh_dairy: "spoonable_fresh_dairy",
+    spreadable_cheese: "fresh_cheese",
     aged_cheese: "aged_cheese",
     whole_fruit: "fruit",
     leafy_vegetable: "vegetable",
@@ -483,7 +560,10 @@
     nut_spread: "fat",
     chocolate: "chocolate",
     cold_soup: "cold_soup",
-    savory_spread: "savory_spread",
+    plant_savory_spread: "plant_spread",
+    animal_savory_spread: "animal_spread",
+    savory_spread: "plant_spread",
+    organ_meat: "protein_offal",
     prepared_meal: "prepared_meal",
     fruit_beverage: "fruit_beverage",
     hot_beverage: "hot_beverage",
@@ -527,6 +607,8 @@
     plant_drink: { review: 400, hard: 550 },
     fermented_dairy: { review: 300, hard: 450 },
     fresh_cheese: { review: 200, hard: 300 },
+    spoonable_fresh_dairy: { review: 300, hard: 450 },
+    spreadable_cheese: { review: 120, hard: 200 },
     aged_cheese: { review: 100, hard: 160 },
     whole_fruit: { review: 350, hard: 500 },
     leafy_vegetable: { review: 400, hard: 550 },
@@ -542,7 +624,10 @@
     nut_spread: { review: 60, hard: 100 },
     chocolate: { review: 60, hard: 100 },
     cold_soup: { review: 450, hard: 600 },
+    plant_savory_spread: { review: 120, hard: 200 },
+    animal_savory_spread: { review: 80, hard: 140 },
     savory_spread: { review: 120, hard: 200 },
+    organ_meat: { review: 180, hard: 280 },
     prepared_meal: { review: 450, hard: 600 },
     fruit_beverage: { review: 400, hard: 550 },
     hot_beverage: { review: 400, hard: 550 },
@@ -599,7 +684,13 @@
     // Spoonable dairy above the review serving is exactly the failure mode
     // observed in the product audit (125 g yogurt -> 304–350 g alternative).
     if (
-      ["fermented_dairy", "fresh_cheese", "aged_cheese"].includes(candidateContext) &&
+      [
+        "fermented_dairy",
+        "fresh_cheese",
+        "spoonable_fresh_dairy",
+        "spreadable_cheese",
+        "aged_cheese",
+      ].includes(candidateContext) &&
       amount > policy.review
     ) {
       return {
@@ -684,11 +775,56 @@
       return { compatible: true, priority: 2, origin: origin, candidate: candidate, reason: "carb_secondary_bridge" };
     }
 
-    var guacamoleBridge =
-      (origin === "savory_spread" && candidate === "avocado") ||
-      (origin === "avocado" && candidate === "savory_spread");
-    if (guacamoleBridge) {
-      return { compatible: true, priority: 1, origin: origin, candidate: candidate, reason: "avocado_spread_bridge" };
+    var spoonableDairyBridge =
+      (
+        origin === "spoonable_fresh_dairy" &&
+        ["fermented_dairy", "fresh_cheese"].includes(candidate)
+      ) ||
+      (
+        candidate === "spoonable_fresh_dairy" &&
+        ["fermented_dairy", "fresh_cheese"].includes(origin)
+      );
+    if (spoonableDairyBridge) {
+      return {
+        compatible: true,
+        priority:
+          [origin, candidate].includes("fermented_dairy") ? 1 : 2,
+        origin: origin,
+        candidate: candidate,
+        reason: "spoonable_dairy_bridge",
+      };
+    }
+
+    var spreadableCheeseBridge =
+      (origin === "spreadable_cheese" && candidate === "fresh_cheese") ||
+      (origin === "fresh_cheese" && candidate === "spreadable_cheese");
+    if (spreadableCheeseBridge) {
+      return {
+        compatible: true,
+        priority: 1,
+        origin: origin,
+        candidate: candidate,
+        reason: "fresh_cheese_form_bridge",
+      };
+    }
+
+    var plantSpreadBridge =
+      (
+        origin === "plant_savory_spread" &&
+        ["avocado", "nut_spread"].includes(candidate)
+      ) ||
+      (
+        candidate === "plant_savory_spread" &&
+        ["avocado", "nut_spread"].includes(origin)
+      );
+    if (plantSpreadBridge) {
+      return {
+        compatible: true,
+        priority: 1,
+        origin: origin,
+        candidate: candidate,
+        reason: "plant_spread_bridge",
+      };
     }
 
     return { compatible: false, priority: 9, origin: origin, candidate: candidate, reason: "context_mismatch" };
@@ -699,6 +835,14 @@
   // caso explícito (ensalada/frío frente a fundir/gratinar).
   function preparationUses(food) {
     var name = normalize(food && food.name);
+    var context = inferContext(food);
+    if (context === "spoonable_fresh_dairy") {
+      return ["spoon", "cooking_sauce"];
+    }
+    if (context === "spreadable_cheese") return ["spread"];
+    if (context === "plant_savory_spread" || context === "nut_spread") {
+      return ["spread", "cooking_sauce"];
+    }
     if (hasAny(name, [/\brallad\w*\b/, /\bgratin\w*\b/, /\bfundir\b/, /\bprovolone\b/, /\bfundid\w*\b/])) {
       return ["melt"];
     }
@@ -711,7 +855,7 @@
     ])) {
       return ["cold"];
     }
-    if (inferContext(food) === "fresh_cheese") return ["cold", "melt"];
+    if (context === "fresh_cheese") return ["cold"];
     return ["any"];
   }
 

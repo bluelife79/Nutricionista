@@ -108,7 +108,11 @@ assert.match(indexSource, /\/api\/session/);
 assert.match(indexSource, /EXCHANGE_RESULT_CACHE_LIMIT\s*=\s*18/);
 assert.match(indexSource, /type="password"\s+id="passwordInput"/);
 assert.match(indexSource, /id="passwordToggle"/);
-assert.match(indexSource, /recordará tu acceso durante un año/);
+assert.match(indexSource, /Solo tendrás que escribirla esta primera vez/);
+assert.match(
+  indexSource,
+  /Mientras formes parte del programa, no tendrás que volver a identificarte/,
+);
 assert.doesNotMatch(indexSource, /text-transform:\s*uppercase[^}]*passwordInput/);
 assert.doesNotMatch(authSource, /Access-Control-Allow-Origin/);
 assert.match(authSource, /MAX_ATTEMPTS\s*=\s*6/);
@@ -128,7 +132,7 @@ assert.match(adminHtmlSource, /id="adminEmail"/);
 assert.doesNotMatch(adminHtmlSource, /sessionStorage|x-admin-password/);
 assert.match(serviceWorkerSource, /isDocument/);
 assert.match(serviceWorkerSource, /self\.clients\.claim/);
-assert.match(serviceWorkerSource, /revolucionat-premium-v2-2-ux-1/);
+assert.match(serviceWorkerSource, /revolucionat-premium-v2-3-systemic-1/);
 brandAssets.forEach((asset) => assert.ok(fs.existsSync(path.join(ROOT, asset)), `${asset} no existe`));
 
 console.log('✅ Seguridad: Supabase Auth, cookies separadas, baja inmediata y panel sin contraseñas expuestas');

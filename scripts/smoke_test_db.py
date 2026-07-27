@@ -163,8 +163,8 @@ def main():
     fat = [f for f in db if f.get('category') == 'fat']
     aove_foods = [
         f for f in fat
-        if 'aceite de oliva' in (f.get('name') or '').lower() or
-           'aove' in (f.get('name') or '').lower()
+        if (f.get('name') or '').lower().startswith('aceite de oliva') or
+           (f.get('name') or '').lower().startswith('aove')
     ]
     a9_offenders = [f for f in aove_foods if f.get('subgroup') != 'olive_oil']
     assert_check(

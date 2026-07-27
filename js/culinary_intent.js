@@ -14,7 +14,7 @@
 (function (global) {
   "use strict";
 
-  var VERSION = "premium-v2.2-intent-3";
+  var VERSION = "premium-v2.3-intent-1";
   var MIN_CANDIDATES_PER_OPTION = 3;
   var PROFILE_CACHE = typeof WeakMap === "function" ? new WeakMap() : null;
   var CATALOG_USE_INDEX = typeof WeakMap === "function" ? new WeakMap() : null;
@@ -86,7 +86,10 @@
     var family = context;
     var promptId = null;
 
-    if (["fresh_cheese", "aged_cheese"].includes(context)) {
+    if (context === "spreadable_cheese") {
+      family = "cheese";
+      uses.push("spread");
+    } else if (["fresh_cheese", "aged_cheese"].includes(context)) {
       if (hasAny(name, [
         /\bcon frut\w*\b/, /\btrocitos? de fresa\b/,
         /\bsabor (fresa|frambuesa|mango)\b/,
@@ -124,15 +127,15 @@
       } else if (hasAny(name, [/\bmozzarella\b/, /\bmozzarela\b/, /\bburrata\b/])) {
         uses.push("cold", "melt");
       } else if (hasAny(name, [/\bburgos\b/, /\brequeson\b/, /\bricotta\b/, /\bcottage\b/, /\bfeta\b/, /\bmato\b/, /\bqueso fresco\b/])) {
-        uses.push("cold", "spread");
+        uses.push("cold");
       } else if (context === "aged_cheese") {
         uses.push("direct", "melt");
       } else {
-        uses.push("cold", "melt", "spread");
+        uses.push("cold");
       }
     } else if (context === "breakfast_cereal") {
       family = "cereal";
-      if (hasAny(name, [/\bavena\b/, /\bcopo\w*\b/, /\bsalvado\b/, /\bporridge\b/])) {
+      if (hasAny(name, [/\bavena\b/, /\bsalvado de avena\b/, /\bporridge\b/])) {
         promptId = "oats_use";
         uses.push("breakfast_bowl", "porridge", "baking");
         if (!hasAny(name, [/\bchocolate\b/, /\bazucar\w*\b/, /\bmiel\b/, /\brellen\w*\b/])) {
@@ -219,7 +222,9 @@
       } else {
         uses.push("side", "stew", "puree");
       }
-    } else if (context === "fermented_dairy") {
+    } else if (
+      ["fermented_dairy", "spoonable_fresh_dairy"].includes(context)
+    ) {
       family = "fermented_dairy";
       if (hasAny(name, [/\bkefir\b/, /\bbebible\b/, /\bpara beber\b/, /\bliquido\b/])) {
         uses.push("drink");
@@ -232,7 +237,10 @@
         ]);
         if (
           !flavoredFermented &&
-          hasAny(name, [/\bnatural\b/, /\bgrieg\w*\b/, /\bskyr\b/, /\bquark\b/])
+          (
+            context === "spoonable_fresh_dairy" ||
+            hasAny(name, [/\bnatural\b/, /\bgrieg\w*\b/, /\bskyr\b/, /\bquark\b/])
+          )
         ) {
           promptId = "fermented_dairy_use";
           uses.push("cooking_sauce");
@@ -270,7 +278,9 @@
     } else if (context === "nuts_seeds") {
       family = "nuts_seeds";
       uses.push("direct", "topping");
-    } else if (context === "nut_spread") {
+    } else if (
+      ["nut_spread", "plant_savory_spread"].includes(context)
+    ) {
       family = "spread";
       uses.push("spread");
     } else if (context === "oil") {

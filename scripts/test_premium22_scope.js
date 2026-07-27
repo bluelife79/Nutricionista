@@ -28,8 +28,9 @@ const REFERENCE_IDS = [
   "bedca_0395",
   "off_1627f0f609",
   "off_0aba323a23",
-  "off_596ef3dfe1",
 ];
+
+const RECOVERED_SIMPLE_CORE_IDS = ["off_596ef3dfe1"];
 
 function assertSearchNeverReturns(search, query, forbiddenIds) {
   const results = Array.from(search(query));
@@ -82,6 +83,16 @@ async function main() {
       engine.window.getPremiumExchangeScope(food).status,
       "reference_only",
       `${food.name}: debía ser solo referencia`,
+    );
+  }
+
+  for (const id of RECOVERED_SIMPLE_CORE_IDS) {
+    const food = engine.foods.find((item) => item.id === id);
+    assert(food, `Falta alimento simple recuperado ${id}`);
+    assert.strictEqual(
+      engine.window.getPremiumExchangeScope(food).status,
+      "exchange_core",
+      `${food.name}: un producto simple y verificado no debe quedar relegado`,
     );
   }
 

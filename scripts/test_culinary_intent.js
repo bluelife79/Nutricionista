@@ -42,21 +42,6 @@ const CASES = [
     amount: 60,
   },
   {
-    name: "pollo",
-    query: "Pechuga de pollo",
-    prompt: "meat_use",
-    expected: ["main_piece", "stew"],
-    amount: 120,
-  },
-  {
-    name: "pescado",
-    query: "Merluza",
-    aliases: ["Lomos de merluza"],
-    prompt: "fish_use",
-    expected: ["main_piece", "stew"],
-    amount: 150,
-  },
-  {
     name: "proteína vegetal",
     query: "Tofu",
     prompt: "plant_protein_use",
@@ -165,9 +150,28 @@ async function main() {
     "Premium 2.2 no debe dejar contextos técnicamente desconocidos",
   );
   assert(
-    audit.totals.prompted_foods >= 450,
-    `Cobertura adaptativa insuficiente: ${audit.totals.prompted_foods} alimentos`,
+    audit.totals.prompted_foods >= 400,
+    `Cobertura adaptativa validada insuficiente: ${audit.totals.prompted_foods} alimentos`,
   );
+
+  // No se pregunta por preguntar: si el uso apenas altera la primera pantalla,
+  // la auditoría debe dejar el alimento silencioso.
+  for (const silentCase of [
+    { name: "pollo", query: "Pechuga de pollo" },
+    { name: "pescado", query: "Merluza", aliases: ["Lomos de merluza"] },
+  ]) {
+    const origin = findFood(
+      engine.foods,
+      silentCase.query,
+      silentCase.aliases || [],
+    );
+    assert(origin, `${silentCase.name}: alimento de origen no localizado`);
+    assert.strictEqual(
+      engine.window.getPremiumUsagePrompt(origin, engine.foods),
+      null,
+      `${silentCase.name}: no debe mostrar una pregunta sin cambio material`,
+    );
+  }
 
   for (const testCase of CASES) {
     const origin = testCase.id

@@ -63,12 +63,56 @@ function tokenize(query) {
     .filter((t) => t.length > 0 && !STOP_WORDS.has(t));
 }
 
-function matchesFood(food, query) {
-  const q = norm(query);
-  if (!q) return true;
+// Search uses the language a client naturally types, not the exact inflection
+// stored by BEDCA or a supermarket. Canonicalise both the query and the food
+// index symmetrically so "nueces" finds "nuez", "panes" finds "pan" and
+// "tortillas de trigo" finds a product whose label contains "Tortillas Trigo".
+// This is intentionally search-only: ranking and nutrition continue to consume
+// the original catalogue text.
+const _SEARCH_TOKEN_ALIASES = new Map([
+  ["aceites", "aceite"],
+  ["aguacates", "aguacate"],
+  ["arroces", "arroz"],
+  ["cacahuetes", "cacahuete"],
+  ["carnes", "carne"],
+  ["chocolates", "chocolate"],
+  ["leches", "leche"],
+  ["nueces", "nuez"],
+  ["peces", "pez"],
+  ["tomates", "tomate"],
+  ["luces", "luz"],
+]);
 
-  const terms = q.split(/\s+/).filter(Boolean);
-  const hay = norm(
+function canonicalSearchToken(token) {
+  const value = norm(token);
+  if (!value) return "";
+  if (_SEARCH_TOKEN_ALIASES.has(value)) {
+    return _SEARCH_TOKEN_ALIASES.get(value);
+  }
+  if (value.length > 4 && /ces$/.test(value)) {
+    return value.slice(0, -3) + "z";
+  }
+  if (value.length > 4 && /[bcdfghjklmnñpqrstvwxyz]es$/.test(value)) {
+    return value.slice(0, -2);
+  }
+  if (value.length > 3 && /[aeiou]s$/.test(value)) {
+    return value.slice(0, -1);
+  }
+  return value;
+}
+
+function searchTokens(value) {
+  return norm(value)
+    .split(/\s+/)
+    .filter((token) => token && !STOP_WORDS.has(token))
+    .map(canonicalSearchToken)
+    .filter(Boolean);
+}
+
+function matchesFood(food, query) {
+  const terms = searchTokens(query);
+  if (terms.length === 0) return true;
+  const hayTokens = new Set(searchTokens(
     (food.name || "") +
       " " +
       (food.brand || "") +
@@ -76,15 +120,23 @@ function matchesFood(food, query) {
       (food.source || "") +
       " " +
       (food.category || ""),
-  );
+  ));
 
-  return terms.every((t) => hay.includes(t));
+  return terms.every((term) => hayTokens.has(term));
 }
 
 // ============================================
 // ANCHOR MACRO
 // ============================================
 function getAnchorMacro(food) {
+  const premiumContext =
+    typeof window.inferPremiumContext === "function"
+      ? window.inferPremiumContext(food)
+      : food.premium_context;
+  // Hummus y guacamole son alimentos mixtos: forzar grasa, carbohidrato o
+  // proteína produce raciones engañosas según la receta. En este contexto
+  // concreto, la energía de la ración es el ancla más estable.
+  if (premiumContext === "plant_savory_spread") return "calories";
   // macro_profile como fuente primaria si es un valor confiable
   const mp = (food.macro_profile || "").toLowerCase();
   if (mp === "protein") return "protein";
@@ -477,7 +529,21 @@ function calculateEquivalence(
   originalAmount,
   originalMacros,
 ) {
-  const anchor = getAnchorMacro(original);
+  const pairCompatibility =
+    typeof window.getPremiumContextCompatibility === "function"
+      ? window.getPremiumContextCompatibility(original, alt)
+      : null;
+  const isLighterSpoonableDairyBridge =
+    pairCompatibility?.reason === "spoonable_dairy_bridge" &&
+    pairCompatibility.origin === "fresh_cheese" &&
+    pairCompatibility.candidate === "spoonable_fresh_dairy";
+  // A solid fresh cheese is often fat-led while queso fresco batido is nearly
+  // fat-free. Matching fat would yield kilograms and hide a useful, familiar
+  // swap. In this one directional bridge we preserve protein instead and show
+  // the calorie/fat difference transparently as a lighter secondary option.
+  const anchor = isLighterSpoonableDairyBridge
+    ? "protein"
+    : getAnchorMacro(original);
 
   // Si el alimento "original" no tiene el macro ancla, no se puede calcular bien
   if (!original[anchor] || original[anchor] <= 0) return null;
@@ -541,7 +607,12 @@ function calculateEquivalence(
   //     porque la porción equivalente se ajusta: 80g aguacate → 17g
   //     nueces. Las densidades dispares son normales en grasas).
   if (original.calories > 0 && alt.calories > 0) {
-    const kcalRatio = alt.calories / original.calories;
+    const originalServingCalories =
+      (original.calories * originalAmount) / 100;
+    const candidateServingCalories =
+      (alt.calories * equivalentAmount) / 100;
+    const kcalRatio =
+      candidateServingCalories / Math.max(originalServingCalories, 1);
     if (kcalRatio > 1.40) {
       const _LEAN_PROTEIN_SUBS = new Set([
         "meat_lean", "meat", "meat_fatty", "fish_white", "fish_fatty", "eggs",
@@ -668,6 +739,18 @@ function calculateEquivalence(
     // para que el orden visible siga siendo coherente con el %.
     matchDisplay = Math.max(55, Math.min(68, Math.round(_pClose * 0.68)));
   }
+  if (isLighterSpoonableDairyBridge && matchScore < 60) {
+    const proteinCloseness =
+      100 -
+      Math.min(
+        100,
+        (Math.abs(proteinDiff) / Math.max(originalMacros.protein, 1)) * 100,
+      );
+    matchDisplay = Math.max(
+      60,
+      Math.min(72, Math.round(proteinCloseness * 0.72)),
+    );
+  }
 
   let level = null;
   if (matchScore >= 95 && equivalentAmount <= 300) level = "perfect";
@@ -687,6 +770,24 @@ function calculateEquivalence(
     equivalentAmount <= 400
   ) {
     level = "advanced";
+  } else if (
+    isLighterSpoonableDairyBridge &&
+    anchor === "protein" &&
+    Math.abs(proteinDiff) <= originalMacros.protein * 0.2 &&
+    altMacros.calories <= originalMacros.calories &&
+    equivalentAmount <= 300
+  ) {
+    level = "advanced";
+  } else if (
+    pairCompatibility?.origin === "plant_savory_spread" &&
+    pairCompatibility?.candidate === "plant_savory_spread" &&
+    anchor === "calories" &&
+    matchScore >= 45 &&
+    equivalentAmount >= 10 &&
+    equivalentAmount <= 120
+  ) {
+    level = "advanced";
+    matchDisplay = Math.max(55, matchScore);
   } else return null;
 
   return {
@@ -1161,6 +1262,32 @@ function isProteicDairy(food) {
 function isCompatibleCategory(candidate, original) {
   // Caso normal: misma categoría
   if (candidate.category === original.category) return true;
+
+  // Parte del catálogo histórico conserva categorías antiguas aunque la
+  // identidad culinaria ya esté bien resuelta. Permitimos el cruce únicamente
+  // cuando ambos alimentos comparten un contexto inequívoco y cotidiano.
+  if (typeof window.inferPremiumContext === "function") {
+    const originalContext = window.inferPremiumContext(original);
+    const candidateContext = window.inferPremiumContext(candidate);
+    const canonicalCrossCategoryContexts = new Set([
+      "whole_fruit",
+      "leafy_vegetable",
+      "cruciferous",
+      "fruiting_vegetable",
+      "root_vegetable",
+      "stalk_vegetable",
+      "other_vegetable",
+      "nuts_seeds",
+      "bread",
+      "spreadable_cheese",
+    ]);
+    if (
+      originalContext === candidateContext &&
+      canonicalCrossCategoryContexts.has(originalContext)
+    ) {
+      return true;
+    }
+  }
 
   // Cross-category: postres_proteicos ↔ dairy proteico (yogures, skyr)
   if (original.category === "postres_proteicos" && isProteicDairy(candidate)) {
@@ -1729,8 +1856,10 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         }
       }
 
-      // La carne picada conserva su función culinaria. Se permiten otras
-      // carnes frescas, pero no fiambres, tiras preparadas ni conservas.
+      // La carne picada conserva su función culinaria. Primero se priorizan
+      // otras carnes picadas; si el catálogo no ofrece suficientes, se
+      // admiten cortes frescos como alternativas secundarias. Nunca se rellena
+      // el bloque con fiambres, tiras preparadas ni conservas.
       {
         const originForm = proteinPreparationForm(originalFood);
         if (originForm === "minced") {
@@ -1739,9 +1868,7 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
             return false;
           }
           const candidateForm = proteinPreparationForm(f);
-          if (candidateForm === "deli" ||
-              candidateForm === "prepared" ||
-              candidateForm === "canned") {
+          if (!["minced", "fresh"].includes(candidateForm)) {
             return false;
           }
         }
@@ -2007,8 +2134,14 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         const _DAIRY_COMPAT = {
           leche: ["leche"],
           yogur_kefir: ["yogur_kefir"],
-          queso_fresco: ["queso_fresco"],
+          lacteo_fresco_cuchara: [
+            "lacteo_fresco_cuchara",
+            "yogur_kefir",
+            "queso_fresco",
+          ],
+          queso_fresco: ["queso_fresco", "lacteo_fresco_cuchara"],
           quesos_solidos: ["quesos_solidos"],
+          queso_untable: ["queso_untable", "queso_fresco"],
           grasa_lactea: ["grasa_lactea"],
           bebida_postre: ["bebida_postre"],
           bebida_vegetal: ["bebida_vegetal"],
@@ -2016,9 +2149,27 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         };
         const oFam = originalFood.dairy_subfamily;
         const cFam = f.dairy_subfamily;
+        const oContext =
+          typeof window.inferPremiumContext === "function"
+            ? window.inferPremiumContext(originalFood)
+            : "";
+        const cContext =
+          typeof window.inferPremiumContext === "function"
+            ? window.inferPremiumContext(f)
+            : "";
+        const explicitSpoonableBridge =
+          (
+            oContext === "spoonable_fresh_dairy" &&
+            ["fermented_dairy", "fresh_cheese"].includes(cContext)
+          ) ||
+          (
+            cContext === "spoonable_fresh_dairy" &&
+            ["fermented_dairy", "fresh_cheese"].includes(oContext)
+          );
         if (
           originalFood.category === "dairy" && f.category === "dairy" &&
           oFam && _DAIRY_COMPAT[oFam] &&
+          !explicitSpoonableBridge &&
           (!cFam || !_DAIRY_COMPAT[oFam].includes(cFam))
         ) {
           return false;
@@ -2149,7 +2300,17 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
 
   const withEquivalence = candidates
     .map((alt) => {
-      const tier = getFoodTier(alt, originalFood);
+      let tier = getFoodTier(alt, originalFood);
+      if (
+        _premiumContextEnabled &&
+        window.getPremiumContextCompatibility(originalFood, alt).reason ===
+          "spoonable_dairy_bridge"
+      ) {
+        // Queso fresco batido no es otra marca/formato de Burgos: es una
+        // alternativa culinaria más ligera y debe aparecer en el bloque de
+        // intercambios, no enterrada entre decenas de quesos sólidos.
+        tier = 2;
+      }
       const eq = calculateEquivalence(alt, originalFood, amount, originalMacros);
       if (!eq) return null;
       return { ...eq, tier };
@@ -2370,16 +2531,37 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     // means undefined !== true / undefined !== "raro" — graceful degradation).
     let demotion = 1;
 
-    if (
-      opts.usageMode &&
-      opts.usageMode !== "any" &&
-      typeof window.getPremiumUsageCompatibility === "function"
-    ) {
+    if (typeof window.getPremiumUsageCompatibility === "function") {
+      let effectiveUsageMode = opts.usageMode || "any";
+      if (
+        effectiveUsageMode === "any" &&
+        typeof window.getPremiumIntentProfile === "function"
+      ) {
+        const originProfile = window.getPremiumIntentProfile(originalFood);
+        if (
+          Array.isArray(originProfile.primary_uses) &&
+          originProfile.primary_uses.length === 1
+        ) {
+          effectiveUsageMode = originProfile.primary_uses[0];
+        }
+      }
       const usageCompatibility = window.getPremiumUsageCompatibility(
         a,
-        opts.usageMode,
+        effectiveUsageMode,
       );
-      if (usageCompatibility.priority > 0) {
+      const isSpoonableFreshDairyBridge =
+        premiumContext.reason === "spoonable_dairy_bridge";
+      if (
+        effectiveUsageMode !== "any" &&
+        usageCompatibility.compatible === false
+      ) {
+        demotion *= isSpoonableFreshDairyBridge
+          ? (Number(window.PREMIUM_USAGE_SECONDARY_DEMOTION) || 0.55)
+          : (Number(window.PREMIUM_USAGE_INCOMPATIBLE_DEMOTION) || 0.18);
+      } else if (
+        effectiveUsageMode !== "any" &&
+        usageCompatibility.priority > 0
+      ) {
         demotion *= Number(window.PREMIUM_USAGE_SECONDARY_DEMOTION) || 0.55;
       }
       if (typeof window.getPremiumIntentProfile === "function") {
@@ -2416,6 +2598,15 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       demotion *= Number(window.PREMIUM_CONTEXT_COHORT_DEMOTION) || 0.90;
     } else if (premiumContext.priority >= 2) {
       demotion *= Number(window.PREMIUM_CONTEXT_BRIDGE_DEMOTION) || 0.55;
+    }
+
+    // En carne picada, un corte fresco sigue siendo una alternativa válida
+    // de proteína, pero debe aparecer después de los formatos picados.
+    if (
+      proteinPreparationForm(originalFood) === "minced" &&
+      proteinPreparationForm(a) === "fresh"
+    ) {
+      demotion *= Number(window.PROTEIN_MINCED_TO_FRESH_DEMOTION) || 0.42;
     }
 
     if (
@@ -2998,7 +3189,12 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     // R4 DAIRY CROSS-SUBFAMILY: yogur griego ↔ nata / queso curado /
     // leche almendras / leche entera = NO equivalente culinario aunque
     // macros cuadren. Demote fuerte cross-subfamily dentro de dairy.
-    if (oDairyFam && cDairyFam && oDairyFam !== cDairyFam) {
+    if (
+      oDairyFam &&
+      cDairyFam &&
+      oDairyFam !== cDairyFam &&
+      premiumContext.reason !== "spoonable_dairy_bridge"
+    ) {
       demotion *= _dairyCrossSubfamilyDemotion;
       if (window.location.search.includes('?debug=1')) {
         console.debug('[dairy-cross] DEMOTED candidate=\'' + a.name + '\' (' + cDairyFam + ' vs ' + oDairyFam + ') factor=' + _dairyCrossSubfamilyDemotion);
@@ -3059,7 +3255,10 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         _LEAN_PROTEIN_SUBS.has(originalFood.subgroup) &&
         _LEAN_PROTEIN_SUBS.has(a.subgroup) &&
         a.exotic !== true;
-      if (isMixedOrigin && !sameLeanCluster &&
+      if (
+          isMixedOrigin &&
+          !sameLeanCluster &&
+          premiumContext.reason !== "spoonable_dairy_bridge" &&
           originalMacros.calories > 0 && a.macros) {
         const calRatio = a.macros.calories / originalMacros.calories;
         // Hugo mail 16/05/2026 punto 1.C — doble escalón:
@@ -3441,7 +3640,7 @@ function tokenSortScore(nameNorm, queryTokens) {
   // Normalizar puntuación BEDCA ("Arroz, hervido", "Patata, cruda") → espacios
   // para que startsWith(t + " ") matchee igual que "Arroz Hervido".
   // Sin esto, BEDCA materia prima pierde contra productos brand de super.
-  const nn = nameNorm.replace(/[,;:]/g, " ").replace(/\s+/g, " ");
+  const nn = searchTokens(nameNorm).join(" ");
   let score = 0;
   const allPresent = queryTokens.every((t) => nn.includes(t));
   if (allPresent) score += 5;
@@ -3495,7 +3694,8 @@ function canonicalSpanishGenericPriority(food, queryTokens) {
     return 0;
   }
   const name = norm(food.name || "");
-  if (!queryTokens.every((token) => name.includes(token))) return 0;
+  const nameTokens = new Set(searchTokens(name));
+  if (!queryTokens.every((token) => nameTokens.has(token))) return 0;
   if (searchModifierPenalty(name, queryTokens) !== 0) return 0;
   return 1;
 }
@@ -3504,8 +3704,6 @@ function canonicalSpanishGenericPriority(food, queryTokens) {
 // SEARCH FOODS (local database)
 // ============================================
 function getLocalSearchResults(query) {
-  const qn = norm(query);
-
   // PASO 1: Buscar en database local
   // Excluimos "hidden" (duplicados nutricionales) para no inflar el listado
   // de búsqueda con 12 versiones del mismo arroz/atún/pollo.
@@ -3520,7 +3718,7 @@ function getLocalSearchResults(query) {
         window.isPremiumExchangeSearchable(food),
     )
     .sort((a, b) => {
-      const tokens = tokenize(query);
+      const tokens = searchTokens(query);
       const canonicalA = canonicalSpanishGenericPriority(a, tokens);
       const canonicalB = canonicalSpanishGenericPriority(b, tokens);
       if (canonicalA !== canonicalB) return canonicalB - canonicalA;

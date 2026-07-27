@@ -1,5 +1,5 @@
 {
-  "version": "premium-v2.1-product-safety-1",
+  "version": "premium-v2.3-product-safety-1",
   "status": "active_product_safety",
   "purpose": "Límites conservadores de practicidad y claridad de interfaz; no son prescripciones dietéticas ni sustituyen una validación clínica.",
   "defaults": {
@@ -30,6 +30,8 @@
     "plant_drink": {"review_max_g": 400, "hard_max_g": 550},
     "fermented_dairy": {"review_max_g": 300, "hard_max_g": 450},
     "fresh_cheese": {"review_max_g": 200, "hard_max_g": 300},
+    "spoonable_fresh_dairy": {"review_max_g": 300, "hard_max_g": 450},
+    "spreadable_cheese": {"review_max_g": 120, "hard_max_g": 200},
     "aged_cheese": {"review_max_g": 100, "hard_max_g": 160},
     "whole_fruit": {"review_max_g": 350, "hard_max_g": 500},
     "leafy_vegetable": {"review_max_g": 400, "hard_max_g": 550},
@@ -45,7 +47,10 @@
     "nut_spread": {"review_max_g": 60, "hard_max_g": 100},
     "chocolate": {"review_max_g": 60, "hard_max_g": 100},
     "cold_soup": {"review_max_g": 450, "hard_max_g": 600},
+    "plant_savory_spread": {"review_max_g": 120, "hard_max_g": 200},
+    "animal_savory_spread": {"review_max_g": 80, "hard_max_g": 140},
     "savory_spread": {"review_max_g": 120, "hard_max_g": 200},
+    "organ_meat": {"review_max_g": 180, "hard_max_g": 280},
     "prepared_meal": {"review_max_g": 450, "hard_max_g": 600},
     "fruit_beverage": {"review_max_g": 400, "hard_max_g": 550},
     "hot_beverage": {"review_max_g": 400, "hard_max_g": 550},

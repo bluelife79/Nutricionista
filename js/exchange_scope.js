@@ -16,8 +16,8 @@
 (function (global) {
   "use strict";
 
-  var VERSION = "premium-v2.2-scope-4";
-  var CHOICE_VERSION = "premium-v2.2-choice-1";
+  var VERSION = "premium-v2.3-scope-1";
+  var CHOICE_VERSION = "premium-v2.3-choice-1";
   var STATUS = {
     CORE: "exchange_core",
     REFERENCE: "reference_only",
@@ -93,7 +93,7 @@
   var CONFECTIONERY_RE =
     /\b(gominol\w*|golosin\w*|chuch\w*|caramelos?|chicles?|nubes?|malvavisc\w*|donuts?|doughnuts?|croissants?|boll\w*|magdalenas?|bizcochos?|gallet\w*|cookies?|tartas?|pasteles?|helados?|polos?|calipo|mousse|puddings?|natillas?|barritas? prote\w*|snack prote\w*)\b/;
   var SWEET_CEREAL_RE =
-    /\b(cereal\w*|copos?|muesli|granola|trigo inflado)\b.*\b(chocolate|cacao|caramel\w*|miel|azucar\w*|rellen\w*)\b|\b(choco ?bollz|cereales? rellenos?)\b/;
+    /\b(cereal\w*|copos?|muesli|granola|trigo inflado)\b.*\b(chocolate|cacao|caramel\w*|miel|azucar\w*|rellen\w*|fundente)\b|\b(choco ?bollz|cereales? rellenos?)\b/;
   var SUGARY_DRINK_RE =
     /\b(refresco\w*|gaseosa\w*|bebida energet\w*|bebida isoton\w*|aquarius|cola|limonada|nectar\w*|zumos?|jugos?)\b/;
   var ALCOHOL_RE =
@@ -103,15 +103,15 @@
   var FAST_READY_MEAL_RE =
     /\b(pizza\w*|lasa[nñ]\w* refrigerad\w*|hamburgues\w* con|burgers?\b|perrito\w*|kebab\w*|fingers?\b|croquet\w*|san jacobo|cordon bleu|empanadill\w*|burrito\w* preparado\w*|sandwich\w*|sanwich\w*|flautas?\b|funroll\b|gyozas?\b)\b/;
   var FLAVOURED_DAIRY_RE =
-    /\b(pudding|mousse|natillas?|postre|tipo actimel|actimel|aromatizad\w*|edulcor\w*|educor\w*|azucarad\w*|con azucar\w*|con nata|frut\w*|sabor (?!natural\b|suave\b)|manzana\w*|pera\b|naranja\w*|fresa\w*|frambues\w*|mango|vainilla|caramelo|melocoton\w*|platano\w*|pina\b|coco\b|arandano\w*|ciruela\w*|albaricoque\w*|maracuya\w*|macedonia|trocitos? de fruta|strawberr\w*|blueberr\w*|raspberr\w*|peach\w*|passion fruit|vanilla|fruit flavour\w*)\b/;
+    /\b(pudding|mousse|natillas?|postre|tipo actimel|actimel|aromatizad\w*|edulcor\w*|educor\w*|azucarad\w*|con azucar\w*|con nata|frut\w*|fruit\w*|berr\w*|sabores?\b(?!\s+(?:natural|suave)\b)|sabor (?!natural\b|suave\b)|manzana\w*|pera\b|naranja\w*|fresa\w*|frambues\w*|mango|vainilla|caramelo|melocoton\w*|platano\w*|pina\b|coco\b|arandano\w*|ciruela\w*|albaricoque\w*|maracuya\w*|macedonia|trocitos? de fruta|strawberr\w*|blueberr\w*|raspberr\w*|peach\w*|passion fruit|vanilla|fruit flavour\w*)\b/;
   var FERMENTED_DAIRY_IDENTITY_RE =
-    /\b(yogur\w*|yogurt|yoghourt|yaourt|iogur|kefir|quefir|skyr|bifidus|l casei)\b/;
+    /\b(yogur\w*|yogurt|yoghourt|yaourt|iogur|kefir|quefir|skyr|bifidus|l casei|queso fresco batido)\b/;
   var NO_ADDED_SUGAR_CLAIM_RE =
     /\b(sin azucar(?:es)?(?: anadid\w*)?|no added sugar|without added sugar|sans sucres? ajoutes?|ohne zuckerzusatz|senza zuccheri aggiunti|sem acucar(?:es)? adicionado\w*)\b/g;
   var ADDED_SUGAR_INGREDIENT_RE =
     /\b(azucar(?:es)?|fructosa|glucosa|dextrosa|sacarosa|miel|panela|zucker|fruktose|glukose|honig|sugar|fructose|glucose|honey|sucre|miel|zucchero|miele|acucar|xarope|sciroppo|jarabe|sirope|sirop)\b|\b(zumo|jugo|juice|saft|succo)\b.{0,30}\b(concentrad\w*|concentrate\w*|konzentrat\w*)\b/;
   var FLAVOURED_NUT_RE =
-    /\b(carameliz\w*|chocolatead\w*|con chocolate|sabor (barbacoa|chili|miel)|frit\w*|salad\w*|punto de sal|aguasal)\b/;
+    /\b(carameliz\w*|garrapin\w*|chocolatead\w*|con chocolate|sabor (barbacoa|chili|miel)|frit\w*|salad\w*|punto de sal|aguasal)\b/;
   var SEASONED_PROTEIN_RE =
     /\b(adobad\w*|marinad\w*|empanad\w*|rebozad\w*|fregit\w*|nuggets?|estilo (andaluz|kebab|cajun|tex mex))\b/;
   var FILLED_PASTA_RE =
@@ -142,10 +142,12 @@
     /\b(arroz|maiz|noodles?|fideos?|pasta|papas?|patatas?)\b.*\bsabor\b/;
   var NOVA4_CORE_CONTEXTS = new Set([
     "fermented_dairy",
+    "spoonable_fresh_dairy",
     "milk",
     "plant_drink",
     "bread",
     "fresh_cheese",
+    "spreadable_cheese",
     "aged_cheese",
     "canned_fish",
     "cooked_legume",
@@ -199,7 +201,8 @@
         /\b(cordero|pato|cerdo|costilla\w*|panceta|morro|oreja|codillo|muslo)\b/,
       minced_meat:
         /\b(picad\w*|carne picada|vacuno|ternera|pollo|pavo|cerdo)\b/,
-      egg: /\b(huevo\w*|clara\w*|yema\w*)\b/,
+      egg:
+        /\b(huevo\w*|clara\w*|yema\w*|tortilla(?: a la)? francesa)\b/,
       white_fish:
         /\b(merluza|bacalao|rape|lenguado|gallo|dorada|lubina|panga|tilapia|calamar|sepia|gamba|gambon|langostino|mejillon|almeja|berberecho|pulpo|pota|pijota|raya)\b/,
       fatty_fish:
@@ -207,16 +210,20 @@
       canned_fish:
         /\b(salmon|sardina|sardinilla|caballa|atun|bonito|boqueron|anchoa|bacalao|mejillon|berberecho)\b/,
       seafood:
-        /\b(gamba|gambon|langostino|mejillon|almeja|berberecho|pulpo|pota|calamar|sepia|vieira|marisco)\b/,
+        /\b(camaron\w*|gamba\w*|gambon\w*|langostin\w*|mejillon\w*|almeja\w*|berberech\w*|pulpo\w*|pota|calamar\w*|sepia\w*|vieira\w*|zamburin\w*|cangrej\w*|bogavante\w*|cigala\w*|centoll\w*|necora\w*|percebe\w*|marisco)\b/,
       plant_protein:
         /\b(tofu|tempeh|seitan|soja texturizada|proteina de soja)\b/,
       fermented_dairy:
         /\b(yogur\w*|yogurt|yaourt|iogur|kefir|quefir|skyr|quark|cuajada|bifidus|l casei)\b/,
+      spoonable_fresh_dairy:
+        /\b(queso fresco batido|quark)\b/,
       milk: /^(leche|lait|llet)\b/,
       plant_drink:
         /\b(bebida|leche|beguda|bevanda)\b.*\b(soja|avena|almendra|arroz|espelta|coco|trigo)\b|\b(soja|avena|almendra|arroz|espelta|coco|trigo)\b.*\b(bebida|leche|beguda|bevanda)\b/,
       fresh_cheese:
         /\b(queso|mozzarella|mozzarela|burrata|feta|ricotta|cottage|requeson|mato)\b/,
+      spreadable_cheese:
+        /\b(queso (?:para )?untar|queso crema|crema de queso|frischkase|mascarpone)\b/,
       aged_cheese:
         /\b(queso|emmental|gouda|havarti|cheddar|parmesano|grana padano|manchego|brie|camembert|gorgonzola|raclette)\b/,
       whole_fruit:
@@ -242,8 +249,61 @@
       olive: /\b(aceituna|olives?)\b/,
       hot_beverage:
         /\b(cafe|coffee|te verde|te negro|infusion|rooibos|manzanilla|menta poleo)\b/,
+      plant_savory_spread:
+        /\b(hummus|houmous|guacamole)\b/,
     };
-    return Boolean(patterns[context] && patterns[context].test(name));
+    if (patterns[context] && patterns[context].test(name)) return true;
+
+    // BEDCA already gives us a trusted generic identity, a canonical subgroup
+    // and complete composition. For those rows the structured facts are a
+    // stronger source than requiring every Spanish food name to appear in a
+    // hand-written whitelist. Rare foods remain closed; the recovery is aimed
+    // at ordinary fruit, vegetables, fish, seafood, eggs and natural fats.
+    var source = normalize(food && food.source);
+    var frequency = normalize(food && food.frequency);
+    var trustedBedca =
+      source === "bedca" &&
+      frequency !== "raro" &&
+      food &&
+      food.culinary_role !== "recipe_ingredient";
+    if (!trustedBedca) return false;
+    if (
+      context === "whole_fruit" &&
+      ["fruits", "other"].includes(food.category) &&
+      !/\b(almibar|pure|compota|zumo)\b/.test(name)
+    ) {
+      return true;
+    }
+    if (
+      [
+        "leafy_vegetable",
+        "cruciferous",
+        "fruiting_vegetable",
+        "root_vegetable",
+        "stalk_vegetable",
+        "other_vegetable",
+      ].includes(context) &&
+      ["vegetables", "other"].includes(food.category) &&
+      !/\b(pure|crema|sopa)\b/.test(name)
+    ) {
+      return true;
+    }
+    if (
+      ["white_fish", "fatty_fish", "canned_fish", "seafood"].includes(context) &&
+      food.category === "protein" &&
+      food.clean_protein === true
+    ) {
+      return true;
+    }
+    if (context === "egg" && food.subgroup === "eggs") return true;
+    if (
+      ["nuts_seeds", "nut_spread"].includes(context) &&
+      food.category === "fat" &&
+      food.clean_fat === true
+    ) {
+      return true;
+    }
+    return false;
   }
   var SIMPLE_COLD_SOUP_RE =
     /\b(gazpacho|salmorejo|ajo blanco|ajoblanco)\b/;
@@ -282,7 +342,14 @@
 
   function isFlavouredDairy(food, context, name, evidenceTags) {
     if (
-      !["fermented_dairy", "milk", "fresh_cheese", "aged_cheese"].includes(
+      ![
+        "fermented_dairy",
+        "spoonable_fresh_dairy",
+        "milk",
+        "fresh_cheese",
+        "spreadable_cheese",
+        "aged_cheese",
+      ].includes(
         context,
       )
     ) {
@@ -350,10 +417,39 @@
       nutrientLevels["saturated-fat"] === "high" ||
       nutrientLevels.saturated_fat === "high";
 
+    if (
+      evidence.off_quality_status === "has_errors" &&
+      (evidence.off_quality_errors || []).some(function (error) {
+        return /energy-value-in-kcal-does-not-match/.test(String(error));
+      }) &&
+      Math.abs(
+        (
+          Number(food.protein || 0) * 4 +
+          Number(food.carbs || 0) * 4 +
+          Number(food.fat || 0) * 9
+        ) - Number(food.calories || 0)
+      ) / Math.max(Number(food.calories || 0), 1) > 0.25
+    ) {
+      return result(
+        STATUS.EXCLUDED,
+        ["inconsistent_nutrition_data"],
+        context,
+        evidence,
+      );
+    }
+
     if (INSTANT_OR_BOUILLON_RE.test(name)) {
       return result(
         STATUS.EXCLUDED,
         ["instant_meal_or_bouillon"],
+        context,
+        evidence,
+      );
+    }
+    if (context === "hot_beverage") {
+      return result(
+        STATUS.EXCLUDED,
+        ["hot_beverage_outside_food_exchange"],
         context,
         evidence,
       );
@@ -385,7 +481,7 @@
           context === "plant_drink" &&
           /\b(bebida|leche|beguda|bevanda)\b/.test(name)
         ) &&
-        /fruit-juices|juices-and-nectars|fruit-based-beverages|smoothies/.test(
+        /fruit-juices|juices-and-nectars|fruit-based-beverages|smoothies|es:zumo/.test(
           evidenceTags,
         )
       )
@@ -543,7 +639,7 @@
       return result(STATUS.EXCLUDED, ["protein_supplement"], context, evidence);
     }
     if (
-      context === "fermented_dairy" &&
+      ["fermented_dairy", "spoonable_fresh_dairy"].includes(context) &&
       flavouredDairy
     ) {
       if (
@@ -575,6 +671,18 @@
     }
     if (
       context === "fermented_dairy" &&
+      Number(food.carbs) >= 9 &&
+      sugarAssessment.status !== "not_detected"
+    ) {
+      return result(
+        STATUS.EXCLUDED,
+        ["high_carbohydrate_dairy_unverified"],
+        context,
+        evidence,
+      );
+    }
+    if (
+      ["fermented_dairy", "spoonable_fresh_dairy"].includes(context) &&
       /\bcon\b/.test(name) &&
       !/\bcon leche\b/.test(name)
     ) {
@@ -611,7 +719,11 @@
     }
     if (
       context === "breakfast_cereal" &&
-      (SWEET_CEREAL_RE.test(name) || hasSweeteners)
+      (
+        SWEET_CEREAL_RE.test(name) ||
+        hasSweeteners ||
+        nutrientLevels.sugars === "high"
+      )
     ) {
       return result(
         STATUS.EXCLUDED,
@@ -638,6 +750,7 @@
         "breakfast_cereal",
         "plant_drink",
         "fermented_dairy",
+        "spoonable_fresh_dairy",
         "milk",
         "nuts_seeds",
         "nut_spread",
@@ -819,8 +932,32 @@
         evidence,
       );
     }
-    if (context === "savory_spread") {
-      if (hasAny(name, [/\bpate\b/, /\bfoie\b/, /\bsobrasad\w*\b/])) {
+    if (context === "animal_savory_spread") {
+      return result(
+        STATUS.EXCLUDED,
+        ["processed_animal_spread"],
+        context,
+        evidence,
+      );
+    }
+    if (context === "organ_meat") {
+      return result(
+        STATUS.REFERENCE,
+        ["organ_meat_reference_not_everyday_exchange"],
+        context,
+        evidence,
+      );
+    }
+    if (context === "baking_input") {
+      return result(
+        STATUS.REFERENCE,
+        ["baking_input_reference"],
+        context,
+        evidence,
+      );
+    }
+    if (["plant_savory_spread", "savory_spread"].includes(context)) {
+      if (hasAny(name, [/\bpate\b/, /\bfoie\b/, /\bsobrasad\w*\b/, /\bzurrapa\b/])) {
         return result(
           STATUS.EXCLUDED,
           ["processed_savory_spread"],
@@ -828,14 +965,27 @@
           evidence,
         );
       }
+      var trustedSpanishSource = /^(bedca|mercadona|carrefour|lidl|aldi|eroski|dia)$/i
+        .test(String(food.source || "").trim());
       if (
         hasAny(name, [/\bhummus\b/, /\bhoumous\b/, /\bguacamole\b/]) &&
-        hasNova &&
-        nova <= 3
+        (
+          (hasNova && nova <= 3) ||
+          (
+            !hasNova &&
+            trustedSpanishSource &&
+            hasAny(name, [/\bhummus\b/, /\bhoumous\b/]) &&
+            !/\blight\b/.test(name)
+          )
+        )
       ) {
         return result(
           STATUS.CORE,
-          ["simple_legume_or_avocado_spread"],
+          [
+            hasNova
+              ? "simple_legume_or_avocado_spread"
+              : "trusted_spanish_plant_spread",
+          ],
           context,
           evidence,
         );
