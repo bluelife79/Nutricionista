@@ -107,11 +107,13 @@
   var FLAVOURED_DAIRY_RE =
     /\b(pudding|mousse|natillas?|postre|tipo actimel|actimel|aromatizad\w*|edulcor\w*|educor\w*|azucarad\w*|con azucar\w*|con nata|frut\w*|fruit\w*|berr\w*|sabores?\b(?!\s+(?:natural|suave)\b)|sabor (?!natural\b|suave\b)|manzana\w*|pera\b|naranja\w*|fresa\w*|frambues\w*|mango|vainilla|caramelo|melocoton\w*|platano\w*|pina\b|coco\b|arandano\w*|ciruela\w*|albaricoque\w*|maracuya\w*|macedonia|trocitos? de fruta|strawberr\w*|blueberr\w*|raspberr\w*|peach\w*|passion fruit|vanilla|fruit flavour\w*)\b/;
   var FERMENTED_DAIRY_IDENTITY_RE =
-    /\b(yogur\w*|yogurt|yoghourt|yaourt|iogur|kefir|quefir|skyr|bifidus|l casei|queso fresco batido)\b/;
+    /\b(yogur\w*|yogurt|yoghourt|yaourt|iogur|kefir|quefir|skyr|bifidus|l casei|queso fresco batido|postre prote\w*)\b/;
   var NO_ADDED_SUGAR_CLAIM_RE =
     /\b(sin azucar(?:es)?(?: anadid\w*)?|no added sugar|without added sugar|sans sucres? ajoutes?|ohne zuckerzusatz|senza zuccheri aggiunti|sem acucar(?:es)? adicionado\w*)\b/g;
   var ADDED_SUGAR_INGREDIENT_RE =
     /\b(azucar(?:es)?|fructosa|glucosa|dextrosa|sacarosa|miel|panela|zucker|fruktose|glukose|honig|sugar|fructose|glucose|honey|sucre|miel|zucchero|miele|acucar|xarope|sciroppo|jarabe|sirope|sirop)\b|\b(zumo|jugo|juice|saft|succo)\b.{0,30}\b(concentrad\w*|concentrate\w*|konzentrat\w*)\b/;
+  var DIRECT_ADDED_SUGAR_INGREDIENT_RE =
+    /\b(azucar(?:es)?|fructosa|glucosa|dextrosa|sacarosa|miel|panela|zucker|fruktose|glukose|honig|sugar|fructose|glucose|honey|sucre|miel|zucchero|miele|acucar|xarope|sciroppo|jarabe|sirope|sirop)\b/;
   var FLAVOURED_NUT_RE =
     /\b(carameliz\w*|garrapin\w*|chocolatead\w*|con chocolate|sabor (barbacoa|chili|miel)|frit\w*|salad\w*|punto de sal|aguasal)\b/;
   var SEASONED_PROTEIN_RE =
@@ -346,6 +348,19 @@
       " ",
     );
     NO_ADDED_SUGAR_CLAIM_RE.lastIndex = 0;
+    var explicitAddedSugars = Number(
+      evidence.nutrients_100g && evidence.nutrients_100g.added_sugars,
+    );
+    if (
+      explicitAddedSugars === 0 &&
+      !DIRECT_ADDED_SUGAR_INGREDIENT_RE.test(ingredientsWithoutClaims)
+    ) {
+      return {
+        status: "not_detected",
+        verified: true,
+        source: "ingredients_and_declared_added_sugars",
+      };
+    }
     var detected = ADDED_SUGAR_INGREDIENT_RE.test(ingredientsWithoutClaims);
     return {
       status: detected ? "detected" : "not_detected",

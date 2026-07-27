@@ -23,6 +23,9 @@ async function main() {
     "off_81042c6194",
     "off_a624b1851c",
     "off_f38f0e96a1",
+    100077,
+    100089,
+    100092,
   ]) {
     const food = byId(id);
     const scope = engine.window.getPremiumExchangeScope(food);
@@ -41,6 +44,24 @@ async function main() {
       guidance.no_added_sugar.status,
       "not_detected",
       `${food.name}: no verificó la ausencia de azúcar añadido`,
+    );
+  }
+
+  for (const id of [100077, 100089, 100092]) {
+    const food = byId(id);
+    assert.strictEqual(
+      food.processing_evidence?.source,
+      "Open Food Facts API v2",
+      `${food.name}: falta la procedencia exacta de los ingredientes`,
+    );
+    assert.strictEqual(
+      Number(food.processing_evidence?.nutrients_100g?.added_sugars),
+      0,
+      `${food.name}: no conserva la declaración de azúcares añadidos`,
+    );
+    assert(
+      /edulcorante/i.test(food.processing_evidence?.ingredients_text_es || ""),
+      `${food.name}: el aviso no está respaldado por ingredientes`,
     );
   }
 

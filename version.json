@@ -2,7 +2,7 @@
   "release": "premium-v2.4-rc-1",
   "base_commit": "d8ddbea434c9a9bc62a4257f28ec13d76dd4943c",
   "catalog_records": 5324,
-  "exchange_core": 1285,
+  "exchange_core": 1288,
   "reference_only": 348,
   "scope_version": "premium-v2.3-scope-1",
   "intent_version": "premium-v2.3-intent-1",

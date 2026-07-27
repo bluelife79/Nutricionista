@@ -559449,9 +559449,9 @@
   },
   {
     "name": "Postre proteína 0% fresa",
-    "brand": "Carrefour, Carrefour sensation",
+    "brand": "Carrefour, Carrefour Sensation",
     "ean": "8431876314519",
-    "category": "postres_proteicos",
+    "category": "dairy",
     "tags": [
       "postre_proteico",
       "supermercado_es",
@@ -559480,7 +559480,7 @@
     "ready_to_eat": true,
     "raw_ingredient": false,
     "meal_slot": "snack",
-    "frequency": "habitual",
+    "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 90,
     "label_reason": "Postre proteico de fresa listo para consumir",
@@ -559488,7 +559488,7 @@
     "usage_es": "Postre lácteo proteico de fresa listo para consumir. Uso exclusivo como snack entre horas. Intercambio clínico con otros postres proteicos 0%, yogur proteico o flan light.",
     "culinary_role": "meal_dish",
     "macro_profile": "protein",
-    "source": "legacy",
+    "source": "Carrefour",
     "culinary_intent": {
       "version": "premium-v2.3-intent-1",
       "family": "fermented_dairy",
@@ -559500,50 +559500,90 @@
       ],
       "prompt_id": null,
       "validated_modes": [],
-      "validation_status": "not_publishable",
+      "validation_status": "release_silent",
       "validation_reasons": [
-        "premium_2_4_scope_not_publishable"
+        "verified_flavoured_protein_dairy_single_use"
       ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
-      "status": "not_applicable",
-      "restored_from_dump": "openfoodfacts-products.jsonl.gz",
-      "nova_group": null,
-      "nutriscore_grade": null,
-      "sweeteners_n": null,
-      "ingredients_n": null,
-      "nutrient_levels": {}
+      "status": "found",
+      "source": "Open Food Facts API v2",
+      "source_url": "https://world.openfoodfacts.org/api/v2/product/8431876314519",
+      "restored_from_dump": null,
+      "raw_last_modified_t": 1773320025,
+      "nova_group": 4,
+      "nutriscore_grade": "a",
+      "additives_n": 3,
+      "sweeteners_n": 2,
+      "ingredients_n": 7,
+      "ingredients_text_es": "Leche desnatada pasteurizada, fresas (6%), almidón modificado, aromas, concentrado de zanahoria negra, edulcorantes: sucralosa y acesulfamo K, fermentos lácticos.",
+      "ingredients_analysis_tags": [
+        "en:palm-oil-free",
+        "en:non-vegan",
+        "en:maybe-vegetarian"
+      ],
+      "additives_tags": [
+        "en:e14xx",
+        "en:e950",
+        "en:e955"
+      ],
+      "categories_tags": [
+        "en:dairies",
+        "en:fermented-foods",
+        "en:fermented-milk-products",
+        "en:yogurts"
+      ],
+      "food_groups_tags": [
+        "en:milk-and-dairy-products",
+        "en:milk-and-yogurt"
+      ],
+      "nutrient_levels": {},
+      "nutrients_100g": {
+        "added_sugars": 0,
+        "sugars": 3.7,
+        "saturated_fat": 0,
+        "salt": 0.1,
+        "fiber": 0
+      },
+      "off_quality_status": "clean",
+      "off_quality_errors": []
     },
     "exchange_scope": {
       "version": "premium-v2.3-scope-1",
-      "status": "excluded",
+      "status": "exchange_core",
       "reason_codes": [
-        "sweet_or_confectionery"
+        "flavoured_dairy_without_added_sugar",
+        "contains_non_sugar_sweeteners",
+        "off_nova_group_4_information"
       ],
       "context": "fermented_dairy",
-      "evidence_status": "not_applicable"
+      "evidence_status": "found"
     },
     "choice_guidance": {
       "version": "premium-v2.4-choice-1",
-      "level": "hidden",
-      "label": "No disponible",
-      "summary": "",
-      "detail": "",
+      "level": "compatible",
+      "label": "Alternativa compatible",
+      "summary": "Encaja, pero contiene edulcorantes.",
+      "detail": "Sin azúcares añadidos según los ingredientes disponibles. Criterio RevolucionaT: para el día a día, prioriza opciones con ingredientes más sencillos.",
       "reason_codes": [
-        "sweet_or_confectionery"
+        "flavoured_product",
+        "contains_sweeteners",
+        "nova_group_4"
       ],
-      "rank_factor": 0,
+      "rank_factor": 0.8,
       "no_added_sugar": {
-        "status": "unknown",
-        "verified": false,
-        "source": "not_available"
+        "status": "not_detected",
+        "verified": true,
+        "source": "ingredients_and_declared_added_sugars"
       },
-      "nova_group": null
+      "nova_group": 4
     },
     "weight_basis": "as_sold",
     "weight_basis_version": "premium-v2.4-weight-basis-1",
-    "weight_basis_reason": "served_as_sold"
+    "weight_basis_reason": "served_as_sold",
+    "code": "8431876314519",
+    "dairy_subfamily": "frescos_proteicos"
   },
   {
     "name": "Postre proteína 0% arándanos",
@@ -560632,9 +560672,9 @@
   },
   {
     "name": "Yogur líquido sabor fresa proteína",
-    "brand": "Carrefour sensation, sensation",
+    "brand": "Carrefour Sensation",
     "ean": "8431876329988",
-    "category": "postres_proteicos",
+    "category": "dairy",
     "tags": [
       "postre_proteico",
       "supermercado_es",
@@ -560663,7 +560703,7 @@
     "ready_to_eat": true,
     "raw_ingredient": false,
     "meal_slot": "desayuno",
-    "frequency": "habitual",
+    "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 90,
     "label_reason": "Yogur líquido fresa, desayuno o merienda",
@@ -560671,7 +560711,7 @@
     "usage_es": "Lácteo proteico líquido saborizado. Uso exclusivo de desayuno. Se bebe directamente. Intercambio con yogur líquido o batido lácteo.",
     "culinary_role": "meal_dish",
     "macro_profile": "protein",
-    "source": "legacy",
+    "source": "Carrefour",
     "culinary_intent": {
       "version": "premium-v2.3-intent-1",
       "family": "fermented_dairy",
@@ -560683,50 +560723,89 @@
       ],
       "prompt_id": null,
       "validated_modes": [],
-      "validation_status": "not_publishable",
+      "validation_status": "release_silent",
       "validation_reasons": [
-        "premium_2_4_scope_not_publishable"
+        "verified_flavoured_protein_dairy_single_use"
       ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
-      "status": "not_applicable",
-      "restored_from_dump": "openfoodfacts-products.jsonl.gz",
-      "nova_group": null,
-      "nutriscore_grade": null,
-      "sweeteners_n": null,
-      "ingredients_n": null,
-      "nutrient_levels": {}
+      "status": "found",
+      "source": "Open Food Facts API v2",
+      "source_url": "https://world.openfoodfacts.org/api/v2/product/8431876329988",
+      "restored_from_dump": null,
+      "raw_last_modified_t": 1781073906,
+      "nova_group": 4,
+      "nutriscore_grade": "c",
+      "additives_n": 2,
+      "sweeteners_n": 1,
+      "ingredients_n": 9,
+      "ingredients_text_es": "Leche desnatada pasteurizada, agua, proteínas de la leche, estabilizante: pectinas, aroma natural, zumo de zanahoria negra concentrado, edulcorante: sucralosa, zumo de limón concentrado, fermentos lácticos.",
+      "ingredients_analysis_tags": [
+        "en:palm-oil-free",
+        "en:non-vegan",
+        "en:maybe-vegetarian"
+      ],
+      "additives_tags": [
+        "en:e440",
+        "en:e955"
+      ],
+      "categories_tags": [
+        "en:dairies",
+        "en:fermented-foods",
+        "en:fermented-milk-products",
+        "en:yogurts"
+      ],
+      "food_groups_tags": [
+        "en:milk-and-dairy-products",
+        "en:milk-and-yogurt"
+      ],
+      "nutrient_levels": {},
+      "nutrients_100g": {
+        "added_sugars": 0,
+        "sugars": 4.6,
+        "saturated_fat": 0.2,
+        "salt": 0.11,
+        "fiber": 0
+      },
+      "off_quality_status": "clean",
+      "off_quality_errors": []
     },
     "exchange_scope": {
       "version": "premium-v2.3-scope-1",
-      "status": "excluded",
+      "status": "exchange_core",
       "reason_codes": [
-        "flavoured_dairy_sugar_status_unverified"
+        "flavoured_dairy_without_added_sugar",
+        "contains_non_sugar_sweeteners",
+        "off_nova_group_4_information"
       ],
       "context": "fermented_dairy",
-      "evidence_status": "not_applicable"
+      "evidence_status": "found"
     },
     "choice_guidance": {
       "version": "premium-v2.4-choice-1",
-      "level": "hidden",
-      "label": "No disponible",
-      "summary": "",
-      "detail": "",
+      "level": "compatible",
+      "label": "Alternativa compatible",
+      "summary": "Encaja, pero contiene edulcorantes.",
+      "detail": "Sin azúcares añadidos según los ingredientes disponibles. Criterio RevolucionaT: para el día a día, prioriza opciones con ingredientes más sencillos.",
       "reason_codes": [
-        "flavoured_dairy_sugar_status_unverified"
+        "flavoured_product",
+        "contains_sweeteners",
+        "nova_group_4"
       ],
-      "rank_factor": 0,
+      "rank_factor": 0.8,
       "no_added_sugar": {
-        "status": "unknown",
-        "verified": false,
-        "source": "not_available"
+        "status": "not_detected",
+        "verified": true,
+        "source": "ingredients_and_declared_added_sugars"
       },
-      "nova_group": null
+      "nova_group": 4
     },
     "weight_basis": "as_sold",
     "weight_basis_version": "premium-v2.4-weight-basis-1",
-    "weight_basis_reason": "served_as_sold"
+    "weight_basis_reason": "served_as_sold",
+    "code": "8431876329988",
+    "dairy_subfamily": "bebida_postre"
   },
   {
     "name": "Yogur sabor tropical",
@@ -560934,10 +561013,10 @@
     "weight_basis_reason": "served_as_sold"
   },
   {
-    "name": "Skyr Fresa 0%Mg",
+    "name": "Skyr fresa 0% M.G.",
     "brand": "Carrefour",
     "ean": "3560071226060",
-    "category": "postres_proteicos",
+    "category": "dairy",
     "tags": [
       "postre_proteico",
       "supermercado_es",
@@ -560966,7 +561045,7 @@
     "ready_to_eat": true,
     "raw_ingredient": false,
     "meal_slot": "desayuno",
-    "frequency": "habitual",
+    "frequency": "ocasional",
     "exotic": false,
     "label_confidence": 95,
     "label_reason": "Skyr muy popular en desayunos españoles",
@@ -560974,7 +561053,7 @@
     "usage_es": "Lácteo fermentado alto en proteína listo para consumir. Exclusivo desayuno. Intercambio con yogur natural, queso fresco batido o kefir.",
     "culinary_role": "meal_dish",
     "macro_profile": "protein",
-    "source": "legacy",
+    "source": "Carrefour",
     "culinary_intent": {
       "version": "premium-v2.3-intent-1",
       "family": "fermented_dairy",
@@ -560986,50 +561065,92 @@
       ],
       "prompt_id": null,
       "validated_modes": [],
-      "validation_status": "not_publishable",
+      "validation_status": "release_silent",
       "validation_reasons": [
-        "premium_2_4_scope_not_publishable"
+        "verified_flavoured_protein_dairy_single_use"
       ]
     },
     "processing_evidence": {
       "version": "premium-v2.2-processing-1",
-      "status": "not_applicable",
-      "restored_from_dump": "openfoodfacts-products.jsonl.gz",
-      "nova_group": null,
-      "nutriscore_grade": null,
-      "sweeteners_n": null,
-      "ingredients_n": null,
-      "nutrient_levels": {}
+      "status": "found",
+      "source": "Open Food Facts API v2",
+      "source_url": "https://world.openfoodfacts.org/api/v2/product/3560071226060",
+      "restored_from_dump": null,
+      "raw_last_modified_t": 1773320972,
+      "nova_group": 4,
+      "nutriscore_grade": "a",
+      "additives_n": 5,
+      "sweeteners_n": 2,
+      "ingredients_n": 13,
+      "ingredients_text_es": "Leche pasteurizada desnatada, fresas 8%, agua, almidón modificado de maíz, zumo concentrado de zanahoria, aroma natural, zumo concentrado de bayas de sauco, estabilizante: carragenanos, edulcorantes: acesulfamo K, sucralosa, correctores de acidez: ácido cítrico, citratos de sodio, fermentos lácticos.",
+      "ingredients_analysis_tags": [
+        "en:palm-oil-free",
+        "en:non-vegan",
+        "en:maybe-vegetarian"
+      ],
+      "additives_tags": [
+        "en:e330",
+        "en:e331",
+        "en:e407",
+        "en:e950",
+        "en:e955"
+      ],
+      "categories_tags": [
+        "en:dairies",
+        "en:fermented-foods",
+        "en:fermented-milk-products",
+        "en:yogurts"
+      ],
+      "food_groups_tags": [
+        "en:milk-and-dairy-products",
+        "en:milk-and-yogurt"
+      ],
+      "nutrient_levels": {},
+      "nutrients_100g": {
+        "added_sugars": 0,
+        "sugars": 4.1,
+        "saturated_fat": 0.1,
+        "salt": 0.13,
+        "fiber": 0
+      },
+      "off_quality_status": "clean",
+      "off_quality_errors": []
     },
     "exchange_scope": {
       "version": "premium-v2.3-scope-1",
-      "status": "excluded",
+      "status": "exchange_core",
       "reason_codes": [
-        "flavoured_dairy_sugar_status_unverified"
+        "flavoured_dairy_without_added_sugar",
+        "contains_non_sugar_sweeteners",
+        "off_nova_group_4_information"
       ],
       "context": "fermented_dairy",
-      "evidence_status": "not_applicable"
+      "evidence_status": "found"
     },
     "choice_guidance": {
       "version": "premium-v2.4-choice-1",
-      "level": "hidden",
-      "label": "No disponible",
-      "summary": "",
-      "detail": "",
+      "level": "compatible",
+      "label": "Alternativa compatible",
+      "summary": "Encaja, pero contiene edulcorantes.",
+      "detail": "Sin azúcares añadidos según los ingredientes disponibles. Criterio RevolucionaT: para el día a día, prioriza opciones con ingredientes más sencillos.",
       "reason_codes": [
-        "flavoured_dairy_sugar_status_unverified"
+        "flavoured_product",
+        "contains_sweeteners",
+        "nova_group_4"
       ],
-      "rank_factor": 0,
+      "rank_factor": 0.8,
       "no_added_sugar": {
-        "status": "unknown",
-        "verified": false,
-        "source": "not_available"
+        "status": "not_detected",
+        "verified": true,
+        "source": "ingredients_and_declared_added_sugars"
       },
-      "nova_group": null
+      "nova_group": 4
     },
     "weight_basis": "as_sold",
     "weight_basis_version": "premium-v2.4-weight-basis-1",
-    "weight_basis_reason": "served_as_sold"
+    "weight_basis_reason": "served_as_sold",
+    "code": "3560071226060",
+    "dairy_subfamily": "frescos_proteicos"
   },
   {
     "name": "Fromages frais aux fruits",
