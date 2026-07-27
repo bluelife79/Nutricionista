@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "node server.js",
-    "test": "npm run test:data && npm run test:algorithm && npm run test:context && npm run test:off-curator && npm run test:intent && npm run test:scope && npm run test:choice && npm run test:systemic && npm run test:exhaustive && npm run test:premium && npm run test:security && npm run test:product-contract && npm run test:visual-order && npm run test:search-vocabulary && npm run test:fat-quality && npm run test:spanish-names",
+    "test": "npm run test:data && npm run test:algorithm && npm run test:context && npm run test:off-curator && npm run test:intent && npm run test:scope && npm run test:choice && npm run test:systemic && npm run test:exhaustive && npm run test:premium && npm run test:security && npm run test:product-contract && npm run test:visual-order && npm run test:search-vocabulary && npm run test:fat-quality && npm run test:spanish-names && npm run test:canonical-search",
     "test:data": "node scripts/validate_release_data.js && python3 scripts/smoke_test_db.py",
     "test:algorithm": "node scripts/test_algorithm_regression.js",
     "test:context": "node scripts/test_contextual_matrix.js",
@@ -30,6 +30,7 @@
     "test:search-vocabulary": "node scripts/test_search_vocabulary.js",
     "test:fat-quality": "node scripts/test_fat_quality.js",
     "test:spanish-names": "node scripts/test_spanish_names.js",
+    "test:canonical-search": "node scripts/test_canonical_search.js",
     "audit:product-baseline": "node scripts/audit_product_baseline.js",
     "audit:product-intents": "node scripts/audit_product_intents.js",
     "report:algorithm": "node scripts/run_algorithm_cases.js",

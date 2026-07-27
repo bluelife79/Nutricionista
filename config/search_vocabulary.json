@@ -1,5 +1,51 @@
 {
   "version": "premium-v2.4-search-1",
+  "canonical_ids": {
+    "leche": [
+      "bedca_0447",
+      "bedca_0661",
+      "bedca_0695"
+    ],
+    "yogur": [
+      "bedca_0037",
+      "bedca_0789",
+      "bedca_0793"
+    ],
+    "queso fresco": [
+      "bedca_0064",
+      "100075",
+      "100091"
+    ],
+    "pan": [
+      "bedca_0068",
+      "bedca_0586",
+      "bedca_0380"
+    ],
+    "pechuga de pollo": [
+      "bedca_0258"
+    ],
+    "pimiento": [
+      "bedca_0002",
+      "bedca_0039"
+    ],
+    "conejo": [
+      "bedca_0926"
+    ],
+    "gambas": [
+      "bedca_0770"
+    ],
+    "solomillo de ternera": [
+      "bedca_0698",
+      "bedca_0276"
+    ],
+    "aceite de oliva": [
+      "bedca_0081",
+      "bedca_0088"
+    ],
+    "aove": [
+      "bedca_0088"
+    ]
+  },
   "aliases": {
     "biscote": "pan tostado",
     "biscotes": "pan tostado",

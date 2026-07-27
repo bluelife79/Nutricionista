@@ -3835,11 +3835,30 @@ function getSearchFeedback(query) {
   };
 }
 
+function configuredCanonicalRank(food, query) {
+  const vocabulary = getSearchVocabulary();
+  const canonical = vocabularyLookup(vocabulary.canonical_ids, query);
+  if (!canonical || !Array.isArray(canonical[1])) return 0;
+  const index = canonical[1].map(String).indexOf(String(food.id));
+  return index >= 0 ? 100 - index : 0;
+}
+
+function searchCookingPriority(food, query) {
+  const requested = getCookingState(query);
+  const candidate = getCookingState(food.name);
+  if (requested === "raw") return candidate === "raw" ? 2 : 0;
+  if (requested === "cooked") return candidate === "cooked" ? 2 : 0;
+  if (candidate === "raw") return 2;
+  if (candidate === "neutral") return 1;
+  return 0;
+}
+
 // ============================================
 // SEARCH FOODS (local database)
 // ============================================
 function getLocalSearchResults(query) {
   const effectiveQuery = resolveSearchQuery(query);
+  const tokens = searchTokens(effectiveQuery);
   // PASO 1: Buscar en database local
   // Excluimos "hidden" (duplicados nutricionales) para no inflar el listado
   // de búsqueda con 12 versiones del mismo arroz/atún/pollo.
@@ -3854,7 +3873,12 @@ function getLocalSearchResults(query) {
         window.isPremiumExchangeSearchable(food),
     )
     .sort((a, b) => {
-      const tokens = searchTokens(effectiveQuery);
+      const configuredA = configuredCanonicalRank(a, effectiveQuery);
+      const configuredB = configuredCanonicalRank(b, effectiveQuery);
+      if (configuredA !== configuredB) return configuredB - configuredA;
+      const cookingA = searchCookingPriority(a, effectiveQuery);
+      const cookingB = searchCookingPriority(b, effectiveQuery);
+      if (cookingA !== cookingB) return cookingB - cookingA;
       const canonicalA = canonicalSpanishGenericPriority(a, tokens);
       const canonicalB = canonicalSpanishGenericPriority(b, tokens);
       if (canonicalA !== canonicalB) return canonicalB - canonicalA;
