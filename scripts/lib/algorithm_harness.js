@@ -64,6 +64,7 @@ function createEngine(options = {}) {
     DIETARY_FILTERS: new Set(),
     location: { search: "" },
     REVOLUCIONAT_RUNTIME_OVERRIDES: options.runtimeOverrides || {},
+    PREMIUM_SEARCH_VOCABULARY: loadJson("config/search_vocabulary.json"),
   };
   const context = {
     window,

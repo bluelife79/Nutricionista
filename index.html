@@ -233,6 +233,23 @@
         margin-top: 4px;
       }
 
+      .search-suggestion {
+        border: 0;
+        padding: 0;
+        background: transparent;
+        color: #534b90;
+        font: inherit;
+        font-weight: 800;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      .search-suggestion:focus-visible {
+        outline: 3px solid rgba(83, 75, 144, 0.35);
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+
       /* SELECTED FOOD */
       .selected-food {
         background: #e8ecf3;
@@ -1978,8 +1995,17 @@
               class="input-neo"
               placeholder="Ej.: pollo, avena, yogur..."
               autocomplete="off"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-controls="autocompleteDropdown"
+              aria-expanded="false"
             />
-            <div id="autocompleteDropdown" class="autocomplete-dropdown"></div>
+            <div
+              id="autocompleteDropdown"
+              class="autocomplete-dropdown"
+              role="listbox"
+              aria-label="Alimentos encontrados"
+            ></div>
           </div>
 
           <div id="selectedFood" class="selected-food">
@@ -2284,6 +2310,7 @@
       let visibleResults = AUTOCOMPLETE_INITIAL;
       let lastSearchResults = [];
       let lastQuery = "";
+      let activeAutocompleteIndex = -1;
 
       // ELEMENTS
       const searchInput = document.getElementById("searchInput");
@@ -2332,12 +2359,19 @@
         try {
           // Single source of truth: database.json (Vercel sirve con gzip
           // automático ~250KB transferidos para 2MB raw).
-          const response = await fetch("database.json");
+          const [response, vocabulary] = await Promise.all([
+            fetch("database.json"),
+            fetch("config/search_vocabulary.json")
+              .then((result) => (result.ok ? result.json() : null))
+              .catch(() => null),
+          ]);
           const data = await response.json();
           // database.json is a flat array; `data.foods` fallback kept for
           // legacy {foods:[...]} structure, final `[]` for safety.
           window.foodsDatabase = Array.isArray(data) ? data : (data.foods || []);
           foodsDatabase = window.foodsDatabase;
+          window.PREMIUM_SEARCH_VOCABULARY =
+            vocabulary || { aliases: {}, excluded: {} };
           console.log(
             "✅ Base de datos cargada:",
             foodsDatabase.length,
@@ -2365,6 +2399,9 @@
 
         if (query.length === 0) {
           dropdown.classList.remove("active");
+          searchInput.setAttribute("aria-expanded", "false");
+          searchInput.removeAttribute("aria-activedescendant");
+          activeAutocompleteIndex = -1;
           visibleResults = AUTOCOMPLETE_INITIAL; // reset
           return;
         }
@@ -2381,11 +2418,93 @@
 
       // FatSecret integration removed — single source of truth is database.json.
 
+      function setActiveAutocompleteIndex(nextIndex) {
+        const options = Array.from(
+          dropdown.querySelectorAll('[role="option"][data-food-id]'),
+        );
+        if (options.length === 0) {
+          activeAutocompleteIndex = -1;
+          searchInput.removeAttribute("aria-activedescendant");
+          return;
+        }
+        activeAutocompleteIndex =
+          (nextIndex + options.length) % options.length;
+        options.forEach((option, index) => {
+          const active = index === activeAutocompleteIndex;
+          option.classList.toggle("selected", active);
+          option.setAttribute("aria-selected", active ? "true" : "false");
+          if (active) {
+            searchInput.setAttribute("aria-activedescendant", option.id);
+            option.scrollIntoView({ block: "nearest" });
+          }
+        });
+      }
+
+      searchInput.addEventListener("keydown", (event) => {
+        if (!dropdown.classList.contains("active")) return;
+        const options = dropdown.querySelectorAll(
+          '[role="option"][data-food-id]',
+        );
+        if (event.key === "ArrowDown" && options.length > 0) {
+          event.preventDefault();
+          setActiveAutocompleteIndex(activeAutocompleteIndex + 1);
+        } else if (event.key === "ArrowUp" && options.length > 0) {
+          event.preventDefault();
+          setActiveAutocompleteIndex(activeAutocompleteIndex - 1);
+        } else if (event.key === "Enter" && activeAutocompleteIndex >= 0) {
+          event.preventDefault();
+          options[activeAutocompleteIndex]?.click();
+        } else if (event.key === "Escape") {
+          dropdown.classList.remove("active");
+          searchInput.setAttribute("aria-expanded", "false");
+          searchInput.removeAttribute("aria-activedescendant");
+          activeAutocompleteIndex = -1;
+        }
+      });
+
       function renderAutocomplete(results, query) {
         if (results.length === 0) {
-          dropdown.innerHTML =
-            '<div class="empty-state"><div class="empty-state-text">No se encontraron alimentos</div></div>';
+          const feedback =
+            typeof getSearchFeedback === "function"
+              ? getSearchFeedback(query)
+              : { type: "missing", query };
+          const safeQuery = escapeHtml(feedback.query || query);
+          if (feedback.type === "excluded") {
+            dropdown.innerHTML = `
+              <div class="empty-state" role="status">
+                <div class="empty-state-title">Este alimento no se intercambia</div>
+                <div class="empty-state-text">${escapeHtml(feedback.message)}</div>
+              </div>`;
+          } else if (feedback.type === "suggestion") {
+            dropdown.innerHTML = `
+              <div class="empty-state" role="status">
+                <div class="empty-state-text">
+                  No encontramos “${safeQuery}”. ¿Quisiste decir
+                  <button type="button" class="search-suggestion" data-query="${escapeHtml(feedback.suggestion)}">
+                    ${escapeHtml(feedback.suggestion)}
+                  </button>?
+                </div>
+              </div>`;
+            dropdown
+              .querySelector(".search-suggestion")
+              ?.addEventListener("click", (event) => {
+                const suggestion = event.currentTarget.dataset.query;
+                searchInput.value = suggestion;
+                visibleResults = AUTOCOMPLETE_INITIAL;
+                searchFoods(suggestion);
+              });
+          } else {
+            dropdown.innerHTML = `
+              <div class="empty-state" role="status">
+                <div class="empty-state-text">
+                  Todavía no tenemos “${safeQuery}”. Puedes escribirlo al equipo.
+                </div>
+              </div>`;
+          }
           dropdown.classList.add("active");
+          searchInput.setAttribute("aria-expanded", "true");
+          searchInput.removeAttribute("aria-activedescendant");
+          activeAutocompleteIndex = -1;
           return;
         }
 
@@ -2394,8 +2513,8 @@
         // Resultados locales con badge PREMIUM
         let html = shown
           .map(
-            (food) => `
-        <div class="autocomplete-item local-result" data-food-id="${escapeHtml(food.id)}" data-is-local="true">
+            (food, index) => `
+        <div class="autocomplete-item local-result" id="food-option-${index}" role="option" aria-selected="false" tabindex="-1" data-food-id="${escapeHtml(food.id)}" data-is-local="true">
           <div class="result-badge premium">PREMIUM</div>
           <div class="item-name">${highlightMatch(food.name || "", query)}</div>
           <div class="item-brand">${escapeHtml(food.brand || "Sin marca")} · ${escapeHtml(food.source || "Base")}</div>
@@ -2414,6 +2533,9 @@
 
         dropdown.innerHTML = html;
         dropdown.classList.add("active");
+        searchInput.setAttribute("aria-expanded", "true");
+        searchInput.removeAttribute("aria-activedescendant");
+        activeAutocompleteIndex = -1;
 
         // ✅ Listener único y seguro
         dropdown.querySelectorAll(".autocomplete-item").forEach((item) => {
@@ -2506,6 +2628,9 @@
         selectedFoodDiv.classList.add("active");
         renderUsagePrompt(selectedFood);
         dropdown.classList.remove("active");
+        searchInput.setAttribute("aria-expanded", "false");
+        searchInput.removeAttribute("aria-activedescendant");
+        activeAutocompleteIndex = -1;
         searchInput.value = "";
 
         amountSection.style.opacity = "1";
@@ -2542,6 +2667,9 @@
         searchInput.value = "";
         visibleResults = AUTOCOMPLETE_INITIAL; // reset
         dropdown.classList.remove("active");
+        searchInput.setAttribute("aria-expanded", "false");
+        searchInput.removeAttribute("aria-activedescendant");
+        activeAutocompleteIndex = -1;
         searchInput.focus();
       });
 
@@ -3110,6 +3238,9 @@
       document.addEventListener("click", (e) => {
         if (!searchInput.contains(e.target) && !dropdown.contains(e.target)) {
           dropdown.classList.remove("active");
+          searchInput.setAttribute("aria-expanded", "false");
+          searchInput.removeAttribute("aria-activedescendant");
+          activeAutocompleteIndex = -1;
         }
       });
 

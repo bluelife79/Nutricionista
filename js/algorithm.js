@@ -3718,15 +3718,113 @@ function canonicalSpanishGenericPriority(food, queryTokens) {
   return 1;
 }
 
+function getSearchVocabulary() {
+  const vocabulary = window.PREMIUM_SEARCH_VOCABULARY;
+  return vocabulary && typeof vocabulary === "object"
+    ? vocabulary
+    : { aliases: {}, excluded: {} };
+}
+
+function vocabularyLookup(entries, query) {
+  const normalizedQuery = norm(query);
+  return Object.entries(entries || {}).find(
+    ([label]) => norm(label) === normalizedQuery,
+  );
+}
+
+function resolveSearchQuery(query) {
+  const vocabulary = getSearchVocabulary();
+  const alias = vocabularyLookup(vocabulary.aliases, query);
+  return alias ? alias[1] : query;
+}
+
+function editDistance(left, right) {
+  const a = String(left || "");
+  const b = String(right || "");
+  if (Math.abs(a.length - b.length) > 1) return 2;
+  const previous = Array.from({ length: b.length + 1 }, (_, index) => index);
+  for (let row = 1; row <= a.length; row += 1) {
+    const current = [row];
+    let rowMinimum = current[0];
+    for (let column = 1; column <= b.length; column += 1) {
+      current[column] = Math.min(
+        current[column - 1] + 1,
+        previous[column] + 1,
+        previous[column - 1] + (a[row - 1] === b[column - 1] ? 0 : 1),
+      );
+      rowMinimum = Math.min(rowMinimum, current[column]);
+    }
+    if (rowMinimum > 1) return 2;
+    previous.splice(0, previous.length, ...current);
+  }
+  return previous[b.length];
+}
+
+function getSearchFeedback(query) {
+  const vocabulary = getSearchVocabulary();
+  const excluded = vocabularyLookup(vocabulary.excluded, query);
+  if (excluded) {
+    return {
+      type: "excluded",
+      query: String(query || "").trim(),
+      message: excluded[1],
+    };
+  }
+
+  const alias = vocabularyLookup(vocabulary.aliases, query);
+  if (alias) {
+    return {
+      type: "suggestion",
+      query: String(query || "").trim(),
+      suggestion: alias[1],
+    };
+  }
+
+  const queryTokens = searchTokens(query).filter((token) => token.length >= 5);
+  if (queryTokens.length === 1) {
+    const candidates = Array.from(
+      new Set([
+        ...Object.keys(vocabulary.aliases || {}),
+        ...Object.values(vocabulary.aliases || {}),
+      ]),
+    );
+    let best = null;
+    for (const label of candidates) {
+      const labelTokens = searchTokens(label).filter(
+        (token) => token.length >= 5,
+      );
+      for (const token of labelTokens) {
+        const distance = editDistance(queryTokens[0], token);
+        if (distance <= 1 && (!best || distance < best.distance)) {
+          best = { label, distance };
+        }
+      }
+    }
+    if (best) {
+      return {
+        type: "suggestion",
+        query: String(query || "").trim(),
+        suggestion: resolveSearchQuery(best.label),
+      };
+    }
+  }
+
+  return {
+    type: "missing",
+    query: String(query || "").trim(),
+  };
+}
+
 // ============================================
 // SEARCH FOODS (local database)
 // ============================================
 function getLocalSearchResults(query) {
+  const effectiveQuery = resolveSearchQuery(query);
   // PASO 1: Buscar en database local
   // Excluimos "hidden" (duplicados nutricionales) para no inflar el listado
   // de búsqueda con 12 versiones del mismo arroz/atún/pollo.
   const localResults = foodsDatabase
-    .filter((food) => matchesFood(food, query))
+    .filter((food) => matchesFood(food, effectiveQuery))
     .filter((food) => !(food.flags || []).includes("hidden"))
     .filter((food) => !isFoodQuarantined(food))
     .filter((food) => isMarketEligibleFood(food))
@@ -3736,7 +3834,7 @@ function getLocalSearchResults(query) {
         window.isPremiumExchangeSearchable(food),
     )
     .sort((a, b) => {
-      const tokens = searchTokens(query);
+      const tokens = searchTokens(effectiveQuery);
       const canonicalA = canonicalSpanishGenericPriority(a, tokens);
       const canonicalB = canonicalSpanishGenericPriority(b, tokens);
       if (canonicalA !== canonicalB) return canonicalB - canonicalA;

@@ -8,6 +8,7 @@ const { ROOT, createEngine } = require("./algorithm_harness");
 
 const EXECUTABLE_FILES = [
   "database.json",
+  "config/search_vocabulary.json",
   "js/runtime_config.js",
   "js/exchange_groups.js",
   "js/dietary_filters.js",
