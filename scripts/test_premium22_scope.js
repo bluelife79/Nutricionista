@@ -206,17 +206,29 @@ async function main() {
     ...plainResult.familia,
     ...plainResult.preparados,
   ];
-  assert(
-    plainCandidates.every(
-      (food) =>
-        !(
-          engine.window.getPremiumChoiceGuidance(food).reason_codes || []
-        ).includes(
-          "flavoured_product",
-        ),
-    ),
-    "Un yogur natural recibió lácteos saborizados",
-  );
+  for (const food of plainCandidates) {
+    const guidance = engine.window.getPremiumChoiceGuidance(food);
+    if (!(guidance.reason_codes || []).includes("flavoured_product")) {
+      continue;
+    }
+    const sugar =
+      engine.window.getPremiumAddedSugarAssessment(food);
+    assert.strictEqual(
+      sugar.status,
+      "not_detected",
+      `${food.name}: lácteo saborizado con azúcar añadido`,
+    );
+    assert.strictEqual(
+      sugar.verified,
+      true,
+      `${food.name}: lácteo saborizado sin etiqueta verificada`,
+    );
+    assert.strictEqual(
+      guidance.level,
+      "compatible",
+      `${food.name}: lácteo saborizado sin aviso visible`,
+    );
+  }
 
   console.log(
     `PASS Premium 2.2 scope: ${audit.totals.exchange_core} núcleo, ` +

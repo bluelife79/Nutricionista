@@ -6,7 +6,7 @@ const { ROOT } = require("./lib/algorithm_harness");
 
 const DB_PATH = path.join(ROOT, "database.json");
 const SCOPE_VERSION = "premium-v2.3-scope-1";
-const CHOICE_VERSION = "premium-v2.3-choice-1";
+const CHOICE_VERSION = "premium-v2.4-choice-1";
 
 function normalize(value) {
   return String(value || "")

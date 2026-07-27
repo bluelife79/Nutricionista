@@ -1,8 +1,17 @@
 "use strict";
 
 const assert = require("assert");
+const fs = require("fs");
+const path = require("path");
 const { createEngine, findFood } = require("./lib/algorithm_harness");
 const { runIntentAudit } = require("./audit_culinary_intent");
+
+const RELEASE_GATES = JSON.parse(
+  fs.readFileSync(
+    path.join(__dirname, "..", "config", "release_gates.json"),
+    "utf8",
+  ),
+);
 
 function visible(food, runtime) {
   return Boolean(
@@ -29,7 +38,7 @@ const CASES = [
   },
   {
     name: "proteína vegetal",
-    query: "Tofu",
+    id: "manual_tempeh",
     prompt: "plant_protein_use",
     expected: ["main_piece", "stew", "minced"],
     amount: 100,
@@ -54,6 +63,13 @@ const CASES = [
     prompt: "vegetable_use",
     expected: ["salad", "cooked_side", "soup"],
     amount: 150,
+  },
+  {
+    name: "mozzarella",
+    id: "bedca_0070",
+    prompt: "cheese_use",
+    expected: ["cold", "melt"],
+    amount: 60,
   },
 ];
 
@@ -135,9 +151,10 @@ async function main() {
     0,
     "Premium 2.2 no debe dejar contextos técnicamente desconocidos",
   );
-  assert(
-    audit.totals.prompted_foods >= 350,
-    `Cobertura adaptativa validada insuficiente: ${audit.totals.prompted_foods} alimentos`,
+  assert.strictEqual(
+    audit.totals.prompted_foods,
+    RELEASE_GATES.intents.promptedOrigins,
+    "La cobertura adaptativa debe coincidir con el contrato de liberación validado",
   );
 
   // No se pregunta por preguntar: si el uso apenas altera la primera pantalla,
@@ -146,7 +163,6 @@ async function main() {
     { name: "pollo", query: "Pechuga de pollo" },
     { name: "pescado", query: "Merluza", aliases: ["Lomos de merluza"] },
     { name: "pan", query: "Pan integral" },
-    { name: "mozzarella", id: "bedca_0070" },
   ]) {
     const origin = silentCase.id
       ? engine.foods.find((food) => food.id === silentCase.id)

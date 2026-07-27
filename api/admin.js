@@ -1,5 +1,6 @@
 const { findAuthUserByEmail, serviceClient } = require('./_supabase');
 const { readAdminSession } = require('./_session');
+const { logAdminAction } = require('./_audit');
 
 function validIdentity(name, email) {
   const normalizedName = String(name || '').trim();
@@ -31,6 +32,10 @@ async function authorizedAdmin(req, supabase) {
   const user = data?.user;
   if (error || !user || user.app_metadata?.role !== 'admin') return null;
   if (String(user.email || '').toLowerCase() !== session.email) return null;
+  if (
+    Number(user.app_metadata?.session_version || 1) !==
+    Number(session.version || 1)
+  ) return null;
   return user;
 }
 
@@ -51,7 +56,8 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') return res.status(200).end();
 
   const supabase = serviceClient();
-  if (!await authorizedAdmin(req, supabase)) {
+  const adminUser = await authorizedAdmin(req, supabase);
+  if (!adminUser) {
     return res.status(401).json({ success: false, error: 'No autorizado.' });
   }
 
@@ -114,6 +120,13 @@ module.exports = async (req, res) => {
         await supabase.auth.admin.deleteUser(authUser.id);
         return res.status(400).json({ success: false, error: 'No se ha podido crear el perfil de la clienta.' });
       }
+      await logAdminAction(
+        supabase,
+        adminUser,
+        'member_created',
+        normalizedEmail,
+        { active: true },
+      );
       return res.json({ success: true, user: publicUser(user) });
     }
 
@@ -165,6 +178,13 @@ module.exports = async (req, res) => {
           });
         }
       }
+      await logAdminAction(
+        supabase,
+        adminUser,
+        current.active ? 'member_deactivated' : 'member_reactivated',
+        normalizedEmail,
+        { active: !current.active },
+      );
       return res.json({ success: true, user: publicUser(user) });
     }
 
@@ -231,6 +251,16 @@ module.exports = async (req, res) => {
         });
         return res.status(500).json({ success: false, error: 'Error al actualizar el perfil.' });
       }
+      await logAdminAction(
+        supabase,
+        adminUser,
+        'member_updated',
+        normalizedEmail,
+        {
+          previous_email: originalEmail,
+          password_changed: Boolean(password),
+        },
+      );
       return res.json({ success: true, user: publicUser(user) });
     }
 

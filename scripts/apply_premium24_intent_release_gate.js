@@ -29,11 +29,47 @@ function topSignature(result) {
 
 async function main() {
   const harness = createProductHarness();
-  const publicFoods = harness.foods.filter((food) =>
-    ["exchange_core", "reference_only"].includes(
-      harness.window.getPremiumExchangeScope(food).status,
-    ),
-  );
+  const publicStatuses = new Set(["exchange_core", "reference_only"]);
+  const publicFoods = [];
+  for (const food of harness.foods) {
+    if (
+      publicStatuses.has(
+        harness.window.getPremiumExchangeScope(food).status,
+      )
+    ) {
+      const storedIntent = food.culinary_intent || {};
+      const candidatePromptId =
+        storedIntent.prompt_id || storedIntent.suppressed_prompt_id;
+      if (
+        candidatePromptId &&
+        ["release_silent", "release_candidate"].includes(
+          storedIntent.validation_status,
+        )
+      ) {
+        // Restore every candidate before calculating the first origin. The
+        // runtime memoizes profiles while ranking candidates, so mutating one
+        // food at a time would leave later foods cached as "silent".
+        food.culinary_intent = {
+          ...storedIntent,
+          prompt_id: candidatePromptId,
+          validation_status: "release_candidate",
+          validated_modes: [],
+        };
+      }
+      publicFoods.push(food);
+      continue;
+    }
+    // Scope, quality and guidance evolve independently. Whenever one of
+    // those layers removes a record from the published catalogue, invalidate
+    // any previously approved prompt as part of the same deterministic gate.
+    food.culinary_intent = {
+      ...(food.culinary_intent || {}),
+      prompt_id: null,
+      validation_status: "not_publishable",
+      validated_modes: [],
+      validation_reasons: ["premium_2_4_scope_not_publishable"],
+    };
+  }
   const report = {
     evaluated: 0,
     kept: 0,
@@ -51,18 +87,6 @@ async function main() {
     const candidatePromptId =
       storedIntent.prompt_id || storedIntent.suppressed_prompt_id;
     if (!candidatePromptId) continue;
-    if (
-      ["release_silent", "release_candidate"].includes(
-        storedIntent.validation_status,
-      )
-    ) {
-      food.culinary_intent = {
-        ...storedIntent,
-        prompt_id: candidatePromptId,
-        validation_status: "release_candidate",
-        validated_modes: [],
-      };
-    }
     const prompt = harness.window.getPremiumUsagePrompt(food, harness.foods);
     if (!prompt) {
       food.culinary_intent = {
@@ -85,22 +109,39 @@ async function main() {
         usageMode: mode,
       });
       const direct = result.intercambios || [];
-      const compatibleDirect = direct.filter((candidate) =>
-          harness.window
-            .getPremiumUsageCompatibility(candidate, mode)
-            .compatible,
-        ).length;
+      const compatibility = direct.map((candidate) =>
+        harness.window
+          .getPremiumUsageCompatibility(candidate, mode)
+          .compatible,
+      );
+      const compatibleDirect = compatibility.filter(Boolean).length;
+      const firstCompatible = compatibility[0] === true;
+      let seenLessUsual = false;
+      let monotonicCompatibility = true;
+      for (const compatible of compatibility) {
+        if (!compatible) {
+          seenLessUsual = true;
+        } else if (seenLessUsual) {
+          monotonicCompatibility = false;
+          break;
+        }
+      }
       modeResults.push({
         mode,
         direct: direct.length,
         compatibleDirect,
+        firstCompatible,
+        monotonicCompatibility,
         signature: topSignature(result),
       });
     }
 
     const validModeResults = modeResults.filter(
       (modeResult) =>
-        modeResult.direct >= 5 && modeResult.compatibleDirect >= 1,
+        modeResult.direct >= 5 &&
+        modeResult.compatibleDirect >= 1 &&
+        modeResult.firstCompatible &&
+        modeResult.monotonicCompatibility,
     );
     const validModes = validModeResults.map(
       (modeResult) => modeResult.mode,

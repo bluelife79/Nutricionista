@@ -95,7 +95,7 @@ async function main() {
   assert(all.length > 0, "El yogur saborizado compatible quedó sin alternativas");
   assert(
     all.every((food) =>
-      ["preferred", "compatible"].includes(
+      ["preferred", "compatible", "unverified"].includes(
         engine.window.getPremiumChoiceGuidance(food).level,
       ),
     ),

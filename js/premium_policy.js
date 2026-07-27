@@ -71,6 +71,18 @@
     ) {
       return "seasoning";
     }
+    // Identidades inequívocas prevalecen sobre una clasificación histórica
+    // contaminada por el ingrediente secundario ("bífidus quinoa y avena"
+    // es un lácteo fermentado, no un cereal).
+    if (hasAny(name, [/\bqueso fresco batido\b/])) {
+      return "spoonable_fresh_dairy";
+    }
+    if (hasAny(name, [
+      /\byogur\w*\b/, /\byogurt\b/, /\byoghurt\b/, /\bkefir\b/,
+      /\bquefir\b/, /\bskyr\b/, /\bbifidus\b/, /\bcuajada\b/,
+    ])) {
+      return "fermented_dairy";
+    }
     if (food.premium_context) return String(food.premium_context);
 
     if (subgroup === "cold_soup" || food.cold_soup === true) return "cold_soup";
@@ -611,12 +623,12 @@
     spreadable_cheese: { review: 120, hard: 200 },
     aged_cheese: { review: 100, hard: 160 },
     whole_fruit: { review: 350, hard: 500 },
-    leafy_vegetable: { review: 400, hard: 550 },
-    cruciferous: { review: 400, hard: 550 },
-    fruiting_vegetable: { review: 400, hard: 550 },
-    root_vegetable: { review: 400, hard: 550 },
-    stalk_vegetable: { review: 400, hard: 550 },
-    other_vegetable: { review: 400, hard: 550 },
+    leafy_vegetable: { review: 250, hard: 350 },
+    cruciferous: { review: 350, hard: 400 },
+    fruiting_vegetable: { review: 350, hard: 400 },
+    root_vegetable: { review: 350, hard: 400 },
+    stalk_vegetable: { review: 350, hard: 400 },
+    other_vegetable: { review: 350, hard: 400 },
     oil: { review: 30, hard: 50 },
     nuts_seeds: { review: 60, hard: 100 },
     avocado: { review: 200, hard: 300 },
@@ -665,15 +677,49 @@
       };
     }
 
+    if (
+      COHORT[candidateContext] === "vegetable" &&
+      amount >= policy.hard
+    ) {
+      return {
+        status: "reject",
+        reason: "vegetable_portion_not_practical",
+        context: candidateContext,
+        multiplier: multiplier,
+        reviewMax: policy.review,
+        hardMax: policy.hard,
+      };
+    }
+
     // Very low-calorie vegetables can be mathematically exact at 450–500 g,
     // but that is not a useful direct card for the intended interface.
     if (
-      COHORT[candidateContext] === "vegetable" &&
+      candidateContext === "leafy_vegetable" &&
       amount > policy.review
     ) {
       return {
         status: "reject",
         reason: "vegetable_portion_not_practical",
+        context: candidateContext,
+        multiplier: multiplier,
+        reviewMax: policy.review,
+        hardMax: policy.hard,
+      };
+    }
+
+    // Un volumen de verdura algo superior al umbral puede ser razonable si
+    // parte de una ración parecida. Lo que no mostramos es una sustitución
+    // que combine ambos extremos: más de 350 g y casi el doble de volumen
+    // que el plato original (p. ej. 200 g de espinaca → 371 g de pepino).
+    if (
+      COHORT[originContext] === "vegetable" &&
+      COHORT[candidateContext] === "vegetable" &&
+      amount > policy.review &&
+      multiplier >= 1.75
+    ) {
+      return {
+        status: "reject",
+        reason: "disproportionate_vegetable_volume",
         context: candidateContext,
         multiplier: multiplier,
         reviewMax: policy.review,
@@ -711,12 +757,12 @@
       amount <= policy.review;
 
     if (
-      amount > policy.review ||
+      amount >= policy.review ||
       (multiplier > 2.5 && !legitimateDryWetCarb)
     ) {
       return {
         status: "review",
-        reason: amount > policy.review
+        reason: amount >= policy.review
           ? "above_review_serving"
           : "large_quantity_multiplier",
         context: candidateContext,

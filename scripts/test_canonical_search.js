@@ -3,19 +3,12 @@
 const assert = require("assert");
 const vm = require("vm");
 const { createEngine } = require("./lib/algorithm_harness");
+const vocabulary = require("../config/search_vocabulary.json");
 
 const CASES = [
-  ["leche", "bedca_0447"],
-  ["yogur", "bedca_0037"],
-  ["queso fresco", "bedca_0064"],
-  ["pan", "bedca_0068"],
-  ["pechuga de pollo", "bedca_0258"],
-  ["pimiento", "bedca_0002"],
-  ["conejo", "bedca_0926"],
-  ["gambas", "bedca_0770"],
-  ["solomillo de ternera", "bedca_0698"],
-  ["aceite de oliva", "bedca_0081"],
-  ["aove", "bedca_0088"],
+  ...Object.entries(vocabulary.canonical_ids).map(
+    ([query, ids]) => [query, String(ids[0])],
+  ),
   ["patatas cocidas", "bedca_0222"],
 ];
 

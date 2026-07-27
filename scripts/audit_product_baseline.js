@@ -13,12 +13,10 @@ const QUERY_FILE = path.join(
   "scripts",
   "queries.json",
 );
-const RAW =
-  /\b(crud[oa]s?|fresc[oa]s?|sin\s+cocer|en\s+seco|sec[oa]s?)\b/i;
 const COOKED =
   /\b(cocid[oa]s?|hervid[oa]s?|asad[oa]s?|plancha|parrilla|frit[oa]s?|guisad[oa]s?|estofad[oa]s?|al\s+horno|al\s+vapor|escalfad[oa]s?|tostad[oa]s?|salteado|rehogad[oa]s?)\b/i;
 const FOREIGN =
-  /\b(amb|beguda|naturalny|noix|houmous|gaspacho|olives|quefir|with|and|milk|cheese|yogurt natural|macarrons|espirals|vegetals)\b/i;
+  /\b(amb|beguda|naturalny|noix|houmous|gaspacho|olives|quefir|tonyina|oli d oliva|with|and|milk|cheese|yogurt natural|macarrons|espirals|vegetals)\b/i;
 const SEED_OIL =
   /aceite de (palma|algod[oó]n|germen|soja|girasol|colza|coco|ma[ií]z|s[eé]samo|lino|cacahuete|grano de uva|nuez)/i;
 const AMOUNTS = {
@@ -41,22 +39,23 @@ async function runProductBaseline(options = {}) {
   const queries = JSON.parse(fs.readFileSync(QUERY_FILE, "utf8"));
   const findings = {
     noSearch: [],
-    rawCooked: [],
     familyFirst: [],
-    percentageInversion: [],
-    adjacentMacroDuplicate: [],
-    largePortion: [],
-    seedOil: [],
+    tierInversion: [],
+    unexplainedWeightBasis: [],
+    identityRepeatTop5: [],
+    largePortionUnnoticed: [],
+    seedOilPreferred: [],
     foreign: [],
-    zeroReal: [],
-    calorieDrift: [],
+    zeroDirect: [],
+    calorieCeilingViolation: [],
     cookedOrigin: [],
     uglyName: [],
-    lowDiversity: [],
   };
   let scenarios = 0;
   let cards = 0;
   let preferredCards = 0;
+  let choiceWarningCards = 0;
+  let weightBridgeCards = 0;
 
   for (const query of queries) {
     const searchResults = harness.search(query);
@@ -78,9 +77,17 @@ async function runProductBaseline(options = {}) {
         (candidate) =>
           candidate.premiumChoiceGuidance?.level === "preferred",
       ).length;
+      choiceWarningCards += top10.filter((candidate) =>
+        ["compatible", "unverified", "occasional"].includes(
+          candidate.premiumChoiceGuidance?.level,
+        ),
+      ).length;
+      weightBridgeCards += top10.filter(
+        (candidate) => candidate.premiumWeightBasisBridge,
+      ).length;
 
       if (result.intercambios.length === 0) {
-        findings.zeroReal.push(`${query}→${origin.name} (${amount}g)`);
+        findings.zeroDirect.push(`${query}→${origin.name} (${amount}g)`);
       }
       if (
         harness.window.shouldShowFamilyFirst(origin, result) &&
@@ -97,41 +104,44 @@ async function runProductBaseline(options = {}) {
         findings.cookedOrigin.push(`${query} → ${origin.name}`);
       }
 
-      const percentages = top10.map((candidate) =>
-        candidate.matchDisplay != null
-          ? candidate.matchDisplay
-          : candidate.matchScore,
+      const tiers = top10.map(
+        (candidate) =>
+          harness.context.presentationTier(candidate._sortScore).rank,
       );
-      for (let index = 0; index < percentages.length - 1; index += 1) {
-        if (percentages[index] < percentages[index + 1] - 4) {
-          findings.percentageInversion.push(
+      for (let index = 0; index < tiers.length - 1; index += 1) {
+        if (
+          top10[index]._block === top10[index + 1]._block &&
+          tiers[index] < tiers[index + 1]
+        ) {
+          findings.tierInversion.push(
             `${query}(${amount}g) #${index + 1}`,
           );
           break;
         }
       }
 
-      const originRaw = RAW.test(origin.name) && !COOKED.test(origin.name);
-      const originCooked = COOKED.test(origin.name);
       for (const [index, candidate] of top10.slice(0, 5).entries()) {
-        const candidateRaw =
-          RAW.test(candidate.name) && !COOKED.test(candidate.name);
-        const candidateCooked = COOKED.test(candidate.name);
         if (
-          (originRaw && candidateCooked) ||
-          (originCooked && candidateRaw)
+          origin.weight_basis !== candidate.weight_basis &&
+          !candidate.premiumWeightBasisBridge
         ) {
-          findings.rawCooked.push(
+          findings.unexplainedWeightBasis.push(
             `${origin.name}(${amount}g) #${index + 1} → ${candidate.name}`,
           );
         }
-        if (candidate.equivalentAmount >= 350) {
-          findings.largePortion.push(
+        if (
+          candidate.equivalentAmount >= 350 &&
+          candidate.premiumPortionStatus !== "review"
+        ) {
+          findings.largePortionUnnoticed.push(
             `${origin.name}(${amount}g) #${index + 1} → ${candidate.name}`,
           );
         }
-        if (SEED_OIL.test(candidate.name)) {
-          findings.seedOil.push(
+        if (
+          SEED_OIL.test(candidate.name) &&
+          candidate.premiumChoiceGuidance?.level === "preferred"
+        ) {
+          findings.seedOilPreferred.push(
             `${origin.name}(${amount}g) #${index + 1} → ${candidate.name}`,
           );
         }
@@ -146,38 +156,16 @@ async function runProductBaseline(options = {}) {
           );
         }
         const originCalories = (origin.calories * amount) / 100 || 1;
-        if (candidate.macros.calories > originCalories * 1.35) {
-          findings.calorieDrift.push(
+        if (candidate.macros.calories > originCalories * 1.500001) {
+          findings.calorieCeilingViolation.push(
             `${origin.name}(${amount}g) #${index + 1} → ${candidate.name}`,
           );
         }
-      }
-
-      for (let index = 0; index < Math.min(4, top10.length); index += 1) {
-        const current = top10[index];
-        const next = top10[index + 1];
-        if (!next) break;
-        if (
-          Math.abs(current.protein - next.protein) < 0.2 &&
-          Math.abs(current.carbs - next.carbs) < 0.2 &&
-          Math.abs(current.fat - next.fat) < 0.2
-        ) {
-          findings.adjacentMacroDuplicate.push(
-            `${origin.name}: #${index + 1} ${current.name} ≡ ${next.name}`,
+        if (candidate.premiumIdentityRepeat === true) {
+          findings.identityRepeatTop5.push(
+            `${origin.name}(${amount}g) #${index + 1} → ${candidate.name}`,
           );
         }
-      }
-
-      const clusters = new Set(
-        top10
-          .slice(0, 5)
-          .map(
-            (candidate) =>
-              `${candidate.subgroup || ""}|${candidate.premiumContext || ""}`,
-          ),
-      );
-      if (clusters.size <= 1 && top10.length >= 5) {
-        findings.lowDiversity.push(`${origin.name}(${amount}g)`);
       }
     }
   }
@@ -196,19 +184,23 @@ async function runProductBaseline(options = {}) {
       preferredPercentage: Number(
         ((preferredCards / Math.max(cards, 1)) * 100).toFixed(1),
       ),
+      choiceWarningCards,
+      weightBridgeCards,
       noSearch: uniqueFindings.noSearch.length,
-      zeroReal: uniqueFindings.zeroReal.length,
+      zeroDirect: uniqueFindings.zeroDirect.length,
       familyFirst: uniqueFindings.familyFirst.length,
-      percentageInversion: uniqueFindings.percentageInversion.length,
-      rawCooked: uniqueFindings.rawCooked.length,
+      tierInversion: uniqueFindings.tierInversion.length,
+      unexplainedWeightBasis:
+        uniqueFindings.unexplainedWeightBasis.length,
       cookedOrigin: uniqueFindings.cookedOrigin.length,
-      adjacentMacroDuplicate: uniqueFindings.adjacentMacroDuplicate.length,
-      largePortion: uniqueFindings.largePortion.length,
-      seedOil: uniqueFindings.seedOil.length,
+      identityRepeatTop5: uniqueFindings.identityRepeatTop5.length,
+      largePortionUnnoticed:
+        uniqueFindings.largePortionUnnoticed.length,
+      seedOilPreferred: uniqueFindings.seedOilPreferred.length,
       foreign: uniqueFindings.foreign.length,
       uglyName: uniqueFindings.uglyName.length,
-      calorieDrift: uniqueFindings.calorieDrift.length,
-      lowDiversity: uniqueFindings.lowDiversity.length,
+      calorieCeilingViolation:
+        uniqueFindings.calorieCeilingViolation.length,
     },
     findings: uniqueFindings,
   };

@@ -50,6 +50,22 @@ async function main() {
     gates.candidateExpected,
     "La candidata no coincide con su contrato medido",
   );
+  for (const key of [
+    "familyFirst",
+    "tierInversion",
+    "unexplainedWeightBasis",
+    "largePortionUnnoticed",
+    "seedOilPreferred",
+    "foreign",
+    "uglyName",
+    "calorieCeilingViolation",
+  ]) {
+    assert.strictEqual(
+      baseline.totals[key],
+      0,
+      `El contrato conserva un defecto crítico: ${key}`,
+    );
+  }
 
   const intents = await runProductIntentAudit();
   for (const [key, expected] of Object.entries(gates.intents)) {

@@ -94,6 +94,11 @@ const adminSource = source('api/admin.js');
 const adminHtmlSource = source('admin.html');
 const adminAuthSource = source('api/admin-auth.js');
 const sessionSource = source('api/_session.js');
+const rateLimitSource = source('api/_rate_limit.js');
+const auditSource = source('api/_audit.js');
+const securityMigrationSource = source(
+  'supabase/migrations/202607270001_security_controls.sql',
+);
 const serviceWorkerSource = source('service-worker.js');
 const vercelConfig = JSON.parse(source('vercel.json'));
 const versionManifest = JSON.parse(source('version.json'));
@@ -142,7 +147,10 @@ assert.match(htmlSafety.highlightMatch(maliciousName, 'pollo'), /<strong>Pollo<\
 assert.doesNotMatch(sessionSource, /SESSION_SECRET\s*\|\|/);
 assert.doesNotMatch(sessionSource, /SUPABASE_SERVICE_ROLE_KEY/);
 assert.doesNotMatch(authSource, /Access-Control-Allow-Origin/);
-assert.match(authSource, /MAX_ATTEMPTS\s*=\s*6/);
+assert.match(rateLimitSource, /MAX_ATTEMPTS\s*=\s*6/);
+assert.match(rateLimitSource, /consume_auth_rate_limit/);
+assert.doesNotMatch(authSource, /new Map/);
+assert.doesNotMatch(adminAuthSource, /new Map/);
 assert.match(authSource, /setSessionCookie/);
 assert.match(authSource, /signInWithPassword/);
 assert.doesNotMatch(authSource, /\.select\(['"][^'"]*\bcode\b/);
@@ -152,6 +160,12 @@ assert.match(adminSource, /auth\.admin\.createUser/);
 assert.match(adminSource, /app_metadata:\s*\{\s*role:\s*'member'/);
 assert.match(adminSource, /value\.length\s*>=\s*12/);
 assert.match(adminAuthSource, /app_metadata\?\.role\s*!==\s*'admin'/);
+assert.match(adminAuthSource, /sessionVersion/);
+assert.match(adminSource, /session\.version/);
+assert.match(auditSource, /admin_audit_log/);
+assert.match(securityMigrationSource, /enable row level security/);
+assert.match(securityMigrationSource, /consume_auth_rate_limit/);
+assert.match(securityMigrationSource, /admin_audit_log/);
 assert.match(adminHtmlSource, /Contraseña protegida/);
 assert.match(adminHtmlSource, /type="password"[^>]*id="newPassword"/);
 assert.match(adminHtmlSource, /minlength="12"[^>]*maxlength="128"/);
@@ -159,7 +173,7 @@ assert.match(adminHtmlSource, /id="adminEmail"/);
 assert.doesNotMatch(adminHtmlSource, /sessionStorage|x-admin-password/);
 assert.match(serviceWorkerSource, /isDocument/);
 assert.match(serviceWorkerSource, /self\.clients\.claim/);
-assert.match(serviceWorkerSource, /revolucionat-premium-v2-3-systemic-1/);
+assert.match(serviceWorkerSource, /revolucionat-premium-v2-4-rc-1/);
 const globalHeaders = vercelConfig.headers.find((entry) => entry.source === '/(.*)');
 assert.ok(globalHeaders, 'Faltan cabeceras globales');
 const headerMap = Object.fromEntries(

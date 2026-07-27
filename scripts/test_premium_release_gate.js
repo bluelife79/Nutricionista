@@ -152,8 +152,8 @@ async function verifyOptionalCulinaryUse(engine) {
   assert(mozzarella, "Falta la mozzarella canónica para probar el uso culinario");
   assert.deepStrictEqual(
     Array.from(engine.window.getPremiumUsagePromptOptions(mozzarella)),
-    [],
-    "Mozzarella no debe preguntar hasta que frío/fundido cambien materialmente el TOP",
+    ["cold", "melt", "any"],
+    "Mozzarella debe distinguir frío y fundido porque cambian materialmente el TOP",
   );
 }
 
@@ -189,6 +189,15 @@ async function main() {
       `${item.case_id}:${item.candidate_id}`,
       item,
     ]),
+  );
+  const currentReviewKeys = premium.portion_findings
+    .filter((item) => item.severity === "review")
+    .map((item) => `${item.case_id}:${item.candidate_id}`)
+    .sort();
+  assert.deepStrictEqual(
+    Array.from(decisions.keys()).sort(),
+    currentReviewKeys,
+    "Las decisiones de ración no coinciden exactamente con la candidata",
   );
   for (const finding of premium.portion_findings) {
     if (finding.severity !== "review") continue;

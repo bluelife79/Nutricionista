@@ -30,6 +30,11 @@ const EXACT_TRANSLATIONS = {
   "Olives negres sense pinyol": "Aceitunas negras sin hueso",
   "Olive verte avec anchois": "Aceituna verde con anchoa",
   "Gaspacho suave": "Gazpacho suave",
+  "Llet semidesnatada bonpreu": "Leche semidesnatada Bonpreu",
+  "Llet sense lactosa": "Leche sin lactosa",
+  "Llet uht semidesnatada": "Leche UHT semidesnatada",
+  "Llet UHT SENCERA": "Leche UHT entera",
+  "Uva negra, crudauva negra, cruda": "Uva negra, cruda",
 };
 
 function main() {

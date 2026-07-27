@@ -29,7 +29,7 @@
   {"id":"gambon","group":"proteinas","query":"Gambòn crudo","amount_g":120,"context":"seafood","mode":"direct"},
   {"id":"tempeh","group":"proteinas","query":"Tempeh","amount_g":100,"origin_id":"manual_tempeh","context":"plant_protein","mode":"direct"},
   {"id":"tofu","group":"proteinas","query":"Tofu firme","amount_g":150,"origin_id":"off_873b01b809","context":"plant_protein","mode":"direct"},
-  {"id":"seitan","group":"proteinas","query":"Seitan","amount_g":100,"context":"plant_protein","mode":"direct"},
+  {"id":"seitan","group":"proteinas","query":"Seitan","amount_g":100,"context":"plant_protein","mode":"limited"},
   {"id":"garbanzo","group":"proteinas","query":"Garbanzo, hervido","amount_g":100,"context":"cooked_legume","mode":"direct"},
   {"id":"lenteja","group":"proteinas","query":"Lenteja, hervida","amount_g":100,"context":"cooked_legume","mode":"direct"},
   {"id":"alubia_conserva","group":"proteinas","query":"Alubia blanca, en conserva","amount_g":100,"context":"cooked_legume","mode":"direct"},

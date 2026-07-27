@@ -1,0 +1,96 @@
+{
+  "version": "premium-v2.4-weight-basis-1",
+  "bridges": [
+    {
+      "from": "cooked",
+      "to": "drained",
+      "contexts": [
+        "cooked_legume",
+        "cooked_grain",
+        "canned_fish",
+        "leafy_vegetable",
+        "cruciferous",
+        "fruiting_vegetable",
+        "root_vegetable",
+        "stalk_vegetable",
+        "other_vegetable"
+      ],
+      "factor": 1,
+      "notice": "La cantidad de la conserva se refiere al peso escurrido."
+    },
+    {
+      "from": "raw",
+      "to": "cooked",
+      "contexts": [
+        "lean_meat",
+        "fatty_meat",
+        "minced_meat",
+        "egg",
+        "white_fish",
+        "fatty_fish",
+        "seafood",
+        "cooked_legume",
+        "leafy_vegetable",
+        "cruciferous",
+        "fruiting_vegetable",
+        "root_vegetable",
+        "stalk_vegetable",
+        "other_vegetable"
+      ],
+      "factor": 1,
+      "notice": "Cada cantidad mantiene su base real: en crudo o una vez cocinada. La tarjeta indica cuál corresponde a cada alimento."
+    },
+    {
+      "from": "raw",
+      "to": "drained",
+      "contexts": [
+        "cooked_legume",
+        "cooked_grain",
+        "leafy_vegetable",
+        "cruciferous",
+        "fruiting_vegetable",
+        "root_vegetable",
+        "stalk_vegetable",
+        "other_vegetable"
+      ],
+      "factor": 1,
+      "notice": "Comparas un alimento fresco en crudo con una conserva; la cantidad de la conserva se refiere al peso escurrido."
+    },
+    {
+      "from": "dry",
+      "to": "raw",
+      "contexts": [
+        "breakfast_cereal",
+        "dry_grain",
+        "cooked_grain",
+        "tuber",
+        "cooked_tuber"
+      ],
+      "factor": 1,
+      "notice": "Comparas un alimento pesado en seco con otro pesado en crudo; la tarjeta indica la base de cada cantidad."
+    },
+    {
+      "from": "dry",
+      "to": "as_sold",
+      "contexts": [
+        "breakfast_cereal",
+        "dry_grain",
+        "cooked_grain",
+        "bread"
+      ],
+      "factor": 1,
+      "notice": "Cada cantidad mantiene su base real: en seco o tal como viene."
+    },
+    {
+      "from": "as_sold",
+      "to": "raw",
+      "contexts": [
+        "bread",
+        "tuber",
+        "cooked_tuber"
+      ],
+      "factor": 1,
+      "notice": "El pan se pesa tal como viene y el tubérculo en crudo; ambas bases aparecen junto a los gramos."
+    }
+  ]
+}

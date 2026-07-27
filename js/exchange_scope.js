@@ -17,7 +17,7 @@
   "use strict";
 
   var VERSION = "premium-v2.3-scope-1";
-  var CHOICE_VERSION = "premium-v2.3-choice-1";
+  var CHOICE_VERSION = "premium-v2.4-choice-1";
   var STATUS = {
     CORE: "exchange_core",
     REFERENCE: "reference_only",
@@ -99,7 +99,9 @@
   var ALCOHOL_RE =
     /\b(cerveza\w*|vino\w*|sangria\w*|sidra\w*|vermut\w*|licor\w*|ron\b|whisky|vodka|ginebra)\b/;
   var PROCESSED_MEAT_RE =
-    /\b(choriz\w*|salchich\w*|mortadela\w*|salami\w*|fuet\w*|bacon\b|panceta\w*|fiambre\w*|sobrasad\w*|nugget\w*|jamon cocido|jamon serrano|jamon iberico|lomo de cebo.*iberic\w*|paleta.*iberic\w*|embutid\w*)\b/;
+    /\b(choriz\w*|salchich\w*|mortadela\w*|salami\w*|fuet\w*|bacon\b|panceta\w*|fiambre\w*|sobrasad\w*|nugget\w*|jamon cocido|jamon serrano|jamon iberico|lomo (?:de )?(?:cebo|bellota).*iberic\w*|paleta.*iberic\w*|embutid\w*)\b/;
+  var DISALLOWED_OIL_RE =
+    /^aceite\b.*\b(palma|palmiste|algodon|germen de trigo|para freir)\b/;
   var FAST_READY_MEAL_RE =
     /\b(pizza\w*|lasa[nñ]\w* refrigerad\w*|hamburgues\w* con|burgers?\b|perrito\w*|kebab\w*|fingers?\b|croquet\w*|san jacobo|cordon bleu|empanadill\w*|burrito\w* preparado\w*|sandwich\w*|sanwich\w*|flautas?\b|funroll\b|gyozas?\b)\b/;
   var FLAVOURED_DAIRY_RE =
@@ -127,7 +129,11 @@
   var VEGETABLE_SOUP_OR_PUREE_RE =
     /\b(crema|pure|veloute|sopa)\b.*\b(verdura\w*|calabac\w*|calabaz\w*|zanahoria\w*|brocoli|espinaca\w*|puerro\w*|esparrag\w*|pimiento\w*|alcachofa\w*)\b|\b(pure|crema) de\b/;
   var COMPOSITE_LEGUME_RE =
-    /\b(a la riojana|con verduras?|con acelgas?|garam masala|guisad\w*|potaje|fabada|cocido)\b/;
+    /\b(a la riojana|a la jardinera|con verduras?|con acelgas?|garam masala|guisad\w*|potaje|fabada|cocido)\b/;
+  var STUFFED_COMPOSITE_RE =
+    /\b(pimient\w*|peperoncin\w*|calabac\w*|berenjen\w*|tomate\w*)\b.{0,45}\brellen\w*\b/;
+  var FRIED_VEGETABLE_IN_OIL_RE =
+    /\b(berenjen\w*|habas?|habitas?|verduras?|hortalizas?)\b.{0,45}\bfrit\w*\b.{0,45}\baceite\b/;
   var PREPARED_TUBER_RE =
     /\b(patatas? (corte )?para (tortilla|bravas)|pure de patata)\b/;
   var READY_COFFEE_RE =
@@ -319,6 +325,14 @@
     var labelClaim = NO_ADDED_SUGAR_CLAIM_RE.test(name);
     NO_ADDED_SUGAR_CLAIM_RE.lastIndex = 0;
 
+    if (normalize(food && food.source) === "bedca") {
+      return {
+        status: "not_applicable",
+        verified: true,
+        source: "generic_food_identity",
+      };
+    }
+
     if (!ingredients) {
       return {
         status: labelClaim ? "not_detected" : "unknown",
@@ -458,6 +472,14 @@
       return result(
         STATUS.EXCLUDED,
         ["isolated_animal_fat_not_exchange_food"],
+        context,
+        evidence,
+      );
+    }
+    if (DISALLOWED_OIL_RE.test(name)) {
+      return result(
+        STATUS.EXCLUDED,
+        ["fat_quality_program_exclusion"],
         context,
         evidence,
       );
@@ -794,6 +816,22 @@
         evidence,
       );
     }
+    if (STUFFED_COMPOSITE_RE.test(name)) {
+      return result(
+        STATUS.REFERENCE,
+        ["stuffed_composite_food_reference"],
+        context,
+        evidence,
+      );
+    }
+    if (FRIED_VEGETABLE_IN_OIL_RE.test(name)) {
+      return result(
+        STATUS.REFERENCE,
+        ["fried_vegetable_in_oil_reference"],
+        context,
+        evidence,
+      );
+    }
     if (
       /one-dish-meals|sandwiches|refrigerated-meals|frozen-meals/.test(
         evidenceTags,
@@ -1126,6 +1164,36 @@
     var sweeteners = Number(evidence.sweeteners_n);
     var hasNova4 = Number.isFinite(nova) && nova === 4;
     var hasSweeteners = Number.isFinite(sweeteners) && sweeteners > 0;
+    var fatProgramPriority =
+      ["seed_refined", "tropical"].includes(food && food.fat_quality);
+    var packaged = normalize(food && food.source) !== "bedca";
+    var labelSensitiveContexts = new Set([
+      "breakfast_cereal",
+      "bread",
+      "milk",
+      "plant_drink",
+      "fermented_dairy",
+      "spoonable_fresh_dairy",
+      "fresh_cheese",
+      "spreadable_cheese",
+      "aged_cheese",
+      "processed_meat",
+      "processed_fish",
+      "canned_fish",
+      "oil",
+      "olive",
+      "nuts_seeds",
+      "avocado",
+      "nut_spread",
+      "plant_savory_spread",
+      "savory_spread",
+      "cold_soup",
+      "prepared_meal",
+    ]);
+    var labelUnverified =
+      packaged &&
+      labelSensitiveContexts.has(context) &&
+      sugarAssessment.status === "unknown";
     var reasonCodes = [];
     var level = "preferred";
 
@@ -1155,7 +1223,16 @@
       if (sugarAssessment.status === "detected") {
         reasonCodes.push("contains_added_sugar");
       }
-      if (reasonCodes.length > 0) level = "compatible";
+      if (reasonCodes.length > 0) {
+        level = "compatible";
+      } else if (labelUnverified) {
+        level = "unverified";
+        reasonCodes.push("packaged_label_not_verified");
+      }
+      if (fatProgramPriority) {
+        level = "occasional";
+        reasonCodes.push("fat_quality_program_priority");
+      }
     }
 
     var copy = {
@@ -1178,11 +1255,21 @@
           : "Puede encajar en cantidad y macros. Criterio RevolucionaT: para el día a día, prioriza opciones con ingredientes más sencillos.",
         rankFactor: 0.8,
       },
+      unverified: {
+        label: "Opción compatible",
+        summary: "Puede encajar, pero falta verificar su etiqueta.",
+        detail:
+          "No hemos podido verificar por completo los ingredientes de este producto. Puedes usar la equivalencia, pero para el día a día el programa prioriza opciones con etiquetado claro e ingredientes sencillos.",
+        rankFactor: 0.74,
+      },
       occasional: {
         label: "Uso ocasional",
-        summary: "Puede encajar, pero no es nuestra primera elección habitual.",
-        detail:
-          "La equivalencia puede ser útil como referencia. Criterio RevolucionaT: prioriza alimentos menos procesados en el día a día.",
+        summary: fatProgramPriority
+          ? "Sirve para cubrir la grasa, pero no es la primera elección del programa."
+          : "Puede encajar, pero no es nuestra primera elección habitual.",
+        detail: fatProgramPriority
+          ? "La equivalencia de grasa es válida. Criterio RevolucionaT: para el día a día, prioriza aceite de oliva, aguacate, aceitunas o frutos secos enteros."
+          : "La equivalencia puede ser útil como referencia. Criterio RevolucionaT: prioriza alimentos menos procesados en el día a día.",
         rankFactor: 0.62,
       },
     }[level];

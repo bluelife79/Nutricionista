@@ -14,6 +14,7 @@
 
     <!-- Configuración única compartida por navegador y arnés de validación. -->
     <script src="js/runtime_config.js"></script>
+    <script src="js/telemetry.js"></script>
 
     <title>RevolucionaT - Intercambiador de Alimentos</title>
 
@@ -222,14 +223,14 @@
       }
 
       .item-brand {
-        font-size: 12px;
-        color: #8b92a8;
+        font-size: 14px;
+        color: #5f6472;
         font-weight: 500;
       }
 
       .item-macros {
-        font-size: 11px;
-        color: #a0a8b8;
+        font-size: 13px;
+        color: #626979;
         margin-top: 4px;
       }
 
@@ -280,8 +281,8 @@
       }
 
       .selected-food-brand {
-        font-size: 12px;
-        color: #8b92a8;
+        font-size: 14px;
+        color: #5f6472;
       }
 
       .clear-btn {
@@ -291,8 +292,8 @@
         font-size: 20px;
         cursor: pointer;
         padding: 4px;
-        width: 32px;
-        height: 32px;
+        width: 44px;
+        height: 44px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -664,36 +665,46 @@
       }
 
       .result-brand {
-        font-size: 13px;
-        color: #8b92a8;
+        font-size: 14px;
+        color: #5f6472;
         font-weight: 500;
       }
 
-      .match-score {
+      .result-similarity {
         text-align: right;
+        max-width: 120px;
       }
 
-      .match-value {
-        font-size: 28px;
-        font-weight: 900;
-        line-height: 1;
+      .result-similarity-label {
+        display: inline-block;
+        border-radius: 999px;
+        padding: 6px 9px;
+        font-size: 13px;
+        font-weight: 800;
+        line-height: 1.15;
       }
 
-      .match-value.intercambios {
-        color: #4caf50;
+      .result-similarity-label.very_similar {
+        color: #26733c;
+        background: #e8f5e9;
       }
-      .match-value.familia {
+
+      .result-similarity-label.good_change {
         color: #7c6fcf;
-      }
-      .match-value.preparados {
-        color: #9e9e9e;
+        background: #f0edff;
       }
 
-      .match-label {
-        font-size: 10px;
-        color: #8b92a8;
-        text-transform: uppercase;
-        font-weight: 700;
+      .result-similarity-label.possible_change {
+        color: #675f70;
+        background: #f2eff3;
+      }
+
+      .result-similarity-summary {
+        margin-top: 4px;
+        color: #5f6472;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 1.25;
       }
 
       .result-amount {
@@ -773,6 +784,16 @@
         background-clip: padding-box;
       }
 
+      .result-weight-basis {
+        display: inline-block;
+        margin-left: 8px;
+        color: #5e6575;
+        font-size: 13px;
+        font-weight: 700;
+        vertical-align: middle;
+        -webkit-text-fill-color: initial;
+      }
+
       .result-fit-reason {
         display: inline-flex;
         align-items: center;
@@ -829,6 +850,12 @@
         color: #9a6a12;
         background: #fff8e8;
         border-color: #efd38f;
+      }
+
+      .choice-guidance.unverified {
+        color: #78621c;
+        background: #fffbee;
+        border-color: #dfcf91;
       }
 
       .choice-guidance.occasional {
@@ -1757,12 +1784,52 @@
 
       .app-logout {
         flex: 0 0 auto;
-        padding: 8px 0;
+        min-height: 44px;
+        min-width: 88px;
+        padding: 10px 8px;
         border: 0;
-        color: rgba(255,255,255,.65);
+        color: rgba(255,255,255,.82);
         background: transparent;
-        font: 700 10px/1 "Manrope", sans-serif;
+        font: 700 12px/1.2 "Manrope", sans-serif;
         cursor: pointer;
+      }
+
+      .telemetry-privacy {
+        margin: 18px 0 8px;
+        border: 1px solid rgba(83, 75, 144, .18);
+        border-radius: 14px;
+        background: rgba(255,255,255,.72);
+        color: #4f5564;
+        font-size: 13px;
+      }
+
+      .telemetry-privacy summary {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        padding: 9px 14px;
+        color: #534b90;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      .telemetry-privacy-copy {
+        padding: 0 14px 14px;
+        line-height: 1.45;
+      }
+
+      .telemetry-privacy-toggle {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-top: 9px;
+        font-size: 14px;
+      }
+
+      .telemetry-privacy-toggle input {
+        width: 20px;
+        height: 20px;
+        flex: 0 0 auto;
       }
 
       .app-welcome {
@@ -1986,7 +2053,7 @@
       <!-- SEARCH SECTION -->
       <div id="searchSection" class="search-section">
         <div class="card-neo">
-          <label class="label">1. ¿Qué alimento quieres cambiar?</label>
+          <label class="label" for="searchInput">1. ¿Qué alimento quieres cambiar?</label>
           <span class="step-help">Escribe el nombre y elige la opción que más se parezca a la tuya.</span>
           <div class="input-wrapper">
             <input
@@ -2013,7 +2080,7 @@
               <div class="selected-food-name" id="selectedName"></div>
               <div class="selected-food-brand" id="selectedBrand"></div>
             </div>
-            <button class="clear-btn" id="clearBtn">✕</button>
+            <button type="button" class="clear-btn" id="clearBtn" aria-label="Quitar alimento seleccionado">✕</button>
           </div>
         </div>
 
@@ -2031,7 +2098,7 @@
           id="amountSection"
           style="opacity: 0.5; pointer-events: none"
         >
-          <label class="label">2. ¿Qué cantidad tienes?</label>
+          <label class="label" for="amountInput">2. ¿Qué cantidad tienes?</label>
           <span class="step-help">Indica los gramos que aparecen en tu menú.</span>
           <input
             type="number"
@@ -2127,6 +2194,20 @@
           </details>
         </div>
       </div>
+
+      <details class="telemetry-privacy">
+        <summary>Privacidad y mejora de la herramienta</summary>
+        <div class="telemetry-privacy-copy">
+          Medimos de forma anónima qué búsquedas funcionan y cuáles faltan.
+          No guardamos tu email ni un historial personal de alimentos. Los
+          términos solo permanecen agregados cuando se repiten al menos cinco
+          veces.
+          <label class="telemetry-privacy-toggle" for="telemetryEnabled">
+            <input type="checkbox" id="telemetryEnabled" checked />
+            <span>Ayudar a mejorar el intercambiador con datos anónimos.</span>
+          </label>
+        </div>
+      </details>
     </div>
 
     <script src="js/exchange_groups.js"></script>
@@ -2135,6 +2216,7 @@
     <script src="js/premium_policy.js"></script>
     <script src="js/culinary_intent.js"></script>
     <script src="js/exchange_scope.js"></script>
+    <script src="js/weight_basis.js"></script>
     <script src="js/algorithm.js"></script>
     <script src="js/presentation_policy.js"></script>
     <script>
@@ -2359,9 +2441,12 @@
         try {
           // Single source of truth: database.json (Vercel sirve con gzip
           // automático ~250KB transferidos para 2MB raw).
-          const [response, vocabulary] = await Promise.all([
+          const [response, vocabulary, weightBasisBridges] = await Promise.all([
             fetch("database.json"),
             fetch("config/search_vocabulary.json")
+              .then((result) => (result.ok ? result.json() : null))
+              .catch(() => null),
+            fetch("config/weight_basis_bridges.json")
               .then((result) => (result.ok ? result.json() : null))
               .catch(() => null),
           ]);
@@ -2372,6 +2457,8 @@
           foodsDatabase = window.foodsDatabase;
           window.PREMIUM_SEARCH_VOCABULARY =
             vocabulary || { aliases: {}, excluded: {} };
+          window.PREMIUM_WEIGHT_BASIS_BRIDGES =
+            weightBasisBridges || { bridges: [] };
           console.log(
             "✅ Base de datos cargada:",
             foodsDatabase.length,
@@ -2596,6 +2683,9 @@
         usageContextOptions.replaceChildren();
         selectedUsageMode = "any";
         if (!prompt) return;
+        window.trackAnonymousEvent?.("prompt_shown", {
+          prompt_id: prompt.id,
+        });
 
         usageContextLabel.textContent = prompt.question;
         usageContextHelp.textContent = prompt.help;
@@ -2617,6 +2707,16 @@
         );
 
         if (!selectedFood) return;
+        window.trackAnonymousEvent?.("select_origin", {
+          food_id: selectedFood.id,
+          position:
+            Math.max(
+              0,
+              lastSearchResults.findIndex(
+                (food) => String(food.id) === String(foodId),
+              ),
+            ) + 1,
+        });
 
         document.getElementById("selectedName").textContent =
           selectedFood.name || "";
@@ -2647,6 +2747,14 @@
         const button = event.target.closest(".usage-context-btn");
         if (!button) return;
         selectedUsageMode = button.dataset.usageMode || "any";
+        const prompt =
+          typeof window.getPremiumUsagePrompt === "function" && selectedFood
+            ? window.getPremiumUsagePrompt(selectedFood, foodsDatabase)
+            : null;
+        window.trackAnonymousEvent?.("prompt_answered", {
+          prompt_id: prompt?.id,
+          option_id: selectedUsageMode,
+        });
         usageContextOptions
           .querySelectorAll(".usage-context-btn")
           .forEach((item) => {
@@ -2718,6 +2826,7 @@
       }
 
       async function calculateEquivalences() {
+        const startedAt = performance.now();
         const amount = parseFloat(amountInput.value);
         const cacheKey = exchangeResultCacheKey(
           selectedFood,
@@ -2730,6 +2839,7 @@
         const calculationStatus = document.querySelector(".loading-text");
 
         let results = exchangeResultCache.get(cacheKey);
+        const cacheHit = Boolean(results);
         if (results) {
           exchangeResultCache.delete(cacheKey);
           exchangeResultCache.set(cacheKey, results);
@@ -2742,6 +2852,15 @@
           rememberExchangeResult(cacheKey, results);
         }
         displayResults(selectedFood, amount, results);
+        window.trackAnonymousEvent?.("results_rendered", {
+          direct_count: results.intercambios?.length || 0,
+          family_count: results.familia?.length || 0,
+          prepared_count: results.preparados?.length || 0,
+          duration_bucket_ms:
+            Math.round((performance.now() - startedAt) / 100) * 100,
+          cache_hit: cacheHit,
+        });
+        window.markAnonymousResultsShown?.();
         loading.classList.remove("active");
         calculationStatus.textContent = "Cargando...";
         resultsSection.classList.add("active");
@@ -2769,6 +2888,13 @@
             ? window.formatHouseholdMeasure(originalFood, amount)
             : null;
           return hm ? `<span class="result-household">${escapeHtml(hm)}</span>` : "";
+        })()}${(() => {
+          const basis = window.getPremiumWeightBasisLabel
+            ? window.getPremiumWeightBasisLabel(originalFood)
+            : "";
+          return basis
+            ? `<span class="result-weight-basis">${escapeHtml(basis)}</span>`
+            : "";
         })()}
       </div>
       <div class="original-macros">
@@ -2931,6 +3057,10 @@
           alt.premiumUsageFit === "less_usual"
             ? '<div class="portion-review-note">ℹ️ Menos habitual para el uso que has elegido.</div>'
             : "";
+        const weightBasisNotice =
+          alt.premiumWeightBasisBridge?.notice
+            ? `<div class="portion-review-note">ℹ️ ${escapeHtml(alt.premiumWeightBasisBridge.notice)}</div>`
+            : "";
 
         const choiceGuidance =
           alt.premiumChoiceGuidance ||
@@ -2940,19 +3070,16 @@
         let choiceGuidanceHTML = "";
         if (
           choiceGuidance &&
-          ["preferred", "compatible", "occasional"].includes(
+          ["preferred", "compatible", "unverified", "occasional"].includes(
             choiceGuidance.level,
           )
         ) {
-          const details =
-            choiceGuidance.level === "preferred"
-              ? ""
-              : `
-                <details class="choice-guidance-details">
-                  <summary>¿Por qué?</summary>
-                  <p>${escapeHtml(choiceGuidance.detail)}</p>
-                </details>
-              `;
+          const details = `
+            <details class="choice-guidance-details">
+              <summary>¿Por qué?</summary>
+              <p>${escapeHtml(choiceGuidance.detail)}</p>
+            </details>
+          `;
           choiceGuidanceHTML = `
             <div class="choice-guidance ${choiceGuidance.level}">
               <span class="choice-guidance-dot" aria-hidden="true"></span>
@@ -2984,6 +3111,30 @@
           }
           portionNotice = `<div class="portion-review-note">⚠️ ${message}</div>`;
         }
+        const macroLabels = {
+          protein: "proteína",
+          carbs: "hidratos",
+          fat: "grasa",
+        };
+        const macroNoticeEntry = Object.entries(macroLabels)
+          .map(([key, label]) => ({
+            key,
+            label,
+            diff: Number(alt.diffs?.[key]) || 0,
+          }))
+          .filter((item) => Math.abs(item.diff) > 15)
+          .sort((a, b) => Math.abs(b.diff) - Math.abs(a.diff))[0];
+        const macroNotice = macroNoticeEntry
+          ? `<div class="portion-review-note">ℹ️ Aporta ${escapeHtml(Math.abs(macroNoticeEntry.diff).toFixed(0))}g ${macroNoticeEntry.diff > 0 ? "más" : "menos"} de ${escapeHtml(macroNoticeEntry.label)}.</div>`
+          : "";
+        const similarity =
+          typeof window.presentationTier === "function"
+            ? window.presentationTier(alt._sortScore)
+            : {
+                key: "possible_change",
+                label: "Cambio posible",
+                summary: "Sirve, pero se nota más",
+              };
 
         return `
       <div class="result-card ${tier}">
@@ -2994,9 +3145,9 @@
             <div class="result-name">${escapeHtml(alt.name)}</div>
             <div class="result-brand">${escapeHtml(alt.brand || "Sin marca")} · ${escapeHtml(alt.source || "Base")}</div>
           </div>
-          <div class="match-score">
-            <div class="match-value ${tier}">${alt.matchDisplay ?? alt.matchScore}%</div>
-            <div class="match-label">Match</div>
+          <div class="result-similarity">
+            <div class="result-similarity-label ${escapeHtml(similarity.key)}">${escapeHtml(similarity.label)}</div>
+            <div class="result-similarity-summary">${escapeHtml(similarity.summary)}</div>
           </div>
         </div>
 
@@ -3006,12 +3157,36 @@
               ? window.formatHouseholdMeasure(alt, alt.equivalentAmount)
               : null;
             return hm ? `<span class="result-household">${escapeHtml(hm)}</span>` : "";
+          })()}${(() => {
+            const basis = window.getPremiumWeightBasisLabel
+              ? window.getPremiumWeightBasisLabel(alt)
+              : "";
+            return basis
+              ? `<span class="result-weight-basis">${escapeHtml(basis)}</span>`
+              : "";
+          })()}${(() => {
+            const fraction = Number(alt.edible_fraction);
+            if (!(fraction > 0 && fraction < 0.9)) return "";
+            const purchaseWeight = Math.round(alt.equivalentAmount / fraction);
+            return `<span class="result-weight-basis">parte comestible · ≈ ${escapeHtml(purchaseWeight)}g con hueso o cáscara</span>`;
+          })()}${(() => {
+            const pack = Number(alt.typical_pack_g);
+            if (!(pack > 0 && alt.equivalentAmount > pack * 1.5)) return "";
+            const packs = Math.ceil(alt.equivalentAmount / pack);
+            return `<span class="result-weight-basis">≈ ${escapeHtml(packs)} envases escurridos</span>`;
+          })()}${(() => {
+            const hydration = Number(alt.hydration_factor);
+            if (!(hydration > 1)) return "";
+            const hydrated = Math.round(alt.equivalentAmount * hydration);
+            return `<span class="result-weight-basis">≈ ${escapeHtml(hydrated)}g una vez hidratado</span>`;
           })()}
         </div>
         <div class="result-fit-reason">✓ ${escapeHtml(contextReason)}</div>
         ${usageNotice}
+        ${weightBasisNotice}
         ${choiceGuidanceHTML}
         ${portionNotice}
+        ${macroNotice}
 
         <div class="result-macros">
           <div class="result-macro-item">
@@ -3219,6 +3394,7 @@
       // BACK BUTTON
       // ============================================
       backBtn.addEventListener("click", () => {
+        window.markAnonymousResultInteraction?.();
         resultsSection.classList.remove("active");
         searchSection.style.display = "block";
 
@@ -3236,6 +3412,36 @@
         dropdown.classList.remove("active");
         searchInput.focus();
       });
+
+      resultsSection.addEventListener("click", (event) => {
+        const summary = event.target.closest(
+          ".choice-guidance-details > summary",
+        );
+        if (!summary) return;
+        const card = summary.closest(".result-card");
+        const block = card?.classList.contains("familia")
+          ? "familia"
+          : card?.classList.contains("preparados")
+            ? "preparados"
+            : "intercambios";
+        const cards = Array.from(
+          card?.parentElement?.querySelectorAll(".result-card") || [],
+        );
+        window.trackAnonymousEvent?.("card_expanded", {
+          block,
+          position: Math.max(1, cards.indexOf(card) + 1),
+        });
+        window.markAnonymousResultInteraction?.();
+      });
+
+      const telemetryEnabled = document.getElementById("telemetryEnabled");
+      if (telemetryEnabled) {
+        telemetryEnabled.checked =
+          window.isAnonymousTelemetryEnabled?.() !== false;
+        telemetryEnabled.addEventListener("change", () => {
+          window.setAnonymousTelemetryEnabled?.(telemetryEnabled.checked);
+        });
+      }
 
       // ============================================
       // CLICK OUTSIDE

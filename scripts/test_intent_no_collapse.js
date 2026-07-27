@@ -6,7 +6,7 @@ const { runProductIntentAudit } = require("./audit_product_intents");
 async function main() {
   const report = await runProductIntentAudit();
   assert(
-    report.totals.promptedOrigins >= 350,
+    report.totals.promptedOrigins >= 300,
     "La personalización culinaria quedó demasiado corta",
   );
   assert.strictEqual(

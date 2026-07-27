@@ -2,6 +2,7 @@
 
 const assert = require("assert");
 const { createProductHarness } = require("./lib/product_harness");
+const releaseVersion = require("../version.json");
 
 const AMOUNT_BY_CONTEXT = {
   breakfast_cereal: 40,
@@ -75,7 +76,11 @@ async function main() {
     );
   }
 
-  assert(core.length >= 1290, "La prueba visual no recorrió todo el núcleo");
+  assert.strictEqual(
+    core.length,
+    releaseVersion.exchange_core,
+    "La prueba visual no recorrió exactamente todo el núcleo publicado",
+  );
   console.log(
     `PASS C1: 0/${core.length} orígenes con marcas delante; ` +
       `${withDirectExchange} con intercambio real verificado`,

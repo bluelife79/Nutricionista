@@ -1,83 +1,55 @@
 {
-  "version": "premium-v2-product-decisions-1",
+  "version": "premium-v2.4-product-decisions-2",
   "scope": "Decisiones de practicidad de producto para equivalencias matemáticamente válidas que requieren una cantidad grande. No son prescripciones ni aprobación clínica.",
   "decisions": [
     {
-      "case_id": "pasta",
-      "candidate_id": "bedca_0653",
-      "decision": "accepted_with_visible_notice",
-      "reason": "Un alimento seco se cambia por boniato con más agua; 141 g sigue siendo una ración culinaria razonable.",
-      "notice_type": "dry_to_wet_carb"
-    },
-    {
       "case_id": "pan",
-      "candidate_id": "bedca_0222",
+      "candidate_id": "bedca_0001",
       "decision": "accepted_with_visible_notice",
-      "reason": "El cambio de pan a patata cocida necesita más gramos por su mayor contenido de agua; 169 g es una guarnición doméstica razonable y se explica en pantalla.",
-      "notice_type": "dry_to_wet_carb"
-    },
-    {
-      "case_id": "pan_centeno",
-      "candidate_id": "bedca_0222",
-      "decision": "accepted_with_visible_notice",
-      "reason": "El cambio pan-patata exige más gramos por el agua de la patata; 176 g es una ración utilizable, pero debe explicarse.",
-      "notice_type": "dry_to_wet_carb"
-    },
-    {
-      "case_id": "pan_centeno",
-      "candidate_id": "bedca_0591",
-      "decision": "accepted_with_visible_notice",
-      "reason": "El maíz en conserva aporta menos energía por gramo que el pan; 151 g es una cantidad culinaria utilizable y debe mostrarse con el aviso de cambio seco-húmedo.",
-      "notice_type": "dry_to_wet_carb"
-    },
-    {
-      "case_id": "pan_centeno",
-      "candidate_id": "off_99eb089b18",
-      "decision": "accepted_with_visible_notice",
-      "reason": "La batata fresca tiene mucha más agua que el pan; 163 g sigue siendo una guarnición doméstica razonable y se presenta con el aviso de cambio seco-húmedo.",
-      "notice_type": "dry_to_wet_carb"
+      "reason": "El pan se pesa tal como viene y la patata en crudo. 174 g es una guarnición doméstica razonable; ambas bases y el aviso se muestran en pantalla.",
+      "notice_type": "bread_to_raw_tuber"
     },
     {
       "case_id": "tempeh",
       "candidate_id": "bedca_0462",
       "decision": "accepted_with_visible_notice",
-      "reason": "El tofu necesita más cantidad para acercarse a la proteína del tempeh; permanece como opción secundaria y muestra aviso.",
+      "reason": "El tofu necesita más cantidad para acercarse a la proteína del tempeh; permanece como opción secundaria y muestra aviso de ración grande.",
       "notice_type": "large_plant_protein_portion"
     },
     {
-      "case_id": "seitan",
-      "candidate_id": "bedca_0462",
+      "case_id": "tempeh",
+      "candidate_id": "off_7ed4e65e81",
       "decision": "accepted_with_visible_notice",
-      "reason": "El tofu necesita más cantidad para acercarse a la proteína del seitán; permanece como opción secundaria y muestra aviso.",
+      "reason": "El tofu sedoso es menos denso que el tempeh; 264 g es una opción secundaria, no prioritaria, y se presenta con aviso visible.",
       "notice_type": "large_plant_protein_portion"
+    },
+    {
+      "case_id": "aceite",
+      "candidate_id": "bedca_0428",
+      "decision": "accepted_with_visible_notice",
+      "reason": "Las aceitunas aportan la grasa de forma menos concentrada que el aceite; 80 g es una ración grande, pero utilizable, y se advierte expresamente.",
+      "notice_type": "olive_to_whole_food"
     },
     {
       "case_id": "aceite",
       "candidate_id": "off_821afc5b9d",
       "decision": "accepted_with_visible_notice",
-      "reason": "El aguacate contiene agua y fibra: hacen falta más gramos para sustituir 10 g de aceite, pero 51 g sigue siendo una cantidad doméstica práctica.",
+      "reason": "El aguacate contiene agua y fibra: hacen falta más gramos para sustituir 10 g de aceite, pero 51 g es una cantidad doméstica práctica.",
       "notice_type": "olive_to_whole_food"
     },
     {
       "case_id": "aceite",
-      "candidate_id": "bedca_0567",
+      "candidate_id": "off_7fa77026e9",
       "decision": "accepted_with_visible_notice",
-      "reason": "Las aceitunas son un alimento entero menos concentrado que el aceite; 34 g es una ración práctica y se explica en pantalla.",
+      "reason": "Las aceitunas enteras aportan la grasa de forma menos concentrada; 53 g es una ración utilizable y se muestra con aviso visible.",
       "notice_type": "olive_to_whole_food"
     },
     {
       "case_id": "aceite",
-      "candidate_id": "off_e81ea830e7",
+      "candidate_id": "off_0f47e02077",
       "decision": "accepted_with_visible_notice",
-      "reason": "Las aceitunas son menos concentradas que el aceite; 43 g es una ración práctica y se muestra con aviso.",
-      "notice_type": "olive_to_whole_food"
-    },
-    {
-      "case_id": "aceite",
-      "candidate_id": "off_f212b46664",
-      "decision": "accepted_with_visible_notice",
-      "reason": "La aceituna rellena aporta la grasa de forma menos concentrada; 62 g es utilizable y debe conservar el aviso visible.",
-      "notice_type": "olive_to_whole_food"
+      "reason": "La aceituna gordal aliñada aporta la grasa de forma menos concentrada; 48 g es una cantidad doméstica utilizable. La tarjeta muestra tanto el aviso de ración como su semáforo de procesamiento NOVA 4.",
+      "notice_type": "olive_to_whole_food_nova4"
     }
   ]
 }

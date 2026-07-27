@@ -225,7 +225,7 @@ function assertClinicalContract(id, result) {
       );
       assert(
         foods.every((food) =>
-          !/\b(ensalada|nugget|rebozad|empanad|con salsa|surimi)\b/.test(text(food)),
+          !/\b(ensalada|nugget|rebozad|empanad|con salsa|en tomate|con tomate|con verduras|a la jardinera|surimi)\b/.test(text(food)),
         ),
         `merluza: preparado: ${topText}`,
       );
@@ -238,9 +238,9 @@ function assertClinicalContract(id, result) {
       );
       assert(
         foods.every((food) =>
-          !/\b(chorizo|salchicha|bacon|mortadela)\b/.test(text(food)),
+          !/\b(chorizo|salchicha|bacon|mortadela|ensalada|nugget|rebozad|empanad|con salsa|en tomate|con tomate|con verduras|a la jardinera|surimi)\b/.test(text(food)),
         ),
-        `salmón: carne procesada: ${topText}`,
+        `salmón: carne procesada o pescado preparado: ${topText}`,
       );
       break;
 

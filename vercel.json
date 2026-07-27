@@ -1,5 +1,11 @@
 {
   "version": 2,
+  "crons": [
+    {
+      "path": "/api/telemetry-maintenance",
+      "schedule": "17 3 * * *"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

@@ -271,28 +271,33 @@ const _PASTA_FAMILY = new Set([
   "cinta", "cintas",
 ]);
 
-// Devuelve la clave de cluster para un food. Estrategia:
-//   1. Synonym groups (pasta family) → todos colapsan al canon del grupo.
-//   2. Default: PRIMER token-ingrediente como raíz del cluster.
-//      Los nombres en español típicamente empiezan por el sustantivo:
-//      "Patata, asada" → patata; "Pollo, pechuga" → pollo; "Aceite de
-//      oliva" → aceite; "Pasta alimenticia, cruda" → pasta.
-//      Esto colapsa todas las variantes "Patata X" / "Patatas Y" en
-//      un solo cluster, evitando que los descriptores ad-hoc del
-//      nombre (corte, bravas, tortilla, grueso) sean parte de la clave.
-//
-// Costo: dedup más agresivo. Ej. "Aceite de oliva" y "Aceite de
-// girasol" colapsan en aceite::generic — clínicamente intercambiables
-// (mismo grupo de grasas), aceptable para diversidad. Si Hugo pide
-// más granularidad en algún caso particular, agregamos un synonym
-// group específico que separe.
+const _IDENTITY_TOKEN_ALIASES = new Map([
+  ["batata", "boniato"],
+  ["camote", "boniato"],
+  ["seta", "champinon"],
+  ["champignon", "champinon"],
+  ["brecol", "brocoli"],
+  ["vainica", "judia_verde"],
+  ["zucchini", "calabacin"],
+  ["mani", "cacahuete"],
+]);
+
+// Huella de identidad para presentación. No borra registros ni utiliza los
+// macros como prueba de identidad: únicamente evita que sinónimos, erratas de
+// concordancia, marcas y formatos del mismo alimento ocupen posiciones
+// contiguas. Los candidatos se conservan más abajo y siguen accesibles.
 function clusterIngredientKey(food) {
-  const tokens = ingredientTokens(food.name);
+  const tokens = ingredientTokens(food.name).map(
+    (token) => _IDENTITY_TOKEN_ALIASES.get(token) || token,
+  );
   if (tokens.length === 0) return "__no_ingredient_" + food.id;
   for (const t of tokens) {
-    if (_PASTA_FAMILY.has(t)) return "pasta::" + sourceFamily(food.source);
+    if (_PASTA_FAMILY.has(t)) {
+      return `${food.category || "unknown"}:${food.subgroup || "unknown"}:pasta`;
+    }
   }
-  return tokens[0] + "::" + sourceFamily(food.source);
+  const identity = Array.from(new Set(tokens)).slice(0, 3).join("_");
+  return `${food.category || "unknown"}:${food.subgroup || "unknown"}:${identity}`;
 }
 
 // Extrae los tokens-ingrediente: singulariza primero (para que plurales
@@ -504,8 +509,19 @@ function getFoodTier(candidate, originalFood) {
   const candIng = new Set(ingredientTokens(candidate.name));
 
   if (origIng.size > 0 && candIng.size > 0) {
+    // Algunos nombres comparten únicamente un soporte o descriptor genérico:
+    // "atún en aceite" y "sardinas en aceite" no son el mismo alimento;
+    // tampoco lo son dos quesos distintos por contener la palabra "queso".
+    // Esos tokens no deben convertir artificialmente un intercambio entre
+    // alimentos diferentes en una mera variante de familia.
+    const genericIdentityTokens = new Set([
+      "aceite",
+      "queso",
+      "natural",
+      "conserva",
+    ]);
     for (const t of origIng) {
-      if (candIng.has(t)) return 1;
+      if (!genericIdentityTokens.has(t) && candIng.has(t)) return 1;
     }
     return 2;
   }
@@ -561,7 +577,8 @@ function calculateEquivalence(
     _PLANT_CLUSTER_SUBS.has(alt.subgroup);
 
   const ratio = original[anchor] / alt[anchor];
-  const equivalentAmount = Math.round(originalAmount * ratio);
+  const exactEquivalentAmount = originalAmount * ratio;
+  const equivalentAmount = Math.round(exactEquivalentAmount);
 
   if (equivalentAmount < 5) return null; // evita 0g / 1g raros
   if (equivalentAmount > 600) return null; // evita monstruos
@@ -588,7 +605,7 @@ function calculateEquivalence(
   // cocidos (raw_ingredient=false) en mismo subgroup carbs (arroz crudo
   // 60g → patata cocida 250g es Russolillo válido). NO aplica para
   // legumbres, lácteos, grasas, proteínas, aceites o quesos.
-  const qtyRatio = equivalentAmount / originalAmount;
+  const qtyRatio = exactEquivalentAmount / originalAmount;
   if (qtyRatio > 3) {
     const _HYDRATE_SUBS = new Set(["grains", "tubers"]);  // no legumes
     const isDrySrcWetCand =
@@ -602,14 +619,10 @@ function calculateEquivalence(
     if (!isDrySrcWetCand && !isOliveFoodBridge) return null;
   }
 
-  // Hugo PDF Regla 1 HARD FILTER — TECHO CALÓRICO:
-  // Si kcal_alt > kcal_original * 1.40 → exclude_from_recommended_top.
-  //
-  // Excepciones:
-  //   - Lean protein cluster (pollo 170 → ternera 250 = ratio 1.47 OK).
-  //   - Fat cluster real (aguacate 137 → nueces 660 = ratio 4.8 OK,
-  //     porque la porción equivalente se ajusta: 80g aguacate → 17g
-  //     nueces. Las densidades dispares son normales en grasas).
+  // Red de seguridad calórica provisional de producto. Se evalúa sobre la
+  // ración equivalente —no sobre 100 g— y no tiene exenciones ocultas por
+  // familia. El umbral 1,50× queda explícitamente pendiente de validación
+  // nutricional por familia, pero evita resultados extremos mientras tanto.
   if (original.calories > 0 && alt.calories > 0) {
     const originalServingCalories =
       (original.calories * originalAmount) / 100;
@@ -617,52 +630,7 @@ function calculateEquivalence(
       (alt.calories * equivalentAmount) / 100;
     const kcalRatio =
       candidateServingCalories / Math.max(originalServingCalories, 1);
-    if (kcalRatio > 1.40) {
-      const _LEAN_PROTEIN_SUBS = new Set([
-        "meat_lean", "meat", "meat_fatty", "fish_white", "fish_fatty", "eggs",
-      ]);
-      const isSameLeanCluster =
-        original.category === "protein" && alt.category === "protein" &&
-        _LEAN_PROTEIN_SUBS.has(original.subgroup) &&
-        _LEAN_PROTEIN_SUBS.has(alt.subgroup) &&
-        alt.exotic !== true && original.exotic !== true;
-      const _FAT_CLUSTER_SUBS = new Set([
-        "olive_oil", "other_oils", "avocado", "nuts_seeds", "other_fat",
-        "butter_margarine",
-      ]);
-      const isSameFatCluster =
-        original.category === "fat" && alt.category === "fat" &&
-        _FAT_CLUSTER_SUBS.has(original.subgroup) &&
-        _FAT_CLUSTER_SUBS.has(alt.subgroup);
-      // Hugo audit (Feedback Elena) caso patata — cluster de HIDRATOS base
-      // exento del techo calórico, misma lógica que lean/fat/plant: la porción
-      // equivalente se ajusta por gramaje (patata cruda 71 kcal → 19g de pasta
-      // seca 367 kcal = mismo aporte). Sin esto, un hidrato de baja densidad
-      // (patata/arroz hervido) NO podía ofrecer arroz/pasta/cuscús/quinoa secos
-      // — Hugo: "debe quedarse en tubérculos e hidratos base: patata, boniato,
-      // batata, arroz, pasta, cuscús, quinoa". El junk (galletas/bollería) ya
-      // lo saca el gate clean_carb; el demote de densidad (kcal-ceiling ~2397)
-      // mantiene el orden (misma densidad primero). Solo grains/tubers/legumes
-      // (NO fruit/vegetables, que no son intercambio de gramaje). Reversible.
-      const _carbClusterExempt =
-        window.CARB_CLUSTER_KCAL_EXEMPT === undefined
-          ? true
-          : window.CARB_CLUSTER_KCAL_EXEMPT;
-      const _CARB_CLUSTER_SUBS = new Set(["grains", "tubers", "legumes"]);
-      const isSameCarbCluster =
-        _carbClusterExempt &&
-        original.category === "carbs" && alt.category === "carbs" &&
-        _CARB_CLUSTER_SUBS.has(original.subgroup) &&
-        _CARB_CLUSTER_SUBS.has(alt.subgroup);
-      // Hugo audit (Feedback Elena) Bloque 1 — cluster vegetal exento del
-      // techo calórico (isSamePlantCluster hoisteado arriba). La densidad
-      // calórica varía mucho (tofu 73 kcal vs garbanzo cocido 139 o crudo
-      // 330) pero la porción equivalente se ajusta por gramaje — igual que
-      // el fat cluster. Sin esto tofu/seitán quedaban con 0 intercambios.
-      if (!isSameLeanCluster && !isSameFatCluster && !isSamePlantCluster && !isSameCarbCluster) {
-        return null; // hard filter
-      }
-    }
+    if (kcalRatio > 1.50) return null;
   }
 
   const altMacros = {
@@ -672,6 +640,19 @@ function calculateEquivalence(
     calories: (alt.calories * equivalentAmount) / 100,
   };
 
+  // El gramaje que ve la usuaria se redondea a enteros, pero el ranking se
+  // calcula con el valor exacto. De otro modo, 50 g y 100 g podían permutar
+  // alternativas casi empatadas únicamente por el error de redondeo.
+  const scoreMacros = {
+    protein: (alt.protein * exactEquivalentAmount) / 100,
+    carbs: (alt.carbs * exactEquivalentAmount) / 100,
+    fat: (alt.fat * exactEquivalentAmount) / 100,
+    calories: (alt.calories * exactEquivalentAmount) / 100,
+  };
+  const scoreProteinDiff = scoreMacros.protein - originalMacros.protein;
+  const scoreCarbsDiff = scoreMacros.carbs - originalMacros.carbs;
+  const scoreFatDiff = scoreMacros.fat - originalMacros.fat;
+  const scoreCaloriesDiff = scoreMacros.calories - originalMacros.calories;
   const proteinDiff = altMacros.protein - originalMacros.protein;
   const carbsDiff = altMacros.carbs - originalMacros.carbs;
   const fatDiff = altMacros.fat - originalMacros.fat;
@@ -681,30 +662,37 @@ function calculateEquivalence(
   let penalty = 0;
 
   if (anchor === "protein") {
-    penalty += Math.abs(proteinDiff) * 3;
-    penalty += Math.abs(carbsDiff) * 1.5;
-    penalty += fatDiff > 0 ? fatDiff * 2.5 : Math.abs(fatDiff) * 0.8;
+    penalty += Math.abs(scoreProteinDiff) * 3;
+    penalty += Math.abs(scoreCarbsDiff) * 1.5;
+    penalty += scoreFatDiff > 0
+      ? scoreFatDiff * 2.5
+      : Math.abs(scoreFatDiff) * 0.8;
   } else if (anchor === "carbs") {
-    penalty += Math.abs(carbsDiff) * 3;
-    penalty += Math.abs(proteinDiff) * 1.5;
-    penalty += Math.abs(fatDiff) * 1.2;
+    penalty += Math.abs(scoreCarbsDiff) * 3;
+    penalty += Math.abs(scoreProteinDiff) * 1.5;
+    penalty += Math.abs(scoreFatDiff) * 1.2;
   } else if (anchor === "fat") {
-    penalty += Math.abs(fatDiff) * 3;
-    penalty += Math.abs(carbsDiff) * 1.2;
-    penalty += Math.abs(proteinDiff) * 1.2;
+    penalty += Math.abs(scoreFatDiff) * 3;
+    penalty += Math.abs(scoreCarbsDiff) * 1.2;
+    penalty += Math.abs(scoreProteinDiff) * 1.2;
   } else {
     // calories
-    penalty += Math.abs(caloriesDiff) * 0.6;
-    penalty += Math.abs(proteinDiff) * 1.2;
-    penalty += Math.abs(carbsDiff) * 1.2;
-    penalty += Math.abs(fatDiff) * 1.2;
+    penalty += Math.abs(scoreCaloriesDiff) * 0.6;
+    penalty += Math.abs(scoreProteinDiff) * 1.2;
+    penalty += Math.abs(scoreCarbsDiff) * 1.2;
+    penalty += Math.abs(scoreFatDiff) * 1.2;
   }
 
   const totalMacros =
     originalMacros.protein + originalMacros.carbs + originalMacros.fat;
   let matchScore = Math.max(
     0,
-    Math.round(100 - (penalty / Math.max(totalMacros, 10)) * 100),
+    Math.round(
+      100 -
+        (penalty /
+          Math.max(totalMacros, Math.max(Number(originalAmount) || 0, 1) * 0.1)) *
+          100,
+    ),
   );
 
   // En verduras simples de la misma familia botánica, las diferencias de
@@ -728,37 +716,9 @@ function calculateEquivalence(
     matchScore = contextualScore;
   }
 
-  // DISPLAY-ONLY: % anclado a proteína para el fallback vegetal. El matchScore
-  // macro castiga los carbs de la legumbre y cae a ~0%, pero como FUENTE
-  // PROTEICA el intercambio es válido. Mostramos la cercanía de proteína (el
-  // motivo real del swap) para no enseñar "0%" en un item recomendado, sin la
-  // etiqueta confusa "Por familia". NO afecta el ORDEN: el sort usa matchScore,
-  // no matchDisplay — solo cambia el número que ve la usuaria.
-  let matchDisplay = matchScore;
-  if (isSamePlantCluster && anchor === "protein" && matchScore < 55) {
-    const _pClose =
-      100 - Math.min(100, (Math.abs(proteinDiff) / Math.max(originalMacros.protein, 1)) * 100);
-    // Cap 68: el fallback vegetal muestra un % creíble (55-68) pero SIEMPRE
-    // por debajo de los matches reales del cluster (tempeh 70, seitán 77),
-    // para que el orden visible siga siendo coherente con el %.
-    matchDisplay = Math.max(55, Math.min(68, Math.round(_pClose * 0.68)));
-  }
-  if (isLighterSpoonableDairyBridge && matchScore < 60) {
-    const proteinCloseness =
-      100 -
-      Math.min(
-        100,
-        (Math.abs(proteinDiff) / Math.max(originalMacros.protein, 1)) * 100,
-      );
-    matchDisplay = Math.max(
-      60,
-      Math.min(72, Math.round(proteinCloseness * 0.72)),
-    );
-  }
-
   let level = null;
-  if (matchScore >= 95 && equivalentAmount <= 300) level = "perfect";
-  else if (matchScore >= 75 && equivalentAmount <= 400) level = "good";
+  if (matchScore >= 95) level = "perfect";
+  else if (matchScore >= 75) level = "good";
   else if (matchScore >= 60) level = "advanced";
   else if (
     // Hugo audit (Feedback Elena) Bloque 1 — FALLBACK VEGETAL.
@@ -770,16 +730,14 @@ function calculateEquivalence(
     // porción es realista. Hugo: "referencias vegetales útiles, no vacío".
     isSamePlantCluster &&
     anchor === "protein" &&
-    Math.abs(proteinDiff) <= originalMacros.protein * 0.5 &&
-    equivalentAmount <= 400
+    Math.abs(scoreProteinDiff) <= originalMacros.protein * 0.5
   ) {
     level = "advanced";
   } else if (
     isLighterSpoonableDairyBridge &&
     anchor === "protein" &&
-    Math.abs(proteinDiff) <= originalMacros.protein * 0.2 &&
-    altMacros.calories <= originalMacros.calories &&
-    equivalentAmount <= 300
+    Math.abs(scoreProteinDiff) <= originalMacros.protein * 0.2 &&
+    scoreMacros.calories <= originalMacros.calories
   ) {
     level = "advanced";
   } else if (
@@ -791,7 +749,6 @@ function calculateEquivalence(
     equivalentAmount <= 120
   ) {
     level = "advanced";
-    matchDisplay = Math.max(55, matchScore);
   } else return null;
 
   return {
@@ -800,9 +757,10 @@ function calculateEquivalence(
     premiumPortionStatus: premiumPortion.status,
     premiumPortionReason: premiumPortion.reason,
     premiumPortionMultiplier: premiumPortion.multiplier,
+    _exactEquivalentAmount: exactEquivalentAmount,
+    _scoreMacros: scoreMacros,
     macros: altMacros,
     matchScore,
-    matchDisplay,
     level,
     diffs: {
       protein: proteinDiff,
@@ -810,6 +768,35 @@ function calculateEquivalence(
       fat: fatDiff,
       calories: caloriesDiff,
     },
+  };
+}
+
+// La interfaz no muestra un porcentaje pseudo-preciso. Esta función convierte
+// el mismo score efectivo que ordena las tarjetas en tres niveles ordinales
+// comprensibles. Los umbrales están congelados y son compartidos por UI/tests.
+function presentationTier(sortScore) {
+  const score = Number(sortScore);
+  if (Number.isFinite(score) && score >= 1.2) {
+    return {
+      rank: 3,
+      key: "very_similar",
+      label: "Muy parecido",
+      summary: "Sustituye casi sin notar el cambio",
+    };
+  }
+  if (Number.isFinite(score) && score >= 0.65) {
+    return {
+      rank: 2,
+      key: "good_change",
+      label: "Buen cambio",
+      summary: "Encaja bien, con alguna diferencia",
+    };
+  }
+  return {
+    rank: 1,
+    key: "possible_change",
+    label: "Cambio posible",
+    summary: "Sirve, pero se nota más",
   };
 }
 
@@ -1459,16 +1446,24 @@ function proteinPreparationForm(food) {
   if (/\b(preparad\w*|fajita\w*|marinad\w*|adobad\w*|sazonad\w*|con salsa|rellen\w*|nugget\w*|rebozad\w*|empanad\w*|pincho\w*)\b/.test(context)) {
     return "prepared";
   }
+  if (/\b(lata|conserva|al natural|en aceite|escabeche)\b/.test(n)) {
+    return "canned";
+  }
   if (
-    /\b(fiambre\w*|loncha\w*|lascas?|finissim\w*|brasead\w*|pechuga cocida|pollo cocido|pavo cocido)\b/.test(context) ||
-    /\b(cocid\w*|asad\w*|al horno)\b/.test(n) ||
-    (food.ready_to_eat === true &&
-      /\b(pechuga|pollo|pavo|lomo|jamon|jamon)\b/.test(n))
+    /\b(fiambre\w*|loncha\w*|lascas?|finissim\w*|brasead\w*|pechuga cocida|pollo cocido|pavo cocido)\b/.test(context)
   ) {
     return "deli";
   }
-  if (/\b(lata|conserva|al natural|en aceite|escabeche)\b/.test(n)) {
-    return "canned";
+  if (
+    /\b(cocid\w*|asad\w*|al horno|a la plancha|plancha|al vapor|hervid\w*)\b/.test(n)
+  ) {
+    return "cooked";
+  }
+  if (
+    food.ready_to_eat === true &&
+    /\b(pechuga|pollo|pavo|lomo|jamon)\b/.test(n)
+  ) {
+    return "deli";
   }
   return "fresh";
 }
@@ -1484,7 +1479,7 @@ function isPreparedFish(food) {
   return (
     (food.flags || []).includes("prepared") ||
     food.clean_protein === false ||
-    /\b(ensalada|nugget\w*|rebozad\w*|empanad\w*|surimi|con salsa|rellen\w*|croqueta\w*|tempura)\b/.test(n) ||
+    /\b(ensalada|nugget\w*|rebozad\w*|empanad\w*|surimi|con salsa|en tomate|con tomate|con verduras|a la jardinera|al curry|rellen\w*|croqueta\w*|tempura)\b/.test(n) ||
     /\b(plato preparado|preparacion de pescado)\b/.test(context)
   );
 }
@@ -1787,6 +1782,12 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       ) {
         return false;
       }
+      if (
+        typeof window.getPremiumWeightBasisCompatibility === "function" &&
+        !window.getPremiumWeightBasisCompatibility(originalFood, f).compatible
+      ) {
+        return false;
+      }
       if (!isCompatibleCategory(f, originalFood)) return false;
       if ((f.flags || []).includes("condiment") && !_originAllowsCondiments) {
         return false;
@@ -1811,7 +1812,7 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         if (
           originalFood.category === "protein" &&
           originalFood.clean_protein === true &&
-          originProteinForm === "fresh" &&
+          ["fresh", "cooked"].includes(originProteinForm) &&
           ["prepared", "deli", "canned"].includes(candidateProteinForm)
         ) {
           return false;
@@ -1870,11 +1871,13 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         }
       }
 
-      // Un pescado blanco simple no se sustituye por ensaladas, rebozados,
-      // nuggets, surimi o platos con salsa.
+      // Un pescado simple (blanco o azul) no se sustituye por ensaladas,
+      // rebozados, conservas con tomate/verduras, nuggets, surimi o platos
+      // con salsa. Esas preparaciones siguen disponibles cuando el propio
+      // origen también es un pescado preparado.
       if (
         originalFood.category === "protein" &&
-        originalFood.subgroup === "fish_white" &&
+        ["fish_white", "fish_fatty"].includes(originalFood.subgroup) &&
         !isPreparedFish(originalFood) &&
         isPreparedFish(f)
       ) {
@@ -2163,6 +2166,11 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
           typeof window.inferPremiumContext === "function"
             ? window.inferPremiumContext(f)
             : "";
+        const premiumDairyReason =
+          _premiumContextEnabled &&
+          typeof window.getPremiumContextCompatibility === "function"
+            ? window.getPremiumContextCompatibility(originalFood, f).reason
+            : "";
         const explicitSpoonableBridge =
           (
             oContext === "spoonable_fresh_dairy" &&
@@ -2172,10 +2180,13 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
             cContext === "spoonable_fresh_dairy" &&
             ["fermented_dairy", "fresh_cheese"].includes(oContext)
           );
+        const explicitDairyBridge =
+          explicitSpoonableBridge ||
+          premiumDairyReason === "milk_family_bridge";
         if (
           originalFood.category === "dairy" && f.category === "dairy" &&
           oFam && _DAIRY_COMPAT[oFam] &&
-          !explicitSpoonableBridge &&
+          !explicitDairyBridge &&
           (!cFam || !_DAIRY_COMPAT[oFam].includes(cFam))
         ) {
           return false;
@@ -2257,11 +2268,17 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       // An explicit culinary bridge is also authoritative: hummus and avocado
       // live in different legacy fat subgroups, but share a savoury toast/bowl
       // use. Nut creams are deliberately not part of this bridge.
-      const _explicitContextBridge =
+      const _explicitContextBridgeReason =
         _premiumContextEnabled &&
-        typeof window.getPremiumContextCompatibility === "function" &&
-        window.getPremiumContextCompatibility(originalFood, f).reason ===
-          "plant_spread_bridge";
+        typeof window.getPremiumContextCompatibility === "function"
+          ? window.getPremiumContextCompatibility(originalFood, f).reason
+          : "";
+      const _explicitContextBridge = [
+        "plant_spread_bridge",
+        "milk_family_bridge",
+        "spoonable_dairy_bridge",
+        "fresh_cheese_form_bridge",
+      ].includes(_explicitContextBridgeReason);
       if (
         _subgroupFilterAvailable &&
         f.category === originalFood.category &&
@@ -2314,11 +2331,19 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
   );
   const withEquivalence = candidates
     .map((alt) => {
+      const weightBasisDecision =
+        typeof window.getPremiumWeightBasisCompatibility === "function"
+          ? window.getPremiumWeightBasisCompatibility(originalFood, alt)
+          : { compatible: true, bridge: null };
       let tier = getFoodTier(alt, originalFood);
       if (
         _premiumContextEnabled &&
-        window.getPremiumContextCompatibility(originalFood, alt).reason ===
-          "spoonable_dairy_bridge"
+        [
+          "spoonable_dairy_bridge",
+          "milk_family_bridge",
+        ].includes(
+          window.getPremiumContextCompatibility(originalFood, alt).reason,
+        )
       ) {
         // Queso fresco batido no es otra marca/formato de Burgos: es una
         // alternativa culinaria más ligera y debe aparecer en el bloque de
@@ -2327,7 +2352,11 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       }
       const eq = calculateEquivalence(alt, originalFood, amount, originalMacros);
       if (!eq) return null;
-      return { ...eq, tier };
+      return {
+        ...eq,
+        tier,
+        premiumWeightBasisBridge: weightBasisDecision.bridge || null,
+      };
     })
     .filter(Boolean);
 
@@ -2455,6 +2484,18 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
        // Cross-dense-fat: aguacate ↔ nueces, aceitunas ↔ tahín, etc.
        (oIsDenseFat && cIsDenseFat))
     ) ? _fatCrossSubgroupBoost : 0;
+    // Jerarquía de producto RevolucionaT para un origen de aceite de oliva:
+    // las alternativas enteras que el programa quiere enseñar primero
+    // (aguacate y aceitunas) forman parte del propio score efectivo. Así no
+    // necesitamos un orden paralelo que contradiga la etiqueta visible.
+    const fatQualityBonus =
+      originalFood.fat_quality === "olive" &&
+      ["olive", "avocado"].includes(a.fat_quality)
+        ? 1.25
+        : originalFood.fat_quality === "olive" &&
+            a.fat_quality === "nut_seed_whole"
+          ? 0.10
+          : 0;
 
     // PROTEIN BRIDGE: ambos category=protein, meal_dish, no-exotic,
     // subgroups de proteína cotidiana (meat/fish/eggs). Boost simétrico
@@ -2610,7 +2651,23 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     // de agua o densidad. Se conserva como alternativa secundaria y la interfaz
     // lo explica; nunca debe desplazar silenciosamente a una ración práctica.
     if (a.premiumPortionStatus === "review") {
-      demotion *= Number(window.PREMIUM_PORTION_REVIEW_DEMOTION) || 0.72;
+      const candidatePortionContext =
+        typeof window.inferPremiumContext === "function"
+          ? window.inferPremiumContext(a)
+          : a.premium_context || "unknown";
+      const isVeryLargeVegetable =
+        [
+          "leafy_vegetable",
+          "cruciferous",
+          "fruiting_vegetable",
+          "root_vegetable",
+          "stalk_vegetable",
+          "other_vegetable",
+        ].includes(candidatePortionContext) &&
+        Number(a.equivalentAmount) >= 400;
+      demotion *= isVeryLargeVegetable
+        ? 0.45
+        : Number(window.PREMIUM_PORTION_REVIEW_DEMOTION) || 0.72;
     }
 
     // Same culinary context is intentionally neutral. Same-cohort options
@@ -2974,10 +3031,12 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         _oP > 5 && _oF >= 8 && _fpRatio >= 0.6;
       if (isMixedMacroOrigin && !isSameLeanProteinCluster && a.macros) {
         let mixedDemotion = 1;
+        const scoringMacros = a._scoreMacros || a.macros;
 
         // (a) Fat-loss check
-        if (originalMacros.fat > 0 && a.diffs) {
-          const fatLoss = a.diffs.fat < 0 ? Math.abs(a.diffs.fat) : 0;
+        if (originalMacros.fat > 0) {
+          const exactFatDiff = scoringMacros.fat - originalMacros.fat;
+          const fatLoss = exactFatDiff < 0 ? Math.abs(exactFatDiff) : 0;
           const fatLossRatio = fatLoss / originalMacros.fat;
           if (fatLossRatio > 0.5) {
             // 0.51 → ×0.59  |  0.75 → ×0.40  |  1.0 → ×0.20
@@ -2987,7 +3046,8 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
 
         // (b) Calorie-loss check (umbral 25% del cliente)
         if (originalMacros.calories > 0) {
-          const calRatio = a.macros.calories / originalMacros.calories;
+          const calRatio =
+            scoringMacros.calories / originalMacros.calories;
           if (calRatio < 0.75) {
             // 0.74 → ×0.74  |  0.50 → ×0.50  |  0.30 → ×0.30
             // Más agresivo que R3 genérico porque acá el origen es MIXTO.
@@ -3183,7 +3243,7 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     }
 
     // R8 TECHO CALÓRICO OUTLIERS (Hugo mail 16/05/2026 punto 1.A):
-    // Si alternativa.kcal > original.kcal * 1.40 → outlier extremo,
+    // Si alternativa.kcal > original.kcal * 1.50 → outlier extremo,
     // demote muy fuerte (×0.15). Caso disparador: tofu 73 kcal → mix
     // frutos secos 855 kcal. Una mujer no cambia tofu por nueces puras.
     //
@@ -3199,7 +3259,7 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         !isSamePlantClusterSort &&
         originalFood.calories > 0 && a.calories > 0) {
       const kcalRatio = a.calories / originalFood.calories;
-      if (kcalRatio > 1.40) {
+      if (kcalRatio > 1.50) {
         const outlierDemotion = kcalRatio > 2.0 ? 0.10 : 0.20;
         demotion *= outlierDemotion;
         if (window.location.search.includes('?debug=1')) {
@@ -3282,7 +3342,9 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
           !sameLeanCluster &&
           premiumContext.reason !== "spoonable_dairy_bridge" &&
           originalMacros.calories > 0 && a.macros) {
-        const calRatio = a.macros.calories / originalMacros.calories;
+        const calRatio =
+          (a._scoreMacros?.calories ?? a.macros.calories) /
+          originalMacros.calories;
         // Hugo mail 16/05/2026 punto 1.C — doble escalón:
         //   <0.75 → penalizar fuerte (visible pero abajo)
         //   <0.60 → sacar del top, mover a bloque secundario (factor agresivo)
@@ -3314,8 +3376,8 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     // Excepción explícita: hidratos crudo↔cocido (arroz crudo 60g ≈
     // 250g patata cocida es clínicamente correcto).
     {
-      const ratio = a.equivalentAmount > 0 && amount > 0
-        ? a.equivalentAmount / amount
+      const ratio = a._exactEquivalentAmount > 0 && amount > 0
+        ? a._exactEquivalentAmount / amount
         : 1;
 
       // Threshold por categoría del origen
@@ -3343,8 +3405,12 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         const isLegitDryWet = bothHydratesDry &&
           originalFood.raw_ingredient === true &&
           a.raw_ingredient !== true;
+        const isOliveWholeFoodBridge =
+          originalFood.fat_quality === "olive" &&
+          ["olive", "avocado"].includes(a.fat_quality) &&
+          a._exactEquivalentAmount <= 120;
 
-        if (!isLegitDryWet) {
+        if (!isLegitDryWet && !isOliveWholeFoodBridge) {
           // Hugo mail 16/05/2026 punto 1.B: ratio >3 manda al fondo.
           // Endurecido: ratio > 4x → ×0.05 (casi-eliminatorio).
           //   strict ratio 2.6 → ×0.45  |  ratio 4 → ×0.10  |  ratio 6+ → ×0.05
@@ -3376,6 +3442,9 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     // El ranking consume ese dato estructurado y evita sumar excepciones por
     // nombre cada vez que el catálogo crece.
     let choiceGuidance = null;
+    const scoreBeforeChoiceGuidance =
+      (hybrid + affinityBonus + provenanceBonus + subgroupBonus + fatBridgeBonus + fatQualityBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus + carbShapeBonus + proteinFormBonus + vegetableContextBonus + whiteFishCohortBonus) *
+      demotion;
     {
       if (typeof window.getPremiumChoiceGuidance === "function") {
         choiceGuidance = window.getPremiumChoiceGuidance(a);
@@ -3411,8 +3480,9 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
       premiumChoiceGuidance: choiceGuidance,
       premiumUsageFit,
       _hybridScore: hybrid,
-      _sortScoreBase: hybrid + affinityBonus + provenanceBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus + carbShapeBonus + proteinFormBonus + vegetableContextBonus + whiteFishCohortBonus,
-      _sortScore: (hybrid + affinityBonus + provenanceBonus + subgroupBonus + fatBridgeBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus + carbShapeBonus + proteinFormBonus + vegetableContextBonus + whiteFishCohortBonus) * demotion,
+      _scoreBeforeChoiceGuidance: scoreBeforeChoiceGuidance,
+      _sortScoreBase: hybrid + affinityBonus + provenanceBonus + subgroupBonus + fatBridgeBonus + fatQualityBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus + carbShapeBonus + proteinFormBonus + vegetableContextBonus + whiteFishCohortBonus,
+      _sortScore: (hybrid + affinityBonus + provenanceBonus + subgroupBonus + fatBridgeBonus + fatQualityBonus + proteinBridgeBonus + dairyFamilyBonus + culturalPairBonus + plantProteinBonus + carbShapeBonus + proteinFormBonus + vegetableContextBonus + whiteFishCohortBonus) * demotion,
     };
   });
 
@@ -3430,49 +3500,43 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
   // it with _judgeRank still absent — the `?? 9999` fallback yields a clean
   // math-only ranking. After applyJudgeVerdict() injects _judgeRank, calling
   // byTier again reflects the LLM-corrected order.
+  const capPresentationScores = (items) => {
+    let presentationCap = Infinity;
+    return items.map((food) => {
+      const score = Math.min(
+        Number(food._sortScore) || 0,
+        presentationCap,
+      );
+      presentationCap = score;
+      return score === food._sortScore
+        ? food
+        : {
+            ...food,
+            _sortScore: score,
+            premiumOriginalSortScore: Number(food._sortScore) || 0,
+            premiumDiversityAdjusted: true,
+          };
+    });
+  };
+
   const byTier = (t) => {
-    const hasRequestedUsage =
-      Boolean(opts.usageMode) && opts.usageMode !== "any";
-    const usagePriority = (item) => {
-      if (item.premiumUsageFit === "ideal") return 0;
-      if (item.premiumUsageFit === "acceptable") return 1;
-      if (item.premiumUsageFit === "less_usual") return 2;
-      return 1;
-    };
     const sorted = withHybrid
       .filter(a => a.tier === t)
       .sort((a, b) => {
-        if (hasRequestedUsage) {
-          const usageA = usagePriority(a);
-          const usageB = usagePriority(b);
+        // Si la usuaria ha indicado para qué va a usar el alimento, esa
+        // respuesta es un contrato de orden: primero las opciones ideales,
+        // después las aceptables y solo al final las menos habituales. El
+        // score nutricional sigue ordenando dentro de cada grupo.
+        const usageRank = {
+          ideal: 0,
+          acceptable: 1,
+          less_usual: 2,
+        };
+        if (a.premiumUsageFit && b.premiumUsageFit) {
+          const usageA = usageRank[a.premiumUsageFit] ?? 2;
+          const usageB = usageRank[b.premiumUsageFit] ?? 2;
           if (usageA !== usageB) return usageA - usageB;
         }
-        if (
-          t === 2 &&
-          originalFood.fat_quality === "olive"
-        ) {
-          const fatPriority = (item) => {
-            if (item.fat_quality === "avocado") return 0;
-            if (item.fat_quality === "olive") return 1;
-            if (item.fat_quality === "nut_seed_whole") return 2;
-            if (item.fat_quality === "seed_refined") return 4;
-            if (item.fat_quality === "tropical") return 5;
-            return 3;
-          };
-          const fatA = fatPriority(a);
-          const fatB = fatPriority(b);
-          if (fatA !== fatB) return fatA - fatB;
-        }
-        const choicePriority = (item) => {
-          const level = item.premiumChoiceGuidance?.level;
-          if (level === "preferred") return 0;
-          if (level === "compatible") return 1;
-          if (level === "occasional") return 2;
-          return 3;
-        };
-        const choiceA = choicePriority(a);
-        const choiceB = choicePriority(b);
-        if (choiceA !== choiceB) return choiceA - choiceB;
         const ra = a._judgeRank ?? 9999;
         const rb = b._judgeRank ?? 9999;
         if (ra !== rb) return ra - rb;
@@ -3482,41 +3546,121 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
     // "Misma familia" ya es un bloque de formatos/marcas del mismo
     // ingrediente. Aplicarle diversidad vuelve a pisar el score y empuja
     // una segunda avena/leche/huevo detrás de referencias peores.
-    if (t === 1) return sorted;
+    if (t === 1) return capPresentationScores(sorted);
 
-    // Diversidad: primer representante de cada cluster al frente;
-    // variantes secundarias al final del mismo tier.
-    // clusterIngredientKey() colapsa por primer token + sinónimos.
-    const diversify = (items) => {
-      const seen = new Set();
-      const primary = [];
-      const secondary = [];
-      for (const food of items) {
-        const key = clusterIngredientKey(food);
-        if (seen.has(key)) {
-          secondary.push(food);
-        } else {
-          seen.add(key);
-          primary.push(food);
-        }
+    // Primero separamos identidades repetidas (sin borrar ninguna). Una
+    // variante de marca o un sinónimo real no compra otra posición en el TOP.
+    const seenIdentity = new Set();
+    const uniqueIdentity = [];
+    const repeatedIdentity = [];
+    for (const food of sorted) {
+      const key = clusterIngredientKey(food);
+      if (seenIdentity.has(key)) {
+        repeatedIdentity.push({ ...food, premiumIdentityRepeat: true });
+      } else {
+        seenIdentity.add(key);
+        uniqueIdentity.push(food);
       }
-      return [...primary, ...secondary];
+    }
+
+    const contextKey = (food) => {
+      const context =
+        typeof window.inferPremiumContext === "function"
+          ? window.inferPremiumContext(food)
+          : food.premium_context || "unknown";
+      return `${food.subgroup || "unknown"}:${context}`;
     };
 
-    // La procedencia ya participa como bonus suave en _sortScore mediante
-    // sourceAffinityBonus(). No debe volver a convertirse aquí en una
-    // partición dura: hacerlo pisa el ranking clínico y coloca productos
-    // mediocres de la misma procedencia delante de opciones simples con un
-    // score mayor (especialmente OpenFoodFacts → OpenFoodFacts).
-    if (!hasRequestedUsage) return diversify(sorted);
+    // Diversidad prudente: solo en las cinco primeras posiciones y solo si
+    // existe otro tipo culinario con al menos el 90 % del score del candidato
+    // que repetiría por tercera vez. Si la alternativa es claramente peor, no
+    // se fuerza variedad artificial.
+    const pool = [...uniqueIdentity];
+    const diverseTop = [];
+    const contextCounts = new Map();
+    while (pool.length > 0 && diverseTop.length < 5) {
+      const best = pool[0];
+      const bestKey = contextKey(best);
+      const count = contextCounts.get(bestKey) || 0;
+      let selectedIndex = 0;
+      if (count >= 2) {
+        const threshold = Number(best._sortScore) * 0.9;
+        const alternativeIndex = pool.findIndex(
+          (food, index) =>
+            index > 0 &&
+            contextKey(food) !== bestKey &&
+            Number(food._sortScore) >= threshold,
+        );
+        if (alternativeIndex > 0) selectedIndex = alternativeIndex;
+      }
+      const [selected] = pool.splice(selectedIndex, 1);
+      const presented =
+        selectedIndex > 0
+          ? { ...selected, premiumDiversityPromoted: true }
+          : selected;
+      diverseTop.push(presented);
+      const selectedKey = contextKey(selected);
+      contextCounts.set(
+        selectedKey,
+        (contextCounts.get(selectedKey) || 0) + 1,
+      );
+    }
 
-    // La diversidad nunca puede deshacer la respuesta explícita de la
-    // usuaria. Diversificamos dentro de cada nivel culinario y mantenemos
-    // primero todas las alternativas ideales, después las aceptables y solo
-    // al final las menos habituales.
-    return [0, 1, 2].flatMap((priority) =>
-      diversify(sorted.filter((food) => usagePriority(food) === priority)),
-    );
+    let ordered = [...diverseTop, ...pool, ...repeatedIdentity];
+
+    // Una opción ocasional puede seguir apareciendo cuando es útil, pero no
+    // debe adelantarse a una preferente con encaje culinario comparable. La
+    // comparación se hace antes del factor de salud/elección, para no confundir
+    // "más recomendable" con "más parecido en el plato".
+    for (let index = 0; index < ordered.length; index += 1) {
+      const current = ordered[index];
+      if (current.premiumChoiceGuidance?.level !== "occasional") continue;
+      const currentFit =
+        Number(current._scoreBeforeChoiceGuidance) || 0;
+      const preferredIndex = ordered.findIndex(
+        (candidate, candidateIndex) =>
+          candidateIndex > index &&
+          candidate.premiumIdentityRepeat !== true &&
+          candidate.premiumChoiceGuidance?.level === "preferred" &&
+          (Number(candidate._scoreBeforeChoiceGuidance) || 0) >=
+            currentFit * 0.9,
+      );
+      if (preferredIndex < 0) continue;
+      const [preferred] = ordered.splice(preferredIndex, 1);
+      ordered.splice(index, 0, {
+        ...preferred,
+        premiumGuidancePromoted: true,
+      });
+    }
+
+    // La deduplicación y la diversidad pueden mover una repetición ideal
+    // detrás de una identidad menos adecuada. Reaplicamos al final una
+    // partición estable por uso para que ninguna fase de presentación rompa
+    // la elección explícita de la usuaria.
+    if (
+      opts.usageMode &&
+      opts.usageMode !== "any" &&
+      ordered.some((food) => food.premiumUsageFit)
+    ) {
+      const usageRank = {
+        ideal: 0,
+        acceptable: 1,
+        less_usual: 2,
+      };
+      ordered = ordered
+        .map((food, originalIndex) => ({ food, originalIndex }))
+        .sort((a, b) => {
+          const rankA = usageRank[a.food.premiumUsageFit] ?? 2;
+          const rankB = usageRank[b.food.premiumUsageFit] ?? 2;
+          return rankA - rankB || a.originalIndex - b.originalIndex;
+        })
+        .map(({ food }) => food);
+    }
+
+    // Al reordenar dos alternativas casi empatadas, el score de presentación
+    // se acota al de la tarjeta anterior. De ese modo la etiqueta ordinal y el
+    // orden visual siguen contando exactamente la misma historia.
+    return capPresentationScores(ordered);
   };
 
   // ── PROGRESSIVE UI: PARTIAL RESULT ────────────────────────────────────────
@@ -3901,6 +4045,9 @@ function getLocalSearchResults(query) {
       const configuredA = configuredCanonicalRank(a, effectiveQuery);
       const configuredB = configuredCanonicalRank(b, effectiveQuery);
       if (configuredA !== configuredB) return configuredB - configuredA;
+      const penA = searchModifierPenalty(norm(a.name || ""), tokens);
+      const penB = searchModifierPenalty(norm(b.name || ""), tokens);
+      if (penA !== penB) return penA - penB;
       const cookingA = searchCookingPriority(a, effectiveQuery);
       const cookingB = searchCookingPriority(b, effectiveQuery);
       if (cookingA !== cookingB) return cookingB - cookingA;
@@ -3915,9 +4062,6 @@ function getLocalSearchResults(query) {
       // polvo"; "huevo" → huevo entero, no "yema"; "yogur" → natural, no "con
       // fresas". Penaliza polvo/deshidratado/condensado/yema-clara/saborizado
       // SALVO que el propio query lo pida.
-      const penA = searchModifierPenalty(norm(a.name || ""), tokens);
-      const penB = searchModifierPenalty(norm(b.name || ""), tokens);
-      if (penA !== penB) return penA - penB;
       // 2do desempate: BEDCA, supermercados españoles y OFF España verificado.
       const boostA = sourceBoost(a);
       const boostB = sourceBoost(b);
@@ -3955,6 +4099,23 @@ function getLocalSearchResults(query) {
 
 async function searchFoods(query) {
   const localResults = getLocalSearchResults(query);
+  if (
+    typeof window.trackAnonymousEvent === "function" &&
+    String(query || "").trim().length >= 3
+  ) {
+    window.trackAnonymousEvent("search", {
+      term: query,
+      result_count: localResults.length,
+      selected: false,
+    });
+    if (localResults.length === 0) {
+      window.trackAnonymousEvent("search_empty", {
+        term: query,
+        result_count: 0,
+        selected: false,
+      });
+    }
+  }
   // Mostrar resultados locales (única fuente — FatSecret eliminado).
   lastSearchResults = localResults;
   lastQuery = query;

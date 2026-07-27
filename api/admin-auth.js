@@ -1,27 +1,9 @@
-const { authClient } = require('./_supabase');
+const { authClient, serviceClient } = require('./_supabase');
 const { setAdminSessionCookie } = require('./_session');
-
-const attempts = new Map();
-const WINDOW_MS = 10 * 60 * 1000;
-const MAX_ATTEMPTS = 6;
-
-function requestKey(req, email) {
-  const ip = String(req.headers['x-forwarded-for'] || req.socket?.remoteAddress || 'unknown')
-    .split(',')[0]
-    .trim();
-  return `${ip}:${email}`;
-}
-
-function blocked(key) {
-  const now = Date.now();
-  const current = attempts.get(key);
-  if (!current || current.resetAt <= now) {
-    attempts.set(key, { count: 1, resetAt: now + WINDOW_MS });
-    return false;
-  }
-  current.count += 1;
-  return current.count > MAX_ATTEMPTS;
-}
+const {
+  clearRateLimit,
+  consumeRateLimit,
+} = require('./_rate_limit');
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -36,11 +18,19 @@ module.exports = async (req, res) => {
     return res.status(400).json({ success: false, error: 'Completa el email y la contraseña.' });
   }
 
-  const key = requestKey(req, email);
-  if (blocked(key)) {
-    return res.status(429).json({
+  let supabase;
+  try {
+    supabase = serviceClient();
+    if (await consumeRateLimit(supabase, req, email, 'admin_login')) {
+      return res.status(429).json({
+        success: false,
+        error: 'Demasiados intentos. Espera unos minutos antes de volver a probar.',
+      });
+    }
+  } catch {
+    return res.status(503).json({
       success: false,
-      error: 'Demasiados intentos. Espera unos minutos antes de volver a probar.',
+      error: 'No hemos podido proteger el acceso. Inténtalo de nuevo.',
     });
   }
 
@@ -49,10 +39,11 @@ module.exports = async (req, res) => {
     if (error || !data.user || data.user.app_metadata?.role !== 'admin') {
       return res.status(401).json({ success: false, error: 'Datos de administración incorrectos.' });
     }
-    attempts.delete(key);
+    await clearRateLimit(supabase, req, email, 'admin_login');
     setAdminSessionCookie(req, res, {
       id: data.user.id,
       email: data.user.email,
+      sessionVersion: Number(data.user.app_metadata?.session_version || 1),
     });
     return res.json({ success: true, email: data.user.email });
   } catch {

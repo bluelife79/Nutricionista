@@ -65,6 +65,9 @@ function createEngine(options = {}) {
     location: { search: "" },
     REVOLUCIONAT_RUNTIME_OVERRIDES: options.runtimeOverrides || {},
     PREMIUM_SEARCH_VOCABULARY: loadJson("config/search_vocabulary.json"),
+    PREMIUM_WEIGHT_BASIS_BRIDGES: loadJson(
+      "config/weight_basis_bridges.json",
+    ),
   };
   const context = {
     window,
@@ -103,6 +106,7 @@ function createEngine(options = {}) {
     "js/premium_policy.js",
     "js/culinary_intent.js",
     "js/exchange_scope.js",
+    "js/weight_basis.js",
     "js/algorithm.js",
     "js/presentation_policy.js",
   ]) {

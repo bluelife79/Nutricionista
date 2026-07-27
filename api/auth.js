@@ -1,31 +1,9 @@
 const { authClient, serviceClient } = require('./_supabase');
 const { setSessionCookie } = require('./_session');
-
-const attempts = new Map();
-const WINDOW_MS = 10 * 60 * 1000;
-const MAX_ATTEMPTS = 6;
-
-function requestKey(req, email) {
-  const ip = String(req.headers['x-forwarded-for'] || req.socket?.remoteAddress || 'unknown')
-    .split(',')[0]
-    .trim();
-  return `${ip}:${email}`;
-}
-
-function isRateLimited(key) {
-  const now = Date.now();
-  const current = attempts.get(key);
-  if (!current || current.resetAt <= now) {
-    attempts.set(key, { count: 1, resetAt: now + WINDOW_MS });
-    return false;
-  }
-  current.count += 1;
-  return current.count > MAX_ATTEMPTS;
-}
-
-function clearAttempts(key) {
-  attempts.delete(key);
-}
+const {
+  clearRateLimit,
+  consumeRateLimit,
+} = require('./_rate_limit');
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -45,11 +23,19 @@ module.exports = async (req, res) => {
     return res.status(400).json({ success: false, error: 'Completa todos los campos.' });
   }
 
-  const key = requestKey(req, normalizedEmail);
-  if (isRateLimited(key)) {
-    return res.status(429).json({
+  let supabase;
+  try {
+    supabase = serviceClient();
+    if (await consumeRateLimit(supabase, req, normalizedEmail, 'member_login')) {
+      return res.status(429).json({
+        success: false,
+        error: 'Demasiados intentos. Espera unos minutos antes de volver a probar.',
+      });
+    }
+  } catch {
+    return res.status(503).json({
       success: false,
-      error: 'Demasiados intentos. Espera unos minutos antes de volver a probar.',
+      error: 'No hemos podido proteger el acceso. Inténtalo de nuevo.',
     });
   }
 
@@ -80,7 +66,6 @@ module.exports = async (req, res) => {
     });
   }
 
-  const supabase = serviceClient();
   const { data: profile, error } = await supabase
     .from('users')
     .select('name, email, active')
@@ -101,7 +86,14 @@ module.exports = async (req, res) => {
     });
   }
 
-  clearAttempts(key);
+  try {
+    await clearRateLimit(supabase, req, normalizedEmail, 'member_login');
+  } catch {
+    return res.status(503).json({
+      success: false,
+      error: 'Acceso correcto, pero no se pudo cerrar la verificación de seguridad. Inténtalo de nuevo.',
+    });
+  }
   setSessionCookie(req, res, {
     id: signedIn.id,
     email: profile.email,

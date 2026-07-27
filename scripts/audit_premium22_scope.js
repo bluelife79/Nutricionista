@@ -190,7 +190,12 @@ function runScopeAudit() {
       if (
         !guidance ||
         guidance.version !== engine.window.PREMIUM_CHOICE_GUIDANCE_VERSION ||
-        !["preferred", "compatible", "occasional"].includes(guidance.level)
+        ![
+          "preferred",
+          "compatible",
+          "unverified",
+          "occasional",
+        ].includes(guidance.level)
       ) {
         report.totals.core_without_choice_guidance += 1;
         report.findings.core_without_choice_guidance.push({

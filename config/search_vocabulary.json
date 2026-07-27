@@ -44,6 +44,164 @@
     ],
     "aove": [
       "bedca_0088"
+    ],
+    "arroz": [
+      "bedca_0421",
+      "bedca_0631"
+    ],
+    "pasta": [
+      "bedca_0288",
+      "bedca_0908"
+    ],
+    "patata": [
+      "bedca_0001"
+    ],
+    "boniato": [
+      "bedca_0653"
+    ],
+    "pollo": [
+      "bedca_0258",
+      "bedca_0260"
+    ],
+    "pavo": [
+      "bedca_0347",
+      "bedca_0606"
+    ],
+    "huevo": [
+      "bedca_0454"
+    ],
+    "merluza": [
+      "bedca_0077"
+    ],
+    "bacalao": [
+      "bedca_0603"
+    ],
+    "salmón": [
+      "bedca_0405"
+    ],
+    "atún": [
+      "bedca_0587",
+      "bedca_0157"
+    ],
+    "tofu": [
+      "bedca_0462"
+    ],
+    "tempeh": [
+      "manual_tempeh"
+    ],
+    "garbanzo": [
+      "bedca_0581",
+      "bedca_0295"
+    ],
+    "garbanzo hervido": [
+      "bedca_0581"
+    ],
+    "lenteja": [
+      "bedca_0123",
+      "bedca_0313"
+    ],
+    "lenteja hervida": [
+      "bedca_0123"
+    ],
+    "alubia": [
+      "bedca_0625",
+      "bedca_0626"
+    ],
+    "copos de avena": [
+      "off_f0a5a30a7a",
+      "off_2514abf317",
+      "off_53ff645758"
+    ],
+    "queso": [
+      "bedca_0064",
+      "bedca_0052",
+      "bedca_0051"
+    ],
+    "mozzarella": [
+      "bedca_0070"
+    ],
+    "requesón": [
+      "bedca_0408"
+    ],
+    "kéfir": [
+      "bedca_0907"
+    ],
+    "manzana": [
+      "bedca_0378"
+    ],
+    "pera": [
+      "bedca_0404"
+    ],
+    "naranja": [
+      "bedca_0076"
+    ],
+    "mandarina": [
+      "bedca_0423"
+    ],
+    "plátano": [
+      "bedca_0397"
+    ],
+    "fresa": [
+      "bedca_0449"
+    ],
+    "melocotón": [
+      "bedca_0360"
+    ],
+    "piña": [
+      "bedca_0401"
+    ],
+    "mango": [
+      "bedca_0670",
+      "bedca_0322"
+    ],
+    "uva": [
+      "bedca_0087",
+      "bedca_0664"
+    ],
+    "kiwi": [
+      "bedca_0377"
+    ],
+    "sandía": [
+      "bedca_0387"
+    ],
+    "melón": [
+      "bedca_0359"
+    ],
+    "tomate": [
+      "bedca_0028"
+    ],
+    "pepino": [
+      "bedca_0080"
+    ],
+    "calabacín": [
+      "bedca_0384"
+    ],
+    "berenjena": [
+      "bedca_0043"
+    ],
+    "lechuga": [
+      "bedca_0385"
+    ],
+    "rúcula": [
+      "bedca_0115"
+    ],
+    "zanahoria": [
+      "bedca_0019"
+    ],
+    "cebollas": [
+      "bedca_0079"
+    ],
+    "brócoli": [
+      "off_d84450f81e",
+      "off_84dc056359"
+    ],
+    "coliflor": [
+      "bedca_0136"
+    ],
+    "espinacas": [
+      "off_3aeed32c29",
+      "off_4779604f85",
+      "bedca_0601"
     ]
   },
   "aliases": {
