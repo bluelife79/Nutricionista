@@ -62,6 +62,16 @@ assert.match(
 );
 assert.match(index, /<summary>Privacidad<\/summary>/);
 assert.doesNotMatch(index, /Privacidad y mejora de la herramienta/);
+assert.match(index, /"Hola, "\s*\+\s*displayName\s*\+\s*" 🚀"/);
+assert.doesNotMatch(index, /displayName\s*\+\s*" 👋"/);
+assert.match(
+  index,
+  /\.app-brand-logo-wrap\s*\{[\s\S]*?background:\s*transparent/,
+);
+assert.match(
+  index,
+  /\.splash-brand-logo\s*\{[\s\S]*?background:\s*transparent/,
+);
 
 console.log(
   "PASS personalidad: voz clara, avisos útiles y tecnicismos fuera de la interfaz",

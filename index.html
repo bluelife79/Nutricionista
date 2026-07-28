@@ -1729,9 +1729,11 @@
         width: min(220px, 62vw);
         height: auto;
         margin-bottom: 8px;
-        padding: 8px 12px;
-        border-radius: 14px;
-        background: rgba(255,255,255,.94);
+        padding: 4px;
+        background: transparent;
+        filter:
+          drop-shadow(0 1px 1px rgba(255,255,255,.6))
+          drop-shadow(0 10px 24px rgba(238,44,130,.22));
       }
 
       .app-header {
@@ -1768,18 +1770,38 @@
       }
 
       .app-brand-logo-wrap {
+        position: relative;
+        isolation: isolate;
         display: inline-flex;
         align-items: center;
         max-width: 190px;
-        padding: 6px 10px;
-        border-radius: 13px;
-        background: rgba(255,255,255,.95);
+        padding: 5px 8px 6px 0;
+        background: transparent;
+      }
+
+      .app-brand-logo-wrap::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        inset: 10% -4% 6% -8%;
+        border-radius: 50%;
+        background:
+          radial-gradient(
+            ellipse at center,
+            rgba(255,255,255,.24) 0%,
+            rgba(238,44,130,.11) 46%,
+            transparent 74%
+          );
+        filter: blur(7px);
       }
 
       .app-brand-logo {
         display: block;
         width: 100%;
         height: auto;
+        filter:
+          drop-shadow(0 1px 1px rgba(255,255,255,.5))
+          drop-shadow(0 8px 18px rgba(238,44,130,.18));
       }
 
       .app-logout {
@@ -2352,7 +2374,7 @@
             firstName.charAt(0).toLocaleUpperCase("es-ES") +
             firstName.slice(1);
           document.getElementById("userGreeting").textContent =
-            "Hola, " + displayName + " 👋";
+            "Hola, " + displayName + " 🚀";
         }
 
         const readyPlaceholder =
