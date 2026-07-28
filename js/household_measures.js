@@ -71,6 +71,8 @@
     // Queso fresco / requesón (porción 30g)
     { match: /\bqueso fresco\b|\brequeson\b|\brequesón\b|\bburgos\b/,
       unitGrams: 30, singular: "porción", plural: "porciones" },
+    { match: /\bmozzare?lla\b|\bmozzarela\b|\bburrata\b|\bricotta\b/,
+      unitGrams: 30, singular: "porción", plural: "porciones" },
 
     // Pan (rebanada ≈ 30g)
     { match: /\bpan\b(?!.*\b(?:rallado|integral entero|de molde tostado)\b)/,
@@ -106,6 +108,8 @@
 
     // Leche / bebidas vegetales (vaso ≈ 200ml ≈ 200g)
     { match: /\bleche\b(?!.*\b(?:condensada|evaporada|polvo)\b)/,
+      exclude: /\b(?:queso|mozzare?lla|mozzarela|burrata|ricotta|requeson|requesón|yogur|yogurt|kefir|kéfir|cuajada)\b/,
+      excludeSubgroups: ["fresh_cheese", "aged_cheese", "other_dairy"],
       unitGrams: 200, singular: "vaso", plural: "vasos" },
 
     // Pasta cruda (porción ≈ 80g)
@@ -145,7 +149,14 @@
 
     // 1. Keyword rules (specific first — array order is the priority)
     for (const r of KEYWORD_RULES) {
-      if (r.match.test(name)) { rule = r; break; }
+      const excludedByName = r.exclude && r.exclude.test(name);
+      const excludedBySubgroup =
+        Array.isArray(r.excludeSubgroups) &&
+        r.excludeSubgroups.includes(food.subgroup);
+      if (r.match.test(name) && !excludedByName && !excludedBySubgroup) {
+        rule = r;
+        break;
+      }
     }
 
     // 2. Subgroup fallback
