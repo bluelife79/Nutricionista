@@ -59,12 +59,17 @@ function main() {
 
   const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
   assert(
-    !html.includes('choiceGuidance.level === "preferred"'),
-    "La interfaz sigue ocultando ¿Por qué? en las elecciones prioritarias",
+    html.includes('["compatible", "unverified", "occasional"].includes'),
+    "La interfaz no limita los avisos a los casos que de verdad tienen un matiz",
   );
   assert(
-    html.includes('<summary>¿Por qué?</summary>'),
+    html.includes('<summary>Lo que conviene saber</summary>'),
     "La explicación progresiva no está disponible en las tarjetas",
+  );
+  assert.doesNotMatch(
+    html,
+    /Encaja nutricionalmente y no presenta señales/,
+    "La interfaz conserva el texto robótico retirado",
   );
 
   console.log(

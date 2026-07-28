@@ -1,4 +1,4 @@
-# Contrato de producto — Intercambiador RevolucionaT Premium v2.2
+# Contrato de producto — Intercambiador RevolucionaT Premium v2.5
 
 Estado: **contrato de release**
 Público principal: mujeres de más de 40 años del programa RevolucionaT en España.
@@ -164,13 +164,15 @@ La interfaz diferencia:
 
 Además, cada tarjeta publicable recibe un criterio editorial único:
 
-- **Elección prioritaria**: buena opción cotidiana;
-- **Alternativa compatible**: cuadra, pero contiene edulcorantes, azúcar
-  añadido o presenta mayor procesamiento;
-- **Uso ocasional**: referencia útil que no se prioriza habitualmente.
+- **Para diario**: opción sencilla que puede formar parte de la rutina;
+- **También te vale**: cuadra, aunque incluye algún matiz que conviene conocer;
+- **Mejor para alguna vez**: referencia útil que no se prioriza habitualmente;
+- **Nos falta información**: producto que no se presenta como primera elección
+  hasta completar sus datos.
 
 El color nunca es la única explicación. La tarjeta muestra título y una frase;
-el detalle de compatibles y ocasionales permanece plegado tras “¿Por qué?”.
+el detalle de compatibles y ocasionales permanece plegado tras “Lo que conviene
+saber”.
 No se utilizan expresiones absolutas o peyorativas como “alimento real” para
 describir el resultado.
 
@@ -243,7 +245,7 @@ Producción no se usa como entorno de ensayo. Primero se valida una preview asoc
 
 ## 11. Definición de terminado
 
-“Premium v2.2 terminada” significa que:
+“Premium v2.5 terminada” significa que:
 
 - la implementación cumple este contrato;
 - los 100 casos se han ejecutado contra el motor y contra la interfaz real;
@@ -254,19 +256,20 @@ Producción no se usa como entorno de ensayo. Primero se valida una preview asoc
 
 No significa que la base de datos mundial sea perfecta ni que no pueda existir ningún alimento futuro sin revisar.
 
-## 12. Alcance verificable de Premium 2.1
+## 12. Alcance verificable de Premium 2.5
 
 El catálogo conserva 5.324 registros trazables. La candidata de esta release
-publica 3.929 que superan las reglas de visibilidad y calidad; los restantes no
-se borran, sino que quedan ocultos o en cuarentena para poder corregirlos sin
-perder procedencia.
+publica 1.636 como alimentos de entrada: 1.288 en `exchange_core` y 348 en
+`reference_only`. Los restantes no se borran; quedan fuera del buscador o en
+cuarentena para poder corregirlos sin perder procedencia.
 
 Todos los 5.324 registros tienen un perfil culinario estructurado y versionado.
-En los alimentos visibles, 877 preguntas adaptativas están aprobadas para
-release y 3.052 permanecen deliberadamente silenciosos. Una pregunta no se
-publica por pertenecer a una familia: se publica únicamente después de ejecutar
-sus modalidades contra el algoritmo y comprobar que todas tienen alternativas
-compatibles y que el resultado cambia materialmente.
+En los alimentos visibles, las preguntas adaptativas se validan contra el motor
+real y los bloques que ve la usuaria. Una pregunta no se publica por pertenecer
+a una familia: se publica únicamente después de ejecutar todas sus modalidades,
+comprobar que ninguna deja menos alternativas y verificar que la respuesta
+cambia materialmente el resultado visible. La cantidad exacta de preguntas y
+escenarios queda fijada en `config/release_gates.json` para cada candidata.
 
 “No puede faltar ningún alimento” se interpreta como un requisito de cobertura
 del supermercado español habitual, no como una afirmación imposible de

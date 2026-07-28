@@ -174,7 +174,7 @@ async function runProductBaseline(options = {}) {
     Object.entries(findings).map(([key, value]) => [key, unique(value)]),
   );
   return {
-    contract: "premium-v2.4-c13-baseline-1",
+    contract: "premium-v2.5-c13-baseline-1",
     provenance: harness.provenance,
     totals: {
       queries: queries.length,

@@ -3,7 +3,7 @@ const crypto = require('crypto');
 const COOKIE_NAME = 'revolucionat_session';
 const ADMIN_COOKIE_NAME = 'revolucionat_admin_session';
 const SESSION_SECONDS = 365 * 24 * 60 * 60;
-const ADMIN_SESSION_SECONDS = 4 * 60 * 60;
+const ADMIN_SESSION_SECONDS = 12 * 60 * 60;
 
 function sessionSecret() {
   const raw = process.env.SESSION_SECRET;

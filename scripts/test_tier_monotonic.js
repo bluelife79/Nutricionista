@@ -76,9 +76,9 @@ async function main() {
   );
   assert(
     html.includes("window.presentationTier") &&
-      algorithm.includes("Muy parecido") &&
+      algorithm.includes("Cambio redondo") &&
       algorithm.includes("Buen cambio") &&
-      algorithm.includes("Cambio posible"),
+      algorithm.includes("Puede encajarte"),
     "La interfaz no consume las tres etiquetas ordinales del motor",
   );
 

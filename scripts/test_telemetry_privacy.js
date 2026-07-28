@@ -62,8 +62,8 @@ const migrationSource = source(
 );
 const vercel = JSON.parse(source("vercel.json"));
 
-assert.match(indexSource, /Privacidad y mejora de la herramienta/);
-assert.match(indexSource, /No guardamos tu email ni un historial personal/);
+assert.match(indexSource, /<summary>Privacidad<\/summary>/);
+assert.match(indexSource, /No guardamos\s+tu email ni un historial personal/);
 assert.match(indexSource, /id="telemetryEnabled"/);
 assert.match(clientSource, /revolucionat_telemetry_optout/);
 assert.doesNotMatch(clientSource, /email|user_id|session_id|fingerprint/i);

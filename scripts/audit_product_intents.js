@@ -32,7 +32,7 @@ async function runProductIntentAudit(options = {}) {
     ),
   );
   const report = {
-    contract: "premium-v2.4-c13-intents-1",
+    contract: "premium-v2.5-c13-intents-1",
     provenance: harness.provenance,
     totals: {
       publicOrigins: publicFoods.length,

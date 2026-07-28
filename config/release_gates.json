@@ -1,5 +1,5 @@
 {
-  "contract": "premium-v2.4-c13-2",
+  "contract": "premium-v2.5-c13-1",
   "baseline_commit": "d8ddbea434c9a9bc62a4257f28ec13d76dd4943c",
   "runtime": {
     "semanticEmbeddingsEnabled": true,
@@ -30,18 +30,18 @@
   "candidateExpected": {
     "queries": 333,
     "scenarios": 494,
-    "cards": 4375,
-    "preferredCards": 3604,
-    "preferredPercentage": 82.4,
-    "choiceWarningCards": 771,
-    "weightBridgeCards": 768,
+    "cards": 4384,
+    "preferredCards": 3609,
+    "preferredPercentage": 82.3,
+    "choiceWarningCards": 775,
+    "weightBridgeCards": 497,
     "noSearch": 86,
-    "zeroDirect": 48,
+    "zeroDirect": 42,
     "familyFirst": 0,
     "tierInversion": 0,
     "unexplainedWeightBasis": 0,
     "cookedOrigin": 8,
-    "identityRepeatTop5": 28,
+    "identityRepeatTop5": 30,
     "largePortionUnnoticed": 0,
     "seedOilPreferred": 0,
     "foreign": 0,
@@ -50,7 +50,7 @@
   },
   "intents": {
     "publicOrigins": 1636,
-    "promptedOrigins": 354,
+    "promptedOrigins": 352,
     "optionScenarios": 751
   },
   "production_comparison": {

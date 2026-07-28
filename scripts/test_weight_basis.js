@@ -63,6 +63,7 @@ async function main() {
     ["pasta", "dry"],
     ["patata", "raw"],
     ["patatas cocidas", "cooked"],
+    ["tortilla francesa", "cooked"],
   ]) {
     const origin = harness.search(query)[0];
     assert(origin, `${query}: no localizó origen canónico`);
@@ -70,6 +71,35 @@ async function main() {
       origin.weight_basis,
       expected,
       `${query}: base ${origin.weight_basis}, esperaba ${expected}`,
+    );
+  }
+
+  for (const query of [
+    "pechuga de pollo",
+    "merluza",
+    "bacalao",
+    "pimiento",
+    "brócoli",
+  ]) {
+    const origin = harness.search(query)[0];
+    assert(origin, `${query}: falta origen para comprobar la báscula`);
+    const result = await harness.calculate(origin, 150, {
+      usageMode: "any",
+    });
+    const visible = [
+      ...result.intercambios,
+      ...result.familia,
+      ...result.preparados,
+    ];
+    assert(
+      visible.every(
+        (candidate) =>
+          !harness.window.isPremiumStrictRawCookedMismatch(
+            origin,
+            candidate,
+          ),
+      ),
+      `${query}: todavía publica una mezcla crudo/cocinado`,
     );
   }
 

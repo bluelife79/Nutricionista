@@ -49,16 +49,147 @@ function publicUser(user) {
   };
 }
 
-module.exports = async (req, res) => {
+function adminError(status, message) {
+  const error = new Error(message);
+  error.status = status;
+  error.publicMessage = message;
+  return error;
+}
+
+async function recordAdminAction(
+  supabase,
+  adminUser,
+  action,
+  targetEmail,
+  metadata,
+) {
+  try {
+    await logAdminAction(
+      supabase,
+      adminUser,
+      action,
+      targetEmail,
+      metadata,
+    );
+    return null;
+  } catch (error) {
+    // La auditoría es importante, pero un fallo puntual de su tabla no debe
+    // convertir una baja ya aplicada en un falso error para el administrador.
+    console.error('admin_audit_log_failed', action, error?.message || 'unknown');
+    return 'El cambio se aplicó, aunque no pudimos guardar su registro interno.';
+  }
+}
+
+async function setMemberActive(supabase, email, desiredActive) {
+  const normalizedEmail = String(email || '').toLowerCase().trim();
+  if (!normalizedEmail || typeof desiredActive !== 'boolean') {
+    throw adminError(400, 'Indica la clienta y el estado que quieres aplicar.');
+  }
+
+  const { data: current, error: currentError } = await supabase
+    .from('users')
+    .select('name, email, active, created_at')
+    .eq('email', normalizedEmail)
+    .maybeSingle();
+  if (currentError) {
+    throw adminError(500, 'No hemos podido comprobar el estado de la clienta.');
+  }
+  if (!current) {
+    throw adminError(404, 'Clienta no encontrada.');
+  }
+  if (Boolean(current.active) === desiredActive) {
+    return { user: current, changed: false, sessionRevoked: false };
+  }
+
+  let authUser;
+  try {
+    authUser = await findAuthUserByEmail(supabase, normalizedEmail);
+  } catch {
+    throw adminError(503, 'No hemos podido comprobar su cuenta de acceso.');
+  }
+
+  // Dar de baja un perfil sin cuenta Auth vinculada sigue siendo seguro: no
+  // existe una sesión que revocar. Para reactivarlo sí exigimos una cuenta.
+  if (!authUser && desiredActive) {
+    throw adminError(
+      409,
+      'Esta clienta no tiene una cuenta de acceso vinculada. Edítala antes de activarla.',
+    );
+  }
+
+  const previousMetadata = authUser
+    ? { ...(authUser.app_metadata || {}) }
+    : null;
+  let authChanged = false;
+  if (authUser) {
+    const currentVersion = Number(authUser.app_metadata?.session_version || 1);
+    const nextMetadata = {
+      ...(authUser.app_metadata || {}),
+      role: 'member',
+      session_version: desiredActive ? currentVersion : currentVersion + 1,
+    };
+    const authUpdate = await supabase.auth.admin.updateUserById(authUser.id, {
+      app_metadata: nextMetadata,
+    });
+    if (authUpdate.error) {
+      throw adminError(
+        503,
+        desiredActive
+          ? 'No hemos podido preparar de nuevo su acceso.'
+          : 'No hemos podido cerrar sus sesiones. La baja no se ha aplicado.',
+      );
+    }
+    authChanged = true;
+  }
+
+  const { data: user, error: profileError } = await supabase
+    .from('users')
+    .update({ active: desiredActive })
+    .eq('email', normalizedEmail)
+    .select('name, email, active, created_at')
+    .single();
+
+  if (profileError || !user) {
+    if (authChanged) {
+      await supabase.auth.admin.updateUserById(authUser.id, {
+        app_metadata: previousMetadata,
+      });
+    }
+    throw adminError(
+      500,
+      'No hemos podido guardar el nuevo estado. No se ha aplicado ningún cambio.',
+    );
+  }
+
+  return {
+    user,
+    changed: true,
+    sessionRevoked: Boolean(authUser && !desiredActive),
+  };
+}
+
+async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   res.setHeader('Cache-Control', 'no-store');
   if (req.method === 'OPTIONS') return res.status(200).end();
 
-  const supabase = serviceClient();
-  const adminUser = await authorizedAdmin(req, supabase);
+  let supabase;
+  let adminUser;
+  try {
+    supabase = serviceClient();
+    adminUser = await authorizedAdmin(req, supabase);
+  } catch {
+    return res.status(503).json({
+      success: false,
+      error: 'No hemos podido conectar con la administración. Inténtalo de nuevo.',
+    });
+  }
   if (!adminUser) {
-    return res.status(401).json({ success: false, error: 'No autorizado.' });
+    return res.status(401).json({
+      success: false,
+      error: 'Tu sesión de administración ha caducado. Vuelve a identificarte.',
+    });
   }
 
   if (req.method === 'GET') {
@@ -120,72 +251,75 @@ module.exports = async (req, res) => {
         await supabase.auth.admin.deleteUser(authUser.id);
         return res.status(400).json({ success: false, error: 'No se ha podido crear el perfil de la clienta.' });
       }
-      await logAdminAction(
+      const warning = await recordAdminAction(
         supabase,
         adminUser,
         'member_created',
         normalizedEmail,
         { active: true },
       );
-      return res.json({ success: true, user: publicUser(user) });
+      return res.json({
+        success: true,
+        user: publicUser(user),
+        warning,
+      });
     }
 
-    if (action === 'toggle') {
+    if (action === 'toggle' || action === 'set_active') {
       const normalizedEmail = String(email || '').toLowerCase().trim();
-      if (!normalizedEmail) {
-        return res.status(400).json({ success: false, error: 'Email requerido.' });
-      }
-
-      const { data: current } = await supabase
-        .from('users')
-        .select('active')
-        .eq('email', normalizedEmail)
-        .single();
-      if (!current) {
-        return res.status(404).json({ success: false, error: 'Clienta no encontrada.' });
-      }
-
-      const { data: user, error } = await supabase
-        .from('users')
-        .update({ active: !current.active })
-        .eq('email', normalizedEmail)
-        .select('name, email, active, created_at')
-        .single();
-      if (error) return res.status(500).json({ success: false, error: 'Error al cambiar estado.' });
-
-      if (current.active) {
-        const authUser = await findAuthUserByEmail(supabase, normalizedEmail);
-        if (!authUser) {
-          await supabase.from('users').update({ active: true }).eq('email', normalizedEmail);
+      let desiredActive = req.body?.active;
+      if (action === 'toggle') {
+        const { data: current, error } = await supabase
+          .from('users')
+          .select('active')
+          .eq('email', normalizedEmail)
+          .maybeSingle();
+        if (error) {
           return res.status(500).json({
             success: false,
-            error: 'No se ha encontrado la cuenta vinculada. No se aplicó la baja.',
+            error: 'No hemos podido comprobar el estado de la clienta.',
           });
         }
-        const version = Number(authUser.app_metadata?.session_version || 1) + 1;
-        const authUpdate = await supabase.auth.admin.updateUserById(authUser.id, {
-          app_metadata: {
-            ...(authUser.app_metadata || {}),
-            role: 'member',
-            session_version: version,
-          },
+        if (!current) {
+          return res.status(404).json({
+            success: false,
+            error: 'Clienta no encontrada.',
+          });
+        }
+        desiredActive = !current.active;
+      }
+
+      let lifecycle;
+      try {
+        lifecycle = await setMemberActive(
+          supabase,
+          normalizedEmail,
+          desiredActive,
+        );
+      } catch (error) {
+        return res.status(error.status || 500).json({
+          success: false,
+          error: error.publicMessage || 'No hemos podido cambiar el estado.',
         });
-        if (authUpdate.error) {
-          await supabase.from('users').update({ active: true }).eq('email', normalizedEmail);
-          return res.status(500).json({
-            success: false,
-            error: 'No se ha podido revocar la sesión. No se aplicó la baja.',
-          });
-        }
       }
-      await logAdminAction(
+      const warning = lifecycle.changed
+        ? await recordAdminAction(
         supabase,
         adminUser,
-        current.active ? 'member_deactivated' : 'member_reactivated',
+            desiredActive ? 'member_reactivated' : 'member_deactivated',
         normalizedEmail,
-        { active: !current.active },
-      );
-      return res.json({ success: true, user: publicUser(user) });
+            {
+              active: desiredActive,
+              session_revoked: lifecycle.sessionRevoked,
+            },
+          )
+        : null;
+      return res.json({
+        success: true,
+        user: publicUser(lifecycle.user),
+        changed: lifecycle.changed,
+        warning,
+      });
     }
 
     if (action === 'update') {
@@ -251,7 +385,7 @@ module.exports = async (req, res) => {
         });
         return res.status(500).json({ success: false, error: 'Error al actualizar el perfil.' });
       }
-      await logAdminAction(
+      const warning = await recordAdminAction(
         supabase,
         adminUser,
         'member_updated',
@@ -261,11 +395,20 @@ module.exports = async (req, res) => {
           password_changed: Boolean(password),
         },
       );
-      return res.json({ success: true, user: publicUser(user) });
+      return res.json({
+        success: true,
+        user: publicUser(user),
+        warning,
+      });
     }
 
     return res.status(400).json({ success: false, error: 'Acción desconocida.' });
   }
 
   return res.status(405).json({ error: 'Method not allowed' });
+}
+
+module.exports = handler;
+module.exports._test = {
+  setMemberActive,
 };

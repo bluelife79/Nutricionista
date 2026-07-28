@@ -1,6 +1,13 @@
 {
-  "version": "premium-v2.4-search-1",
+  "version": "premium-v2.5-search-1",
   "canonical_ids": {
+    "aceite": [
+      "bedca_0088",
+      "bedca_0081"
+    ],
+    "cocido": [
+      "off_46b701fee7"
+    ],
     "leche": [
       "bedca_0447",
       "bedca_0661",

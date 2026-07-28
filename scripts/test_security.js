@@ -77,7 +77,7 @@ setAdminSessionCookie(request, adminResponse, {
   email: 'admin@example.com',
 });
 assert.match(adminResponse.headers['set-cookie'], /revolucionat_admin_session=/);
-assert.match(adminResponse.headers['set-cookie'], /Max-Age=14400/);
+assert.match(adminResponse.headers['set-cookie'], /Max-Age=43200/);
 assert.strictEqual(readSession({
   headers: { cookie: cookieValue(adminResponse.headers['set-cookie']) },
 }), null);
@@ -162,6 +162,9 @@ assert.match(adminSource, /value\.length\s*>=\s*12/);
 assert.match(adminAuthSource, /app_metadata\?\.role\s*!==\s*'admin'/);
 assert.match(adminAuthSource, /sessionVersion/);
 assert.match(adminSource, /session\.version/);
+assert.match(adminSource, /action === 'set_active'/);
+assert.match(adminSource, /setMemberActive/);
+assert.match(adminHtmlSource, /Tu sesión ha caducado|Tu sesión de administración ha caducado/);
 assert.match(auditSource, /admin_audit_log/);
 assert.match(securityMigrationSource, /enable row level security/);
 assert.match(securityMigrationSource, /consume_auth_rate_limit/);
@@ -173,7 +176,7 @@ assert.match(adminHtmlSource, /id="adminEmail"/);
 assert.doesNotMatch(adminHtmlSource, /sessionStorage|x-admin-password/);
 assert.match(serviceWorkerSource, /isDocument/);
 assert.match(serviceWorkerSource, /self\.clients\.claim/);
-assert.match(serviceWorkerSource, /revolucionat-premium-v2-4-rc-1/);
+assert.match(serviceWorkerSource, /revolucionat-premium-v2-5-rc-1/);
 const globalHeaders = vercelConfig.headers.find((entry) => entry.source === '/(.*)');
 assert.ok(globalHeaders, 'Faltan cabeceras globales');
 const headerMap = Object.fromEntries(

@@ -2,19 +2,22 @@
 
 ## 📋 DESCRIPCIÓN
 
-Aplicación web para intercambiar alimentos manteniendo macros equivalentes.
-Diseñada para mujeres +40 años del programa RevolucionaT.
+Aplicación web para cambiar una cantidad concreta de un alimento por otra
+opción nutricionalmente equivalente, culinariamente útil y fácil de servir.
+Está diseñada para mujeres de más de 40 años del programa RevolucionaT en
+España.
 
 ## 🎨 CARACTERÍSTICAS
 
-- ✅ Catálogo Premium 2.2: 5.324 registros trazables, 1.267 alimentos núcleo y 315 referencias
+- ✅ Catálogo Premium 2.5: 5.324 registros trazables, 1.288 alimentos núcleo y 348 referencias
 - ✅ Fuentes: BEDCA + mercado español controlado + Open Food Facts curado
 - ✅ Búsqueda inteligente con autocomplete
 - ✅ Intercambios nutricionales con compatibilidad culinaria y raciones prácticas
 - ✅ Preguntas adaptativas solo cuando cambian de verdad las alternativas
-- ✅ 528 alimentos con pregunta culinaria validada; el resto evita preguntas que no aportan
+- ✅ Preguntas culinarias publicadas solo cuando cada respuesta cambia el resultado visible
 - ✅ NOVA 4 y edulcorantes tratados como señales explicables, no como veto universal
-- ✅ 64 alternativas compatibles con aviso; comida cotidiana priorizada en el ranking
+- ✅ Comida cotidiana priorizada; opciones más procesadas u ocasionales conservan un aviso breve y humano
+- ✅ Estados crudo, cocinado y escurrido declarados y bloqueados cuando no son comparables
 - ✅ Diseño Neumorphism premium
 - ✅ Mobile-first responsive
 - ℹ️ Manifest e iconos disponibles; la instalación PWA y el modo offline no se anuncian hasta registrar y validar el service worker
@@ -29,8 +32,8 @@ Diseñada para mujeres +40 años del programa RevolucionaT.
 ```
 Nutricionista/
 ├── index.html          # App principal
-├── styles.css          # Estilos Neumorphism
-├── js/                 # Interfaz, política, intención culinaria y algoritmo
+├── admin.html          # Panel de altas, bajas y gestión de acceso
+├── js/                 # Política, intención culinaria y algoritmo
 ├── database.json       # Catálogo activo y perfiles culinarios versionados
 ├── config/             # Política de raciones y decisiones auditadas
 ├── scripts/            # Auditorías, regresión y gate de release
@@ -71,6 +74,6 @@ La arquitectura de acceso de producción y su operativa están en
 
 ---
 
-**Versión:** Premium 2.2
+**Versión:** Premium 2.5
 **Fecha:** Julio 2026
 **Creado para:** Jonathan - RevolucionaT

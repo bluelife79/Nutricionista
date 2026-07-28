@@ -251,7 +251,7 @@ async function main() {
   assert(
     html.includes("choice-guidance") &&
       html.includes("choice-guidance-details") &&
-      html.includes("¿Por qué?"),
+      html.includes("Lo que conviene saber"),
     "La interfaz debe explicar alternativas compatibles y ocasionales",
   );
 

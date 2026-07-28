@@ -136,27 +136,30 @@ async function main() {
     "utf8",
   );
   for (const text of [
-    "Elección prioritaria",
-    "Alternativa compatible",
-    "Uso ocasional",
+    "Para diario",
+    "También te vale",
+    "Capricho con sitio",
   ]) {
     assert(scopeSource.includes(text), `La política no contiene: ${text}`);
   }
   for (const text of [
-    "¿Por qué?",
+    "Lo que conviene saber",
     "choice-guidance-details",
     "origin-guidance",
-    "Opción compatible",
   ]) {
     assert(html.includes(text), `La interfaz no contiene: ${text}`);
   }
+  assert(
+    scopeSource.includes("Nos falta información"),
+    "La política no explica una etiqueta sin verificar",
+  );
   assert(
     !html.includes("ALIMENTO REAL") && !html.includes("Alimento real"),
     "La interfaz usa una etiqueta peyorativa o absoluta",
   );
 
   console.log(
-    "PASS choice guidance: prioridad, compatibilidad, uso ocasional y detalle progresivo",
+    "PASS choice guidance: prioridad silenciosa, matices claros y detalle progresivo",
   );
 }
 

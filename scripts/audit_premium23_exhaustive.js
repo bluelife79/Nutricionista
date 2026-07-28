@@ -68,7 +68,7 @@ async function runExhaustiveAudit() {
       engine.window.getPremiumExchangeScope(food).status === "exchange_core",
   );
   const report = {
-    contract: "premium-v2.3-exhaustive",
+    contract: "premium-v2.5-exhaustive",
     versions: {
       context: engine.window.PREMIUM_CONTEXT_VERSION,
       scope: engine.window.PREMIUM_EXCHANGE_SCOPE_VERSION,
@@ -249,9 +249,12 @@ async function main() {
     report.totals.origins_with_3_or_more / report.totals.core_origins >= 0.97,
     "Menos del 97% del núcleo produce tres alternativas",
   );
+  // El bloqueo estricto entre pesos crudos y cocinados elimina resultados que
+  // antes inflaban la cobertura. Conservamos un mínimo alto, pero nunca
+  // reintroducimos un cruce engañoso solo para completar seis tarjetas.
   assert(
-    report.totals.origins_with_6_or_more / report.totals.core_origins >= 0.94,
-    "Menos del 94% del núcleo produce seis alternativas",
+    report.totals.origins_with_6_or_more / report.totals.core_origins >= 0.935,
+    "Menos del 93,5% del núcleo produce seis alternativas",
   );
   assert.strictEqual(
     report.totals.critical_findings,

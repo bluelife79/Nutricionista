@@ -516,6 +516,7 @@ function getFoodTier(candidate, originalFood) {
     // alimentos diferentes en una mera variante de familia.
     const genericIdentityTokens = new Set([
       "aceite",
+      "bebida",
       "queso",
       "natural",
       "conserva",
@@ -780,8 +781,8 @@ function presentationTier(sortScore) {
     return {
       rank: 3,
       key: "very_similar",
-      label: "Muy parecido",
-      summary: "Sustituye casi sin notar el cambio",
+      label: "Cambio redondo",
+      summary: "Te sirve prácticamente para lo mismo",
     };
   }
   if (Number.isFinite(score) && score >= 0.65) {
@@ -789,14 +790,14 @@ function presentationTier(sortScore) {
       rank: 2,
       key: "good_change",
       label: "Buen cambio",
-      summary: "Encaja bien, con alguna diferencia",
+      summary: "Cuadra bien, aunque no es exactamente lo mismo",
     };
   }
   return {
     rank: 1,
     key: "possible_change",
-    label: "Cambio posible",
-    summary: "Sirve, pero se nota más",
+    label: "Puede encajarte",
+    summary: "Te puede servir, pero tiene algún matiz",
   };
 }
 
@@ -2335,6 +2336,9 @@ async function calculateAlternatives(originalFood, amount, opts = {}) {
         typeof window.getPremiumWeightBasisCompatibility === "function"
           ? window.getPremiumWeightBasisCompatibility(originalFood, alt)
           : { compatible: true, bridge: null };
+      // La base de peso forma parte del cálculo, no es solo un aviso visual.
+      // Si no existe un puente declarado, la candidata no puede publicarse.
+      if (!weightBasisDecision.compatible) return null;
       let tier = getFoodTier(alt, originalFood);
       if (
         _premiumContextEnabled &&

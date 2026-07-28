@@ -20,8 +20,8 @@ const AMOUNT_BY_PROMPT = {
   spreadable_fat_use: 20,
 };
 
-function topSignature(result) {
-  return (result.intercambios || [])
+function topSignature(harness, origin, result) {
+  return harness.expandableScrollOrder(origin, result)
     .slice(0, 10)
     .map((candidate) => String(candidate.id))
     .join("|");
@@ -67,7 +67,7 @@ async function main() {
       prompt_id: null,
       validation_status: "not_publishable",
       validated_modes: [],
-      validation_reasons: ["premium_2_4_scope_not_publishable"],
+        validation_reasons: ["premium_2_5_scope_not_publishable"],
     };
   }
   const report = {
@@ -132,7 +132,7 @@ async function main() {
         compatibleDirect,
         firstCompatible,
         monotonicCompatibility,
-        signature: topSignature(result),
+        signature: topSignature(harness, food, result),
       });
     }
 
@@ -165,7 +165,7 @@ async function main() {
         prompt_id: prompt.id,
         validation_status: "release_validated",
         validated_modes: validModes,
-        validation_reasons: ["premium_2_4_no_collapse_gate"],
+        validation_reasons: ["premium_2_5_no_collapse_gate"],
       };
       delete validatedIntent.suppressed_prompt_id;
       food.culinary_intent = validatedIntent;

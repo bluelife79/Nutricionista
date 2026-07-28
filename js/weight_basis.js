@@ -1,7 +1,7 @@
 (function initWeightBasis(global) {
   "use strict";
 
-  var VERSION = "premium-v2.4-weight-basis-1";
+  var VERSION = "premium-v2.5-weight-basis-1";
   var LABELS = {
     raw: "en crudo",
     cooked: "cocinado",
@@ -9,6 +9,42 @@
     dry: "en seco",
     as_sold: "tal como viene",
   };
+  var STRICT_RAW_COOKED_CONTEXTS = new Set([
+    "lean_meat",
+    "fatty_meat",
+    "minced_meat",
+    "processed_meat",
+    "egg",
+    "white_fish",
+    "fatty_fish",
+    "processed_fish",
+    "seafood",
+    "organ_meat",
+    "leafy_vegetable",
+    "cruciferous",
+    "fruiting_vegetable",
+    "root_vegetable",
+    "stalk_vegetable",
+    "other_vegetable",
+  ]);
+
+  function contextOf(food) {
+    return typeof global.inferPremiumContext === "function"
+      ? global.inferPremiumContext(food)
+      : String((food && food.premium_context) || "");
+  }
+
+  function isStrictRawCookedMismatch(originFood, candidateFood) {
+    var bases = new Set([
+      String((originFood && originFood.weight_basis) || ""),
+      String((candidateFood && candidateFood.weight_basis) || ""),
+    ]);
+    if (!(bases.has("raw") && bases.has("cooked"))) return false;
+    return (
+      STRICT_RAW_COOKED_CONTEXTS.has(contextOf(originFood)) ||
+      STRICT_RAW_COOKED_CONTEXTS.has(contextOf(candidateFood))
+    );
+  }
 
   function bridgeFor(originFood, candidateFood) {
     if (!originFood || !candidateFood) return null;
@@ -17,10 +53,10 @@
     if (!originBasis || !candidateBasis || originBasis === candidateBasis) {
       return null;
     }
-    var context =
-      typeof global.inferPremiumContext === "function"
-        ? global.inferPremiumContext(originFood)
-        : String(originFood.premium_context || "");
+    // Carne, pescado, huevo y verdura simple no pueden cruzar crudo/cocinado:
+    // la diferencia de agua hace que comparar los gramos sea engañoso.
+    if (isStrictRawCookedMismatch(originFood, candidateFood)) return null;
+    var context = contextOf(originFood);
     var config = global.PREMIUM_WEIGHT_BASIS_BRIDGES || {};
     return (config.bridges || []).find(function (bridge) {
       var directions =
@@ -62,5 +98,6 @@
   global.getPremiumWeightBasisLabel = function (food) {
     return LABELS[String((food && food.weight_basis) || "")] || "";
   };
+  global.isPremiumStrictRawCookedMismatch = isStrictRawCookedMismatch;
   global.getPremiumWeightBasisCompatibility = compatibility;
 })(typeof window !== "undefined" ? window : globalThis);

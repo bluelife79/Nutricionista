@@ -550,7 +550,16 @@
         };
         if (body) opts.body = JSON.stringify(body);
         const res = await fetch('/api/admin', opts);
-        return res.json();
+        const data = await res.json().catch(() => ({
+          success: false,
+          error: 'La administración no ha respondido correctamente.',
+        }));
+        if (res.status === 401) {
+          showAdminLogin(
+            data.error || 'Tu sesión ha caducado. Vuelve a identificarte.',
+          );
+        }
+        return { ...data, httpStatus: res.status };
       }
 
       // ── SESSION ──
@@ -563,7 +572,19 @@
           });
           const data = await res.json();
           if (data.success) showPanel();
+          else showAdminLogin();
         } catch {}
+      }
+
+      function showAdminLogin(message = '') {
+        document.getElementById('adminPanel').classList.remove('visible');
+        document.getElementById('loginScreen').classList.remove('hidden');
+        document.getElementById('adminPassword').value = '';
+        if (message) {
+          const err = document.getElementById('loginError');
+          err.textContent = message;
+          err.classList.add('visible');
+        }
       }
 
       function showPanel() {
@@ -600,7 +621,7 @@
             err.classList.add('visible');
           }
         } catch {
-          err.textContent = 'Error de conexión. Intentá de nuevo.';
+          err.textContent = 'Error de conexión. Inténtalo de nuevo.';
           err.classList.add('visible');
         } finally {
           btn.disabled = false;
@@ -661,7 +682,10 @@
         list.innerHTML = filtered.map(u => renderUser(u)).join('');
 
         list.querySelectorAll('.btn-toggle').forEach(btn => {
-          btn.addEventListener('click', () => toggleUser(btn.dataset.email, btn));
+          btn.addEventListener('click', () => {
+            const desiredActive = btn.dataset.active !== 'true';
+            toggleUser(btn.dataset.email, desiredActive, btn);
+          });
         });
 
         list.querySelectorAll('.btn-edit').forEach(btn => {
@@ -716,17 +740,33 @@
             </div>
             <span class="badge ${badgeClass}">${badgeText}</span>
             <button class="btn-edit" data-email="${safeEmail}">Editar</button>
-            <button class="btn-toggle ${btnClass}" data-email="${safeEmail}">${btnText}</button>
+            <button class="btn-toggle ${btnClass}" data-email="${safeEmail}" data-active="${String(Boolean(u.active))}">${btnText}</button>
           </div>
         `;
       }
 
-      async function toggleUser(email, btn) {
+      async function toggleUser(email, desiredActive, btn) {
+        const currentUser = allUsers.find(u => u.email === email);
+        if (
+          !desiredActive &&
+          !window.confirm(
+            `¿Dar de baja a ${currentUser?.name || email}? Su acceso se cerrará en todos sus dispositivos.`,
+          )
+        ) {
+          return;
+        }
         btn.disabled = true;
         const original = btn.textContent;
         btn.textContent = '...';
 
-        const data = await api('POST', { action: 'toggle', email }).catch(() => ({ success: false }));
+        const data = await api('POST', {
+          action: 'set_active',
+          email,
+          active: desiredActive,
+        }).catch(() => ({
+          success: false,
+          error: 'No hemos podido conectar con la administración.',
+        }));
 
         if (data.success) {
           const idx = allUsers.findIndex(u => u.email === data.user.email);
@@ -735,10 +775,11 @@
           renderUserList();
 
           showToast(data.user.active ? `✅ ${data.user.name} activada` : `🔴 ${data.user.name} desactivada`);
+          if (data.warning) showToast(`⚠️ ${data.warning}`, 5000);
         } else {
           btn.disabled = false;
           btn.textContent = original;
-          showToast('Error al cambiar estado.');
+          showToast(data.error || 'Error al cambiar el estado.', 5000);
         }
       }
 
@@ -786,7 +827,7 @@
         if (!name || !email || (!isEdit && !password)) {
           err.textContent = isEdit
             ? 'Nombre y email son obligatorios.'
-            : 'Completá todos los campos.';
+            : 'Completa todos los campos.';
           err.classList.add('visible');
           return;
         }

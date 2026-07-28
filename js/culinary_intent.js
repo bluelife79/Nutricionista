@@ -418,7 +418,7 @@
   var PROMPTS = {
     cheese_use: {
       question: "¿Cómo lo vas a utilizar?",
-      help: "Así priorizamos quesos que funcionen de verdad en ese plato.",
+      help: "Así ponemos delante los quesos que de verdad te sirven.",
       options: [
         { id: "cold", label: "En frío o ensalada", icon: "🥗" },
         { id: "melt", label: "Para fundir o gratinar", icon: "🔥" },
@@ -428,7 +428,7 @@
     },
     oats_use: {
       question: "¿Cómo vas a tomar la avena?",
-      help: "No es lo mismo un desayuno de cuchara que una preparación salada.",
+      help: "Porque un porridge y una receta salada no piden lo mismo.",
       options: [
         { id: "breakfast_bowl", label: "Desayuno con leche o yogur", icon: "🥣" },
         { id: "porridge", label: "Porridge", icon: "🥄" },
@@ -438,7 +438,7 @@
     },
     bread_use: {
       question: "¿Para qué quieres el pan?",
-      help: "El formato adecuado suele ser más útil que una equivalencia genérica.",
+      help: "Así evitamos recomendarte un formato que luego no te sirve.",
       options: [
         { id: "toast", label: "Tostada", icon: "🍞" },
         { id: "sandwich", label: "Bocadillo o sándwich", icon: "🥪" },
@@ -447,7 +447,7 @@
     },
     meat_use: {
       question: "¿Cómo vas a preparar la carne?",
-      help: "Priorizamos alternativas que ocupen el mismo papel en tu comida.",
+      help: "Pondremos primero las opciones que puedas cocinar igual.",
       options: [
         { id: "main_piece", label: "Filete o pieza principal", icon: "🍽️" },
         { id: "stew", label: "Guiso, tacos o salteado", icon: "🍲" },
@@ -456,7 +456,7 @@
     },
     fish_use: {
       question: "¿Cómo vas a preparar el pescado?",
-      help: "Separamos una pieza principal de pescados pensados para guiso.",
+      help: "No necesitas lo mismo para una plancha que para un guiso.",
       options: [
         { id: "main_piece", label: "Filete o pieza principal", icon: "🐟" },
         { id: "stew", label: "Guiso, sopa o arroz", icon: "🍲" },
@@ -464,7 +464,7 @@
     },
     plant_protein_use: {
       question: "¿Cómo vas a usar la proteína vegetal?",
-      help: "Priorizamos formatos que puedas cocinar de la misma manera.",
+      help: "Pondremos primero los formatos que puedas cocinar igual.",
       options: [
         { id: "main_piece", label: "Plancha o pieza principal", icon: "🍽️" },
         { id: "stew", label: "Guiso o salteado", icon: "🍲" },
@@ -473,7 +473,7 @@
     },
     legume_use: {
       question: "¿Cómo vas a preparar la legumbre?",
-      help: "La alternativa cambia si buscas un plato de cuchara o algo frío.",
+      help: "Un plato de cuchara y una ensalada piden cosas distintas.",
       options: [
         { id: "stew", label: "Guiso o plato de cuchara", icon: "🍲" },
         { id: "salad", label: "Ensalada o plato frío", icon: "🥗" },
@@ -481,7 +481,7 @@
     },
     tuber_use: {
       question: "¿Cómo quieres utilizarlo?",
-      help: "Priorizamos tubérculos y formatos adecuados para esa preparación.",
+      help: "Así te enseñamos primero formatos que de verdad te sirvan.",
       options: [
         { id: "side", label: "Guarnición", icon: "🍽️" },
         { id: "stew", label: "Guiso", icon: "🍲" },
@@ -491,7 +491,7 @@
     },
     fermented_dairy_use: {
       question: "¿Cómo quieres utilizarlo?",
-      help: "Distinguimos tomarlo directamente de usarlo en una receta o salsa.",
+      help: "Porque tomarlo con cuchara no es lo mismo que cocinar con él.",
       options: [
         { id: "spoon", label: "Para tomar con cuchara", icon: "🥄" },
         { id: "cooking_sauce", label: "Para cocinar o hacer una salsa", icon: "🥣" },
@@ -500,7 +500,7 @@
     },
     vegetable_use: {
       question: "¿Cómo vas a preparar la verdura?",
-      help: "La textura y la forma de cocinarla importan en el intercambio.",
+      help: "La textura importa: cruda, cocinada o en crema cambia el resultado.",
       options: [
         { id: "salad", label: "Cruda o en ensalada", icon: "🥗" },
         { id: "cooked_side", label: "Cocinada o como guarnición", icon: "🍽️" },
@@ -509,7 +509,7 @@
     },
     spreadable_fat_use: {
       question: "¿Cómo la vas a utilizar?",
-      help: "Diferenciamos una grasa para untar de una grasa para cocinar.",
+      help: "Porque para untar y para cocinar no buscamos lo mismo.",
       options: [
         { id: "spread", label: "Para untar", icon: "🥖" },
         { id: "cooking", label: "Para cocinar", icon: "🍳" },

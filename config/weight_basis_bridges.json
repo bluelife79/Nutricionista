@@ -1,5 +1,5 @@
 {
-  "version": "premium-v2.4-weight-basis-1",
+  "version": "premium-v2.5-weight-basis-1",
   "bridges": [
     {
       "from": "cooked",
@@ -16,29 +16,16 @@
         "other_vegetable"
       ],
       "factor": 1,
-      "notice": "La cantidad de la conserva se refiere al peso escurrido."
+      "notice": "Este se pesa escurrido, sin el líquido de la lata."
     },
     {
       "from": "raw",
       "to": "cooked",
       "contexts": [
-        "lean_meat",
-        "fatty_meat",
-        "minced_meat",
-        "egg",
-        "white_fish",
-        "fatty_fish",
-        "seafood",
-        "cooked_legume",
-        "leafy_vegetable",
-        "cruciferous",
-        "fruiting_vegetable",
-        "root_vegetable",
-        "stalk_vegetable",
-        "other_vegetable"
+        "cooked_legume"
       ],
       "factor": 1,
-      "notice": "Cada cantidad mantiene su base real: en crudo o una vez cocinada. La tarjeta indica cuál corresponde a cada alimento."
+      "notice": "Ojo con la báscula: uno se pesa en crudo y el otro, ya cocinado."
     },
     {
       "from": "raw",
@@ -54,7 +41,7 @@
         "other_vegetable"
       ],
       "factor": 1,
-      "notice": "Comparas un alimento fresco en crudo con una conserva; la cantidad de la conserva se refiere al peso escurrido."
+      "notice": "Uno se pesa en crudo y la conserva, escurrida y sin el líquido."
     },
     {
       "from": "dry",
@@ -67,7 +54,7 @@
         "cooked_tuber"
       ],
       "factor": 1,
-      "notice": "Comparas un alimento pesado en seco con otro pesado en crudo; la tarjeta indica la base de cada cantidad."
+      "notice": "Ojo con la báscula: uno se pesa en seco y el otro, en crudo."
     },
     {
       "from": "dry",
@@ -79,7 +66,7 @@
         "bread"
       ],
       "factor": 1,
-      "notice": "Cada cantidad mantiene su base real: en seco o tal como viene."
+      "notice": "La cantidad del primero va en seco; la otra, tal como viene."
     },
     {
       "from": "as_sold",
@@ -90,7 +77,7 @@
         "cooked_tuber"
       ],
       "factor": 1,
-      "notice": "El pan se pesa tal como viene y el tubérculo en crudo; ambas bases aparecen junto a los gramos."
+      "notice": "Uno se pesa tal como viene y el otro, en crudo."
     }
   ]
 }

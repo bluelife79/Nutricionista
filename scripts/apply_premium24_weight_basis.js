@@ -5,7 +5,7 @@ const path = require("path");
 const { ROOT, createEngine } = require("./lib/algorithm_harness");
 
 const DB_PATH = path.join(ROOT, "database.json");
-const VERSION = "premium-v2.4-weight-basis-1";
+const VERSION = "premium-v2.5-weight-basis-1";
 
 function normalize(value) {
   return String(value || "")
@@ -34,6 +34,10 @@ function inferWeightBasis(food, context) {
       name,
     );
   if (cooked) return ["cooked", "explicit_cooked_state"];
+
+  if (context === "egg" && /\btortilla\b/.test(name)) {
+    return ["cooked", "prepared_egg_cooked_weight"];
+  }
 
   if (
     food.raw_ingredient === true &&

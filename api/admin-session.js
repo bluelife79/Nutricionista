@@ -33,7 +33,9 @@ module.exports = async (req, res) => {
   const { data, error } = await supabase.auth.admin.getUserById(session.sub);
   const user = data?.user;
   if (error || !user || user.app_metadata?.role !== 'admin' ||
-      String(user.email || '').toLowerCase() !== session.email) {
+      String(user.email || '').toLowerCase() !== session.email ||
+      Number(user.app_metadata?.session_version || 1) !==
+        Number(session.version || 1)) {
     clearAdminSessionCookie(req, res);
     return res.status(401).json({ success: false });
   }

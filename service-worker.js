@@ -1,6 +1,6 @@
 // IMPORTANTE: subir CACHE_NAME cada vez que cambia algo en la app o en
 // database.json para forzar a los navegadores a descargar la versión nueva.
-const CACHE_NAME = "revolucionat-premium-v2-4-rc-1";
+const CACHE_NAME = "revolucionat-premium-v2-5-rc-1";
 const urlsToCache = [
   "/",
   "/index.html",

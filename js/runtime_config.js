@@ -2,7 +2,7 @@
   "use strict";
 
   const defaults = Object.freeze({
-    release: "premium-v2.4-rc-1",
+    release: "premium-v2.5-rc-1",
     semanticEmbeddingsEnabled: true,
     remoteRerankEnabled: false,
     llmJudgeEnabled: false,

@@ -1,4 +1,9 @@
-# Intercambiador RevolucionaT — entrega de estabilización
+# Intercambiador RevolucionaT — entrega de estabilización (histórica)
+
+> Este documento conserva la evidencia de la entrega del 25 de julio de 2026.
+> No describe la candidata actual. El contrato vigente está en
+> `docs/PREMIUM_PRODUCT_CONTRACT.md` y sus métricas ejecutables en
+> `config/release_gates.json`.
 
 Fecha de validación: 25 de julio de 2026
 

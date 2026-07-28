@@ -17,7 +17,7 @@
   "use strict";
 
   var VERSION = "premium-v2.3-scope-1";
-  var CHOICE_VERSION = "premium-v2.4-choice-1";
+  var CHOICE_VERSION = "premium-v2.5-choice-1";
   var STATUS = {
     CORE: "exchange_core",
     REFERENCE: "reference_only",
@@ -1250,41 +1250,52 @@
       }
     }
 
+    var isChocolate = context === "chocolate";
     var copy = {
       preferred: {
-        label: "Elección prioritaria",
-        summary: "Buena opción para el día a día.",
+        label: "Para diario",
+        summary: "Una opción sencilla que encaja bien.",
         detail:
-          "Encaja nutricionalmente y no presenta señales que hagan necesario rebajar su prioridad.",
+          "Puedes utilizarla con tranquilidad dentro de tu menú habitual.",
         rankFactor: 1,
       },
       compatible: {
-        label: "Alternativa compatible",
+        label:
+          sugarAssessment.status === "detected"
+            ? "Mejor para alguna vez"
+            : "También te vale",
         summary: hasSweeteners
-          ? "Encaja, pero contiene edulcorantes."
+          ? "La cantidad cuadra, aunque lleva edulcorantes."
           : sugarAssessment.status === "detected"
-            ? "Encaja, pero contiene azúcar añadido."
-            : "Encaja, aunque tiene un mayor grado de procesamiento.",
-        detail: sugarAssessment.status === "not_detected"
-          ? "Sin azúcares añadidos según los ingredientes disponibles. Criterio RevolucionaT: para el día a día, prioriza opciones con ingredientes más sencillos."
-          : "Puede encajar en cantidad y macros. Criterio RevolucionaT: para el día a día, prioriza opciones con ingredientes más sencillos.",
+            ? "Cuadra, pero lleva azúcar añadido."
+            : "Cuadra, aunque tiene más ingredientes de la cuenta.",
+        detail:
+          sugarAssessment.status === "detected"
+            ? "Que aparezca aquí no significa que sea nuestra primera elección. Mejor dejarla para alguna vez."
+            : hasSweeteners
+              ? "Puedes hacer el cambio. Para diario, nos gusta más una opción con ingredientes sencillos."
+              : "Puedes hacer el cambio, aunque para diario pondremos primero las opciones más sencillas.",
         rankFactor: 0.8,
       },
       unverified: {
-        label: "Opción compatible",
-        summary: "Puede encajar, pero falta verificar su etiqueta.",
+        label: "Nos falta información",
+        summary: "La cantidad puede encajar, pero no vemos bien toda la etiqueta.",
         detail:
-          "No hemos podido verificar por completo los ingredientes de este producto. Puedes usar la equivalencia, pero para el día a día el programa prioriza opciones con etiquetado claro e ingredientes sencillos.",
+          "No hemos podido comprobar todos sus ingredientes. Puedes usar la equivalencia, pero pondremos antes los productos con una etiqueta clara.",
         rankFactor: 0.74,
       },
       occasional: {
-        label: "Uso ocasional",
+        label: isChocolate ? "Capricho con sitio" : "Mejor para alguna vez",
         summary: fatProgramPriority
-          ? "Sirve para cubrir la grasa, pero no es la primera elección del programa."
-          : "Puede encajar, pero no es nuestra primera elección habitual.",
+          ? "Cuadra como grasa, pero no es nuestra primera opción para diario."
+          : isChocolate
+            ? "Sí, puede encajar."
+            : "Puede encajar, pero no es nuestra primera opción para diario.",
         detail: fatProgramPriority
-          ? "La equivalencia de grasa es válida. Criterio RevolucionaT: para el día a día, prioriza aceite de oliva, aguacate, aceitunas o frutos secos enteros."
-          : "La equivalencia puede ser útil como referencia. Criterio RevolucionaT: prioriza alimentos menos procesados en el día a día.",
+          ? "Si puedes elegir, tira antes de aceite de oliva, aguacate, aceitunas o frutos secos."
+          : isChocolate
+            ? "Mejor como capricho que como fondo de armario."
+            : "Te sirve como referencia. Para diario, pondremos primero opciones más sencillas.",
         rankFactor: 0.62,
       },
     }[level];

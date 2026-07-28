@@ -1795,27 +1795,30 @@
       }
 
       .telemetry-privacy {
-        margin: 18px 0 8px;
-        border: 1px solid rgba(83, 75, 144, .18);
-        border-radius: 14px;
-        background: rgba(255,255,255,.72);
+        margin: 18px 0 4px;
+        border: 0;
+        background: transparent;
         color: #4f5564;
-        font-size: 13px;
+        font-size: 12px;
+        text-align: center;
       }
 
       .telemetry-privacy summary {
-        min-height: 44px;
-        display: flex;
+        min-height: 36px;
+        display: inline-flex;
         align-items: center;
-        padding: 9px 14px;
-        color: #534b90;
-        font-weight: 800;
+        padding: 7px 10px;
+        color: #747784;
+        font-weight: 700;
         cursor: pointer;
       }
 
       .telemetry-privacy-copy {
-        padding: 0 14px 14px;
+        max-width: 520px;
+        margin: 0 auto;
+        padding: 4px 14px 12px;
         line-height: 1.45;
+        text-align: left;
       }
 
       .telemetry-privacy-toggle {
@@ -2044,16 +2047,16 @@
           <p class="app-promise">¿Qué alimento quieres cambiar hoy?</p>
         </div>
         <div class="app-trust-row" aria-label="Características de la herramienta">
-          <span class="app-trust-chip">✓ Raciones prácticas</span>
-          <span class="app-trust-chip">✓ Contexto culinario</span>
-          <span class="app-trust-chip">✓ Alternativas revisadas</span>
+          <span class="app-trust-chip">✓ Cantidades que se entienden</span>
+          <span class="app-trust-chip">✓ Opciones que tienen sentido</span>
+          <span class="app-trust-chip">✓ Sin descuadrar tu menú</span>
         </div>
       </header>
 
       <!-- SEARCH SECTION -->
       <div id="searchSection" class="search-section">
         <div class="card-neo">
-          <label class="label" for="searchInput">1. ¿Qué alimento quieres cambiar?</label>
+          <label class="label" for="searchInput">1. ¿Qué quieres cambiar?</label>
           <span class="step-help">Escribe el nombre y elige la opción que más se parezca a la tuya.</span>
           <div class="input-wrapper">
             <input
@@ -2087,8 +2090,8 @@
         <div class="card-neo usage-context-card" id="usageContextSection">
           <label class="label" id="usageContextLabel">¿Cómo lo vas a usar?</label>
           <div class="usage-context-help" id="usageContextHelp">
-            Es opcional, pero ayuda a que las primeras alternativas tengan
-            sentido en esa receta.
+            Dinos cómo lo vas a usar y pondremos primero lo que de verdad te
+            sirva.
           </div>
           <div class="usage-context-options" id="usageContextOptions"></div>
         </div>
@@ -2099,7 +2102,7 @@
           style="opacity: 0.5; pointer-events: none"
         >
           <label class="label" for="amountInput">2. ¿Qué cantidad tienes?</label>
-          <span class="step-help">Indica los gramos que aparecen en tu menú.</span>
+          <span class="step-help">Pon los gramos que tienes en el menú. Nosotros hacemos las cuentas.</span>
           <input
             type="number"
             id="amountInput"
@@ -2111,14 +2114,14 @@
         </div>
 
         <button id="calculateBtn" class="btn-neo" disabled>
-          Ver mis alternativas
+          Buscar un buen cambio
         </button>
       </div>
 
       <!-- LOADING -->
       <div id="loading" class="loading">
         <div class="spinner"></div>
-        <div class="loading-text">Cargando...</div>
+        <div class="loading-text">Buscando un buen cambio...</div>
       </div>
 
       <!-- RESULTS SECTION -->
@@ -2126,7 +2129,7 @@
         <button class="back-btn" id="backBtn">← Nueva búsqueda</button>
 
         <div class="results-header">
-          <div class="results-title">Alternativas para ti</div>
+          <div class="results-title">Tus mejores cambios</div>
           <div class="results-subtitle" id="resultsCount"></div>
         </div>
 
@@ -2136,10 +2139,10 @@
         <div id="intercambiosSection" style="display: none">
           <div class="section-header intercambios">
             <div class="section-title">
-              🔄 ALTERNATIVAS RECOMENDADAS (<span id="intercambiosCount">0</span>)
+              🔄 CAMBIOS QUE TE RECOMENDAMOS (<span id="intercambiosCount">0</span>)
             </div>
             <div class="section-subtitle">
-              Lo que comerías en lugar de este alimento
+              Lo que puedes tomar en su lugar
             </div>
           </div>
           <div id="intercambiosGroups"></div>
@@ -2149,7 +2152,7 @@
         <div id="familiaSection" class="advanced-section" style="display: none">
           <details>
             <summary>
-              📦 OTRAS MARCAS DEL MISMO ALIMENTO (<span id="familiaCount">0</span>)
+              📦 OTRAS MARCAS O FORMATOS (<span id="familiaCount">0</span>)
             </summary>
             <div
               class="warning-box"
@@ -2160,11 +2163,11 @@
               "
             >
               <div class="warning-title" style="color: #4527a0">
-                ℹ️ MISMO INGREDIENTE BASE
+                ℹ️ EL MISMO ALIMENTO, CON OTRO TRAJE
               </div>
               <div class="warning-text">
-                Son presentaciones distintas del mismo ingrediente. Útiles para
-                variedad en la preparación, no como intercambio nutricional.
+                Aquí tienes otras marcas o formatos de lo que ya has elegido.
+                Si cambia su composición, también ajustamos la cantidad.
               </div>
             </div>
             <div id="familiaContainer" style="margin-top: 8px"></div>
@@ -2179,15 +2182,16 @@
         >
           <details>
             <summary>
-              🍽️ PLATOS PREPARADOS (<span id="preparadosCount">0</span>)
+              🍽️ PRODUCTOS PREPARADOS (<span id="preparadosCount">0</span>)
             </summary>
             <div class="warning-box" style="margin-top: 16px">
               <div class="warning-title">
-                ⚠️ ULTRAPROCESADOS Y PLATOS COMPUESTOS
+                ⚠️ AQUÍ EL ALIMENTO VIENE ACOMPAÑADO
               </div>
               <div class="warning-text">
-                Contienen el ingrediente pero con aditivos, grasas o salsas
-                añadidas. Revisá el impacto en el día completo antes de usarlos.
+                Puede llevar salsas, aceites, azúcar u otros ingredientes. Te
+                calculamos la cantidad, pero no lo pondremos por delante de una
+                opción más sencilla.
               </div>
             </div>
             <div id="preparadosContainer"></div>
@@ -2195,16 +2199,14 @@
         </div>
       </div>
 
-      <details class="telemetry-privacy">
-        <summary>Privacidad y mejora de la herramienta</summary>
+      <details class="telemetry-privacy privacy-footer">
+        <summary>Privacidad</summary>
         <div class="telemetry-privacy-copy">
-          Medimos de forma anónima qué búsquedas funcionan y cuáles faltan.
-          No guardamos tu email ni un historial personal de alimentos. Los
-          términos solo permanecen agregados cuando se repiten al menos cinco
-          veces.
+          Usamos datos anónimos para detectar búsquedas que fallan. No guardamos
+          tu email ni un historial personal de alimentos.
           <label class="telemetry-privacy-toggle" for="telemetryEnabled">
             <input type="checkbox" id="telemetryEnabled" checked />
-            <span>Ayudar a mejorar el intercambiador con datos anónimos.</span>
+            <span>Ayudar a mejorar la herramienta.</span>
           </label>
         </div>
       </details>
@@ -2393,7 +2395,7 @@
       let selectedFood = null;
       let selectedUsageMode = "any";
       let searchTimeout = null;
-      const EXCHANGE_RESULT_CACHE_VERSION = "premium-v2.2-ux-1";
+      const EXCHANGE_RESULT_CACHE_VERSION = "premium-v2.5-ux-1";
       const EXCHANGE_RESULT_CACHE_LIMIT = 18;
       const exchangeResultCache = new Map();
 
@@ -2859,9 +2861,9 @@
         if (results) {
           exchangeResultCache.delete(cacheKey);
           exchangeResultCache.set(cacheKey, results);
-          calculationStatus.textContent = "Recuperando tus alternativas...";
+          calculationStatus.textContent = "Ya lo tengo. Recuperando tus cambios...";
         } else {
-          calculationStatus.textContent = "Buscando las mejores alternativas...";
+          calculationStatus.textContent = "Buscando un buen cambio...";
           results = await calculateAlternatives(selectedFood, amount, {
             usageMode: selectedUsageMode,
           });
@@ -2878,7 +2880,7 @@
         });
         window.markAnonymousResultsShown?.();
         loading.classList.remove("active");
-        calculationStatus.textContent = "Cargando...";
+        calculationStatus.textContent = "Buscando un buen cambio...";
         resultsSection.classList.add("active");
       }
 
@@ -2908,25 +2910,19 @@
               <div class="choice-guidance ${escapeHtml(originalChoiceGuidance.level)} origin-guidance">
                 <span class="choice-guidance-dot" aria-hidden="true"></span>
                 <div class="choice-guidance-copy">
-                  <div class="choice-guidance-label">${escapeHtml(
-                    originalChoiceGuidance.level === "compatible"
-                      ? "Opción compatible"
-                      : originalChoiceGuidance.level === "unverified"
-                        ? "Etiqueta pendiente"
-                        : "Mejor para ocasiones",
-                  )}</div>
+                  <div class="choice-guidance-label">${escapeHtml(originalChoiceGuidance.label)}</div>
                   <div class="choice-guidance-summary">${escapeHtml(originalChoiceGuidance.summary)}</div>
                 </div>
               </div>
               <details class="choice-guidance-details origin-guidance-details">
-                <summary>¿Por qué?</summary>
+                <summary>Lo que conviene saber</summary>
                 <p>${escapeHtml(originalChoiceGuidance.detail)}</p>
               </details>
             `
             : "";
 
         originalFoodCard.innerHTML = `
-      <div class="original-food-header">TIENES EN TU MENÚ</div>
+      <div class="original-food-header">Tienes en tu menú</div>
       <div class="original-food-name">
         ${escapeHtml(amount)}g ${escapeHtml(originalFood.name)}${(() => {
           const hm = window.formatHouseholdMeasure
@@ -2949,7 +2945,7 @@
           <div class="original-macro-value">${originalMacros.protein.toFixed(1)}g</div>
         </div>
         <div class="original-macro-item">
-          <div class="original-macro-label">Carbos</div>
+          <div class="original-macro-label">Hidratos</div>
           <div class="original-macro-value">${originalMacros.carbs.toFixed(1)}g</div>
         </div>
         <div class="original-macro-item">
@@ -2969,8 +2965,8 @@
           alternatives.preparados.length;
         resultsCount.textContent =
           totalCount === 0
-            ? "Sin intercambios disponibles"
-            : "Alternativas recomendadas";
+            ? "No vamos a forzar un cambio que no cuadre"
+            : "Las opciones que mejor encajan";
 
         // Empty-state amable. Cliente: "no quiero '0 alternativas
         // encontradas' frío — prefiero un mensaje honesto."
@@ -2985,12 +2981,12 @@
             <div class="empty-state">
               <div class="empty-state-icon">🤔</div>
               <div class="empty-state-title">
-                No encontramos un intercambio equivalente para este alimento
+                Aquí no te voy a vender humo
               </div>
               <div class="empty-state-text">
                 ${hasAnyFamily
-                  ? "Abajo te mostramos opciones de la misma familia que pueden servirte como referencia, pero ninguna es un sustituto exacto sin descuadrar el menú."
-                  : "Prueba con un alimento similar o consúltalo con el equipo. No todo tiene un intercambio clínico equivalente."
+                  ? "No hay un cambio que cuadre de verdad. Te dejo algunas opciones cercanas para orientarte, pero no cuentan como un intercambio exacto."
+                  : "No hay un cambio que cuadre bien. Prueba con un alimento parecido o pregúntanos y lo vemos contigo."
                 }
               </div>
             </div>
@@ -3073,11 +3069,11 @@
       function renderResultCard(alt, tier) {
         const badges = {
           intercambios:
-            '<div class="level-badge intercambios"><span>🔄</span> Intercambio real</div>',
+            '<div class="level-badge intercambios"><span>🔄</span> Buen intercambio</div>',
           familia:
-            '<div class="level-badge familia"><span>📦</span> Misma familia</div>',
+            '<div class="level-badge familia"><span>📦</span> Mismo alimento</div>',
           preparados:
-            '<div class="level-badge preparados"><span>🍽️</span> Plato preparado</div>',
+            '<div class="level-badge preparados"><span>🍽️</span> Producto preparado</div>',
         };
 
         let calClass = "";
@@ -3087,21 +3083,21 @@
         else if (alt.diffs.calories > 80) calClass = "cal-up-high";
 
         const contextReasons = {
-          same_context: "Mismo tipo de alimento y uso",
-          same_cohort: "Encaja en la misma comida",
-          carb_secondary_bridge: "Otra forma práctica de hidratos",
-          milk_family_bridge: "Alternativa para la misma toma",
-          avocado_spread_bridge: "Mismo uso como grasa o untable",
-          spoonable_dairy_bridge: "Misma proteína en una opción más ligera",
-          fresh_cheese_form_bridge: "Misma familia láctea, con otra textura",
-          plant_spread_bridge: "Mismo uso como untable vegetal",
+          same_context: "Te sirve para lo mismo y la cantidad ya está ajustada.",
+          same_cohort: "Encaja bien en el mismo momento del día.",
+          carb_secondary_bridge: "Cumple el mismo papel como hidrato en el plato.",
+          milk_family_bridge: "Funciona bien en la misma toma.",
+          avocado_spread_bridge: "Mantiene el mismo uso, con una ración adaptada.",
+          spoonable_dairy_bridge: "Mantiene la proteína en una opción más ligera.",
+          fresh_cheese_form_bridge: "Sigue siendo un lácteo fresco, con otra textura.",
+          plant_spread_bridge: "Mantiene el mismo uso como untable vegetal.",
         };
         const contextReason =
           contextReasons[alt.premiumContextReason] ||
-          "Equivalencia nutricional y culinaria";
+          "El cambio queda bien ajustado.";
         const usageNotice =
           alt.premiumUsageFit === "less_usual"
-            ? '<div class="portion-review-note">ℹ️ Menos habitual para el uso que has elegido.</div>'
+            ? '<div class="portion-review-note">ℹ️ Para el uso que has elegido, hay opciones mejores más arriba.</div>'
             : "";
         const weightBasisNotice =
           alt.premiumWeightBasisBridge?.notice
@@ -3116,13 +3112,13 @@
         let choiceGuidanceHTML = "";
         if (
           choiceGuidance &&
-          ["preferred", "compatible", "unverified", "occasional"].includes(
+          ["compatible", "unverified", "occasional"].includes(
             choiceGuidance.level,
           )
         ) {
           const details = `
             <details class="choice-guidance-details">
-              <summary>¿Por qué?</summary>
+              <summary>Lo que conviene saber</summary>
               <p>${escapeHtml(choiceGuidance.detail)}</p>
             </details>
           `;
@@ -3142,18 +3138,18 @@
         if (alt.premiumPortionStatus === "review") {
           const context = alt.premiumContext || "";
           let message =
-            "Ración grande: el cálculo es correcto, pero comprueba que esta cantidad te resulte práctica.";
+            "Es una ración grande. El cálculo cuadra, pero comprueba que te resulte práctica.";
           if (context === "whole_fruit") {
             message =
-              "Ración grande: esta fruta aporta menos energía por gramo, por eso hace falta más cantidad.";
+              "Sale más cantidad porque esta fruta aporta menos energía por gramo.";
           } else if (["plant_protein", "cooked_legume"].includes(context)) {
             message =
-              "Ración grande: hace falta más cantidad para acercarse al aporte de proteína.";
+              "Aquí hace falta más cantidad para acercarnos a la proteína.";
           } else if (
             ["tuber", "cooked_tuber", "cooked_grain"].includes(context)
           ) {
             message =
-              "Ración mayor: cambias un alimento más seco por otro con más agua.";
+              "Sale más cantidad porque este alimento tiene más agua.";
           }
           portionNotice = `<div class="portion-review-note">⚠️ ${message}</div>`;
         }
@@ -3178,8 +3174,8 @@
             ? window.presentationTier(alt._sortScore)
             : {
                 key: "possible_change",
-                label: "Cambio posible",
-                summary: "Sirve, pero se nota más",
+                label: "Puede encajarte",
+                summary: "Te puede servir, pero tiene algún matiz",
               };
 
         return `
@@ -3241,7 +3237,7 @@
             <div class="result-macro-diff ${getDiffClass(alt.diffs.protein)}">${formatDiff(alt.diffs.protein)}</div>
           </div>
           <div class="result-macro-item">
-            <div class="result-macro-label">Carbos</div>
+            <div class="result-macro-label">Hidratos</div>
             <div class="result-macro-value">${alt.macros.carbs.toFixed(1)}g</div>
             <div class="result-macro-diff ${getDiffClass(alt.diffs.carbs)}">${formatDiff(alt.diffs.carbs)}</div>
           </div>
